@@ -14,7 +14,7 @@ namespace _Scripts
         public float shakeAmount = 0.7f;
         public float decreaseFactor = 1.0f;
 	
-        Vector3 originalPos;
+        Vector3 _originalPos;
 	
         void Awake()
         {
@@ -26,21 +26,21 @@ namespace _Scripts
 	
         void OnEnable()
         {
-            originalPos = camTransform.localPosition;
+            _originalPos = camTransform.localPosition;
         }
 
         void Update()
         {
             if (shakeDuration > 0)
             {
-                camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+                camTransform.localPosition = _originalPos + Random.insideUnitSphere * shakeAmount;
 			
                 shakeDuration -= Time.deltaTime * decreaseFactor;
             }
             else
             {
                 shakeDuration = 0f;
-                camTransform.localPosition = originalPos;
+                camTransform.localPosition = _originalPos;
             }
         }
     }

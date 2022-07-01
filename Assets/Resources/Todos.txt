@@ -5,7 +5,7 @@
 5. Coin system, earning coins
 6. Upgrade System
 7. Weapon - Shield
-8. Weapon - Anvil
+8. Weapon - Anvil (done)
 9. Weapon - Laser Bomb
 10. Weapon - Dynamite
 11. Weapon - BounceBall?
