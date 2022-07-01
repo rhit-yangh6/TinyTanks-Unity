@@ -41,8 +41,8 @@ namespace _Scripts
             coins = 1000;
             selectedWeapons = new int[] { 1, 2, 6, 4, 5 };
             weaponLevels = new WeaponDatum[] { 
-                new WeaponDatum(1, 5),
-                new WeaponDatum(2, 4), 
+                new WeaponDatum(1, 1),
+                new WeaponDatum(2, 1), 
                 new WeaponDatum(3, 1),
                 new WeaponDatum(4, 1), 
                 new WeaponDatum(5, 1),
