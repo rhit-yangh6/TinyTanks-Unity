@@ -1,0 +1,213 @@
+using System;
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+namespace _Scripts
+{
+    public class EnemyController : MonoBehaviour, Character
+    {
+
+        public float Health { get; set; }
+
+        public float maxHealth = 100;
+        public float movementSpeed = 5;
+        
+        public int facingDirection = -1;
+
+        public float degreeDelta = 10f;
+
+        public GameObject player;
+
+        public HealthBarBehavior healthBar;
+        
+        public bool isDead = false;
+
+        public int selectedWeaponId;
+
+        private int xMovingDirection = 0;
+        private bool isAiming = false;
+        private Vector2 aimVelocity;
+        
+        private GameObject _projectilePrefab;
+        private SpriteRenderer _sr;
+        private Rigidbody2D _rb;
+        private LineRenderer _lr;
+
+        public LayerMask layerMask;
+    
+        void Start()
+        {
+            Health = maxHealth;
+            healthBar.SetHealth(Health, maxHealth);
+            
+            _sr = GetComponent<SpriteRenderer>();
+            _sr.flipX = facingDirection == -1;
+            
+            _lr = GetComponent<LineRenderer>();
+
+            _projectilePrefab = WeaponManager.Instance.GetWeaponById(selectedWeaponId).projectilePrefab;
+            _rb = _projectilePrefab.GetComponent<Rigidbody2D>();
+        }
+
+        void Update()
+        {
+            CheckMovement();
+            AdjustRotation();
+            DrawTrajectory();
+        }
+    
+        public void TakeDamage(float amount)
+        {
+            if (Health - amount <= 0)
+            {
+                Health = 0;
+                isDead = true;
+                Destroy(gameObject);
+            }
+            else
+            {
+                Health -= amount;
+            }
+            healthBar.SetHealth(Health, maxHealth);
+        }
+
+        public void AdjustRotation()
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 3f, layerMask);
+
+            if (hit.collider)
+            {
+                float angle = Vector2.SignedAngle(hit.normal, Vector2.up);
+                transform.eulerAngles = new Vector3 (0, 0, -angle);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3 (0, 0, 0);
+            }
+        }
+
+        public void CheckMovement()
+        {
+            if (xMovingDirection != 0)
+            {
+                transform.Translate(Time.deltaTime * movementSpeed * new Vector3(xMovingDirection, 0, 0));
+            }
+        }
+
+        public void Flip()
+        {
+            facingDirection *= -1;
+            _sr.flipX = facingDirection == -1;
+        }
+
+        private void Aim()
+        {
+            _lr.enabled = true;
+            isAiming = true;
+            
+            Vector2 startPos = transform.position, endPos = player.transform.position;
+            float t = 3f;
+
+            float vx = (endPos.x - startPos.x) / t;
+            float vy = (endPos.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * t * t) / t;
+
+            aimVelocity = new Vector2(vx, vy);
+
+            float rotateDegree = Random.Range(-degreeDelta, degreeDelta);
+            
+            aimVelocity = Rotate(aimVelocity, rotateDegree);
+        }
+
+        private void Shoot()
+        {
+            GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
+            Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
+            prb.velocity = aimVelocity;
+
+            isAiming = false;
+        }
+        
+
+        public IEnumerator MakeMove()
+        {
+            // Simple Enemy AI 0.0.1
+            // Initial Wait
+            yield return new WaitForSeconds(1);
+            
+            // Randomly get the direction of going
+            int random = Random.Range(1, 3);
+            xMovingDirection = random == 1 ? 1 : -1;
+
+            // Flip if facing opposite direction
+            if (xMovingDirection != facingDirection)
+            {
+                Flip();
+            }
+            
+            // Walk for fixed second(s)
+            yield return new WaitForSeconds(1);
+            // Disable Walking
+            xMovingDirection = 0;
+
+            // Aim and get the velocity
+            Aim();
+            // Aim for seconds
+            yield return new WaitForSeconds(1);
+            // Shoot projectile
+            Shoot();
+        }
+
+        private void DrawTrajectory()
+        {
+            if (isAiming)
+            {
+                Vector2[] trajectory = Plot(_rb, (Vector2)transform.position, aimVelocity, 500);
+                _lr.positionCount = trajectory.Length;
+
+                Vector3[] positions = new Vector3[trajectory.Length];
+                for (int i = 0; i < trajectory.Length; i++)
+                {
+                    positions[i] = trajectory[i];
+                }
+                _lr.SetPositions(positions);
+            }
+            else
+            {
+                _lr.enabled = false;
+            }
+        }
+        
+        private Vector2[] Plot(Rigidbody2D prb, Vector2 pos, Vector2 velocity, int steps)
+        {
+            Vector2[] results = new Vector2[steps];
+            float timestep = Time.fixedDeltaTime / Physics2D.velocityIterations;
+
+            Vector2 gravityAccel = prb.gravityScale * timestep * timestep * Physics2D.gravity;
+
+            float drag = 1f - timestep * prb.drag;
+
+            Vector2 moveStep = velocity * timestep;
+
+            for (int i = 0; i < steps; i++)
+            {
+                moveStep += gravityAccel;
+                moveStep *= drag;
+                pos += moveStep;
+                results[i] = pos;
+            }
+
+            return results;
+        }
+        
+        private Vector2 Rotate(Vector2 v, float delta)
+        {
+            float deltaRad = delta * Mathf.Deg2Rad;
+            return new Vector2(
+                v.x * Mathf.Cos(deltaRad) - v.y * Mathf.Sin(deltaRad),
+                v.x * Mathf.Sin(deltaRad) + v.y * Mathf.Cos(deltaRad)
+            );
+        }
+    }
+}

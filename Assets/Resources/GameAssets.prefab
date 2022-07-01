@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6274669887278212611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6274669887278212609}
+  - component: {fileID: 6274669887278212610}
+  m_Layer: 0
+  m_Name: GameAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6274669887278212609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274669887278212611}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -53.496586, y: 18.535786, z: -2.1213188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6274669887278212610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274669887278212611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2534e9d72277b644d86dd03bc9386117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePopupPrefab: {fileID: 5528004835069231019, guid: 20185f8028e7b35469772e195b6a2a0a, type: 3}
+  boulderProjectilePrefab: {fileID: 3416031215921662803, guid: 5d0ac4ad40882254ea52ba9bfc14d04e, type: 3}
+  bombProjectilePrefab: {fileID: 1659805833723293240, guid: 12777894008788a48ac972a73322ed3d, type: 3}
+  rocketProjectilePrefab: {fileID: 7257619900484909686, guid: 7a9a50d698ac39848866f3277537e061, type: 3}
+  diceProjectilePrefab: {fileID: 3988150915524398275, guid: f08154637d0f74446a834d64c98a0d7d, type: 3}
+  diceNumbers:
+  - {fileID: 21300000, guid: d5a0bf691787b15438e2eccab6e3d57b, type: 3}
+  - {fileID: 21300000, guid: 05f2903b9d40ecf43ad7ca79f21da7c9, type: 3}
+  - {fileID: 21300000, guid: 452fbf2f6d980b74480716bdc9db07cf, type: 3}
+  - {fileID: 21300000, guid: e9a2d0e0baca82a4db0391f479005026, type: 3}
+  - {fileID: 21300000, guid: 8e12b5652c8ace547bfd6a54499ea473, type: 3}
+  - {fileID: 21300000, guid: 1b5bcd0de25403e42be53b137a0ad8e6, type: 3}
+  stars:
+  - {fileID: -250276989, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -892247961, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -612869334, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -1662610713, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -1150066049, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: 1872225244, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}

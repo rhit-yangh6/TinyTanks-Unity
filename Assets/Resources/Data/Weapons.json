@@ -1,0 +1,109 @@
+{
+  "weapons": [
+    {
+      "id": 1,
+      "weaponName": "Boulder",
+      "weaponDescription": "A large boulder that deals decent damage and destroys terrain.",
+      "damage": 35.0,
+      "radius": 3.0,
+      "maxMagnitude": 10.0,
+      "steps": 500,
+      "upgradeDescriptions": [],
+      "upgradeCosts": [],
+      "dataPath": "boulder",
+      "extraWeaponTerms": []
+    }, {
+      "id": 2,
+      "weaponName": "Bomb",
+      "weaponDescription": "?????",
+      "damage": 30.0,
+      "radius": 3.5,
+      "maxMagnitude": 10.0,
+      "steps": 500,
+      "upgradeDescriptions": [],
+      "upgradeCosts": [],
+      "dataPath": "bomb",
+      "extraWeaponTerms": [
+        {
+          "term": "detonateTime",
+          "value": 3.0
+        }]
+    }, {
+      "id": 3,
+      "weaponName": "Rocket",
+      "weaponDescription": "?????",
+      "damage": 32.0,
+      "radius": 3.0,
+      "maxMagnitude": 14.0,
+      "steps": 600,
+      "upgradeDescriptions": [],
+      "upgradeCosts": [],
+      "dataPath": "rocket",
+      "extraWeaponTerms": [
+        {
+          "term": "velocityMultiplier",
+          "value": 4.0
+        }
+      ]
+    }, {
+      "id": 4,
+      "weaponName": "Dice",
+      "weaponDescription": "?????",
+      "damage": 26.0,
+      "radius": 2.0,
+      "maxMagnitude": 11.0,
+      "steps": 500,
+      "upgradeDescriptions": [],
+      "upgradeCosts": [],
+      "dataPath": "dice",
+      "extraWeaponTerms": [
+        {
+          "term" : "unitDiceDamage",
+          "value": 3.0
+        }
+      ]
+    }, {
+      "id": 5,
+      "weaponName": "Snowball",
+      "weaponDescription": "?????",
+      "damage": 28.0,
+      "radius": 2.0,
+      "maxMagnitude": 15.0,
+      "steps": 510,
+      "upgradeDescriptions": [],
+      "upgradeCosts": [],
+      "dataPath": "snowball",
+      "extraWeaponTerms": [
+        {
+          "term": "maxSize",
+          "value": 3.0
+        },
+        {
+          "term": "growFactor",
+          "value": 0.25
+        }
+      ]
+    }, {
+      "id": 6,
+      "weaponName": "Anvil",
+      "weaponDescription": "A heavy anvil. Click in mid-air to make it fall quickly.",
+      "damage": 33.0,
+      "radius": 2.3,
+      "maxMagnitude": 8.0,
+      "steps": 400,
+      "upgradeDescriptions": [],
+      "upgradeCosts": [],
+      "dataPath": "anvil",
+      "extraWeaponTerms": [
+        {
+          "term": "gravityScaleMultiplier",
+          "value": 5.0
+        },
+        {
+          "term": "fallDamageMultiplier",
+          "value": 1.4
+        }
+      ]
+    }
+  ]
+}
