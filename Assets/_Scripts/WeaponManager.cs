@@ -24,12 +24,7 @@ namespace _Scripts
                 return _i;
             }
         }
-
-        private void Start()
-        {
-            // LoadWeapons();
-        }
-
+        
         private static void LoadWeapons()
         {
             TextAsset jsonFile = Resources.Load<TextAsset>("Data/Weapons");
@@ -57,13 +52,13 @@ namespace _Scripts
     [Serializable]
     public class Weapon
     {
+        // Read from Weapons.json
         public int id, steps;
-        public string weaponName;
-        public string weaponDescription, dataPath;
+        public string weaponName, weaponDescription, dataPath;
         public float damage, radius, maxMagnitude;
         
-        public string[] upgradeDescriptions;
-        public int[] upgradeCosts;
+        // Also Read from Weapons.json, but Extra Data Types
+        public UpgradeInfo[] upgradeInfos;
         public ExtraWeaponTerm[] extraWeaponTerms;
         
         // Later Generated
@@ -89,5 +84,13 @@ namespace _Scripts
     {
         public string term;
         public float value;
+    }
+
+    [Serializable]
+    public class UpgradeInfo
+    {
+        public string name;
+        public string description;
+        public int cost;
     }
 }
