@@ -12,6 +12,8 @@ namespace _Scripts
 
         public GameObject player;
 
+        public GameController gameController;
+
         private PlayerController playerCharacter;
         
         private LineRenderer lr;
@@ -84,6 +86,7 @@ namespace _Scripts
                 Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
                 prb.velocity = velocity;
 
+                gameController.projectileShot = true;
                 playerCharacter.moveable = false;
             }
         }

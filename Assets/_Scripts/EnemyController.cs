@@ -26,6 +26,8 @@ namespace _Scripts
 
         public int selectedWeaponId;
 
+        public GameController gameController;
+
         private int xMovingDirection = 0;
         private bool isAiming = false;
         private Vector2 aimVelocity;
@@ -127,6 +129,7 @@ namespace _Scripts
             prb.velocity = aimVelocity;
 
             isAiming = false;
+            gameController.projectileShot = true;
         }
         
 

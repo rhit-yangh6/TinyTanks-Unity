@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4860934141402927986}
   m_Layer: 8
   m_Name: dice
-  m_TagString: Untagged
+  m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,10 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cd0d1cef409a84692c96e8963e7b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 2
-  maxMagnitude: 11
-  baseDamage: 26
-  unitDiceDamage: 3
   explosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
   topDownDisplay: {fileID: 4987351264208434365, guid: 3da63cf82eb2587409519264df6b63be, type: 3}
 --- !u!50 &9004960698886391033

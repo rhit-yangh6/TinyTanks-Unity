@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2194694819538900301}
   m_Layer: 8
   m_Name: boulder
-  m_TagString: Untagged
+  m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,9 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5a244f38ad0ac449254abb4a7bb6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  maxMagnitude: 10
-  damage: 35
   explosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
 --- !u!50 &-5211462845983169342
 Rigidbody2D:

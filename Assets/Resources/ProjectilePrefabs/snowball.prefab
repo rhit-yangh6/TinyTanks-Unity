@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 531543473686291844}
   m_Layer: 8
   m_Name: snowball
-  m_TagString: Untagged
+  m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,5 +158,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
-  maxSize: 3
-  growFactor: 0.25

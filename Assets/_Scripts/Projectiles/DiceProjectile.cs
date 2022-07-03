@@ -20,7 +20,6 @@ namespace _Scripts.Projectiles
             if (col.gameObject.CompareTag("DangerZone"))
             {
                 Destroy(gameObject);
-                OnFinish();
             }
             else
             {
@@ -53,7 +52,6 @@ namespace _Scripts.Projectiles
             DoCameraShake();
         
             Destroy(gameObject);
-            OnFinish();
         }
 
         public void SpawnExplosionFX()
@@ -66,12 +64,6 @@ namespace _Scripts.Projectiles
         public void DoCameraShake()
         {
             Camera.main.GetComponent<CameraShake>().shakeDuration = 0.1f;
-        }
-
-        public void OnFinish()
-        {
-            GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
-            gameController.ChangeTurn();
         }
 
         public void SetParameters(float damage, float radius, float maxMagnitude, int steps, ExtraWeaponTerm[] extraWeaponTerms)

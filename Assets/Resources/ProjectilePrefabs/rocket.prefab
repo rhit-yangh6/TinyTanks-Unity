@@ -4827,7 +4827,7 @@ GameObject:
   - component: {fileID: 5063630632752088374}
   m_Layer: 8
   m_Name: rocket
-  m_TagString: Untagged
+  m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4912,9 +4912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82439651ccf7593418ba767f8d155b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  maxMagnitude: 22
-  damage: 32
   explosionFX: {fileID: 6624758977479615433, guid: bf9211e39af3fc547b81e87d2c190ec9, type: 3}
 --- !u!50 &7355933884882760402
 Rigidbody2D:

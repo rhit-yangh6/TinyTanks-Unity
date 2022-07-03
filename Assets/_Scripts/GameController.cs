@@ -10,78 +10,97 @@ namespace _Scripts
     {
         [SerializeField] private GameObject player;
         [SerializeField] private TextMeshProUGUI timerText;
-        
-        private PlayerController playerCharacter;
-        private EnemyController[] enemyCharacters;
-        private GameObject[] enemies;
+        [SerializeField] private float turnTime = 45f;
 
-        private int turn = 0, playerNum = 0;
-        private float turnTime = 45f, remainingTime;
-        private bool isTiming;
+        [HideInInspector] public bool projectileShot;
+        
+        private PlayerController _playerCharacter;
+        private EnemyController[] _enemyCharacters;
+        private GameObject[] _enemies;
+
+        private int _turn = 0, _playerNum = 0;
+        private float _remainingTime;
 
         private void Start()
         {
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            playerNum = enemies.Length + 1;
-            enemyCharacters = new EnemyController[enemies.Length];
+            _enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            _playerNum = _enemies.Length + 1;
+            _enemyCharacters = new EnemyController[_enemies.Length];
             
-            for (var i = 0; i < enemies.Length; i++)
+            for (var i = 0; i < _enemies.Length; i++)
             {
-                enemyCharacters[i] = enemies[i].GetComponent<EnemyController>();
+                _enemyCharacters[i] = _enemies[i].GetComponent<EnemyController>();
             }
-            playerCharacter = player.GetComponent<PlayerController>();
+            _playerCharacter = player.GetComponent<PlayerController>();
             
-            isTiming = true;
             StartCoroutine(HandleMovements());
         }
 
         private void Update()
         {
-            
-            // Timer Stuff
-            // TODO: Turn off timing when projectile is out
-            if (isTiming)
+
+            // If It's the player's turn and the player has not performed a shot
+            if (_turn == 0 && !projectileShot)
             {
-                remainingTime -= Time.deltaTime;
-                timerText.text = Math.Round(remainingTime).ToString(CultureInfo.InvariantCulture);
-                if (remainingTime <= 0)
+                _remainingTime -= Time.deltaTime;
+                timerText.text = Math.Round(_remainingTime).ToString(CultureInfo.InvariantCulture);
+                // Time Out, Change Turn
+                if (_remainingTime <= 0)
                 {
                     ChangeTurn();
                 }
-            }
+            } 
+            // If It's the player's turn and the player has shot
+            else if (_turn == 0 && projectileShot)
+            {
+                CheckAggressiveProjectiles();
+                timerText.text = "Please Wait...";
+            } 
+            // Enemies turn
             else
             {
                 timerText.text = "Waiting for Opponent...";
+                if (projectileShot)
+                {
+                    CheckAggressiveProjectiles();
+                }
             }
         }
 
-        public void ChangeTurn()
+        private void CheckAggressiveProjectiles()
+        {
+            var aggressiveProjectiles = GameObject.FindGameObjectsWithTag("AggressiveProjectile");
+            if (aggressiveProjectiles.Length == 0)
+            {
+                ChangeTurn();
+            }
+        }
+
+        private void ChangeTurn()
         {
             // TODO: Check Win / Lose
-            
-            turn = (turn + 1) % playerNum;
+            projectileShot = false;
+            _turn = (_turn + 1) % _playerNum;
             StartCoroutine(HandleMovements());
         }
 
         private IEnumerator HandleMovements()
         {
-            if (turn == 0)
+            if (_turn == 0)
             {
-                playerCharacter.moveable = true;
-                remainingTime = turnTime;
-                isTiming = true;
+                _playerCharacter.moveable = true;
+                _remainingTime = turnTime;
             }
             else
             {
-                isTiming = false;
-                playerCharacter.moveable = false;
-                if (enemyCharacters[turn - 1].isDead)
+                _playerCharacter.moveable = false;
+                if (_enemyCharacters[_turn - 1].isDead)
                 {
                     ChangeTurn();
                 }
                 else
                 {
-                    yield return StartCoroutine(enemyCharacters[turn - 1].MakeMove());
+                    yield return StartCoroutine(_enemyCharacters[_turn - 1].MakeMove());
                 }
             }
         }
