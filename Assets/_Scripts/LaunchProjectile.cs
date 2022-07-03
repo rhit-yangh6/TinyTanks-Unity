@@ -7,18 +7,16 @@ namespace _Scripts
     public class LaunchProjectile : MonoBehaviour
     {
         public float power = 5f;
-        
         public int selectedWeaponId;
-
         public GameObject player;
-
         public GameController gameController;
+        public float maxAngle = 80f, minAngle = 5f;
 
-        private PlayerController playerCharacter;
+        private PlayerController _playerCharacter;
         
-        private LineRenderer lr;
+        private LineRenderer _lr;
 
-        private Camera cam;
+        private Camera _cam;
         private Vector2 startPoint, endPoint;
 
         private GameObject _projectilePrefab;
@@ -27,67 +25,66 @@ namespace _Scripts
 
         private void Start()
         {
-            cam = Camera.main;
-            lr = GetComponent<LineRenderer>();
+            _cam = Camera.main;
+            _lr = GetComponent<LineRenderer>();
 
-            playerCharacter = player.GetComponent<PlayerController>();
+            _playerCharacter = player.GetComponent<PlayerController>();
         }
 
         private void Update()
         {
-            if (Input.GetMouseButton(0) && playerCharacter.moveable)
+            if (Input.GetMouseButton(0) && _playerCharacter.moveable)
             {
-                Vector2 dragPoint = cam.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 dragPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
             
                 Vector2 direction = (startPoint - dragPoint).normalized;
                 float magnitude = (startPoint - dragPoint).magnitude;
-            
-                Vector2 velocity =  power * Math.Min(magnitude, _selectedProjectile.getMaxMagnitude()) * direction;
 
-            
+                Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
+
                 Vector2[] trajectory = Plot(_rb, (Vector2)transform.position, velocity, _selectedProjectile.getSteps());
-                lr.positionCount = trajectory.Length;
+                _lr.positionCount = trajectory.Length;
 
                 Vector3[] positions = new Vector3[trajectory.Length];
                 for (int i = 0; i < trajectory.Length; i++)
                 {
                     positions[i] = trajectory[i];
                 }
-                lr.SetPositions(positions);
+                _lr.SetPositions(positions);
             }
             else
             {
-                lr.enabled = false;
+                _lr.enabled = false;
             }
         }
 
         private void OnMouseDown()
         {
-            if (playerCharacter.moveable)
+            if (_playerCharacter.moveable)
             {
-                startPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-                lr.enabled = true;
+                startPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
+                _lr.enabled = true;
             }
         }
 
         private void OnMouseUp()
         {
-            if (playerCharacter.moveable)
+            if (_playerCharacter.moveable)
             {
 
-                endPoint = cam.ScreenToWorldPoint(Input.mousePosition);
+                endPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
         
                 Vector2 direction = (startPoint - endPoint).normalized;
                 float magnitude = (startPoint - endPoint).magnitude;
         
-                Vector2 velocity = power * Math.Min(magnitude, _selectedProjectile.getMaxMagnitude()) * direction;
+                Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
 
                 GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
                 Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
                 prb.velocity = velocity;
 
                 gameController.projectileShot = true;
-                playerCharacter.moveable = false;
+                _playerCharacter.moveable = false;
             }
         }
 
@@ -111,6 +108,36 @@ namespace _Scripts
             }
 
             return results;
+        }
+
+        private Vector2 CalculateFinalVelocity(Vector2 direction, float magnitude)
+        {
+            float angle = Vector2.SignedAngle(direction, Vector2.right);
+            bool isRight = Math.Abs(angle) < 90;
+            Vector2 finalDirection;
+            
+            // Angle Too Low
+            if (angle > -minAngle || angle < -180 + minAngle)
+            {
+                finalDirection = Quaternion.Euler(0, 0, isRight ? minAngle : -minAngle) *
+                                 (isRight ? Vector2.right : Vector2.left);
+                _playerCharacter.SetCannonAngle(isRight ? minAngle : -180 + minAngle);
+            } 
+            // Angle Too High
+            else if (angle < -maxAngle && angle > -180 + maxAngle)
+            {
+                finalDirection = Quaternion.Euler(0, 0, isRight ? maxAngle : -maxAngle) *
+                                 (isRight ? Vector2.right : Vector2.left);
+                _playerCharacter.SetCannonAngle(isRight ? maxAngle : -180 + maxAngle);
+            }
+            // Acceptable Angle
+            else
+            {
+                finalDirection = direction;
+                _playerCharacter.SetCannonAngle(angle);
+            }
+            
+            return power * Math.Min(magnitude, _selectedProjectile.getMaxMagnitude()) * finalDirection;
         }
 
         public void RefreshPrefab()

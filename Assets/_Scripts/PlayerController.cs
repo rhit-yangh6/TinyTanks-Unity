@@ -10,15 +10,16 @@ namespace _Scripts
         public float maxHealth = 100;
 
         public bool moveable;
-
+        
+        [HideInInspector] public int facingDirection = 1;
+        
         public float movementSpeed = 7;
         public LayerMask layerMask;
         public PlayerHealthBarBehavior healthBar;
-
-
-        private float xInput;
-        private int facingDirection = 1;
-        private SpriteRenderer sr;
+        public GameObject tankCannon;
+        
+        private float _xInput;
+        private SpriteRenderer _mainSr, _cannonSr;
 
         private void Start()
         {
@@ -26,7 +27,8 @@ namespace _Scripts
             
             healthBar.SetHealth(Health, maxHealth);
 
-            sr = GetComponent<SpriteRenderer>();
+            _mainSr = GetComponent<SpriteRenderer>();
+            _cannonSr = tankCannon.GetComponent<SpriteRenderer>();
         }
         
         private void Update()
@@ -74,18 +76,18 @@ namespace _Scripts
         {
             if (moveable)
             {
-                xInput = Input.GetAxisRaw("Horizontal");
+                _xInput = Input.GetAxisRaw("Horizontal");
 
-                if (xInput == 1 && facingDirection == -1)
+                if (_xInput == 1 && facingDirection == -1)
                 {
                     Flip();
                 }
-                else if (xInput == -1 && facingDirection == 1)
+                else if (_xInput == -1 && facingDirection == 1)
                 {
                     Flip();
                 } 
 
-                transform.Translate(Time.deltaTime * movementSpeed * new Vector3(xInput, 0, 0));
+                transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xInput, 0, 0));
                 
             }
         }
@@ -93,7 +95,13 @@ namespace _Scripts
         public void Flip()
         {
             facingDirection *= -1;
-            sr.flipX = facingDirection == -1;
+            _mainSr.flipX = facingDirection == -1;
+            _cannonSr.flipX = facingDirection == -1;
+        }
+
+        public void SetCannonAngle(float angle)
+        {
+            tankCannon.transform.eulerAngles = Vector3.forward * -angle;
         }
     }
 }

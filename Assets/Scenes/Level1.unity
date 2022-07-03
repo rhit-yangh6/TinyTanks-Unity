@@ -1103,6 +1103,8 @@ MonoBehaviour:
   selectedWeaponId: 0
   player: {fileID: 331913633}
   gameController: {fileID: 2079067049}
+  maxAngle: 80
+  minAngle: 5
 --- !u!120 &331913639
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1225,11 +1227,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   moveable: 0
+  facingDirection: 1
   movementSpeed: 7
   layerMask:
     serializedVersion: 2
     m_Bits: 64
   healthBar: {fileID: 1948333397}
+  tankCannon: {fileID: 1059511879}
 --- !u!60 &331913641
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1452,7 +1456,7 @@ GameObject:
   - component: {fileID: 479480923}
   - component: {fileID: 479480924}
   m_Layer: 0
-  m_Name: TankCannon
+  m_Name: TankTracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2427,7 +2431,7 @@ GameObject:
   - component: {fileID: 1059511880}
   - component: {fileID: 1059511881}
   m_Layer: 0
-  m_Name: TankTracks
+  m_Name: TankCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2441,8 +2445,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059511879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62, y: 0.23, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.036, y: 0.261, z: 0}
+  m_LocalScale: {x: 1.2222, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 331913636}
