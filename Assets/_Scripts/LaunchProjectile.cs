@@ -115,7 +115,15 @@ namespace _Scripts
             float angle = Vector2.SignedAngle(direction, Vector2.right);
             bool isRight = Math.Abs(angle) < 90;
             Vector2 finalDirection;
-            
+
+            if (isRight && _playerCharacter.facingDirection == -1)
+            {
+                _playerCharacter.Flip();
+            } else if (!isRight && _playerCharacter.facingDirection == 1)
+            {
+                _playerCharacter.Flip();
+            }
+
             // Angle Too Low
             if (angle > -minAngle || angle < -180 + minAngle)
             {
