@@ -37,6 +37,8 @@ namespace _Scripts
                     s.sprite = w.weaponIconSprite;
 
                     button.onClick.AddListener(() => wdp.SetDetails(weaponId));
+
+                    s.GetComponent<DragDropGrid>().weaponId = weaponId;
                 }
                 else
                 {
