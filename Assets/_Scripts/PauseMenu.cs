@@ -6,6 +6,7 @@ namespace _Scripts
     public class PauseMenu : MonoBehaviour
     {
         public static bool gameIsPaused = false;
+        public static bool gameIsEnded = false;
         public GameObject pauseMenuUI;
         public GameObject winMenuUI;
         public GameObject loseMenuUI;
@@ -13,7 +14,7 @@ namespace _Scripts
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && !gameIsEnded)
             {
                 if (gameIsPaused)
                 {
@@ -42,12 +43,14 @@ namespace _Scripts
 
         public void LoadMenu()
         {
+            gameIsEnded = false;
             Resume();
             SceneManager.LoadScene("MenuScene");
         }
 
         public void Restart()
         {
+            gameIsEnded = false;
             Resume();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -56,11 +59,13 @@ namespace _Scripts
         {
             // Double Panel???
             // Give money?
+            gameIsEnded = true;
             winMenuUI.SetActive(true);
         }
 
         public void Lose()
         {
+            gameIsEnded = true;
             loseMenuUI.SetActive(true);
         }
     }

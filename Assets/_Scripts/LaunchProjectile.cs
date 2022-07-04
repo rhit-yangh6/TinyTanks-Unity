@@ -115,6 +115,7 @@ namespace _Scripts
             float angle = Vector2.SignedAngle(direction, Vector2.right);
             bool isRight = Math.Abs(angle) < 90;
             Vector2 finalDirection;
+            Debug.Log(angle);
 
             if (isRight && _playerCharacter.facingDirection == -1)
             {
@@ -144,7 +145,7 @@ namespace _Scripts
                 finalDirection = direction;
                 _playerCharacter.SetCannonAngle(angle);
             }
-            
+
             return power * Math.Min(magnitude, _selectedProjectile.getMaxMagnitude()) * finalDirection;
         }
 

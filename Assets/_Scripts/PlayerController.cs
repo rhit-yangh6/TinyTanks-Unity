@@ -101,7 +101,7 @@ namespace _Scripts
 
         public void SetCannonAngle(float angle)
         {
-            tankCannon.transform.eulerAngles = Vector3.forward * -angle;
+            tankCannon.transform.localEulerAngles = (facingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
         }
     }
 }
