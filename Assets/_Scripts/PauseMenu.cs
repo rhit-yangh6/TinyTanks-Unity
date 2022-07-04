@@ -7,6 +7,8 @@ namespace _Scripts
     {
         public static bool gameIsPaused = false;
         public GameObject pauseMenuUI;
+        public GameObject winMenuUI;
+        public GameObject loseMenuUI;
 
         // Update is called once per frame
         void Update()
@@ -48,6 +50,19 @@ namespace _Scripts
         {
             Resume();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public void Win()
+        {
+            // Give money?
+            gameIsPaused = true;
+            winMenuUI.SetActive(true);
+        }
+
+        public void Lose()
+        {
+            gameIsPaused = true;
+            loseMenuUI.SetActive(true);
         }
     }
 }

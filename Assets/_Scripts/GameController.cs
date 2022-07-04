@@ -11,6 +11,7 @@ namespace _Scripts
         [SerializeField] private GameObject player;
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private float turnTime = 45f;
+        [SerializeField] private PauseMenu pauseMenu;
 
         [HideInInspector] public bool projectileShot;
         
@@ -65,6 +66,7 @@ namespace _Scripts
                     CheckAggressiveProjectiles();
                 }
             }
+            
         }
 
         private void CheckAggressiveProjectiles()
@@ -78,10 +80,27 @@ namespace _Scripts
 
         private void ChangeTurn()
         {
-            // TODO: Check Win / Lose
+            // TODO: Check Lose First
+
+            if (IsAllEnemyDead())
+            {
+                pauseMenu.Win();
+            }
+
             projectileShot = false;
             _turn = (_turn + 1) % _playerNum;
             StartCoroutine(HandleMovements());
+        }
+
+        private bool IsAllEnemyDead()
+        {
+            for ( int i = 0; i < _enemyCharacters.Length; i++ ) {
+                if ( !_enemyCharacters[ i ].isDead ) {
+                    return false;
+                }
+            }
+ 
+            return true;
         }
 
         private IEnumerator HandleMovements()
