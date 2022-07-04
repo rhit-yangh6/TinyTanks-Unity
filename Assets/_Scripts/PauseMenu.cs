@@ -54,14 +54,13 @@ namespace _Scripts
 
         public void Win()
         {
+            // Double Panel???
             // Give money?
-            gameIsPaused = true;
             winMenuUI.SetActive(true);
         }
 
         public void Lose()
         {
-            gameIsPaused = true;
             loseMenuUI.SetActive(true);
         }
     }
