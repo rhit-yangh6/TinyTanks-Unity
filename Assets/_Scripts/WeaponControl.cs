@@ -14,7 +14,6 @@ namespace _Scripts
         
         private void Start()
         {
-            // TODO: Load Selected Weapons
             int[] selectedWeapons = PlayerData.Instance.selectedWeapons;
 
             for (int i = 0; i < 5; i++)

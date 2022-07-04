@@ -17,23 +17,19 @@ namespace _Scripts
         public int facingDirection = -1;
 
         public float degreeDelta = 10f;
-
         public GameObject player;
-
         public HealthBarBehavior healthBar;
-        
         public bool isDead = false;
-
         public int selectedWeaponId;
-
         public GameController gameController;
+        public GameObject tankCannon;
 
         private int xMovingDirection = 0;
         private bool isAiming = false;
         private Vector2 aimVelocity;
         
         private GameObject _projectilePrefab;
-        private SpriteRenderer _sr;
+        private SpriteRenderer _sr, _cannonSr;
         private Rigidbody2D _rb;
         private LineRenderer _lr;
 
@@ -46,6 +42,9 @@ namespace _Scripts
             
             _sr = GetComponent<SpriteRenderer>();
             _sr.flipX = facingDirection == -1;
+
+            _cannonSr = tankCannon.GetComponent<SpriteRenderer>();
+            _cannonSr.flipX = facingDirection == -1;
             
             _lr = GetComponent<LineRenderer>();
 
@@ -58,6 +57,7 @@ namespace _Scripts
             CheckMovement();
             AdjustRotation();
             DrawTrajectory();
+            
         }
     
         public void TakeDamage(float amount)
@@ -102,6 +102,12 @@ namespace _Scripts
         {
             facingDirection *= -1;
             _sr.flipX = facingDirection == -1;
+            _cannonSr.flipX = facingDirection == -1;
+        }
+
+        public void SetCannonAngle(float angle)
+        {
+            tankCannon.transform.localEulerAngles = (facingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
         }
 
         private void Aim()
@@ -120,6 +126,8 @@ namespace _Scripts
             float rotateDegree = Random.Range(-degreeDelta, degreeDelta);
             
             aimVelocity = Rotate(aimVelocity, rotateDegree);
+            
+            SetCannonAngle(Vector2.SignedAngle(aimVelocity, Vector2.right));
         }
 
         private void Shoot()

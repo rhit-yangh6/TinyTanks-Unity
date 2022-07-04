@@ -11,5 +11,7 @@ namespace _Scripts
         void CheckMovement();
 
         void Flip();
+
+        public void SetCannonAngle(float angle);
     }
 }

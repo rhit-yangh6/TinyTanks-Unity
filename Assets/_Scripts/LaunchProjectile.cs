@@ -112,6 +112,7 @@ namespace _Scripts
 
         private Vector2 CalculateFinalVelocity(Vector2 direction, float magnitude)
         {
+            // TODO: Check the current transform angle?
             float angle = Vector2.SignedAngle(direction, Vector2.right);
             bool isRight = Math.Abs(angle) < 90;
             Vector2 finalDirection;
