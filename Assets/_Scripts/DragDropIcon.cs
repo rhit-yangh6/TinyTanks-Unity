@@ -49,6 +49,7 @@ namespace _Scripts
         public void OnEndDrag(PointerEventData eventData)
         {
             _canvasGroup.blocksRaycasts = true;
+            ResetPos();
             // Destroy(gameObject);
         }
 
@@ -81,7 +82,6 @@ namespace _Scripts
                 if (isSwapSuccessful)
                 {
                     ddi.SetSprite(weaponId);
-                    ddi.ResetPos();
                     SetSprite(incomingWeaponId);
                 }
             }
