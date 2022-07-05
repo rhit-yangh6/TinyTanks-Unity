@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // Source: https://github.com/Bardent/Rigidbody2D-Slopes-Unity/blob/master/Assets/Scripts/PlayerController.cs
@@ -20,6 +21,7 @@ namespace _Scripts
         
         private float _xInput;
         private SpriteRenderer _mainSr, _cannonSr;
+        private Rigidbody2D _rb2d;
 
         private void Start()
         {
@@ -29,6 +31,8 @@ namespace _Scripts
 
             _mainSr = GetComponent<SpriteRenderer>();
             _cannonSr = tankCannon.GetComponent<SpriteRenderer>();
+
+            _rb2d = GetComponent<Rigidbody2D>();
         }
         
         private void Update()
@@ -85,7 +89,10 @@ namespace _Scripts
                 else if (_xInput == -1 && facingDirection == 1)
                 {
                     Flip();
-                } 
+                } else if (_xInput == 0)
+                {
+                    _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
+                }
 
                 transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xInput, 0, 0));
                 
@@ -101,6 +108,7 @@ namespace _Scripts
 
         public void SetCannonAngle(float angle)
         {
+            // TODO: Rotated Tank
             tankCannon.transform.localEulerAngles = (facingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
         }
     }

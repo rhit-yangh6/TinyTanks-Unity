@@ -24,13 +24,13 @@ namespace _Scripts
         public GameController gameController;
         public GameObject tankCannon;
 
-        private int xMovingDirection = 0;
-        private bool isAiming = false;
-        private Vector2 aimVelocity;
+        private int _xMovingDirection = 0;
+        private bool _isAiming = false;
+        private Vector2 _aimVelocity;
         
         private GameObject _projectilePrefab;
         private SpriteRenderer _sr, _cannonSr;
-        private Rigidbody2D _rb;
+        private Rigidbody2D _rb2d;
         private LineRenderer _lr;
 
         public LayerMask layerMask;
@@ -49,7 +49,7 @@ namespace _Scripts
             _lr = GetComponent<LineRenderer>();
 
             _projectilePrefab = WeaponManager.Instance.GetWeaponById(selectedWeaponId).projectilePrefab;
-            _rb = _projectilePrefab.GetComponent<Rigidbody2D>();
+            _rb2d = _projectilePrefab.GetComponent<Rigidbody2D>();
         }
 
         void Update()
@@ -92,9 +92,13 @@ namespace _Scripts
 
         public void CheckMovement()
         {
-            if (xMovingDirection != 0)
+            if (_xMovingDirection != 0)
             {
-                transform.Translate(Time.deltaTime * movementSpeed * new Vector3(xMovingDirection, 0, 0));
+                transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xMovingDirection, 0, 0));
+            }
+            else
+            {
+                _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
             }
         }
 
@@ -113,7 +117,7 @@ namespace _Scripts
         private void Aim()
         {
             _lr.enabled = true;
-            isAiming = true;
+            _isAiming = true;
             
             Vector2 startPos = transform.position, endPos = player.transform.position;
             float t = 3f;
@@ -121,22 +125,22 @@ namespace _Scripts
             float vx = (endPos.x - startPos.x) / t;
             float vy = (endPos.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * t * t) / t;
 
-            aimVelocity = new Vector2(vx, vy);
+            _aimVelocity = new Vector2(vx, vy);
 
             float rotateDegree = Random.Range(-degreeDelta, degreeDelta);
             
-            aimVelocity = Rotate(aimVelocity, rotateDegree);
+            _aimVelocity = Rotate(_aimVelocity, rotateDegree);
             
-            SetCannonAngle(Vector2.SignedAngle(aimVelocity, Vector2.right));
+            SetCannonAngle(Vector2.SignedAngle(_aimVelocity, Vector2.right));
         }
 
         private void Shoot()
         {
             GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
             Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
-            prb.velocity = aimVelocity;
+            prb.velocity = _aimVelocity;
 
-            isAiming = false;
+            _isAiming = false;
             gameController.projectileShot = true;
         }
         
@@ -149,10 +153,10 @@ namespace _Scripts
             
             // Randomly get the direction of going
             int random = Random.Range(1, 3);
-            xMovingDirection = random == 1 ? 1 : -1;
+            _xMovingDirection = random == 1 ? 1 : -1;
 
             // Flip if facing opposite direction
-            if (xMovingDirection != facingDirection)
+            if (_xMovingDirection != facingDirection)
             {
                 Flip();
             }
@@ -160,7 +164,7 @@ namespace _Scripts
             // Walk for fixed second(s)
             yield return new WaitForSeconds(1);
             // Disable Walking
-            xMovingDirection = 0;
+            _xMovingDirection = 0;
 
             // Aim and get the velocity
             Aim();
@@ -172,9 +176,9 @@ namespace _Scripts
 
         private void DrawTrajectory()
         {
-            if (isAiming)
+            if (_isAiming)
             {
-                Vector2[] trajectory = Plot(_rb, (Vector2)transform.position, aimVelocity, 500);
+                Vector2[] trajectory = Plot(_rb2d, (Vector2)transform.position, _aimVelocity, 500);
                 _lr.positionCount = trajectory.Length;
 
                 Vector3[] positions = new Vector3[trajectory.Length];

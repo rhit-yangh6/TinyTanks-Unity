@@ -82,9 +82,18 @@ namespace _Scripts
         {
             // TODO: Check Lose First
 
+            if (_playerCharacter.Health <= 0)
+            {
+                PauseMenu.gameIsEnded = true;
+                pauseMenu.Lose();
+                return;
+            }
+            
             if (IsAllEnemyDead())
             {
+                PauseMenu.gameIsEnded = true;
                 pauseMenu.Win();
+                return;
             }
 
             projectileShot = false;

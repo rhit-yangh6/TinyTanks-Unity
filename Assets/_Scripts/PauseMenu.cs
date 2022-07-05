@@ -57,7 +57,6 @@ namespace _Scripts
 
         public void Win()
         {
-            // Double Panel???
             // Give money?
             gameIsEnded = true;
             winMenuUI.SetActive(true);
