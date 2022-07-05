@@ -37,8 +37,7 @@ namespace _Scripts
             _canvasGroup.blocksRaycasts = false;
 
             DragDropIcon ddi = _clone.GetComponent<DragDropIcon>();
-            ddi.weaponId = weaponId;
-            ddi.SetSprite();
+            ddi.SetSprite(weaponId);
         }
 
         public void OnEndDrag(PointerEventData eventData)

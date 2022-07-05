@@ -13,8 +13,7 @@ namespace _Scripts
         public WeaponDetailPanel wdp;
         public Sprite weaponLockedSprite;
     
-        // Start is called before the first frame update
-        void Start()
+        void OnEnable ()
         {
             PopulateWeaponIcons();
 
@@ -23,6 +22,10 @@ namespace _Scripts
 
         private void PopulateWeaponIcons()
         {
+            foreach (Transform child in weaponScrollListContent.transform) {
+                Destroy(child.gameObject);
+            }
+            
             Weapon[] weapons = WeaponManager.Instance.GetAllWeapons();
 
             foreach (Weapon w in weapons)

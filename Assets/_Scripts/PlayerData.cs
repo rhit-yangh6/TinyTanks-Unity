@@ -55,6 +55,24 @@ namespace _Scripts
             WeaponDatum datum = Array.Find(weaponLevels, w => w.weaponId == idToFind);
             return datum?.level ?? 0;
         }
+
+        public bool ChangeWeaponSelection(int index, int weaponId)
+        {
+            int pos = Array.IndexOf(selectedWeapons, weaponId);
+            if (pos > -1)
+            {
+                return false;
+            }
+
+            selectedWeapons[index] = weaponId;
+            return true;
+        }
+
+        public bool SwapWeaponSelection(int index1, int index2)
+        {
+            (selectedWeapons[index1], selectedWeapons[index2]) = (selectedWeapons[index2], selectedWeapons[index1]);
+            return true;
+        }
     }
 
     [Serializable]

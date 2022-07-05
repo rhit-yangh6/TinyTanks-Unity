@@ -15,18 +15,26 @@ namespace _Scripts
         private Canvas _canvas;
         private RectTransform _rectTransform;
         private CanvasGroup _canvasGroup;
-
+        private Vector2 _initPos;
 
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            
+            _initPos = _rectTransform.anchoredPosition;
         }
 
-        public void SetSprite()
+        public void SetSprite(int wId)
         {
+            weaponId = wId;
             GetComponent<Image>().sprite = WeaponManager.Instance.GetWeaponById(weaponId).weaponIconSprite;
+        }
+
+        private void ResetPos()
+        {
+            _rectTransform.anchoredPosition = _initPos;
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -35,11 +43,12 @@ namespace _Scripts
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-
+            _canvasGroup.blocksRaycasts = false;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            _canvasGroup.blocksRaycasts = true;
             // Destroy(gameObject);
         }
 
@@ -50,7 +59,32 @@ namespace _Scripts
 
         public void OnDrop(PointerEventData eventData)
         {
-            // TODO: Swap?
+            DragDropGrid ddg = eventData.pointerDrag.GetComponent<DragDropGrid>();
+            DragDropIcon ddi = eventData.pointerDrag.GetComponent<DragDropIcon>();
+            int incomingWeaponId;
+            if (ddg)
+            {
+                incomingWeaponId = ddg.weaponId;
+
+                bool isOverrideSuccessful = PlayerData.Instance.ChangeWeaponSelection(selectionIndex, incomingWeaponId);
+
+                if (isOverrideSuccessful)
+                {
+                    SetSprite(incomingWeaponId);                    
+                }
+            } else if (ddi)
+            {
+                incomingWeaponId = ddi.weaponId;
+
+                bool isSwapSuccessful = PlayerData.Instance.SwapWeaponSelection(selectionIndex, ddi.selectionIndex);
+
+                if (isSwapSuccessful)
+                {
+                    ddi.SetSprite(weaponId);
+                    ddi.ResetPos();
+                    SetSprite(incomingWeaponId);
+                }
+            }
         }
     }
 }
