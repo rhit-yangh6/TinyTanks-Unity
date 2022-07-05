@@ -80,7 +80,6 @@ namespace _Scripts
 
         private void ChangeTurn()
         {
-            // TODO: Check Lose First
 
             if (_playerCharacter.Health <= 0)
             {
