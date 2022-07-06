@@ -1,14 +1,11 @@
 using System;
 using _Scripts.Projectiles;
-using UnityEditor;
 using UnityEngine;
 
 namespace _Scripts
 {
     public class WeaponManager : MonoBehaviour
     {
-        //public static WeaponManager Instance { get; private set; }
-        
         private static WeaponManager _i;
         private static Weapons _weaponsFromJson;
         

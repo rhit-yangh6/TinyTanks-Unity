@@ -1,11 +1,7 @@
-﻿1. Game End
-2. Pause Menu
-3. Levels system
-4. Adjust tank cannon angles
+﻿3. Levels system
 5. Coin system, earning coins
 6. Upgrade System
 7. Weapon - Shield
-8. Weapon - Anvil (done)
 9. Weapon - Laser Bomb
 10. Weapon - Dynamite
 11. Weapon - BounceBall?
@@ -15,3 +11,4 @@
 15. Weapon - Cage？
 16. Buffs
 17. Weapon - Fireball & Other Elemental ones
+18. Weapon - Homing Stuff

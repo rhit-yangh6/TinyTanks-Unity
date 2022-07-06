@@ -38,15 +38,15 @@ namespace _Scripts
              * This is the initial player data
              */
             level = 1;
-            coins = 1000;
+            coins = 100;
             selectedWeapons = new int[] { 1, 2, 6, 4, 5 };
             weaponLevels = new WeaponDatum[] { 
-                new WeaponDatum(1, 1),
-                new WeaponDatum(2, 1), 
-                new WeaponDatum(3, 1),
-                new WeaponDatum(4, 1), 
-                new WeaponDatum(5, 1),
-                new WeaponDatum(6, 1)
+                new(1, 1),
+                new(2, 1), 
+                new(3, 1),
+                new(4, 1), 
+                new(5, 1),
+                new(6, 1)
             };
         }
 

@@ -12,11 +12,17 @@ namespace _Scripts
         public TextMeshProUGUI coinText;
         public WeaponDetailPanel wdp;
         public Sprite weaponLockedSprite;
-    
+        [SerializeField] private Button backButton;
+
+        private void Start()
+        {
+            backButton.onClick.AddListener(SaveSystem.SavePlayer);
+        }
+        
         void OnEnable ()
         {
             PopulateWeaponIcons();
-
+            wdp.SwitchDetailView();
             coinText.text = PlayerData.Instance.coins.ToString();
         }
 

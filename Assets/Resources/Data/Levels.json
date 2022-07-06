@@ -1,0 +1,16 @@
+﻿{
+  "levels": [
+    {
+      "id": 1,
+      "name": "The beginning",
+      "prize": 50,
+      "path": "Level1"
+    },
+    {
+      "id": 2,
+      "name": "??",
+      "prize": 50,
+      "path": "Level2"
+    }
+  ]
+}
