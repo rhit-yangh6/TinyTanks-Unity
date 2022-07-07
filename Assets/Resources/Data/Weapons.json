@@ -168,7 +168,7 @@
       "weaponDescription": "A snowball that grows bigger gradually while in the air. The larger it is, the higher the damage caused and the range of impact.",
       "damage": 28.0,
       "radius": 2.0,
-      "maxMagnitude": 15.0,
+      "maxMagnitude": 14.0,
       "steps": 510,
       "upgrades": [
         {
@@ -252,6 +252,52 @@
         {
           "term": "fallDamageMultiplier",
           "value": 1.4
+        }
+      ]
+    }, {
+      "id": 7,
+      "weaponName": "Boomerang",
+      "weaponDescription": ">>>>",
+      "damage": 32.0,
+      "radius": 1.5,
+      "maxMagnitude": 15.0,
+      "steps": 510,
+      "upgrades": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "boomerang",
+      "extraWeaponTerms": [
+        {
+          "term": "travelBackTime",
+          "value": 2.0
+        },
+        {
+          "term": "proximityDetectRange",
+          "value": 1.0
         }
       ]
     }

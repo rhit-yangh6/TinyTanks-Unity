@@ -46,7 +46,8 @@ namespace _Scripts
                 new(3, 1),
                 new(4, 1), 
                 new(5, 1),
-                new(6, 1)
+                new(6, 1),
+                new(7, 1)
             };
         }
 

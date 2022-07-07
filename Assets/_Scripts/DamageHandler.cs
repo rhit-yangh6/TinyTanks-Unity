@@ -39,6 +39,6 @@ namespace _Scripts
                 }
             }
         }
-    
+
     }
 }

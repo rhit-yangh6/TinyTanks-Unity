@@ -18,12 +18,6 @@ namespace _Scripts
 
         public Transform damagePopupPrefab;
 
-        public GameObject boulderProjectilePrefab;
-        public GameObject bombProjectilePrefab;
-        public GameObject rocketProjectilePrefab;
-        public GameObject diceProjectilePrefab;
-
-
         public Sprite[] diceNumbers;
 
         public Sprite[] stars;

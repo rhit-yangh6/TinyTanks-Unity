@@ -57,7 +57,6 @@ namespace _Scripts
             CheckMovement();
             AdjustRotation();
             DrawTrajectory();
-            
         }
     
         public void TakeDamage(float amount)
