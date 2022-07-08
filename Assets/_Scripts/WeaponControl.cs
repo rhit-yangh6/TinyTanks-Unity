@@ -11,7 +11,7 @@ namespace _Scripts
         public GameObject buttonPrefab;
         public Sprite weaponLockedSprite;
         private readonly List<Button> _weaponButtons = new ();
-        private int _selectedIdx = 0;
+        private int _selectedIdx;
 
         private void Start()
         {
@@ -41,7 +41,7 @@ namespace _Scripts
                 }
                 _weaponButtons.Add(button);
             }
-            SwitchWeapon(0, selectedWeapons[0]);
+            SwitchWeapon(_selectedIdx, selectedWeapons[0]);
         }
         
         private void Update() 
