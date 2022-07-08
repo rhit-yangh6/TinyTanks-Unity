@@ -11,7 +11,6 @@ namespace _Scripts
         public GameObject buttonPrefab;
         public Sprite weaponLockedSprite;
 
-        
         private void Start()
         {
             int[] selectedWeapons = PlayerData.Instance.selectedWeapons;
@@ -44,8 +43,7 @@ namespace _Scripts
 
         private void SwitchWeapon(int weaponId)
         {
-            lp.selectedWeaponId = weaponId;
-            lp.RefreshPrefab();
+            lp.SwitchWeapon(weaponId);
         }
     }
 }

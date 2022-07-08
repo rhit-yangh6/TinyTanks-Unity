@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2567691346020389042}
   - component: {fileID: 7693290331228627133}
   - component: {fileID: 6966070577393038410}
+  - component: {fileID: -4567141392967906085}
   m_Layer: 8
   m_Name: boomerang
   m_TagString: AggressiveProjectile
@@ -202,3 +203,14 @@ PolygonCollider2D:
       - {x: -1.035, y: -0.545}
       - {x: -0.85499996, y: -0.435}
       - {x: -0.515, y: -0.205}
+--- !u!247 &-4567141392967906085
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617057427252120482}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0

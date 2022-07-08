@@ -1,5 +1,4 @@
-﻿3. Levels system
-5. Coin system, earning coins
+﻿5. Coin system, earning coins
 6. Upgrade System
 7. Weapon - Shield
 9. Weapon - Laser Bomb
@@ -12,3 +11,4 @@
 16. Buffs
 17. Weapon - Fireball & Other Elemental ones
 18. Weapon - Homing Stuff
+19. Weapon - BoomBox

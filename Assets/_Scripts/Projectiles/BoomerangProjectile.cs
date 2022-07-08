@@ -15,23 +15,22 @@ namespace _Scripts.Projectiles
         private static float _travelBackTime, _proximityDetectRange;
 
         private bool _isActivated;
-        private Rigidbody2D _rb;
 
-        private Transform _playerTransform;
         
         
         // TODO: Save Shooter (For All Projectiles)
         
         void Start()
         {
-            _rb = gameObject.GetComponent<Rigidbody2D>();
-            
-            _playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+
         }
 
         // Update is called once per frame
         void Update()
         {
+            
+            // TODO: UPGRADE ADDS STEP & REMOTE & NO-SELF-DAMAGE
+            /*
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {
                 _isActivated = true;
@@ -57,6 +56,7 @@ namespace _Scripts.Projectiles
                     Destroy(gameObject);
                 }
             }
+            */
         }
         
         private void OnCollisionEnter2D(Collision2D col)
@@ -104,8 +104,8 @@ namespace _Scripts.Projectiles
             _maxMagnitude = maxMagnitude;
             _steps = steps;
 
-            _travelBackTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "travelBackTime").value; 
-            _proximityDetectRange = Array.Find(extraWeaponTerms, ewt => ewt.term == "proximityDetectRange").value;
+            // _travelBackTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "travelBackTime").value; 
+            // _proximityDetectRange = Array.Find(extraWeaponTerms, ewt => ewt.term == "proximityDetectRange").value;
         }
 
         public float getMaxMagnitude()

@@ -17,11 +17,13 @@ namespace _Scripts
         private LineRenderer _lr;
 
         private Camera _cam;
-        private Vector2 startPoint, endPoint;
+        private Vector2 _startPoint, _endPoint;
 
         private GameObject _projectilePrefab;
         private IProjectile _selectedProjectile;
         private Rigidbody2D _rb;
+        private bool _needExtraForce;
+        private float _extraForceXMultiplier, _extraForceYMultiplier;
 
         private void Start()
         {
@@ -37,12 +39,12 @@ namespace _Scripts
             {
                 Vector2 dragPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
             
-                Vector2 direction = (startPoint - dragPoint).normalized;
-                float magnitude = (startPoint - dragPoint).magnitude;
+                Vector2 direction = (_startPoint - dragPoint).normalized;
+                float magnitude = (_startPoint - dragPoint).magnitude;
 
                 Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
 
-                Vector2[] trajectory = Plot(_rb, (Vector2)transform.position, velocity, _selectedProjectile.getSteps());
+                Vector2[] trajectory = Plot(_rb, (Vector2)transform.position, velocity, _selectedProjectile.getSteps(), _needExtraForce);
                 _lr.positionCount = trajectory.Length;
 
                 Vector3[] positions = new Vector3[trajectory.Length];
@@ -62,7 +64,7 @@ namespace _Scripts
         {
             if (_playerCharacter.moveable)
             {
-                startPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
+                _startPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
                 _lr.enabled = true;
             }
         }
@@ -72,32 +74,48 @@ namespace _Scripts
             if (_playerCharacter.moveable)
             {
 
-                endPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
+                _endPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
         
-                Vector2 direction = (startPoint - endPoint).normalized;
-                float magnitude = (startPoint - endPoint).magnitude;
+                Vector2 direction = (_startPoint - _endPoint).normalized;
+                float magnitude = (_startPoint - _endPoint).magnitude;
         
                 Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
 
                 GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
                 Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
                 prb.velocity = velocity;
+                
+                // If extra force needed
+                if (_needExtraForce)
+                {
+                    prb.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * _extraForceXMultiplier,
+                        velocity.y * _extraForceYMultiplier, 0);
+                }
 
                 gameController.projectileShot = true;
                 _playerCharacter.moveable = false;
             }
         }
 
-        private Vector2[] Plot(Rigidbody2D prb, Vector2 pos, Vector2 velocity, int steps)
+        private Vector2[] Plot(Rigidbody2D prb, Vector2 pos, Vector2 velocity, int steps, bool needExtraForce)
         {
             Vector2[] results = new Vector2[steps];
-            float timestep = Time.fixedDeltaTime / Physics2D.velocityIterations;
+            float timeStep = Time.fixedDeltaTime / Physics2D.velocityIterations;
+            
+            Vector2 gravityAccel;
+            if (needExtraForce)
+            {
+                gravityAccel = prb.gravityScale * timeStep * timeStep * 
+                               (Physics2D.gravity + new Vector2(velocity.x * _extraForceXMultiplier, velocity.y * _extraForceYMultiplier));
+            }
+            else
+            {
+                gravityAccel = prb.gravityScale * timeStep * timeStep * Physics2D.gravity;
+            }
 
-            Vector2 gravityAccel = prb.gravityScale * timestep * timestep * Physics2D.gravity;
+            float drag = 1f - timeStep * prb.drag;
 
-            float drag = 1f - timestep * prb.drag;
-
-            Vector2 moveStep = velocity * timestep;
+            Vector2 moveStep = velocity * timeStep;
 
             for (int i = 0; i < steps; i++)
             {
@@ -149,11 +167,24 @@ namespace _Scripts
             return power * Math.Min(magnitude, _selectedProjectile.getMaxMagnitude()) * finalDirection;
         }
 
-        public void RefreshPrefab()
+        public void SwitchWeapon(int weaponId)
         {
-            _projectilePrefab = WeaponManager.Instance.GetWeaponById(selectedWeaponId).projectilePrefab;
+            selectedWeaponId = weaponId;
+
+            Weapon w = WeaponManager.Instance.GetWeaponById(selectedWeaponId);
+            
+            _projectilePrefab = w.projectilePrefab;
             _rb = _projectilePrefab.GetComponent<Rigidbody2D>();
             _selectedProjectile = _projectilePrefab.GetComponent<IProjectile>();
+            
+            _needExtraForce = _projectilePrefab.GetComponent<ConstantForce2D>() != null;
+
+            if (_needExtraForce)
+            {
+                _extraForceXMultiplier = Array.Find(w.extraWeaponTerms, ewt => ewt.term == "extraForceXMultiplier").value;
+                _extraForceYMultiplier = Array.Find(w.extraWeaponTerms, ewt => ewt.term == "extraForceYMultiplier").value;
+            }
+            
         }
     }
 }

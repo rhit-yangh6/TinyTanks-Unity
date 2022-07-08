@@ -260,8 +260,8 @@
       "weaponDescription": ">>>>",
       "damage": 32.0,
       "radius": 1.5,
-      "maxMagnitude": 15.0,
-      "steps": 510,
+      "maxMagnitude": 18.0,
+      "steps": 900,
       "upgrades": [
         {
           "name": "",
@@ -292,12 +292,12 @@
       "dataPath": "boomerang",
       "extraWeaponTerms": [
         {
-          "term": "travelBackTime",
-          "value": 2.0
+          "term": "extraForceXMultiplier",
+          "value": -0.5
         },
         {
-          "term": "proximityDetectRange",
-          "value": 1.0
+          "term": "extraForceYMultiplier",
+          "value": -0.25
         }
       ]
     }
