@@ -81,7 +81,7 @@ namespace _Scripts
         private void ChangeTurn()
         {
 
-            if (PauseMenu.gameIsEnded) return;
+            if (PauseMenu.GameIsEnded) return;
 
             if (_playerCharacter.Health <= 0)
             {

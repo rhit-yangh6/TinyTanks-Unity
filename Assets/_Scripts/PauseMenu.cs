@@ -6,23 +6,23 @@ namespace _Scripts
 {
     public class PauseMenu : MonoBehaviour
     {
-        public static bool gameIsPaused = false;
-        public static bool gameIsEnded = false;
+        public static bool GameIsPaused = false;
+        public static bool GameIsEnded = false;
         public GameObject pauseMenuUI;
         public GameObject winMenuUI;
         public GameObject loseMenuUI;
 
         private void Awake()
         {
-            gameIsEnded = false;
+            GameIsEnded = false;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !gameIsEnded)
+            if (Input.GetKeyDown(KeyCode.Escape) && !GameIsEnded)
             {
-                if (gameIsPaused)
+                if (GameIsPaused)
                 {
                     Resume();
                 }
@@ -37,14 +37,14 @@ namespace _Scripts
         {
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
-            gameIsPaused = false;
+            GameIsPaused = false;
         }
 
         public void Pause()
         {
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
-            gameIsPaused = true;
+            GameIsPaused = true;
         }
 
         public void LoadMenu()
@@ -62,13 +62,13 @@ namespace _Scripts
         public void Win()
         {
             // Give money?
-            gameIsEnded = true;
+            GameIsEnded = true;
             winMenuUI.SetActive(true);
         }
 
         public void Lose()
         {
-            gameIsEnded = true;
+            GameIsEnded = true;
             loseMenuUI.SetActive(true);
         }
     }
