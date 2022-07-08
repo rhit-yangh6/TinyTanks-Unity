@@ -81,16 +81,16 @@ namespace _Scripts
         private void ChangeTurn()
         {
 
+            if (PauseMenu.gameIsEnded) return;
+
             if (_playerCharacter.Health <= 0)
             {
-                PauseMenu.gameIsEnded = true;
                 pauseMenu.Lose();
                 return;
             }
             
             if (IsAllEnemyDead())
             {
-                PauseMenu.gameIsEnded = true;
                 pauseMenu.Win();
                 return;
             }

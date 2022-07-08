@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,11 @@ namespace _Scripts
         public GameObject pauseMenuUI;
         public GameObject winMenuUI;
         public GameObject loseMenuUI;
+
+        private void Awake()
+        {
+            gameIsEnded = false;
+        }
 
         // Update is called once per frame
         void Update()
@@ -43,14 +49,12 @@ namespace _Scripts
 
         public void LoadMenu()
         {
-            gameIsEnded = false;
             Resume();
             SceneManager.LoadScene("MenuScene");
         }
 
         public void Restart()
         {
-            gameIsEnded = false;
             Resume();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
