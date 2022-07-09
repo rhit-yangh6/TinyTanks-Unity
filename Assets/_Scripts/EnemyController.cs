@@ -30,7 +30,7 @@ namespace _Scripts
         
         private GameObject _projectilePrefab;
         private SpriteRenderer _sr, _cannonSr;
-        private Rigidbody2D _rb2d;
+        private Rigidbody2D _projectileRigidbody2D, _rb2d;
         private LineRenderer _lr;
 
         public LayerMask layerMask;
@@ -49,7 +49,9 @@ namespace _Scripts
             _lr = GetComponent<LineRenderer>();
 
             _projectilePrefab = WeaponManager.Instance.GetWeaponById(selectedWeaponId).projectilePrefab;
-            _rb2d = _projectilePrefab.GetComponent<Rigidbody2D>();
+            _projectileRigidbody2D = _projectilePrefab.GetComponent<Rigidbody2D>();
+
+            _rb2d = GetComponent<Rigidbody2D>();
         }
 
         void Update()
@@ -177,7 +179,7 @@ namespace _Scripts
         {
             if (_isAiming)
             {
-                Vector2[] trajectory = Plot(_rb2d, (Vector2)transform.position, _aimVelocity, 500);
+                Vector2[] trajectory = Plot(_projectileRigidbody2D, (Vector2)transform.position, _aimVelocity, 500);
                 _lr.positionCount = trajectory.Length;
 
                 Vector3[] positions = new Vector3[trajectory.Length];

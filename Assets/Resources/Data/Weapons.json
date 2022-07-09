@@ -300,6 +300,56 @@
           "value": -0.25
         }
       ]
+    }, {
+      "id": 8,
+      "weaponName": "Sniper",
+      "weaponDescription": ">>>>",
+      "damage": 45.0,
+      "radius": 1,
+      "maxMagnitude": 13.0,
+      "steps": 450,
+      "upgrades": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "sniper",
+      "extraWeaponTerms": [
+        {
+          "term": "fixedMagnitude",
+          "value": 13.0
+        },
+        {
+          "term": "extraForceXMultiplier",
+          "value": 0.5
+        },
+        {
+          "term": "extraForceYMultiplier",
+          "value": 0.5
+        }
+      ]
     }
   ]
 }

@@ -44,7 +44,7 @@ namespace _Scripts
 
                 Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
 
-                Vector2[] trajectory = Plot(_rb, (Vector2)transform.position, velocity, _selectedProjectile.getSteps(), _needExtraForce);
+                Vector2[] trajectory = Plot(_rb, (Vector2)transform.position, velocity, _selectedProjectile.GetSteps(), _needExtraForce);
                 _lr.positionCount = trajectory.Length;
 
                 Vector3[] positions = new Vector3[trajectory.Length];
@@ -163,8 +163,17 @@ namespace _Scripts
                 finalDirection = direction;
                 _playerCharacter.SetCannonAngle(angle);
             }
+            
+            float fixedMagnitude = _selectedProjectile.GetFixedMagnitude();
+            if (fixedMagnitude < 0)
+            {
+                return power * Math.Min(magnitude, _selectedProjectile.GetMaxMagnitude()) * finalDirection;
+            }
+            else
+            {
+                return power * fixedMagnitude * finalDirection;
 
-            return power * Math.Min(magnitude, _selectedProjectile.getMaxMagnitude()) * finalDirection;
+            }
         }
 
         public void SwitchWeapon(int weaponId)

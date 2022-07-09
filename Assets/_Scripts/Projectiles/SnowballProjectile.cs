@@ -94,14 +94,19 @@ namespace _Scripts.Projectiles
             _growFactor = Array.Find(extraWeaponTerms, ewt => ewt.term == "growFactor").value;
         }
 
-        public float getMaxMagnitude()
+        public float GetMaxMagnitude()
         {
             return _maxMagnitude;
         }
         
-        public int getSteps()
+        public int GetSteps()
         {
             return _steps;
+        }
+
+        public float GetFixedMagnitude()
+        {
+            return -1f;
         }
     }
 }

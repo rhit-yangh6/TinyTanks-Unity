@@ -76,13 +76,18 @@ namespace _Scripts.Projectiles
             _unitDiceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "unitDiceDamage").value;
         }
 
-        public float getMaxMagnitude()
+        public float GetMaxMagnitude()
         {
             return _maxMagnitude;
         }
-        public int getSteps()
+        public int GetSteps()
         {
             return _steps;
+        }
+
+        public float GetFixedMagnitude()
+        {
+            return -1f;
         }
 
         private void DisplayTownDownResult(int number)

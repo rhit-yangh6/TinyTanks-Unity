@@ -89,14 +89,19 @@ namespace _Scripts.Projectiles
             _fallDamageMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "fallDamageMultiplier").value;
         }
 
-        public float getMaxMagnitude()
+        public float GetMaxMagnitude()
         {
             return _maxMagnitude;
         }
 
-        public int getSteps()
+        public int GetSteps()
         {
             return _steps;
+        }
+
+        public float GetFixedMagnitude()
+        {
+            return -1f;
         }
     }
 }

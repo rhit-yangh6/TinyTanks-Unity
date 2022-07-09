@@ -39,7 +39,7 @@ namespace _Scripts
              */
             level = 1;
             coins = 100;
-            selectedWeapons = new int[] { 1, 2, 6, 4, 5 };
+            selectedWeapons = new int[] { 8, 2, 6, 4, 5 };
             weaponLevels = new WeaponDatum[] { 
                 new(1, 1),
                 new(2, 1), 
@@ -47,7 +47,8 @@ namespace _Scripts
                 new(4, 1), 
                 new(5, 1),
                 new(6, 1),
-                new(7, 1)
+                new(7, 1),
+                new(8, 1)
             };
         }
 
