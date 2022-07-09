@@ -134,7 +134,7 @@ namespace _Scripts
             float angle = Vector2.SignedAngle(direction, Vector2.right);
             bool isRight = Math.Abs(angle) < 90;
             Vector2 finalDirection;
-
+            
             if (isRight && _playerCharacter.facingDirection == -1)
             {
                 _playerCharacter.Flip();
@@ -148,14 +148,14 @@ namespace _Scripts
             {
                 finalDirection = Quaternion.Euler(0, 0, isRight ? minAngle : -minAngle) *
                                  (isRight ? Vector2.right : Vector2.left);
-                _playerCharacter.SetCannonAngle(isRight ? minAngle : -180 + minAngle);
+                _playerCharacter.SetCannonAngle(isRight ? -minAngle : -180 + minAngle);
             } 
             // Angle Too High
             else if (angle < -maxAngle && angle > -180 + maxAngle)
             {
                 finalDirection = Quaternion.Euler(0, 0, isRight ? maxAngle : -maxAngle) *
                                  (isRight ? Vector2.right : Vector2.left);
-                _playerCharacter.SetCannonAngle(isRight ? maxAngle : -180 + maxAngle);
+                _playerCharacter.SetCannonAngle(isRight ? -maxAngle : -180 + maxAngle);
             }
             // Acceptable Angle
             else
