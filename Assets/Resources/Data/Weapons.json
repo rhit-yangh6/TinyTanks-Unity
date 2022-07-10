@@ -8,16 +8,16 @@
       "radius": 3.0,
       "maxMagnitude": 10.0,
       "steps": 500,
-      "upgrades": [
+      "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Larger Boulder",
+          "description": "Increase explosion radius by 15%.",
+          "cost": 50
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Heavy Shot",
+          "description": "Damage increased by 10%.",
+          "cost": 75
         },
         {
           "name": "",
@@ -45,7 +45,7 @@
       "radius": 3.5,
       "maxMagnitude": 10.0,
       "steps": 500,
-      "upgrades": [
+      "upgradeInfos": [
         {
           "name": "",
           "description": "",
@@ -86,7 +86,7 @@
       "radius": 3.0,
       "maxMagnitude": 14.0,
       "steps": 600,
-      "upgrades": [
+      "upgradeInfos": [
         {
           "name": "",
           "description": "",
@@ -128,7 +128,7 @@
       "radius": 2.0,
       "maxMagnitude": 11.0,
       "steps": 500,
-      "upgrades": [
+      "upgradeInfos": [
         {
           "name": "",
           "description": "",
@@ -170,7 +170,7 @@
       "radius": 2.0,
       "maxMagnitude": 14.0,
       "steps": 510,
-      "upgrades": [
+      "upgradeInfos": [
         {
           "name": "",
           "description": "",
@@ -216,7 +216,7 @@
       "radius": 2.3,
       "maxMagnitude": 8.0,
       "steps": 400,
-      "upgrades": [
+      "upgradeInfos": [
         {
           "name": "",
           "description": "",
@@ -262,7 +262,7 @@
       "radius": 1.5,
       "maxMagnitude": 18.0,
       "steps": 900,
-      "upgrades": [
+      "upgradeInfos": [
         {
           "name": "",
           "description": "",
@@ -308,7 +308,7 @@
       "radius": 1,
       "maxMagnitude": 13.0,
       "steps": 450,
-      "upgrades": [
+      "upgradeInfos": [
         {
           "name": "",
           "description": "",

@@ -8,32 +8,92 @@ namespace _Scripts
     public class WeaponDetailPanel : MonoBehaviour
     {
 
-        public Image weaponIcon;
-        public GameObject infoPanel, upgradePanel, notice;
-        public TextMeshProUGUI weaponNameText, weaponDescText;
-        public Slider[] weaponUpgradeProgressSliders;
+        [SerializeField] private Image weaponIcon;
+        [SerializeField] private GameObject infoPanel, upgradePanel, notice;
+        [SerializeField] private TextMeshProUGUI weaponNameText, weaponDescText;
+        [SerializeField] private Slider[] weaponUpgradeProgressSliders;
+        [SerializeField] private Button[] weaponUpgradeStarButtons;
+        [SerializeField] private TextMeshProUGUI upgradeNameText, upgradeDescText;
+        private int _weaponId;
+        private const string FirstLevelUpgradeName = "Basic Level";
+        private const string FirstLevelUpgradeDesc = "";
+        private const string LockedLevelUpgradeName = "Locked";
+        private const string LockedLevelUpgradeDesc = "Unlock previous levels first!";
         
-        public void SetDetails(int weaponId)
-        {
-            SwitchDetailView(true);
-            
-            Weapon w = WeaponManager.Instance.GetWeaponById(weaponId);
-            weaponIcon.sprite = w.weaponIconSprite;
-            weaponNameText.text = w.weaponName;
-            weaponDescText.text = w.weaponDescription;
-            SetSliders(weaponId);
-        }
-
         public void SwitchDetailView(bool on = false)
         {
             infoPanel.gameObject.SetActive(on);
             upgradePanel.gameObject.SetActive(on);
             notice.gameObject.SetActive(!on);
         }
-
-        private void SetSliders(int weaponId)
+        
+        public void SetDetails(int weaponId)
         {
-            int level = PlayerData.Instance.GetWeaponLevelFromId(weaponId);
+            _weaponId = weaponId;
+            SwitchDetailView(true);
+            
+            Weapon w = WeaponManager.Instance.GetWeaponById(_weaponId);
+            weaponIcon.sprite = w.weaponIconSprite;
+            weaponNameText.text = w.weaponName;
+            weaponDescText.text = w.weaponDescription;
+
+            for (int i = 0; i < weaponUpgradeStarButtons.Length; i++)
+            {
+                int tempLevel = i + 1;
+                weaponUpgradeStarButtons[i].onClick.AddListener(() => StarButtonOnClick(tempLevel));
+            }
+
+            
+            // Dealing with your current saved weapon level
+            int level = PlayerData.Instance.GetWeaponLevelFromId(_weaponId);
+            
+            weaponUpgradeStarButtons[level - 1].Select();
+            SetSliders(level);
+            SetUpgradeText(level);
+            
+        }
+
+        private void StarButtonOnClick(int level)
+        {
+            SetSliders(level);
+            
+            SetUpgradeText(level);
+        }
+
+        private void SetUpgradeText(int level)
+        {
+            int highestLevel = PlayerData.Instance.GetHighestUnlockedLevel(_weaponId);
+            
+            // First Level
+            if (level == 1)
+            {
+                upgradeNameText.text = FirstLevelUpgradeName;
+                upgradeDescText.text = FirstLevelUpgradeDesc;
+            } 
+            // Display Proper Upgrade Details
+            else if (level <= highestLevel + 1 || (highestLevel == 4 && level == 6))
+            {
+                Weapon w = WeaponManager.Instance.GetWeaponById(_weaponId);
+                upgradeNameText.text = w.upgradeInfos[level - 2].name;
+                upgradeDescText.text = w.upgradeInfos[level - 2].description;
+                
+                // Purchasable?
+                if (!PlayerData.Instance.GetIfLevelUnlocked(_weaponId, level))
+                {
+                    // TODO: Impl This
+                }
+                
+            }
+            // Locked
+            else if (level > highestLevel + 1)
+            {
+                upgradeNameText.text = LockedLevelUpgradeName;
+                upgradeDescText.text = LockedLevelUpgradeDesc;
+            }
+        }
+        
+        private void SetSliders(int level)
+        {
 
             foreach (Slider s in weaponUpgradeProgressSliders)
             {
@@ -58,5 +118,6 @@ namespace _Scripts
                     break;
             }
         }
+
     }
 }

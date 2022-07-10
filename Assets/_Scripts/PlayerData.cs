@@ -39,16 +39,16 @@ namespace _Scripts
              */
             level = 1;
             coins = 100;
-            selectedWeapons = new int[] { 8, 2, 6, 4, 5 };
+            selectedWeapons = new [] { 8, 2, 6, 4, 5 };
             weaponLevels = new WeaponDatum[] { 
-                new(1, 1),
-                new(2, 1), 
-                new(3, 1),
-                new(4, 1), 
-                new(5, 1),
-                new(6, 1),
-                new(7, 1),
-                new(8, 1)
+                new(1, 1, new []{true, false, false, false, false, false}),
+                new(2, 1, new []{true, false, false, false, false, false}), 
+                new(3, 1, new []{true, false, false, false, false, false}),
+                new(4, 1, new []{true, false, false, false, false, false}), 
+                new(5, 1, new []{true, false, false, false, false, false}),
+                new(6, 1, new []{true, false, false, false, false, false}),
+                new(7, 1, new []{true, false, false, false, false, false}),
+                new(8, 1, new []{true, false, false, false, false, false})
             };
         }
 
@@ -57,7 +57,32 @@ namespace _Scripts
             WeaponDatum datum = Array.Find(weaponLevels, w => w.weaponId == idToFind);
             return datum?.level ?? 0;
         }
+        
+        public int GetHighestUnlockedLevel(int idToFind)
+        {
+            WeaponDatum datum = Array.Find(weaponLevels, w => w.weaponId == idToFind);
+            
+            if (datum.unlocked[4] || datum.unlocked[5])
+            {
+                return 4;
+            }
+            
+            for (int i = 0; i < datum.unlocked.Length; i++)
+            {
+                if (!datum.unlocked[i])
+                {
+                    return i;
+                }
+            }
+            return 5;
+        }
 
+        public bool GetIfLevelUnlocked(int idToFind, int selectedLevel)
+        {
+            WeaponDatum datum = Array.Find(weaponLevels, w => w.weaponId == idToFind);
+            return datum.unlocked[selectedLevel - 1];
+        }
+        
         public bool ChangeWeaponSelection(int index, int weaponId)
         {
             int pos = Array.IndexOf(selectedWeapons, weaponId);
@@ -75,6 +100,7 @@ namespace _Scripts
             (selectedWeapons[index1], selectedWeapons[index2]) = (selectedWeapons[index2], selectedWeapons[index1]);
             return true;
         }
+        
     }
 
     [Serializable]
@@ -82,11 +108,13 @@ namespace _Scripts
     {
         public int weaponId;
         public int level;
+        public bool[] unlocked;
 
-        public WeaponDatum(int weaponId, int level)
+        public WeaponDatum(int weaponId, int level, bool[] unlocked)
         {
             this.weaponId = weaponId;
             this.level = level;
+            this.unlocked = unlocked;
         }
     }
 }

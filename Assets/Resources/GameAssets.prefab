@@ -45,10 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePopupPrefab: {fileID: 5528004835069231019, guid: 20185f8028e7b35469772e195b6a2a0a, type: 3}
-  boulderProjectilePrefab: {fileID: 3416031215921662803, guid: 5d0ac4ad40882254ea52ba9bfc14d04e, type: 3}
-  bombProjectilePrefab: {fileID: 1659805833723293240, guid: 12777894008788a48ac972a73322ed3d, type: 3}
-  rocketProjectilePrefab: {fileID: 7257619900484909686, guid: 7a9a50d698ac39848866f3277537e061, type: 3}
-  diceProjectilePrefab: {fileID: 3988150915524398275, guid: f08154637d0f74446a834d64c98a0d7d, type: 3}
   diceNumbers:
   - {fileID: 21300000, guid: d5a0bf691787b15438e2eccab6e3d57b, type: 3}
   - {fileID: 21300000, guid: 05f2903b9d40ecf43ad7ca79f21da7c9, type: 3}
@@ -57,9 +53,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8e12b5652c8ace547bfd6a54499ea473, type: 3}
   - {fileID: 21300000, guid: 1b5bcd0de25403e42be53b137a0ad8e6, type: 3}
   stars:
-  - {fileID: -250276989, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
-  - {fileID: -892247961, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
-  - {fileID: -612869334, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
-  - {fileID: -1662610713, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
-  - {fileID: -1150066049, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
-  - {fileID: 1872225244, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: 118153446, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -545359726, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -89828141, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: 1168350687, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -400686236, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -728418028, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: 1087156420, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: 700505228, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -1203974125, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -82914510, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: 1993477033, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  - {fileID: -1829077492, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
