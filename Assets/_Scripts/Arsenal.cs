@@ -7,7 +7,7 @@ namespace _Scripts
     public class Arsenal : MonoBehaviour
     {
 
-        public GameObject arsenalWeaponButton;
+        [SerializeField] private GameObject arsenalWeaponButton;
         public GameObject weaponScrollListContent;
         public TextMeshProUGUI coinText;
         public WeaponDetailPanel wdp;

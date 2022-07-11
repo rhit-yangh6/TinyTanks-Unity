@@ -1072,6 +1072,7 @@ MonoBehaviour:
   selectedWeaponId: 1
   gameController: {fileID: 2079067049}
   tankCannon: {fileID: 698522407}
+  weaponLevel: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 64

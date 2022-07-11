@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,6 +7,8 @@ namespace _Scripts.Projectiles
 {
     public class DiceProjectile : MonoBehaviour, IProjectile
     {
+        public int Level { get; set; }
+        
         private static float _radius, _maxMagnitude, _damage, _unitDiceDamage;
         private static int _steps;
         public GameObject explosionFX;
@@ -39,7 +40,8 @@ namespace _Scripts.Projectiles
         {
             return Random.Range(1, 6);
         }
-        
+
+
         public void Detonate()
         {
             Vector2 pos = transform.position;

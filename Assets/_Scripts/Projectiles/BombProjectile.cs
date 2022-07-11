@@ -7,10 +7,12 @@ namespace _Scripts.Projectiles
 {
     public class BombProjectile : MonoBehaviour, IProjectile
     {
+        public int Level { get; set; }
+        
         private static float _radius, _damage, _maxMagnitude, _detonateTime;
         private static int _steps;
         public GameObject explosionFX;
-        
+
         SpriteRenderer _sr;
     
         void Start()

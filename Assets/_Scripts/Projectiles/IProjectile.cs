@@ -3,6 +3,8 @@ namespace _Scripts.Projectiles
     public interface IProjectile
     {
 
+        int Level { get; set; }
+
         void Detonate();
 
         void SpawnExplosionFX();
@@ -16,6 +18,6 @@ namespace _Scripts.Projectiles
         int GetSteps();
 
         float GetFixedMagnitude();
-
+        
     }
 }

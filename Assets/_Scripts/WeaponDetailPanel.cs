@@ -13,7 +13,9 @@ namespace _Scripts
         [SerializeField] private TextMeshProUGUI weaponNameText, weaponDescText;
         [SerializeField] private Slider[] weaponUpgradeProgressSliders;
         [SerializeField] private Button[] weaponUpgradeStarButtons;
-        [SerializeField] private TextMeshProUGUI upgradeNameText, upgradeDescText;
+        [SerializeField] private TextMeshProUGUI upgradeNameText, upgradeDescText, priceText, coinText;
+        [SerializeField] private GameObject shopButton, setButton, shopPanel;
+        
         private int _weaponId;
         private const string FirstLevelUpgradeName = "Basic Level";
         private const string FirstLevelUpgradeDesc = "";
@@ -40,10 +42,10 @@ namespace _Scripts
             for (int i = 0; i < weaponUpgradeStarButtons.Length; i++)
             {
                 int tempLevel = i + 1;
+                weaponUpgradeStarButtons[i].onClick.RemoveAllListeners();
                 weaponUpgradeStarButtons[i].onClick.AddListener(() => StarButtonOnClick(tempLevel));
             }
 
-            
             // Dealing with your current saved weapon level
             int level = PlayerData.Instance.GetWeaponLevelFromId(_weaponId);
             
@@ -63,24 +65,47 @@ namespace _Scripts
         private void SetUpgradeText(int level)
         {
             int highestLevel = PlayerData.Instance.GetHighestUnlockedLevel(_weaponId);
+            int currentLevel = PlayerData.Instance.GetWeaponLevelFromId(_weaponId);
+            
+            // Disable the Shop & Set buttons
+            shopPanel.SetActive(false);
+            setButton.SetActive(false);
             
             // First Level
             if (level == 1)
             {
                 upgradeNameText.text = FirstLevelUpgradeName;
                 upgradeDescText.text = FirstLevelUpgradeDesc;
+
+                setButton.SetActive(level != currentLevel);
             } 
             // Display Proper Upgrade Details
             else if (level <= highestLevel + 1 || (highestLevel == 4 && level == 6))
             {
                 Weapon w = WeaponManager.Instance.GetWeaponById(_weaponId);
-                upgradeNameText.text = w.upgradeInfos[level - 2].name;
-                upgradeDescText.text = w.upgradeInfos[level - 2].description;
+                UpgradeInfo uio = w.upgradeInfos[level - 2];
+                
+                upgradeNameText.text = uio.name;
+                upgradeDescText.text = uio.description;
+                int cost = uio.cost;
                 
                 // Purchasable?
                 if (!PlayerData.Instance.GetIfLevelUnlocked(_weaponId, level))
                 {
-                    // TODO: Impl This
+                    shopPanel.SetActive(true);
+                    priceText.text = "Price: " + cost;
+                    
+                    var button = shopButton.GetComponent<Button>();
+                    button.onClick.RemoveAllListeners();
+                    button.onClick.AddListener(() => BuyWeaponUpgrade(_weaponId, level));
+                }
+                else
+                {
+                    setButton.SetActive(level != currentLevel);
+                    
+                    var button = setButton.GetComponent<Button>();
+                    button.onClick.RemoveAllListeners();
+                    button.onClick.AddListener(() => SetWeaponLevel(_weaponId, level));
                 }
                 
             }
@@ -117,6 +142,26 @@ namespace _Scripts
                     weaponUpgradeProgressSliders[0].value = 1;
                     break;
             }
+        }
+
+        private void SetWeaponLevel(int weaponId, int levelToSet)
+        {
+            var result = PlayerData.Instance.SetWeaponLevel(weaponId, levelToSet);
+
+            if (result)
+            {
+                setButton.SetActive(false);
+            }
+        }
+
+        private void BuyWeaponUpgrade(int weaponId, int levelToBuy)
+        {
+            var result = PlayerData.Instance.BuyWeaponUpgrade(weaponId, levelToBuy);
+
+            if (!result) return;
+            
+            shopPanel.SetActive(false);
+            SetWeaponLevel(weaponId, levelToBuy);
         }
 
     }

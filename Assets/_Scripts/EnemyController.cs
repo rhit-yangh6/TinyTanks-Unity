@@ -1,6 +1,5 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
+using _Scripts.Projectiles;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +7,6 @@ namespace _Scripts
 {
     public class EnemyController : MonoBehaviour, Character
     {
-
         public float Health { get; set; }
 
         public float maxHealth = 100;
@@ -23,6 +21,7 @@ namespace _Scripts
         public int selectedWeaponId;
         public GameController gameController;
         public GameObject tankCannon;
+        [SerializeField] private int weaponLevel;
 
         private int _xMovingDirection = 0;
         private bool _isAiming = false;
@@ -140,6 +139,9 @@ namespace _Scripts
             GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
             Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
             prb.velocity = _aimVelocity;
+            
+            IProjectile proj = projectile.GetComponent<IProjectile>();
+            proj.Level = weaponLevel;
 
             _isAiming = false;
             gameController.projectileShot = true;

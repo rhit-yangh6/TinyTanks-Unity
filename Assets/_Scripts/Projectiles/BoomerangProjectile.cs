@@ -1,4 +1,3 @@
-using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -6,7 +5,8 @@ namespace _Scripts.Projectiles
 {
     public class BoomerangProjectile : MonoBehaviour, IProjectile
     {
-        
+        public int Level { get; set; }
+
         public GameObject explosionFX;
         
         private static float _radius, _maxMagnitude, _damage;
@@ -70,7 +70,7 @@ namespace _Scripts.Projectiles
                 Detonate();
             }
         }
-
+        
         public void Detonate()
         {
             Vector2 pos = transform.position;

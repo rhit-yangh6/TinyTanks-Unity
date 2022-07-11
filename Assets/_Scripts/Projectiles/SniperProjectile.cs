@@ -1,13 +1,13 @@
 using System;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
     public class SniperProjectile : MonoBehaviour, IProjectile
     {
-        
+        public int Level { get; set; }
+
         [SerializeField] private GameObject explosionFX;
         
         private static float _radius, _damage, _maxMagnitude;

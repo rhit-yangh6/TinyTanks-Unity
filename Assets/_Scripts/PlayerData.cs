@@ -41,7 +41,7 @@ namespace _Scripts
             coins = 100;
             selectedWeapons = new [] { 8, 2, 6, 4, 5 };
             weaponLevels = new WeaponDatum[] { 
-                new(1, 1, new []{true, false, false, false, false, false}),
+                new(1, 1, new []{true, true, false, false, false, false}),
                 new(2, 1, new []{true, false, false, false, false, false}), 
                 new(3, 1, new []{true, false, false, false, false, false}),
                 new(4, 1, new []{true, false, false, false, false, false}), 
@@ -98,6 +98,27 @@ namespace _Scripts
         public bool SwapWeaponSelection(int index1, int index2)
         {
             (selectedWeapons[index1], selectedWeapons[index2]) = (selectedWeapons[index2], selectedWeapons[index1]);
+            return true;
+        }
+
+        public bool SetWeaponLevel(int idToFind, int levelToSet)
+        {
+            var datum = Array.Find(weaponLevels, w => w.weaponId == idToFind);
+            if (!datum.unlocked[levelToSet - 1]) return false;
+            datum.level = levelToSet;
+            return true;
+
+        }
+
+        public bool BuyWeaponUpgrade(int idToFind, int levelToBuy)
+        {
+            var cost = WeaponManager.Instance.GetWeaponById(idToFind).upgradeInfos[levelToBuy - 2].cost;
+            var datum = Array.Find(weaponLevels, w => w.weaponId == idToFind);
+
+            if (cost > coins || datum.unlocked[levelToBuy - 1]) return false;
+
+            coins -= cost;
+            datum.unlocked[levelToBuy - 1] = true;
             return true;
         }
         

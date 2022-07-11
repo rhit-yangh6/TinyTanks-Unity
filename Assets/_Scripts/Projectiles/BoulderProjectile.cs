@@ -5,6 +5,8 @@ namespace _Scripts.Projectiles
 {
     public class BoulderProjectile : MonoBehaviour, IProjectile
     {
+        public int Level { get; set; }
+
         private static float _radius, _damage, _maxMagnitude;
         private static int _steps;
         public GameObject explosionFX;
@@ -24,9 +26,28 @@ namespace _Scripts.Projectiles
         public void Detonate()
         {
             Vector2 pos = transform.position;
-            DamageHandler.i.HandleCircularDamage(pos, _radius, _damage);
 
-            TerrainDestroyer.Instance.DestroyTerrain(pos, _radius);
+
+            
+            // Gaining from Higher Levels
+            float finalCalculatedRadius = _radius;
+            float finalCalculatedDamage = _damage;
+
+            if (Level >= 2)
+            {
+                finalCalculatedRadius *= 1.15f;
+            }
+
+            if (Level >= 3)
+            {
+                finalCalculatedDamage *= 1.20f;
+            }
+            
+            
+
+            DamageHandler.i.HandleCircularDamage(pos, finalCalculatedRadius, finalCalculatedDamage);
+
+            TerrainDestroyer.Instance.DestroyTerrain(pos, finalCalculatedRadius);
         
             SpawnExplosionFX();
             DoCameraShake();

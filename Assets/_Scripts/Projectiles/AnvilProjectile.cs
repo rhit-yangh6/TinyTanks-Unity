@@ -6,7 +6,8 @@ namespace _Scripts.Projectiles
 {
     public class AnvilProjectile : MonoBehaviour, IProjectile
     {
-        
+        public int Level { get; set; }
+
         private static float _radius, _maxMagnitude, _damage, _gravityScaleMultiplier, _fallDamageMultiplier;
         private static int _steps;
         
@@ -49,7 +50,7 @@ namespace _Scripts.Projectiles
                 Detonate();
             }
         }
-
+        
         public void Detonate()
         {
             Vector2 pos = transform.position;
@@ -103,5 +104,6 @@ namespace _Scripts.Projectiles
         {
             return -1f;
         }
+        
     }
 }

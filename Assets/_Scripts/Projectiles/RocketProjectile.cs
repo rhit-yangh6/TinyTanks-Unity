@@ -6,6 +6,8 @@ namespace _Scripts.Projectiles
 {
     public class RocketProjectile : MonoBehaviour, IProjectile
     {
+        public int Level { get; set; }
+
         private static float _radius, _maxMagnitude, _damage, _velocityMultiplier;
         private static int _steps;
         public GameObject explosionFX;
@@ -47,7 +49,8 @@ namespace _Scripts.Projectiles
                 Detonate();
             }
         }
-    
+
+
         public void Detonate()
         {
             Vector2 pos = transform.position;

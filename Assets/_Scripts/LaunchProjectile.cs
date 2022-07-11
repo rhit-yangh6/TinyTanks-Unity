@@ -92,6 +92,9 @@ namespace _Scripts
                         velocity.y * _extraForceYMultiplier, 0);
                 }
 
+                int weaponLevel = PlayerData.Instance.GetWeaponLevelFromId(selectedWeaponId);
+                projectile.GetComponent<IProjectile>().Level = weaponLevel;
+
                 gameController.projectileShot = true;
                 _playerCharacter.moveable = false;
             }
