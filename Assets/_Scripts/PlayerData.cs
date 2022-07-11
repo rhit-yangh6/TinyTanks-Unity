@@ -121,6 +121,11 @@ namespace _Scripts
             datum.unlocked[levelToBuy - 1] = true;
             return true;
         }
+
+        public void GainMoney(int prize)
+        {
+            coins += prize;
+        }
         
     }
 

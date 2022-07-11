@@ -78,6 +78,10 @@ namespace _Scripts
                 upgradeDescText.text = FirstLevelUpgradeDesc;
 
                 setButton.SetActive(level != currentLevel);
+                
+                var button = setButton.GetComponent<Button>();
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => SetWeaponLevel(_weaponId, level));
             } 
             // Display Proper Upgrade Details
             else if (level <= highestLevel + 1 || (highestLevel == 4 && level == 6))

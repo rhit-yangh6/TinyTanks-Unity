@@ -26,7 +26,7 @@ namespace _Scripts
             foreach (Level l in levels)
             {
                 GameObject cellObj = Instantiate(levelCellPrefab, levelScrollListContent.transform);
-                Image s = cellObj.GetComponent<Image>();
+                Image s = cellObj.GetComponentsInChildren<Image>()[1];
                 TextMeshProUGUI tmpGUI = cellObj.GetComponentInChildren<TextMeshProUGUI>();
                 Button button = cellObj.GetComponent<Button>();
 
@@ -34,6 +34,8 @@ namespace _Scripts
                 tmpGUI.text = l.name;
                 
                 button.onClick.AddListener(() => SceneManager.LoadScene(l.path));
+
+                s.sprite = l.levelPreviewSprite;
 
                 /*
                 int weaponId = w.id;

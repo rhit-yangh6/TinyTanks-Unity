@@ -1,4 +1,4 @@
-using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,10 +8,12 @@ namespace _Scripts
     {
         public static bool GameIsPaused = false;
         public static bool GameIsEnded = false;
-        public GameObject pauseMenuUI;
-        public GameObject winMenuUI;
-        public GameObject loseMenuUI;
-
+        
+        [SerializeField] private GameObject pauseMenuUI;
+        [SerializeField] private GameObject winMenuUI;
+        [SerializeField] private GameObject loseMenuUI;
+        [SerializeField] private TextMeshProUGUI coinText;
+        
         private void Awake()
         {
             GameIsEnded = false;
@@ -49,6 +51,7 @@ namespace _Scripts
 
         public void LoadMenu()
         {
+            SaveSystem.SavePlayer();
             Resume();
             SceneManager.LoadScene("MenuScene");
         }
@@ -62,6 +65,13 @@ namespace _Scripts
         public void Win()
         {
             // Give money?
+            
+            var sceneName = SceneManager.GetActiveScene().name;
+            var prize = LevelManager.Instance.GetLevelByPath(sceneName).prize;
+
+            coinText.text = "+" + prize;
+            PlayerData.Instance.GainMoney(prize);
+            
             GameIsEnded = true;
             winMenuUI.SetActive(true);
         }

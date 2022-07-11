@@ -23,14 +23,25 @@ namespace _Scripts
         
         private static void LoadLevels()
         {
-            TextAsset jsonFile = Resources.Load<TextAsset>("Data/Levels");
+            var jsonFile = Resources.Load<TextAsset>("Data/Levels");
 
             _levelsFromJson = JsonUtility.FromJson<Levels>(jsonFile.text);
+            
+            foreach (var level in _levelsFromJson.levels)
+            {
+                level.levelPreviewSprite = Resources.Load<Sprite>("LevelPreviews/" + level.path);
+            }
         }
 
-        public Level GetLevelById(int idToFind)
+        public Level GetLevelByPath(string levelPath)
         {
-            return Array.Find(_levelsFromJson.levels, l => l.id == idToFind); 
+            return Array.Find(_levelsFromJson.levels, l => l.path == levelPath);
+        }
+
+        public Level GetNextLevel(string levelPath)
+        {
+            var currentLevel = Array.Find(_levelsFromJson.levels, l => l.path == levelPath);
+            return Array.Find(_levelsFromJson.levels, l => l.id == currentLevel.id + 1);
         }
 
         public Level[] GetAllLevels()
@@ -46,6 +57,7 @@ namespace _Scripts
         public int id, prize;
         public string name, path;
 
+        public Sprite levelPreviewSprite;
     }
         
     [Serializable]
