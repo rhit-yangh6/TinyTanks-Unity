@@ -10,33 +10,42 @@
       "steps": 500,
       "upgradeInfos": [
         {
-          "name": "Larger Boulder",
-          "description": "Increase explosion radius by 15%.",
-          "cost": 50
+          "name": "Trebuchet",
+          "description": "After tuning, the projectile can reach farther at maximum power.",
+          "cost": 55
         },
         {
-          "name": "Heavy Shot",
-          "description": "Damage increased by 20%.",
-          "cost": 75
+          "name": "Heavy Boulder",
+          "description": "Increase explosion radius by 15% and damage by 20%.",
+          "cost": 105
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Rubble Stone",
+          "description": "Upon collision, there is a small chance that the boulder will split into two pieces, dealing additional damage.",
+          "cost": 230
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Massive Shot",
+          "description": "An extremely large boulder that deals massive damage.",
+          "cost": 850
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Hard Crush",
+          "description": "This boulder has a 100% chance of splitting into two pieces.",
+          "cost": 830
         }
       ],
       "dataPath": "boulder",
-      "extraWeaponTerms": []
+      "extraWeaponTerms": [
+        {
+          "term": "boulderPieceRadius",
+          "value": 2.0
+        },
+        {
+          "term": "boulderPieceDamage",
+          "value": 15.0
+        }
+      ]
     }, {
       "id": 2,
       "weaponName": "Bomb",
