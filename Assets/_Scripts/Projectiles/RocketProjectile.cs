@@ -4,14 +4,25 @@ using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public class RocketProjectile : MonoBehaviour, IProjectile
+    public class RocketProjectile : LaunchedProjectile
     {
-        public int Level { get; set; }
-
-        private static float _radius, _maxMagnitude, _damage, _velocityMultiplier;
+        // Shared Fields
+        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
-        public GameObject explosionFX;
-
+        private static GameObject _explosionFX;
+        
+        // ExtraFields
+        private static float _velocityMultiplier;
+        
+        // References
+        protected override float Radius => _radius;
+        protected override float Damage => _damage;
+        protected override float MaxMagnitude => _maxMagnitude;
+        protected override int Steps => _steps;
+        protected override float ExplosionDuration => _explosionDuration;
+        protected override GameObject ExplosionFX => _explosionFX;
+        
+        // Other Variables
         private bool _isActivated;
         private Rigidbody2D _rb;
         private ParticleSystem _ps;
@@ -50,56 +61,17 @@ namespace _Scripts.Projectiles
             }
         }
 
-
-        public void Detonate()
-        {
-            Vector2 pos = transform.position;
-            
-            DamageHandler.i.HandleCircularDamage(pos, _radius, _damage);
-
-            TerrainDestroyer.Instance.DestroyTerrain(pos, _radius);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
-        }
-
-        public void SpawnExplosionFX()
-        {
-            GameObject insExpl = Instantiate(explosionFX, transform.position, quaternion.identity);
-            insExpl.transform.localScale *= _radius;
-            Destroy(insExpl, .2f);
-        }
-
-        public void DoCameraShake()
-        {
-            Camera.main.GetComponent<CameraShake>().shakeDuration = 0.2f;
-        }
-
-        public void SetParameters(float damage, float radius, float maxMagnitude, int steps, ExtraWeaponTerm[] extraWeaponTerms)
+        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
         {
             _damage = damage;
             _radius = radius;
             _maxMagnitude = maxMagnitude;
             _steps = steps;
+            _explosionDuration = explosionDuration;
             
-            _velocityMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "velocityMultiplier").value; 
-        }
-
-        public float GetMaxMagnitude()
-        {
-            return _maxMagnitude;
-        }
-
-        public int GetSteps()
-        {
-            return _steps;
-        }
-
-        public float GetFixedMagnitude()
-        {
-            return -1f;
+            _explosionFX = GameAssets.i.regularExplosionFX;
+  
+            _velocityMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "velocityMultiplier").value;
         }
     }
 }

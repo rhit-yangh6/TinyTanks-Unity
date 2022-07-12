@@ -5,16 +5,26 @@ using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
-    public class BoulderProjectile : MonoBehaviour, IProjectile
+    public class BoulderProjectile : LaunchedProjectile
     {
-        public int Level { get; set; }
-        
-        [SerializeField] private GameObject explosionFX;
+        // Set in Inspector
         [SerializeField] private GameObject boulderPiecePrefab;
         
-        private static float _radius, _damage, _maxMagnitude;
+        // Shared Fields
+        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
+        private static GameObject _explosionFX;
+
+        // ExtraFields
         private static float _boulderPieceRadius, _boulderPieceDamage;
+        
+        // References
+        protected override float Radius => _radius;
+        protected override float Damage => _damage;
+        protected override float MaxMagnitude => _maxMagnitude;
+        protected override int Steps => _steps;
+        protected override float ExplosionDuration => _explosionDuration;
+        protected override GameObject ExplosionFX => _explosionFX;
         
         private void OnCollisionEnter2D(Collision2D col)
         {
@@ -28,13 +38,13 @@ namespace _Scripts.Projectiles
             }
         }
         
-        public void Detonate()
+        public override void Detonate()
         {
             Vector2 pos = transform.position;
 
             // Gaining from Higher Levels
-            var finalCalculatedRadius = _radius;
-            var finalCalculatedDamage = _damage;
+            var finalCalculatedRadius = Radius;
+            var finalCalculatedDamage = Damage;
             
             if (Level >= 3)
             {
@@ -66,68 +76,49 @@ namespace _Scripts.Projectiles
             {
                 // First Piece
                 var derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<IProjectile>();
+                var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
                 var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-                derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, 0, 0, null);
+                derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, ExplosionDuration, ExplosionFX);
                 derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
             
                 // Second Piece
                 derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<IProjectile>();
+                derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
                 derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-                derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, 0, 0, null);
+                derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, ExplosionDuration, ExplosionFX);
                 derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
             }
 
             Destroy(gameObject);
         }
-    
-        public void SpawnExplosionFX()
-        {
-            GameObject insExpl = Instantiate(explosionFX, transform.position, quaternion.identity);
-            insExpl.transform.localScale *= _radius;
-            Destroy(insExpl, .2f);
-        }
 
-        public void DoCameraShake()
-        {
-            Camera.main.GetComponent<CameraShake>().shakeDuration = 0.2f;
-        }
-
-        public void SetParameters(float damage, float radius, float maxMagnitude, int steps, ExtraWeaponTerm[] extraWeaponTerms)
+        public override void SetParameters(float damage, float radius, 
+            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
         {
             _damage = damage;
             _radius = radius;
             _maxMagnitude = maxMagnitude;
             _steps = steps;
-            
+            _explosionDuration = explosionDuration;
+
+            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+
             _boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
             _boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
         }
 
-        public float GetMaxMagnitude()
+        public override float GetMaxMagnitude()
         {
-            var finalCalculatedMagnitude = _maxMagnitude;
+            var finalCalculatedMagnitude = MaxMagnitude;
             
-            // TODO: Maybe there's a better practice?
-            if (PlayerData.Instance.GetWeaponLevelFromId(1) >= 2)
+            if (Level >= 2)
             {
                 finalCalculatedMagnitude *= 1.20f;
             }
             
             return finalCalculatedMagnitude;
-        }
-
-        public int GetSteps()
-        {
-            return _steps;
-        }
-
-        public float GetFixedMagnitude()
-        {
-            return -1f;
         }
     }
 

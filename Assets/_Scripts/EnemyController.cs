@@ -140,7 +140,7 @@ namespace _Scripts
             Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
             prb.velocity = _aimVelocity;
             
-            IProjectile proj = projectile.GetComponent<IProjectile>();
+            LaunchedProjectile proj = projectile.GetComponent<LaunchedProjectile>();
             proj.Level = weaponLevel;
 
             _isAiming = false;

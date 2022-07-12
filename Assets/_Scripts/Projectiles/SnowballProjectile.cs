@@ -5,14 +5,25 @@ using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public class SnowballProjectile : MonoBehaviour, IProjectile
+    public class SnowballProjectile : LaunchedProjectile
     {
-        public int Level { get; set; }
-
-        private static float _radius, _maxMagnitude, _damage, _maxSize, _growFactor;
+        // Shared Fields
+        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
-        public GameObject explosionFX;
-
+        private static GameObject _explosionFX;
+        
+        // ExtraFields
+        private static float _maxSize, _growFactor;
+        
+        // References
+        protected override float Radius => _radius;
+        protected override float Damage => _damage;
+        protected override float MaxMagnitude => _maxMagnitude;
+        protected override int Steps => _steps;
+        protected override float ExplosionDuration => _explosionDuration;
+        protected override GameObject ExplosionFX => _explosionFX;
+        
+        // Other Variables
         private float _timer;
         private Rigidbody2D _rb;
         
@@ -56,7 +67,7 @@ namespace _Scripts.Projectiles
             }
         }
         
-        public void Detonate()
+        public override void Detonate()
         {
             Vector2 pos = transform.position;
             
@@ -73,42 +84,19 @@ namespace _Scripts.Projectiles
             Destroy(gameObject);
         }
 
-        public void SpawnExplosionFX()
-        {
-            GameObject insExpl = Instantiate(explosionFX, transform.position, quaternion.identity);
-            insExpl.transform.localScale *= _radius * _timer / 2;
-            Destroy(insExpl, .2f);
-        }
-
-        public void DoCameraShake()
-        {
-            Camera.main.GetComponent<CameraShake>().shakeDuration = 0.1f;
-        }
-
-        public void SetParameters(float damage, float radius, float maxMagnitude, int steps, ExtraWeaponTerm[] extraWeaponTerms)
+        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,
+            ExtraWeaponTerm[] extraWeaponTerms)
         {
             _damage = damage;
             _radius = radius;
             _maxMagnitude = maxMagnitude;
             _steps = steps;
+            _explosionDuration = explosionDuration;
+            
+            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
             
             _maxSize = Array.Find(extraWeaponTerms, ewt => ewt.term == "maxSize").value;
             _growFactor = Array.Find(extraWeaponTerms, ewt => ewt.term == "growFactor").value;
-        }
-
-        public float GetMaxMagnitude()
-        {
-            return _maxMagnitude;
-        }
-        
-        public int GetSteps()
-        {
-            return _steps;
-        }
-
-        public float GetFixedMagnitude()
-        {
-            return -1f;
         }
     }
 }

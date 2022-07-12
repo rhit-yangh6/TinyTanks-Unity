@@ -36,6 +36,7 @@
         }
       ],
       "dataPath": "boulder",
+      "explosionDuration": 0.2,
       "extraWeaponTerms": [
         {
           "term": "boulderPieceRadius",
@@ -82,6 +83,7 @@
         }
       ],
       "dataPath": "bomb",
+      "explosionDuration": 0.2,
       "extraWeaponTerms": [
         {
           "term": "detonateTime",
@@ -123,6 +125,7 @@
         }
       ],
       "dataPath": "rocket",
+      "explosionDuration": 0.2,
       "extraWeaponTerms": [
         {
           "term": "velocityMultiplier",
@@ -165,6 +168,7 @@
         }
       ],
       "dataPath": "dice",
+      "explosionDuration": 0.2,
       "extraWeaponTerms": [
         {
           "term" : "unitDiceDamage",
@@ -207,6 +211,7 @@
         }
       ],
       "dataPath": "snowball",
+      "explosionDuration": 0.1,
       "extraWeaponTerms": [
         {
           "term": "maxSize",
@@ -253,6 +258,7 @@
         }
       ],
       "dataPath": "anvil",
+      "explosionDuration": 0.15,
       "extraWeaponTerms": [
         {
           "term": "gravityScaleMultiplier",
@@ -299,6 +305,7 @@
         }
       ],
       "dataPath": "boomerang",
+      "explosionDuration": 0.15,
       "extraWeaponTerms": [
         {
           "term": "extraForceXMultiplier",
@@ -345,6 +352,7 @@
         }
       ],
       "dataPath": "sniper",
+      "explosionDuration": 0.1,
       "extraWeaponTerms": [
         {
           "term": "fixedMagnitude",

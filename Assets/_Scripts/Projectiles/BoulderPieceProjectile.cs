@@ -4,14 +4,20 @@ using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public class BoulderPieceProjectile : MonoBehaviour, IProjectile
+    public class BoulderPieceProjectile : DerivedProjectile
     {
-        public int Level { get; set; }
-        private static float _radius, _damage;
-
+        // Shared Fields
+        private static float _radius, _damage,_explosionDuration;
+        private static GameObject _explosionFX;
+        
+        // References
+        protected override float Radius => _radius;
+        protected override float Damage => _damage;
+        protected override float ExplosionDuration => _explosionDuration;
+        protected override GameObject ExplosionFX => _explosionFX;
+        
+        // Other Variables
         private Rigidbody2D _rb;
-
-        [SerializeField] private GameObject explosionFX;
         
         private void Start()
         {
@@ -37,50 +43,12 @@ namespace _Scripts.Projectiles
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
-        public void Detonate()
+        public override void SetParameters(float damage, float radius, float explosionDuration, GameObject explosionFX)
         {
-            Vector2 pos = transform.position;
-            DamageHandler.i.HandleCircularDamage(pos, _radius, _damage);
-
-            TerrainDestroyer.Instance.DestroyTerrain(pos, _radius);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-            
-            Destroy(gameObject);
-        }
-
-        public void SpawnExplosionFX()
-        {
-            GameObject insExpl = Instantiate(explosionFX, transform.position, quaternion.identity);
-            insExpl.transform.localScale *= _radius;
-            Destroy(insExpl, .15f);
-        }
-
-        public void DoCameraShake()
-        {
-            Camera.main.GetComponent<CameraShake>().shakeDuration = .15f;
-        }
-
-        public void SetParameters(float damage, float radius, float maxMagnitude, int steps, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
             _radius = radius;
-        }
-
-        public float GetMaxMagnitude()
-        {
-            return 0;
-        }
-
-        public int GetSteps()
-        {
-            return 0;
-        }
-
-        public float GetFixedMagnitude()
-        {
-            return -1f;
+            _damage = damage;
+            _explosionDuration = explosionDuration;
+            _explosionFX = explosionFX;
         }
     }
 }

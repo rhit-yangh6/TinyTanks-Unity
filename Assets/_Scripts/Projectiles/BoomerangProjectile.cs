@@ -3,27 +3,28 @@ using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public class BoomerangProjectile : MonoBehaviour, IProjectile
+    public class BoomerangProjectile : LaunchedProjectile
     {
-        public int Level { get; set; }
-
-        public GameObject explosionFX;
-        
-        private static float _radius, _maxMagnitude, _damage;
+        // Shared Fields
+        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
-
+        private static GameObject _explosionFX;
+        
+        // ExtraFields
         private static float _travelBackTime, _proximityDetectRange;
-
+        
+        // References
+        protected override float Radius => _radius;
+        protected override float Damage => _damage;
+        protected override float MaxMagnitude => _maxMagnitude;
+        protected override int Steps => _steps;
+        protected override float ExplosionDuration => _explosionDuration;
+        protected override GameObject ExplosionFX => _explosionFX;
+        
+        // Other Variables
         private bool _isActivated;
 
-        
-        
-        // TODO: Save Shooter (For All Projectiles)
-        
-        void Start()
-        {
-
-        }
+        // TODO: Save Shooter (For All Projectiles) ?
 
         // Update is called once per frame
         void Update()
@@ -38,7 +39,7 @@ namespace _Scripts.Projectiles
                 Vector2 startPos = transform.position, endPos = _playerTransform.position;
             
                 float t = _travelBackTime;
-
+q
                 float vx = (endPos.x - startPos.x) / t;
                 float vy = (endPos.y - startPos.y + 0.5f * -Physics2D.gravity.magnitude * t * t) / t;
                 
@@ -70,57 +71,16 @@ namespace _Scripts.Projectiles
                 Detonate();
             }
         }
-        
-        public void Detonate()
-        {
-            Vector2 pos = transform.position;
 
-            DamageHandler.i.HandleCircularDamage(pos, _radius, _damage);
-
-            TerrainDestroyer.Instance.DestroyTerrain(pos, _radius);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
-        }
-
-        public void SpawnExplosionFX()
-        {
-            GameObject insExpl = Instantiate(explosionFX, transform.position, quaternion.identity);
-            insExpl.transform.localScale *= _radius;
-            Destroy(insExpl, .15f);
-        }
-
-        public void DoCameraShake()
-        {
-            Camera.main.GetComponent<CameraShake>().shakeDuration = 0.15f;
-        }
-
-        public void SetParameters(float damage, float radius, float maxMagnitude, int steps, ExtraWeaponTerm[] extraWeaponTerms)
+        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
         {
             _damage = damage;
             _radius = radius;
             _maxMagnitude = maxMagnitude;
             _steps = steps;
-
-            // _travelBackTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "travelBackTime").value; 
-            // _proximityDetectRange = Array.Find(extraWeaponTerms, ewt => ewt.term == "proximityDetectRange").value;
-        }
-
-        public float GetMaxMagnitude()
-        {
-            return _maxMagnitude;
-        }
-
-        public int GetSteps()
-        {
-            return _steps;
-        }
-
-        public float GetFixedMagnitude()
-        {
-            return -1f;
+            _explosionDuration = explosionDuration;
+            
+            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
         }
     }
 }

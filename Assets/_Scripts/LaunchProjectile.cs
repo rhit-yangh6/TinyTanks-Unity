@@ -20,7 +20,7 @@ namespace _Scripts
         private Vector2 _startPoint, _endPoint;
 
         private GameObject _projectilePrefab;
-        private IProjectile _selectedProjectile;
+        private LaunchedProjectile _selectedProjectile;
         private Rigidbody2D _rb;
         private bool _needExtraForce;
         private float _extraForceXMultiplier, _extraForceYMultiplier;
@@ -93,7 +93,7 @@ namespace _Scripts
                 }
 
                 int weaponLevel = PlayerData.Instance.GetWeaponLevelFromId(selectedWeaponId);
-                projectile.GetComponent<IProjectile>().Level = weaponLevel;
+                projectile.GetComponent<LaunchedProjectile>().Level = weaponLevel;
 
                 gameController.projectileShot = true;
                 _playerCharacter.moveable = false;
@@ -187,7 +187,10 @@ namespace _Scripts
             
             _projectilePrefab = w.projectilePrefab;
             _rb = _projectilePrefab.GetComponent<Rigidbody2D>();
-            _selectedProjectile = _projectilePrefab.GetComponent<IProjectile>();
+            _selectedProjectile = _projectilePrefab.GetComponent<LaunchedProjectile>();
+            
+            int weaponLevel = PlayerData.Instance.GetWeaponLevelFromId(selectedWeaponId);
+            _selectedProjectile.GetComponent<LaunchedProjectile>().Level = weaponLevel;
             
             _needExtraForce = _projectilePrefab.GetComponent<ConstantForce2D>() != null;
 

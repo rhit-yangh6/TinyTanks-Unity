@@ -51,8 +51,8 @@ namespace _Scripts
     {
         // Read from Weapons.json
         public int id, steps;
-        public string weaponName, weaponDescription, dataPath;
-        public float damage, radius, maxMagnitude;
+        public string weaponName, weaponDescription, dataPath, explosionFXPath;
+        public float damage, radius, maxMagnitude, explosionDuration;
         
         // Also Read from Weapons.json, but Extra Data Types
         public UpgradeInfo[] upgradeInfos;
@@ -64,8 +64,9 @@ namespace _Scripts
 
         public void SetParams()
         {
-            IProjectile p = projectilePrefab.GetComponent<IProjectile>();
-            p.SetParameters(damage, radius, maxMagnitude, steps, extraWeaponTerms);
+            LaunchedProjectile p = projectilePrefab.GetComponent<LaunchedProjectile>();
+            GameObject explosionPrefab = Resources.Load<GameObject>("ExplosionFX/" + explosionFXPath);
+            p.SetParameters(damage, radius, maxMagnitude, steps, explosionDuration, extraWeaponTerms);
         }
         
     }

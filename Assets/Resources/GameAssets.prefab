@@ -65,3 +65,5 @@ MonoBehaviour:
   - {fileID: -82914510, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
   - {fileID: 1993477033, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
   - {fileID: -1829077492, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
+  regularExplosionFX: {fileID: 6624758977479615433, guid: bf9211e39af3fc547b81e87d2c190ec9, type: 3}
+  gunpowderlessExplosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
