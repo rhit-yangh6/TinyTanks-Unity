@@ -1,6 +1,6 @@
 using System;
-using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
@@ -45,12 +45,34 @@ namespace _Scripts.Projectiles
             }
             else
             {
+                _explosionFX = Level >= 3 ? GameAssets.i.regularExplosionFX : GameAssets.i.gunpowderlessExplosionFX;
                 Detonate();
             }
         }
+        
+        public override void Detonate()
+        {
+            Vector2 pos = transform.position;
 
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,
-            ExtraWeaponTerm[] extraWeaponTerms)
+            var finalCalculatedRadius = Radius;
+            if (Level >= 3) finalCalculatedRadius *= 1.5f;
+
+            var isCritical = false;
+            if (Level >= 4) isCritical = Random.value > 0.75;
+            if (Level == 6) isCritical = true;
+
+            DamageHandler.i.HandleCircularDamage(pos, finalCalculatedRadius, isCritical ? Damage * 1.5f : Damage, isCritical);
+
+            if (Level >= 3) TerrainDestroyer.Instance.DestroyTerrain(pos, finalCalculatedRadius);
+
+            SpawnExplosionFX();
+            DoCameraShake();
+        
+            Destroy(gameObject);
+        }
+
+        public override void SetParameters(float damage, float radius, 
+            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
         {
             _damage = damage;
             _radius = radius;
@@ -66,6 +88,17 @@ namespace _Scripts.Projectiles
         public override float GetFixedMagnitude()
         {
             return _fixedMagnitude;
+        }
+        
+        public override int GetSteps()
+        {
+            var finalCalculatedSteps = Steps;
+
+            if (Level >= 2) finalCalculatedSteps = (int)(finalCalculatedSteps * 1.5f);
+            // TODO: Another Level 5?
+            if (Level == 5) finalCalculatedSteps = (int)(finalCalculatedSteps * 2f);
+            
+            return finalCalculatedSteps;
         }
     }
 }

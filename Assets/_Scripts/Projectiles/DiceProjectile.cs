@@ -27,7 +27,7 @@ namespace _Scripts.Projectiles
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
-        private int _diceResult = 0;
+        private int _diceResult;
         
         private void OnCollisionEnter2D(Collision2D col)
         {

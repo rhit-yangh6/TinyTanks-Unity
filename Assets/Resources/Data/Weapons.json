@@ -12,7 +12,7 @@
         {
           "name": "Trebuchet",
           "description": "After tuning, the projectile can reach farther at maximum power.",
-          "cost": 55
+          "cost": 65
         },
         {
           "name": "Heavy Boulder",
@@ -319,36 +319,36 @@
     }, {
       "id": 8,
       "weaponName": "Sniper",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "Powerful sniper rifle. Deals high damage to enemies with high-speed bullets that are largely unaffected by gravity.",
       "damage": 45.0,
       "radius": 1,
       "maxMagnitude": 13.0,
-      "steps": 450,
+      "steps": 300,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "8X Scope",
+          "description": "Use this optical sight to aim farther.",
+          "cost": 120
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Explosive Bullets",
+          "description": "Sniper bullets explode on contact, and have the ability to destroy terrain.",
+          "cost": 330
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Headshot",
+          "description": "Chance to cause headshot and deal more damage.",
+          "cost": 470
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "15X Scope",
+          "description": "Aim extremely far.",
+          "cost": 820
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Marksman",
+          "description": "Just go for the head.",
+          "cost": 1500
         }
       ],
       "dataPath": "sniper",

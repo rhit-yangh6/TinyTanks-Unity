@@ -166,6 +166,7 @@ namespace _Scripts
             
             shopPanel.SetActive(false);
             SetWeaponLevel(weaponId, levelToBuy);
+            coinText.text = PlayerData.Instance.coins.ToString();
         }
 
     }

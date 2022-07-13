@@ -22,7 +22,7 @@ namespace _Scripts
             } 
         }
         
-        public void HandleCircularDamage(Vector2 pos, float radius, float damage)
+        public void HandleCircularDamage(Vector2 pos, float radius, float damage, bool isCriticalHit = false)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
             
@@ -31,7 +31,7 @@ namespace _Scripts
                 Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
                 if(rb != null) //  && rb.tag == "Enemy"
                 {
-                    DamagePopup.Create(rb.position, (int)Math.Round(damage), false);
+                    DamagePopup.Create(rb.position, (int)Math.Round(damage), isCriticalHit);
                     
                     // Find the Enemy script and apply damage.
                     Character c = rb.gameObject.GetComponent<Character>();
