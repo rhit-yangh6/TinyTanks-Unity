@@ -162,9 +162,9 @@
           "cost": 0
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "The Magic Three",
+          "description": "When the dice reaches 3, create a huge damaging explosion.",
+          "cost": 1200
         }
       ],
       "dataPath": "dice",
@@ -205,9 +205,9 @@
           "cost": 0
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Snowball Made of Composite Materials",
+          "description": "Using composite materials, snowballs can cause extensive damage to the terrain.",
+          "cost": 970
         }
       ],
       "dataPath": "snowball",
@@ -250,7 +250,7 @@
           "name": "",
           "description": "",
           "cost": 0
-        },
+        }, 
         {
           "name": "",
           "description": "",
@@ -289,7 +289,7 @@
           "cost": 0
         },
         {
-          "name": "",
+          "name": "Remote-controlled Boomerang",
           "description": "",
           "cost": 0
         },
