@@ -51,7 +51,6 @@ namespace _Scripts.Projectiles
         
         private void OnCollisionEnter2D(Collision2D col)
         {
-            Debug.Log(Level);
             if (col.gameObject.CompareTag("DangerZone"))
             {
                 Destroy(gameObject);

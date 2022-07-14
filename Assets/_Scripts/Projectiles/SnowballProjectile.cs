@@ -74,7 +74,7 @@ namespace _Scripts.Projectiles
             // TODO: 1 + ??
             float multiplier = Math.Max(Math.Min(_maxSize / 2, _timer / 2), 1f);
             
-            DamageHandler.i.HandleCircularDamage(pos, _radius * multiplier, _damage * multiplier);
+            DamageHandler.i.HandleCircularDamage(pos, Radius * multiplier, Damage * multiplier);
             
             // TODO: SNOWBALL - DESTROY TERRAIN IF UPGRADED?
             
@@ -82,6 +82,15 @@ namespace _Scripts.Projectiles
             DoCameraShake();
         
             Destroy(gameObject);
+        }
+        
+        public override void SpawnExplosionFX()
+        {
+            float multiplier = Math.Max(Math.Min(_maxSize / 2, _timer / 2), 1f);
+            
+            GameObject insExpl = Instantiate(ExplosionFX, transform.position, Quaternion.identity);
+            insExpl.transform.localScale *= Radius * multiplier;
+            Destroy(insExpl, ExplosionDuration);
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,

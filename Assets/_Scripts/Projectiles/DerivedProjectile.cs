@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Scripts.Utils;
+using UnityEngine;
 
 namespace _Scripts.Projectiles
 {

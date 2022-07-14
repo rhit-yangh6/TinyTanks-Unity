@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace _Scripts
+namespace _Scripts.Arsenal
 {
     public class ArsenalWeaponSelection : MonoBehaviour
     {
@@ -11,8 +10,12 @@ namespace _Scripts
         {
             for (int i = 0; i < 5; i++)
             {
-                selectionIcons[i].SetSprite(PlayerData.Instance.selectedWeapons[i]);
                 selectionIcons[i].selectionIndex = i;
+                if (PlayerData.Instance.selectedWeapons[i] != null)
+                {
+                    selectionIcons[i].SetSprite(PlayerData.Instance.selectedWeapons[i].weaponId);    
+
+                }
             }
         }
     }

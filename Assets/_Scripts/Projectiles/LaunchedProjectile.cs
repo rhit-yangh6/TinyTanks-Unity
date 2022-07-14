@@ -1,3 +1,4 @@
+using _Scripts.Utils;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -33,7 +34,6 @@ namespace _Scripts.Projectiles
         
             Destroy(gameObject);
         }
-
         
         public virtual void SpawnExplosionFX()
         {

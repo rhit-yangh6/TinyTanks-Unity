@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Arsenal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -29,7 +30,8 @@ namespace _Scripts
         public void SetSprite(int wId)
         {
             weaponId = wId;
-            GetComponent<Image>().sprite = WeaponManager.Instance.GetWeaponById(weaponId).weaponIconSprite;
+
+            GetComponent<Image>().sprite = wId == 0 ? GameAssets.i.weaponLockedSprite: WeaponManager.Instance.GetWeaponById(weaponId).weaponIconSprite;
         }
 
         private void ResetPos()
@@ -55,7 +57,10 @@ namespace _Scripts
 
         public void OnDrag(PointerEventData eventData)
         {
-            _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+            if (weaponId != 0)
+            {
+                _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;    
+            }
         }
 
         public void OnDrop(PointerEventData eventData)
@@ -63,9 +68,11 @@ namespace _Scripts
             DragDropGrid ddg = eventData.pointerDrag.GetComponent<DragDropGrid>();
             DragDropIcon ddi = eventData.pointerDrag.GetComponent<DragDropIcon>();
             int incomingWeaponId;
+
             if (ddg)
             {
                 incomingWeaponId = ddg.weaponId;
+                if (incomingWeaponId == 0) return;
 
                 bool isOverrideSuccessful = PlayerData.Instance.ChangeWeaponSelection(selectionIndex, incomingWeaponId);
 
@@ -76,6 +83,7 @@ namespace _Scripts
             } else if (ddi)
             {
                 incomingWeaponId = ddi.weaponId;
+                if (incomingWeaponId == 0) return;
 
                 bool isSwapSuccessful = PlayerData.Instance.SwapWeaponSelection(selectionIndex, ddi.selectionIndex);
 

@@ -1,11 +1,10 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts
+namespace _Scripts.Arsenal
 {
-    public class WeaponDetailPanel : MonoBehaviour
+    public class ArsenalWeaponDetailPanel : MonoBehaviour
     {
 
         [SerializeField] private Image weaponIcon;
@@ -47,7 +46,7 @@ namespace _Scripts
             }
 
             // Dealing with your current saved weapon level
-            int level = PlayerData.Instance.GetWeaponLevelFromId(_weaponId);
+            var level = PlayerData.Instance.GetWeaponLevelFromId(_weaponId);
             
             weaponUpgradeStarButtons[level - 1].Select();
             SetSliders(level);

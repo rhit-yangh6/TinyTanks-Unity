@@ -7,7 +7,6 @@ namespace _Scripts
     public class LaunchProjectile : MonoBehaviour
     {
         public float power = 5f;
-        public int selectedWeaponId;
         public GameObject player;
         public GameController gameController;
         public float maxAngle = 80f, minAngle = 5f;
@@ -19,6 +18,7 @@ namespace _Scripts
         private Camera _cam;
         private Vector2 _startPoint, _endPoint;
 
+        private SelectionDatum _sd;
         private GameObject _projectilePrefab;
         private LaunchedProjectile _selectedProjectile;
         private Rigidbody2D _rb;
@@ -91,9 +91,8 @@ namespace _Scripts
                     prb.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * _extraForceXMultiplier,
                         velocity.y * _extraForceYMultiplier, 0);
                 }
-
-                int weaponLevel = PlayerData.Instance.GetWeaponLevelFromId(selectedWeaponId);
-                projectile.GetComponent<LaunchedProjectile>().Level = weaponLevel;
+                
+                projectile.GetComponent<LaunchedProjectile>().Level = _sd.level;
 
                 gameController.projectileShot = true;
                 _playerCharacter.moveable = false;
@@ -179,18 +178,17 @@ namespace _Scripts
             }
         }
 
-        public void SwitchWeapon(int weaponId)
+        public void SwitchWeapon(SelectionDatum sd)
         {
-            selectedWeaponId = weaponId;
+            _sd = sd;
 
-            Weapon w = WeaponManager.Instance.GetWeaponById(selectedWeaponId);
+            Weapon w = WeaponManager.Instance.GetWeaponById(sd.weaponId);
             
             _projectilePrefab = w.projectilePrefab;
             _rb = _projectilePrefab.GetComponent<Rigidbody2D>();
             _selectedProjectile = _projectilePrefab.GetComponent<LaunchedProjectile>();
             
-            int weaponLevel = PlayerData.Instance.GetWeaponLevelFromId(selectedWeaponId);
-            _selectedProjectile.GetComponent<LaunchedProjectile>().Level = weaponLevel;
+            _selectedProjectile.GetComponent<LaunchedProjectile>().Level = sd.level;
             
             _needExtraForce = _projectilePrefab.GetComponent<ConstantForce2D>() != null;
 

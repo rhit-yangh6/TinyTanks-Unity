@@ -9,13 +9,12 @@ namespace _Scripts
 
         public LaunchProjectile lp;
         public GameObject buttonPrefab;
-        public Sprite weaponLockedSprite;
         private readonly List<Button> _weaponButtons = new ();
         private int _selectedIdx;
 
         private void Start()
         {
-            int[] selectedWeapons = PlayerData.Instance.selectedWeapons;
+            SelectionDatum[] selectedWeapons = PlayerData.Instance.selectedWeapons;
 
             for (int i = 0; i < 5; i++)
             {
@@ -23,19 +22,20 @@ namespace _Scripts
                 Button button = buttonObj.GetComponent<Button>();
                 Image buttonImg = buttonObj.GetComponentsInChildren<Image>()[1];
                 Image starImg = buttonObj.GetComponentsInChildren<Image>()[2];
-                int weaponId = selectedWeapons[i];
-                int index = i;
-
-                int level = PlayerData.Instance.GetWeaponLevelFromId(weaponId);
-                if (level > 0)
+                
+                var selectionDatum = selectedWeapons[i];
+                
+                if (selectedWeapons[i] != null)
                 {
-                    buttonImg.sprite = WeaponManager.Instance.GetWeaponById(selectedWeapons[i]).weaponIconSprite;
-                    button.onClick.AddListener(() => SwitchWeapon(index, weaponId));
-                    starImg.sprite = GameAssets.i.stars[level - 1];
+                    var index = i;
+                    
+                    buttonImg.sprite = WeaponManager.Instance.GetWeaponById(selectionDatum.weaponId).weaponIconSprite;
+                    button.onClick.AddListener(() => SwitchWeapon(index, selectionDatum));
+                    starImg.sprite = GameAssets.i.stars[selectionDatum.level - 1];
                 }
                 else
                 {
-                    buttonImg.sprite = weaponLockedSprite;
+                    buttonImg.sprite = GameAssets.i.weaponLockedSprite;
                     button.interactable = false;
                     starImg.gameObject.SetActive(false);
                 }
@@ -56,10 +56,10 @@ namespace _Scripts
             }
         }
 
-        private void SwitchWeapon(int index, int weaponId)
+        private void SwitchWeapon(int index, SelectionDatum sd)
         {
             _selectedIdx = index;
-            lp.SwitchWeapon(weaponId);
+            lp.SwitchWeapon(sd);
         }
     }
 }

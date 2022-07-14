@@ -22,6 +22,8 @@ namespace _Scripts
 
         public Sprite[] stars;
 
+        public Sprite weaponLockedSprite;
+
         public GameObject regularExplosionFX;
         public GameObject gunpowderlessExplosionFX;
 

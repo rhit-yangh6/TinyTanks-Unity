@@ -50,7 +50,7 @@ namespace _Scripts
     public class Weapon
     {
         // Read from Weapons.json
-        public int id, steps;
+        public int id, steps, shopPrice;
         public string weaponName, weaponDescription, dataPath, explosionFXPath;
         public float damage, radius, maxMagnitude, explosionDuration;
         
