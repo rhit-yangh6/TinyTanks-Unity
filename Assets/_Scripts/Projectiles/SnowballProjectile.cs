@@ -54,25 +54,13 @@ namespace _Scripts.Projectiles
                 }
             }
         }
-        
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            if (col.gameObject.CompareTag("DangerZone"))
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Detonate();
-            }
-        }
-        
+
         public override void Detonate()
         {
             Vector2 pos = transform.position;
             
             // TODO: 1 + ??
-            float multiplier = Math.Max(Math.Min(_maxSize / 2, _timer / 2), 1f);
+            var multiplier = Math.Max(Math.Min(_maxSize / 2, _timer / 2), 1f);
             
             DamageHandler.i.HandleCircularDamage(pos, Radius * multiplier, Damage * multiplier);
             

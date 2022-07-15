@@ -48,19 +48,7 @@ namespace _Scripts.Projectiles
                 transform.rotation = Quaternion.identity;
             }
         }
-        
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            if (col.gameObject.CompareTag("DangerZone"))
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Detonate();
-            }
-        }
-        
+
         public override void Detonate()
         {
             Vector2 pos = transform.position;

@@ -35,7 +35,7 @@ namespace _Scripts
                     
                     // Find the Enemy script and apply damage.
                     Character c = rb.gameObject.GetComponent<Character>();
-                    c.TakeDamage(damage);
+                    c.TakeDamage((float)Math.Round(damage));
                 }
             }
         }

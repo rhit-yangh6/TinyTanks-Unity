@@ -375,6 +375,45 @@
           "value": 0.5
         }
       ]
+    }, {
+      "id": 9,
+      "weaponName": "Shotgun",
+      "weaponDescription": ">>>>",
+      "damage": 22.0,
+      "radius": 1.7,
+      "maxMagnitude": 9.0,
+      "steps": 300,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "shotgun",
+      "explosionDuration": 0.2,
+      "shopPrice": 333,
+      "extraWeaponTerms": []
     }
   ]
 }

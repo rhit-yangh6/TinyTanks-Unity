@@ -14,3 +14,4 @@
 21. Weapon - Shockwave
 22. Weapon - Floatstone
 23. Camera - Click to get to good pos
+24. Weapon - Dimensional Ball

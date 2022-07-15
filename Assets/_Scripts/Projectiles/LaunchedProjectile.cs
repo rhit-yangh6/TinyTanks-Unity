@@ -18,6 +18,18 @@ namespace _Scripts.Projectiles
         protected virtual int Steps => _steps;
         protected virtual float ExplosionDuration => _explosionDuration;
         protected virtual GameObject ExplosionFX => _explosionFX;
+        
+        protected virtual void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.CompareTag("DangerZone"))
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Detonate();
+            }
+        }
 
         // The most basic detonate function
         public virtual void Detonate()

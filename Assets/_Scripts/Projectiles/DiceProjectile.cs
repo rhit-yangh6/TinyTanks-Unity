@@ -29,7 +29,7 @@ namespace _Scripts.Projectiles
         // Other Variables
         private int _diceResult;
         
-        private void OnCollisionEnter2D(Collision2D col)
+        protected override void OnCollisionEnter2D(Collision2D col)
         {
             
             if (col.gameObject.CompareTag("DangerZone"))

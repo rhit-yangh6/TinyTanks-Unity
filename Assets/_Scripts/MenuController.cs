@@ -5,14 +5,9 @@ namespace _Scripts
 {
     public class MenuController : MonoBehaviour
     {
-        public void PlayGameYes()
+        public void PlayGameYes()   
         {
             SceneManager.LoadScene("Level1");
-        }
-
-        public void LoadGameYes()
-        {
-        
         }
 
         public void ExitButtonYes()

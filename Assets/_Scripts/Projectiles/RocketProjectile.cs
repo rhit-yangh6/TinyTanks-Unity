@@ -48,18 +48,6 @@ namespace _Scripts.Projectiles
                 _ps.Play();
             }
         }
-    
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            if (col.gameObject.CompareTag("DangerZone"))
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Detonate();
-            }
-        }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
         {
