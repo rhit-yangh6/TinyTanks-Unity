@@ -1,6 +1,4 @@
-﻿5. Coin system, earning coins
-6. Upgrade System
-7. Weapon - Shield
+﻿7. Weapon - Shield
 9. Weapon - Laser Bomb
 10. Weapon - Dynamite
 11. Weapon - BounceBall?
@@ -12,3 +10,7 @@
 17. Weapon - Fireball & Other Elemental ones
 18. Weapon - Homing Stuff
 19. Weapon - BoomBox
+20. Weapon - Hologram
+21. Weapon - Shockwave
+22. Weapon - Floatstone
+23. Camera - Click to get to good pos
