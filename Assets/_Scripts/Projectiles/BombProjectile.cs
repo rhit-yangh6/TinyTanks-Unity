@@ -40,7 +40,7 @@ namespace _Scripts.Projectiles
             }
         }
 
-        IEnumerator TickBomb()
+        private IEnumerator TickBomb()
         {
             Invoke(nameof(Detonate), _detonateTime);
             while (true)

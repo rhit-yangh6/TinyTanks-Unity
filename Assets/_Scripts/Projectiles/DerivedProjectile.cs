@@ -1,5 +1,4 @@
-﻿using _Scripts.Utils;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
@@ -38,7 +37,7 @@ namespace _Scripts.Projectiles
 
         public virtual void DoCameraShake()
         {
-            Camera.main.GetComponent<CameraShake>().shakeDuration = ExplosionDuration;
+            Camera.main.GetComponent<CameraMovement>().ShakeCamera(ExplosionDuration);
         }
 
         public virtual void SetParameters(float damage, float radius, float explosionDuration, GameObject explosionFX) { }

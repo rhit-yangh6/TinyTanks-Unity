@@ -104,7 +104,14 @@ namespace _Scripts
         {
             var datum = weaponLevels.Find(wl => wl.weaponId == idToFind);
             if (!datum.unlocked[levelToSet - 1]) return false;
+
+            // Set the level
             datum.level = levelToSet;
+            
+            // Set the level if the weapon is selected
+            var sd = Array.Find(selectedWeapons, sd => sd != null && sd.weaponId == idToFind);
+            if (sd != null) sd.level = levelToSet;
+
             return true;
         }
 
