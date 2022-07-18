@@ -73,9 +73,9 @@
           "cost": 300
         },
         {
-          "name": "Explosion Shockwave",
-          "description": "The explosion creates a shockwave that pushes everyone in range.",
-          "cost": 800
+          "name": "???",
+          "description": "???",
+          "cost": 0
         },
         {
           "name": "Cluster Bomb",
@@ -90,6 +90,12 @@
         {
           "term": "detonateTime",
           "value": 5.0
+        }, {
+          "term": "clusterExplosionRadius",
+          "value": 1.5
+        }, {
+          "term": "clusterExplosionDamage",
+          "value": 10
         }]
     }, {
       "id": 3,

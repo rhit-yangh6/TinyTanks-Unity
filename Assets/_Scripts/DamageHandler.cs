@@ -22,22 +22,30 @@ namespace _Scripts
             } 
         }
         
-        public void HandleCircularDamage(Vector2 pos, float radius, float damage, bool isCriticalHit = false)
+        public void HandleCircularDamage(Vector2 pos, float radius, float damage, bool isCriticalHit = false, float force = 0f)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
             
             foreach(Collider2D col in hitColliders)
             {
-                Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
+                var rb = col.GetComponent<Rigidbody2D>();
                 if (rb == null) continue;
                 
                 // Popup Damage
                 DamagePopup.Create(rb.position, (int)Math.Round(damage), isCriticalHit);
                 
                 // Find the Enemy script and apply damage.
-                Character c = rb.gameObject.GetComponent<Character>();
+                var c = rb.gameObject.GetComponent<Character>();
                 c.TakeDamage((float)Math.Round(damage));
-
+                
+                /*
+                // Push Force
+                if (force != 0f)
+                {
+                    var forceDirection = Vector3.Normalize(rb.position - pos);
+                    rb.AddForce(forceDirection * force);
+                }
+                */
                 // TODO: Props?
             }
         }
