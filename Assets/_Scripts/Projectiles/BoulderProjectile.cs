@@ -21,7 +21,7 @@ namespace _Scripts.Projectiles
         // References
         protected override float Radius => _radius;
         protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
+        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.2f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
@@ -96,19 +96,5 @@ namespace _Scripts.Projectiles
             _boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
             _boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
         }
-
-        public override float GetMaxMagnitude()
-        {
-            var finalCalculatedMagnitude = MaxMagnitude;
-            
-            if (Level >= 2)
-            {
-                finalCalculatedMagnitude *= 1.20f;
-            }
-            
-            return finalCalculatedMagnitude;
-        }
     }
-
-    
 }

@@ -54,33 +54,33 @@
       "weaponDescription": "A larger range time bomb. Does not explode immediately when it hits the ground.",
       "damage": 30.0,
       "radius": 3.5,
-      "maxMagnitude": 10.0,
+      "maxMagnitude": 9.5,
       "steps": 500,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Longer Lead",
+          "description": "Extend the detonate time by one second.",
+          "cost": 60
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Lightweight Bombs",
+          "description": "Bombs can reach longer distances.",
+          "cost": 90
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Lethal Gunpowder",
+          "description": "Damage Increased by 25%.",
+          "cost": 300
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Explosion Shockwave",
+          "description": "The explosion creates a shockwave that pushes everyone in range.",
+          "cost": 800
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Cluster Bomb",
+          "description": "The bomb explosion is followed by a chain of smaller explosions",
+          "cost": 1299
         }
       ],
       "dataPath": "bomb",
@@ -89,7 +89,7 @@
       "extraWeaponTerms": [
         {
           "term": "detonateTime",
-          "value": 3.0
+          "value": 5.0
         }]
     }, {
       "id": 3,
@@ -379,7 +379,7 @@
       "id": 9,
       "weaponName": "Shotgun",
       "weaponDescription": ">>>>",
-      "damage": 22.0,
+      "damage": 21.0,
       "radius": 1.7,
       "maxMagnitude": 9.0,
       "steps": 300,

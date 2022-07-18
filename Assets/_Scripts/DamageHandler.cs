@@ -29,14 +29,16 @@ namespace _Scripts
             foreach(Collider2D col in hitColliders)
             {
                 Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
-                if(rb != null) //  && rb.tag == "Enemy"
-                {
-                    DamagePopup.Create(rb.position, (int)Math.Round(damage), isCriticalHit);
-                    
-                    // Find the Enemy script and apply damage.
-                    Character c = rb.gameObject.GetComponent<Character>();
-                    c.TakeDamage((float)Math.Round(damage));
-                }
+                if (rb == null) continue;
+                
+                // Popup Damage
+                DamagePopup.Create(rb.position, (int)Math.Round(damage), isCriticalHit);
+                
+                // Find the Enemy script and apply damage.
+                Character c = rb.gameObject.GetComponent<Character>();
+                c.TakeDamage((float)Math.Round(damage));
+
+                // TODO: Props?
             }
         }
 

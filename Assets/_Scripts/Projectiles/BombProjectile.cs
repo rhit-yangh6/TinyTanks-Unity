@@ -14,11 +14,11 @@ namespace _Scripts.Projectiles
         
         // ExtraFields
         private static float _detonateTime;
-        
+
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
+        protected override float Damage => Level >= 4 ? _damage * 1.25f : _damage;
+        protected override float MaxMagnitude => Level >= 3 ? _maxMagnitude * 1.1f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
@@ -26,7 +26,7 @@ namespace _Scripts.Projectiles
         // Other Variables
         private SpriteRenderer _sr;
     
-        void Start()
+        private void Start()
         {
             _sr = GetComponent<SpriteRenderer>();
             StartCoroutine(TickBomb());
@@ -34,15 +34,15 @@ namespace _Scripts.Projectiles
 
         protected override void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.gameObject.CompareTag("DangerZone"))
-            {
-                Destroy(gameObject);
-            }
+            if (col.gameObject.CompareTag("DangerZone")) Destroy(gameObject);
         }
 
         private IEnumerator TickBomb()
         {
-            Invoke(nameof(Detonate), _detonateTime);
+            var finalCalculatedDetonateTime = _detonateTime;
+            if (Level >= 2) finalCalculatedDetonateTime += 1f;
+
+            Invoke(nameof(Detonate), finalCalculatedDetonateTime);
             while (true)
             {
                 _sr.color = Color.red;
