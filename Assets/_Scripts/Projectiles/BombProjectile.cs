@@ -3,6 +3,7 @@ using System.Collections;
 using JetBrains.Annotations;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
@@ -15,6 +16,7 @@ namespace _Scripts.Projectiles
         
         // ExtraFields
         private static float _detonateTime, _clusterExplosionRadius, _clusterExplosionDamage;
+        private static float _secondaryExplosionRadius, _secondaryExplosionDamage;
 
         // References
         protected override float Radius => _radius;
@@ -28,7 +30,6 @@ namespace _Scripts.Projectiles
         private SpriteRenderer _sr;
         private readonly int[,] _clusterDirections = 
         { { 2, 0 }, { 1, -1 }, { 0, -2 }, { -1, -1 }, {-2, 0}, {-1, 1}, {0, 2}, {1, 1} };
-        private bool _isDetonated;
         
         // TODO: Level 5???
         
@@ -49,7 +50,7 @@ namespace _Scripts.Projectiles
             if (Level >= 2) finalCalculatedDetonateTime += 1f;
 
             Invoke(nameof(Detonate), finalCalculatedDetonateTime);
-            while (!_isDetonated)
+            while (true)
             {
                 _sr.color = Color.red;
                 yield return new WaitForSeconds(.1f);
@@ -67,21 +68,40 @@ namespace _Scripts.Projectiles
             SpawnExplosionFX();
             DoCameraShake();
 
-            if (Level == 6)
+            switch (Level)
             {
-                StartCoroutine(SpawnClusterExplosion(pos));
+                case 6:
+                    StartCoroutine(SpawnClusterExplosion(pos));
+                    break;
+                case 5:
+                    var random = Random.value;
+                    if (random > 0.65) StartCoroutine(SpawnSecondaryExplosion(pos));
+                    else Destroy(gameObject);
+                    break;
+                default:
+                    Destroy(gameObject);
+                    break;
             }
-            else
-            {
-                _isDetonated = true;
-                Destroy(gameObject);    
-            }
+        }
+
+        private IEnumerator SpawnSecondaryExplosion(Vector2 origin)
+        {
+            _sr.enabled = false;
+            yield return new WaitForSeconds(ExplosionDuration + .25f);
+            
+            DamageHandler.i.HandleCircularDamage(origin, _secondaryExplosionRadius, _secondaryExplosionDamage);
+            TerrainDestroyer.Instance.DestroyTerrain(origin, _secondaryExplosionRadius);
+            
+            var insExpl = Instantiate(ExplosionFX, origin, Quaternion.identity);
+            insExpl.transform.localScale *= _secondaryExplosionRadius;
+            Destroy(insExpl, ExplosionDuration);  
+            
+            Destroy(gameObject);
         }
 
         private IEnumerator SpawnClusterExplosion(Vector2 origin)
         {
             // Hide the bomb
-            _isDetonated = true;
             _sr.enabled = false;
 
             for (var i = 0; i < 8; i++)
@@ -119,6 +139,8 @@ namespace _Scripts.Projectiles
             _clusterExplosionDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "clusterExplosionDamage").value;
             _clusterExplosionRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "clusterExplosionRadius").value;
             
+            _secondaryExplosionDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "secondaryExplosionDamage").value;
+            _secondaryExplosionRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "secondaryExplosionRadius").value;
         }
     }
 }

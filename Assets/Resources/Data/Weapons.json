@@ -73,9 +73,9 @@
           "cost": 300
         },
         {
-          "name": "???",
-          "description": "???",
-          "cost": 0
+          "name": "Secondary Explosion",
+          "description": "Chance to have a secondary but smaller explosion after detonating.",
+          "cost": 900
         },
         {
           "name": "Cluster Bomb",
@@ -96,6 +96,12 @@
         }, {
           "term": "clusterExplosionDamage",
           "value": 10
+        }, {
+          "term": "secondaryExplosionRadius",
+          "value": 2.6
+        }, {
+          "term": "secondaryExplosionDamage",
+          "value": 20
         }]
     }, {
       "id": 3,
