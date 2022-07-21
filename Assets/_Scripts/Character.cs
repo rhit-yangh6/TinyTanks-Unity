@@ -1,3 +1,5 @@
+using _Scripts.Buffs;
+
 namespace _Scripts
 {
     public interface Character
@@ -13,5 +15,12 @@ namespace _Scripts
         void Flip();
 
         public void SetCannonAngle(float angle);
+
+        public void AddBuff(TimedBuff buff);
+
+        // TODO: merge?
+        public void TickBuffs();
+
+        public void IncreaseMovementSpeed(float amount);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Buffs;
 using UnityEngine;
 
 namespace _Scripts
@@ -22,7 +23,8 @@ namespace _Scripts
             } 
         }
         
-        public void HandleCircularDamage(Vector2 pos, float radius, float damage, bool isCriticalHit = false, float force = 0f)
+        public void HandleCircularDamage(Vector2 pos, float radius, float damage,
+            bool isCriticalHit = false, ScriptableBuff buff = null)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
             
@@ -38,14 +40,24 @@ namespace _Scripts
                 var c = rb.gameObject.GetComponent<Character>();
                 c.TakeDamage((float)Math.Round(damage));
                 
+                // Apply Buff
+                if (buff != null)
+                {
+                    c.AddBuff(buff.InitializeBuff(col.gameObject));
+                }
+                
                 /*
-                // Push Force
+                // TODO: Push Force
                 if (force != 0f)
                 {
                     var forceDirection = Vector3.Normalize(rb.position - pos);
                     rb.AddForce(forceDirection * force);
                 }
                 */
+                
+                
+                
+                
                 // TODO: Props?
             }
         }

@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using _Scripts.Buffs;
 using _Scripts.Projectiles;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,20 +12,22 @@ namespace _Scripts
     {
         public float Health { get; set; }
 
-        public float maxHealth = 100;
-        public float movementSpeed = 5;
-        
-        public int facingDirection = -1;
-
-        public float degreeDelta = 10f;
-        public GameObject player;
-        public HealthBarBehavior healthBar;
-        public bool isDead = false;
-        public int selectedWeaponId;
-        public GameController gameController;
-        public GameObject tankCannon;
+        [SerializeField] public int facingDirection = -1;
+        [SerializeField] public float degreeDelta = 10f;
+        [SerializeField] public float maxHealth = 100;
+        [SerializeField] public float movementSpeed = 5;
+        [SerializeField] public int selectedWeaponId;
         [SerializeField] private int weaponLevel;
-
+        [SerializeField] public GameController gameController;
+        [SerializeField] public GameObject tankCannon;
+        [SerializeField] public HealthBarBehavior healthBar;
+        [SerializeField] private LayerMask layerMask;
+        
+        // TODO: Remove this?
+        [SerializeField] public GameObject player;
+        
+        public bool isDead = false;
+        
         private int _xMovingDirection = 0;
         private bool _isAiming = false;
         private Vector2 _aimVelocity;
@@ -31,9 +36,9 @@ namespace _Scripts
         private SpriteRenderer _sr, _cannonSr;
         private Rigidbody2D _projectileRigidbody2D, _rb2d;
         private LineRenderer _lr;
+        
+        private readonly Dictionary<ScriptableBuff, TimedBuff> _buffs = new ();
 
-        public LayerMask layerMask;
-    
         void Start()
         {
             Health = maxHealth;
@@ -58,6 +63,7 @@ namespace _Scripts
             CheckMovement();
             AdjustRotation();
             DrawTrajectory();
+            
         }
     
         public void TakeDamage(float amount)
@@ -114,6 +120,36 @@ namespace _Scripts
             tankCannon.transform.localEulerAngles = (facingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
         }
 
+        public void AddBuff(TimedBuff buff)
+        {
+            if (_buffs.ContainsKey(buff.Buff))
+            {
+                _buffs[buff.Buff].Activate();
+            }
+            else
+            {
+                _buffs.Add(buff.Buff, buff);
+                buff.Activate();
+            }
+        }
+
+        public void TickBuffs()
+        {
+            foreach (var buff in _buffs.Values.ToList())
+            {
+                buff.Tick();
+                if (buff.isFinished)
+                {
+                    _buffs.Remove(buff.Buff);
+                }
+            }
+        }
+
+        public void IncreaseMovementSpeed(float amount)
+        {
+            movementSpeed += amount;
+        }
+
         private void Aim()
         {
             _lr.enabled = true;
@@ -150,6 +186,7 @@ namespace _Scripts
 
         public IEnumerator MakeMove()
         {
+
             // Simple Enemy AI 0.0.1
             // Initial Wait
             yield return new WaitForSeconds(1);

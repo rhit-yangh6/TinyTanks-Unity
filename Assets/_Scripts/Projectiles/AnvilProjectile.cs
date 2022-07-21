@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Buffs;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ namespace _Scripts.Projectiles
 {
     public class AnvilProjectile : LaunchedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private ScriptableBuff stunnedBuff;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -55,7 +59,7 @@ namespace _Scripts.Projectiles
 
             float damageDealt = _isActivated ? _damage * _fallDamageMultiplier : _damage;
             
-            DamageHandler.i.HandleCircularDamage(pos, _radius, damageDealt);
+            DamageHandler.i.HandleCircularDamage(pos, _radius, damageDealt, false, stunnedBuff);
             
             TerrainDestroyer.Instance.DestroyTerrain(pos, _radius);
         

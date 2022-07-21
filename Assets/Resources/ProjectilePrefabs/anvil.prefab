@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fed8175f788f54eb479f1db028a5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
+  stunnedBuff: {fileID: 11400000, guid: 6802efc3db6826b4cb0d77db033c65f7, type: 2}
 --- !u!50 &-4209275156953706829
 Rigidbody2D:
   serializedVersion: 4

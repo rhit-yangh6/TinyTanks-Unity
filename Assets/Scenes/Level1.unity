@@ -1064,20 +1064,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84469a513520dd4bab8d662193de8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  movementSpeed: 6
   facingDirection: -1
   degreeDelta: 10
-  player: {fileID: 331913633}
-  healthBar: {fileID: 1329565127}
-  isDead: 0
+  maxHealth: 100
+  movementSpeed: 6
   selectedWeaponId: 1
+  weaponLevel: 1
   gameController: {fileID: 2079067049}
   tankCannon: {fileID: 698522407}
-  weaponLevel: 1
+  healthBar: {fileID: 1329565127}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  player: {fileID: 331913633}
+  isDead: 0
 --- !u!120 &302747537
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1479,9 +1479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59421dd4329edf246b1817f570ef9bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  facingDirection: 1
   maxHealth: 100
   moveable: 0
-  facingDirection: 1
   movementSpeed: 7
   layerMask:
     serializedVersion: 2

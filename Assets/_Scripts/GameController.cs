@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Globalization;
+using _Scripts.Buffs;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace _Scripts
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private float turnTime = 45f;
         [SerializeField] private PauseMenu pauseMenu;
-
+        
         [HideInInspector] public bool projectileShot;
         
         private PlayerController _playerCharacter;
@@ -115,6 +116,7 @@ namespace _Scripts
         {
             if (_turn == 0)
             {
+                _playerCharacter.TickBuffs();
                 _playerCharacter.moveable = true;
                 _remainingTime = turnTime;
             }
@@ -127,6 +129,7 @@ namespace _Scripts
                 }
                 else
                 {
+                    _enemyCharacters[_turn - 1].TickBuffs();
                     yield return StartCoroutine(_enemyCharacters[_turn - 1].MakeMove());
                 }
             }

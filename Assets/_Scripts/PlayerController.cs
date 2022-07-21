@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using _Scripts.Buffs;
 using UnityEngine;
 
 // Source: https://github.com/Bardent/Rigidbody2D-Slopes-Unity/blob/master/Assets/Scripts/PlayerController.cs
@@ -8,21 +11,21 @@ namespace _Scripts
     {
         public float Health { get; set; }
 
-        public float maxHealth = 100;
-
-        public bool moveable;
-        
         [HideInInspector] public int facingDirection = 1;
         
-        public float movementSpeed = 7;
-        public LayerMask layerMask;
-        public PlayerHealthBarBehavior healthBar;
-        public GameObject tankCannon;
+        [SerializeField] public float maxHealth = 100;
+        [SerializeField] public bool moveable;
+        [SerializeField] public float movementSpeed = 5;
+        [SerializeField] public LayerMask layerMask;
+        [SerializeField] public PlayerHealthBarBehavior healthBar;
+        [SerializeField] public GameObject tankCannon;
         
         private float _xInput;
         private SpriteRenderer _mainSr, _cannonSr;
         private Rigidbody2D _rb2d;
 
+        private readonly Dictionary<ScriptableBuff, TimedBuff> _buffs = new ();
+        
         private void Start()
         {
             Health = maxHealth;
@@ -110,6 +113,37 @@ namespace _Scripts
         {
             // TODO: Rotated Tank
             tankCannon.transform.localEulerAngles = (facingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
+        }
+
+        public void AddBuff(TimedBuff buff)
+        {
+            if (_buffs.ContainsKey(buff.Buff))
+            {
+                _buffs[buff.Buff].Activate();
+            }
+            else
+            {
+                _buffs.Add(buff.Buff, buff);
+                buff.Activate();
+            }
+        }
+
+        public void TickBuffs()
+        {
+            foreach (var buff in _buffs.Values.ToList())
+            {
+                buff.Tick();
+                if (buff.isFinished)
+                {
+                    _buffs.Remove(buff.Buff);
+                }
+            }
+        }
+
+        public void IncreaseMovementSpeed(float amount)
+        {
+            Debug.Log("Activated" + amount);
+            movementSpeed += amount;
         }
     }
 }
