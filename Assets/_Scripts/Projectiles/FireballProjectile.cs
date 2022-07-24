@@ -50,7 +50,6 @@ namespace _Scripts.Projectiles
             
             DamageHandler.i.HandleCircularDamage(pos, Radius, Damage, false, burningBuff);
 
-            Debug.Log(Radius);
             TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
         
             SpawnExplosionFX();

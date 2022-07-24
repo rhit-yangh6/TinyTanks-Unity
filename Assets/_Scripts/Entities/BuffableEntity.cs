@@ -22,6 +22,15 @@ namespace _Scripts.Entities
 
         protected override void CheckMovement() { }
 
+        public override void TakeDamage(float amount, bool isCriticalHit = false)
+        {
+            base.TakeDamage(amount, isCriticalHit);
+            if (Health <= 0)
+            {
+                EndTurn();
+            }
+        }
+
         public void Flip()
         {
             FacingDirection *= -1;
@@ -63,14 +72,13 @@ namespace _Scripts.Entities
         {
             if (col.gameObject.CompareTag("DangerZone"))
             {
-                TakeDamage(MaxHealth);
-                EndTurn();
+                TakeDamage(MaxHealth * 2);
             }
         }
 
         public void EndTurn()
         {
-            gc.ChangeTurn();
+            gc.EndTurnByCharacter(this);
         }
 
     }

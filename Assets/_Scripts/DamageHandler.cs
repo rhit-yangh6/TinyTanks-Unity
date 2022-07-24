@@ -33,13 +33,10 @@ namespace _Scripts
             {
                 var rb = col.GetComponent<Rigidbody2D>();
                 if (rb == null) continue;
-                
-                // Popup Damage
-                DamagePopup.Create(rb.position, (int)Math.Round(damage), isCriticalHit);
-                
+
                 // Find the Enemy script and apply damage.
                 var e = rb.gameObject.GetComponent<Entity>();
-                e.TakeDamage((float)Math.Round(damage));
+                e.TakeDamage((float)Math.Round(damage), isCriticalHit);
 
                 var be = rb.gameObject.GetComponent<BuffableEntity>();
                 // Apply Buff

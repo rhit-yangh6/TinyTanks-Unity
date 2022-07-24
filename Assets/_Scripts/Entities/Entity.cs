@@ -1,4 +1,5 @@
-﻿using _Scripts.Buffs;
+﻿using System;
+using _Scripts.Buffs;
 using UnityEngine;
 
 namespace _Scripts.Entities
@@ -16,9 +17,12 @@ namespace _Scripts.Entities
 
         protected virtual float MaxHealth => _maxHealth;
         protected virtual HealthBarBehavior HealthBar => _healthBar;
-        
-        public void TakeDamage(float amount)
+
+        public virtual void TakeDamage(float amount, bool isCriticalHit = false)
         {
+            var rb = gameObject.GetComponent<Rigidbody2D>();
+            DamagePopup.Create(rb.position, (int)Math.Round(amount), isCriticalHit);
+            
             if (Health - amount < 0)
             {
                 Health = 0;

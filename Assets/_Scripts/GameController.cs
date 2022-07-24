@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Globalization;
-using _Scripts.Buffs;
 using _Scripts.Entities;
 using TMPro;
 using UnityEngine;
@@ -23,6 +22,7 @@ namespace _Scripts
 
         private int _turn = 0, _playerNum = 0;
         private float _remainingTime;
+        private bool _isInterTurn;
 
         private void Start()
         {
@@ -74,9 +74,10 @@ namespace _Scripts
         private void CheckAggressiveProjectiles()
         {
             var aggressiveProjectiles = GameObject.FindGameObjectsWithTag("AggressiveProjectile");
-            if (aggressiveProjectiles.Length == 0)
+            if (aggressiveProjectiles.Length == 0 && !_isInterTurn)
             {
-                ChangeTurn();
+                _isInterTurn = true;
+                Invoke(nameof(ChangeTurn), 1f);
             }
         }
 
@@ -98,7 +99,24 @@ namespace _Scripts
 
             projectileShot = false;
             _turn = (_turn + 1) % _playerNum;
+            _isInterTurn = false;
+            
             StartCoroutine(HandleMovements());
+        }
+
+        // Hitting the edge or dying in their turn
+        public void EndTurnByCharacter(BuffableEntity be)
+        {
+            if (_playerCharacter.Equals(be))
+            {
+                if (_turn != 0) return;
+                ChangeTurn();
+                return;
+            }
+
+            var idx = Array.IndexOf(_enemyCharacters, (EnemyController)be);
+            if (idx != _turn - 1) return;
+            ChangeTurn();
         }
 
         private bool IsAllEnemyDead()
