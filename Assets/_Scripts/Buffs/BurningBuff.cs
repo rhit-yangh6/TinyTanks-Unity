@@ -3,20 +3,22 @@ using UnityEngine;
 
 namespace _Scripts.Buffs
 {
-    [CreateAssetMenu(menuName = "_Scripts/Buffs/StunnedBuff")]
-    public class StunnedBuff: ScriptableBuff
+    [CreateAssetMenu(menuName = "_Scripts/Buffs/BurningBuff")]
+    public class BurningBuff: ScriptableBuff
     {
+        public float burningDamage;
+        
         public override TimedBuff InitializeBuff(GameObject obj)
         {
-            return new TimedStunnedBuff(this, obj, duration);
+            return new TimedBurningBuff(this, obj, duration);
         }
     }
     
-    public class TimedStunnedBuff : TimedBuff
+    public class TimedBurningBuff : TimedBuff
     {
         private readonly BuffableEntity _be;
 
-        public TimedStunnedBuff(ScriptableBuff buff, GameObject obj, int duration) : base(buff, obj)
+        public TimedBurningBuff(ScriptableBuff buff, GameObject obj, int duration) : base(buff, obj)
         {
             //Getting MovementComponent, replace with your own implementation
             _be = obj.GetComponent<BuffableEntity>();
@@ -28,7 +30,8 @@ namespace _Scripts.Buffs
 
         protected override void TurnTrigger()
         {
-            _be.EndTurn();
+            BurningBuff buff = (BurningBuff)Buff;
+            _be.TakeDamage(buff.burningDamage);
         }
     }
 }

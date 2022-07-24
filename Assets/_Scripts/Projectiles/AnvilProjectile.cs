@@ -58,9 +58,13 @@ namespace _Scripts.Projectiles
             Vector2 pos = transform.position;
 
             float damageDealt = _isActivated ? _damage * _fallDamageMultiplier : _damage;
-            
-            DamageHandler.i.HandleCircularDamage(pos, _radius, damageDealt, false, stunnedBuff);
-            
+
+            if (Level == 6 && _isActivated)
+            {
+                DamageHandler.i.HandleCircularDamage(pos, _radius, damageDealt, false, stunnedBuff);    
+            }
+            else DamageHandler.i.HandleCircularDamage(pos, _radius, damageDealt);
+
             TerrainDestroyer.Instance.DestroyTerrain(pos, _radius);
         
             SpawnExplosionFX();

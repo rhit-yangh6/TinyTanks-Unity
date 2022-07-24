@@ -269,9 +269,9 @@
           "cost": 0
         }, 
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Smash to Dizziness",
+          "description": "If the anvil is falling straight down, it will stun the target, making it unable to move for one turn.",
+          "cost": 1440
         }
       ],
       "dataPath": "anvil",
@@ -425,6 +425,45 @@
       "dataPath": "shotgun",
       "explosionDuration": 0.2,
       "shopPrice": 333,
+      "extraWeaponTerms": []
+    }, {
+      "id": 10,
+      "weaponName": "Fireball",
+      "weaponDescription": ">>>>",
+      "damage": 28.0,
+      "radius": 2,
+      "maxMagnitude": 10.0,
+      "steps": 425,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "fireball",
+      "explosionDuration": 0.18,
+      "shopPrice": 450,
       "extraWeaponTerms": []
     }
   ]

@@ -6,28 +6,31 @@ using _Scripts.Projectiles;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace _Scripts
+namespace _Scripts.Entities
 {
-    public class EnemyController : MonoBehaviour, Character
+    public class EnemyController : BuffableEntity
     {
-        public float Health { get; set; }
 
-        [SerializeField] public int facingDirection = -1;
-        [SerializeField] public float degreeDelta = 10f;
-        [SerializeField] public float maxHealth = 100;
-        [SerializeField] public float movementSpeed = 5;
-        [SerializeField] public int selectedWeaponId;
-        [SerializeField] private int weaponLevel;
-        [SerializeField] public GameController gameController;
-        [SerializeField] public GameObject tankCannon;
-        [SerializeField] public HealthBarBehavior healthBar;
-        [SerializeField] private LayerMask layerMask;
+        [SerializeField] private float degreeDelta = 10f;
+        [SerializeField] private float maxHealth = 100;
+        [SerializeField] private float movementSpeed = 5;
         
+        [SerializeField] private int selectedWeaponId;
+        [SerializeField] private int weaponLevel;
+        
+        [SerializeField] private GameObject tankCannon;
+        [SerializeField] private HealthBarBehavior healthBar;
+
+        protected override float MaxHealth => maxHealth;
+        public override float MovementSpeed => movementSpeed;
+        protected override GameObject TankCannon => tankCannon;
+        protected override HealthBarBehavior HealthBar => healthBar;
+        protected override SpriteRenderer CannonSr => _cannonSr;
+        protected override SpriteRenderer MainSr => _sr;
+
         // TODO: Remove this?
         [SerializeField] public GameObject player;
-        
-        public bool isDead = false;
-        
+
         private int _xMovingDirection = 0;
         private bool _isAiming = false;
         private Vector2 _aimVelocity;
@@ -37,18 +40,16 @@ namespace _Scripts
         private Rigidbody2D _projectileRigidbody2D, _rb2d;
         private LineRenderer _lr;
         
-        private readonly Dictionary<ScriptableBuff, TimedBuff> _buffs = new ();
-
         void Start()
         {
             Health = maxHealth;
-            healthBar.SetHealth(Health, maxHealth);
+            HealthBar.SetHealth(Health, MaxHealth);
             
             _sr = GetComponent<SpriteRenderer>();
-            _sr.flipX = facingDirection == -1;
+            _sr.flipX = FacingDirection == -1;
 
             _cannonSr = tankCannon.GetComponent<SpriteRenderer>();
-            _cannonSr.flipX = facingDirection == -1;
+            _cannonSr.flipX = FacingDirection == -1;
             
             _lr = GetComponent<LineRenderer>();
 
@@ -63,40 +64,9 @@ namespace _Scripts
             CheckMovement();
             AdjustRotation();
             DrawTrajectory();
-            
-        }
-    
-        public void TakeDamage(float amount)
-        {
-            if (Health - amount <= 0)
-            {
-                Health = 0;
-                isDead = true;
-                Destroy(gameObject);
-            }
-            else
-            {
-                Health -= amount;
-            }
-            healthBar.SetHealth(Health, maxHealth);
         }
 
-        public void AdjustRotation()
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 3f, layerMask);
-
-            if (hit.collider)
-            {
-                float angle = Vector2.SignedAngle(hit.normal, Vector2.up);
-                transform.eulerAngles = new Vector3 (0, 0, -angle);
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3 (0, 0, 0);
-            }
-        }
-
-        public void CheckMovement()
+        protected override void CheckMovement()
         {
             if (_xMovingDirection != 0)
             {
@@ -106,48 +76,6 @@ namespace _Scripts
             {
                 _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
             }
-        }
-
-        public void Flip()
-        {
-            facingDirection *= -1;
-            _sr.flipX = facingDirection == -1;
-            _cannonSr.flipX = facingDirection == -1;
-        }
-
-        public void SetCannonAngle(float angle)
-        {
-            tankCannon.transform.localEulerAngles = (facingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
-        }
-
-        public void AddBuff(TimedBuff buff)
-        {
-            if (_buffs.ContainsKey(buff.Buff))
-            {
-                _buffs[buff.Buff].Activate();
-            }
-            else
-            {
-                _buffs.Add(buff.Buff, buff);
-                buff.Activate();
-            }
-        }
-
-        public void TickBuffs()
-        {
-            foreach (var buff in _buffs.Values.ToList())
-            {
-                buff.Tick();
-                if (buff.isFinished)
-                {
-                    _buffs.Remove(buff.Buff);
-                }
-            }
-        }
-
-        public void IncreaseMovementSpeed(float amount)
-        {
-            movementSpeed += amount;
         }
 
         private void Aim()
@@ -180,7 +108,7 @@ namespace _Scripts
             proj.Level = weaponLevel;
 
             _isAiming = false;
-            gameController.projectileShot = true;
+            gc.projectileShot = true;
         }
         
 
@@ -196,7 +124,7 @@ namespace _Scripts
             _xMovingDirection = random == 1 ? 1 : -1;
 
             // Flip if facing opposite direction
-            if (_xMovingDirection != facingDirection)
+            if (_xMovingDirection != FacingDirection)
             {
                 Flip();
             }

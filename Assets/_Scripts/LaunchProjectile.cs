@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Entities;
 using _Scripts.Projectiles;
 using UnityEngine;
 
@@ -137,10 +138,10 @@ namespace _Scripts
             bool isRight = Math.Abs(angle) < 90;
             Vector2 finalDirection;
             
-            if (isRight && _playerCharacter.facingDirection == -1)
+            if (isRight && _playerCharacter.FacingDirection == -1)
             {
                 _playerCharacter.Flip();
-            } else if (!isRight && _playerCharacter.facingDirection == 1)
+            } else if (!isRight && _playerCharacter.FacingDirection == 1)
             {
                 _playerCharacter.Flip();
             }

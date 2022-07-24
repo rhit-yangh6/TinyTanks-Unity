@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthBarBehavior : MonoBehaviour
+namespace _Scripts
 {
-    public Slider Slider;
-    public TextMeshProUGUI textMesh;
-
-    public void SetHealth(float health, float maxHealth)
+    public class PlayerHealthBarBehavior : HealthBarBehavior
     {
-        Slider.maxValue = maxHealth;
-        Slider.value = health;
-        textMesh.text = health + " / " + maxHealth;
+        [SerializeField] private Slider playerSlider;
+        public TextMeshProUGUI textMesh;
+
+        protected override Slider Slider => playerSlider;
+
+        public override void SetHealth(float health, float maxHealth)
+        {
+            Slider.maxValue = maxHealth;
+            Slider.value = health;
+            textMesh.text = health + " / " + maxHealth;
+        }
+
+        protected override void Update() { }
     }
 }

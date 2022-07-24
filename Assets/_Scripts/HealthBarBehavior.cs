@@ -6,22 +6,24 @@ namespace _Scripts
     public class HealthBarBehavior : MonoBehaviour
     {
 
-        public Slider Slider;
-        public Color Low;
-        public Color High;
-        public Vector3 Offset;
+        [SerializeField] private Slider slider;
+        public Color low;
+        public Color high;
+        public Vector3 offset;
 
-        public void SetHealth(float health, float maxHealth)
+        protected virtual Slider Slider => slider;
+
+        public virtual void SetHealth(float health, float maxHealth)
         {
             // Slider.gameObject.SetActive(health < maxHealth);
             Slider.maxValue = maxHealth;
             Slider.value = health;
-            Slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(Low, High, Slider.normalizedValue);
+            Slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, slider.normalizedValue);
         }
 
-        void Update()
+        protected virtual void Update()
         {
-            Slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + Offset);
+            Slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
         }
     }
 }

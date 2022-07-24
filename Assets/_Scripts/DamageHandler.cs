@@ -1,5 +1,6 @@
 using System;
 using _Scripts.Buffs;
+using _Scripts.Entities;
 using UnityEngine;
 
 namespace _Scripts
@@ -37,13 +38,14 @@ namespace _Scripts
                 DamagePopup.Create(rb.position, (int)Math.Round(damage), isCriticalHit);
                 
                 // Find the Enemy script and apply damage.
-                var c = rb.gameObject.GetComponent<Character>();
-                c.TakeDamage((float)Math.Round(damage));
-                
+                var e = rb.gameObject.GetComponent<Entity>();
+                e.TakeDamage((float)Math.Round(damage));
+
+                var be = rb.gameObject.GetComponent<BuffableEntity>();
                 // Apply Buff
-                if (buff != null)
+                if (be != null && buff != null)
                 {
-                    c.AddBuff(buff.InitializeBuff(col.gameObject));
+                    be.AddBuff(buff.InitializeBuff(col.gameObject));
                 }
                 
                 /*

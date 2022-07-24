@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Globalization;
 using _Scripts.Buffs;
+using _Scripts.Entities;
 using TMPro;
 using UnityEngine;
 
@@ -79,9 +80,8 @@ namespace _Scripts
             }
         }
 
-        private void ChangeTurn()
+        public void ChangeTurn()
         {
-
             if (PauseMenu.GameIsEnded) return;
 
             if (_playerCharacter.Health <= 0)
@@ -104,7 +104,7 @@ namespace _Scripts
         private bool IsAllEnemyDead()
         {
             for ( int i = 0; i < _enemyCharacters.Length; i++ ) {
-                if ( !_enemyCharacters[ i ].isDead ) {
+                if ( !_enemyCharacters[ i ].IsDead ) {
                     return false;
                 }
             }
@@ -123,7 +123,7 @@ namespace _Scripts
             else
             {
                 _playerCharacter.moveable = false;
-                if (_enemyCharacters[_turn - 1].isDead)
+                if (_enemyCharacters[_turn - 1].IsDead)
                 {
                     ChangeTurn();
                 }

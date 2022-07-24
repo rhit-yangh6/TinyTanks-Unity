@@ -1,8 +1,8 @@
 using _Scripts.Buffs;
 
-namespace _Scripts
+namespace _Scripts.Entities
 {
-    public interface Character
+    public interface IEntity
     {
         float Health { get; set; }
 

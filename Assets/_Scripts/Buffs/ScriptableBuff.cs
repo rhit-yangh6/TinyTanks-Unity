@@ -18,6 +18,11 @@ namespace _Scripts.Buffs
         * Effect value is increased each time the buff is applied.
         */
         public bool isEffectStacked;
+        
+        /**
+        * Trigger on turn starts
+        */
+        public bool isTurnTriggered;
 
         public abstract TimedBuff InitializeBuff(GameObject obj);
     }
@@ -30,7 +35,7 @@ namespace _Scripts.Buffs
         protected readonly GameObject obj;
         public bool isFinished;
 
-        public TimedBuff(ScriptableBuff buff, GameObject obj)
+        protected TimedBuff(ScriptableBuff buff, GameObject obj)
         {
             Buff = buff;
             this.obj = obj;
@@ -43,6 +48,13 @@ namespace _Scripts.Buffs
             {
                 End();
                 isFinished = true;
+            }
+            else
+            {
+                if (Buff.isTurnTriggered)
+                {
+                    TurnTrigger();
+                }
             }
         }
 
@@ -63,6 +75,7 @@ namespace _Scripts.Buffs
             }
         }
         protected abstract void ApplyEffect();
-        public abstract void End();
+        protected abstract void End();
+        protected virtual void TurnTrigger() { /* Do Nothing */ }
     }
 }

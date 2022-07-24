@@ -1,0 +1,64 @@
+﻿using _Scripts.Buffs;
+using UnityEngine;
+
+namespace _Scripts.Entities
+{
+    public abstract class Entity: MonoBehaviour
+    {
+        
+        [SerializeField] protected LayerMask layerMask;
+
+        public float Health { get; set; }
+        public bool IsDead { get; set; } = false;
+
+        private float _maxHealth;
+        private HealthBarBehavior _healthBar;
+
+        protected virtual float MaxHealth => _maxHealth;
+        protected virtual HealthBarBehavior HealthBar => _healthBar;
+        
+        public void TakeDamage(float amount)
+        {
+            if (Health - amount < 0)
+            {
+                Health = 0;
+            }
+            else
+            {
+                Health -= amount;
+            }
+            HealthBar.SetHealth(Health, MaxHealth);
+
+            if (Health <= 0)
+            {
+                IsDead = true;
+                Destroy(gameObject);
+            }
+        }
+        
+        protected virtual void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.CompareTag("DangerZone"))
+            {
+                TakeDamage(MaxHealth);
+            }
+        }
+
+        protected void AdjustRotation()
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 3f, layerMask);
+
+            if (hit.collider)
+            {
+                float angle = Vector2.SignedAngle(hit.normal, Vector2.up);
+                transform.eulerAngles = new Vector3 (0, 0, -angle);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3 (0, 0, 0);
+            }
+        }
+
+        protected virtual void CheckMovement() { }
+    }
+}
