@@ -451,14 +451,14 @@
           "cost": 0
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Eternal Fire",
+          "description": "Burns forever (almost).",
+          "cost": 1666
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Rain of Fire",
+          "description": "While the fireball is in the air, create smaller fireballs that go straight down.",
+          "cost": 1288
         }
       ],
       "dataPath": "fireball",
