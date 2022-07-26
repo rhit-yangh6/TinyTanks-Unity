@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5896342685006925795}
   - component: {fileID: 7091148042506245874}
   - component: {fileID: 778008386868165804}
-  - component: {fileID: 6867309997712172563}
+  - component: {fileID: 8382901658530459782}
   m_Layer: 8
-  m_Name: fireball
+  m_Name: fireball_small
   m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4535981218058402318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -58.75, y: 23.4, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -145,7 +145,7 @@ CircleCollider2D:
   m_Offset: {x: 3.096733, y: 0}
   serializedVersion: 2
   m_Radius: 1.5050888
---- !u!114 &6867309997712172563
+--- !u!114 &8382901658530459782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,8 +154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4535981218058402318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92be1616d6a74db99d7ba4e6917fc0ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 856c7e6543984bc8bcae73e53e550f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   burningBuff: {fileID: 11400000, guid: b7ef3b36a4ce03f4b9d2e4570a9f7653, type: 2}
-  fireballSmallPrefab: {fileID: 4535981218058402318, guid: fdcde7f4bfacdc04680154e4d6494e54, type: 3}

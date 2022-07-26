@@ -436,35 +436,52 @@
       "steps": 425,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Metal Inside",
+          "description": "Slight increase in base damage",
+          "cost": 166
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Big Burner",
+          "description": "Explosion Radius increased by 30%.",
+          "cost": 266
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Smelting Temperature",
+          "description": "DOUBLE the burn damage.",
+          "cost": 666
         },
         {
           "name": "Eternal Fire",
           "description": "Burns forever (almost).",
-          "cost": 1666
+          "cost": 1288
         },
         {
           "name": "Rain of Fire",
           "description": "While the fireball is in the air, create smaller fireballs that go straight down.",
-          "cost": 1288
+          "cost": 1666
         }
       ],
       "dataPath": "fireball",
       "explosionDuration": 0.18,
       "shopPrice": 450,
-      "extraWeaponTerms": []
+      "extraWeaponTerms": [
+        {
+          "term": "summonInterval",
+          "value": 0.3
+        },
+        {
+          "term": "fireballSmallDamage",
+          "value": 10.0
+        },
+        {
+          "term": "fireballSmallRadius",
+          "value": 1.5
+        },
+        {
+          "term": "burningDamage",
+          "value": 11.0
+        }
+      ]
     }
   ]
 }

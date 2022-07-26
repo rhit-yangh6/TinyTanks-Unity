@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using _Scripts.Buffs;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace _Scripts.Projectiles
         
         // Set in Inspector
         [SerializeField] private ScriptableBuff burningBuff;
+        [SerializeField] private GameObject fireballSmallPrefab;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -17,11 +19,11 @@ namespace _Scripts.Projectiles
         private static GameObject _explosionFX;
 
         // ExtraFields
-        private static float _boulderPieceRadius, _boulderPieceDamage;
+        private static float _summonInterval, _fireballSmallDamage, _fireballSmallRadius, _burningDamage;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
+        protected override float Radius => Level >= 3 ? _radius * 1.3f : _radius;
+        protected override float Damage => Level >= 2 ? _damage * 1.1f : _damage;
         protected override float MaxMagnitude => _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
@@ -33,6 +35,21 @@ namespace _Scripts.Projectiles
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
+            if (Level == 6) StartCoroutine(SummonSmallFireballs());
+        }
+
+        private IEnumerator SummonSmallFireballs()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(_summonInterval);
+                var derivedObject = Instantiate(fireballSmallPrefab, gameObject.transform.position, Quaternion.identity);
+                var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+                
+                derivedProjectile.SetParameters(_fireballSmallDamage, _fireballSmallRadius, ExplosionDuration, ExplosionFX);
+                derivedRb2d.velocity = Vector2.down;
+            }
         }
 
         private void Update()
@@ -46,7 +63,13 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
 
-            BurningBuff bf = (BurningBuff) burningBuff;
+            var bf = (BurningBuff) burningBuff;
+            bf.burningDamage = _burningDamage;
+
+            if (Level >= 4) bf.burningDamage *= 2;
+            
+            // Level 5: Eternal Fire
+            if (Level == 5) bf.duration = 999;
             
             DamageHandler.i.HandleCircularDamage(pos, Radius, Damage, false, burningBuff);
 
@@ -68,6 +91,11 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
 
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+            
+            _summonInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "summonInterval").value;
+            _fireballSmallDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "fireballSmallDamage").value;
+            _fireballSmallRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "fireballSmallRadius").value;
+            _burningDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "burningDamage").value;
         }
     }
 }
