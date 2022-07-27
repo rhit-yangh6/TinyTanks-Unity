@@ -9,16 +9,18 @@ namespace _Scripts.Entities
     {
         public int FacingDirection { get; set; } = 1;
 
-        private float _movementSpeed;
-        private GameObject _tankCannon;
+        [SerializeField] protected float movementSpeed;
+        [SerializeField] public GameObject tankCannon;
         [SerializeField] protected GameController gc;
+        [SerializeField] protected BuffPanelBehavior bpb;
         
         protected readonly Dictionary<ScriptableBuff, TimedBuff> Buffs = new ();
 
-        protected virtual GameObject TankCannon => _tankCannon;
+        protected virtual GameObject TankCannon => tankCannon;
         protected virtual SpriteRenderer MainSr => null;
         protected virtual SpriteRenderer CannonSr => null;
-        public virtual float MovementSpeed => _movementSpeed;
+        public virtual float MovementSpeed => movementSpeed;
+        protected virtual BuffPanelBehavior Bpb => bpb;
 
         protected override void CheckMovement() { }
 
@@ -54,6 +56,7 @@ namespace _Scripts.Entities
                 Buffs.Add(buff.Buff, buff);
                 buff.Activate();
             }
+            bpb.RefreshBuffDisplay(Buffs);
         }
 
         public void TickBuffs()
@@ -66,14 +69,12 @@ namespace _Scripts.Entities
                     Buffs.Remove(buff.Buff);
                 }
             }
+            bpb.RefreshBuffDisplay(Buffs);
         }
 
         protected override void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.gameObject.CompareTag("DangerZone"))
-            {
-                TakeDamage(MaxHealth * 2);
-            }
+            if (col.gameObject.CompareTag("DangerZone")) TakeDamage(MaxHealth * 2);
         }
 
         public void EndTurn()

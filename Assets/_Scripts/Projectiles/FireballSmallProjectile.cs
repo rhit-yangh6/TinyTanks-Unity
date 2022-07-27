@@ -44,10 +44,6 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
             
-            var bf = (BurningBuff) burningBuff;
-            bf.burningDamage = 5f;
-            bf.duration = 2;
-            
             DamageHandler.i.HandleCircularDamage(pos, Radius, Damage, false, burningBuff);
 
             TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);

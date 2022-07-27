@@ -24,6 +24,11 @@ namespace _Scripts.Buffs
         */
         public bool isTurnTriggered;
 
+        /**
+        * Icon of the buff
+        */
+        public Sprite buffIcon;
+
         public abstract TimedBuff InitializeBuff(GameObject obj);
     }
     

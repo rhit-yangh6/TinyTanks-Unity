@@ -9,11 +9,6 @@ namespace _Scripts.Entities
     public class PlayerController : BuffableEntity
     {
         public bool moveable;
-        
-        [SerializeField] private float maxHealth = 100;
-        [SerializeField] public float movementSpeed = 5;
-        [SerializeField] public HealthBarBehavior healthBar;
-        [SerializeField] public GameObject tankCannon;
 
         protected override float MaxHealth => maxHealth;
         public override float MovementSpeed => movementSpeed;

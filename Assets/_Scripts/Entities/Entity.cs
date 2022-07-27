@@ -12,11 +12,11 @@ namespace _Scripts.Entities
         public float Health { get; set; }
         public bool IsDead { get; set; } = false;
 
-        private float _maxHealth;
-        private HealthBarBehavior _healthBar;
+        [SerializeField] protected float maxHealth;
+        [SerializeField] protected HealthBarBehavior healthBar;
 
-        protected virtual float MaxHealth => _maxHealth;
-        protected virtual HealthBarBehavior HealthBar => _healthBar;
+        protected virtual float MaxHealth => maxHealth;
+        protected virtual HealthBarBehavior HealthBar => healthBar;
 
         public virtual void TakeDamage(float amount, bool isCriticalHit = false)
         {

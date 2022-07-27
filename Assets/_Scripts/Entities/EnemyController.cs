@@ -12,15 +12,9 @@ namespace _Scripts.Entities
     {
 
         [SerializeField] private float degreeDelta = 10f;
-        [SerializeField] private float maxHealth = 100;
-        [SerializeField] private float movementSpeed = 5;
-        
         [SerializeField] private int selectedWeaponId;
         [SerializeField] private int weaponLevel;
         
-        [SerializeField] private GameObject tankCannon;
-        [SerializeField] private HealthBarBehavior healthBar;
-
         protected override float MaxHealth => maxHealth;
         public override float MovementSpeed => movementSpeed;
         protected override GameObject TankCannon => tankCannon;

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9ed54bde9b47f4aff59ae357041fa3, type: 3}
   m_Name: BurningBuff
   m_EditorClassIdentifier: 
-  duration: 3
+  duration: 2
   isDurationStacked: 1
   isEffectStacked: 0
   isTurnTriggered: 1
-  burningDamage: 10
+  buffIcon: {fileID: 66894111, guid: 439700051f28d1846b94355d75c024a2, type: 3}
+  burningDamage: 5
