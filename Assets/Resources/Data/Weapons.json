@@ -429,7 +429,7 @@
     }, {
       "id": 10,
       "weaponName": "Fireball",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "A blazing fireball. Hits enemies and makes them burn! The enemies will take burning damage for two consecutive rounds.",
       "damage": 28.0,
       "radius": 2,
       "maxMagnitude": 10.0,
@@ -477,6 +477,50 @@
           "term": "fireballSmallRadius",
           "value": 1.5
         },
+        {
+          "term": "burningDamage",
+          "value": 11.0
+        }
+      ]
+    }, {
+      "id": 11,
+      "weaponName": "Bounce Ball",
+      "weaponDescription": ">>>>",
+      "damage": 25.0,
+      "radius": 2,
+      "maxMagnitude": 11.0,
+      "steps": 495,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "bounceBall",
+      "explosionDuration": 0.1,
+      "shopPrice": 120,
+      "extraWeaponTerms": [
         {
           "term": "burningDamage",
           "value": 11.0

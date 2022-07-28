@@ -6,7 +6,6 @@
 13. Weapon - Packed Stone
 14. Weapon - Spike ball
 15. Weapon - Cage？
-16. Buffs
 17. Weapon - Fireball & Other Elemental ones
 18. Weapon - Homing Stuff
 19. Weapon - BoomBox
