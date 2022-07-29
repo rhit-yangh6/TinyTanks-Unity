@@ -11,7 +11,8 @@ namespace _Scripts.Projectiles
         private static GameObject _explosionFX;
 
         // ExtraFields
-        private static float _boulderPieceRadius, _boulderPieceDamage;
+        private static int _bounceTimeTotal;
+        private static float _bounceDamage, _bounceRadius;
         
         // References
         protected override float Radius => _radius;
@@ -23,13 +24,38 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private int _bounceTime;
-        
-        
-        
-        
 
+        private void Start() { _bounceTime = _bounceTimeTotal; }
 
+        protected override void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.CompareTag("DangerZone"))
+            {
+                Destroy(gameObject);
+            }
+            else if (_bounceTime > 0)
+            {
+                _bounceTime--;
+                Bounce();
+            }
+            else
+            {
+                Detonate();
+            }
+        }
 
+        private void Bounce()
+        {
+            Vector2 pos = transform.position;
+            
+            DamageHandler.i.HandleCircularDamage(pos, _bounceRadius, _bounceDamage);
+
+            // TerrainDestroyer.Instance.DestroyTerrain(pos, _bounceRadius);
+        
+            SpawnExplosionFX();
+            DoCameraShake();
+        }
+        
         public override void SetParameters(float damage, float radius, 
             float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
         {
@@ -40,9 +66,10 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
 
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            _boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
-            _boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
+            
+            _bounceTimeTotal = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceTimeTotal").value;
+            _bounceDamage = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceDamage").value;
+            _bounceRadius = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceRadius").value;
         }
 
 

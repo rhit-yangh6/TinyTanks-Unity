@@ -522,8 +522,16 @@
       "shopPrice": 120,
       "extraWeaponTerms": [
         {
-          "term": "burningDamage",
-          "value": 11.0
+          "term": "bounceTimeTotal",
+          "value": 2
+        },
+        {
+          "term": "bounceDamage",
+          "value": 15
+        },
+        {
+          "term": "bounceRadius",
+          "value": 1.5
         }
       ]
     }
