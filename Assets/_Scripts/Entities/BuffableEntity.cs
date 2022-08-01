@@ -74,7 +74,12 @@ namespace _Scripts.Entities
 
         protected override void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.gameObject.CompareTag("DangerZone")) TakeDamage(MaxHealth * 2);
+            if (col.gameObject.CompareTag("DangerZone")) InstantDeath();
+        }
+
+        public virtual void InstantDeath()
+        {
+            TakeDamage(MaxHealth * 2);
         }
 
         public void EndTurn()

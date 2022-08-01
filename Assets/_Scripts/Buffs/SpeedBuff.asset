@@ -16,5 +16,5 @@ MonoBehaviour:
   isDurationStacked: 1
   isEffectStacked: 0
   isTurnTriggered: 0
-  buffIcon: {fileID: 1656685046, guid: 439700051f28d1846b94355d75c024a2, type: 3}
+  buffIcon: {fileID: 1211505031, guid: 7adbad068adf20a448df0e0caf039767, type: 3}
   speedIncrease: 5

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdf863d83a8e4e3fa2cd4e06421ca876, type: 3}
-  m_Name: StunnedBuff
+  m_Script: {fileID: 11500000, guid: 2685fe0395524d5f9be879493cb50229, type: 3}
+  m_Name: CursedBuff
   m_EditorClassIdentifier: 
   duration: 1
-  isDurationStacked: 1
+  isDurationStacked: 0
   isEffectStacked: 0
-  isTurnTriggered: 1
-  buffIcon: {fileID: 1798092813, guid: 7adbad068adf20a448df0e0caf039767, type: 3}
+  isTurnTriggered: 0
+  buffIcon: {fileID: 1894759621, guid: 7adbad068adf20a448df0e0caf039767, type: 3}

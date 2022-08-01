@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 439700051f28d1846b94355d75c024a2
+guid: 7adbad068adf20a448df0e0caf039767
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -118,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d98ebe030a789e4da049b760ba2a9e8
-      internalID: 66894111
+      spriteID: 6c2c338ffc8403747b154adb295c2097
+      internalID: -462776032
       vertices: []
       indices: 
       edges: []
@@ -139,8 +139,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18898de02e26e7e409a32f6883a0e1d4
-      internalID: 1504519983
+      spriteID: 53acb68147158114db8126ed18f3ec99
+      internalID: 1798092813
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c7ea95101d125d41b73cc08799d8d45
-      internalID: 1656685046
+      spriteID: 3a5987dc8abaed848802fb208a2e3522
+      internalID: 1211505031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buffs_3
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 543
+        width: 59
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e56510eabce742c4bb61c053fa1ae3c1
+      internalID: 1894759621
       vertices: []
       indices: 
       edges: []
@@ -177,9 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      buffs_2: 1656685046
-      buffs_0: 66894111
-      buffs_1: 1504519983
+      buffs_3: 1894759621
+      buffs_2: 1211505031
+      buffs_0: -462776032
+      buffs_1: 1798092813
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1

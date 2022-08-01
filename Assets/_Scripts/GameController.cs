@@ -100,7 +100,6 @@ namespace _Scripts
             projectileShot = false;
             _turn = (_turn + 1) % _playerNum;
             _isInterTurn = false;
-            
             StartCoroutine(HandleMovements());
         }
 
@@ -132,7 +131,8 @@ namespace _Scripts
 
         private IEnumerator HandleMovements()
         {
-            if (_turn == 0)
+            var turn = _turn;
+            if (turn == 0)
             {
                 _playerCharacter.TickBuffs();
                 _playerCharacter.moveable = true;
@@ -141,14 +141,17 @@ namespace _Scripts
             else
             {
                 _playerCharacter.moveable = false;
-                if (_enemyCharacters[_turn - 1].IsDead)
+                if (_enemyCharacters[turn - 1].IsDead)
                 {
                     ChangeTurn();
                 }
                 else
                 {
-                    _enemyCharacters[_turn - 1].TickBuffs();
-                    yield return StartCoroutine(_enemyCharacters[_turn - 1].MakeMove());
+                    _enemyCharacters[turn - 1].TickBuffs();
+                    if (turn == _turn) // Not Skipped
+                    {
+                        yield return StartCoroutine(_enemyCharacters[turn - 1].MakeMove());
+                    }
                 }
             }
         }
