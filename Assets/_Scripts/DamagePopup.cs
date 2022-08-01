@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -36,6 +37,13 @@ namespace _Scripts
             {
                 textMesh.fontSize = 45;
                 textColor = Color.red;
+            }
+
+            if (damageAmount < 0)
+            {
+                textMesh.SetText("+" + Math.Abs(damageAmount));
+                textMesh.fontSize = 35;
+                textColor = Color.green;
             }
 
             textMesh.color = textColor;

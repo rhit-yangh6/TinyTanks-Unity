@@ -27,6 +27,10 @@ namespace _Scripts.Entities
             {
                 Health = 0;
             }
+            else if (Health - amount > MaxHealth)
+            {
+                Health = maxHealth;
+            }
             else
             {
                 Health -= amount;

@@ -574,6 +574,46 @@
       "shopPrice": 222,
       "extraWeaponTerms": [
       ]
+    }, {
+      "id": 13,
+      "weaponName": "Med Kit",
+      "weaponDescription": ">>>>",
+      "damage": -25.0,
+      "radius": 2.3,
+      "maxMagnitude": 6,
+      "steps": 330,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "medKit",
+      "explosionDuration": 0.25,
+      "shopPrice": 220,
+      "extraWeaponTerms": [
+      ]
     }
   ]
 }
