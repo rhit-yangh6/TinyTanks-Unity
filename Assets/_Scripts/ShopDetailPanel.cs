@@ -10,7 +10,7 @@ namespace _Scripts
         [SerializeField] private Image weaponIcon;
         [SerializeField] private GameObject notice, infoPanel, purchasePanel;
         [SerializeField] private TextMeshProUGUI weaponNameText, weaponDescText, priceText, coinText;
-        [SerializeField] private GameObject shopButton;
+        [SerializeField] private GameObject shopButton, newWeaponMsg;
         
         private int _weaponId;
 
@@ -60,6 +60,9 @@ namespace _Scripts
             if (!result) return;
             purchasePanel.SetActive(false);
             coinText.text = PlayerData.Instance.coins.ToString();
+            
+            newWeaponMsg.GetComponent<NewWeaponMsgBehavior>().weaponId = weaponId;
+            newWeaponMsg.SetActive(true);
         }
     }
 }
