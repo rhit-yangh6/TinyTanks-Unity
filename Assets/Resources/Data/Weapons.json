@@ -492,29 +492,29 @@
       "steps": 495,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Lighter Materials",
+          "description": "The bounce ball can be launched further.",
+          "cost": 75
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Bouncier",
+          "description": "The ball bounces three times, with a slight increase in bounce damage.",
+          "cost": 200
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Destructive Rubber",
+          "description": "Destroys terrains while bouncing.",
+          "cost": 300
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Ultimate Bounciness",
+          "description": "The ball can bounce five times. Damage increases while bouncing.",
+          "cost": 700
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Kinetic Energy Storage",
+          "description": "Stores kinetic energy for every bounce, dealing extremely high damage for the final blast.",
+          "cost": 1020
         }
       ],
       "dataPath": "bounceBall",
@@ -531,7 +531,11 @@
         },
         {
           "term": "bounceRadius",
-          "value": 1.5
+          "value": 2
+        },
+        {
+          "term": "unitBounceDamage",
+          "value": 4
         }
       ]
     }, {

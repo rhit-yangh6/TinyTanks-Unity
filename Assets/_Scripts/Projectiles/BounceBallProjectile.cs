@@ -12,12 +12,24 @@ namespace _Scripts.Projectiles
 
         // ExtraFields
         private static int _bounceTimeTotal;
-        private static float _bounceDamage, _bounceRadius;
+        private static float _bounceDamage, _bounceRadius, _unitBounceDamage;
         
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
+        protected override float Damage
+        {
+            get
+            {
+                return Level switch
+                {
+                    5 => _damage + _unitBounceDamage * 5,
+                    6 => _damage + (_bounceDamage + _unitBounceDamage) * 3,
+                    _ => _damage,
+                };
+            }
+        }
+
+        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.2f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
@@ -25,7 +37,15 @@ namespace _Scripts.Projectiles
         // Other Variables
         private int _bounceTime;
 
-        private void Start() { _bounceTime = _bounceTimeTotal; }
+        private void Start()
+        {
+            _bounceTime = Level switch
+            {
+                5 => 5,
+                >= 3 => 3,
+                _ => _bounceTimeTotal
+            };
+        }
 
         protected override void OnCollisionEnter2D(Collision2D col)
         {
@@ -47,10 +67,21 @@ namespace _Scripts.Projectiles
         private void Bounce()
         {
             Vector2 pos = transform.position;
-            
-            DamageHandler.i.HandleCircularDamage(pos, _bounceRadius, _bounceDamage);
 
-            // TerrainDestroyer.Instance.DestroyTerrain(pos, _bounceRadius);
+            var finalCalculatedDamage = _bounceDamage;
+            switch (Level)
+            {
+                case 5:
+                    finalCalculatedDamage += (5 - _bounceTime) * _unitBounceDamage;
+                    break;
+                case >= 3:
+                    finalCalculatedDamage += _unitBounceDamage;
+                    break;
+            }
+
+            DamageHandler.i.HandleCircularDamage(pos, _bounceRadius, finalCalculatedDamage);
+
+            if (Level >= 4) TerrainDestroyer.Instance.DestroyTerrain(pos, _bounceRadius);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -70,6 +101,7 @@ namespace _Scripts.Projectiles
             _bounceTimeTotal = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceTimeTotal").value;
             _bounceDamage = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceDamage").value;
             _bounceRadius = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceRadius").value;
+            _unitBounceDamage = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "unitBounceDamage").value;
         }
 
 
