@@ -618,6 +618,58 @@
       "shopPrice": 220,
       "extraWeaponTerms": [
       ]
+    }, {
+      "id": 14,
+      "weaponName": "Spiky Ball",
+      "weaponDescription": ">>>>",
+      "damage": 21.0,
+      "radius": 2.3,
+      "maxMagnitude": 9.0,
+      "steps": 400,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "spikyBall",
+      "explosionDuration": 0.2,
+      "shopPrice": 420,
+      "extraWeaponTerms": [
+        {
+          "term": "spikeDamage",
+          "value": 4.0
+        }, 
+        {
+          "term": "spikeRadius",
+          "value": 1.0
+        },
+        {
+          "term": "ballDamage",
+          "value": 18.0
+        }
+      ]
     }
   ]
 }
