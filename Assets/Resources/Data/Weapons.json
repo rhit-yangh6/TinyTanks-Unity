@@ -628,46 +628,42 @@
       "steps": 400,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Steel Core",
+          "description": "Increased base damage",
+          "cost": 80
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "'It Still Counts'",
+          "description": "The core of the spiky ball does not disappear upon activation. It will fall straight down and deal base damage to the target.",
+          "cost": 200
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Eight Directions",
+          "description": "Spiky ball spawns eight spikes in 8 directions.",
+          "cost": 480
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "So Many Spikes",
+          "description": "12 Spikes, 12 Directions.",
+          "cost": 1080
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Lethal Spikes",
+          "description": "Spikes have double damage and explosion radius.",
+          "cost": 1380
         }
       ],
       "dataPath": "spikyBall",
       "explosionDuration": 0.2,
-      "shopPrice": 420,
+      "shopPrice": 220,
       "extraWeaponTerms": [
         {
           "term": "spikeDamage",
-          "value": 4.0
+          "value": 8.0
         }, 
         {
           "term": "spikeRadius",
           "value": 1.0
-        },
-        {
-          "term": "ballDamage",
-          "value": 18.0
         }
       ]
     }

@@ -137,4 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 2075000791570351782, guid: 578973922d45f9445a18b4caa0e0d23f, type: 3}
-  spikePrefab: {fileID: 0}
+  spikePrefab: {fileID: 433298288269356936, guid: 35be03725e934714ab88bb808213f4b8, type: 3}
