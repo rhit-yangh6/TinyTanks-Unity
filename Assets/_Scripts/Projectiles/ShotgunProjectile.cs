@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -12,36 +13,67 @@ namespace _Scripts.Projectiles
         private static int _steps;
         private static GameObject _explosionFX;
         
+        // Extra Fields
+        private static float _bulletDispersion;
+        
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
+        protected override float Radius => Level == 6 ? _radius * 1.5f : _radius;
+        protected override float Damage => Level >= 3 ? _damage * 1.25f : _damage;
+        protected override float MaxMagnitude => Level >= 4 ? _maxMagnitude * 1.3f : _maxMagnitude;
+        protected override int Steps => Level >= 2 ? (int)(_steps * 1.3) : _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-        
+        private float BulletDispersion
+        {
+            get
+            {
+                return Level switch
+                {
+                    6 => _bulletDispersion * 0.5f,
+                    >= 4 => _bulletDispersion * 0.7f,
+                    _ => _bulletDispersion
+                };
+            }
+        }
+
         // Other Variables
         private Rigidbody2D _rb;
         
-        void Start()
+        private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
             var velocity = _rb.velocity;
+            var pos = transform.position;
             
             // Make clones
-            GameObject derivedObject = Instantiate(shotgunSecondaryPrefab, transform.position, Quaternion.identity);
+            GameObject derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Rotate(velocity, 10f);
+            derivedRb2d.velocity = Rotate(velocity, BulletDispersion);
             
-            derivedObject = Instantiate(shotgunSecondaryPrefab, transform.position, Quaternion.identity);
+            derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Rotate(velocity, -10f);
+            derivedRb2d.velocity = Rotate(velocity, -BulletDispersion);
+
+            if (Level != 5) return;
+            derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
+            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+            
+            derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            derivedRb2d.velocity = Rotate(velocity, 2*BulletDispersion);
+                
+            derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
+            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+            
+            derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            derivedRb2d.velocity = Rotate(velocity, -2*BulletDispersion);
 
         }
         
@@ -55,6 +87,8 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
 
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+            
+            _bulletDispersion = Array.Find(extraWeaponTerms, ewt => ewt.term == "bulletDispersion").value;
         }
         
         private Vector2 Rotate(Vector2 v, float delta)

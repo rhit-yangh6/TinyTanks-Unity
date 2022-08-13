@@ -397,35 +397,40 @@
       "steps": 300,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Scopes On The Shotgun",
+          "description": "Aim farther with the shotgun.",
+          "cost": 225
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Improved Bullets",
+          "description": "Each bullet shot deals more damage.",
+          "cost": 305
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Tactical Shotgun",
+          "description": "Tactical shotgun capable of long-range combats with less bullet dispersion.",
+          "cost": 745
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Bring It To Five!",
+          "description": "Shoots five bullets instead of three.",
+          "cost": 1995
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Born To Be Destructive",
+          "description": "Low bullet dispersion, high explosion radius for all bullets.",
+          "cost": 1355
         }
       ],
       "dataPath": "shotgun",
       "explosionDuration": 0.2,
-      "shopPrice": 333,
-      "extraWeaponTerms": []
+      "shopPrice": 633,
+      "extraWeaponTerms": [
+        {
+          "term": "bulletDispersion",
+          "value": 10.0
+        }
+      ]
     }, {
       "id": 10,
       "weaponName": "Fireball",
