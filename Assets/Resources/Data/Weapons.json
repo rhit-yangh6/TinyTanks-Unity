@@ -157,24 +157,24 @@
       "steps": 500,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Bigger Size",
+          "description": "Bigger explosion.",
+          "cost": 65
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Sharpened Edges",
+          "description": "Increase base damage by 20%.",
+          "cost": 135
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "A Taste Of Cheating",
+          "description": "Higher chance of getting a 6 than any other number.",
+          "cost": 466
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Cheat Master",
+          "description": "Even higher chance of getting a 6!",
+          "cost": 866
         },
         {
           "name": "The Magic Three",
@@ -183,7 +183,7 @@
         }
       ],
       "dataPath": "dice",
-      "explosionDuration": 0.2,
+      "explosionDuration": 0.3,
       "shopPrice": 456,
       "extraWeaponTerms": [
         {

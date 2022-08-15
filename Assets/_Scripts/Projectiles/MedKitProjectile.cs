@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
@@ -20,6 +21,14 @@ namespace _Scripts.Projectiles
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
+        // Other Variables
+        private Rigidbody2D _rb;
+
+        private void Start()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
+
         public override void Detonate()
         {
             Vector2 pos = transform.position;
@@ -30,6 +39,12 @@ namespace _Scripts.Projectiles
             DoCameraShake();
         
             Destroy(gameObject);
+        }
+
+        private void Update()
+        {
+            var velocity = _rb.velocity;
+            transform.Rotate (0,0, velocity.x > 0 ? -1 : 1);
         }
 
         public override void SetParameters(float damage, float radius, 

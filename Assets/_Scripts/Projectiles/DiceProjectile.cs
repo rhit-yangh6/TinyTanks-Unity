@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -19,8 +20,8 @@ namespace _Scripts.Projectiles
         private static float _unitDiceDamage;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
+        protected override float Radius => Level >= 2 ? _radius * 1.5f : _radius;
+        protected override float Damage => Level >= 3 ? _damage * 1.2f : _damage;
         protected override float MaxMagnitude => _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
@@ -51,17 +52,31 @@ namespace _Scripts.Projectiles
 
         private int HandleDiceResult()
         {
-            return Random.Range(1, 6);
+            return Level switch
+            {
+                5 => Random.value > 0.7 ? 6 : Random.Range(1, 5),
+                >= 4 => Random.value > 0.78 ? 6 : Random.Range(1, 5),
+                _ => Random.Range(1, 6)
+            };
         }
 
 
         public override void Detonate()
         {
             Vector2 pos = transform.position;
-            
-            DamageHandler.i.HandleCircularDamage(pos, Radius, Damage + _diceResult * _unitDiceDamage);
 
-            TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
+            var finalCalculatedDamage = Damage + _diceResult * _unitDiceDamage;
+            var finalCalculatedRadius = Radius;
+
+            if (_diceResult == 3 && Level == 6)
+            {
+                finalCalculatedDamage *= 1.5f;
+                finalCalculatedRadius *= 1.5f;
+            }
+
+            DamageHandler.i.HandleCircularDamage(pos, finalCalculatedRadius, finalCalculatedDamage);
+
+            TerrainDestroyer.Instance.DestroyTerrain(pos, finalCalculatedRadius);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -89,7 +104,8 @@ namespace _Scripts.Projectiles
             GameObject insTopdown = Instantiate(topDownDisplay, 
                 new Vector3(cameraCenterPos.x, cameraCenterPos.y, 0), 
                 quaternion.identity);
-            insTopdown.GetComponent<SpriteRenderer>().sprite = GameAssets.i.diceNumbers[number - 1];
+            insTopdown.GetComponent<SpriteRenderer>().sprite = 
+                (Level == 6 && number == 3) ? GameAssets.i.diceNumbers[6] : GameAssets.i.diceNumbers[number - 1];
             insTopdown.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(-18.0f, 18.0f)));
             Destroy(insTopdown, 1.9f);
         }

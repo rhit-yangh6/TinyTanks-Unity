@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e9a2d0e0baca82a4db0391f479005026, type: 3}
   - {fileID: 21300000, guid: 8e12b5652c8ace547bfd6a54499ea473, type: 3}
   - {fileID: 21300000, guid: 1b5bcd0de25403e42be53b137a0ad8e6, type: 3}
+  - {fileID: 21300000, guid: 17dcce506f151394a80836c282c0bd4e, type: 3}
   stars:
   - {fileID: 118153446, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
   - {fileID: -545359726, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
