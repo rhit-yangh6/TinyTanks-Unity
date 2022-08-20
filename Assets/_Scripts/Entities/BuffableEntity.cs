@@ -77,6 +77,19 @@ namespace _Scripts.Entities
             if (col.gameObject.CompareTag("DangerZone")) InstantDeath();
         }
 
+        public void SelfExplode()
+        {
+            var pos = transform.position;
+            
+            DamageHandler.i.HandleCircularDamage(pos, 3, 50, true);
+
+            TerrainDestroyer.Instance.DestroyTerrain(pos, 3);
+            
+            GameObject insExpl = Instantiate(GameAssets.i.regularExplosionFX, pos, Quaternion.identity);
+            insExpl.transform.localScale *= 3;
+            Destroy(insExpl, 0.5f);
+        }
+
         public virtual void InstantDeath()
         {
             TakeDamage(MaxHealth * 2);

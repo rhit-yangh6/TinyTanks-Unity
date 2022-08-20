@@ -547,40 +547,40 @@
       "id": 12,
       "weaponName": "Curse Bomb",
       "weaponDescription": ">>>>",
-      "damage": 12.0,
+      "damage": 6.0,
       "radius": 2,
       "maxMagnitude": 8.5,
       "steps": 400,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Death's Precision",
+          "description": "You aim more precisely with the curse bomb.",
+          "cost": 82
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Death's Reach",
+          "description": "The curse bomb can be launched further.",
+          "cost": 302
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Death's Rage",
+          "description": "Increase the range of effect.",
+          "cost": 442
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Death's Call",
+          "description": "'Cursed' debuff lasts one turn less.",
+          "cost": 2012
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Death's Explosion",
+          "description": "Affected targets explodes upon death.",
+          "cost": 1032
         }
       ],
       "dataPath": "curseBomb",
       "explosionDuration": 0.2,
-      "shopPrice": 222,
+      "shopPrice": 622,
       "extraWeaponTerms": [
       ]
     }, {

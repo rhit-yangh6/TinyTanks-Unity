@@ -63,15 +63,14 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
 
-            var bf = (BurningBuff) burningBuff;
-            bf.burningDamage = _burningDamage;
-
-            if (Level >= 4) bf.burningDamage *= 2;
+            var burningBuffLevel = 2;
+            
+            if (Level >= 4) burningBuffLevel = 3;
             
             // Level 5: Eternal Fire
-            if (Level == 5) bf.duration = 999;
-            
-            DamageHandler.i.HandleCircularDamage(pos, Radius, Damage, false, burningBuff);
+            if (Level == 5) burningBuffLevel = 4;
+
+            DamageHandler.i.HandleCircularDamage(pos, Radius, Damage, false, burningBuff, burningBuffLevel);
 
             TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
         

@@ -8,20 +8,29 @@ namespace _Scripts.Buffs
     {
         public float burningDamage;
         
-        public override TimedBuff InitializeBuff(GameObject obj)
+        public override TimedBuff InitializeBuff(GameObject obj, int level = 1)
         {
-            return new TimedBurningBuff(this, obj, duration);
+            return new TimedBurningBuff(this, obj, level == 4 ? 999 : duration, level);
         }
     }
     
     public class TimedBurningBuff : TimedBuff
     {
         private readonly BuffableEntity _be;
+        private readonly float _finalBurningDamage;
 
-        public TimedBurningBuff(ScriptableBuff buff, GameObject obj, int duration) : base(buff, obj)
+        public TimedBurningBuff(ScriptableBuff buff, GameObject obj, int duration, int level) : base(buff, obj, duration)
         {
             //Getting MovementComponent, replace with your own implementation
             _be = obj.GetComponent<BuffableEntity>();
+            var burningBuff = (BurningBuff)Buff;
+            _finalBurningDamage = level switch
+            {
+                >= 3 => burningBuff.burningDamage * 4,
+                2 => burningBuff.burningDamage * 2,
+                1 => burningBuff.burningDamage,
+                _ => _finalBurningDamage
+            };
         }
 
         protected override void ApplyEffect() { }
@@ -30,8 +39,7 @@ namespace _Scripts.Buffs
 
         protected override void TurnTrigger()
         {
-            BurningBuff buff = (BurningBuff)Buff;
-            _be.TakeDamage(buff.burningDamage);
+            _be.TakeDamage(_finalBurningDamage);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace _Scripts
         }
         
         public void HandleCircularDamage(Vector2 pos, float radius, float damage,
-            bool isCriticalHit = false, ScriptableBuff buff = null)
+            bool isCriticalHit = false, ScriptableBuff buff = null, int buffLevel = 1)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
             
@@ -42,7 +42,7 @@ namespace _Scripts
                 // Apply Buff
                 if (be != null && buff != null)
                 {
-                    be.AddBuff(buff.InitializeBuff(col.gameObject));
+                    be.AddBuff(buff.InitializeBuff(col.gameObject, buffLevel));
                 }
                 
                 /*

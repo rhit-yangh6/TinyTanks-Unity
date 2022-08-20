@@ -8,9 +8,9 @@ namespace _Scripts.Buffs
     {
         public float speedIncrease;
 
-        public override TimedBuff InitializeBuff(GameObject obj)
+        public override TimedBuff InitializeBuff(GameObject obj, int level = 1)
         {
-            return new TimedSpeedBuff(this, obj, duration);
+            return new TimedSpeedBuff(this, obj, duration, level);
         }
     }
     
@@ -18,7 +18,7 @@ namespace _Scripts.Buffs
     {
         private readonly BuffableEntity _be;
 
-        public TimedSpeedBuff(ScriptableBuff buff, GameObject obj, int duration) : base(buff, obj)
+        public TimedSpeedBuff(ScriptableBuff buff, GameObject obj, int duration, int level) : base(buff, obj, duration)
         {
             //Getting MovementComponent, replace with your own implementation
             _be = obj.GetComponent<BuffableEntity>();

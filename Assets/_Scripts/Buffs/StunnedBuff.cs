@@ -6,9 +6,9 @@ namespace _Scripts.Buffs
     [CreateAssetMenu(menuName = "_Scripts/Buffs/StunnedBuff")]
     public class StunnedBuff: ScriptableBuff
     {
-        public override TimedBuff InitializeBuff(GameObject obj)
+        public override TimedBuff InitializeBuff(GameObject obj, int level = 1)
         {
-            return new TimedStunnedBuff(this, obj, duration);
+            return new TimedStunnedBuff(this, obj, duration, level);
         }
     }
     
@@ -16,7 +16,7 @@ namespace _Scripts.Buffs
     {
         private readonly BuffableEntity _be;
 
-        public TimedStunnedBuff(ScriptableBuff buff, GameObject obj, int duration) : base(buff, obj)
+        public TimedStunnedBuff(ScriptableBuff buff, GameObject obj, int duration, int level) : base(buff, obj, duration)
         {
             //Getting MovementComponent, replace with your own implementation
             _be = obj.GetComponent<BuffableEntity>();

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts.Buffs
@@ -29,7 +30,7 @@ namespace _Scripts.Buffs
         */
         public Sprite buffIcon;
 
-        public abstract TimedBuff InitializeBuff(GameObject obj);
+        public abstract TimedBuff InitializeBuff(GameObject obj, int level = 1);
     }
     
     public abstract class TimedBuff
@@ -39,16 +40,19 @@ namespace _Scripts.Buffs
         public ScriptableBuff Buff { get; }
         protected readonly GameObject obj;
         public bool isFinished;
+        protected int InitialDuration;
 
-        protected TimedBuff(ScriptableBuff buff, GameObject obj)
+        protected TimedBuff(ScriptableBuff buff, GameObject obj, int duration)
         {
             Buff = buff;
             this.obj = obj;
+            InitialDuration = duration;
         }
 
         public void Tick()
         {
             duration -= 1;
+            // Debug.Log(duration);
             if (duration < 0)
             {
                 End();
@@ -76,7 +80,7 @@ namespace _Scripts.Buffs
         
             if (Buff.isDurationStacked || duration <= 0)
             {
-                duration += Buff.duration;
+                duration += InitialDuration;
             }
         }
         protected abstract void ApplyEffect();
