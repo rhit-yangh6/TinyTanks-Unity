@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2685fe0395524d5f9be879493cb50229, type: 3}
   m_Name: CursedBuff
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 3
   isDurationStacked: 0
   isEffectStacked: 0
   isTurnTriggered: 0
