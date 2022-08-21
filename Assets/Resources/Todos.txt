@@ -3,7 +3,6 @@
 10. Weapon - Dynamite
 12. Weapon - AirStrike
 13. Weapon - Packed Stone
-14. Weapon - Spike ball
 15. Weapon - Cage？
 17. Weapon - Elemental ones
 18. Weapon - Homing Stuff
@@ -12,4 +11,3 @@
 21. Weapon - Shockwave
 22. Weapon - Floatstone
 23. Camera - Click to get to good pos
-24. Weapon - Dimensional Ball

@@ -671,6 +671,45 @@
           "value": 1.0
         }
       ]
+    }, {
+      "id": 15,
+      "weaponName": "Portal Ball",
+      "weaponDescription": ">>>>",
+      "damage": 22.0,
+      "radius": 2,
+      "maxMagnitude": 6.5,
+      "steps": 500,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "portalBall",
+      "explosionDuration": 0.2,
+      "shopPrice": 430,
+      "extraWeaponTerms": []
     }
   ]
 }
