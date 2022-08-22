@@ -46,9 +46,10 @@ namespace _Scripts.Projectiles
                 finalCalculatedDamage *= 1.35f;
             }
 
-            DamageHandler.i.HandleCircularDamage(pos, finalCalculatedRadius, finalCalculatedDamage);
+            DamageHandler.i.HandleDamage(pos, finalCalculatedRadius, finalCalculatedDamage, 
+                DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrain(pos, finalCalculatedRadius);
+            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, finalCalculatedRadius);
         
             SpawnExplosionFX();
             DoCameraShake();

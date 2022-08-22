@@ -21,7 +21,7 @@ namespace _Scripts
             }
         }
 
-        public void DestroyTerrain(Vector3 explosionLocation, float radius)
+        public void DestroyTerrainCircular(Vector3 explosionLocation, float radius)
         {
             /*
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(explosionLocation, 200, layerMask);
@@ -54,7 +54,7 @@ namespace _Scripts
             
              */
             
-            float radiusSquared = radius * radius;
+            var radiusSquared = radius * radius;
             
             for (float x = -radius; x < radius; x += 0.64f)
             {
@@ -66,6 +66,18 @@ namespace _Scripts
                     {
                         DestroyTile(tilePos);
                     }
+                }
+            }
+        }
+        
+        public void DestroyTerrainSquare(Vector3 explosionLocation, float radius)
+        {
+            for (float x = -radius; x < radius; x += 0.64f)
+            {
+                for (float y = -radius; y < radius; y += 0.64f)
+                {
+                    Vector3Int tilePos = terrain.WorldToCell(explosionLocation + new Vector3(x, y, 0));
+                    DestroyTile(tilePos);
                 }
             }
         }

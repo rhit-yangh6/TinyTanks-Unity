@@ -61,11 +61,11 @@ namespace _Scripts.Projectiles
 
             if (Level == 6 && _isActivated)
             {
-                DamageHandler.i.HandleCircularDamage(pos, _radius, damageDealt, false, stunnedBuff);    
+                DamageHandler.i.HandleDamage(pos, _radius, damageDealt, DamageHandler.DamageType.Circular, false, stunnedBuff);    
             }
-            else DamageHandler.i.HandleCircularDamage(pos, _radius, damageDealt);
+            else DamageHandler.i.HandleDamage(pos, _radius, damageDealt, DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrain(pos, _radius);
+            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, _radius);
         
             SpawnExplosionFX();
             DoCameraShake();

@@ -70,9 +70,10 @@ namespace _Scripts.Projectiles
             // Level 5: Eternal Fire
             if (Level == 5) burningBuffLevel = 4;
 
-            DamageHandler.i.HandleCircularDamage(pos, Radius, Damage, false, burningBuff, burningBuffLevel);
+            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
+                false, burningBuff, burningBuffLevel);
 
-            TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
+            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();

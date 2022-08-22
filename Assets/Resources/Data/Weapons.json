@@ -710,6 +710,45 @@
       "explosionDuration": 0.2,
       "shopPrice": 830,
       "extraWeaponTerms": []
+    }, {
+      "id": 16,
+      "weaponName": "Steel Cube",
+      "weaponDescription": ">>>>",
+      "damage": 32,
+      "radius": 2.0,
+      "maxMagnitude": 8.6,
+      "steps": 512,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "steelCube",
+      "explosionDuration": 0.32,
+      "shopPrice": 256,
+      "extraWeaponTerms": []
     }
   ]
 }

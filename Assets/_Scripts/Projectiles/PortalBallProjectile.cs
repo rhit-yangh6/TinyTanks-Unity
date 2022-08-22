@@ -14,9 +14,6 @@ namespace _Scripts.Projectiles
         private static int _steps;
         private static GameObject _explosionFX;
 
-        // ExtraFields
-        private static float _boulderPieceRadius, _boulderPieceDamage;
-        
         // References
         protected override float Radius => _radius;
         protected override float Damage => _damage;

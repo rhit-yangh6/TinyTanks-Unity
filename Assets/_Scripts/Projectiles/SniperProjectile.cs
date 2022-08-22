@@ -61,9 +61,10 @@ namespace _Scripts.Projectiles
             if (Level >= 4) isCritical = Random.value > 0.75;
             if (Level == 6) isCritical = true;
 
-            DamageHandler.i.HandleCircularDamage(pos, finalCalculatedRadius, isCritical ? Damage * 1.5f : Damage, isCritical);
+            DamageHandler.i.HandleDamage(pos, finalCalculatedRadius, isCritical ? Damage * 1.5f : Damage, 
+                DamageHandler.DamageType.Circular, isCritical);
 
-            if (Level >= 3) TerrainDestroyer.Instance.DestroyTerrain(pos, finalCalculatedRadius);
+            if (Level >= 3) TerrainDestroyer.Instance.DestroyTerrainCircular(pos, finalCalculatedRadius);
 
             SpawnExplosionFX();
             DoCameraShake();

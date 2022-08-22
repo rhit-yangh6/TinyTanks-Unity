@@ -1,13 +1,12 @@
 ﻿using System;
-using _Scripts.Buffs;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public class CurseBombProjectile : LaunchedProjectile
+    public class SteelCubeProjectile : LaunchedProjectile
     {
         // Set in Inspector
-        [SerializeField] private ScriptableBuff cursedBuff;
+        // [SerializeField] private GameObject boulderPiecePrefab;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -18,16 +17,16 @@ namespace _Scripts.Projectiles
         private static float _boulderPieceRadius, _boulderPieceDamage;
         
         // References
-        protected override float Radius => Level >= 4 ? _radius * 1.4f : _radius;
+        protected override float Radius => _radius;
         protected override float Damage => _damage;
-        protected override float MaxMagnitude => Level >= 3 ? _maxMagnitude * 1.4f : _maxMagnitude;
-        protected override int Steps => Level >= 2 ? (int)(_steps * 1.4f) : _steps;
+        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.2f : _maxMagnitude;
+        protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
         private Rigidbody2D _rb;
-        
+
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -35,25 +34,16 @@ namespace _Scripts.Projectiles
 
         private void Update()
         {
-            var velocity = _rb.velocity;
-            transform.Rotate(0, 0, velocity.x > 0 ? -1 : 1);
+            transform.Rotate (0,0, _rb.velocity.x > 0 ? -1 : 1);
         }
 
         public override void Detonate()
         {
             Vector2 pos = transform.position;
+            
+            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Square);
 
-            var cursedBuffLevel = Level switch
-            {
-                5 => 2,
-                6 => 3,
-                _ => 1
-            };
-
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
-                false, cursedBuff, cursedBuffLevel);
-
-            // TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
+            TerrainDestroyer.Instance.DestroyTerrainSquare(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -70,11 +60,12 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
 
-            // TODO: new fx
+            // Change!
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
 
-            // _boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
-            // _boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
+            //_boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
+            //_boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
         }
+        
     }
 }

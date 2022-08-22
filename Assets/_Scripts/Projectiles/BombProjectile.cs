@@ -62,8 +62,8 @@ namespace _Scripts.Projectiles
         public override void Detonate()
         {
             Vector2 pos = transform.position;
-            DamageHandler.i.HandleCircularDamage(pos, Radius, Damage, false);
-            TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
+            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -89,8 +89,9 @@ namespace _Scripts.Projectiles
             _sr.enabled = false;
             yield return new WaitForSeconds(ExplosionDuration + .25f);
             
-            DamageHandler.i.HandleCircularDamage(origin, _secondaryExplosionRadius, _secondaryExplosionDamage);
-            TerrainDestroyer.Instance.DestroyTerrain(origin, _secondaryExplosionRadius);
+            DamageHandler.i.HandleDamage(origin, _secondaryExplosionRadius, _secondaryExplosionDamage, 
+                DamageHandler.DamageType.Circular);
+            TerrainDestroyer.Instance.DestroyTerrainCircular(origin, _secondaryExplosionRadius);
             
             var insExpl = Instantiate(ExplosionFX, origin, Quaternion.identity);
             insExpl.transform.localScale *= _secondaryExplosionRadius;
@@ -110,8 +111,9 @@ namespace _Scripts.Projectiles
                                                   Vector2.up * _clusterDirections[i, 1]);
                 var pos = (Vector3)origin + direction * (Radius + _clusterExplosionRadius) / 2;
                 
-                DamageHandler.i.HandleCircularDamage(pos, _clusterExplosionRadius, _clusterExplosionDamage);
-                TerrainDestroyer.Instance.DestroyTerrain(pos, _clusterExplosionRadius);
+                DamageHandler.i.HandleDamage(pos, _clusterExplosionRadius, _clusterExplosionDamage,
+                    DamageHandler.DamageType.Circular);
+                TerrainDestroyer.Instance.DestroyTerrainCircular(pos, _clusterExplosionRadius);
 
                 var insExpl = Instantiate(ExplosionFX, pos, Quaternion.identity);
                 insExpl.transform.localScale *= _clusterExplosionRadius;

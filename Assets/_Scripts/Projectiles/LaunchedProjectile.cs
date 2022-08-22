@@ -36,9 +36,9 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
             
-            DamageHandler.i.HandleCircularDamage(pos, Radius, Damage);
+            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
+            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();

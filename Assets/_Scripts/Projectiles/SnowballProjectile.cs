@@ -62,7 +62,8 @@ namespace _Scripts.Projectiles
             // TODO: 1 + ??
             var multiplier = Math.Max(Math.Min(_maxSize / 2, _timer / 2), 1f);
             
-            DamageHandler.i.HandleCircularDamage(pos, Radius * multiplier, Damage * multiplier);
+            DamageHandler.i.HandleDamage(pos, Radius * multiplier, Damage * multiplier, 
+                DamageHandler.DamageType.Circular);
             
             // TODO: SNOWBALL - DESTROY TERRAIN IF UPGRADED?
             

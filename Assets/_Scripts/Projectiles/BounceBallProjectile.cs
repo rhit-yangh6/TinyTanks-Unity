@@ -79,9 +79,9 @@ namespace _Scripts.Projectiles
                     break;
             }
 
-            DamageHandler.i.HandleCircularDamage(pos, _bounceRadius, finalCalculatedDamage);
+            DamageHandler.i.HandleDamage(pos, _bounceRadius, finalCalculatedDamage, DamageHandler.DamageType.Circular);
 
-            if (Level >= 4) TerrainDestroyer.Instance.DestroyTerrain(pos, _bounceRadius);
+            if (Level >= 4) TerrainDestroyer.Instance.DestroyTerrainCircular(pos, _bounceRadius);
         
             SpawnExplosionFX();
             DoCameraShake();

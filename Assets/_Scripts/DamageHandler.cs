@@ -23,13 +23,24 @@ namespace _Scripts
                 i = this; 
             } 
         }
+
+        public enum DamageType
+        {
+            Circular,
+            Square
+        }
         
-        public void HandleCircularDamage(Vector2 pos, float radius, float damage,
+        public void HandleDamage(Vector2 pos, float radius, float damage, DamageType type,
             bool isCriticalHit = false, ScriptableBuff buff = null, int buffLevel = 1)
         {
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
-            
-            foreach(Collider2D col in hitColliders)
+            var hitColliders = type switch
+            {
+                DamageType.Circular => Physics2D.OverlapCircleAll(pos, radius, layerMask),
+                DamageType.Square => Physics2D.OverlapBoxAll(pos, new Vector2(radius, radius), 0,layerMask),
+                _ => null
+            };
+
+            foreach(var col in hitColliders)
             {
                 var rb = col.GetComponent<Rigidbody2D>();
                 if (rb == null) continue;
@@ -53,11 +64,6 @@ namespace _Scripts
                     rb.AddForce(forceDirection * force);
                 }
                 */
-                
-                
-                
-                
-                // TODO: Props?
             }
         }
 
