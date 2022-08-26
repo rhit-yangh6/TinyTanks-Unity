@@ -26,6 +26,7 @@ namespace _Scripts
 
         public GameObject regularExplosionFX;
         public GameObject gunpowderlessExplosionFX;
+        public GameObject squareExplosionFX;
 
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
     public class SteelCubeProjectile : LaunchedProjectile
     {
         // Set in Inspector
-        // [SerializeField] private GameObject boulderPiecePrefab;
+        [SerializeField] private GameObject smallCubePrefab;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -14,12 +15,20 @@ namespace _Scripts.Projectiles
         private static GameObject _explosionFX;
 
         // ExtraFields
-        private static float _boulderPieceRadius, _boulderPieceDamage;
+        private static float _smallCubeDamage, _smallCubeRadius, _smallCubeAngleDelta;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.2f : _maxMagnitude;
+        protected override float Radius => Level >= 2 ? _radius * 1.2f : _radius;
+        protected override float Damage
+        {
+            get
+            {
+                if (Level == 5) return _damage * 1.7f;
+                return Level >= 4 ? _damage * 1.25f : _damage;
+            }
+        }
+
+        protected override float MaxMagnitude => Level == 5 ? _maxMagnitude * 0.6f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
@@ -41,14 +50,43 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
             
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Square);
+            var isCritical = false;
+            if (Level >= 3) isCritical = Random.value > 0.70;
+
+            DamageHandler.i.HandleDamage(pos, Radius, isCritical ? Damage * 1.5f : Damage,
+                DamageHandler.DamageType.Square, isCritical);
 
             TerrainDestroyer.Instance.DestroyTerrainSquare(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();
-        
+
+            if (Level == 6)
+            {
+                for (var i = 0; i < 4; i++)
+                {
+                    var derivedObject = Instantiate(smallCubePrefab, pos, Quaternion.identity);
+                    var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+                    var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+                    
+                    derivedProjectile.SetParameters(_smallCubeDamage, _smallCubeRadius, ExplosionDuration, ExplosionFX);
+                    
+                    var rotateDegree = Random.Range(-_smallCubeAngleDelta, _smallCubeAngleDelta);
+                    var speed = Random.Range(5.5f, 9f);
+                    derivedRb2d.velocity = Rotate(Vector2.up, rotateDegree) * speed;
+                }
+            }
+
             Destroy(gameObject);
+        }
+        
+        private Vector2 Rotate(Vector2 v, float delta)
+        {
+            var deltaRad = delta * Mathf.Deg2Rad;
+            return new Vector2(
+                v.x * Mathf.Cos(deltaRad) - v.y * Mathf.Sin(deltaRad),
+                v.x * Mathf.Sin(deltaRad) + v.y * Mathf.Cos(deltaRad)
+            );
         }
 
         public override void SetParameters(float damage, float radius, 
@@ -59,12 +97,12 @@ namespace _Scripts.Projectiles
             _maxMagnitude = maxMagnitude;
             _steps = steps;
             _explosionDuration = explosionDuration;
+            
+            _explosionFX = GameAssets.i.squareExplosionFX;
 
-            // Change!
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            //_boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
-            //_boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
+            _smallCubeDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "smallCubeDamage").value;
+            _smallCubeRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "smallCubeRadius").value;
+            _smallCubeAngleDelta = Array.Find(extraWeaponTerms, ewt => ewt.term == "smallCubeAngleDelta").value;
         }
         
     }

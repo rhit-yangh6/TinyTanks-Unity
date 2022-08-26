@@ -36,7 +36,9 @@ namespace _Scripts
             var hitColliders = type switch
             {
                 DamageType.Circular => Physics2D.OverlapCircleAll(pos, radius, layerMask),
-                DamageType.Square => Physics2D.OverlapBoxAll(pos, new Vector2(radius, radius), 0,layerMask),
+                // TODO: Calculating the square damage
+                DamageType.Square => Physics2D.OverlapBoxAll(pos, new Vector2(radius*1.414f, radius*1.414f), 
+                    0,layerMask),
                 _ => null
             };
 

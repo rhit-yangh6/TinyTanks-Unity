@@ -720,35 +720,48 @@
       "steps": 512,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Larger Cubes",
+          "description": "Increase explosion Radius by 20%.",
+          "cost": 64
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Stainless Steel",
+          "description": "Moderate chance of dealing critical damage on hit.",
+          "cost": 128
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Titanium Cube",
+          "description": "Great increase in damage.",
+          "cost": 256
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Adamantium Core",
+          "description": "Destroy enemies with this special, but insanely heavy alloy.",
+          "cost": 1024
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Splitting Cube",
+          "description": "The cube splits into four smaller pieces on hit.",
+          "cost": 1024
         }
       ],
       "dataPath": "steelCube",
-      "explosionDuration": 0.32,
+      "explosionDuration": 0.4,
       "shopPrice": 256,
-      "extraWeaponTerms": []
+      "extraWeaponTerms": [
+        {
+          "term": "smallCubeDamage",
+          "value": 8.0
+        },
+        {
+          "term": "smallCubeRadius",
+          "value": 1.28
+        },
+        {
+          "term": "smallCubeAngleDelta",
+          "value": 15.0
+        }
+      ]
     }
   ]
 }
