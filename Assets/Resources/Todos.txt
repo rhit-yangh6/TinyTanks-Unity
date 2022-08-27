@@ -11,4 +11,4 @@
 21. Weapon - Shockwave
 22. Weapon - Floatstone
 23. Camera - Click to get to good pos
-24. Weapon - Saw Blade
+24. Weapon - Duplicator
