@@ -762,6 +762,50 @@
           "value": 15.0
         }
       ]
+    }, {
+      "id": 17,
+      "weaponName": "Star",
+      "weaponDescription": ">>>>",
+      "damage": 25,
+      "radius": 2.5,
+      "maxMagnitude": 9.1,
+      "steps": 405,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "star",
+      "explosionDuration": 0.25,
+      "shopPrice": 525,
+      "extraWeaponTerms": [
+        {
+          "term": "smallCubeDamage",
+          "value": 8.0
+        }
+      ]
     }
   ]
 }

@@ -40,7 +40,7 @@ namespace _Scripts.Projectiles
         private void Update()
         {
             var velocity = _rb.velocity;
-            transform.Rotate (0,0, velocity.x > 0 ? -1 : 1);
+            transform.Rotate(0,0, velocity.x > 0 ? -1 : 1);
 
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {

@@ -65,7 +65,6 @@ namespace _Scripts
         public void SetParams()
         {
             LaunchedProjectile p = projectilePrefab.GetComponent<LaunchedProjectile>();
-            GameObject explosionPrefab = Resources.Load<GameObject>("ExplosionFX/" + explosionFXPath);
             p.SetParameters(damage, radius, maxMagnitude, steps, explosionDuration, extraWeaponTerms);
         }
         

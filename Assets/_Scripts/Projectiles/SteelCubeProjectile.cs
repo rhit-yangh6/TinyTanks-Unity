@@ -43,7 +43,7 @@ namespace _Scripts.Projectiles
 
         private void Update()
         {
-            transform.Rotate (0,0, _rb.velocity.x > 0 ? -1 : 1);
+            transform.Rotate(0,0, _rb.velocity.x > 0 ? -1 : 1);
         }
 
         public override void Detonate()
