@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using _Scripts.Buffs;
 using _Scripts.Entities;
 using UnityEngine;
@@ -67,6 +68,13 @@ namespace _Scripts
                 }
                 */
             }
+        }
+
+        public bool DetectTargets(Vector2 pos, float radius)
+        {
+            var hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
+
+            return hitColliders.Select(col => col.gameObject.GetComponent<Entity>()).Any(e => e != null);
         }
 
     }

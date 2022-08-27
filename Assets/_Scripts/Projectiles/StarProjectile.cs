@@ -13,7 +13,7 @@ namespace _Scripts.Projectiles
         private static GameObject _explosionFX;
 
         // ExtraFields
-        private static float _boulderPieceRadius, _boulderPieceDamage;
+        private static float _damageMultiplier, _radiusMultiplier, _drawStarSpeed;
         
         // References
         protected override float Radius => _radius;
@@ -27,7 +27,7 @@ namespace _Scripts.Projectiles
         private Rigidbody2D _rb;
         private TrailRenderer _tr;
         private ParticleSystem _ps;
-        private bool _isActivated;
+        private bool _isActivated, _isStarComplete;
         private const float RotateDegree = -144f;
 
         private void Start()
@@ -62,7 +62,7 @@ namespace _Scripts.Projectiles
             _rb.velocity = Vector2.zero;
             _tr.emitting = true;
 
-            _rb.velocity = (Vector2.left + Vector2.down) * 15f;
+            _rb.velocity = (Vector2.left + Vector2.down) * _drawStarSpeed;
             
             yield return new WaitForSeconds(0.4f);
 
@@ -76,6 +76,7 @@ namespace _Scripts.Projectiles
             _rb.gravityScale = 1;
             _tr.emitting = false;
             _ps.Play();
+            _isStarComplete = true;
             yield return 0;
         }
 
@@ -83,9 +84,14 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
             
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+            DamageHandler.i.HandleDamage(
+                pos, 
+                _isStarComplete ? Radius * _radiusMultiplier : Radius,
+                _isStarComplete ? Damage * _damageMultiplier : Damage, 
+                DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
+            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, 
+                _isStarComplete ? Radius * _radiusMultiplier : Radius);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -104,8 +110,9 @@ namespace _Scripts.Projectiles
 
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
 
-            //_boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
-            //_boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
+            _damageMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "damageMultiplier").value;
+            _radiusMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "radiusMultiplier").value;
+            _drawStarSpeed = Array.Find(extraWeaponTerms, ewt => ewt.term == "drawStarSpeed").value;
         }
         
         // TODO: Util Class?

@@ -802,8 +802,60 @@
       "shopPrice": 525,
       "extraWeaponTerms": [
         {
-          "term": "smallCubeDamage",
-          "value": 8.0
+          "term": "damageMultiplier",
+          "value": 1.7
+        },
+        {
+          "term": "radiusMultiplier",
+          "value": 1.6
+        },
+        {
+          "term": "drawStarSpeed",
+          "value": 16.0
+        }
+      ]
+    }, {
+      "id": 18,
+      "weaponName": "Saw Blade",
+      "weaponDescription": ">>>>",
+      "damage": 29,
+      "radius": 1.0,
+      "maxMagnitude": 8.22,
+      "steps": 468,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "sawBlade",
+      "explosionDuration": 0.1,
+      "shopPrice": 468,
+      "extraWeaponTerms": [
+        {
+          "term": "damageInterval",
+          "value": 0.5
         }
       ]
     }
