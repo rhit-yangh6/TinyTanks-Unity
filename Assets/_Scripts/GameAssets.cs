@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace _Scripts
@@ -27,6 +26,7 @@ namespace _Scripts
         public GameObject regularExplosionFX;
         public GameObject gunpowderlessExplosionFX;
         public GameObject squareExplosionFX;
+        public GameObject virusExplosionFX;
 
     }
 }

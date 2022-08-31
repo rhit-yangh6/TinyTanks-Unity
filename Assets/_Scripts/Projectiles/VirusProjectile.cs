@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public class SawBladeProjectile : LaunchedProjectile
+    public class VirusProjectile : LaunchedProjectile
     {
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -24,9 +23,6 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private Rigidbody2D _rb;
-        private int _moveDirection;
-        private bool _isActivated;
-        private float _intervalTimeLeft;
 
         private void Start()
         {
@@ -36,43 +32,23 @@ namespace _Scripts.Projectiles
         private void Update()
         {
             transform.Rotate(0, 0, _rb.velocity.x > 0 ? -1 : 1);
-            if (_intervalTimeLeft > 0)
-            {
-                _intervalTimeLeft -= Time.deltaTime;
-            }
-
-            if (_moveDirection != 0)
-            {
-                transform.position = new Vector3(transform.position.x+_moveDirection * 7f * Time.deltaTime,
-                    transform.position.y, transform.position.z);
-            }
-
-            if (!_isActivated) return;
-
-            var pos = transform.position;
-            var hasTarget = DamageHandler.i.DetectTargets(pos, Radius);
-
-            if (_intervalTimeLeft > 0 || !hasTarget) return;
-            
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            _intervalTimeLeft = _damageInterval;
         }
 
         public override void Detonate()
         {
-            if (_isActivated) return;
-            _isActivated = true;
-            _moveDirection = _rb.velocity.x > 0 ? 1 : -1;
-            StartCoroutine(MoveForward());
-        }
-
-        private IEnumerator MoveForward()
-        {
-            yield return new WaitForSeconds(_moveTime);
-            _moveDirection = 0;
             
+            Vector2 pos = transform.position;
+            
+            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+
+            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
+        
+            SpawnExplosionFX();
+            DoCameraShake();
+        
             Destroy(gameObject);
         }
+        
 
         public override void SetParameters(float damage, float radius, 
             float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
@@ -83,10 +59,10 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
 
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+            _explosionFX = GameAssets.i.virusExplosionFX;
             
-            _damageInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "damageInterval").value;
-            _moveTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "moveTime").value;
+            //_damageInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "damageInterval").value;
+            //_moveTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "moveTime").value;
         }
     }
 }

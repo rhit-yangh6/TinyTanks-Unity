@@ -856,6 +856,54 @@
         {
           "term": "damageInterval",
           "value": 0.5
+        },
+        {
+          "term": "moveTime",
+          "value": 1.0
+        }
+      ]
+    }, {
+      "id": 19,
+      "weaponName": "Virus",
+      "weaponDescription": ">>>>",
+      "damage": 19,
+      "radius": 2.0,
+      "maxMagnitude": 9.99,
+      "steps": 499,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "virus",
+      "explosionDuration": 0.3,
+      "shopPrice": 399,
+      "extraWeaponTerms": [
+        {
+          "term": "damageInterval",
+          "value": 0.5
         }
       ]
     }

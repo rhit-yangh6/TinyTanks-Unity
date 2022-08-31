@@ -5,7 +5,7 @@
 13. Weapon - Packed Stone
 15. Weapon - Cage？
 17. Weapon - Elemental ones
-18. Weapon - Homing Stuff
+18. Weapon - Homing Stuff, Hive?
 19. Weapon - BoomBox
 20. Weapon - Hologram
 21. Weapon - Shockwave

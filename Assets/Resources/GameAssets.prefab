@@ -70,3 +70,4 @@ MonoBehaviour:
   regularExplosionFX: {fileID: 6624758977479615433, guid: bf9211e39af3fc547b81e87d2c190ec9, type: 3}
   gunpowderlessExplosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
   squareExplosionFX: {fileID: 7786670528002474878, guid: d8218e117436c7a45b7af6867dbc4797, type: 3}
+  virusExplosionFX: {fileID: 1530589900558536253, guid: 3d8ed5dd805319c41aa626f1eaec4e48, type: 3}

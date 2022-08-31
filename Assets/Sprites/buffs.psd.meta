@@ -118,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c2c338ffc8403747b154adb295c2097
-      internalID: -462776032
+      spriteID: f798c095fffcd4441a41299d9f6e7ad8
+      internalID: -334760864
       vertices: []
       indices: 
       edges: []
@@ -139,8 +139,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53acb68147158114db8126ed18f3ec99
-      internalID: 1798092813
+      spriteID: b2ea2f15f11221d44ba86725ff311da2
+      internalID: -1522151541
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a5987dc8abaed848802fb208a2e3522
-      internalID: 1211505031
+      spriteID: 080ec9f6808ec4641b1ce5ce51c92324
+      internalID: -1027316976
       vertices: []
       indices: 
       edges: []
@@ -181,8 +181,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e56510eabce742c4bb61c053fa1ae3c1
-      internalID: 1894759621
+      spriteID: d75068c84c86ec54c85a6c95d8b7b2fc
+      internalID: -1316904964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buffs_4
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 478
+        width: 59
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de587b540a7daf478fe5ca433a0018a
+      internalID: 2087630626
       vertices: []
       indices: 
       edges: []
@@ -198,10 +219,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      buffs_3: 1894759621
-      buffs_2: 1211505031
-      buffs_0: -462776032
-      buffs_1: 1798092813
+      buffs_3: -1316904964
+      buffs_2: -1027316976
+      buffs_0: -334760864
+      buffs_1: -1522151541
+      buffs_4: 2087630626
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 1

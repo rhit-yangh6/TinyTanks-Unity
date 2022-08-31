@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using _Scripts.Buffs;
 using _Scripts.Projectiles;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -33,8 +30,8 @@ namespace _Scripts.Entities
         private SpriteRenderer _sr, _cannonSr;
         private Rigidbody2D _projectileRigidbody2D, _rb2d;
         private LineRenderer _lr;
-        
-        void Start()
+
+        private void Start()
         {
             Health = maxHealth;
             HealthBar.SetHealth(Health, MaxHealth);
