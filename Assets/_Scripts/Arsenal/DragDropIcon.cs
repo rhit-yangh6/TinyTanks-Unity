@@ -1,10 +1,8 @@
-using System;
-using _Scripts.Arsenal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace _Scripts
+namespace _Scripts.Arsenal
 {
     public class DragDropIcon : MonoBehaviour, IPointerDownHandler,
         IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
