@@ -19,7 +19,7 @@ namespace _Scripts.Projectiles
         private static GameObject _explosionFX;
 
         // ExtraFields
-        private static float _summonInterval, _fireballSmallDamage, _fireballSmallRadius, _burningDamage;
+        private static float _summonInterval, _fireballSmallDamage, _fireballSmallRadius;
         
         // References
         protected override float Radius => Level >= 3 ? _radius * 1.3f : _radius;
@@ -95,7 +95,6 @@ namespace _Scripts.Projectiles
             _summonInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "summonInterval").value;
             _fireballSmallDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "fireballSmallDamage").value;
             _fireballSmallRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "fireballSmallRadius").value;
-            _burningDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "burningDamage").value;
         }
     }
 }

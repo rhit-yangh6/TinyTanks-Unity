@@ -39,7 +39,8 @@ namespace _Scripts.Projectiles
             
             Vector2 pos = transform.position;
             
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular, false,
+                GameAssets.i.infectedBuff, 1);
 
             TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
         

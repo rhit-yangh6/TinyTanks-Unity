@@ -1,3 +1,4 @@
+using _Scripts.Buffs;
 using UnityEngine;
 
 namespace _Scripts
@@ -27,6 +28,12 @@ namespace _Scripts
         public GameObject gunpowderlessExplosionFX;
         public GameObject squareExplosionFX;
         public GameObject virusExplosionFX;
+
+        public ScriptableBuff burningBuff;
+        public ScriptableBuff infectedBuff;
+        public ScriptableBuff speedBuff;
+        public ScriptableBuff stunnedBuff;
+        public ScriptableBuff cursedBuff;
 
     }
 }

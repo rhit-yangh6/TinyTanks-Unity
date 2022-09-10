@@ -20,6 +20,8 @@ namespace _Scripts.Entities
 
         public virtual void TakeDamage(float amount, bool isCriticalHit = false)
         {
+            if (amount == 0) return;
+            
             var rb = gameObject.GetComponent<Rigidbody2D>();
             DamagePopup.Create(rb.position, (int)Math.Round(amount), isCriticalHit);
             

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536314c9fcd8421abe7163901f5e1024, type: 3}
+  m_Name: InfectedBuff
+  m_EditorClassIdentifier: 
+  duration: 2
+  isDurationStacked: 1
+  isEffectStacked: 0
+  isTurnTriggered: 1
+  buffIcon: {fileID: 2087630626, guid: 7adbad068adf20a448df0e0caf039767, type: 3}
+  infectedDamage: 5

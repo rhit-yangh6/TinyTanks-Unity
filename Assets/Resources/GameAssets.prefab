@@ -71,3 +71,8 @@ MonoBehaviour:
   gunpowderlessExplosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
   squareExplosionFX: {fileID: 7786670528002474878, guid: d8218e117436c7a45b7af6867dbc4797, type: 3}
   virusExplosionFX: {fileID: 1530589900558536253, guid: 3d8ed5dd805319c41aa626f1eaec4e48, type: 3}
+  burningBuff: {fileID: 11400000, guid: b7ef3b36a4ce03f4b9d2e4570a9f7653, type: 2}
+  infectedBuff: {fileID: 11400000, guid: 4ed3df647dab460488646240cf70f68a, type: 2}
+  speedBuff: {fileID: 11400000, guid: 6802efc3db6826b4cb0d77db033c65f7, type: 2}
+  stunnedBuff: {fileID: 11400000, guid: 0a2fd067170e5fc4c9bff6580a906790, type: 2}
+  cursedBuff: {fileID: 11400000, guid: ab24de97807e7da4085169576200e79c, type: 2}
