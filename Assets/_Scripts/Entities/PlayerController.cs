@@ -43,9 +43,22 @@ namespace _Scripts.Entities
 
         protected override void CheckMovement()
         {
-            if (!moveable) return;
-            
+            if (!moveable)
+            {
+                if (IsGrounded())
+                {
+                    _rb2d.velocity = Vector2.zero;
+                    _rb2d.isKinematic = true;
+                }
+                else
+                {
+                    _rb2d.isKinematic = false;
+                }
+                return;
+            }
+
             _xInput = Input.GetAxisRaw("Horizontal");
+            _rb2d.isKinematic = false;
 
             if (_xInput == 1 && FacingDirection == -1)
             {
@@ -54,10 +67,11 @@ namespace _Scripts.Entities
             else if (_xInput == -1 && FacingDirection == 1)
             {
                 Flip();
-            } 
-            else if (_xInput == 0)
+            }
+            else if (_xInput == 0 && IsGrounded())
             {
-                _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
+                _rb2d.velocity = Vector2.zero;
+                _rb2d.isKinematic = true;
             }
 
             transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xInput, 0, 0));

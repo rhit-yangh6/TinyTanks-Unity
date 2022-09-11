@@ -14,6 +14,7 @@ namespace _Scripts.Entities
 
         [SerializeField] protected float maxHealth;
         [SerializeField] protected HealthBarBehavior healthBar;
+        [SerializeField] protected Transform topLeft, bottomRight;
 
         protected virtual float MaxHealth => maxHealth;
         protected virtual HealthBarBehavior HealthBar => healthBar;
@@ -70,5 +71,13 @@ namespace _Scripts.Entities
         }
 
         protected virtual void CheckMovement() { }
+        
+        protected bool IsGrounded()
+        {
+            Debug.Log(Physics2D.OverlapArea(topLeft.position, 
+                bottomRight.position, layerMask));
+            return Physics2D.OverlapArea(topLeft.position, 
+                bottomRight.position, layerMask);
+        }
     }
 }
