@@ -74,8 +74,6 @@ namespace _Scripts.Entities
         
         protected bool IsGrounded()
         {
-            Debug.Log(Physics2D.OverlapArea(topLeft.position, 
-                bottomRight.position, layerMask));
             return Physics2D.OverlapArea(topLeft.position, 
                 bottomRight.position, layerMask);
         }
