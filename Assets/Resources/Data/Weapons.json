@@ -902,6 +902,54 @@
           "value": 0.5
         }
       ]
+    }, {
+      "id": 20,
+      "weaponName": "Coconut Seed",
+      "weaponDescription": ">>>>",
+      "damage": 11,
+      "radius": 1.2,
+      "maxMagnitude": 13,
+      "steps": 532,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "coconutSeed",
+      "explosionDuration": 0.1,
+      "shopPrice": 532,
+      "extraWeaponTerms": [
+        {
+          "term": "coconutDamage",
+          "value": 16
+        },
+        {
+          "term": "coconutRadius",
+          "value": 1.2
+        }
+      ]
     }
   ]
 }

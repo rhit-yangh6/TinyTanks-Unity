@@ -28,6 +28,8 @@ namespace _Scripts.Projectiles
         private bool _isActivated;
         private float _intervalTimeLeft;
 
+        // TODO; refresh when hitting targets
+        
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
