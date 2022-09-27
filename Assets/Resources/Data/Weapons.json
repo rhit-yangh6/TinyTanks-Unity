@@ -249,24 +249,24 @@
       "steps": 400,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Rusty but Pointy",
+          "description": "Slightly increase base damage.",
+          "cost": 130
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Aerodynamic Design",
+          "description": "The anvil can be launched further.",
+          "cost": 370
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Earth-shaking Strikes",
+          "description": "If anvil is falling straight down, it will make a much bigger terrain damage.",
+          "cost": 620
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Slam it Hard",
+          "description": "While falling, click a second time to further boost its speed and damage.",
+          "cost": 1220
         }, 
         {
           "name": "Smash to Dizziness",
@@ -276,7 +276,7 @@
       ],
       "dataPath": "anvil",
       "explosionDuration": 0.15,
-      "shopPrice": 400,
+      "shopPrice": 600,
       "extraWeaponTerms": [
         {
           "term": "gravityScaleMultiplier",
@@ -285,6 +285,10 @@
         {
           "term": "fallDamageMultiplier",
           "value": 1.4
+        },
+        {
+          "term": "secondPhaseFallDamageMultiplier",
+          "value": 1.1
         }
       ]
     }, {

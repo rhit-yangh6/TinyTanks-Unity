@@ -16,18 +16,18 @@ namespace _Scripts.Projectiles
         private static GameObject _explosionFX;
         
         // ExtraFields
-        private static float _gravityScaleMultiplier, _fallDamageMultiplier;
+        private static float _gravityScaleMultiplier, _fallDamageMultiplier, _secondPhaseFallDamageMultiplier;
         
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
+        protected override float Damage => Level >= 2 ? _damage * 1.1f : _damage;
+        protected override float MaxMagnitude => Level >= 3 ? _maxMagnitude * 1.1f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
-        private bool _isActivated;
+        private bool _isActivated, _isSecondPhaseActivated;
         private Rigidbody2D _rb;
         
         void Start()
@@ -44,6 +44,12 @@ namespace _Scripts.Projectiles
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
             
+            if (Input.GetMouseButtonDown(0) && _isActivated && Level == 5 && !_isSecondPhaseActivated)
+            {
+                _rb.AddForce(Vector2.down * 30.0f);
+                _isSecondPhaseActivated = true;
+            }
+            
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {
                 _isActivated = true;
@@ -57,15 +63,19 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
 
-            float damageDealt = _isActivated ? _damage * _fallDamageMultiplier : _damage;
+            float damageDealt = _isActivated ? (_isSecondPhaseActivated ? 
+                Damage * _secondPhaseFallDamageMultiplier * _fallDamageMultiplier :
+                Damage * _fallDamageMultiplier) : Damage;
 
             if (Level == 6 && _isActivated)
             {
-                DamageHandler.i.HandleDamage(pos, _radius, damageDealt, DamageHandler.DamageType.Circular, false, stunnedBuff);    
+                DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular, 
+                    false, stunnedBuff);    
             }
-            else DamageHandler.i.HandleDamage(pos, _radius, damageDealt, DamageHandler.DamageType.Circular);
+            else DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, _radius);
+            TerrainDestroyer.Instance.DestroyTerrainCircular(pos,
+                (Level >= 4 && _isActivated) ? Radius * 1.5f : Radius);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -83,8 +93,12 @@ namespace _Scripts.Projectiles
             
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
 
-            _gravityScaleMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "gravityScaleMultiplier").value;
-            _fallDamageMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "fallDamageMultiplier").value;
+            _gravityScaleMultiplier = Array.Find(extraWeaponTerms, ewt => 
+                ewt.term == "gravityScaleMultiplier").value;
+            _fallDamageMultiplier = Array.Find(extraWeaponTerms, ewt =>
+                ewt.term == "fallDamageMultiplier").value;
+            _secondPhaseFallDamageMultiplier = Array.Find(extraWeaponTerms, ewt => 
+                ewt.term == "secondPhaseFallDamageMultiplier").value;
         }
     }
 }

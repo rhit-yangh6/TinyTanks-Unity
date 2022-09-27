@@ -22,11 +22,17 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private bool _isActivated;
+        private Rigidbody2D _rb;
 
         // TODO: Save Shooter (For All Projectiles) ?
 
+        private void Start()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
+
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             
             // TODO: UPGRADE ADDS STEP & REMOTE & NO-SELF-DAMAGE
@@ -58,7 +64,7 @@ q
             }
             */
         }
-
+        
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
         {
             _damage = damage;
