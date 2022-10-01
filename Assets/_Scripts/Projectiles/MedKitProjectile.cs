@@ -36,7 +36,6 @@ namespace _Scripts.Projectiles
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
             
             SpawnExplosionFX();
-            DoCameraShake();
         
             Destroy(gameObject);
         }
@@ -56,7 +55,7 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
 
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+            _explosionFX = GameAssets.i.healFX;
 
             // _boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
             // _boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;

@@ -619,7 +619,7 @@
         }
       ],
       "dataPath": "medKit",
-      "explosionDuration": 0.25,
+      "explosionDuration": 0.4,
       "shopPrice": 220,
       "extraWeaponTerms": [
       ]

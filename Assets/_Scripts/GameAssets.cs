@@ -28,6 +28,8 @@ namespace _Scripts
         public GameObject gunpowderlessExplosionFX;
         public GameObject squareExplosionFX;
         public GameObject virusExplosionFX;
+        public GameObject healFX;
+        
 
         public ScriptableBuff burningBuff;
         public ScriptableBuff infectedBuff;
