@@ -954,6 +954,54 @@
           "value": 1.2
         }
       ]
+    }, {
+      "id": 21,
+      "weaponName": "Ice Cube",
+      "weaponDescription": ">>>>",
+      "damage": 21,
+      "radius": 2.0,
+      "maxMagnitude": 11.2,
+      "steps": 400,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "iceCube",
+      "explosionDuration": 0.2,
+      "shopPrice": 492,
+      "extraWeaponTerms": [
+        {
+          "term": "coconutDamage",
+          "value": 16
+        },
+        {
+          "term": "coconutRadius",
+          "value": 1.2
+        }
+      ]
     }
   ]
 }

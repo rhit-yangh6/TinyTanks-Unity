@@ -19,7 +19,12 @@ namespace _Scripts.Entities
         protected virtual GameObject TankCannon => tankCannon;
         protected virtual SpriteRenderer MainSr => null;
         protected virtual SpriteRenderer CannonSr => null;
-        public virtual float MovementSpeed => movementSpeed;
+        public virtual float MovementSpeed
+        {
+            get => movementSpeed;
+            set => movementSpeed = value;
+        }
+
         protected virtual BuffPanelBehavior Bpb => bpb;
 
         protected override void CheckMovement() { }
