@@ -909,7 +909,7 @@
     }, {
       "id": 20,
       "weaponName": "Coconut Seed",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "Grow a coconut tree at the point of collision, and drop down coconuts to smash your enemies!",
       "damage": 11,
       "radius": 1.2,
       "maxMagnitude": 13,
@@ -957,7 +957,7 @@
     }, {
       "id": 21,
       "weaponName": "Ice Cube",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "Damage and freeze the target. The movement speed of frozen targets is reduced.",
       "damage": 21,
       "radius": 2.0,
       "maxMagnitude": 11.2,
