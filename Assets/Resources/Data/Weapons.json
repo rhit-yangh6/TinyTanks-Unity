@@ -1002,6 +1002,58 @@
           "value": 1.2
         }
       ]
+    }, {
+      "id": 22,
+      "weaponName": "Boombox",
+      "weaponDescription": ">>>.",
+      "damage": 27,
+      "radius": 2.0,
+      "maxMagnitude": 7.8,
+      "steps": 289.5,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "boombox",
+      "explosionDuration": 0.3,
+      "shopPrice": 489,
+      "extraWeaponTerms": [
+        {
+          "term": "shockDamage",
+          "value": 30
+        },
+        {
+          "term": "shockRadius",
+          "value": 5.0
+        },
+        {
+          "term": "shockInterval",
+          "value": 1.0
+        }
+      ]
     }
   ]
 }

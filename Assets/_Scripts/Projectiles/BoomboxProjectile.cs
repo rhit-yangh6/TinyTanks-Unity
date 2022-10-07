@@ -1,21 +1,17 @@
 ﻿using System;
-using _Scripts.Buffs;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public class IceCubeProjectile: LaunchedProjectile
+    public class BoomboxProjectile: LaunchedProjectile
     {
-        // Set in Inspector
-        [SerializeField] private ScriptableBuff frozenBuff;
-        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
         private static GameObject _explosionFX;
         
         // ExtraFields
-        // private static float _gravityScaleMultiplier, _fallDamageMultiplier, _secondPhaseFallDamageMultiplier;
+        private static float _shockDamage, _shockRadius, _shockInterval;
         
         // References
         protected override float Radius => _radius;
@@ -26,30 +22,34 @@ namespace _Scripts.Projectiles
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
+        private int _shockTimeLeft; 
+        private float _shockIntervalLeft;
         private Rigidbody2D _rb;
         
         private void Start()
         {
             _rb = gameObject.GetComponent<Rigidbody2D>();
+
+            _shockTimeLeft = 5;
         }
 
         private void Update()
         {
             var velocity = _rb.velocity;
-            transform.Rotate(0, 0, velocity.x > 0 ? -1 : 1);
-        }
-
-        public override void Detonate()
-        {
-            Vector2 pos = transform.position;
+            transform.Rotate(0, 0, velocity.x > 0 ? -0.5f : 0.5f);
             
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular, 
-                false, frozenBuff);
+            if (_shockIntervalLeft > 0)
+            {
+                _shockIntervalLeft -= Time.deltaTime;
+            }
 
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
+            if (_shockTimeLeft > 0 && Input.GetMouseButtonDown(0) && _shockIntervalLeft <= 0)
+            {
+                Debug.Log("shock!!!");
+                // TODO: Effect + Damaging
+                _shockTimeLeft--;
+                _shockIntervalLeft = _shockInterval;
+            }
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
@@ -62,7 +62,9 @@ namespace _Scripts.Projectiles
             
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
 
-            //_gravityScaleMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "gravityScaleMultiplier").value;
+            _shockDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockDamage").value;
+            _shockRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockRadius").value;
+            _shockInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockInterval").value;
         }
     }
 }
