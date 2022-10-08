@@ -5,6 +5,9 @@ namespace _Scripts.Projectiles
 {
     public class BoomboxProjectile: LaunchedProjectile
     {
+        // Set In Inspector
+        [SerializeField] private GameObject shockFX;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -45,8 +48,15 @@ namespace _Scripts.Projectiles
 
             if (_shockTimeLeft > 0 && Input.GetMouseButtonDown(0) && _shockIntervalLeft <= 0)
             {
-                Debug.Log("shock!!!");
-                // TODO: Effect + Damaging
+                var pos = transform.position;
+                DamageHandler.i.HandleDamage(pos,
+                    _shockRadius, _shockDamage, DamageHandler.DamageType.Circular);
+                DoCameraShake();
+                
+                GameObject insExpl = Instantiate(shockFX, pos, Quaternion.identity);
+                insExpl.transform.localScale *= _shockRadius;
+                Destroy(insExpl, ExplosionDuration);
+                
                 _shockTimeLeft--;
                 _shockIntervalLeft = _shockInterval;
             }

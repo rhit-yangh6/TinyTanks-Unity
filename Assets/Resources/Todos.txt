@@ -10,3 +10,5 @@
 22. Weapon - Floatstone
 23. Camera - Click to get to good pos
 24. Weapon - Duplicator
+25. Weapon - BloodThirsty stuff?
+26. Weapon - JackHammer

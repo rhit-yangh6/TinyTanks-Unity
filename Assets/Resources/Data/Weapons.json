@@ -1006,7 +1006,7 @@
       "id": 22,
       "weaponName": "Boombox",
       "weaponDescription": ">>>.",
-      "damage": 27,
+      "damage": 24,
       "radius": 2.0,
       "maxMagnitude": 7.8,
       "steps": 289.5,
@@ -1043,7 +1043,7 @@
       "extraWeaponTerms": [
         {
           "term": "shockDamage",
-          "value": 30
+          "value": 20
         },
         {
           "term": "shockRadius",
