@@ -10,7 +10,9 @@ namespace _Scripts.Entities
         [SerializeField] protected LayerMask layerMask;
 
         public float Health { get; set; }
-        public bool IsDead { get; set; } = false;
+        public bool IsDead { get; set; }
+
+        public float DamageMultiplier { get; set; } = 1.0f;
 
         [SerializeField] protected float maxHealth;
         [SerializeField] protected HealthBarBehavior healthBar;
@@ -22,7 +24,8 @@ namespace _Scripts.Entities
         public virtual void TakeDamage(float amount, bool isCriticalHit = false)
         {
             if (amount == 0) return;
-            
+
+            amount *= DamageMultiplier;
             var rb = gameObject.GetComponent<Rigidbody2D>();
             DamagePopup.Create(rb.position, (int)Math.Round(amount), isCriticalHit);
             
