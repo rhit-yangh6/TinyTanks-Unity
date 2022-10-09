@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5337627254219167202}
   - component: {fileID: 8566081486327670372}
+  - component: {fileID: 6816072472652494682}
   - component: {fileID: 6890699591451632278}
   - component: {fileID: 7663483231909170444}
-  - component: {fileID: 6816072472652494682}
   m_Layer: 8
   m_Name: medKit
   m_TagString: AggressiveProjectile
@@ -87,6 +87,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6816072472652494682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304198554554890936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008dbda9b22b4ffd9d7b685ec785e61e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healingBuff: {fileID: 11400000, guid: b3183d944d5b31a44a46eaf19d67cf7c, type: 2}
 --- !u!50 &6890699591451632278
 Rigidbody2D:
   serializedVersion: 4
@@ -159,15 +172,3 @@ PolygonCollider2D:
       - {x: 0.29999998, y: -0.805}
       - {x: 0.38, y: -0.765}
       - {x: 0.5, y: -0.695}
---- !u!114 &6816072472652494682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304198554554890936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 008dbda9b22b4ffd9d7b685ec785e61e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

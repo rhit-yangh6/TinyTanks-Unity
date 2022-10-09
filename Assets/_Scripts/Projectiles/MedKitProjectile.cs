@@ -1,10 +1,15 @@
 ﻿using System;
+using _Scripts.Buffs;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
     public class MedKitProjectile : LaunchedProjectile
     {
+        // Set In Inspector
+        [SerializeField] private ScriptableBuff healingBuff;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -14,8 +19,8 @@ namespace _Scripts.Projectiles
         // private static float _boulderPieceRadius, _boulderPieceDamage;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
+        protected override float Radius => Level >= 2 ? _radius * 1.3f : _radius;
+        protected override float Damage => Level >= 3 ? _damage * 1.35f : _damage;
         protected override float MaxMagnitude => _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
@@ -32,9 +37,21 @@ namespace _Scripts.Projectiles
         public override void Detonate()
         {
             Vector2 pos = transform.position;
-            
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            
+
+            var isCompleteHeal = false;
+            if (Level >= 4) isCompleteHeal = Random.value > 0.95;
+            if (Level == 5) isCompleteHeal = Random.value > 0.75;
+
+            if (isCompleteHeal)
+            {
+                DamageHandler.i.HandleCompleteHeals(pos, Radius, Level == 6 ? healingBuff : null);
+            }
+            else
+            {
+                DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
+                    false, Level == 6 ? healingBuff : null);
+            }
+
             SpawnExplosionFX();
         
             Destroy(gameObject);

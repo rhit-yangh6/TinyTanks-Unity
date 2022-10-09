@@ -77,5 +77,26 @@ namespace _Scripts
             return hitColliders.Select(col => col.gameObject.GetComponent<Entity>()).Any(e => e != null);
         }
 
+        public void HandleCompleteHeals(Vector2 pos, float radius, ScriptableBuff buff = null)
+        {
+            var hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
+
+            foreach (var col in hitColliders)
+            {
+                var rb = col.GetComponent<Rigidbody2D>();
+                if (rb == null) continue;
+                
+                var e = rb.gameObject.GetComponent<Entity>();
+                e.CompleteHeal();
+                
+                var be = rb.gameObject.GetComponent<BuffableEntity>();
+                // Apply Buff
+                if (be != null && buff != null)
+                {
+                    be.AddBuff(buff.InitializeBuff(col.gameObject, 1));
+                }
+            }
+        }
+
     }
 }

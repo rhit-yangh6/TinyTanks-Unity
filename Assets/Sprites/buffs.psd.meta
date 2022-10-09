@@ -242,6 +242,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: buffs_6
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 348
+        width: 59
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f2a5b8adead5394eaa90c3e92161356
+      internalID: -1884515853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -256,6 +277,7 @@ TextureImporter:
       buffs_3: -1316904964
       buffs_2: -1027316976
       buffs_0: -334760864
+      buffs_6: -1884515853
       buffs_1: -1522151541
       buffs_5: -2115343984
       buffs_4: 2087630626

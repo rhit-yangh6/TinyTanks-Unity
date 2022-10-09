@@ -593,29 +593,29 @@
       "steps": 330,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "More Bandages",
+          "description": "Effect radius increased.",
+          "cost": 35
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Advanced Med-Kit",
+          "description": "Increases Healing Amount.",
+          "cost": 170
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "First Aid",
+          "description": "The Med Kit has a very low chance of completely healing the target.",
+          "cost": 400
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Best Medical Supplies",
+          "description": "Has a higher chance of completely healing you.",
+          "cost": 800
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Continuous Healing",
+          "description": "Besides healing you instantly, the Med Kit also applies a Healing Buff that heals you over time.",
+          "cost": 800
         }
       ],
       "dataPath": "medKit",

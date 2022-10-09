@@ -46,6 +46,19 @@ namespace _Scripts.Entities
                 Destroy(gameObject);
             }
         }
+
+        public void CompleteHeal()
+        {
+            var healAmount = (int) (Health - maxHealth);
+
+            if (healAmount == 0) return;
+            
+            var rb = gameObject.GetComponent<Rigidbody2D>();
+            DamagePopup.Create(rb.position, healAmount, false);
+
+            Health = maxHealth;
+            HealthBar.SetHealth(Health, MaxHealth);
+        }
         
         protected virtual void OnCollisionEnter2D(Collision2D col)
         {
