@@ -964,29 +964,29 @@
       "steps": 400,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Fresh From The Fridge",
+          "description": "Higher base damage for the Ice Cube.",
+          "cost": 94
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Ice Weakening",
+          "description": "The frozen de-buff increases incoming damage by 30%.",
+          "cost": 104
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Go Frosty",
+          "description": "Ice Cube completely immobilize targets.",
+          "cost": 492
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Permafrost",
+          "description": "The frozen de-buff lasts forever (almost).",
+          "cost": 940
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Cold & Fragile",
+          "description": "The de-buff lasts longer while incoming damage is increased even further.",
+          "cost": 880
         }
       ],
       "dataPath": "iceCube",

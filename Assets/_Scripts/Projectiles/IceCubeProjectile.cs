@@ -19,7 +19,7 @@ namespace _Scripts.Projectiles
         
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
+        protected override float Damage => Level >= 2 ? _damage * 1.1f : _damage;
         protected override float MaxMagnitude => _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
@@ -43,8 +43,17 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
             
+            var finalBuffLevel = Level switch
+            {
+                5 => 4,
+                6 => 5,
+                4 => 3,
+                3 => 2,
+                _ => 1
+            };
+            
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular, 
-                false, frozenBuff);
+                false, frozenBuff, finalBuffLevel);
 
             SpawnExplosionFX();
             DoCameraShake();

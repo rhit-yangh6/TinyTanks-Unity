@@ -7,12 +7,13 @@ namespace _Scripts.Buffs
     [CreateAssetMenu(menuName = "_Scripts/Buffs/FrozenBuff")]
     public class FrozenBuff: ScriptableBuff
     {
-        public float damageMultiplierFirstTier, damageMultiplierSecondTier;
+        public float damageMultiplierFirstTier, damageMultiplierSecondTier, firstTierMovementSpeed;
         
         public override TimedBuff InitializeBuff(GameObject obj, int level = 1)
         {
-            // Level 3 = permafrost
-            return new TimedFrozenBuff(this, obj, level == 3 ? 999 : duration, level);
+            // Level 4 = permafrost
+            
+            return new TimedFrozenBuff(this, obj, level == 4 ? 999 : level == 5 ? duration + 2 : duration, level);
         }
     }
     
@@ -20,7 +21,7 @@ namespace _Scripts.Buffs
     {
         private readonly BuffableEntity _be;
         private float oldMovementSpeed;
-        private readonly float finalDamageMultiplier;
+        private readonly float finalDamageMultiplier, finalMovementSpeed;
 
         public TimedFrozenBuff(ScriptableBuff buff, GameObject obj, int duration, int level) : base(buff, obj, duration)
         {
@@ -29,17 +30,23 @@ namespace _Scripts.Buffs
             var frozenBuff = (FrozenBuff) Buff;
             finalDamageMultiplier = level switch
             {
-                >= 3 => frozenBuff.damageMultiplierSecondTier,
-                2 => frozenBuff.damageMultiplierFirstTier,
+                5 => frozenBuff.damageMultiplierSecondTier,
+                >= 2 => frozenBuff.damageMultiplierFirstTier,
                 1 => 1.0f,
                 _ => throw new ArgumentOutOfRangeException(nameof(level), level, null)
+            };
+
+            finalMovementSpeed = level switch
+            {
+                >= 3 => 0,
+                _ => frozenBuff.firstTierMovementSpeed
             };
         }
 
         protected override void ApplyEffect()
         {
             oldMovementSpeed = _be.MovementSpeed;
-            _be.MovementSpeed = 2f;
+            _be.MovementSpeed = finalMovementSpeed;
 
             _be.DamageMultiplier *= finalDamageMultiplier;
         }
