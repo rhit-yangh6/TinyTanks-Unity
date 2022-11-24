@@ -1054,6 +1054,62 @@
           "value": 1.0
         }
       ]
+    }, {
+      "id": 23,
+      "weaponName": "Jackhammer",
+      "weaponDescription": ">>>",
+      "damage": 14,
+      "radius": 2.0,
+      "maxMagnitude": 8.3,
+      "steps": 350,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "jackhammer",
+      "explosionDuration": 0.2,
+      "shopPrice": 530,
+      "extraWeaponTerms": [
+        {
+          "term": "explosionNumber",
+          "value": 3
+        },
+        {
+          "term": "explosionRadius",
+          "value": 1.5
+        },
+        {
+          "term": "explosionDamage",
+          "value": 10
+        },
+        {
+          "term": "explosionDistance",
+          "value": 1.8
+        }
+      ]
     }
   ]
 }
