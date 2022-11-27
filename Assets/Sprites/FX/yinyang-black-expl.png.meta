@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 613f5c780593cd3478e1b65a8b9cccd6
+guid: 8a51736c536895741b634991444d0092
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,7 +115,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: yinyang-black-expl_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 092c6592ec7b06c4db6f7df0cdd0ad46
+      internalID: -1822337245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yinyang-black-expl_1
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c31c80e6a635f1d42a18ad9627c0402f
+      internalID: 1558134638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yinyang-black-expl_2
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 0
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8075013b01a826408403afba5e50e1e
+      internalID: -1970821080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yinyang-black-expl_3
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 0
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f46b2e48a838f234585cb4eb6732e911
+      internalID: 659603910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +210,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      yinyang-black-expl_0: -1822337245
+      yinyang-black-expl_2: -1970821080
+      yinyang-black-expl_1: 1558134638
+      yinyang-black-expl_3: 659603910
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

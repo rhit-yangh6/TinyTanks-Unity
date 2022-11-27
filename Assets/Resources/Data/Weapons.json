@@ -1110,6 +1110,59 @@
           "value": 1.8
         }
       ]
+    }, {
+      "id": 24,
+      "weaponName": "Yin-Yang",
+      "weaponDescription": "Yin-Yang is flexible. It can change mode while in mid-air. Left click to change to white mode and it does decent damage and destroys terrain. Right click to switch to black mode and create a huge but low-damage explosion.",
+      "damage": 10,
+      "radius": 2.0,
+      "maxMagnitude": 9.1,
+      "steps": 500,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "yinyang",
+      "explosionDuration": 0.3,
+      "shopPrice": 699,
+      "extraWeaponTerms": [
+        {
+          "term": "whiteDamage",
+          "value": 33
+        }, {
+          "term": "whiteRadius",
+          "value": 2.8
+        }, {
+          "term": "blackDamage",
+          "value": 19
+        }, {
+          "term": "blackRadius",
+          "value": 8.5
+        }
+      ]
     }
   ]
 }
