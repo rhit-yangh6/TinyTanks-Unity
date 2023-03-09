@@ -38,7 +38,7 @@ namespace _Scripts.Projectiles
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
+            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();

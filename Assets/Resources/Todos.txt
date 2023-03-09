@@ -12,3 +12,4 @@
 24. Weapon - Duplicator
 25. Weapon - BloodThirsty stuff?
 26. Weapon - JackHammer
+27. Weapon - Acid Bottle, stackable debuff

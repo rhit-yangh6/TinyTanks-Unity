@@ -90,7 +90,7 @@ namespace _Scripts.Projectiles
                 _isStarComplete ? Damage * _damageMultiplier : Damage, 
                 DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, 
+            TerrainDestroyer.instance.DestroyTerrainCircular(pos, 
                 _isStarComplete ? Radius * _radiusMultiplier : Radius);
         
             SpawnExplosionFX();

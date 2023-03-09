@@ -113,29 +113,29 @@
       "steps": 600,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Precision Guidance",
+          "description": "Aim further, aim precisely.",
+          "cost": 80
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "High Explosives",
+          "description": "Increase explosive damage by 15%.",
+          "cost": 115
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Anti-Tank Missiles",
+          "description": "Increase boosting speed, and boost the damage dealt even more.",
+          "cost": 489
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Controlled Guidance",
+          "description": "The position of your clicks can deflect the rocket by a certain angle.",
+          "cost": 809
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Highly Destructive Explosives",
+          "description": "Rocket can destroy metal tiles, easily.",
+          "cost": 1049
         }
       ],
       "dataPath": "rocket",
@@ -586,7 +586,7 @@
     }, {
       "id": 13,
       "weaponName": "Med Kit",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "The Med Kit heals anyone within a small range.",
       "damage": -25.0,
       "radius": 2.3,
       "maxMagnitude": 6,
@@ -713,7 +713,7 @@
     }, {
       "id": 16,
       "weaponName": "Steel Cube",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "A heavy cube that has a square blast range.",
       "damage": 32,
       "radius": 2.0,
       "maxMagnitude": 8.6,
@@ -736,7 +736,7 @@
         },
         {
           "name": "Adamantium Core",
-          "description": "Destroy enemies with this special, but insanely heavy alloy.",
+          "description": "Destroy enemies with this special, but insanely heavy alloy. Also destroys metal tiles.",
           "cost": 1024
         },
         {

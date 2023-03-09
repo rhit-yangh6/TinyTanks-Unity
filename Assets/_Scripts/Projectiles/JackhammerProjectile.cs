@@ -55,7 +55,7 @@ namespace _Scripts.Projectiles
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
+            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -74,7 +74,7 @@ namespace _Scripts.Projectiles
                 yield return new WaitForSeconds(ExplosionDuration + .03f);
                 newPos += _collisionDirection * _explosionDistance;
                 DamageHandler.i.HandleDamage(newPos, _explosionRadius, _explosionDamage, DamageHandler.DamageType.Circular);
-                TerrainDestroyer.Instance.DestroyTerrainCircular(newPos, _explosionRadius);
+                TerrainDestroyer.instance.DestroyTerrainCircular(newPos, _explosionRadius);
                 var insExpl = Instantiate(ExplosionFX, newPos, Quaternion.identity);
                 insExpl.transform.localScale *= _explosionRadius;
                 Destroy(insExpl, ExplosionDuration);

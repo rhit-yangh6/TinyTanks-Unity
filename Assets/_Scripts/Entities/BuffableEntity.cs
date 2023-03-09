@@ -88,7 +88,7 @@ namespace _Scripts.Entities
             
             DamageHandler.i.HandleDamage(pos, 3, 50, DamageHandler.DamageType.Circular,true);
 
-            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, 3);
+            TerrainDestroyer.instance.DestroyTerrainCircular(pos, 3);
             
             GameObject insExpl = Instantiate(GameAssets.i.regularExplosionFX, pos, Quaternion.identity);
             insExpl.transform.localScale *= 3;

@@ -23,12 +23,12 @@ namespace _Scripts.Projectiles
         {
             get
             {
-                if (Level == 5) return _damage * 1.7f;
-                return Level >= 4 ? _damage * 1.25f : _damage;
+                if (Level == 5) return _damage * 1.7f; // Level 5
+                return Level >= 4 ? _damage * 1.25f : _damage; // Level 4
             }
         }
 
-        protected override float MaxMagnitude => Level == 5 ? _maxMagnitude * 0.6f : _maxMagnitude;
+        protected override float MaxMagnitude => Level == 5 ? _maxMagnitude * 0.6f : _maxMagnitude; // Level 5
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
@@ -51,17 +51,17 @@ namespace _Scripts.Projectiles
             Vector2 pos = transform.position;
             
             var isCritical = false;
-            if (Level >= 3) isCritical = Random.value > 0.70;
+            if (Level >= 3) isCritical = Random.value > 0.70; // Level 3
 
             DamageHandler.i.HandleDamage(pos, Radius, isCritical ? Damage * 1.5f : Damage,
                 DamageHandler.DamageType.Square, isCritical);
 
-            TerrainDestroyer.Instance.DestroyTerrainSquare(pos, Radius);
+            TerrainDestroyer.instance.DestroyTerrainSquare(pos, Radius, Level == 5 ? 2 : 1); // Level 5
         
             SpawnExplosionFX();
             DoCameraShake();
 
-            if (Level == 6)
+            if (Level == 6) // Level 6
             {
                 for (var i = 0; i < 4; i++)
                 {

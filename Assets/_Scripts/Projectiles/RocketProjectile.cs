@@ -16,9 +16,15 @@ namespace _Scripts.Projectiles
         
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
+        protected override float Damage {
+            get
+            {
+                if (Level >= 4) return _damage * 1.38f; // LEVEl 4
+                return Level >= 3 ? _damage * 1.15f : _damage; // LEVEL 3
+            }
+        }
         protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
+        protected override int Steps => Level >= 2 ? (int)(_steps * 1.24f) : _steps; // LEVEL 2
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
@@ -43,10 +49,30 @@ namespace _Scripts.Projectiles
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {
                 _isActivated = true;
-                velocity *= _velocityMultiplier;
+                velocity *= Level >= 4 ? _velocityMultiplier * 1.24f :_velocityMultiplier; // LEVEL 4
                 _rb.velocity = velocity;
+                if (Level == 5) // LEVEL 5
+                {
+                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    var guideDirection = (mousePosition - (Vector2)transform.position).normalized;
+                    _rb.velocity = _rb.velocity + guideDirection * 5f;
+                }
                 _ps.Play();
             }
+        }
+        
+        public override void Detonate()
+        {
+            Vector2 pos = transform.position;
+            
+            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+
+            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius, Level == 6 ? 2 : 1); // LEVEL 6
+        
+            SpawnExplosionFX();
+            DoCameraShake();
+        
+            Destroy(gameObject);
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)

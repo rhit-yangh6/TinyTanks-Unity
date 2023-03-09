@@ -63,7 +63,7 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
+            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -91,7 +91,7 @@ namespace _Scripts.Projectiles
             
             DamageHandler.i.HandleDamage(origin, _secondaryExplosionRadius, _secondaryExplosionDamage, 
                 DamageHandler.DamageType.Circular);
-            TerrainDestroyer.Instance.DestroyTerrainCircular(origin, _secondaryExplosionRadius);
+            TerrainDestroyer.instance.DestroyTerrainCircular(origin, _secondaryExplosionRadius);
             
             var insExpl = Instantiate(ExplosionFX, origin, Quaternion.identity);
             insExpl.transform.localScale *= _secondaryExplosionRadius;
@@ -113,7 +113,7 @@ namespace _Scripts.Projectiles
                 
                 DamageHandler.i.HandleDamage(pos, _clusterExplosionRadius, _clusterExplosionDamage,
                     DamageHandler.DamageType.Circular);
-                TerrainDestroyer.Instance.DestroyTerrainCircular(pos, _clusterExplosionRadius);
+                TerrainDestroyer.instance.DestroyTerrainCircular(pos, _clusterExplosionRadius);
 
                 var insExpl = Instantiate(ExplosionFX, pos, Quaternion.identity);
                 insExpl.transform.localScale *= _clusterExplosionRadius;

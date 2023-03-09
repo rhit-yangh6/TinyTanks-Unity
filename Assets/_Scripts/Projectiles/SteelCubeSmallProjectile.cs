@@ -32,7 +32,7 @@ namespace _Scripts.Projectiles
             Vector2 pos = transform.position;
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Square);
 
-            TerrainDestroyer.Instance.DestroyTerrainSquare(pos, Radius);
+            TerrainDestroyer.instance.DestroyTerrainSquare(pos, Radius);
         
             SpawnExplosionFX();
             DoCameraShake();

@@ -63,7 +63,7 @@ namespace _Scripts.Projectiles
 
                 DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
 
-                TerrainDestroyer.Instance.DestroyTerrainCircular(pos, Radius);
+                TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
             }
             else if (_currentState == 1) // white
             {
@@ -71,7 +71,7 @@ namespace _Scripts.Projectiles
 
                 DamageHandler.i.HandleDamage(pos, _whiteRadius, _whiteDamage, DamageHandler.DamageType.Circular);
 
-                TerrainDestroyer.Instance.DestroyTerrainCircular(pos, _whiteRadius);
+                TerrainDestroyer.instance.DestroyTerrainCircular(pos, _whiteRadius);
             }
             else // black
             {

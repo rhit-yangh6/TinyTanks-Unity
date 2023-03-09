@@ -74,7 +74,7 @@ namespace _Scripts.Projectiles
             }
             else DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.Instance.DestroyTerrainCircular(pos,
+            TerrainDestroyer.instance.DestroyTerrainCircular(pos,
                 (Level >= 4 && _isActivated) ? Radius * 1.5f : Radius);
         
             SpawnExplosionFX();
