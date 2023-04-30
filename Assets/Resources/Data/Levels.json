@@ -2,13 +2,13 @@
   "levels": [
     {
       "id": 1,
-      "name": "The beginning",
+      "name": "The Beginning",
       "prize": 50,
       "path": "Level1"
     },
     {
       "id": 2,
-      "name": "??",
+      "name": "On the Hill",
       "prize": 50,
       "path": "Level2"
     }

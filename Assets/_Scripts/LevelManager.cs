@@ -38,9 +38,9 @@ namespace _Scripts
             return Array.Find(_levelsFromJson.levels, l => l.path == levelPath);
         }
 
-        public Level GetNextLevel(string levelPath)
+        public Level GetNextLevel(string sceneName)
         {
-            var currentLevel = Array.Find(_levelsFromJson.levels, l => l.path == levelPath);
+            var currentLevel = Array.Find(_levelsFromJson.levels, l => l.path == sceneName);
             return Array.Find(_levelsFromJson.levels, l => l.id == currentLevel.id + 1);
         }
 

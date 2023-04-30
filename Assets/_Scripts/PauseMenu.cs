@@ -81,5 +81,16 @@ namespace _Scripts
             GameIsEnded = true;
             loseMenuUI.SetActive(true);
         }
+
+        public void Next()
+        {
+            Resume();
+            var sceneName = SceneManager.GetActiveScene().name;
+            var nextLevel = LevelManager.Instance.GetNextLevel(sceneName);
+            if (nextLevel != null)
+            {
+                SceneManager.LoadScene(nextLevel.path);
+            }
+        }
     }
 }
