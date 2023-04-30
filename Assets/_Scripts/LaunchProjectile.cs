@@ -9,7 +9,6 @@ namespace _Scripts
     {
         public float power = 5f;
         public GameObject player;
-        public GameController gameController;
         public float maxAngle = 80f, minAngle = 5f;
 
         private PlayerController _playerCharacter;
@@ -19,6 +18,7 @@ namespace _Scripts
         private Camera _cam;
         private Vector2 _startPoint, _endPoint;
 
+        private GameController _gc;
         private SelectionDatum _sd;
         private GameObject _projectilePrefab;
         private LaunchedProjectile _selectedProjectile;
@@ -30,6 +30,7 @@ namespace _Scripts
         {
             _cam = Camera.main;
             _lr = GetComponent<LineRenderer>();
+            _gc = GameObject.FindGameObjectWithTag("GC").GetComponent<GameController>();
 
             _playerCharacter = player.GetComponent<PlayerController>();
         }
@@ -95,7 +96,7 @@ namespace _Scripts
                 
                 projectile.GetComponent<LaunchedProjectile>().Level = _sd.level;
 
-                gameController.projectileShot = true;
+                _gc.projectileShot = true;
                 _playerCharacter.moveable = false;
             }
         }
@@ -133,10 +134,23 @@ namespace _Scripts
 
         private Vector2 CalculateFinalVelocity(Vector2 direction, float magnitude)
         {
-            // TODO: Check the current transform angle?
-            float angle = Vector2.SignedAngle(direction, Vector2.right);
-            bool isRight = Math.Abs(angle) < 90;
+            var angle = Vector2.SignedAngle(direction, Vector2.right);
+            var rotationAngle = gameObject.transform.eulerAngles.z;
+
+            var angleAfterRotation = angle + rotationAngle;
+
+            if (angleAfterRotation > 180)
+            {
+                angleAfterRotation = -180 + (angleAfterRotation - 180);
+            }
+            else if (angleAfterRotation < -180)
+            {
+                angleAfterRotation = 180 - (angleAfterRotation + 180);
+            }
+
+            bool isRight = Math.Abs(angleAfterRotation) < 90;
             Vector2 finalDirection;
+            // Debug.Log(angleAfterRotation);
             
             if (isRight && _playerCharacter.FacingDirection == -1)
             {
@@ -147,18 +161,18 @@ namespace _Scripts
             }
 
             // Angle Too Low
-            if (angle > -minAngle || angle < -180 + minAngle)
+            if (angleAfterRotation > -minAngle || angleAfterRotation < -180 + minAngle)
             {
-                finalDirection = Quaternion.Euler(0, 0, isRight ? minAngle : -minAngle) *
+                finalDirection = Quaternion.Euler(0, 0, isRight ? minAngle + rotationAngle : -minAngle + rotationAngle) *
                                  (isRight ? Vector2.right : Vector2.left);
-                _playerCharacter.SetCannonAngle(isRight ? -minAngle : -180 + minAngle);
+                _playerCharacter.SetCannonAngle(isRight ? -minAngle - rotationAngle : -180 + minAngle - rotationAngle);
             } 
             // Angle Too High
-            else if (angle < -maxAngle && angle > -180 + maxAngle)
+            else if (angleAfterRotation < -maxAngle && angleAfterRotation > -180 + maxAngle)
             {
-                finalDirection = Quaternion.Euler(0, 0, isRight ? maxAngle : -maxAngle) *
+                finalDirection = Quaternion.Euler(0, 0, isRight ? maxAngle + rotationAngle : -maxAngle + rotationAngle) *
                                  (isRight ? Vector2.right : Vector2.left);
-                _playerCharacter.SetCannonAngle(isRight ? -maxAngle : -180 + maxAngle);
+                _playerCharacter.SetCannonAngle(isRight ? -maxAngle - rotationAngle : -180 + maxAngle - rotationAngle);
             }
             // Acceptable Angle
             else

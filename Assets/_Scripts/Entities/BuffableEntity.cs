@@ -11,10 +11,12 @@ namespace _Scripts.Entities
 
         [SerializeField] protected float movementSpeed;
         [SerializeField] public GameObject tankCannon;
-        [SerializeField] protected GameController gc;
+        
         [SerializeField] protected BuffPanelBehavior bpb;
         
         protected readonly Dictionary<ScriptableBuff, TimedBuff> Buffs = new ();
+        
+        protected GameController gc;
 
         protected virtual GameObject TankCannon => tankCannon;
         protected virtual SpriteRenderer MainSr => null;
@@ -47,7 +49,7 @@ namespace _Scripts.Entities
 
         public void SetCannonAngle(float angle)
         {
-            TankCannon.transform.localEulerAngles = (FacingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
+            TankCannon.transform.eulerAngles = (FacingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
         }
 
         public void AddBuff(TimedBuff buff)

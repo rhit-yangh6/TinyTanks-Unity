@@ -9,16 +9,16 @@ namespace _Scripts
 {
     public class GameController : MonoBehaviour
     {
-        [SerializeField] private GameObject player;
-        [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private float turnTime = 45f;
-        [SerializeField] private PauseMenu pauseMenu;
         
         [HideInInspector] public bool projectileShot;
         
+        private GameObject _player;
         private PlayerController _playerCharacter;
         private EnemyController[] _enemyCharacters;
         private GameObject[] _enemies;
+        private TextMeshProUGUI _timerText;
+        private PauseMenu _pauseMenu;
 
         private int _turn = 0, _playerNum = 0;
         private float _remainingTime;
@@ -26,6 +26,7 @@ namespace _Scripts
 
         private void Start()
         {
+            _player = GameObject.FindGameObjectWithTag("Player");
             _enemies = GameObject.FindGameObjectsWithTag("Enemy");
             _playerNum = _enemies.Length + 1;
             _enemyCharacters = new EnemyController[_enemies.Length];
@@ -34,7 +35,10 @@ namespace _Scripts
             {
                 _enemyCharacters[i] = _enemies[i].GetComponent<EnemyController>();
             }
-            _playerCharacter = player.GetComponent<PlayerController>();
+            _playerCharacter = _player.GetComponent<PlayerController>();
+
+            _timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
+            _pauseMenu = GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>();
             
             StartCoroutine(HandleMovements());
         }
@@ -46,7 +50,7 @@ namespace _Scripts
             if (_turn == 0 && !projectileShot)
             {
                 _remainingTime -= Time.deltaTime;
-                timerText.text = Math.Round(_remainingTime).ToString(CultureInfo.InvariantCulture);
+                _timerText.text = Math.Round(_remainingTime).ToString(CultureInfo.InvariantCulture);
                 // Time Out, Change Turn
                 if (_remainingTime <= 0)
                 {
@@ -57,12 +61,12 @@ namespace _Scripts
             else if (_turn == 0 && projectileShot)
             {
                 CheckAggressiveProjectiles();
-                timerText.text = "Please Wait...";
+                _timerText.text = "Please Wait...";
             } 
             // Enemies turn
             else
             {
-                timerText.text = "Waiting for Opponent...";
+                _timerText.text = "Waiting for Opponent...";
                 if (projectileShot)
                 {
                     CheckAggressiveProjectiles();
@@ -87,13 +91,13 @@ namespace _Scripts
 
             if (_playerCharacter.Health <= 0)
             {
-                pauseMenu.Lose();
+                _pauseMenu.Lose();
                 return;
             }
             
             if (IsAllEnemyDead())
             {
-                pauseMenu.Win();
+                _pauseMenu.Win();
                 return;
             }
 

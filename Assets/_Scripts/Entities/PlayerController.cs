@@ -12,7 +12,7 @@ namespace _Scripts.Entities
 
         protected override float MaxHealth => maxHealth;
         public override float MovementSpeed => movementSpeed;
-        protected override HealthBarBehavior HealthBar => healthBar;
+        protected override HealthBarBehavior HealthBar => GameObject.FindGameObjectWithTag("UI").GetComponent<HealthBarBehavior>();
         protected override GameObject TankCannon => tankCannon;
         protected override SpriteRenderer MainSr => _mainSr;
         protected override SpriteRenderer CannonSr => _cannonSr;
@@ -26,7 +26,6 @@ namespace _Scripts.Entities
         private void Start()
         {
             Health = MaxHealth;
-            
             HealthBar.SetHealth(Health, MaxHealth);
 
             _mainSr = GetComponent<SpriteRenderer>();

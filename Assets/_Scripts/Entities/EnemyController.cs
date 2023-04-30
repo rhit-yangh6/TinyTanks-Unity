@@ -19,8 +19,7 @@ namespace _Scripts.Entities
         protected override SpriteRenderer CannonSr => _cannonSr;
         protected override SpriteRenderer MainSr => _sr;
 
-        // TODO: Remove this?
-        [SerializeField] public GameObject player;
+        private GameObject _player;
 
         private int _xMovingDirection = 0;
         private bool _isAiming = false;
@@ -33,6 +32,7 @@ namespace _Scripts.Entities
 
         private void Start()
         {
+            gc = GameObject.FindGameObjectWithTag("GC").GetComponent<GameController>();
             Health = maxHealth;
             HealthBar.SetHealth(Health, MaxHealth);
             
@@ -48,6 +48,7 @@ namespace _Scripts.Entities
             _projectileRigidbody2D = _projectilePrefab.GetComponent<Rigidbody2D>();
 
             _rb2d = GetComponent<Rigidbody2D>();
+            _player = GameObject.FindGameObjectWithTag("Player");
         }
 
         void Update()
@@ -74,7 +75,7 @@ namespace _Scripts.Entities
             _lr.enabled = true;
             _isAiming = true;
             
-            Vector2 startPos = transform.position, endPos = player.transform.position;
+            Vector2 startPos = transform.position, endPos = _player.transform.position;
             float t = 3f;
 
             float vx = (endPos.x - startPos.x) / t;

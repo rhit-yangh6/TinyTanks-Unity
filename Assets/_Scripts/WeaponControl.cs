@@ -7,14 +7,18 @@ namespace _Scripts
     public class WeaponControl : MonoBehaviour
     {
 
-        public LaunchProjectile lp;
         public GameObject buttonPrefab;
         private readonly List<Button> _weaponButtons = new ();
         private int _selectedIdx;
+        private GameObject _player;
+        private LaunchProjectile _lp;
 
         private void Start()
         {
             SelectionDatum[] selectedWeapons = PlayerData.Instance.selectedWeapons;
+            
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _lp = _player.GetComponent<LaunchProjectile>();
 
             for (int i = 0; i < 5; i++)
             {
@@ -59,7 +63,7 @@ namespace _Scripts
         private void SwitchWeapon(int index, SelectionDatum sd)
         {
             _selectedIdx = index;
-            lp.SwitchWeapon(sd);
+            _lp.SwitchWeapon(sd);
         }
     }
 }
