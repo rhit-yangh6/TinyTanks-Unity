@@ -294,7 +294,7 @@
     }, {
       "id": 7,
       "weaponName": "Boomerang",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "The boomerang curves back to the shooter while it is in the air.",
       "damage": 32.0,
       "radius": 1.5,
       "maxMagnitude": 18.0,

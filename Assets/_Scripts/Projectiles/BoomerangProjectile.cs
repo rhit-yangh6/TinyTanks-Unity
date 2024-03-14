@@ -68,8 +68,9 @@ namespace _Scripts.Projectiles
                     Vector2 endPos = Shooter.transform.position;
                     Vector2 angleVelocity = (endPos - startPos).normalized;
 
-                    _rb.GetComponent<ConstantForce2D>().force = new Vector2();
-                    _rb.gravityScale = -1;
+                    Destroy(_rb.GetComponent<ConstantForce2D>());
+                    _rb.gravityScale = 0;
+                    // TODO: have a minimum speed
                     _rb.velocity = angleVelocity * (_rb.velocity.magnitude * _selfTrackSpeedMultiplier);
                 }
             }
