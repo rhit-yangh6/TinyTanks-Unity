@@ -12,7 +12,7 @@ namespace _Scripts.Projectiles
         private static GameObject _explosionFX;
         
         // ExtraFields
-        private static float _fixedMagnitude;
+        private static float _fixedMagnitude, _extraForceXMultiplier, _extraForceYMultiplier;
 
         // References
         protected override float Radius => _radius;
@@ -28,6 +28,9 @@ namespace _Scripts.Projectiles
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
+            var velocity = _rb.velocity;
+            _rb.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * _extraForceXMultiplier,
+                velocity.y * _extraForceYMultiplier, 0);
         }
 
         private void FixedUpdate()
@@ -71,21 +74,7 @@ namespace _Scripts.Projectiles
         
             Destroy(gameObject);
         }
-
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            _fixedMagnitude = Array.Find(extraWeaponTerms, ewt => ewt.term == "fixedMagnitude").value;
-        }
-
+        
         public override float GetFixedMagnitude()
         {
             return _fixedMagnitude;
@@ -100,6 +89,22 @@ namespace _Scripts.Projectiles
             if (Level == 5) finalCalculatedSteps = (int)(finalCalculatedSteps * 2f);
             
             return finalCalculatedSteps;
+        }
+        
+        public override void SetParameters(float damage, float radius, 
+            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
+        {
+            _damage = damage;
+            _radius = radius;
+            _maxMagnitude = maxMagnitude;
+            _steps = steps;
+            _explosionDuration = explosionDuration;
+            
+            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+
+            _fixedMagnitude = Array.Find(extraWeaponTerms, ewt => ewt.term == "fixedMagnitude").value;
+            _extraForceXMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "extraForceXMultiplier").value;
+            _extraForceYMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "extraForceYMultiplier").value;
         }
     }
 }

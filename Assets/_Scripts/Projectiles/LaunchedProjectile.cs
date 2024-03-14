@@ -5,6 +5,7 @@ namespace _Scripts.Projectiles
     public class LaunchedProjectile : MonoBehaviour, IProjectile
     {
         public int Level { get; set; }
+        public GameObject Shooter { get; set; }
 
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;

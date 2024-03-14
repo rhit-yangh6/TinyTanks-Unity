@@ -31,8 +31,14 @@ namespace _Scripts
             Square
         }
         
-        public void HandleDamage(Vector2 pos, float radius, float damage, DamageType type,
-            bool isCriticalHit = false, ScriptableBuff buff = null, int buffLevel = 1)
+        public void HandleDamage(
+            Vector2 pos, 
+            float radius, 
+            float damage, 
+            DamageType type,
+            bool isCriticalHit = false, 
+            ScriptableBuff buff = null, 
+            int buffLevel = 1)
         {
             var hitColliders = type switch
             {

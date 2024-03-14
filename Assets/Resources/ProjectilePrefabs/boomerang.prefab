@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f0e5fba37d4df48af6a5fea7c0d400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!50 &7693290331228627133
 Rigidbody2D:
   serializedVersion: 4

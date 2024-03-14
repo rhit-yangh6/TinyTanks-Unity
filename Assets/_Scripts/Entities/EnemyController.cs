@@ -98,6 +98,7 @@ namespace _Scripts.Entities
             
             LaunchedProjectile proj = projectile.GetComponent<LaunchedProjectile>();
             proj.Level = weaponLevel;
+            proj.Shooter = gameObject;
 
             _isAiming = false;
             gc.projectileShot = true;

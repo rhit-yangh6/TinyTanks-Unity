@@ -301,29 +301,29 @@
       "steps": 900,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Good Catch",
+          "description": "Boomerang does no self-damage.",
+          "cost": 50
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Lightweight Boomerangs",
+          "description": "Made with carbon-based materials. Can be thrown further.",
+          "cost": 100
         },
         {
-          "name": "Remote-controlled Boomerang",
-          "description": "",
-          "cost": 0
+          "name": "Sharp Boomerangs",
+          "description": "Boomerangs have sharp blades installed, doing much more damage.",
+          "cost": 400
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Remote-controlled Boomerangs",
+          "description": "Click while in mid-air to slightly change the direction of the boomerang.",
+          "cost": 680
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Self-tracking Boomerangs",
+          "description": "Click while in mid-air to recall the boomerang at a much higher speed and increased damage.",
+          "cost": 780
         }
       ],
       "dataPath": "boomerang",
@@ -337,6 +337,14 @@
         {
           "term": "extraForceYMultiplier",
           "value": -0.25
+        },
+        {
+          "term": "addForceMultiplier",
+          "value": 555
+        },
+        {
+          "term": "selfTrackSpeedMultiplier",
+          "value": 2.55
         }
       ]
     }, {

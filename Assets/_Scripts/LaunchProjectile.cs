@@ -87,14 +87,9 @@ namespace _Scripts
                 Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
                 prb.velocity = velocity;
                 
-                // If extra force needed
-                if (_needExtraForce)
-                {
-                    prb.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * _extraForceXMultiplier,
-                        velocity.y * _extraForceYMultiplier, 0);
-                }
-                
-                projectile.GetComponent<LaunchedProjectile>().Level = _sd.level;
+                LaunchedProjectile lp = projectile.GetComponent<LaunchedProjectile>();
+                lp.Level = _sd.level;
+                lp.Shooter = gameObject;
 
                 _gc.projectileShot = true;
                 _playerCharacter.moveable = false;
