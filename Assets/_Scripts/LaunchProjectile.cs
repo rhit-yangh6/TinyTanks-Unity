@@ -105,7 +105,9 @@ namespace _Scripts
             if (needExtraForce)
             {
                 gravityAccel = prb.gravityScale * timeStep * timeStep * 
-                               (Physics2D.gravity + new Vector2(velocity.x * _extraForceXMultiplier, velocity.y * _extraForceYMultiplier));
+                               (Physics2D.gravity + new Vector2(
+                                   velocity.x * _extraForceXMultiplier,
+                                   velocity.y * _extraForceYMultiplier));
             }
             else
             {
