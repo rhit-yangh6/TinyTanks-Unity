@@ -5,9 +5,9 @@
 13. Weapon - Packed Stone
 15. Weapon - Cage？
 18. Weapon - Homing Stuff, Hive?
-20. Weapon - Hologram
-21. Weapon - Shockwave
-22. Weapon - Floatstone
+20. Weapon - Hologram (decoy)
+21. Weapon - Shockwave, shock from shooter
+22. Weapon - Floatstone, click to float for a distance
 23. Camera - Click to get to good pos
 24. Weapon - Duplicator, click to duplicate into two projectiles
 25. Weapon - BloodThirsty stuff?
