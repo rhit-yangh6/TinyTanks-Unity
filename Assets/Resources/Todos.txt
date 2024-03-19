@@ -1,5 +1,5 @@
 ﻿7. Weapon - Shield
-9. Weapon - Laser Bomb
+9. Weapon - Laser Prober
 10. Weapon - Dynamite
 13. Weapon - Packed Stone
 15. Weapon - Cage？
@@ -10,6 +10,5 @@
 23. Camera - Click to get to good pos
 24. Weapon - Duplicator, click to duplicate into two projectiles
 25. Weapon - BloodThirsty stuff?
-26. Weapon - JackHammer
 27. Weapon - Acid Bottle, stackable debuff
 28. Weapon - Some Punishment Double-edged sword?
