@@ -1171,6 +1171,50 @@
           "value": 8.5
         }
       ]
+    }, {
+      "id": 25,
+      "weaponName": "Airstrike",
+      "weaponDescription": ">>>",
+      "damage": 40,
+      "radius": 4.1,
+      "maxMagnitude": 11,
+      "steps": 660,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "airstrike",
+      "explosionDuration": 0.4,
+      "shopPrice": 700,
+      "extraWeaponTerms": [
+        {
+          "term": "whiteDamage",
+          "value": 33
+        }
+      ]
     }
   ]
 }

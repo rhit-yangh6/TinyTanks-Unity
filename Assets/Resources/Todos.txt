@@ -1,7 +1,6 @@
 ﻿7. Weapon - Shield
 9. Weapon - Laser Bomb
 10. Weapon - Dynamite
-12. Weapon - AirStrike
 13. Weapon - Packed Stone
 15. Weapon - Cage？
 18. Weapon - Homing Stuff, Hive?
