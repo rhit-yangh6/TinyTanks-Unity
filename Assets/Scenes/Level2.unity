@@ -38404,7 +38404,7 @@ GameObject:
   - component: {fileID: 2114957984}
   - component: {fileID: 2114957983}
   - component: {fileID: 2114957985}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DangerZone
   m_TagString: DangerZone
   m_Icon: {fileID: 0}
