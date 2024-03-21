@@ -4,7 +4,7 @@ using _Scripts.Buffs;
 using _Scripts.Entities;
 using UnityEngine;
 
-namespace _Scripts
+namespace _Scripts.Managers
 {
     public class DamageHandler : MonoBehaviour
     {
@@ -56,7 +56,8 @@ namespace _Scripts
 
                 // Find the Enemy script and apply damage.
                 var e = rb.gameObject.GetComponent<Entity>();
-                e.TakeDamage((float)Math.Round(damage), isCriticalHit);
+                var roundedDamage = (float)Math.Round(damage);
+                e.TakeDamage(roundedDamage, isCriticalHit);
 
                 var be = rb.gameObject.GetComponent<BuffableEntity>();
                 // Apply Buff

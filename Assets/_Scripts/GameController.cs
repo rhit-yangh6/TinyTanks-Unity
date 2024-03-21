@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Globalization;
 using _Scripts.Entities;
+using _Scripts.Managers;
 using TMPro;
 using UnityEngine;
 
@@ -40,6 +41,9 @@ namespace _Scripts
             _timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
             _pauseMenu = GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>();
             
+            // Register listeners
+            EventBus.AddListener<int>(EventTypes.DamageDealt, PrintDamage);
+            
             StartCoroutine(HandleMovements());
         }
 
@@ -73,6 +77,11 @@ namespace _Scripts
                 }
             }
             
+        }
+
+        private void PrintDamage(int damageAmount)
+        {
+            Debug.Log("Damage! " + damageAmount);
         }
 
         private void CheckAggressiveProjectiles()

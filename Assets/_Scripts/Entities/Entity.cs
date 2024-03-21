@@ -1,5 +1,6 @@
 ﻿using System;
 using _Scripts.Buffs;
+using _Scripts.Managers;
 using UnityEngine;
 
 namespace _Scripts.Entities
@@ -27,7 +28,11 @@ namespace _Scripts.Entities
 
             amount *= DamageMultiplier;
             var rb = gameObject.GetComponent<Rigidbody2D>();
-            DamagePopup.Create(rb.position, (int)Math.Round(amount), isCriticalHit);
+            var roundedDamageAmount = (int)Math.Round(amount);
+            DamagePopup.Create(rb.position, roundedDamageAmount, isCriticalHit);
+            
+            // Broadcast DamageDealt Event
+            EventBus.Broadcast(EventTypes.DamageDealt, roundedDamageAmount);
             
             if (Health - amount < 0)
             {
