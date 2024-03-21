@@ -31,7 +31,7 @@ namespace _Scripts.Managers
             Square
         }
         
-        public void HandleDamage(
+        public int HandleDamage(
             Vector2 pos, 
             float radius, 
             float damage, 
@@ -49,10 +49,14 @@ namespace _Scripts.Managers
                 _ => null
             };
 
+            var hitCount = 0;
+
             foreach(var col in hitColliders)
             {
                 var rb = col.GetComponent<Rigidbody2D>();
                 if (rb == null) continue;
+
+                hitCount += 1;
 
                 // Find the Enemy script and apply damage.
                 var e = rb.gameObject.GetComponent<Entity>();
@@ -75,6 +79,8 @@ namespace _Scripts.Managers
                 }
                 */
             }
+
+            return hitCount;
         }
 
         public bool DetectTargets(Vector2 pos, float radius)
