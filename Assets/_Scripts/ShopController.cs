@@ -1,5 +1,6 @@
 using System;
 using _Scripts.Arsenal;
+using _Scripts.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,8 +22,14 @@ namespace _Scripts
 
         private void OnEnable ()
         {
+            EventBus.Broadcast(EventTypes.DiscordStateChange, "Browsing Menu", "Viewing Shop");
             PopulateWeaponIcons();
             coinText.text = PlayerData.Instance.coins.ToString();
+        }
+
+        private void OnDisable()
+        {
+            EventBus.Broadcast(EventTypes.DiscordStateChange,  "Browsing Menu", "");
         }
 
         private void PopulateWeaponIcons()

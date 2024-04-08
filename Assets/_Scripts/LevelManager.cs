@@ -48,6 +48,11 @@ namespace _Scripts
         {
             return _levelsFromJson.levels;
         }
+
+        public Level GetCurrentLevel(string sceneName)
+        {
+            return Array.Find(_levelsFromJson.levels, l => l.path == sceneName);
+        }
     }
     
     [Serializable]

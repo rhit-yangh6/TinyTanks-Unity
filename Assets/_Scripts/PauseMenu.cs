@@ -1,3 +1,4 @@
+using _Scripts.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -59,6 +60,7 @@ namespace _Scripts
         public void Restart()
         {
             Resume();
+            EventBus.Broadcast(EventTypes.DiscordStateChange, "Playing Story Mode", "");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 

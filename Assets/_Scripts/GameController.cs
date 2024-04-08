@@ -44,6 +44,9 @@ namespace _Scripts
             // Register listeners
             EventBus.AddListener<int>(EventTypes.DamageDealt, PrintDamage);
             
+            // Update Discord
+            EventBus.Broadcast(EventTypes.DiscordStateChange, "Playing Story Mode", "");
+            
             StartCoroutine(HandleMovements());
         }
 

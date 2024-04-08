@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,12 +20,18 @@ namespace _Scripts.Arsenal
         {
             backButton.onClick.AddListener(SaveSystem.SavePlayer);
         }
-        
-        void OnEnable ()
+
+        private void OnEnable ()
         {
+            EventBus.Broadcast(EventTypes.DiscordStateChange, "Browsing Menu", "Viewing Arsenal");
             PopulateWeaponIcons();
             wdp.SwitchDetailView();
             coinText.text = PlayerData.Instance.coins.ToString();
+        }
+
+        private void OnDisable()
+        {
+            EventBus.Broadcast(EventTypes.DiscordStateChange, "Browsing Menu", "");
         }
 
         private void PopulateWeaponIcons()
