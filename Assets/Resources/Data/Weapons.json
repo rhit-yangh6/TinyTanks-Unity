@@ -1215,6 +1215,48 @@
           "value": 33
         }
       ]
+    }, {
+      "id": 26,
+      "weaponName": "DoubleEdgedSword",
+      "weaponDescription": "This sword will damage you if the projectile didn't hit any targets.",
+      "damage": 45,
+      "radius": 2.8,
+      "maxMagnitude": 8.2,
+      "steps": 550,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "doubleEdgedSword",
+      "explosionDuration": 0.8,
+      "shopPrice": 920,
+      "extraWeaponTerms": [{
+        "term": "swordShadowYOffset",
+        "value": 4.6
+      }]
     }
   ]
 }
