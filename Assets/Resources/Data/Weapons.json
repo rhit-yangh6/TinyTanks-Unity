@@ -1217,7 +1217,7 @@
       ]
     }, {
       "id": 26,
-      "weaponName": "DoubleEdgedSword",
+      "weaponName": "Double-edged Sword",
       "weaponDescription": "This sword will damage you if the projectile didn't hit any targets.",
       "damage": 45,
       "radius": 2.8,
