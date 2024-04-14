@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using UnityEngine;
 
@@ -63,8 +64,6 @@ namespace _Scripts.Projectiles
 
             _explosionFX = GameAssets.i.virusExplosionFX;
             
-            //_damageInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "damageInterval").value;
-            //_moveTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "moveTime").value;
         }
     }
 }

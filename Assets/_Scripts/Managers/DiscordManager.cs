@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using _Scripts.Utils;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,12 +10,6 @@ namespace _Scripts.Managers
     public class DiscordManager : MonoBehaviour
     {
         private static DiscordManager _i;
-        
-        public long applicationID = 1226719540390400140;
-        [Space] public string details = "Browsing Menu";
-        [Space] public string largeImage = "game_icon_1024";
-        public string largeText = "Tiny Tanks";
-
         private long time;
 
         private static bool _instanceExists;
@@ -34,7 +29,7 @@ namespace _Scripts.Managers
         // Start is called before the first frame update
         private void Start()
         {
-            discord = new Discord.Discord(applicationID, (ulong)Discord.CreateFlags.NoRequireDiscord);
+            discord = new Discord.Discord(Constants.DiscordApplicationId, (ulong)Discord.CreateFlags.NoRequireDiscord);
             // Register listeners
             EventBus.AddListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
         }
@@ -58,8 +53,8 @@ namespace _Scripts.Managers
                 },
                 Assets =
                 {
-                    LargeImage = largeImage,
-                    LargeText = largeText
+                    LargeImage = Constants.RichPresenceLargeImage,
+                    LargeText = Constants.RichPresenceLargeText
                 }
             };
             
@@ -76,12 +71,12 @@ namespace _Scripts.Managers
 
         private static string GetLevelOrNormalState(string newState)
         {
-            Level currentLevel = LevelManager.Instance.GetCurrentLevel(SceneManager.GetActiveScene().name);
+            var currentLevel = LevelManager.Instance.GetCurrentLevel(SceneManager.GetActiveScene().name);
             if (currentLevel == null)
             {
                 return newState;
             }
-            return "At Level " + currentLevel.id + ": " + currentLevel.name;
+            return Constants.RichPresenceStoryModeLevelStatePrefix + currentLevel.id + ": " + currentLevel.name;
         }
 
         private void Update()

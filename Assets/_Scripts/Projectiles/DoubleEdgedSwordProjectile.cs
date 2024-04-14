@@ -85,8 +85,9 @@ namespace _Scripts.Projectiles
                 GameObject insExpl = Instantiate(swordShadow, new Vector2(shooterPos.x, shooterPos.y + _swordShadowYOffset), Quaternion.identity);
             
                 // Take damage
+                yield return new WaitForSeconds(ExplosionDuration);
                 Shooter.GetComponent<BuffableEntity>().TakeDamage(Damage);
-                Destroy(insExpl, ExplosionDuration);
+                Destroy(insExpl);
                 Destroy(gameObject);
             }
             else

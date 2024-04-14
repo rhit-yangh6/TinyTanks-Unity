@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Buffs;
+using _Scripts.UI;
 using UnityEngine;
 
 // Source: https://github.com/Bardent/Rigidbody2D-Slopes-Unity/blob/master/Assets/Scripts/PlayerController.cs

@@ -1,5 +1,7 @@
 using System;
 using _Scripts.Entities;
+using _Scripts.GameEngine;
+using _Scripts.Managers;
 using _Scripts.Projectiles;
 using UnityEngine;
 

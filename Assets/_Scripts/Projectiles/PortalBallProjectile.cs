@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using _Scripts.Managers;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -89,9 +90,6 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
 
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            //_boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
-            //_boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
         }
         
     }

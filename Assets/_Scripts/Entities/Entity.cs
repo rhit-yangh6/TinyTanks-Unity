@@ -1,6 +1,7 @@
 ﻿using System;
 using _Scripts.Buffs;
 using _Scripts.Managers;
+using _Scripts.UI;
 using UnityEngine;
 
 namespace _Scripts.Entities

@@ -1,6 +1,45 @@
 {
   "weapons": [
     {
+      "id": -1,
+      "weaponName": "Debugger",
+      "weaponDescription": "Used for debugging.",
+      "damage": 200.0,
+      "radius": 5.0,
+      "maxMagnitude": 20.0,
+      "steps": 2000,
+      "upgradeInfos": [
+        {
+          "name": "Debugging...",
+          "description": "",
+          "cost": 1
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 1
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 1
+        },
+        {
+          "name": "",
+          "description": ".",
+          "cost": 1
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 1
+        }
+      ],
+      "dataPath": "debugger",
+      "explosionDuration": 0.1,
+      "shopPrice": -1000,
+      "extraWeaponTerms": []
+    }, {
       "id": 1,
       "weaponName": "Boulder",
       "weaponDescription": "A large boulder that deals decent damage and destroys terrain.",

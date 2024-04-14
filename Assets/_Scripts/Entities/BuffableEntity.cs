@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Buffs;
+using _Scripts.GameEngine;
+using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using _Scripts.UI;
 using UnityEngine;
 
 namespace _Scripts.Entities
