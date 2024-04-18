@@ -35,7 +35,6 @@ namespace _Scripts.Entities
 
         private void Start()
         {
-            gc = GameObject.FindGameObjectWithTag("GC").GetComponent<GameController>();
             Health = maxHealth;
             HealthBar.SetHealth(Health, MaxHealth);
             
@@ -104,7 +103,7 @@ namespace _Scripts.Entities
             proj.Shooter = gameObject;
 
             _isAiming = false;
-            gc.projectileShot = true;
+            EventBus.Broadcast(EventTypes.ProjectileShot);
         }
         
 

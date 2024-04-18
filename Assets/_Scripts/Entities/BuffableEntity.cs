@@ -20,8 +20,6 @@ namespace _Scripts.Entities
         
         protected readonly Dictionary<ScriptableBuff, TimedBuff> Buffs = new ();
         
-        protected GameController gc;
-
         protected virtual GameObject TankCannon => tankCannon;
         protected virtual SpriteRenderer MainSr => null;
         protected virtual SpriteRenderer CannonSr => null;
@@ -40,7 +38,7 @@ namespace _Scripts.Entities
             base.TakeDamage(amount, isCriticalHit);
             if (Health <= 0)
             {
-                EndTurn();
+                EventBus.Broadcast(EventTypes.EndTurn, this);
             }
         }
 
@@ -105,11 +103,5 @@ namespace _Scripts.Entities
         {
             TakeDamage(MaxHealth * 2);
         }
-
-        public void EndTurn()
-        {
-            gc.EndTurnByCharacter(this);
-        }
-
     }
 }

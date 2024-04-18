@@ -1,4 +1,5 @@
 ﻿using _Scripts.Entities;
+using _Scripts.Managers;
 using UnityEngine;
 
 namespace _Scripts.Buffs
@@ -28,7 +29,7 @@ namespace _Scripts.Buffs
 
         protected override void TurnTrigger()
         {
-            _be.EndTurn();
+            EventBus.Broadcast(EventTypes.EndTurn, _be);
         }
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - UI
   - Timer
   - GC
+  - Wave
   layers:
   - Default
   - TransparentFX

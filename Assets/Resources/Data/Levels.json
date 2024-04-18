@@ -11,6 +11,12 @@
       "name": "On the Hill",
       "prize": 50,
       "path": "Level2"
+    },
+    {
+      "id": 3,
+      "name": "Height Difference",
+      "prize": 50,
+      "path": "Level3"
     }
   ]
 }

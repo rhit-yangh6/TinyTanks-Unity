@@ -20,7 +20,6 @@ namespace _Scripts
         private Camera _cam;
         private Vector2 _startPoint, _endPoint;
 
-        private GameController _gc;
         private SelectionDatum _sd;
         private GameObject _projectilePrefab;
         private LaunchedProjectile _selectedProjectile;
@@ -32,7 +31,6 @@ namespace _Scripts
         {
             _cam = Camera.main;
             _lr = GetComponent<LineRenderer>();
-            _gc = GameObject.FindGameObjectWithTag("GC").GetComponent<GameController>();
 
             _playerCharacter = player.GetComponent<PlayerController>();
         }
@@ -92,8 +90,8 @@ namespace _Scripts
                 LaunchedProjectile lp = projectile.GetComponent<LaunchedProjectile>();
                 lp.Level = _sd.level;
                 lp.Shooter = gameObject;
-
-                _gc.projectileShot = true;
+                
+                EventBus.Broadcast(EventTypes.ProjectileShot);
                 _playerCharacter.moveable = false;
             }
         }

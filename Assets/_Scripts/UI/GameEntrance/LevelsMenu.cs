@@ -57,5 +57,10 @@ namespace _Scripts.UI.GameEntrance
                 */
             }
         }
+
+        public static void EnterSurvivalMode()
+        {
+            SceneManager.LoadScene("Survival");
+        }
     }
 }

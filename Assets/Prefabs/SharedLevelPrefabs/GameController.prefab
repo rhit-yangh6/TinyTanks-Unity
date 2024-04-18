@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7221955296243301306}
   - component: {fileID: 7221955296243301307}
   - component: {fileID: 7221955296243301304}
-  - component: {fileID: 7221955296243301305}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GC
@@ -63,15 +62,3 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &7221955296243301305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7221955296243301301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 223b677d5c018394185ad7e2b3427f8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
