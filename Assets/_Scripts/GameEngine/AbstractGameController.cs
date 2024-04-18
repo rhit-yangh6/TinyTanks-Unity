@@ -165,6 +165,12 @@ namespace _Scripts.GameEngine
                 else
                 {
                     enemyCharacters[turn - 1].TickBuffs();
+                    if (enemyCharacters[turn - 1].IsDead)
+                    {
+                        // In case that the enemy is dead because of the buff tick
+                        ChangeTurn();
+                        yield break;
+                    }
                     if (t == turn) // Not Skipped
                     {
                         yield return StartCoroutine(enemyCharacters[turn - 1].MakeMove());
