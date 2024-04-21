@@ -1,13 +1,17 @@
 using System;
 using System.Collections;
+using _Scripts.Buffs;
+using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
     public class SnowballProjectile : LaunchedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private ScriptableBuff frozenBuff;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -18,36 +22,37 @@ namespace _Scripts.Projectiles
         
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
+        protected override float Damage => Level >= 2 ? _damage * 1.1f : _damage;
         protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
+        protected override int Steps => Level >= 3 ? (int)(_steps * 1.75f) : _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
         private float _timer;
         private Rigidbody2D _rb;
-        
-        void Start()
+
+        private void Start()
         {
             _rb = gameObject.GetComponent<Rigidbody2D>();
             StartCoroutine(Scale());
         }
 
-        void Update()
+        private void Update()
         {
-            Vector2 velocity = _rb.velocity;
-            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            var velocity = _rb.velocity;
+            var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
-        
-        IEnumerator Scale()
+
+        private IEnumerator Scale()
         {
             while(true) // this could also be a condition indicating "alive or dead"
             {
                 // we scale all axis, so they will have the same value, 
                 // so we can work with a float instead of comparing vectors
-                while(_maxSize > transform.localScale.x)
+                var maxSize = Level >= 4 ? _maxSize * 1.17f : _maxSize;
+                while(maxSize > transform.localScale.x)
                 {
                     _timer += Time.deltaTime;
                     transform.localScale +=  Time.deltaTime * _growFactor * new Vector3(1, 1, 0);
@@ -60,13 +65,24 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
             
-            // TODO: 1 + ??
-            var multiplier = Math.Max(Math.Min(_maxSize / 2, _timer / 2), 1f);
+            var multiplier = GetDamageAndRadiusMultiplier();
+
+            if (Level == 5)
+            {
+                // Apply frozen buff if Level = 5
+                DamageHandler.i.HandleDamage(pos, Radius * multiplier, Damage * multiplier, 
+                    DamageHandler.DamageType.Circular, false, frozenBuff, 2);
+            }
+            else
+            {
+                DamageHandler.i.HandleDamage(pos, Radius * multiplier, Damage * multiplier, 
+                    DamageHandler.DamageType.Circular);
+            }
             
-            DamageHandler.i.HandleDamage(pos, Radius * multiplier, Damage * multiplier, 
-                DamageHandler.DamageType.Circular);
-            
-            // TODO: SNOWBALL - DESTROY TERRAIN IF UPGRADED?
+            if (Level == 6)
+            {
+                TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius * multiplier * 1.5f);
+            }
             
             SpawnExplosionFX();
             DoCameraShake();
@@ -76,11 +92,15 @@ namespace _Scripts.Projectiles
         
         public override void SpawnExplosionFX()
         {
-            float multiplier = Math.Max(Math.Min(_maxSize / 2, _timer / 2), 1f);
-            
-            GameObject insExpl = Instantiate(ExplosionFX, transform.position, Quaternion.identity);
-            insExpl.transform.localScale *= Radius * multiplier;
+            var insExpl = Instantiate(ExplosionFX, transform.position, Quaternion.identity);
+            insExpl.transform.localScale *= Radius * GetDamageAndRadiusMultiplier();
             Destroy(insExpl, ExplosionDuration);
+        }
+
+        private float GetDamageAndRadiusMultiplier()
+        {
+            var maxSize = Level >= 4 ? _maxSize * 1.17f : _maxSize;
+            return Math.Max(Math.Min(maxSize / 2, _timer / 2), 1f);
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,
@@ -94,6 +114,7 @@ namespace _Scripts.Projectiles
             
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
             
+            Debug.Log(Level);
             _maxSize = Array.Find(extraWeaponTerms, ewt => ewt.term == "maxSize").value;
             _growFactor = Array.Find(extraWeaponTerms, ewt => ewt.term == "growFactor").value;
         }

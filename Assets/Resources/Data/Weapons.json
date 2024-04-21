@@ -43,6 +43,7 @@
       "id": 1,
       "weaponName": "Boulder",
       "weaponDescription": "A large boulder that deals decent damage and destroys terrain.",
+      "saying": "Classic and reliable.",
       "damage": 35.0,
       "radius": 3.0,
       "maxMagnitude": 10.0,
@@ -91,6 +92,7 @@
       "id": 2,
       "weaponName": "Bomb",
       "weaponDescription": "A larger range time bomb. Does not explode immediately when it hits the ground.",
+      "saying": "Time is Ticking.",
       "damage": 30.0,
       "radius": 3.5,
       "maxMagnitude": 9.5,
@@ -118,7 +120,7 @@
         },
         {
           "name": "Cluster Bomb",
-          "description": "The bomb explosion is followed by a chain of smaller explosions",
+          "description": "The bomb explosion is followed by a chain of smaller explosions.",
           "cost": 1299
         }
       ],
@@ -146,6 +148,7 @@
       "id": 3,
       "weaponName": "Rocket",
       "weaponDescription": "A rocket that can accelerate through the air to its target.",
+      "saying": "Aim at the target!",
       "damage": 32.0,
       "radius": 3.0,
       "maxMagnitude": 14.0,
@@ -190,6 +193,7 @@
       "id": 4,
       "weaponName": "Dice",
       "weaponDescription": "The result depends entirely on the number of points on the dice.",
+      "saying": "That's where luck kicks in.",
       "damage": 26.0,
       "radius": 2.0,
       "maxMagnitude": 11.0,
@@ -236,31 +240,32 @@
       "weaponDescription": "A snowball that grows bigger gradually while in the air. The larger it is, the higher the damage caused and the range of impact.",
       "damage": 28.0,
       "radius": 2.0,
+      "saying": "Let's have a snowball fight!",
       "maxMagnitude": 14.0,
       "steps": 510,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Compacted Snowball",
+          "description": "Hardened snowball, slightly increase base damage.",
+          "cost": 70
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Never lose a fight",
+          "description": "Hugely increase the aim of the snowball.",
+          "cost": 175
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Grow Bigger",
+          "description": "Snowballs can get bigger, dealing more damage and with a larger radius.",
+          "cost": 250
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Chilling Snow",
+          "description": "The snowball applies Frozen buff, slowing the target and increase their damage received.",
+          "cost": 780
         },
         {
-          "name": "Snowball Made of Composite Materials",
+          "name": "Composite Materials",
           "description": "Using composite materials, snowballs can cause extensive damage to the terrain.",
           "cost": 970
         }
@@ -275,7 +280,7 @@
         },
         {
           "term": "growFactor",
-          "value": 0.25
+          "value": 0.27
         }
       ]
     }, {
@@ -284,6 +289,7 @@
       "weaponDescription": "A heavy anvil. Click in mid-air to make it fall quickly.",
       "damage": 33.0,
       "radius": 2.3,
+      "saying": "Ahh, that hurts!",
       "maxMagnitude": 8.0,
       "steps": 400,
       "upgradeInfos": [

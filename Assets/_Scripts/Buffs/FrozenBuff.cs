@@ -13,7 +13,12 @@ namespace _Scripts.Buffs
         {
             // Level 4 = permafrost
             
-            return new TimedFrozenBuff(this, obj, level == 4 ? 999 : level == 5 ? duration + 2 : duration, level);
+            return new TimedFrozenBuff(this, obj, level switch
+            {
+                4 => 999,
+                5 => duration + 2,
+                _ => duration
+            }, level);
         }
     }
     
