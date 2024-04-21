@@ -344,6 +344,7 @@
       "radius": 1.5,
       "maxMagnitude": 18.0,
       "steps": 900,
+      "saying": "It Curves Back.",
       "upgradeInfos": [
         {
           "name": "Good Catch",
@@ -400,6 +401,7 @@
       "radius": 1,
       "maxMagnitude": 13.0,
       "steps": 300,
+      "saying": "U R in my Sight.",
       "upgradeInfos": [
         {
           "name": "8X Scope",
@@ -447,11 +449,12 @@
     }, {
       "id": 9,
       "weaponName": "Shotgun",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "Shoots multiple bullets at the same time.",
       "damage": 21.0,
       "radius": 1.7,
       "maxMagnitude": 9.0,
       "steps": 300,
+      "saying": "A Shotty with multiple gun barrels.",
       "upgradeInfos": [
         {
           "name": "Scopes On The Shotgun",
@@ -496,6 +499,7 @@
       "radius": 2,
       "maxMagnitude": 10.0,
       "steps": 425,
+      "saying": "Burn it all!",
       "upgradeInfos": [
         {
           "name": "Metal Inside",
