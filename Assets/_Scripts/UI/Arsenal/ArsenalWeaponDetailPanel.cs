@@ -1,4 +1,5 @@
 using _Scripts.Managers;
+using _Scripts.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ namespace _Scripts.UI.Arsenal
 
         [SerializeField] private Image weaponIcon;
         [SerializeField] private GameObject infoPanel, upgradePanel, notice;
-        [SerializeField] private TextMeshProUGUI weaponNameText, weaponDescText;
+        [SerializeField] private TextMeshProUGUI weaponNameText, weaponDescText, weaponSayingText;
         [SerializeField] private Slider[] weaponUpgradeProgressSliders;
         [SerializeField] private Button[] weaponUpgradeStarButtons;
         [SerializeField] private TextMeshProUGUI upgradeNameText, upgradeDescText, priceText, coinText;
@@ -38,10 +39,11 @@ namespace _Scripts.UI.Arsenal
             weaponIcon.sprite = w.weaponIconSprite;
             weaponNameText.text = w.weaponName;
             weaponDescText.text = w.weaponDescription;
+            weaponSayingText.text = Constants.ArsenalWeaponSayingPrefix + w.saying;
 
-            for (int i = 0; i < weaponUpgradeStarButtons.Length; i++)
+            for (var i = 0; i < weaponUpgradeStarButtons.Length; i++)
             {
-                int tempLevel = i + 1;
+                var tempLevel = i + 1;
                 weaponUpgradeStarButtons[i].onClick.RemoveAllListeners();
                 weaponUpgradeStarButtons[i].onClick.AddListener(() => StarButtonOnClick(tempLevel));
             }

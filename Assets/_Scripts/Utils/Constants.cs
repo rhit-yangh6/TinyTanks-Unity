@@ -2,6 +2,8 @@
 {
     public static class Constants
     {
+
+        public const string ArsenalWeaponSayingPrefix = "-- ";
         
         public const long DiscordApplicationId = 1226719540390400140;
         

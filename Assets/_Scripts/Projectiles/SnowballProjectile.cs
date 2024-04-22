@@ -114,7 +114,6 @@ namespace _Scripts.Projectiles
             
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
             
-            Debug.Log(Level);
             _maxSize = Array.Find(extraWeaponTerms, ewt => ewt.term == "maxSize").value;
             _growFactor = Array.Find(extraWeaponTerms, ewt => ewt.term == "growFactor").value;
         }

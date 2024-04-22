@@ -51,7 +51,7 @@ namespace _Scripts.Managers
     {
         // Read from Weapons.json
         public int id, steps, shopPrice;
-        public string weaponName, weaponDescription, dataPath, explosionFXPath;
+        public string weaponName, weaponDescription, dataPath, explosionFXPath, saying;
         public float damage, radius, maxMagnitude, explosionDuration;
         
         // Also Read from Weapons.json, but Extra Data Types
