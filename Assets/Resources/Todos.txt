@@ -8,8 +8,11 @@
 21. Weapon - Shockwave, shock from shooter
 22. Weapon - Floatstone, click to float for a distance
 23. Camera - Click to get to good pos
-24. Weapon - Duplicator, click to duplicate into two projectiles
+24. Weapon - Duplicator, click to duplicate into two projectiles (Molecular Splitter)
 25. Weapon - BloodThirsty stuff?
 27. Weapon - Acid Bottle, stackable debuff, deal percentage damage
 30. Weapon - Delayed attack (nuke)?
 31. Weapon - Lightning
+32. Weapon - Photon Beam, vertical beam
+33. Weapon - Plasma Cannon
+34. Weapon - Gravity Bomb
