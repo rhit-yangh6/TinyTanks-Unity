@@ -1306,6 +1306,52 @@
         "term": "swordShadowYOffset",
         "value": 4.6
       }]
+    }, {
+      "id": 27,
+      "weaponName": "Sacrificial Bond",
+      "weaponDescription": "Perform a sacrificial ritual to damage all enemies in the map.",
+      "damage": 50,
+      "radius": 0.1,
+      "saying": "Whatever it takes.",
+      "maxMagnitude": 6,
+      "steps": 100,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "sacrificialBond",
+      "explosionDuration": 0.4,
+      "shopPrice": 666,
+      "extraWeaponTerms": [{
+        "term": "initialGrowDuration",
+        "value": 1.1
+      }, {
+        "term": "enemyDamageMultiplier",
+        "value": 0.33
+      }]
     }
   ]
 }

@@ -11,6 +11,5 @@
 24. Weapon - Duplicator, click to duplicate into two projectiles
 25. Weapon - BloodThirsty stuff?
 27. Weapon - Acid Bottle, stackable debuff, deal percentage damage
-29. Weapon - Sacrifical link, hit self and damange all opponents, damaged split between all targets. 
 30. Weapon - Delayed attack (nuke)?
 31. Weapon - Lightning
