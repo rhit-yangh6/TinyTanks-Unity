@@ -503,7 +503,7 @@
       "upgradeInfos": [
         {
           "name": "Metal Inside",
-          "description": "Slight increase in base damage",
+          "description": "Slight increase in base damage.",
           "cost": 166
         },
         {
@@ -547,11 +547,12 @@
     }, {
       "id": 11,
       "weaponName": "Bounce Ball",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "Shoots a purple ball that bounces around, dealing damage with every hit.",
       "damage": 25.0,
       "radius": 2,
       "maxMagnitude": 11.0,
       "steps": 495,
+      "saying": "Watch out!",
       "upgradeInfos": [
         {
           "name": "Lighter Materials",
