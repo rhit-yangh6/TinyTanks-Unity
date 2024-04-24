@@ -604,11 +604,12 @@
     }, {
       "id": 12,
       "weaponName": "Curse Bomb",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "The curse bomb marks affected target with a curse that after a certain number of turns, they will be instantly killed.",
       "damage": 6.0,
       "radius": 2,
       "maxMagnitude": 8.5,
       "steps": 400,
+      "saying": "The Requiem.",
       "upgradeInfos": [
         {
           "name": "Death's Precision",
@@ -649,6 +650,7 @@
       "radius": 2.3,
       "maxMagnitude": 6,
       "steps": 330,
+      "saying": "I got you.",
       "upgradeInfos": [
         {
           "name": "More Bandages",
@@ -684,15 +686,16 @@
     }, {
       "id": 14,
       "weaponName": "Spiky Ball",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "Click in mid-air to shoot spikes in multiple directions.",
       "damage": 21.0,
       "radius": 2.3,
       "maxMagnitude": 9.0,
       "steps": 400,
+      "saying": "Pointy and Spiky.",
       "upgradeInfos": [
         {
           "name": "Steel Core",
-          "description": "Increased base damage",
+          "description": "Increased base damage.",
           "cost": 80
         },
         {
@@ -732,42 +735,56 @@
     }, {
       "id": 15,
       "weaponName": "Portal Ball",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "Within a certain radius, click to open a portal to teleport the ball, keeping its momentum.",
       "damage": 20.0,
       "radius": 2,
       "maxMagnitude": 6.5,
       "steps": 500,
+      "saying": "Oh, it’s you.",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Spatial Manipulation",
+          "description": "Increases the range at which players can create portals, allowing longer-distance teleportation.",
+          "cost": 200
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Platinum Coating",
+          "description": "Increase the base damage of portal ball by 25%",
+          "cost": 250
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Radioactive Portals",
+          "description": "The portals themselves deal damage to nearby targets.",
+          "cost": 450
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Mirror Dimension",
+          "description": "Opens a portal to the mirror dimension, and spawn a devastating portal ball instead.",
+          "cost": 2000
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Full Control of Space and Time",
+          "description": "No teleportation limits.",
+          "cost": 2500
         }
       ],
       "dataPath": "portalBall",
       "explosionDuration": 0.2,
       "shopPrice": 830,
-      "extraWeaponTerms": []
+      "extraWeaponTerms": [
+        {
+          "term": "maximumDistance",
+          "value": 10.0
+        }, {
+          "term": "circleSteps",
+          "value": 100
+        }, {
+          "term": "mirrorMultiplier",
+          "value": 1.6
+        }, {
+          "term": "portalDamage",
+          "value": 10
+        }]
     }, {
       "id": 16,
       "weaponName": "Steel Cube",
