@@ -13,7 +13,7 @@ namespace _Scripts.GameEngine
 {
     public abstract class AbstractGameController : MonoBehaviour
     {
-        [SerializeField] private float turnTime = 45f;
+        [SerializeField] protected float turnTime = 45f;
         
         protected bool projectileShot;
         
@@ -146,7 +146,7 @@ namespace _Scripts.GameEngine
             return enemyCharacters.All(t => t.IsDead);
         }
 
-        protected IEnumerator HandleMovements()
+        protected virtual IEnumerator HandleMovements()
         {
             var t = turn;
             if (turn == 0)

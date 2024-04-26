@@ -66,7 +66,9 @@ namespace _Scripts.Managers
 
         private static bool IsInGame()
         {
-            return LevelManager.Instance.GetCurrentLevel(SceneManager.GetActiveScene().name) != null;
+            if (LevelManager.Instance.GetCurrentLevel(SceneManager.GetActiveScene().name) != null) return true;
+            return SceneManager.GetActiveScene().name == "Survival" ||
+                   SceneManager.GetActiveScene().name == "ShootingRange";
         }
 
         private static string GetLevelOrNormalState(string newState)

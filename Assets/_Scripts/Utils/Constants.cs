@@ -14,6 +14,11 @@
 
         public const string RichPresenceStoryModeDetail = "Playing Story Mode";
         public const string RichPresenceStoryModeLevelStatePrefix = "At Level ";
+        
+        public const string RichPresenceShootingRangeDetail = "Practicing in Shooting Range";
+        
+        public const string RichPresenceSurvivalModeDetail = "Playing Survival Mode";
+        public const string RichPresenceSurvivalModeStatePrefix = "At Wave ";
 
         public const string RichPresenceLargeImage = "game_icon_1024";
         public const string RichPresenceLargeText = "Tiny Tanks";

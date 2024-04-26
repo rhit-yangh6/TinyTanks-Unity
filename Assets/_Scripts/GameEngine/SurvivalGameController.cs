@@ -32,7 +32,7 @@ namespace _Scripts.GameEngine
             
             // Update Discord
             EventBus.Broadcast(EventTypes.DiscordStateChange,
-                Constants.RichPresenceStoryModeDetail, "");
+                Constants.RichPresenceSurvivalModeDetail, Constants.RichPresenceSurvivalModeStatePrefix + 1);
             AdvanceWave();
             
             StartCoroutine(HandleMovements());
@@ -56,6 +56,9 @@ namespace _Scripts.GameEngine
             {
                 enemyCharacters[i] = enemies[i].GetComponent<EnemyController>();
             }
+            
+            EventBus.Broadcast(EventTypes.DiscordStateChange,
+                Constants.RichPresenceSurvivalModeDetail, Constants.RichPresenceSurvivalModeStatePrefix + _wave);
         }
         
         protected override void ChangeTurn()

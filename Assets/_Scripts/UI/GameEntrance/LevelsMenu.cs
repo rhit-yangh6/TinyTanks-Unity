@@ -62,5 +62,10 @@ namespace _Scripts.UI.GameEntrance
         {
             SceneManager.LoadScene("Survival");
         }
+        
+        public static void EnterShootingRange()
+        {
+            SceneManager.LoadScene("ShootingRange");
+        }
     }
 }
