@@ -849,29 +849,29 @@
       "saying": "Stars guide, stars smite.",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Extended Reach",
+          "description": "Increase the range and aim of the star.",
+          "cost": 199
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Celestial Precision",
+          "description": "Makes it easier to draw the star shape, enhancing the chances of empowerment.",
+          "cost": 499
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Cosmic Enhancement",
+          "description": "Enhances the power of the empowered star.",
+          "cost": 699
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Nova Genesis",
+          "description": "Further amplifies the empowerment of the star, turning it into a radiant nova upon impact.",
+          "cost": 1899
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Comet Cascade",
+          "description": "The star sens shockwaves through the air while drawing the star shape, damaging nearby targets.",
+          "cost": 1299
         }
       ],
       "dataPath": "star",
@@ -884,11 +884,23 @@
         },
         {
           "term": "radiusMultiplier",
-          "value": 1.6
+          "value": 1.5
         },
         {
           "term": "drawStarSpeed",
           "value": 16.0
+        },
+        {
+          "term": "drawStarInterval",
+          "value": 0.4
+        }, 
+        {
+          "term": "shockwaveRadius",
+          "value": 1.5
+        }, 
+        {
+          "term": "shockwaveDamage",
+          "value": 15
         }
       ]
     }, {
