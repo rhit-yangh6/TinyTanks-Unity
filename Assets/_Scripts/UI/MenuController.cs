@@ -25,6 +25,7 @@ namespace _Scripts.UI
         public void ExitButtonYes()
         {
             SaveSystem.SavePlayer();
+            DiscordManager.Instance.DisconnectDiscord();
             Application.Quit();
         }
     }

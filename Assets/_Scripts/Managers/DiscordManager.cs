@@ -36,8 +36,8 @@ namespace _Scripts.Managers
 
         private void OnDestroy()
         {
-            // EventBus.RemoveListener<string>(EventTypes.DiscordStateChange, ChangeActivity);
-            discord.Dispose();
+            EventBus.RemoveListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
+            DisconnectDiscord();
         }
 
         private void ChangeActivity(string newDetails, string newState)
@@ -84,6 +84,11 @@ namespace _Scripts.Managers
         private void Update()
         {
             discord.RunCallbacks();
+        }
+
+        public void DisconnectDiscord()
+        {
+            discord.Dispose();
         }
     }
 }

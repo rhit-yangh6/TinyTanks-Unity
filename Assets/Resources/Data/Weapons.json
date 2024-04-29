@@ -793,6 +793,7 @@
       "radius": 2.0,
       "maxMagnitude": 8.6,
       "steps": 512,
+      "saying": "Steel cubes carve paths clear.",
       "upgradeInfos": [
         {
           "name": "Larger Cubes",
@@ -840,11 +841,12 @@
     }, {
       "id": 17,
       "weaponName": "Star",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "A radiant star-shaped projectile. While in flight, tap to draw a star shape. Completing the star shape without touching terrain empowers the star.",
       "damage": 25,
       "radius": 2.5,
       "maxMagnitude": 9.1,
       "steps": 405,
+      "saying": "Stars guide, stars smite.",
       "upgradeInfos": [
         {
           "name": "",
@@ -897,6 +899,7 @@
       "radius": 1.0,
       "maxMagnitude": 8.22,
       "steps": 468,
+      "saying": "Where the blade lands, fate follows.",
       "upgradeInfos": [
         {
           "name": "",
