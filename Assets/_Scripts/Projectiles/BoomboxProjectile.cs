@@ -55,6 +55,7 @@ namespace _Scripts.Projectiles
                 DoCameraShake();
                 
                 GameObject insExpl = Instantiate(shockFX, pos, Quaternion.identity);
+                insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.1f);
                 insExpl.transform.localScale *= _shockRadius;
                 Destroy(insExpl, ExplosionDuration);
                 
