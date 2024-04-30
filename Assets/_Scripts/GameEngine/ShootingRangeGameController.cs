@@ -61,6 +61,21 @@ namespace _Scripts.GameEngine
             StartCoroutine(HandleMovements());
         }
         
+        // Hitting the edge or dying in their turn
+        private new void EndTurnByCharacter(BuffableEntity be)
+        {
+            if (playerCharacter.Equals(be))
+            {
+                if (turn != 0) return;
+                ChangeTurn();
+                return;
+            }
+
+            var idx = Array.IndexOf(targets, (TargetController)be);
+            if (idx != turn - 1) return;
+            ChangeTurn();
+        }
+        
         protected override IEnumerator HandleMovements()
         {
             var t = turn;

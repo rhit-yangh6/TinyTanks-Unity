@@ -25,7 +25,7 @@ namespace _Scripts.Projectiles
         {
             get
             {
-                if (Level == 5) return _damage * 1.7f; // Level 5
+                if (Level == 5) return _damage * 1.9f; // Level 5
                 return Level >= 4 ? _damage * 1.25f : _damage; // Level 4
             }
         }
