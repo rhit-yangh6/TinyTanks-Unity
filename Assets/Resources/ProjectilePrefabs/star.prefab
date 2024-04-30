@@ -4933,7 +4933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   novaStar: {fileID: 21300000, guid: f180e0d90f5537949afc632ed005245e, type: 3}
   glowMaterial: {fileID: 2100000, guid: 46d72b8db9d2fd14d90b6ea24a581c11, type: 2}
-  ShockwaveFx: {fileID: 7971136528542263083, guid: f6ef2f97f319e814bb310dd1af7eed6f, type: 3}
+  shockwaveFx: {fileID: 7971136528542263083, guid: f6ef2f97f319e814bb310dd1af7eed6f, type: 3}
 --- !u!50 &4805861849075875061
 Rigidbody2D:
   serializedVersion: 4

@@ -845,7 +845,7 @@
       "damage": 25,
       "radius": 2.5,
       "maxMagnitude": 9.1,
-      "steps": 405,
+      "steps": 395,
       "saying": "Stars guide, stars smite.",
       "upgradeInfos": [
         {

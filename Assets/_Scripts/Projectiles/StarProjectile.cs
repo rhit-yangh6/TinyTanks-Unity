@@ -3,7 +3,6 @@ using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
@@ -12,7 +11,7 @@ namespace _Scripts.Projectiles
         // Set in Inspector
         [SerializeField] private Sprite novaStar;
         [SerializeField] private Material glowMaterial;
-        [SerializeField] private GameObject ShockwaveFx;
+        [SerializeField] private GameObject shockwaveFx;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -37,6 +36,7 @@ namespace _Scripts.Projectiles
         private ParticleSystem _ps;
         private bool _isActivated, _isStarComplete;
         private const float RotateDegree = -144f;
+        private static readonly int GlowColor = Shader.PropertyToID("_GlowColor");
 
         private void Start()
         {
@@ -73,20 +73,26 @@ namespace _Scripts.Projectiles
 
             _rb.velocity = (Vector2.left + Vector2.down) * _drawStarSpeed;
             
-            yield return new WaitForSeconds(_drawStarInterval);
+            yield return new WaitForSeconds(Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval);
 
-            Vector2 pos = gameObject.transform.position;
-            GameObject insExpl = Instantiate(ShockwaveFx, pos, Quaternion.identity);
-            insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
-            Destroy(insExpl, ExplosionDuration);
-            DamageHandler.i.HandleDamage(pos, _shockwaveRadius, _shockwaveDamage, DamageHandler.DamageType.Circular);
+            Vector2 pos;
+            GameObject insExpl;
+            if (Level == 6)
+            {
+                pos = gameObject.transform.position;
+                insExpl = Instantiate(shockwaveFx, pos, Quaternion.identity);
+                insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
+                Destroy(insExpl, ExplosionDuration);
+                DamageHandler.i.HandleDamage(pos, _shockwaveRadius, _shockwaveDamage, DamageHandler.DamageType.Circular);
+            }
 
             for (var i = 0; i < 4; i++)
             {
                 _rb.velocity = Rotate(_rb.velocity, RotateDegree);
-                yield return new WaitForSeconds(_drawStarInterval);
+                yield return new WaitForSeconds(Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval);
+                if (Level != 6) continue;
                 pos = gameObject.transform.position;
-                insExpl = Instantiate(ShockwaveFx, pos, Quaternion.identity);
+                insExpl = Instantiate(shockwaveFx, pos, Quaternion.identity);
                 insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
                 Destroy(insExpl, ExplosionDuration);
                 DamageHandler.i.HandleDamage(pos, _shockwaveRadius, _shockwaveDamage, DamageHandler.DamageType.Circular);
@@ -102,18 +108,47 @@ namespace _Scripts.Projectiles
             {
                 _sr.sprite = novaStar;
                 _sr.material = glowMaterial;
+                
+                var elapsedTime = 0f;
+                var lerpTime = 2f;
+                var color = Color.white;
+                while (elapsedTime < lerpTime)
+                {
+                    elapsedTime += Time.deltaTime;
+                    
+                    color *= 1.01f;
+                    _sr.material.SetVector(GlowColor, color);
+                }
             }
-            yield return 0;
+            yield return null;
         }
 
         public override void Detonate()
         {
             Vector2 pos = transform.position;
+
+            var finalRadiusMultiplier = 0f;
+            var finalDamageMultiplier = 0f;
+            switch (Level)
+            {
+                case 5:
+                    finalRadiusMultiplier = _radiusMultiplier * 1.3f;
+                    finalDamageMultiplier = _damageMultiplier * 1.3f;
+                    break;
+                case >= 4:
+                    finalRadiusMultiplier = _radiusMultiplier * 1.2f;
+                    finalDamageMultiplier = _damageMultiplier * 1.2f;
+                    break;
+                default:
+                    finalRadiusMultiplier = _radiusMultiplier;
+                    finalDamageMultiplier = _damageMultiplier;
+                    break;
+            }
             
             DamageHandler.i.HandleDamage(
                 pos, 
-                _isStarComplete ? Radius * _radiusMultiplier : Radius,
-                _isStarComplete ? Damage * _damageMultiplier : Damage, 
+                _isStarComplete ? Radius * finalRadiusMultiplier : Radius,
+                _isStarComplete ? Damage * finalDamageMultiplier : Damage, 
                 DamageHandler.DamageType.Circular);
 
             TerrainDestroyer.instance.DestroyTerrainCircular(pos, 
@@ -148,22 +183,10 @@ namespace _Scripts.Projectiles
 
             _damageMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "damageMultiplier").value;
             _radiusMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "radiusMultiplier").value;
-            switch (Level)
-            {
-                case 5:
-                    _radiusMultiplier *= 1.4f;
-                    _damageMultiplier *= 1.4f;
-                    break;
-                case >= 4:
-                    _radiusMultiplier *= 1.2f;
-                    _damageMultiplier *= 1.2f;
-                    break;
-            }
             
             _drawStarSpeed = Array.Find(extraWeaponTerms, ewt => ewt.term == "drawStarSpeed").value;
             
             _drawStarInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "drawStarInterval").value;
-            _drawStarInterval = Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval;
             
             _shockwaveRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockwaveRadius").value;
             _shockwaveDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockwaveDamage").value;
