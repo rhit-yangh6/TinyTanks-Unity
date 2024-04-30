@@ -49,6 +49,7 @@ namespace _Scripts.Managers
             return _levelsFromJson.levels;
         }
 
+        // Deprecated
         public Level GetCurrentLevel(string sceneName)
         {
             return Array.Find(_levelsFromJson.levels, l => l.path == sceneName);

@@ -17,11 +17,6 @@ namespace _Scripts.UI
             EventBus.Broadcast(EventTypes.DiscordStateChange, "Browsing Menu", "");
         }
 
-        public void PlayGameYes()   
-        {
-            SceneManager.LoadScene("Level1");
-        }
-
         public void ExitButtonYes()
         {
             SaveSystem.SavePlayer();

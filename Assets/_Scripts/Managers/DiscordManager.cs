@@ -1,7 +1,6 @@
 using System;
-using System.Data;
+using _Scripts.GameEngine;
 using _Scripts.Utils;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -66,14 +65,24 @@ namespace _Scripts.Managers
 
         private static bool IsInGame()
         {
-            if (LevelManager.Instance.GetCurrentLevel(SceneManager.GetActiveScene().name) != null) return true;
-            return SceneManager.GetActiveScene().name == "Survival" ||
+            return SceneManager.GetActiveScene().name == "Story" ||
+                   SceneManager.GetActiveScene().name == "Survival" ||
                    SceneManager.GetActiveScene().name == "ShootingRange";
+        }
+
+        private static bool IsInStoryMode()
+        {
+            return SceneManager.GetActiveScene().name == "Story";
         }
 
         private static string GetLevelOrNormalState(string newState)
         {
-            var currentLevel = LevelManager.Instance.GetCurrentLevel(SceneManager.GetActiveScene().name);
+            // Only Story Mode need to display Level state
+            if (!IsInStoryMode())
+            {
+                return newState;
+            }
+            var currentLevel = LevelManager.Instance.GetLevelByPath(GameStateController.currentLevelPath);
             if (currentLevel == null)
             {
                 return newState;
@@ -83,12 +92,26 @@ namespace _Scripts.Managers
 
         private void Update()
         {
-            discord.RunCallbacks();
+            try
+            {
+                discord.RunCallbacks();
+            }
+            catch (Exception e)
+            {
+                // Debug.Log("Bad Discord Connection. " + e.Message);
+            }
         }
 
         public void DisconnectDiscord()
         {
-            discord.Dispose();
+            try
+            {
+                discord.Dispose();
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Failed to Dispose. " + e.Message);
+            }
         }
     }
 }

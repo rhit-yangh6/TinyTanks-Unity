@@ -1,3 +1,4 @@
+using _Scripts.GameEngine;
 using _Scripts.Managers;
 using TMPro;
 using UnityEngine;
@@ -30,11 +31,14 @@ namespace _Scripts.UI.GameEntrance
                 Image s = cellObj.GetComponentsInChildren<Image>()[1];
                 TextMeshProUGUI tmpGUI = cellObj.GetComponentInChildren<TextMeshProUGUI>();
                 Button button = cellObj.GetComponent<Button>();
-
                 
                 tmpGUI.text = l.name;
                 
-                button.onClick.AddListener(() => SceneManager.LoadScene(l.path));
+                button.onClick.AddListener(() =>
+                {
+                    GameStateController.currentLevelPath = l.path;
+                    SceneManager.LoadScene("Story");
+                });
 
                 s.sprite = l.levelPreviewSprite;
 

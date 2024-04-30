@@ -45,9 +45,15 @@ namespace _Scripts.GameEngine
             StartCoroutine(HandleMovements());
         }
         
+        private void OnDestroy()
+        {
+            EventBus.RemoveListener(EventTypes.ProjectileShot, () => projectileShot = true);
+            EventBus.RemoveListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
+        }
+        
         protected override void ChangeTurn()
         {
-            if (PauseMenu.GameIsEnded) return;
+            if (PauseMenu.gameIsEnded) return;
 
             if (playerCharacter.Health <= 0)
             {

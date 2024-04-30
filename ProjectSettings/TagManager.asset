@@ -11,6 +11,7 @@ TagManager:
   - Timer
   - GC
   - Wave
+  - CameraBoundingBox
   layers:
   - Default
   - TransparentFX

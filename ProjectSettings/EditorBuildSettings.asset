@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: f573af33d8092f343bb6a9a27f9f0aa6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level2.unity
     guid: 6c4c9e8f6104b8248a552a9999be5a53
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level3.unity
     guid: 494571c2d65415345840f201491f8c48
   - enabled: 1
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ShootingRange.unity
     guid: b3f6ad04bdc96c748a6e5d7cc559a96b
+  - enabled: 1
+    path: Assets/Scenes/Story.unity
+    guid: 4857cd3ceadc9044c80c013bd0d9a406
   m_configObjects: {}

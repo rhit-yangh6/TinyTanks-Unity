@@ -1,3 +1,4 @@
+using _Scripts.GameEngine;
 using _Scripts.Managers;
 using TMPro;
 using UnityEngine;
@@ -7,8 +8,8 @@ namespace _Scripts.UI
 {
     public class PauseMenu : MonoBehaviour
     {
-        public static bool GameIsPaused = false;
-        public static bool GameIsEnded = false;
+        public static bool gameIsPaused = false;
+        public static bool gameIsEnded = false;
         
         [SerializeField] private GameObject pauseMenuUI;
         [SerializeField] private GameObject winMenuUI;
@@ -17,15 +18,15 @@ namespace _Scripts.UI
         
         private void Awake()
         {
-            GameIsEnded = false;
+            gameIsEnded = false;
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !GameIsEnded)
+            if (Input.GetKeyDown(KeyCode.Escape) && !gameIsEnded)
             {
-                if (GameIsPaused)
+                if (gameIsPaused)
                 {
                     Resume();
                 }
@@ -40,14 +41,14 @@ namespace _Scripts.UI
         {
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
-            GameIsPaused = false;
+            gameIsPaused = false;
         }
 
         public void Pause()
         {
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
-            GameIsPaused = true;
+            gameIsPaused = true;
         }
 
         public void LoadMenu()
@@ -66,33 +67,31 @@ namespace _Scripts.UI
 
         public void Win()
         {
-            // Give money?
-            
-            var sceneName = SceneManager.GetActiveScene().name;
-            var prize = LevelManager.Instance.GetLevelByPath(sceneName).prize;
+            // TODO: Give Weapon
+            var prize = LevelManager.Instance.GetLevelByPath(GameStateController.currentLevelPath).prize;
 
             coinText.text = "+" + prize;
             PlayerData.Instance.GainMoney(prize);
             
-            GameIsEnded = true;
+            gameIsEnded = true;
             winMenuUI.SetActive(true);
         }
 
         public void Lose()
         {
-            GameIsEnded = true;
+            gameIsEnded = true;
             loseMenuUI.SetActive(true);
         }
 
         public void Next()
         {
             Resume();
-            var sceneName = SceneManager.GetActiveScene().name;
-            var nextLevel = LevelManager.Instance.GetNextLevel(sceneName);
+            var nextLevel = LevelManager.Instance.GetNextLevel(GameStateController.currentLevelPath);
             if (nextLevel != null)
             {
-                SceneManager.LoadScene(nextLevel.path);
+                GameStateController.currentLevelPath = nextLevel.path;
             }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

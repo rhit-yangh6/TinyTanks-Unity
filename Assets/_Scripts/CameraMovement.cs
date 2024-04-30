@@ -1,6 +1,6 @@
-using System;
-using System.Collections;
+using _Scripts.GameEngine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace _Scripts
@@ -20,6 +20,12 @@ namespace _Scripts
         
         private void Awake()
         {
+            // Only load prefab in Story Mode
+            if (SceneManager.GetActiveScene().name == "Story")
+            {
+                Instantiate(Resources.Load<GameObject>("LevelPrefabs/" + GameStateController.currentLevelPath));
+                boundsSr = GameObject.FindGameObjectWithTag("CameraBoundingBox").GetComponent<SpriteRenderer>();
+            }
             var pos = boundsSr.transform.position;
             var bounds = boundsSr.bounds;
             

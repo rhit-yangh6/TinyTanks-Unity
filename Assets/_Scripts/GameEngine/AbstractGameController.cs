@@ -106,7 +106,7 @@ namespace _Scripts.GameEngine
 
         protected virtual void ChangeTurn()
         {
-            if (PauseMenu.GameIsEnded) return;
+            if (PauseMenu.gameIsEnded) return;
 
             if (playerCharacter.Health <= 0)
             {
@@ -165,7 +165,18 @@ namespace _Scripts.GameEngine
                 else
                 {
                     enemyCharacters[turn - 1].TickBuffs();
-                    if (enemyCharacters[turn - 1].IsDead)
+
+                    EnemyController currentEnemy;
+                    try
+                    {
+                        currentEnemy = enemyCharacters[turn - 1];
+                    }
+                    catch (Exception e)
+                    {
+                        yield break;
+                    }
+                    
+                    if (currentEnemy.IsDead)
                     {
                         // In case that the enemy is dead because of the buff tick
                         ChangeTurn();
@@ -173,7 +184,7 @@ namespace _Scripts.GameEngine
                     }
                     if (t == turn) // Not Skipped
                     {
-                        yield return StartCoroutine(enemyCharacters[turn - 1].MakeMove());
+                        yield return StartCoroutine(currentEnemy.MakeMove());
                     }
                 }
             }

@@ -14,7 +14,7 @@ namespace _Scripts.GameEngine
     {
         protected override void ChangeTurn()
         {
-            if (PauseMenu.GameIsEnded) return;
+            if (PauseMenu.gameIsEnded) return;
 
             if (playerCharacter.Health <= 0)
             {
