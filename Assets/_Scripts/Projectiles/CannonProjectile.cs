@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public class DebuggerProjectile: LaunchedProjectile
+    public class CannonProjectile: LaunchedProjectile
     {
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -14,7 +14,7 @@ namespace _Scripts.Projectiles
         
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
+        protected override float Damage => Level == 6 ? 9999f : _damage;
         protected override float MaxMagnitude => _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;

@@ -2,15 +2,26 @@
   "weapons": [
     {
       "id": -1,
-      "weaponName": "Debugger",
-      "weaponDescription": "Used for debugging.",
-      "damage": 200.0,
-      "radius": 5.0,
+      "weaponName": "Cannon",
+      "weaponDescription": "--------OWNED BY ENEMIES--------",
+      "damage": 20.0,
+      "radius": 2.0,
       "maxMagnitude": 20.0,
-      "steps": 2000,
+      "saying": "You are not supposed to have this....",
+      "steps": 500,
       "upgradeInfos": [
         {
-          "name": "Debugging...",
+          "name": "---L2---",
+          "description": "",
+          "cost": 1
+        },
+        {
+          "name": "---L3---",
+          "description": "",
+          "cost": 1
+        },
+        {
+          "name": "---L4---",
           "description": "",
           "cost": 1
         },
@@ -20,22 +31,12 @@
           "cost": 1
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 1
-        },
-        {
-          "name": "",
-          "description": ".",
-          "cost": 1
-        },
-        {
-          "name": "",
-          "description": "",
+          "name": "Debugger",
+          "description": "=====USED FOR DEBUGGING=====",
           "cost": 1
         }
       ],
-      "dataPath": "debugger",
+      "dataPath": "cannon",
       "explosionDuration": 0.1,
       "shopPrice": -1000,
       "extraWeaponTerms": []
