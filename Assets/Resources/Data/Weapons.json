@@ -964,6 +964,7 @@
       "damage": 19,
       "radius": 2.0,
       "maxMagnitude": 9.99,
+      "saying": "From patient zero.",
       "steps": 499,
       "upgradeInfos": [
         {

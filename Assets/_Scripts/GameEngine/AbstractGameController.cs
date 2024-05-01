@@ -104,27 +104,7 @@ namespace _Scripts.GameEngine
             }
         }
 
-        protected virtual void ChangeTurn()
-        {
-            if (PauseMenu.gameIsEnded) return;
-
-            if (playerCharacter.Health <= 0)
-            {
-                pauseMenu.Lose();
-                return;
-            }
-            
-            if (IsAllEnemyDead())
-            {
-                pauseMenu.Win();
-                return;
-            }
-
-            projectileShot = false;
-            turn = (turn + 1) % playerNum;
-            isInterTurn = false;
-            StartCoroutine(HandleMovements());
-        }
+        protected abstract void ChangeTurn();
 
         // Hitting the edge or dying in their turn
         protected void EndTurnByCharacter(BuffableEntity be)
@@ -171,7 +151,7 @@ namespace _Scripts.GameEngine
                     {
                         currentEnemy = enemyCharacters[turn - 1];
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         yield break;
                     }

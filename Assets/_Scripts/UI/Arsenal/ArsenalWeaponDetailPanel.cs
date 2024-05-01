@@ -166,6 +166,11 @@ namespace _Scripts.UI.Arsenal
 
             if (!result) return;
             
+            SteamManager.Instance.UnlockAchievement(Constants.AchievementFirstUpgradeId);
+            if (levelToBuy > 4)
+            {
+                SteamManager.Instance.UnlockAchievement(Constants.AchievementMaxUpgradeId);
+            }
             shopPanel.SetActive(false);
             SetWeaponLevel(weaponId, levelToBuy);
             coinText.text = PlayerData.Instance.coins.ToString();

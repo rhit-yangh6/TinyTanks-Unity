@@ -8,8 +8,12 @@ namespace _Scripts.UI
     {
         public void Awake()
         {
+            // TODO: Probably move this to somewhere else, facade?
             // Create a DiscordManager Singleton
             var discordManager = DiscordManager.Instance;
+            
+            // Create a SteamManager Singleton
+            var steamManager = SteamManager.Instance;
         }
 
         public void OnEnable()

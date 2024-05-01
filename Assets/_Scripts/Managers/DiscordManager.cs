@@ -96,7 +96,7 @@ namespace _Scripts.Managers
             {
                 discord.RunCallbacks();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Debug.Log("Bad Discord Connection. " + e.Message);
             }

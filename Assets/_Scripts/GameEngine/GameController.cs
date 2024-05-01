@@ -15,7 +15,7 @@ namespace _Scripts.GameEngine
         protected override void ChangeTurn()
         {
             if (PauseMenu.gameIsEnded) return;
-
+        
             if (playerCharacter.Health <= 0)
             {
                 pauseMenu.Lose();
@@ -24,10 +24,12 @@ namespace _Scripts.GameEngine
             
             if (IsAllEnemyDead())
             {
+                // Unlock FIRST_WIN achievement during level completion
+                SteamManager.Instance.UnlockAchievement(Constants.AchievementFirstWinId);
                 pauseMenu.Win();
                 return;
             }
-
+        
             projectileShot = false;
             turn = (turn + 1) % playerNum;
             isInterTurn = false;

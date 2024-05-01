@@ -1,4 +1,6 @@
-﻿namespace _Scripts.Utils
+﻿using System;
+
+namespace _Scripts.Utils
 {
     public static class Constants
     {
@@ -22,5 +24,10 @@
 
         public const string RichPresenceLargeImage = "game_icon_1024";
         public const string RichPresenceLargeText = "Tiny Tanks";
+
+        public const uint SteamAppId = 2190060;
+        public const string AchievementFirstWinId = "FIRST_WIN";
+        public const string AchievementFirstUpgradeId = "FIRST_UPGRADE";
+        public const string AchievementMaxUpgradeId = "MAX_UPGRADE";
     }
 }
