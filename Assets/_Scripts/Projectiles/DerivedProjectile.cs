@@ -6,6 +6,8 @@ namespace _Scripts.Projectiles
 {
     public class DerivedProjectile : MonoBehaviour, IProjectile
     {
+        public GameObject Shooter { get; set; }
+        
         // Shared Fields
         private static float _radius, _damage, _explosionDuration;
         private static int _steps;

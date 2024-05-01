@@ -907,37 +907,37 @@
     }, {
       "id": 18,
       "weaponName": "Saw Blade",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "Launches a saw blade that sticks on impact, rolling forward and damaging enemies before disappearing after a set time.",
       "damage": 29,
       "radius": 1.0,
-      "maxMagnitude": 8.22,
+      "maxMagnitude": 7.22,
       "steps": 468,
       "saying": "Where the blade lands, fate follows.",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "SawStop",
+          "description": "The blade will stop instantly if it touches the shooter, dealing no damage its shooter.",
+          "cost": 70
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Reinforced Structure",
+          "description": "Increases the durability and sharpness of the saw blade, increasing its damage and making it travel farther.",
+          "cost": 220
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Precision Deployment",
+          "description": "Hugely improve the range of accuracy of saw blades.",
+          "cost": 310
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Relentless Fury",
+          "description": "Damaging an enemy refreshes the timer for the saw blade's roll-forward action, allowing it to continue its relentless assault on foes without interruption.",
+          "cost": 1450
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Shredder Storm",
+          "description": "The saw blades explode upon impact with an enemy, releasing smaller saw blades that goes in different directions.",
+          "cost": 1300
         }
       ],
       "dataPath": "sawBlade",
@@ -951,6 +951,10 @@
         {
           "term": "moveTime",
           "value": 1.0
+        },
+        {
+          "term": "sawBladeSmallDamage",
+          "value": 16
         }
       ]
     }, {

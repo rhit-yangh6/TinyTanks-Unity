@@ -1,25 +1,29 @@
 ﻿using System;
-using System.Collections;
+using System.Linq;
 using _Scripts.Managers;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
     public class SawBladeProjectile : LaunchedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private GameObject sawBladeSmallPrefab;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
         private static GameObject _explosionFX;
 
         // ExtraFields
-        private static float _damageInterval, _moveTime;
+        private static float _damageInterval, _moveTime, _sawBladeSmallDamage;
         
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
+        protected override float Damage => Level >= 3 ? _damage * 1.3f : _damage;
+        protected override float MaxMagnitude => Level >= 4 ? _maxMagnitude * 1.2f : _maxMagnitude;
+        protected override int Steps => Level >= 4 ? (int)(_steps * 1.3f) : _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
@@ -28,8 +32,7 @@ namespace _Scripts.Projectiles
         private int _moveDirection;
         private bool _isActivated;
         private float _intervalTimeLeft;
-
-        // TODO; refresh when hitting targets
+        private float _timeLeft;
         
         private void Start()
         {
@@ -46,19 +49,77 @@ namespace _Scripts.Projectiles
 
             if (_moveDirection != 0)
             {
-                transform.position = new Vector3(transform.position.x+_moveDirection * 7f * Time.deltaTime,
+                transform.position = new Vector3(transform.position.x+_moveDirection * 7.5f * Time.deltaTime,
                     transform.position.y, transform.position.z);
             }
 
             if (!_isActivated) return;
 
-            var pos = transform.position;
-            var hasTarget = DamageHandler.i.DetectTargets(pos, Radius);
+            if (_timeLeft <= 0)
+            {
+                Destroy(gameObject);
+            }
 
-            if (_intervalTimeLeft > 0 || !hasTarget) return;
+            _timeLeft -= Time.deltaTime;
+
+            var pos = transform.position;
+            var targets = DamageHandler.i.DetectTargets(pos, Radius);
+            
+            var enumerable = targets.ToList();
+            if (_intervalTimeLeft > 0 || !enumerable.Any()) return;
+
+            if (Level >= 2 && enumerable.Any(e => ReferenceEquals(Shooter, e.gameObject)))
+            {
+                Destroy(gameObject);
+                return;
+            }
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+
+            if (Level == 6)
+            {
+                SpawnExplosionFX();
+                DoCameraShake();
+                // Spawn three smaller ones
+                
+                // First Piece
+                var derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
+                var derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
+                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+            
+                derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
+                derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+                derivedProjectile.Shooter = Shooter;
+                derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
+                
+                // Second Piece
+                derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
+                derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
+                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+            
+                derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
+                derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+                derivedProjectile.Shooter = Shooter;
+                derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
+                
+                // Third Piece - 50/50 Left/Right
+                derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
+                derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
+                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+            
+                derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
+                derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+                derivedProjectile.Shooter = Shooter;
+                derivedRb2d.velocity = (Random.value > 0.5 ? Vector2.right : Vector2.left + Vector2.up * 3) * 3f;
+                
+                Destroy(gameObject);
+            }
+            
             _intervalTimeLeft = _damageInterval;
+            if (Level == 5)
+            {
+                RefreshTimeLeft();
+            }
         }
 
         public override void Detonate()
@@ -66,15 +127,12 @@ namespace _Scripts.Projectiles
             if (_isActivated) return;
             _isActivated = true;
             _moveDirection = _rb.velocity.x > 0 ? 1 : -1;
-            StartCoroutine(MoveForward());
+            RefreshTimeLeft();
         }
 
-        private IEnumerator MoveForward()
+        private void RefreshTimeLeft()
         {
-            yield return new WaitForSeconds(_moveTime);
-            _moveDirection = 0;
-            
-            Destroy(gameObject);
+            _timeLeft = Level >= 3 ? _moveTime * 1.8f : _moveTime;
         }
 
         public override void SetParameters(float damage, float radius, 
@@ -90,6 +148,7 @@ namespace _Scripts.Projectiles
             
             _damageInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "damageInterval").value;
             _moveTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "moveTime").value;
+            _sawBladeSmallDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "sawBladeSmallDamage").value;
         }
     }
 }

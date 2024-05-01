@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Buffs;
 using _Scripts.Entities;
@@ -83,11 +84,11 @@ namespace _Scripts.Managers
             return hitCount;
         }
 
-        public bool DetectTargets(Vector2 pos, float radius)
+        public IEnumerable<Entity> DetectTargets(Vector2 pos, float radius)
         {
             var hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
 
-            return hitColliders.Select(col => col.gameObject.GetComponent<Entity>()).Any(e => e != null);
+            return hitColliders.Select(col => col.gameObject.GetComponent<Entity>()).Where(e => e != null);
         }
 
         public void HandleCompleteHeals(Vector2 pos, float radius, ScriptableBuff buff = null)
