@@ -8,6 +8,12 @@ namespace _Scripts.Managers
         /* Represents the event that an Projectile is shot from player/enemy */
         ProjectileShot,
         
+        /* Represents the event that player started dragging */
+        StartedDragging,
+        
+        /* Represents the event that player stopped Dragging */
+        StoppedDragging,
+        
         /* Represents the event that a turn is ended by either player/enemy */
         EndTurn,
         

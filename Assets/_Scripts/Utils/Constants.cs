@@ -29,5 +29,7 @@ namespace _Scripts.Utils
         public const string AchievementFirstWinId = "FIRST_WIN";
         public const string AchievementFirstUpgradeId = "FIRST_UPGRADE";
         public const string AchievementMaxUpgradeId = "MAX_UPGRADE";
+        public const string AchievementTutorialCompleted = "TUTORIAL_COMPLETED";
+        public const string AchievementBabySteps = "BABY_STEPS";
     }
 }

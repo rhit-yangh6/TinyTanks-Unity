@@ -1,5 +1,6 @@
 using _Scripts.GameEngine;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -68,10 +69,17 @@ namespace _Scripts.UI
         public void Win()
         {
             // TODO: Give Weapon
-            var prize = LevelManager.Instance.GetLevelByPath(GameStateController.currentLevelPath).prize;
+            if (SceneManager.GetActiveScene().name == "Story")
+            {
+                var prize = LevelManager.Instance.GetLevelByPath(GameStateController.currentLevelPath).prize;
 
-            coinText.text = "+" + prize;
-            PlayerData.Instance.GainMoney(prize);
+                coinText.text = "+" + prize;
+                PlayerData.Instance.GainMoney(prize);
+            } else if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                SteamManager.Instance.UnlockAchievement(Constants.AchievementTutorialCompleted);
+                PlayerData.Instance.isTutorialCompleted = true;
+            }
             
             gameIsEnded = true;
             winMenuUI.SetActive(true);

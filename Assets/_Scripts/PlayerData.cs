@@ -13,6 +13,8 @@ namespace _Scripts
 
         public SelectionDatum[] selectedWeapons;
         public List<WeaponDatum> weaponLevels;
+
+        public bool isTutorialCompleted;
         
         private static PlayerData _i;
         
@@ -41,6 +43,7 @@ namespace _Scripts
              */
             level = 1;
             coins = 88888888;
+            isTutorialCompleted = false;
             selectedWeapons = new SelectionDatum[]
             {
                 new (1, 1),

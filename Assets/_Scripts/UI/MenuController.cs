@@ -1,3 +1,4 @@
+using System;
 using _Scripts.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,15 @@ namespace _Scripts.UI
             
             // Create a SteamManager Singleton
             var steamManager = SteamManager.Instance;
+        }
+
+        private void Start()
+        {
+            if (!PlayerData.Instance.isTutorialCompleted)
+            {
+                // Didn't pass tutorial, change to tutorial scene
+                SceneManager.LoadScene("Tutorial");
+            }
         }
 
         public void OnEnable()

@@ -66,6 +66,7 @@ namespace _Scripts
         {
             if (_playerCharacter.moveable)
             {
+                EventBus.Broadcast(EventTypes.StartedDragging);
                 _startPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
                 _lr.enabled = true;
             }
@@ -75,7 +76,7 @@ namespace _Scripts
         {
             if (_playerCharacter.moveable)
             {
-
+                EventBus.Broadcast(EventTypes.StoppedDragging);
                 _endPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
         
                 Vector2 direction = (_startPoint - _endPoint).normalized;
