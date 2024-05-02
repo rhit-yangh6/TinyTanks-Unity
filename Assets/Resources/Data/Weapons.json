@@ -183,7 +183,7 @@
       ],
       "dataPath": "rocket",
       "explosionDuration": 0.2,
-      "shopPrice": 288,
+      "shopPrice": 28,
       "extraWeaponTerms": [
         {
           "term": "velocityMultiplier",

@@ -50,7 +50,14 @@ namespace _Scripts.Managers
 
         private void OnApplicationQuit()
         {
-            Steamworks.SteamClient.Shutdown();
+            try
+            {
+                Steamworks.SteamClient.Shutdown();
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         public void IsThisAchievementUnlocked(string id)
