@@ -43,22 +43,22 @@ namespace _Scripts.Managers
             Debug.Log($"Steam - Logged in as {Steamworks.SteamClient.Name}");
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             Steamworks.SteamClient.Shutdown();
         }
 
-        private void OnApplicationQuit()
-        {
-            try
-            {
-                Steamworks.SteamClient.Shutdown();
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
-        }
+        // private void OnApplicationQuit()
+        // {
+        //     try
+        //     {
+        //         Steamworks.SteamClient.Shutdown();
+        //     }
+        //     catch (Exception)
+        //     {
+        //         // ignored
+        //     }
+        // }
 
         public void IsThisAchievementUnlocked(string id)
         {

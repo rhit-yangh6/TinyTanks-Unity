@@ -36,6 +36,11 @@ namespace _Scripts.Managers
         private void OnDestroy()
         {
             EventBus.RemoveListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
+            // DisconnectDiscord();
+        }
+
+        private void OnApplicationQuit()
+        {
             DisconnectDiscord();
         }
 
