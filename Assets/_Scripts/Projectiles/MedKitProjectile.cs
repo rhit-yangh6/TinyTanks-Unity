@@ -8,9 +8,6 @@ namespace _Scripts.Projectiles
 {
     public class MedKitProjectile : LaunchedProjectile
     {
-        // Set In Inspector
-        [SerializeField] private ScriptableBuff healingBuff;
-        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -45,12 +42,12 @@ namespace _Scripts.Projectiles
 
             if (isCompleteHeal)
             {
-                DamageHandler.i.HandleCompleteHeals(pos, Radius, Level == 6 ? healingBuff : null);
+                DamageHandler.i.HandleCompleteHeals(pos, Radius, Level == 6 ? GameAssets.i.healingBuff : null);
             }
             else
             {
                 DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
-                    false, Level == 6 ? healingBuff : null);
+                    false, Level == 6 ? GameAssets.i.healingBuff : null);
             }
 
             SpawnExplosionFX();

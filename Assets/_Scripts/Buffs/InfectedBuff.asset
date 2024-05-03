@@ -17,4 +17,4 @@ MonoBehaviour:
   isEffectStacked: 0
   isTurnTriggered: 1
   buffIcon: {fileID: 2087630626, guid: 7adbad068adf20a448df0e0caf039767, type: 3}
-  infectedDamage: 5
+  infectedDamage: 6

@@ -7,9 +7,6 @@ namespace _Scripts.Projectiles
 {
     public class IceCubeProjectile: LaunchedProjectile
     {
-        // Set in Inspector
-        [SerializeField] private ScriptableBuff frozenBuff;
-        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -54,7 +51,7 @@ namespace _Scripts.Projectiles
             };
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular, 
-                false, frozenBuff, finalBuffLevel);
+                false, GameAssets.i.frozenBuff, finalBuffLevel);
 
             SpawnExplosionFX();
             DoCameraShake();

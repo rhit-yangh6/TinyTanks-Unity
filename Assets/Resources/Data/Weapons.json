@@ -960,7 +960,7 @@
     }, {
       "id": 19,
       "weaponName": "Virus",
-      "weaponDescription": ">>>>",
+      "weaponDescription": "A projectile that infects enemies upon impact, dealing damage over time. When the de-buff expires, it spreads to nearby enemies.",
       "damage": 19,
       "radius": 2.0,
       "maxMagnitude": 9.99,
@@ -968,29 +968,29 @@
       "steps": 499,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Contagious Vector",
+          "description": "Increases the radius of the de-buff spread upon expiration.",
+          "cost": 110
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Viral Expansion",
+          "description": "Increase the range and explosion radius of the virus projectile.",
+          "cost": 210
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Viral Amplification",
+          "description": "Enhances the damage of the DoT effect inflicted by the de-buff.",
+          "cost": 410
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Pandemic Dominance",
+          "description": "Radius of de-buff spread is significantly expanded. Chance to spread the virus on every turn.",
+          "cost": 1300
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Lethal Contagion",
+          "description": "The viral pathogen evolves into a lethal contagion. Infected enemies have a chance to succumb to the lethal infection, causing instant death.",
+          "cost": 1600
         }
       ],
       "dataPath": "virus",

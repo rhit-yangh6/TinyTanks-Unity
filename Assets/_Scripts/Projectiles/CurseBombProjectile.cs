@@ -7,9 +7,6 @@ namespace _Scripts.Projectiles
 {
     public class CurseBombProjectile : LaunchedProjectile
     {
-        // Set in Inspector
-        [SerializeField] private ScriptableBuff cursedBuff;
-        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -52,7 +49,7 @@ namespace _Scripts.Projectiles
             };
 
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
-                false, cursedBuff, cursedBuffLevel);
+                false, GameAssets.i.cursedBuff, cursedBuffLevel);
 
             // TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
         

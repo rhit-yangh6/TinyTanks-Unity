@@ -16,9 +16,9 @@ namespace _Scripts.Projectiles
         private static float _damageInterval, _moveTime;
         
         // References
-        protected override float Radius => _radius;
+        protected override float Radius => Level >= 3 ? _radius * 1.3f : _radius;
         protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
+        protected override float MaxMagnitude => Level >= 3 ? _maxMagnitude * 1.3f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
@@ -38,14 +38,20 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
+            var finalBuffLevel = Level switch
+            {
+                6 => 5,
+                5 => 4,
+                4 => 3,
+                >= 2 => 2,
+                _ => 1
+            };
             
             Vector2 pos = transform.position;
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular, false,
-                GameAssets.i.infectedBuff, 1);
-
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
-        
+                GameAssets.i.infectedBuff, finalBuffLevel);
+            
             SpawnExplosionFX();
             DoCameraShake();
         
@@ -63,7 +69,6 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
 
             _explosionFX = GameAssets.i.virusExplosionFX;
-            
         }
     }
 }

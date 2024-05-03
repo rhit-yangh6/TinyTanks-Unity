@@ -62,18 +62,30 @@ namespace _Scripts.Managers
 
         public void IsThisAchievementUnlocked(string id)
         {
-            var ach = new Steamworks.Data.Achievement(id);
-            
-            Debug.Log($"Achievement {id} status: " + ach.State);
+            try
+            {
+                var ach = new Steamworks.Data.Achievement(id);
+                Debug.Log($"Achievement {id} status: " + ach.State);
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
         }
 
-        public void UnlockAchievement(string id)
+        public static void UnlockAchievement(string id)
         {
-            var ach = new Steamworks.Data.Achievement(id);
-            ach.Trigger();
-            
-            Debug.Log($"Achievement {id} unlocked");
+            try
+            {
+                var ach = new Steamworks.Data.Achievement(id);
+                ach.Trigger();
+                
+                Debug.Log($"Achievement {id} unlocked");
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            } 
         }
-        
     }
 }

@@ -33,7 +33,7 @@ namespace _Scripts.GameEngine
             
             // Update Discord
             EventBus.Broadcast(EventTypes.DiscordStateChange,
-                Constants.RichPresenceStoryModeDetail, "");
+                Constants.RichPresenceTutorialDetail, "");
             
             StartCoroutine(HandleMovements());
         }
@@ -52,7 +52,7 @@ namespace _Scripts.GameEngine
         
             if (playerCharacter.Health <= 0)
             {
-                SteamManager.Instance.UnlockAchievement(Constants.AchievementBabySteps);
+                SteamManager.UnlockAchievement(Constants.AchievementBabySteps);
                 pauseMenu.Lose();
                 return;
             }

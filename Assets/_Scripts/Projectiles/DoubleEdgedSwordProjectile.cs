@@ -9,8 +9,6 @@ namespace _Scripts.Projectiles
 {
     public class DoubleEdgedSwordProjectile : LaunchedProjectile
     {
-        [SerializeField] private GameObject swordShadow;
-        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -82,7 +80,7 @@ namespace _Scripts.Projectiles
             {
                 // Spawn another sword at shooter's position
                 var shooterPos = Shooter.transform.position;
-                GameObject insExpl = Instantiate(swordShadow, new Vector2(shooterPos.x, shooterPos.y + _swordShadowYOffset), Quaternion.identity);
+                GameObject insExpl = Instantiate(ExplosionFX, new Vector2(shooterPos.x, shooterPos.y + _swordShadowYOffset), Quaternion.identity);
             
                 // Take damage
                 yield return new WaitForSeconds(ExplosionDuration);
@@ -99,7 +97,7 @@ namespace _Scripts.Projectiles
         public override void SpawnExplosionFX()
         {
             var pos = transform.position;
-            GameObject insExpl = Instantiate(swordShadow, new Vector2(pos.x, pos.y + _swordShadowYOffset), Quaternion.identity);
+            GameObject insExpl = Instantiate(ExplosionFX, new Vector2(pos.x, pos.y + _swordShadowYOffset), Quaternion.identity);
             Destroy(insExpl, ExplosionDuration);
         }
 
@@ -112,7 +110,7 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
             
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+            _explosionFX = GameAssets.i.swordShadowFX;
             
             _swordShadowYOffset = Array.Find(extraWeaponTerms, ewt => ewt.term == "swordShadowYOffset").value;
         } 

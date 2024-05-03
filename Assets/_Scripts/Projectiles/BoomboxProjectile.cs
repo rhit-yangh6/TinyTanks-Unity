@@ -6,9 +6,6 @@ namespace _Scripts.Projectiles
 {
     public class BoomboxProjectile: LaunchedProjectile
     {
-        // Set In Inspector
-        [SerializeField] private GameObject shockFX;
-        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -54,8 +51,8 @@ namespace _Scripts.Projectiles
                     _shockRadius, _shockDamage, DamageHandler.DamageType.Circular);
                 DoCameraShake();
                 
-                GameObject insExpl = Instantiate(shockFX, pos, Quaternion.identity);
-                insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.1f);
+                GameObject insExpl = Instantiate(GameAssets.i.shockwaveFX, pos, Quaternion.identity);
+                insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
                 insExpl.transform.localScale *= _shockRadius;
                 Destroy(insExpl, ExplosionDuration);
                 

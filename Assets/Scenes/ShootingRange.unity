@@ -1082,7 +1082,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 1e+10
+  maxHealth: 1e+9
   healthBar: {fileID: 1709219842}
   topLeft: {fileID: 0}
   bottomRight: {fileID: 0}
@@ -1842,7 +1842,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 1e+10
+  maxHealth: 1e+9
   healthBar: {fileID: 1189080066}
   topLeft: {fileID: 0}
   bottomRight: {fileID: 0}
@@ -2384,7 +2384,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 1e+10
+  maxHealth: 1e+9
   healthBar: {fileID: 1712303293}
   topLeft: {fileID: 0}
   bottomRight: {fileID: 0}
@@ -3086,7 +3086,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 1e+10
+  maxHealth: 1e+9
   healthBar: {fileID: 1624107694}
   topLeft: {fileID: 0}
   bottomRight: {fileID: 0}
@@ -3718,7 +3718,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 1e+10
+  maxHealth: 1e+9
   healthBar: {fileID: 375800085}
   topLeft: {fileID: 0}
   bottomRight: {fileID: 0}
@@ -4834,7 +4834,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 1e+10
+  maxHealth: 1e+9
   healthBar: {fileID: 1724476763}
   topLeft: {fileID: 0}
   bottomRight: {fileID: 0}
@@ -53530,7 +53530,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 1e+10
+  maxHealth: 1e+9
   healthBar: {fileID: 6589499678359676841}
   topLeft: {fileID: 0}
   bottomRight: {fileID: 0}

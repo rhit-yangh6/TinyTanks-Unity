@@ -77,7 +77,7 @@ namespace _Scripts.UI
                 PlayerData.Instance.GainMoney(prize);
             } else if (SceneManager.GetActiveScene().name == "Tutorial")
             {
-                SteamManager.Instance.UnlockAchievement(Constants.AchievementTutorialCompleted);
+                SteamManager.UnlockAchievement(Constants.AchievementTutorialCompleted);
                 PlayerData.Instance.isTutorialCompleted = true;
             }
             

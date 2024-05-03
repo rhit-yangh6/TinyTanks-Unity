@@ -11,7 +11,6 @@ namespace _Scripts.Projectiles
         // Set in Inspector
         [SerializeField] private Sprite novaStar;
         [SerializeField] private Material glowMaterial;
-        [SerializeField] private GameObject shockwaveFx;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -80,7 +79,7 @@ namespace _Scripts.Projectiles
             if (Level == 6)
             {
                 pos = gameObject.transform.position;
-                insExpl = Instantiate(shockwaveFx, pos, Quaternion.identity);
+                insExpl = Instantiate(GameAssets.i.shockwaveFX, pos, Quaternion.identity);
                 insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
                 Destroy(insExpl, ExplosionDuration);
                 DamageHandler.i.HandleDamage(pos, _shockwaveRadius, _shockwaveDamage, DamageHandler.DamageType.Circular);
@@ -92,7 +91,7 @@ namespace _Scripts.Projectiles
                 yield return new WaitForSeconds(Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval);
                 if (Level != 6) continue;
                 pos = gameObject.transform.position;
-                insExpl = Instantiate(shockwaveFx, pos, Quaternion.identity);
+                insExpl = Instantiate(GameAssets.i.shockwaveFX, pos, Quaternion.identity);
                 insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
                 Destroy(insExpl, ExplosionDuration);
                 DamageHandler.i.HandleDamage(pos, _shockwaveRadius, _shockwaveDamage, DamageHandler.DamageType.Circular);

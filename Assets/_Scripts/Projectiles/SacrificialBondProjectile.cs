@@ -8,8 +8,6 @@ namespace _Scripts.Projectiles
 {
     public class SacrificialBondProjectile: LaunchedProjectile
     {
-        // Set In Inspector
-        [SerializeField] private GameObject sacrificialBondPrefab;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -45,7 +43,7 @@ namespace _Scripts.Projectiles
         
         private IEnumerator StartSacrifice()
         {
-            var fxPrefab= Instantiate(sacrificialBondPrefab, gameObject.transform.position, Quaternion.identity);
+            var fxPrefab= Instantiate(ExplosionFX, gameObject.transform.position, Quaternion.identity);
             
             yield return new WaitForSeconds(_initialGrowDuration);
             DoCameraShake();
@@ -74,7 +72,7 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
 
-            _explosionFX = GameAssets.i.healFX;
+            _explosionFX = GameAssets.i.sacrificeFX;
 
             _initialGrowDuration = Array.Find(extraWeaponTerms, ewt => ewt.term == "initialGrowDuration").value;
             _enemyDamageMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "enemyDamageMultiplier").value;

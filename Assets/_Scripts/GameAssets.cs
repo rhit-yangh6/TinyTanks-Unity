@@ -30,12 +30,17 @@ namespace _Scripts
         public GameObject virusExplosionFX;
         public GameObject healFX;
         public GameObject blackExplosionFX;
+        public GameObject swordShadowFX;
+        public GameObject sacrificeFX;
+        public GameObject shockwaveFX;
 
         public ScriptableBuff burningBuff;
         public ScriptableBuff infectedBuff;
         public ScriptableBuff speedBuff;
         public ScriptableBuff stunnedBuff;
         public ScriptableBuff cursedBuff;
+        public ScriptableBuff frozenBuff;
+        public ScriptableBuff healingBuff;
 
     }
 }

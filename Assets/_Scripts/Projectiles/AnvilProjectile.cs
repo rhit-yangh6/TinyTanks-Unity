@@ -9,9 +9,6 @@ namespace _Scripts.Projectiles
 {
     public class AnvilProjectile : LaunchedProjectile
     {
-        // Set in Inspector
-        [SerializeField] private ScriptableBuff stunnedBuff;
-        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -72,7 +69,7 @@ namespace _Scripts.Projectiles
             if (Level == 6 && _isActivated)
             {
                 DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular, 
-                    false, stunnedBuff);    
+                    false, GameAssets.i.stunnedBuff);    
             }
             else DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular);
 

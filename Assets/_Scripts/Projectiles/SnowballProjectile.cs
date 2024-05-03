@@ -9,9 +9,6 @@ namespace _Scripts.Projectiles
 {
     public class SnowballProjectile : LaunchedProjectile
     {
-        // Set in Inspector
-        [SerializeField] private ScriptableBuff frozenBuff;
-        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -71,7 +68,7 @@ namespace _Scripts.Projectiles
             {
                 // Apply frozen buff if Level = 5
                 DamageHandler.i.HandleDamage(pos, Radius * multiplier, Damage * multiplier, 
-                    DamageHandler.DamageType.Circular, false, frozenBuff, 2);
+                    DamageHandler.DamageType.Circular, false, GameAssets.i.frozenBuff, 2);
             }
             else
             {

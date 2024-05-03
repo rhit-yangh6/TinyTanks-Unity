@@ -12,7 +12,6 @@ namespace _Scripts.Projectiles
         // TODO: Different ExplosionFX?
         
         // Set in Inspector
-        [SerializeField] private ScriptableBuff burningBuff;
         [SerializeField] private GameObject fireballSmallPrefab;
         
         // Shared Fields
@@ -73,7 +72,7 @@ namespace _Scripts.Projectiles
             if (Level == 5) burningBuffLevel = 4;
 
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
-                false, burningBuff, burningBuffLevel);
+                false, GameAssets.i.burningBuff, burningBuffLevel);
 
             TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
         

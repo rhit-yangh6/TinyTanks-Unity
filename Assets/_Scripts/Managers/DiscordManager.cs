@@ -67,7 +67,8 @@ namespace _Scripts.Managers
         {
             return SceneManager.GetActiveScene().name == "Story" ||
                    SceneManager.GetActiveScene().name == "Survival" ||
-                   SceneManager.GetActiveScene().name == "ShootingRange";
+                   SceneManager.GetActiveScene().name == "ShootingRange" ||
+                   SceneManager.GetActiveScene().name == "Tutorial";
         }
 
         private static bool IsInStoryMode()
