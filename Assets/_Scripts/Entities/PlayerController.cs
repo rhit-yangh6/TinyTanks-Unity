@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Buffs;
+using _Scripts.Managers;
 using _Scripts.UI;
+using _Scripts.Utils;
 using UnityEngine;
 
 // Source: https://github.com/Bardent/Rigidbody2D-Slopes-Unity/blob/master/Assets/Scripts/PlayerController.cs
@@ -39,6 +41,15 @@ namespace _Scripts.Entities
         {
             CheckMovement();
             AdjustRotation();
+        }
+        
+        protected override void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.CompareTag("DangerZone"))
+            {
+                SteamManager.UnlockAchievement(Constants.AchievementOops);
+                TakeDamage(MaxHealth);
+            }
         }
 
         protected override void CheckMovement()
