@@ -23,42 +23,40 @@ namespace _Scripts.UI.GameEntrance
                 Destroy(child.gameObject);
             }
             
-            Level[] levels = LevelManager.Instance.GetAllLevels();
+            Level[] levels = LevelManager.Instance.GetAllLevelsFromChapter(GameStateController.currentChapterId);
+            var progress = PlayerData.Instance.GetLevelStatusInChapter(GameStateController.currentChapterId);
 
-            foreach (Level l in levels)
+            for (var i = 0; i < levels.Length; i++)
             {
+                Level l = levels[i];
                 GameObject cellObj = Instantiate(levelCellPrefab, levelScrollListContent.transform);
                 Image s = cellObj.GetComponentsInChildren<Image>()[1];
+                
+                Image lockedImg = cellObj.GetComponentsInChildren<Image>()[2];
                 TextMeshProUGUI tmpGUI = cellObj.GetComponentInChildren<TextMeshProUGUI>();
                 Button button = cellObj.GetComponent<Button>();
-                
                 tmpGUI.text = l.name;
                 
-                button.onClick.AddListener(() =>
+                if (progress >= i)
                 {
-                    GameStateController.currentLevelPath = l.path;
-                    SceneManager.LoadScene("Story");
-                });
-
-                s.sprite = l.levelPreviewSprite;
-
-                /*
-                int weaponId = w.id;
-
-                if (PlayerData.Instance.GetWeaponLevelFromId(weaponId) > 0)
-                {
-                    s.sprite = w.weaponIconSprite;
-
-                    button.onClick.AddListener(() => wdp.SetDetails(weaponId));
-
-                    s.GetComponent<DragDropGrid>().weaponId = weaponId;
+                    button.onClick.AddListener(() =>
+                    { 
+                        GameStateController.currentLevelId = l.id;
+                        SceneManager.LoadScene("Story");
+                    });
+                    var color = lockedImg.color;
+                    color.a = 0;
+                    lockedImg.color = color;
                 }
                 else
                 {
-                    s.sprite = weaponLockedSprite;
-                    button.interactable = false;
+                    // No onclick event
+                    var color = lockedImg.color;
+                    color.a = 0.7f;
+                    lockedImg.color = color;
                 }
-                */
+
+                s.sprite = l.levelPreviewSprite;
             }
         }
 

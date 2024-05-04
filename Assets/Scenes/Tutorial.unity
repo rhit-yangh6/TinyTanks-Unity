@@ -37237,8 +37237,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5969095878085382936}
-        m_TargetAssemblyTypeName: _Scripts.PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMenu
+        m_TargetAssemblyTypeName: _Scripts.UI.PauseMenu, Assembly-CSharp
+        m_MethodName: SkipTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

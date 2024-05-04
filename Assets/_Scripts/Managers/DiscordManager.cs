@@ -88,12 +88,12 @@ namespace _Scripts.Managers
             {
                 return newState;
             }
-            var currentLevel = LevelManager.Instance.GetLevelByPath(GameStateController.currentLevelPath);
+            var currentLevel = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId);
             if (currentLevel == null)
             {
                 return newState;
             }
-            return Constants.RichPresenceStoryModeLevelStatePrefix + currentLevel.id + ": " + currentLevel.name;
+            return Constants.RichPresenceStoryModeLevelStatePrefix + currentLevel.path + ": " + currentLevel.name;
         }
 
         private void Update()
@@ -108,7 +108,7 @@ namespace _Scripts.Managers
             }
         }
 
-        public void DisconnectDiscord()
+        private void DisconnectDiscord()
         {
             try
             {

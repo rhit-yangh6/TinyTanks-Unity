@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Scripts.GameEngine;
 using _Scripts.Managers;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace _Scripts
     public class PlayerData
     {
         public int level;
+        public Dictionary<int, int> levels;
         public int coins;
 
         public SelectionDatum[] selectedWeapons;
@@ -41,7 +43,12 @@ namespace _Scripts
             /*
              * This is the initial player data
              */
+            
+            // Deprecated
             level = 1;
+            
+            levels = new Dictionary<int, int> { { 1, 0 } };
+
             coins = 88888888;
             isTutorialCompleted = false;
             selectedWeapons = new SelectionDatum[]
@@ -57,7 +64,22 @@ namespace _Scripts
                 new(1, 1, new []{true, false, false, false, false, false}),
                 new(2, 1, new []{true, false, false, false, false, false})
             };
+        }
 
+        public int GetLevelStatusInChapter(int chapterId)
+        {
+            if (levels.TryAdd(chapterId, 0))
+            {
+                SaveSystem.SavePlayer();
+                return 0;
+            }
+
+            return levels[chapterId];
+        }
+
+        public bool IsChapterUnlocked(int chapterId)
+        {
+            return levels.ContainsKey(chapterId);
         }
 
         public int GetWeaponLevelFromId(int idToFind)
@@ -141,11 +163,38 @@ namespace _Scripts
             weaponLevels.Add(new WeaponDatum(idToFind, 1, new []{true, false, false, false, false, false}));
             return true;
         }
-        
-        public void GainMoney(int prize)
+
+        public void CompleteLevel()
         {
-            coins += prize;
+            var chapter = Array.Find(LevelManager.Instance.GetAllChapters(),
+                c => c.id == GameStateController.currentChapterId);
+            
+            var currentIdx = Array.FindIndex(chapter.levels, l => l.id == GameStateController.currentLevelId);
+            var progress = GetLevelStatusInChapter(GameStateController.currentChapterId);
+            
+            // First completion
+            if (progress <= currentIdx && currentIdx < chapter.levels.Length - 1)
+            {
+                levels[GameStateController.currentChapterId] = currentIdx + 1;
+            }
+            // Beat the final level of a Chapter
+            else if (currentIdx == chapter.levels.Length - 1)
+            {
+                UnlockChapter(GameStateController.currentChapterId + 1);
+            }
+            SaveSystem.SavePlayer();
         }
+
+        public void UnlockChapter(int chapterId)
+        {
+            if (levels.ContainsKey(chapterId))
+            {
+                return;
+            }
+            levels.Add(chapterId, 0);
+        }
+        
+        public void GainMoney(int prize) { coins += prize; }
     }
 
     [Serializable]

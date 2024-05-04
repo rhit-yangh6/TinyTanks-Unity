@@ -58,6 +58,14 @@ namespace _Scripts.UI
             Resume();
             SceneManager.LoadScene("MenuScene");
         }
+        
+        public void SkipTutorial()
+        {
+            PlayerData.Instance.isTutorialCompleted = true;
+            SaveSystem.SavePlayer();
+            Resume();
+            SceneManager.LoadScene("MenuScene");
+        }
 
         public void Restart()
         {
@@ -68,10 +76,12 @@ namespace _Scripts.UI
 
         public void Win()
         {
+            PlayerData.Instance.CompleteLevel();
+            
             // TODO: Give Weapon
             if (SceneManager.GetActiveScene().name == "Story")
             {
-                var prize = LevelManager.Instance.GetLevelByPath(GameStateController.currentLevelPath).prize;
+                var prize = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId).prize;
 
                 coinText.text = "+" + prize;
                 PlayerData.Instance.GainMoney(prize);
@@ -94,10 +104,10 @@ namespace _Scripts.UI
         public void Next()
         {
             Resume();
-            var nextLevel = LevelManager.Instance.GetNextLevel(GameStateController.currentLevelPath);
+            var nextLevel = LevelManager.Instance.GetNextLevel(GameStateController.currentLevelId);
             if (nextLevel != null)
             {
-                GameStateController.currentLevelPath = nextLevel.path;
+                GameStateController.currentLevelId = nextLevel.id;
             }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

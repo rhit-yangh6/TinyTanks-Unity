@@ -6,7 +6,7 @@ namespace _Scripts.Managers
     public class LevelManager : MonoBehaviour
     {
         private static LevelManager _i;
-        private static Levels _levelsFromJson;
+        private static Chapters _chaptersFromJson;
         
         public static LevelManager Instance
         {
@@ -25,34 +25,44 @@ namespace _Scripts.Managers
         {
             var jsonFile = Resources.Load<TextAsset>("Data/Levels");
 
-            _levelsFromJson = JsonUtility.FromJson<Levels>(jsonFile.text);
+            _chaptersFromJson = JsonUtility.FromJson<Chapters>(jsonFile.text);
             
-            foreach (var level in _levelsFromJson.levels)
+            foreach (var chapter in _chaptersFromJson.chapters)
             {
-                level.levelPreviewSprite = Resources.Load<Sprite>("LevelPreviews/" + level.path);
+                chapter.chapterPreviewSprite = Resources.Load<Sprite>("ChapterPreviews/" + chapter.path);
+                foreach (var level in chapter.levels)
+                {
+                    level.levelPreviewSprite = Resources.Load<Sprite>("LevelPreviews/" + level.path);
+                }
             }
         }
 
-        public Level GetLevelByPath(string levelPath)
+        public Level GetLevelById(string levelId)
         {
-            return Array.Find(_levelsFromJson.levels, l => l.path == levelPath);
+            var chapter = Array.Find(_chaptersFromJson.chapters,
+                c => Array.Find(c.levels, l => l.id == levelId) != null);
+
+            return Array.Find(chapter.levels, l => l.id == levelId);
         }
 
-        public Level GetNextLevel(string sceneName)
+        public Level GetNextLevel(string levelId)
         {
-            var currentLevel = Array.Find(_levelsFromJson.levels, l => l.path == sceneName);
-            return Array.Find(_levelsFromJson.levels, l => l.id == currentLevel.id + 1);
+            var chapter = Array.Find(_chaptersFromJson.chapters,
+                c => Array.Find(c.levels, l => l.id == levelId) != null);
+            var idx = Array.FindIndex(chapter.levels, l => l.id == levelId);
+            return idx + 1 >= chapter.levels.Length ? null : chapter.levels[idx + 1];
         }
 
-        public Level[] GetAllLevels()
+        public Level[] GetAllLevelsFromChapter(int chapterId)
         {
-            return _levelsFromJson.levels;
+            var chapter = Array.Find(_chaptersFromJson.chapters,
+                c => c.id == chapterId);
+            return chapter == null ? Array.Empty<Level>() : chapter.levels;
         }
 
-        // Deprecated
-        public Level GetCurrentLevel(string sceneName)
+        public Chapter[] GetAllChapters()
         {
-            return Array.Find(_levelsFromJson.levels, l => l.path == sceneName);
+            return _chaptersFromJson.chapters;
         }
     }
     
@@ -60,15 +70,25 @@ namespace _Scripts.Managers
     public class Level
     {
         // Read from Levels.json
-        public int id, prize;
-        public string name, path;
+        public int prize, weaponPrize;
+        public string name, path, id;
 
         public Sprite levelPreviewSprite;
     }
+
+    [Serializable]
+    public class Chapter
+    {
+        public int id;
+        public string name, path;
+
+        public Level[] levels;
+        public Sprite chapterPreviewSprite;
+    }
         
     [Serializable]
-    public class Levels
+    public class Chapters
     {
-        public Level[] levels;
+        public Chapter[] chapters;
     }
 }

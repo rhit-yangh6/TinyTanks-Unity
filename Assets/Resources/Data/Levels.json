@@ -1,22 +1,38 @@
 ﻿{
-  "levels": [
+  "chapters": [
     {
       "id": 1,
-      "name": "The Beginning",
-      "prize": 50,
-      "path": "Level1"
+      "name": "The Plain",
+      "path": "plain",
+      "levels": [
+        {
+          "id": "1-1",
+          "name": "The Beginning",
+          "prize": 50,
+          "weaponPrize": 0,
+          "path": "Level1-1"
+        },
+        {
+          "id": "1-2",
+          "name": "On the Hill",
+          "prize": 50,
+          "weaponPrize": 0,
+          "path": "Level1-2"
+        },
+        {
+          "id": "1-3",
+          "name": "Height Difference",
+          "prize": 50,
+          "weaponPrize": 0,
+          "path": "Level1-3"
+        }
+      ]
     },
     {
       "id": 2,
-      "name": "On the Hill",
-      "prize": 50,
-      "path": "Level2"
-    },
-    {
-      "id": 3,
-      "name": "Height Difference",
-      "prize": 50,
-      "path": "Level3"
+      "name": "The Desert",
+      "path": "desert",
+      "levels": []
     }
   ]
 }

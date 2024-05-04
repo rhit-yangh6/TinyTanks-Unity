@@ -21,7 +21,7 @@ namespace _Scripts.Utils
         public const string RichPresenceTutorialDetail = "Playing Tutorial";
         
         public const string RichPresenceStoryModeDetail = "Playing Story Mode";
-        public const string RichPresenceStoryModeLevelStatePrefix = "At Level ";
+        public const string RichPresenceStoryModeLevelStatePrefix = "At ";
         
         public const string RichPresenceShootingRangeDetail = "Practicing in Shooting Range";
         

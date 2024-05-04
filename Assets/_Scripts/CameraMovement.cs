@@ -1,4 +1,5 @@
 using _Scripts.GameEngine;
+using _Scripts.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -23,7 +24,8 @@ namespace _Scripts
             // Only load prefab in Story Mode
             if (SceneManager.GetActiveScene().name == "Story")
             {
-                Instantiate(Resources.Load<GameObject>("LevelPrefabs/" + GameStateController.currentLevelPath));
+                var currentLevel = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId);
+                Instantiate(Resources.Load<GameObject>("LevelPrefabs/" + currentLevel.path));
                 boundsSr = GameObject.FindGameObjectWithTag("CameraBoundingBox").GetComponent<SpriteRenderer>();
             }
             var pos = boundsSr.transform.position;

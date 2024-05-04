@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 namespace _Scripts.GameEngine
 {
     public class GameStateController : MonoBehaviour
     {
-        public static string currentLevelPath;
+        public static string currentLevelId;
+        public static int currentChapterId;
     }
 }

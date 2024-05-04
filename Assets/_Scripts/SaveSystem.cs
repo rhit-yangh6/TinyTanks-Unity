@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -30,8 +31,13 @@ namespace _Scripts
                 FileStream stream = new FileStream(path, FileMode.Open);
                 
                 PlayerData data = formatter.Deserialize(stream) as PlayerData;
-
                 stream.Close();
+                
+                // Check if the player has levels field
+                if (data.levels == null)
+                {
+                    data.levels = new Dictionary<int, int> { { 1, 0 } };
+                }
                 
                 return data;
             }
