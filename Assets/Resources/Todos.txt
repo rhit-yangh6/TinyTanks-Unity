@@ -16,3 +16,4 @@
 32. Weapon - Photon Beam, vertical beam
 33. Weapon - Plasma Cannon
 34. Weapon - Gravity Bomb
+35. Weapon - Revolver

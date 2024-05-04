@@ -1,3 +1,4 @@
+using System;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
 using TMPro;
@@ -11,7 +12,64 @@ namespace _Scripts.UI.GameEntrance
         [SerializeField] private GameObject chapterScrollListContent;
         [SerializeField] private GameObject chapterCellPrefab;
         [SerializeField] private GameObject levelsMenu;
-        
+
+        public GameObject scrollBar;
+        private float scrollPos = 0;
+        private float[] pos;
+        private Scrollbar _sb;
+
+        private void Start()
+        {
+            _sb = scrollBar.GetComponent<Scrollbar>();
+        }
+
+        private void Update()
+        {
+            // Source: https://www.youtube.com/watch?v=GURPmGoAOoM&list=PLXLwAjIwNypwyI1p81KUaKsdjbIOPTD2A&index=4
+            pos = new float[chapterScrollListContent.transform.childCount];
+            float distance = 1f / (pos.Length - 1f);
+            for (var i = 0; i < pos.Length; i++)
+            {
+                pos[i] = distance * i;
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                scrollPos = _sb.value;
+            }
+            else
+            {
+                for (var i = 0; i < pos.Length; i++)
+                {
+                    if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - (distance / 2))
+                    {
+                        _sb.value = Mathf.Lerp(_sb.value, pos[i], 0.1f);
+                    }
+                }
+            }
+            
+            for (var i = 0; i < pos.Length; i++)
+            {
+                if (scrollPos < pos[i] + (distance / 2) && scrollPos > pos[i] - (distance / 2))
+                {
+                    chapterScrollListContent.transform.GetChild(i).localScale = Vector2.Lerp(
+                        chapterScrollListContent.transform.GetChild(i).localScale,
+                        new Vector2(1f, 1f),
+                        0.1f);
+                    for (var a = 0; a < pos.Length; a++)
+                    {
+                        if (a != i)
+                        {
+                            chapterScrollListContent.transform.GetChild(a).localScale = Vector2.Lerp(
+                                chapterScrollListContent.transform.GetChild(a).localScale,
+                                new Vector2(0.8f, 0.8f),
+                                0.1f);
+                        }
+                    }
+                }
+            }
+        }
+
         private void OnEnable()
         {
             PopulateChapters();

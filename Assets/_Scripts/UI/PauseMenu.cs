@@ -76,11 +76,10 @@ namespace _Scripts.UI
 
         public void Win()
         {
-            PlayerData.Instance.CompleteLevel();
-            
             // TODO: Give Weapon
             if (SceneManager.GetActiveScene().name == "Story")
             {
+                PlayerData.Instance.CompleteLevel();
                 var prize = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId).prize;
 
                 coinText.text = "+" + prize;
