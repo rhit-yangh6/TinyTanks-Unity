@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using _Scripts.GameEngine;
 using _Scripts.Managers;
 using UnityEngine;
 
-namespace _Scripts
+namespace _Scripts.GameEngine
 {
     [Serializable]
     public class PlayerData

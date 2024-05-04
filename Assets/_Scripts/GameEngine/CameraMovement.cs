@@ -1,10 +1,9 @@
-using _Scripts.GameEngine;
 using _Scripts.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace _Scripts
+namespace _Scripts.GameEngine
 {
     public class CameraMovement : MonoBehaviour
     {
