@@ -8,7 +8,8 @@ namespace _Scripts.Projectiles
     public class CoconutSeedProjectile : LaunchedProjectile
     {
         // Set in Inspector
-        [SerializeField] private GameObject coconutTreePrefab, coconutProjectilePrefab;
+        [SerializeField] private GameObject coconutProjectilePrefab;
+        [SerializeField] private Sprite coconutIceSprite;
         
          // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -16,12 +17,12 @@ namespace _Scripts.Projectiles
         private static GameObject _explosionFX;
 
         // ExtraFields
-        private static float _coconutDamage, _coconutRadius;
+        private static float _coconutRadius;
         
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
+        protected override float Damage => Level >= 3 ? _damage * 1.2f : _damage;
+        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.2f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
@@ -29,6 +30,7 @@ namespace _Scripts.Projectiles
         // Other Variables
         private Rigidbody2D _rb;
         private Renderer _r;
+        private bool _isCollided;
 
         private void Start()
         {
@@ -38,15 +40,18 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
-            
-            // DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            
-            _rb.isKinematic = true;
-            _rb.velocity = Vector2.zero;
-            _rb.gravityScale = 0;
+            if (!_isCollided)
+            {
+                _rb.velocity = Vector2.down;
+                _isCollided = true;
+                return;
+            }
 
+            _rb.isKinematic = true;
+            _rb.gravityScale = 0;
             _r.enabled = false;
+            _rb.velocity = Vector2.zero;
+            Vector2 pos = transform.position;
             
             StartCoroutine(GrowCoconutTree(pos));
         }
@@ -54,7 +59,7 @@ namespace _Scripts.Projectiles
         private IEnumerator GrowCoconutTree(Vector2 pos)
         {
             var coconutTree = 
-                Instantiate(coconutTreePrefab, new Vector2(pos.x, pos.y - 1.5f), Quaternion.identity);
+                Instantiate(ExplosionFX, new Vector2(pos.x, pos.y - 1.5f), Quaternion.identity);
 
             yield return new WaitForSeconds(2.2f);
             
@@ -62,8 +67,14 @@ namespace _Scripts.Projectiles
             var derivedObject = Instantiate(coconutProjectilePrefab, 
                 new Vector2(pos.x - 1.0f, pos.y + 3.1f), 
                 Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            derivedProjectile.SetParameters(_coconutDamage, _coconutRadius, ExplosionDuration, ExplosionFX);
+            var derivedProjectile = derivedObject.GetComponent<CoconutProjectile>();
+            derivedProjectile.SetParameters(Damage, _coconutRadius, ExplosionDuration, ExplosionFX);
+
+            if (Level == 5)
+            {
+                derivedObject.GetComponent<SpriteRenderer>().sprite = coconutIceSprite;
+                derivedProjectile.isIced = true;
+            }
 
             yield return new WaitForSeconds(0.15f);
             
@@ -71,11 +82,46 @@ namespace _Scripts.Projectiles
             derivedObject = Instantiate(coconutProjectilePrefab, 
                 new Vector2(pos.x + 0.8f, pos.y + 3.3f), 
                 Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            derivedProjectile.SetParameters(_coconutDamage, _coconutRadius, ExplosionDuration, ExplosionFX);
+            derivedProjectile = derivedObject.GetComponent<CoconutProjectile>();
+            derivedProjectile.SetParameters(Damage, _coconutRadius, ExplosionDuration, ExplosionFX);
+            
+            if (Level == 5)
+            {
+                derivedObject.GetComponent<SpriteRenderer>().sprite = coconutIceSprite;
+                derivedProjectile.isIced = true;
+            }
+            
+            yield return new WaitForSeconds(0.15f);
+
+            // Third Coconut
+            if (Level >= 4)
+            {
+                derivedObject = Instantiate(coconutProjectilePrefab, 
+                    new Vector2(pos.x + 0.1f, pos.y + 3.2f), 
+                    Quaternion.identity);
+                derivedProjectile = derivedObject.GetComponent<CoconutProjectile>();
+                derivedProjectile.SetParameters(Damage, _coconutRadius, ExplosionDuration, ExplosionFX);
+                
+                if (Level == 5)
+                {
+                    derivedObject.GetComponent<SpriteRenderer>().sprite = coconutIceSprite;
+                    derivedProjectile.isIced = true;
+                }
+            }
+            
+            yield return new WaitForSeconds(0.15f);
+            
+            // Fourth Coconut
+            if (Level == 6)
+            {
+                derivedObject = Instantiate(coconutProjectilePrefab, 
+                    new Vector2(pos.x - 0.5f, pos.y + 3.5f), 
+                    Quaternion.identity);
+                derivedProjectile = derivedObject.GetComponent<CoconutProjectile>();
+                derivedProjectile.SetParameters(Damage, _coconutRadius, ExplosionDuration, ExplosionFX);
+            }
             
             // Wait for everything finished
-            // TODO: tree wait for coconuts all gone?
             yield return new WaitForSeconds(1.5f);
             
             Destroy(coconutTree);
@@ -96,9 +142,8 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
 
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+            _explosionFX = GameAssets.i.coconutTreeFX;
 
-            _coconutDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "coconutDamage").value;
             _coconutRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "coconutRadius").value;
         }
     }

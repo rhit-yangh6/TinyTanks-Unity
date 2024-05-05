@@ -24,8 +24,6 @@ namespace _Scripts.GameEngine
             
             if (IsAllEnemyDead())
             {
-                // Unlock FIRST_WIN achievement during level completion
-                SteamManager.UnlockAchievement(Constants.AchievementFirstWinId);
                 pauseMenu.Win();
                 return;
             }

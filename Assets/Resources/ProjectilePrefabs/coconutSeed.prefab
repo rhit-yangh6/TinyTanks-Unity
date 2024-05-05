@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188026710972419788}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -42.59994, y: 22.526926, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &50226468503057344
 SpriteRenderer:
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9847ce8163640d797bd9a5264f3f3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coconutTreePrefab: {fileID: 4668241860939206746, guid: 850714d79fa3a7c4b9a221c92582c49b, type: 3}
-  coconutProjectilePrefab: {fileID: 2004332226714102825, guid: 75d861669dc81cf4dbd136549bb7e333, type: 3}
+  coconutProjectilePrefab: {fileID: 4272478149693107190, guid: 75d861669dc81cf4dbd136549bb7e333, type: 3}
+  coconutIceSprite: {fileID: 21300000, guid: e7a7eaebf7782ad44a23a145646429e9, type: 3}
 --- !u!50 &5211691358375219179
 Rigidbody2D:
   serializedVersion: 4
@@ -118,6 +118,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -132,6 +138,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

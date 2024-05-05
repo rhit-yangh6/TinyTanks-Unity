@@ -33,6 +33,8 @@ namespace _Scripts
         public GameObject swordShadowFX;
         public GameObject sacrificeFX;
         public GameObject shockwaveFX;
+        public GameObject coconutTreeFX;
+        public GameObject TargetFX;
 
         public ScriptableBuff burningBuff;
         public ScriptableBuff infectedBuff;

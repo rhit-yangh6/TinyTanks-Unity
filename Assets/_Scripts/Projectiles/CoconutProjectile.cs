@@ -14,11 +14,22 @@ namespace _Scripts.Projectiles
         protected override float Damage => _damage;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
+        
+        // Extra Fields
+        public bool isIced;
 
         public override void Detonate()
         {
             Vector2 pos = transform.position;
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+            if (isIced)
+            {
+                DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular, 
+                    false, GameAssets.i.frozenBuff, 2);
+            }
+            else
+            {
+                DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+            }
             
             SpawnExplosionFX();
             DoCameraShake();

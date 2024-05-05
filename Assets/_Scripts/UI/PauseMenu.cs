@@ -80,6 +80,8 @@ namespace _Scripts.UI
             if (SceneManager.GetActiveScene().name == "Story")
             {
                 PlayerData.Instance.CompleteLevel();
+                // Unlock FIRST_WIN achievement during level completion
+                SteamManager.UnlockAchievement(Constants.AchievementFirstWinId);
                 var prize = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId).prize;
 
                 coinText.text = "+" + prize;

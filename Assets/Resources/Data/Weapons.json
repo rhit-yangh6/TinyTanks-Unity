@@ -1006,45 +1006,42 @@
       "id": 20,
       "weaponName": "Coconut Seed",
       "weaponDescription": "Grow a coconut tree at the point of collision, and drop down coconuts to smash your enemies!",
-      "damage": 11,
+      "damage": 16,
       "radius": 1.2,
       "maxMagnitude": 13,
       "steps": 532,
+      "saying": "Tree-mendous coconuts!",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Tropical Expansion",
+          "description": "The coconut seed reaches further.",
+          "cost": 150
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Enhanced Impact",
+          "description": "Slight increase in the damage dealt by the coconuts.",
+          "cost": 400
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Nutrient Enrichment",
+          "description": "The coconut tree grows one more coconut.",
+          "cost": 700
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Coconut Ice Bomb",
+          "description": "The coconuts inflict frozen de-buff to targets, slowing them down and leaving them vulnerable to further attacks.",
+          "cost": 895
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Fruity Barrage",
+          "description": "The coconut tree grows four coconuts in total, doubling the offensive capabilities of the weapon.",
+          "cost": 1200
         }
       ],
       "dataPath": "coconutSeed",
       "explosionDuration": 0.1,
       "shopPrice": 532,
       "extraWeaponTerms": [
-        {
-          "term": "coconutDamage",
-          "value": 16
-        },
         {
           "term": "coconutRadius",
           "value": 1.2

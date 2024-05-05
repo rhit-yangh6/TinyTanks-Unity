@@ -10,6 +10,7 @@
           "name": "The Beginning",
           "prize": 50,
           "weaponPrize": 0,
+          "unlocksChapter": 0,
           "path": "Level1-1"
         },
         {
@@ -17,6 +18,7 @@
           "name": "On the Hill",
           "prize": 50,
           "weaponPrize": 0,
+          "unlocksChapter": 0,
           "path": "Level1-2"
         },
         {
@@ -24,6 +26,7 @@
           "name": "Height Difference",
           "prize": 50,
           "weaponPrize": 0,
+          "unlocksChapter": 0,
           "path": "Level1-3"
         }
       ]

@@ -9,7 +9,7 @@ namespace _Scripts.GameEngine
     {
         public static void SavePlayer()
         {
-            Debug.Log("save!");
+            Debug.Log("Saving Player Data...");
             PlayerData dataToSave = PlayerData.Instance;
 
             BinaryFormatter formatter = new BinaryFormatter();
@@ -24,6 +24,7 @@ namespace _Scripts.GameEngine
 
         public static PlayerData LoadPlayer()
         {
+            Debug.Log("Loading Player Data...");
             string path = Application.persistentDataPath + "/player.data";
             if (File.Exists(path))
             {
@@ -32,12 +33,6 @@ namespace _Scripts.GameEngine
                 
                 PlayerData data = formatter.Deserialize(stream) as PlayerData;
                 stream.Close();
-                
-                // Check if the player has levels field
-                if (data.levels == null)
-                {
-                    data.levels = new Dictionary<int, int> { { 1, 0 } };
-                }
                 
                 return data;
             }

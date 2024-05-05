@@ -170,6 +170,7 @@ namespace _Scripts.GameEngine
                 c => c.id == GameStateController.currentChapterId);
             
             var currentIdx = Array.FindIndex(chapter.levels, l => l.id == GameStateController.currentLevelId);
+            var currentLevel = chapter.levels[currentIdx];
             var progress = GetLevelStatusInChapter(GameStateController.currentChapterId);
             
             // First completion
@@ -177,10 +178,10 @@ namespace _Scripts.GameEngine
             {
                 levels[GameStateController.currentChapterId] = currentIdx + 1;
             }
-            // Beat the final level of a Chapter
-            else if (currentIdx == chapter.levels.Length - 1)
+            // If the level unlocks a chapter
+            else if (currentLevel.unlocksChapter != 0)
             {
-                UnlockChapter(GameStateController.currentChapterId + 1);
+                UnlockChapter(currentLevel.unlocksChapter);
             }
             SaveSystem.SavePlayer();
         }

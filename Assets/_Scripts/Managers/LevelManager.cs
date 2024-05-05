@@ -70,7 +70,7 @@ namespace _Scripts.Managers
     public class Level
     {
         // Read from Levels.json
-        public int prize, weaponPrize;
+        public int prize, weaponPrize, unlocksChapter;
         public string name, path, id;
 
         public Sprite levelPreviewSprite;

@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections;
 using _Scripts.Managers;
-using JetBrains.Annotations;
-using Unity.Mathematics;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
      public class AirstrikeProjectile : LaunchedProjectile
     {
         // Set in Inspector
-        [SerializeField] private GameObject targetPrefab;
         [SerializeField] private GameObject missilePrefab;
         [SerializeField] private LayerMask layerMask;
         
@@ -91,7 +87,7 @@ namespace _Scripts.Projectiles
             _r.enabled = false;
             
             // Instantiate a target
-            _target = Instantiate(targetPrefab, pos, Quaternion.identity);
+            _target = Instantiate(GameAssets.i.TargetFX, pos, Quaternion.identity);
             StartCoroutine(RotateTarget());
             StartCoroutine(ResizeTarget());
             
