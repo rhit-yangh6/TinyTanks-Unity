@@ -1055,6 +1055,7 @@
       "radius": 2.0,
       "maxMagnitude": 11.2,
       "steps": 400,
+      "saying": "Chill out, foes.",
       "upgradeInfos": [
         {
           "name": "Fresh From The Fridge",

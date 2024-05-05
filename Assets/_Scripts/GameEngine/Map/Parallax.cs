@@ -12,7 +12,16 @@ namespace _Scripts.GameEngine.Map
         void Start()
         {
             startPos = transform.position.x;
-            length = GetComponent<SpriteRenderer>().bounds.size.x / 3;
+            var sr = GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                length = GetComponent<SpriteRenderer>().bounds.size.x / 3;
+            }
+            else
+            {
+                RectTransform rt = (RectTransform)gameObject.transform;
+                length = rt.rect.width / 3;
+            }
         }
 
         // Update is called once per frame
