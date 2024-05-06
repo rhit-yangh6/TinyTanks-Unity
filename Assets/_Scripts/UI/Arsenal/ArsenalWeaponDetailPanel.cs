@@ -9,7 +9,6 @@ namespace _Scripts.UI.Arsenal
 {
     public class ArsenalWeaponDetailPanel : MonoBehaviour
     {
-
         [SerializeField] private Image weaponIcon;
         [SerializeField] private GameObject infoPanel, upgradePanel, notice;
         [SerializeField] private TextMeshProUGUI weaponNameText, weaponDescText, weaponSayingText;

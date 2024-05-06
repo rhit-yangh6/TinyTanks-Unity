@@ -11,6 +11,7 @@ namespace _Scripts.UI.GameEntrance
     {
         [SerializeField] private GameObject levelScrollListContent;
         [SerializeField] private GameObject levelCellPrefab;
+        [SerializeField] private LevelDetailPanel detailPanel;
         
         private void OnEnable()
         {
@@ -19,6 +20,8 @@ namespace _Scripts.UI.GameEntrance
 
         private void PopulateLevels()
         {
+            detailPanel.gameObject.SetActive(false);
+            
             foreach (Transform child in levelScrollListContent.transform) {
                 Destroy(child.gameObject);
             }
@@ -40,9 +43,9 @@ namespace _Scripts.UI.GameEntrance
                 if (progress >= i)
                 {
                     button.onClick.AddListener(() =>
-                    { 
-                        GameStateController.currentLevelId = l.id;
-                        SceneManager.LoadScene("Story");
+                    {
+                        detailPanel.gameObject.SetActive(true);
+                        detailPanel.SetDetails(l.id);
                     });
                     var color = lockedImg.color;
                     color.a = 0;
