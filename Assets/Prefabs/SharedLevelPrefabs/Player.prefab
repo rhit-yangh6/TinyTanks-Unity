@@ -144,6 +144,9 @@ MonoBehaviour:
   tankCannon: {fileID: 4532772574942596750}
   bpb: {fileID: 4532772574554939724}
   moveable: 0
+  fuel: 0
+  maxFuel: 100
+  fuelConsumptionCoefficient: 10
 --- !u!120 &4532772574353443182
 LineRenderer:
   serializedVersion: 2
@@ -165,7 +168,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2f1c4f73b7cda474e877d0d69495d237, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,25 +191,42 @@ LineRenderer:
   m_SortingOrder: 7
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.0013347
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.5003185
-        inSlope: 0.00904461
-        outSlope: 0.00904461
+        time: 0.0058823377
+        value: 0.71333337
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.275635
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.47847012
+        outWeight: 0.31709027
+      - serializedVersion: 3
+        time: 0.7605971
+        value: 1
+        inSlope: -0.05507162
+        outSlope: -0.05507162
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.9979253
+        outWeight: 0.6989408
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 0.71333295
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -218,10 +238,10 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
+      key0: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0}
       key1: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 1}
+      key3: {r: 0, g: 0, b: 0, a: 1}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
@@ -235,22 +255,22 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
+      atime1: 13685
+      atime2: 32960
+      atime3: 62258
+      atime4: 65535
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 5
     numCornerVertices: 20
     numCapVertices: 10
     alignment: 0
-    textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureMode: 1
+    textureScale: {x: 1.5, y: 1.5}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0

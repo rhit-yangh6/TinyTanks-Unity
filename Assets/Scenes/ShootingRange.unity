@@ -492,12 +492,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5de0681a57b88424aa77c0a37ce6c912, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb1fb64871d88d54c9000c5884439fea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.48, y: 11.52}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -512,8 +512,8 @@ Transform:
   m_GameObject: {fileID: 162540017}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1014.3919, y: -516.3858, z: 0}
-  m_LocalScale: {x: 3.4559, y: 3.4559, z: 3.4559}
+  m_LocalPosition: {x: -1014.6781, y: -516.2248, z: 0}
+  m_LocalScale: {x: 3.7323186, y: 3.7323186, z: 3.7323186}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1203734614}
@@ -3582,6 +3582,14 @@ PrefabInstance:
     - target: {fileID: 4532772574353443181, guid: a2768d2d581e632479ee0c8fda30b6db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532772574353443182, guid: a2768d2d581e632479ee0c8fda30b6db, type: 3}
+      propertyPath: m_Parameters.textureScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532772574353443182, guid: a2768d2d581e632479ee0c8fda30b6db, type: 3}
+      propertyPath: m_Parameters.textureScale.y
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

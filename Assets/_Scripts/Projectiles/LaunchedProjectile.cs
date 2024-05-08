@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
@@ -22,6 +24,22 @@ namespace _Scripts.Projectiles
         protected virtual int Steps => _steps;
         protected virtual float ExplosionDuration => _explosionDuration;
         protected virtual GameObject ExplosionFX => _explosionFX;
+        
+        // Other Fields
+        private Collider2D _collider2D;
+
+        private void Awake()
+        {
+            _collider2D = GetComponent<Collider2D>();
+            StartCoroutine(TemporarilyDisableCollider());
+        }
+
+        private IEnumerator TemporarilyDisableCollider()
+        {
+            _collider2D.enabled = false;
+            yield return new WaitForSeconds(0.3f);
+            _collider2D.enabled = true;
+        }
 
         protected virtual void OnCollisionEnter2D(Collision2D col)
         {
