@@ -372,9 +372,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 999732716}
-        m_TargetAssemblyTypeName: _Scripts.UI.OptionsController, Assembly-CSharp
-        m_MethodName: StartTutorial
+      - m_Target: {fileID: 1636308902}
+        m_TargetAssemblyTypeName: _Scripts.UI.MenuController, Assembly-CSharp
+        m_MethodName: EnterTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -850,13 +850,13 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -10159,6 +10159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1879166277}
   loadingSlider: {fileID: 1286307851}
+  blackScreenDefaultWaitTime: 1
 --- !u!4 &1163312240
 Transform:
   m_ObjectHideFlags: 0
@@ -13797,6 +13798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01e636c9f7151640a92caea8520817d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asyncLoader: {fileID: 1163312239}
 --- !u!4 &1636308903
 Transform:
   m_ObjectHideFlags: 0
@@ -15023,8 +15025,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1324181018}
-        m_TargetAssemblyTypeName: _Scripts.UI.GameEntrance.LevelsMenu, Assembly-CSharp
+      - m_Target: {fileID: 1636308902}
+        m_TargetAssemblyTypeName: _Scripts.UI.MenuController, Assembly-CSharp
         m_MethodName: EnterSurvivalMode
         m_Mode: 1
         m_Arguments:
@@ -16248,8 +16250,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1324181018}
-        m_TargetAssemblyTypeName: _Scripts.UI.GameEntrance.LevelsMenu, Assembly-CSharp
+      - m_Target: {fileID: 1636308902}
+        m_TargetAssemblyTypeName: _Scripts.UI.MenuController, Assembly-CSharp
         m_MethodName: EnterShootingRange
         m_Mode: 1
         m_Arguments:
@@ -16950,7 +16952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 29.1}
+  m_AnchoredPosition: {x: 0, y: 31}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2063982292

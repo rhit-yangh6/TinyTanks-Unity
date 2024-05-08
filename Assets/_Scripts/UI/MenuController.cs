@@ -8,6 +8,8 @@ namespace _Scripts.UI
 {
     public class MenuController : MonoBehaviour
     {
+        [SerializeField] private AsyncLoader asyncLoader;
+        
         public void Awake()
         {
             // TODO: Probably move this to somewhere else, facade?
@@ -36,6 +38,21 @@ namespace _Scripts.UI
         {
             SaveSystem.SavePlayer();
             Application.Quit();
+        }
+        
+        public void EnterSurvivalMode()
+        {
+            asyncLoader.LoadSurvivalMode();
+        }
+        
+        public void EnterShootingRange()
+        {
+            asyncLoader.LoadShootingRange();
+        }
+        
+        public void EnterTutorial()
+        {
+            asyncLoader.LoadTutorial();
         }
     }
 }

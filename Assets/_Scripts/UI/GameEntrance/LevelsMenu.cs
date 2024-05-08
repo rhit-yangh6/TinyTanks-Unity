@@ -62,15 +62,5 @@ namespace _Scripts.UI.GameEntrance
                 s.sprite = l.levelPreviewSprite;
             }
         }
-
-        public static void EnterSurvivalMode()
-        {
-            SceneManager.LoadScene("Survival");
-        }
-        
-        public static void EnterShootingRange()
-        {
-            SceneManager.LoadScene("ShootingRange");
-        }
     }
 }

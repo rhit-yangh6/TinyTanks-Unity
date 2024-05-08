@@ -18,9 +18,12 @@ namespace _Scripts.Managers
         [Header("Slider")]
         [SerializeField] private Slider loadingSlider;
 
+        [Header("LoadingTime")]
+        [Range(0.1f, 3f)]
+        [SerializeField] private float blackScreenDefaultWaitTime;
 
         private CanvasGroup _cg;
-        private bool _fadeIn = false;
+        private bool _fadeIn;
 
         private void Start()
         {
@@ -40,13 +43,51 @@ namespace _Scripts.Managers
             _fadeIn = true;
             
             // Run Async
-            StartCoroutine(LoadLevelAsync());
+            StartCoroutine(LoadLevelAsync("Story"));
         }
 
-        IEnumerator LoadLevelAsync()
+        public void LoadSurvivalMode()
         {
+            loadingScreen.SetActive(true);
+            
+            // Set _fadeIn
+            _cg.alpha = 0;
+            _fadeIn = true;
+            
+            // Run Async
+            StartCoroutine(LoadLevelAsync("Survival"));
+        }
+        
+        public void LoadShootingRange()
+        {
+            loadingScreen.SetActive(true);
+            
+            // Set _fadeIn
+            _cg.alpha = 0;
+            _fadeIn = true;
+            
+            // Run Async
+            StartCoroutine(LoadLevelAsync("ShootingRange"));
+        }
+        
+        public void LoadTutorial()
+        {
+            loadingScreen.SetActive(true);
+            
+            // Set _fadeIn
+            _cg.alpha = 0;
+            _fadeIn = true;
+            
+            // Run Async
+            StartCoroutine(LoadLevelAsync("Tutorial"));
+        }
+
+        IEnumerator LoadLevelAsync(string sceneToLoad)
+        {
+            yield return new WaitForSeconds(blackScreenDefaultWaitTime);
+            
             // var level = LevelManager.Instance.GetLevelById(levelToLoad);
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync("Story");
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 
             while (!loadOperation.isDone)
             {
@@ -63,7 +104,7 @@ namespace _Scripts.Managers
             
             if (_cg.alpha < 1)
             {
-                _cg.alpha += Time.deltaTime * 70;
+                _cg.alpha += Time.deltaTime * 30;
                 if (_cg.alpha >= 1)
                 {
                     _fadeIn = false;
