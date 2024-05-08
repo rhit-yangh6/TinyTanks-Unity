@@ -26,6 +26,7 @@ namespace _Scripts.GameEngine
                 GameObject buttonObj = Instantiate(buttonPrefab, transform);
                 Button button = buttonObj.GetComponent<Button>();
                 Image buttonImg = buttonObj.GetComponentsInChildren<Image>()[1];
+                var animator = buttonImg.GetComponent<Animator>();
                 Image starImg = buttonObj.GetComponentsInChildren<Image>()[2];
                 
                 var selectionDatum = selectedWeapons[i];
@@ -33,10 +34,23 @@ namespace _Scripts.GameEngine
                 if (selectedWeapons[i] != null)
                 {
                     var index = i;
-                    
-                    buttonImg.sprite = WeaponManager.Instance.GetWeaponById(selectionDatum.weaponId).weaponIconSprite;
+                    var weapon = WeaponManager.Instance.GetWeaponById(selectionDatum.weaponId);
+                    buttonImg.sprite = weapon.weaponIconSprite;
                     button.onClick.AddListener(() => SwitchWeapon(index, selectionDatum));
                     starImg.sprite = GameAssets.i.stars[selectionDatum.level - 1];
+                    
+                    // Enhanced?
+                    if (selectedWeapons[i].weaponId >= 1000)
+                    {
+                        animator.runtimeAnimatorController =
+                            Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + weapon.dataPath + "_enhanced");
+                        animator.enabled = true;
+                    }
+                    else
+                    {
+                        animator.enabled = false;
+                    }
+
                 }
                 else
                 {

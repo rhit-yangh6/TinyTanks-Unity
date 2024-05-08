@@ -1,11 +1,16 @@
 using System;
+using _Scripts.GameEngine;
 using _Scripts.Projectiles;
+using _Scripts.UI;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Scripts.Managers
 {
     public class WeaponManager : MonoBehaviour
     {
+        [SerializeField] private GameObject newWeaponMsgPanel;
+        
         private static WeaponManager _i;
         private static Weapons _weaponsFromJson;
         

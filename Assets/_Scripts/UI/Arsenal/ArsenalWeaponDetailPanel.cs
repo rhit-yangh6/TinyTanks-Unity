@@ -41,6 +41,15 @@ namespace _Scripts.UI.Arsenal
             weaponDescText.text = w.weaponDescription;
             weaponSayingText.text = Constants.ArsenalWeaponSayingPrefix + w.saying;
 
+            // Enhanced?
+            if (w.id >= 1000)
+            {
+                var animator = weaponIcon.GetComponent<Animator>();
+                animator.runtimeAnimatorController =
+                    Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + w.dataPath + "_enhanced");
+                animator.enabled = true;
+            }
+
             for (var i = 0; i < weaponUpgradeStarButtons.Length; i++)
             {
                 var tempLevel = i + 1;

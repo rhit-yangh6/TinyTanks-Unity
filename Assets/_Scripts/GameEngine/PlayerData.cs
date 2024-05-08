@@ -60,9 +60,9 @@ namespace _Scripts.GameEngine
             };
             weaponLevels = new List<WeaponDatum>
             {
-                new (-1, 1, new[]{true, true, true, true, true, false}), // TODO: Delete!
-                new(1, 1, new []{true, false, false, false, false, false}),
-                new(2, 1, new []{true, false, false, false, false, false})
+                new(-1, 1, new[]{true, true, true, true, true, false}), // TODO: Delete!
+                new(1, 1, new[]{true, false, false, false, false, false}),
+                new(2, 1, new[]{true, false, false, false, false, false})
             };
         }
 

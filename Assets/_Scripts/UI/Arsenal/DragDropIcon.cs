@@ -30,8 +30,22 @@ namespace _Scripts.UI.Arsenal
         public void SetSprite(int wId)
         {
             weaponId = wId;
+            var image = GetComponent<Image>();
+            var weapon = WeaponManager.Instance.GetWeaponById(weaponId);
+            image.sprite = wId == 0 ? GameAssets.i.weaponLockedSprite: weapon.weaponIconSprite;
 
-            GetComponent<Image>().sprite = wId == 0 ? GameAssets.i.weaponLockedSprite: WeaponManager.Instance.GetWeaponById(weaponId).weaponIconSprite;
+            var animator = image.GetComponent<Animator>();
+            // Enhanced?
+            if (wId >= 1000)
+            {
+                animator.runtimeAnimatorController =
+                    Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + weapon.dataPath + "_enhanced");
+                animator.enabled = true;
+            }
+            else
+            {
+                animator.enabled = false;
+            }
         }
 
         private void ResetPos()

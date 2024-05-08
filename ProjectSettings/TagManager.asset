@@ -12,6 +12,7 @@ TagManager:
   - GC
   - Wave
   - CameraBoundingBox
+  - Canvas
   layers:
   - Default
   - TransparentFX

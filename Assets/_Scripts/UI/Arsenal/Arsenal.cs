@@ -77,6 +77,7 @@ namespace _Scripts.UI.Arsenal
             {
                 GameObject buttonObj = Instantiate(arsenalWeaponButton, weaponScrollListContent.transform);
                 Image s = buttonObj.GetComponent<Image>();
+                var animator = buttonObj.GetComponent<Animator>();
                 Button button = buttonObj.GetComponent<Button>();
                 int weaponId = w.id;
 
@@ -87,6 +88,19 @@ namespace _Scripts.UI.Arsenal
                     button.onClick.AddListener(() => wdp.SetDetails(weaponId));
 
                     s.GetComponent<DragDropGrid>().weaponId = weaponId;
+
+                    // Enhanced?
+                    if (weaponId >= 1000)
+                    {
+                        animator.runtimeAnimatorController =
+                            Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + w.dataPath + "_enhanced");
+                        animator.enabled = true;
+                    }
+                    else
+                    {
+                        animator.enabled = false;
+                    }
+                    
                 }
                 else
                 {

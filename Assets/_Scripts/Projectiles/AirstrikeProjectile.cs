@@ -33,6 +33,7 @@ namespace _Scripts.Projectiles
         private Renderer _r;
         private Rigidbody2D _rb;
         private GameObject _target;
+        private bool _isActivated;
         private const float RotationAmount = 0.9f;
         private const float ResizeAmount = 0.008f;
         private const float DelaySpeed = .01f;
@@ -80,6 +81,12 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
+            if (_isActivated)
+            {
+                return;
+            }
+
+            _isActivated = true;
             Vector2 pos = transform.position;
 
             _rb.velocity = Vector3.zero;

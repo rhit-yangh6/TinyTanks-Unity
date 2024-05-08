@@ -1,6 +1,7 @@
 using _Scripts.GameEngine;
 using _Scripts.Managers;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,8 +63,8 @@ namespace _Scripts.UI.Shop
             purchasePanel.SetActive(false);
             coinText.text = PlayerData.Instance.coins.ToString();
             
-            newWeaponMsg.GetComponent<NewWeaponMsgBehavior>().weaponId = weaponId;
-            newWeaponMsg.SetActive(true);
+            var panel = Instantiate(newWeaponMsg, GameObject.FindGameObjectWithTag("Canvas").transform);
+            panel.GetComponent<NewWeaponMsgBehavior>().Display(weaponId);
         }
     }
 }

@@ -1389,6 +1389,47 @@
         "term": "enemyDamageMultiplier",
         "value": 0.33
       }]
+    }, 
+    
+    {
+      "id": 1000,
+      "weaponName": "Airstrike (Enhanced)",
+      "weaponDescription": ">>>",
+      "damage": 45,
+      "radius": 4.5,
+      "maxMagnitude": 12,
+      "steps": 700,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "airstrike",
+      "explosionDuration": 0.4,
+      "shopPrice": 1,
+      "extraWeaponTerms": []
     }
   ]
 }
