@@ -13,10 +13,7 @@ namespace _Scripts.UI.GameEntrance
         [SerializeField] private GameObject levelCellPrefab;
         [SerializeField] private LevelDetailPanel detailPanel;
         
-        private void OnEnable()
-        {
-            PopulateLevels();
-        }
+        private void OnEnable() { PopulateLevels(); }
 
         private void PopulateLevels()
         {

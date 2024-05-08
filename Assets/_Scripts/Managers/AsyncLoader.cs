@@ -13,7 +13,6 @@ namespace _Scripts.Managers
         // Source 2: https://www.youtube.com/watch?v=tF9RMjF9wDc
         [Header("Menu Screens")]
         [SerializeField] private GameObject loadingScreen;
-        // [SerializeField] private GameObject mainMenu;
         
         [Header("Slider")]
         [SerializeField] private Slider loadingSlider;
@@ -82,12 +81,12 @@ namespace _Scripts.Managers
             StartCoroutine(LoadLevelAsync("Tutorial"));
         }
 
-        IEnumerator LoadLevelAsync(string sceneToLoad)
+        private IEnumerator LoadLevelAsync(string sceneToLoad)
         {
             yield return new WaitForSeconds(blackScreenDefaultWaitTime);
             
             // var level = LevelManager.Instance.GetLevelById(levelToLoad);
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneToLoad);
+            var loadOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 
             while (!loadOperation.isDone)
             {
@@ -98,13 +97,13 @@ namespace _Scripts.Managers
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (!_fadeIn) return;
             
             if (_cg.alpha < 1)
             {
-                _cg.alpha += Time.deltaTime * 30;
+                _cg.alpha += Time.deltaTime * 3;
                 if (_cg.alpha >= 1)
                 {
                     _fadeIn = false;

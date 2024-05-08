@@ -14,10 +14,10 @@ namespace _Scripts.UI
         {
             // TODO: Probably move this to somewhere else, facade?
             // Create a DiscordManager Singleton
-            var discordManager = DiscordManager.Instance;
+            var unusedDiscordManager = DiscordManager.Instance;
             
             // Create a SteamManager Singleton
-            var steamManager = SteamManager.Instance;
+            var unusedSteamManager = SteamManager.Instance;
         }
 
         private void Start()
@@ -40,19 +40,10 @@ namespace _Scripts.UI
             Application.Quit();
         }
         
-        public void EnterSurvivalMode()
-        {
-            asyncLoader.LoadSurvivalMode();
-        }
+        public void EnterSurvivalMode() { asyncLoader.LoadSurvivalMode(); }
         
-        public void EnterShootingRange()
-        {
-            asyncLoader.LoadShootingRange();
-        }
+        public void EnterShootingRange() { asyncLoader.LoadShootingRange(); }
         
-        public void EnterTutorial()
-        {
-            asyncLoader.LoadTutorial();
-        }
+        public void EnterTutorial() { asyncLoader.LoadTutorial(); }
     }
 }

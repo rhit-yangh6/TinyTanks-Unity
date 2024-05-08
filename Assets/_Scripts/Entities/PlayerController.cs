@@ -12,6 +12,9 @@ namespace _Scripts.Entities
     public class PlayerController : BuffableEntity
     {
         public bool moveable;
+        public float fuel;
+        [SerializeField] public float maxFuel = 100f;
+        [SerializeField] public float fuelConsumptionCoefficient = 10f;
 
         protected override float MaxHealth => maxHealth;
         public override float MovementSpeed => movementSpeed;
@@ -30,6 +33,8 @@ namespace _Scripts.Entities
         {
             Health = MaxHealth;
             HealthBar.SetHealth(Health, MaxHealth);
+
+            fuel = maxFuel;
 
             _mainSr = GetComponent<SpriteRenderer>();
             _cannonSr = TankCannon.GetComponent<SpriteRenderer>();
@@ -71,6 +76,12 @@ namespace _Scripts.Entities
             _xInput = Input.GetAxisRaw("Horizontal");
             _rb2d.isKinematic = false;
 
+            // Cannot move if player has no fuel
+            if (fuel <= 0)
+            {
+                return;
+            }
+
             if (_xInput == 1 && FacingDirection == -1)
             {
                 Flip();
@@ -83,6 +94,11 @@ namespace _Scripts.Entities
             {
                 _rb2d.velocity = Vector2.zero;
                 _rb2d.isKinematic = true;
+            }
+
+            if (_xInput != 0)
+            {
+                fuel -= Time.deltaTime * fuelConsumptionCoefficient;
             }
 
             transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xInput, 0, 0));
