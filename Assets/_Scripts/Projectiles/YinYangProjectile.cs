@@ -2,6 +2,7 @@
 using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -59,26 +60,23 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
+            var pos = transform.position;
             if (_currentState == 0)
             {
-                Vector2 pos = transform.position;
-
                 DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
 
-                TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
+                EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                    Radius, 1, DestroyTypes.Circular);
             }
             else if (_currentState == 1) // white
             {
-                Vector2 pos = transform.position;
-
                 DamageHandler.i.HandleDamage(pos, _whiteRadius, _whiteDamage, DamageHandler.DamageType.Circular);
 
-                TerrainDestroyer.instance.DestroyTerrainCircular(pos, _whiteRadius);
+                EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                    _whiteRadius, 1, DestroyTypes.Circular);
             }
             else // black
             {
-                Vector2 pos = transform.position;
-
                 DamageHandler.i.HandleDamage(pos, _blackRadius, _blackDamage, DamageHandler.DamageType.Circular);
             }
             SpawnExplosionFX();

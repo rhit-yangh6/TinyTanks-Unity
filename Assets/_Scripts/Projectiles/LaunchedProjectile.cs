@@ -3,6 +3,7 @@ using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -37,7 +38,7 @@ namespace _Scripts.Projectiles
         private IEnumerator TemporarilyDisableCollider()
         {
             _collider2D.enabled = false;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
             _collider2D.enabled = true;
         }
 
@@ -50,18 +51,22 @@ namespace _Scripts.Projectiles
             else
             {
                 Detonate();
+                // if (col.gameObject.TryGetComponent(out TerraformingTerrain2dChunk chunk))
+                // {
+                //     Detonate(chunk);
+                // }
             }
         }
 
         // The most basic detonate function
         public virtual void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
-        
+            
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
+            
             SpawnExplosionFX();
             DoCameraShake();
         

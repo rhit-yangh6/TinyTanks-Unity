@@ -1,6 +1,7 @@
 ﻿using System;
 using _Scripts.Buffs;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -39,7 +40,7 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
             
             var finalBuffLevel = Level switch
             {

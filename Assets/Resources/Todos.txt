@@ -17,3 +17,4 @@
 33. Weapon - Plasma Cannon
 34. Weapon - Gravity Bomb
 35. Weapon - Revolver
+36. Map - Add Props

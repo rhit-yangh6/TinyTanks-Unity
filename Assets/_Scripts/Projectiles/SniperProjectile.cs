@@ -1,6 +1,7 @@
 using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -42,22 +43,9 @@ namespace _Scripts.Projectiles
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         
-        protected override void OnCollisionEnter2D(Collision2D col)
-        {
-            if (col.gameObject.CompareTag("DangerZone"))
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                _explosionFX = Level >= 3 ? GameAssets.i.regularExplosionFX : GameAssets.i.gunpowderlessExplosionFX;
-                Detonate();
-            }
-        }
-        
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
 
             var finalCalculatedRadius = Radius;
             if (Level >= 3) finalCalculatedRadius *= 1.5f;
@@ -69,14 +57,25 @@ namespace _Scripts.Projectiles
             DamageHandler.i.HandleDamage(pos, finalCalculatedRadius, isCritical ? Damage * 1.5f : Damage, 
                 DamageHandler.DamageType.Circular, isCritical);
 
-            if (Level >= 3) TerrainDestroyer.instance.DestroyTerrainCircular(pos, finalCalculatedRadius);
+            if (Level >= 3) EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                finalCalculatedRadius, 1, DestroyTypes.Circular);
 
             SpawnExplosionFX();
             DoCameraShake();
         
             Destroy(gameObject);
         }
-        
+
+        public override void SpawnExplosionFX()
+        {
+            GameObject insExpl = Instantiate(Level >= 3 ?
+                GameAssets.i.regularExplosionFX : 
+                GameAssets.i.gunpowderlessExplosionFX,
+                transform.position, Quaternion.identity);
+            insExpl.transform.localScale *= Radius;
+            Destroy(insExpl, ExplosionDuration);
+        }
+
         public override float GetFixedMagnitude()
         {
             return _fixedMagnitude;

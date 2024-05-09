@@ -2,6 +2,7 @@ using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using JetBrains.Annotations;
+using TerraformingTerrain2d;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -65,7 +66,7 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
 
             var finalCalculatedDamage = Damage + _diceResult * _unitDiceDamage;
             var finalCalculatedRadius = Radius;
@@ -79,7 +80,8 @@ namespace _Scripts.Projectiles
             DamageHandler.i.HandleDamage(pos, finalCalculatedRadius, finalCalculatedDamage, 
                 DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos, finalCalculatedRadius);
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                finalCalculatedRadius, 1, DestroyTypes.Circular);
         
             SpawnExplosionFX();
             DoCameraShake();

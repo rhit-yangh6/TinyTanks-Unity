@@ -1,6 +1,7 @@
 ﻿using System;
 using _Scripts.Buffs;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -50,9 +51,7 @@ namespace _Scripts.Projectiles
 
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
                 false, GameAssets.i.cursedBuff, cursedBuffLevel);
-
-            // TerrainDestroyer.Instance.DestroyTerrain(pos, Radius);
-        
+            
             SpawnExplosionFX();
             DoCameraShake();
         

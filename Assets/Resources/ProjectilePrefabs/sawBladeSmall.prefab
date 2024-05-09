@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8153698348688013711}
   - component: {fileID: 8428929561608754519}
   - component: {fileID: -3717234971722713743}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: sawBladeSmall
   m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}

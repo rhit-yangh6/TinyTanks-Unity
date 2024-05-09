@@ -42,12 +42,16 @@ namespace _Scripts.UI.Arsenal
             weaponSayingText.text = Constants.ArsenalWeaponSayingPrefix + w.saying;
 
             // Enhanced?
+            var animator = weaponIcon.GetComponent<Animator>();
             if (w.id >= 1000)
             {
-                var animator = weaponIcon.GetComponent<Animator>();
                 animator.runtimeAnimatorController =
                     Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + w.dataPath + "_enhanced");
                 animator.enabled = true;
+            }
+            else
+            {
+                animator.enabled = false;
             }
 
             for (var i = 0; i < weaponUpgradeStarButtons.Length; i++)

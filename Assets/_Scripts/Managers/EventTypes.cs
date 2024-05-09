@@ -5,6 +5,9 @@ namespace _Scripts.Managers
         /* Represents the event that an Entity has taken some damage */
         DamageDealt,
         
+        /* Represents the event that terrain needs to be destroyed */
+        DestroyTerrain,
+        
         /* Represents the event that an Projectile is shot from player/enemy */
         ProjectileShot,
         

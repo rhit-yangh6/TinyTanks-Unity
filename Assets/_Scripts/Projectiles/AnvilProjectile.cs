@@ -2,6 +2,7 @@ using System;
 using _Scripts.Buffs;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
 
             float damageDealt = _isActivated ? (_isSecondPhaseActivated ? 
                 Damage * _secondPhaseFallDamageMultiplier * _fallDamageMultiplier :
@@ -73,8 +74,9 @@ namespace _Scripts.Projectiles
             }
             else DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos,
-                (Level >= 4 && _isActivated) ? Radius * 1.5f : Radius);
+            
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                (Level >= 4 && _isActivated) ? Radius * 1.5f : Radius, 1, DestroyTypes.Circular);
         
             SpawnExplosionFX();
             DoCameraShake();

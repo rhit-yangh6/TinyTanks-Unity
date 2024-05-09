@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1498489037682761276}
   - component: {fileID: 7212436107206110529}
   - component: {fileID: -3334523631324601066}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: sacrificialBond
   m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4968173287049688321}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -52.90139, y: 19.799318, z: 0}
   m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7358682634041408865
 SpriteRenderer:
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa324243845400f9e9d7c6a59c01818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sacrificialBondPrefab: {fileID: 6884007866856075093, guid: aec87ed38dbc9734cb22566197ae1b48, type: 3}
 --- !u!50 &7212436107206110529
 Rigidbody2D:
   serializedVersion: 4
@@ -117,6 +116,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -131,6 +136,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -225,3 +249,4 @@ PolygonCollider2D:
       - {x: -0.08, y: 0.59999996}
       - {x: -0.07, y: 0.45}
       - {x: -0.07, y: 0.45999998}
+  m_UseDelaunayMesh: 0

@@ -3,6 +3,7 @@ using System.Collections;
 using _Scripts.Buffs;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -60,7 +61,7 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
             
             var multiplier = GetDamageAndRadiusMultiplier();
 
@@ -78,7 +79,8 @@ namespace _Scripts.Projectiles
             
             if (Level == 6)
             {
-                TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius * multiplier * 1.5f);
+                EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                    Radius * multiplier * 1.5f, 1, DestroyTypes.Circular);
             }
             
             SpawnExplosionFX();

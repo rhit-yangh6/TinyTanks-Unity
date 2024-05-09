@@ -2,6 +2,7 @@
 using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -124,7 +125,7 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
 
             var finalRadiusMultiplier = 0f;
             var finalDamageMultiplier = 0f;
@@ -149,9 +150,9 @@ namespace _Scripts.Projectiles
                 _isStarComplete ? Radius * finalRadiusMultiplier : Radius,
                 _isStarComplete ? Damage * finalDamageMultiplier : Damage, 
                 DamageHandler.DamageType.Circular);
-
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos, 
-                _isStarComplete ? Radius * _radiusMultiplier : Radius);
+            
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                _isStarComplete ? Radius * _radiusMultiplier : Radius, 1, DestroyTypes.Circular);
         
             SpawnExplosionFX();
             DoCameraShake();

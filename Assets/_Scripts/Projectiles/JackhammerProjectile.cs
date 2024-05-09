@@ -2,6 +2,7 @@
 using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -53,11 +54,12 @@ namespace _Scripts.Projectiles
         
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
 
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                Radius, 1, DestroyTypes.Circular);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -76,7 +78,8 @@ namespace _Scripts.Projectiles
                 yield return new WaitForSeconds(ExplosionDuration + .03f);
                 newPos += _collisionDirection * _explosionDistance;
                 DamageHandler.i.HandleDamage(newPos, _explosionRadius, _explosionDamage, DamageHandler.DamageType.Circular);
-                TerrainDestroyer.instance.DestroyTerrainCircular(newPos, _explosionRadius);
+                EventBus.Broadcast(EventTypes.DestroyTerrain, (Vector3)newPos,
+                    _explosionRadius, 1, DestroyTypes.Circular);
                 var insExpl = Instantiate(ExplosionFX, newPos, Quaternion.identity);
                 insExpl.transform.localScale *= _explosionRadius;
                 Destroy(insExpl, ExplosionDuration);

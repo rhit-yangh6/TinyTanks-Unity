@@ -2,6 +2,7 @@ using System;
 using _Scripts.Entities;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 using Object = System.Object;
 
@@ -80,7 +81,7 @@ namespace _Scripts.Projectiles
         
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
 
             // TODO: Maybe move this to the Damage Handler if this is becoming more popular
             if (Level >= 2)
@@ -103,7 +104,7 @@ namespace _Scripts.Projectiles
                 DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
             }
 
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
         
             SpawnExplosionFX();
             DoCameraShake();

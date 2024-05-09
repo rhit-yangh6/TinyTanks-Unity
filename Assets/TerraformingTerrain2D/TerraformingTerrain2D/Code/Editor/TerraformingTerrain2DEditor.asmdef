@@ -1,0 +1,19 @@
+{
+    "name": "TerraformingTerrain2DEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1320c3f398b94f6499b238ce5e32e382",
+        "GUID:caccfbdb442cdc64fa722b4c5585521f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

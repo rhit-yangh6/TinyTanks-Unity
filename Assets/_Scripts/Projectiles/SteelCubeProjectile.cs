@@ -1,6 +1,7 @@
 ﻿using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -50,7 +51,7 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
             
             var isCritical = false;
             if (Level >= 3) isCritical = Random.value > 0.70; // Level 3
@@ -58,7 +59,8 @@ namespace _Scripts.Projectiles
             DamageHandler.i.HandleDamage(pos, Radius, isCritical ? Damage * 1.5f : Damage,
                 DamageHandler.DamageType.Square, isCritical);
 
-            TerrainDestroyer.instance.DestroyTerrainSquare(pos, Radius, Level == 5 ? 2 : 1); // Level 5
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                Radius, Level == 5 ? 2 : 1, DestroyTypes.Square);
         
             SpawnExplosionFX();
             DoCameraShake();

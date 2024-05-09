@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 9158794846393297895}
   - component: {fileID: 9158794846393297914}
   - component: {fileID: 9158794846393297915}
-  - component: {fileID: 9158794846393297912}
+  - component: {fileID: 8553650911607392612}
   m_Layer: 7
   m_Name: BasicEnemy
   m_TagString: Enemy
@@ -362,7 +362,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1.5755105
+  m_Mass: 1.5965116
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -533,8 +533,8 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 0
---- !u!60 &9158794846393297912
-PolygonCollider2D:
+--- !u!70 &8553650911607392612
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -565,38 +565,9 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.62, y: 0.95}
-    newSize: {x: 1.63, y: 1.34}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.81, y: 0.024999999}
-      - {x: 0.74, y: 0.114999995}
-      - {x: 0.37, y: 0.275}
-      - {x: 0.31, y: 0.36499998}
-      - {x: 0.22, y: 0.475}
-      - {x: -0.39999998, y: 0.475}
-      - {x: -0.5, y: 0.445}
-      - {x: -0.55, y: 0.265}
-      - {x: -0.31, y: 0.13499999}
-      - {x: -0.71, y: 0.155}
-      - {x: -0.81, y: 0.085}
-      - {x: -0.81, y: -0.155}
-      - {x: -0.76, y: -0.36499998}
-      - {x: -0.6786479, y: -0.7074683}
-      - {x: 0.64865875, y: -0.70821345}
-      - {x: 0.7327957, y: -0.5045754}
-      - {x: 0.62120557, y: -0.30873138}
-      - {x: 0.76, y: -0.33499998}
-      - {x: 0.81, y: -0.255}
-  m_UseDelaunayMesh: 0
+  m_Offset: {x: -0.000000012840159, y: -0.10771108}
+  m_Size: {x: 1.6200005, y: 1.1654233}
+  m_Direction: 1
 --- !u!1 &9158794846948146503
 GameObject:
   m_ObjectHideFlags: 0

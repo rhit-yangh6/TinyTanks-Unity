@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5442855273373297211}
   - component: {fileID: 5211691358375219179}
   - component: {fileID: 3686718519145585618}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: coconutSeed
   m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}

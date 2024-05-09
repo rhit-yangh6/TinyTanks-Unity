@@ -15,7 +15,7 @@
         },
         {
           "id": "1-2",
-          "name": "On the Hill",
+          "name": "Duel",
           "prize": 50,
           "weaponPrize": 0,
           "unlocksChapter": 0,
@@ -28,6 +28,38 @@
           "weaponPrize": 0,
           "unlocksChapter": 0,
           "path": "Level1-3"
+        },
+        {
+          "id": "1-4",
+          "name": "Floating Island",
+          "prize": 50,
+          "weaponPrize": 0,
+          "unlocksChapter": 0,
+          "path": "Level1-4"
+        },
+        {
+          "id": "1-5",
+          "name": "Platforms",
+          "prize": 50,
+          "weaponPrize": 0,
+          "unlocksChapter": 0,
+          "path": "Level1-5"
+        },
+        {
+          "id": "1-6",
+          "name": "Two Foes",
+          "prize": 50,
+          "weaponPrize": 0,
+          "unlocksChapter": 0,
+          "path": "Level1-6"
+        },
+        {
+          "id": "1-7",
+          "name": "Grounded",
+          "prize": 50,
+          "weaponPrize": 0,
+          "unlocksChapter": 0,
+          "path": "Level1-7"
         }
       ]
     },

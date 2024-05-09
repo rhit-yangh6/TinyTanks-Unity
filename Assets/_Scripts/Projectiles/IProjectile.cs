@@ -1,3 +1,5 @@
+using TerraformingTerrain2d;
+
 namespace _Scripts.Projectiles
 {
     public interface IProjectile

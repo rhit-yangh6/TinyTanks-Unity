@@ -1,6 +1,7 @@
 ﻿using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -47,7 +48,7 @@ namespace _Scripts.Projectiles
                 _ => 1
             };
             
-            Vector2 pos = transform.position;
+            var pos = transform.position;
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular, false,
                 GameAssets.i.infectedBuff, finalBuffLevel);

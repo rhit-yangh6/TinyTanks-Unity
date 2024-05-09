@@ -3,6 +3,7 @@ using System.Collections;
 using _Scripts.Buffs;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -62,7 +63,7 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
 
             var burningBuffLevel = 2;
             
@@ -74,7 +75,8 @@ namespace _Scripts.Projectiles
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
                 false, GameAssets.i.burningBuff, burningBuffLevel);
 
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                Radius, 1, DestroyTypes.Circular);
         
             SpawnExplosionFX();
             DoCameraShake();

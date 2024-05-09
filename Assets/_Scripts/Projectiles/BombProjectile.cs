@@ -3,6 +3,7 @@ using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using JetBrains.Annotations;
+using TerraformingTerrain2d;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -63,9 +64,9 @@ namespace _Scripts.Projectiles
 
         public override void Detonate()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
         
             SpawnExplosionFX();
             DoCameraShake();
@@ -86,14 +87,15 @@ namespace _Scripts.Projectiles
             }
         }
 
-        private IEnumerator SpawnSecondaryExplosion(Vector2 origin)
+        private IEnumerator SpawnSecondaryExplosion(Vector3 origin)
         {
             _sr.enabled = false;
             yield return new WaitForSeconds(ExplosionDuration + .25f);
             
             DamageHandler.i.HandleDamage(origin, _secondaryExplosionRadius, _secondaryExplosionDamage, 
                 DamageHandler.DamageType.Circular);
-            TerrainDestroyer.instance.DestroyTerrainCircular(origin, _secondaryExplosionRadius);
+            EventBus.Broadcast(EventTypes.DestroyTerrain, origin,
+                _secondaryExplosionRadius, 1, DestroyTypes.Circular);
             
             var insExpl = Instantiate(ExplosionFX, origin, Quaternion.identity);
             insExpl.transform.localScale *= _secondaryExplosionRadius;
@@ -102,7 +104,7 @@ namespace _Scripts.Projectiles
             Destroy(gameObject);
         }
 
-        private IEnumerator SpawnClusterExplosion(Vector2 origin)
+        private IEnumerator SpawnClusterExplosion(Vector3 origin)
         {
             // Hide the bomb
             _sr.enabled = false;
@@ -111,11 +113,12 @@ namespace _Scripts.Projectiles
             {
                 var direction = Vector3.Normalize(Vector2.right * _clusterDirections[i, 0] +
                                                   Vector2.up * _clusterDirections[i, 1]);
-                var pos = (Vector3)origin + direction * (Radius + _clusterExplosionRadius) / 2;
+                var pos = origin + direction * (Radius + _clusterExplosionRadius) / 2;
                 
                 DamageHandler.i.HandleDamage(pos, _clusterExplosionRadius, _clusterExplosionDamage,
                     DamageHandler.DamageType.Circular);
-                TerrainDestroyer.instance.DestroyTerrainCircular(pos, _clusterExplosionRadius);
+                EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                    _clusterExplosionRadius, 1, DestroyTypes.Circular);
 
                 var insExpl = Instantiate(ExplosionFX, pos, Quaternion.identity);
                 insExpl.transform.localScale *= _clusterExplosionRadius;

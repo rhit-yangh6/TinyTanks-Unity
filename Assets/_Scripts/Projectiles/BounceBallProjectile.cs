@@ -68,7 +68,7 @@ namespace _Scripts.Projectiles
 
         private void Bounce()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
 
             var finalCalculatedDamage = _bounceDamage;
             switch (Level)
@@ -83,7 +83,8 @@ namespace _Scripts.Projectiles
 
             DamageHandler.i.HandleDamage(pos, _bounceRadius, finalCalculatedDamage, DamageHandler.DamageType.Circular);
 
-            if (Level >= 4) TerrainDestroyer.instance.DestroyTerrainCircular(pos, _bounceRadius);
+            if (Level >= 4) EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
+                _bounceRadius, 1, DestroyTypes.Circular);
         
             SpawnExplosionFX();
             DoCameraShake();
