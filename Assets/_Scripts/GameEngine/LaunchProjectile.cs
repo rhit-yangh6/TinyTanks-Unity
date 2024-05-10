@@ -8,9 +8,11 @@ namespace _Scripts.GameEngine
 {
     public class LaunchProjectile : MonoBehaviour
     {
-        public float power = 5f;
         public GameObject player;
-        public float maxAngle = 80f, minAngle = 5f;
+        [SerializeField] [Range(0f, 10f)] public float power = 5f;
+        [SerializeField] [Range(70f, 90f)] public float maxAngle = 80f;
+        [SerializeField] [Range(0f, 10.0f)] public float minAngle = 5f;
+        [SerializeField][Range(1.0f, 3.0f)] public float aimProximity = 1.6f;
 
         private PlayerController _playerCharacter;
         
@@ -23,7 +25,7 @@ namespace _Scripts.GameEngine
         private GameObject _projectilePrefab;
         private LaunchedProjectile _selectedProjectile;
         private Rigidbody2D _rb;
-        private bool _needExtraForce;
+        private bool _needExtraForce, _isAiming;
         private float _extraForceXMultiplier, _extraForceYMultiplier;
 
         private void Start()
@@ -39,6 +41,15 @@ namespace _Scripts.GameEngine
             if (Input.GetMouseButton(0) && _playerCharacter.moveable)
             {
                 Vector2 dragPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
+
+                if (!_isAiming && Vector2.Distance(transform.position, dragPoint) < aimProximity)
+                {
+                    _isAiming = true;
+                    _lr.enabled = true;
+                    _startPoint = dragPoint;
+                }
+
+                if (!_isAiming) return; // Not in proximity, return
             
                 Vector2 direction = (_startPoint - dragPoint).normalized;
                 float magnitude = (_startPoint - dragPoint).magnitude;
@@ -57,43 +68,46 @@ namespace _Scripts.GameEngine
             }
             else
             {
-                _lr.enabled = false;
+                if (_playerCharacter.moveable && _isAiming)
+                {
+                    _lr.enabled = false;
+                    _isAiming = false;
+                    
+                    EventBus.Broadcast(EventTypes.StoppedDragging);
+                    _endPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
+        
+                    Vector2 direction = (_startPoint - _endPoint).normalized;
+                    float magnitude = (_startPoint - _endPoint).magnitude;
+        
+                    Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
+
+                    GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
+                    Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
+                    prb.velocity = velocity;
+                
+                    LaunchedProjectile lp = projectile.GetComponent<LaunchedProjectile>();
+                    lp.Level = _sd.level;
+                    lp.Shooter = gameObject;
+                
+                    EventBus.Broadcast(EventTypes.ProjectileShot);
+                    _playerCharacter.moveable = false;
+                }
             }
         }
 
         private void OnMouseDown()
         {
-            if (_playerCharacter.moveable)
-            {
-                EventBus.Broadcast(EventTypes.StartedDragging);
-                _startPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
-                _lr.enabled = true;
-            }
+            // if (_playerCharacter.moveable)
+            // {
+            //     EventBus.Broadcast(EventTypes.StartedDragging);
+            //     _startPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
+            //     _lr.enabled = true;
+            // }
         }
 
         private void OnMouseUp()
         {
-            if (_playerCharacter.moveable)
-            {
-                EventBus.Broadcast(EventTypes.StoppedDragging);
-                _endPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
-        
-                Vector2 direction = (_startPoint - _endPoint).normalized;
-                float magnitude = (_startPoint - _endPoint).magnitude;
-        
-                Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
-
-                GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
-                Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
-                prb.velocity = velocity;
-                
-                LaunchedProjectile lp = projectile.GetComponent<LaunchedProjectile>();
-                lp.Level = _sd.level;
-                lp.Shooter = gameObject;
-                
-                EventBus.Broadcast(EventTypes.ProjectileShot);
-                _playerCharacter.moveable = false;
-            }
+            
         }
 
         private Vector2[] Plot(Rigidbody2D prb, Vector2 pos, Vector2 velocity, int steps, bool needExtraForce)
