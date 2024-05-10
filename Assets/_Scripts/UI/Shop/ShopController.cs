@@ -18,7 +18,7 @@ namespace _Scripts.UI.Shop
 
         private readonly int[] achievementWeapons =
         {
-            // Empty for now
+            22, // Boombox
         };
         private readonly int[] promoCodeWeapons =
         {
@@ -79,7 +79,7 @@ namespace _Scripts.UI.Shop
                         return hasW2.CompareTo(hasW1);
                     } 
                 });
-                */
+            */
 
             foreach (var w in weapons)
             {

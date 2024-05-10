@@ -72,7 +72,7 @@ namespace _Scripts.Projectiles
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
+
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
             derivedRb2d.velocity = Rotate(velocity, -2*BulletDispersion);
 

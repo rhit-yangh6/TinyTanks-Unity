@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -14,12 +16,28 @@ namespace _Scripts.Projectiles
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
 
+        // Other Fields
+        private Collider2D _collider2D;
+        
+        private void Awake()
+        {
+            _collider2D = GetComponent<Collider2D>();
+            StartCoroutine(TemporarilyDisableCollider());
+        }
+
         public override void SetParameters(float damage, float radius, float explosionDuration, GameObject explosionFX)
         {
             _radius = radius;
             _damage = damage;
             _explosionDuration = explosionDuration;
             _explosionFX = explosionFX;
+        }
+        
+        private IEnumerator TemporarilyDisableCollider()
+        {
+            _collider2D.enabled = false;
+            yield return new WaitForSeconds(0.2f);
+            _collider2D.enabled = true;
         }
     }
 }
