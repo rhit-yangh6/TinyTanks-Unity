@@ -47,7 +47,7 @@ namespace _Scripts.Projectiles
             var pos = transform.position;
             
             // Make clones
-            GameObject derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
+            var derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             

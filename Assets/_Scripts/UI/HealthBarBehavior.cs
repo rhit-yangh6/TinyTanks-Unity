@@ -23,7 +23,8 @@ namespace _Scripts.UI
 
         protected virtual void Update()
         {
-            Slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
+            Slider.transform.position =
+                Camera.main.WorldToScreenPoint(transform.parent.transform.position + offset);
         }
     }
 }

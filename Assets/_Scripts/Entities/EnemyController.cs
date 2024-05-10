@@ -68,7 +68,16 @@ namespace _Scripts.Entities
             }
             else
             {
-                _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
+                // _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
+                if (IsGrounded())
+                {
+                    _rb2d.velocity = Vector2.zero;
+                    _rb2d.isKinematic = true;
+                }
+                else
+                {
+                    _rb2d.isKinematic = false;
+                }
             }
         }
 
@@ -109,7 +118,6 @@ namespace _Scripts.Entities
 
         public IEnumerator MakeMove()
         {
-
             // Simple Enemy AI 0.0.1
             // Initial Wait
             yield return new WaitForSeconds(1);

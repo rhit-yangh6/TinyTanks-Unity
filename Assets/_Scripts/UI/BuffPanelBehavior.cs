@@ -27,7 +27,8 @@ namespace _Scripts.UI
         
         private void Update()
         {
-            buffPanel.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
+            buffPanel.transform.position =
+                Camera.main.WorldToScreenPoint(transform.parent.transform.position + offset);
         }
     }
 }

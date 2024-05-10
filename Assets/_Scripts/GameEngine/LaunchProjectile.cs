@@ -95,25 +95,10 @@ namespace _Scripts.GameEngine
             }
         }
 
-        private void OnMouseDown()
-        {
-            // if (_playerCharacter.moveable)
-            // {
-            //     EventBus.Broadcast(EventTypes.StartedDragging);
-            //     _startPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
-            //     _lr.enabled = true;
-            // }
-        }
-
-        private void OnMouseUp()
-        {
-            
-        }
-
         private Vector2[] Plot(Rigidbody2D prb, Vector2 pos, Vector2 velocity, int steps, bool needExtraForce)
         {
-            Vector2[] results = new Vector2[steps];
-            float timeStep = Time.fixedDeltaTime / Physics2D.velocityIterations;
+            var results = new Vector2[steps];
+            var timeStep = Time.fixedDeltaTime / Physics2D.velocityIterations;
             
             Vector2 gravityAccel;
             if (needExtraForce)
@@ -192,23 +177,20 @@ namespace _Scripts.GameEngine
                 _playerCharacter.SetCannonAngle(angle);
             }
             
-            float fixedMagnitude = _selectedProjectile.GetFixedMagnitude();
+            var fixedMagnitude = _selectedProjectile.GetFixedMagnitude();
             if (fixedMagnitude < 0)
             {
                 return power * Math.Min(magnitude, _selectedProjectile.GetMaxMagnitude()) * finalDirection;
             }
-            else
-            {
-                return power * fixedMagnitude * finalDirection;
 
-            }
+            return power * fixedMagnitude * finalDirection;
         }
 
         public void SwitchWeapon(SelectionDatum sd)
         {
             _sd = sd;
 
-            Weapon w = WeaponManager.Instance.GetWeaponById(sd.weaponId);
+            var w = WeaponManager.Instance.GetWeaponById(sd.weaponId);
             
             _projectilePrefab = w.projectilePrefab;
             _rb = _projectilePrefab.GetComponent<Rigidbody2D>();

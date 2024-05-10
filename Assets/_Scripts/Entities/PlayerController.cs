@@ -77,10 +77,7 @@ namespace _Scripts.Entities
             _rb2d.isKinematic = false;
 
             // Cannot move if player has no fuel
-            if (fuel <= 0)
-            {
-                return;
-            }
+            if (fuel <= 0) return;
 
             if (_xInput == 1 && FacingDirection == -1)
             {
