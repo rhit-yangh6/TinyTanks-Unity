@@ -16,7 +16,26 @@ namespace _Scripts.UI.Shop
         [SerializeField] private GameObject weaponScrollListContent;
         [SerializeField] private ShopDetailPanel sdp;
 
-        private readonly int[] weaponIdsNotInShop = { -1 };
+        private readonly int[] achievementWeapons =
+        {
+            // Empty for now
+        };
+        private readonly int[] promoCodeWeapons =
+        {
+            // Empty for now
+        };
+        private readonly int[] bossWeapons =
+        {
+            25, // AirStrike
+        };
+        private readonly int[] enhancedWeapons =
+        {
+            1000, // AirStrike (Enhanced)
+        };
+        private readonly int[] unobtainableWeapons =
+        {
+            -1, // Cannon
+        };
 
         private void Start()
         {
@@ -45,7 +64,7 @@ namespace _Scripts.UI.Shop
                 Destroy(child.gameObject);
             }
             
-            Weapon[] weapons = WeaponManager.Instance.GetAllWeapons();
+            var weapons = WeaponManager.Instance.GetAllWeapons();
             /*
             Array.Sort(weapons,
                 delegate(Weapon w1, Weapon w2) {  
@@ -62,20 +81,23 @@ namespace _Scripts.UI.Shop
                 });
                 */
 
-            foreach (Weapon w in weapons)
+            foreach (var w in weapons)
             {
+                var finalHiddenList = achievementWeapons
+                    .Concat(promoCodeWeapons)
+                    .Concat(bossWeapons)
+                    .Concat(enhancedWeapons)
+                    .Concat(unobtainableWeapons)
+                    .ToArray();
 
                 // Won't displayed in shop
                 if (PlayerData.Instance.GetWeaponLevelFromId(w.id) > 0 ||
-                    weaponIdsNotInShop.Contains(w.id))
-                {
-                    continue;
-                }
+                    finalHiddenList.Contains(w.id)) continue;
                 
                 var buttonObj = Instantiate(shopWeaponButton, weaponScrollListContent.transform);
-                Image s = buttonObj.GetComponent<Image>();
-                Button button = buttonObj.GetComponent<Button>();
-                int weaponId = w.id;
+                var s = buttonObj.GetComponent<Image>();
+                var button = buttonObj.GetComponent<Button>();
+                var weaponId = w.id;
 
                 s.sprite = w.weaponIconSprite; 
                 button.onClick.AddListener(() => sdp.SetDetails(weaponId));

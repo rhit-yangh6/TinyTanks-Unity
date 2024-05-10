@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
 using _Scripts.Utils;
@@ -10,13 +11,17 @@ namespace _Scripts.UI.Arsenal
 {
     public class Arsenal : MonoBehaviour
     {
-
         [SerializeField] private GameObject arsenalWeaponButton;
         [SerializeField] private Button backButton;
 
         public GameObject weaponScrollListContent;
         public TextMeshProUGUI coinText;
         public ArsenalWeaponDetailPanel wdp;
+        
+        private readonly int[] unobtainableWeapons =
+        {
+            -1, // Cannon
+        };
 
         private void Start()
         {
@@ -46,7 +51,7 @@ namespace _Scripts.UI.Arsenal
                 Destroy(child.gameObject);
             }
             
-            Weapon[] weapons = WeaponManager.Instance.GetAllWeapons();
+            var weapons = WeaponManager.Instance.GetAllWeapons();
             Array.Sort(weapons,
                 delegate(Weapon w1, Weapon w2) {  
                     var hasW1 = (PlayerData.Instance.GetWeaponLevelFromId(w1.id) > 0) ? 1 : 0;
@@ -64,22 +69,19 @@ namespace _Scripts.UI.Arsenal
             weapons = Array.FindAll(weapons, w =>
             {
                 // Keep the weapon if you own this weapon
-                if (PlayerData.Instance.GetWeaponLevelFromId(w.id) > 0)
-                {
-                    return true;
-                }
+                if (PlayerData.Instance.GetWeaponLevelFromId(w.id) > 0) return true;
             
-                // Do not show debugger
-                return w.id != -1;
+                // Do not show unobtainable ones
+                return !unobtainableWeapons.Contains(w.id);
             });
 
-            foreach (Weapon w in weapons)
+            foreach (var w in weapons)
             {
                 GameObject buttonObj = Instantiate(arsenalWeaponButton, weaponScrollListContent.transform);
                 Image s = buttonObj.GetComponent<Image>();
                 var animator = buttonObj.GetComponent<Animator>();
                 Button button = buttonObj.GetComponent<Button>();
-                int weaponId = w.id;
+                var weaponId = w.id;
 
                 if (PlayerData.Instance.GetWeaponLevelFromId(weaponId) > 0)
                 {
@@ -93,14 +95,11 @@ namespace _Scripts.UI.Arsenal
                     if (weaponId >= 1000)
                     {
                         animator.runtimeAnimatorController =
-                            Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + w.dataPath + "_enhanced");
+                            Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + w.dataPath +
+                                                                      "_enhanced");
                         animator.enabled = true;
                     }
-                    else
-                    {
-                        animator.enabled = false;
-                    }
-                    
+                    else animator.enabled = false;
                 }
                 else
                 {
