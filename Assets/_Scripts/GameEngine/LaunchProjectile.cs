@@ -9,9 +9,10 @@ namespace _Scripts.GameEngine
     public class LaunchProjectile : MonoBehaviour
     {
         public GameObject player;
-        [SerializeField] [Range(0f, 10f)] public float power = 5f;
-        [SerializeField] [Range(70f, 90f)] public float maxAngle = 80f;
-        [SerializeField] [Range(0f, 10.0f)] public float minAngle = 5f;
+        [SerializeField] public float cannonLength = 1;
+        [SerializeField][Range(0f, 10f)] public float power = 5f;
+        [SerializeField][Range(70f, 90f)] public float maxAngle = 80f;
+        [SerializeField][Range(0f, 10.0f)] public float minAngle = 5f;
         [SerializeField][Range(1.0f, 3.0f)] public float aimProximity = 1.6f;
 
         private PlayerController _playerCharacter;
@@ -27,7 +28,8 @@ namespace _Scripts.GameEngine
         private Rigidbody2D _rb;
         private bool _needExtraForce, _isAiming;
         private float _extraForceXMultiplier, _extraForceYMultiplier;
-
+        private float _cannonAngle;
+        
         private void Start()
         {
             _cam = Camera.main;
@@ -38,6 +40,8 @@ namespace _Scripts.GameEngine
 
         private void Update()
         {
+            var launchPos = TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
+                _playerCharacter.tankCannon.transform.position);
             if (Input.GetMouseButton(0) && _playerCharacter.moveable)
             {
                 Vector2 dragPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
@@ -56,7 +60,8 @@ namespace _Scripts.GameEngine
 
                 Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
 
-                Vector2[] trajectory = Plot(_rb, (Vector2)transform.position, velocity, _selectedProjectile.GetSteps(), _needExtraForce);
+                
+                Vector2[] trajectory = Plot(_rb, (Vector2)launchPos, velocity, _selectedProjectile.GetSteps(), _needExtraForce);
                 _lr.positionCount = trajectory.Length;
 
                 Vector3[] positions = new Vector3[trajectory.Length];
@@ -81,7 +86,7 @@ namespace _Scripts.GameEngine
         
                     Vector2 velocity = CalculateFinalVelocity(direction, magnitude);
 
-                    GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
+                    GameObject projectile = Instantiate(_projectilePrefab, launchPos, transform.rotation);
                     Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
                     prb.velocity = velocity;
                 
@@ -161,19 +166,22 @@ namespace _Scripts.GameEngine
             {
                 finalDirection = Quaternion.Euler(0, 0, isRight ? minAngle + rotationAngle : -minAngle + rotationAngle) *
                                  (isRight ? Vector2.right : Vector2.left);
-                _playerCharacter.SetCannonAngle(isRight ? -minAngle - rotationAngle : -180 + minAngle - rotationAngle);
+                _cannonAngle = isRight ? -minAngle - rotationAngle : -180 + minAngle - rotationAngle;
+                _playerCharacter.SetCannonAngle(_cannonAngle);
             } 
             // Angle Too High
             else if (angleAfterRotation < -maxAngle && angleAfterRotation > -180 + maxAngle)
             {
                 finalDirection = Quaternion.Euler(0, 0, isRight ? maxAngle + rotationAngle : -maxAngle + rotationAngle) *
                                  (isRight ? Vector2.right : Vector2.left);
-                _playerCharacter.SetCannonAngle(isRight ? -maxAngle - rotationAngle : -180 + maxAngle - rotationAngle);
+                _cannonAngle = isRight ? -maxAngle - rotationAngle : -180 + maxAngle - rotationAngle;
+                _playerCharacter.SetCannonAngle(_cannonAngle);
             }
             // Acceptable Angle
             else
             {
                 finalDirection = direction;
+                _cannonAngle = angle;
                 _playerCharacter.SetCannonAngle(angle);
             }
             
@@ -206,6 +214,13 @@ namespace _Scripts.GameEngine
                 _extraForceYMultiplier = Array.Find(w.extraWeaponTerms, ewt => ewt.term == "extraForceYMultiplier").value;
             }
             
+        }
+
+        public static Vector3 TrajectoryStartPositionHelper(float cannonAngle, float cannonLength, Vector3 cannonPos)
+        {
+            var cannonAngleRad = (cannonAngle * Math.PI) / 180;
+            return cannonPos + new Vector3((float)Math.Cos(cannonAngleRad) * cannonLength,
+                                (float)-Math.Sin(cannonAngleRad) * cannonLength, 0);
         }
     }
 }

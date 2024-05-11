@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
@@ -10,10 +11,11 @@ namespace _Scripts.Entities
 {
     public class EnemyController : BuffableEntity
     {
-
+        // TODO: move this under buffable entity
         [SerializeField] private float degreeDelta = 10f;
         [SerializeField] private int selectedWeaponId;
         [SerializeField] private int weaponLevel;
+        [SerializeField] private float cannonLength = 1f;
         
         protected override float MaxHealth => maxHealth;
         public override float MovementSpeed => movementSpeed;
@@ -32,6 +34,7 @@ namespace _Scripts.Entities
         private SpriteRenderer _sr, _cannonSr;
         private Rigidbody2D _projectileRigidbody2D, _rb2d;
         private LineRenderer _lr;
+        private float _cannonAngle;
 
         private void Start()
         {
@@ -86,7 +89,10 @@ namespace _Scripts.Entities
             _lr.enabled = true;
             _isAiming = true;
             
-            Vector2 startPos = transform.position, endPos = _player.transform.position;
+            Vector2 startPos =
+                LaunchProjectile.TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
+                    TankCannon.transform.position);
+            var endPos = _player.transform.position;
             float t = 3f;
 
             float vx = (endPos.x - startPos.x) / t;
@@ -97,13 +103,16 @@ namespace _Scripts.Entities
             float rotateDegree = Random.Range(-degreeDelta, degreeDelta);
             
             _aimVelocity = Rotate(_aimVelocity, rotateDegree);
-            
-            SetCannonAngle(Vector2.SignedAngle(_aimVelocity, Vector2.right));
+            _cannonAngle = Vector2.SignedAngle(_aimVelocity, Vector2.right);
+            SetCannonAngle(_cannonAngle);
         }
 
         private void Shoot()
         {
-            GameObject projectile = Instantiate(_projectilePrefab, gameObject.transform.position, transform.rotation);
+            var launchPos =
+                LaunchProjectile.TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
+                    TankCannon.transform.position);
+            GameObject projectile = Instantiate(_projectilePrefab, launchPos, transform.rotation);
             Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
             prb.velocity = _aimVelocity;
             
@@ -149,7 +158,11 @@ namespace _Scripts.Entities
         {
             if (_isAiming)
             {
-                Vector2[] trajectory = Plot(_projectileRigidbody2D, (Vector2)transform.position, _aimVelocity, 500);
+                var launchPos =
+                    LaunchProjectile.TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
+                        TankCannon.transform.position);
+                
+                Vector2[] trajectory = Plot(_projectileRigidbody2D, (Vector2)launchPos, _aimVelocity, 500);
                 _lr.positionCount = trajectory.Length;
 
                 Vector3[] positions = new Vector3[trajectory.Length];

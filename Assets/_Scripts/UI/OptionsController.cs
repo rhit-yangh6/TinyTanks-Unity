@@ -57,6 +57,8 @@ namespace _Scripts.UI
                 SteamManager.UnlockAchievement(Constants.AchievementBoombox);
                 WeaponManager.Instance.UnlockWeapon(22); // Boombox 22
             }
+
+            PlayerPrefs.Save();
             
             LoadSettings();
         }

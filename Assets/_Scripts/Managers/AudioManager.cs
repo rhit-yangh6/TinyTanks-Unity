@@ -59,7 +59,7 @@ namespace _Scripts.Managers
             var musicVolumeValue = PlayerPrefs.GetFloat(Constants.MusicVolumeValue);
             while (e < waitTime)
             {
-                var val = fadeOutCurve.Evaluate(Mathf.Clamp01(e / waitTime)) * musicVolumeValue;
+                var val = fadeOutCurve.Evaluate(Mathf.Clamp01(e / waitTime)) * (musicVolumeValue / 10f);
                 SetMusicVolumeValue(val);
                 e += Time.deltaTime;
                 yield return null;
@@ -72,7 +72,7 @@ namespace _Scripts.Managers
             var musicVolumeValue = PlayerPrefs.GetFloat(Constants.MusicVolumeValue);
             while (e < waitTime)
             {
-                var val = fadeInCurve.Evaluate(Mathf.Clamp01(e / waitTime)) * musicVolumeValue;
+                var val = fadeInCurve.Evaluate(Mathf.Clamp01(e / waitTime)) * (musicVolumeValue / 10f);
                 SetMusicVolumeValue(val);
                 e += Time.deltaTime;
                 yield return null;
