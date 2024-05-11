@@ -1099,16 +1099,22 @@
     }, {
       "id": 22,
       "weaponName": "Boombox",
-      "weaponDescription": ">>>.",
+      "weaponDescription": "Deploys a boombox that emits bass vibrations while clicking in mid-air. At basic level, the boombox only has two shockwave charges.",
       "damage": 24,
       "radius": 2.0,
       "maxMagnitude": 7.8,
+      "saying": "Boom to the beat.",
       "steps": 289.5,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Amplified Beats",
+          "description": "Upgrades the boombox's speakers to enhance the intensity and range of the shockwave.",
+          "cost": 200
+        },
+        {
+          "name": "Resonance Resupply",
+          "description": "Increases the number of shockwave charges available.",
+          "cost": 350
         },
         {
           "name": "",
@@ -1121,13 +1127,8 @@
           "cost": 0
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
-        },
-        {
-          "name": "",
-          "description": "",
+          "name": "Sonic Singularity",
+          "description": "The boombox focuses its power into a single, condensed shockwave of immense force.",
           "cost": 0
         }
       ],

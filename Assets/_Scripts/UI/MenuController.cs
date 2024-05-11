@@ -9,6 +9,7 @@ namespace _Scripts.UI
     public class MenuController : MonoBehaviour
     {
         [SerializeField] private AsyncLoader asyncLoader;
+        [SerializeField] private OptionsController optionsController;
         
         public void Awake()
         {
@@ -18,6 +19,8 @@ namespace _Scripts.UI
             
             // Create a SteamManager Singleton
             var unusedSteamManager = SteamManager.Instance;
+            
+            optionsController.LoadSettings();
         }
 
         private void Start()

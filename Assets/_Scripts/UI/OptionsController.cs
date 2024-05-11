@@ -15,7 +15,7 @@ namespace _Scripts.UI
         [SerializeField] private TextMeshProUGUI masterVolumeTextUI;
         [SerializeField] private TextMeshProUGUI musicVolumeTextUI;
         [SerializeField] private TextMeshProUGUI sfxVolumeTextUI;
-
+        
         private void Start()
         {
             LoadSettings();
@@ -61,7 +61,7 @@ namespace _Scripts.UI
             LoadSettings();
         }
 
-        private void LoadSettings()
+        public void LoadSettings()
         {
             Debug.Log("Loading Player Settings...");
             var masterVolumeValue = PlayerPrefs.GetFloat(Constants.MasterVolumeValue);
