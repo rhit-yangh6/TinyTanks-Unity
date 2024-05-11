@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using _Scripts.GameEngine;
+using _Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,10 +14,9 @@ namespace _Scripts.Managers
         
         public Sound[] musicSounds, sfxSounds;
         public AudioSource musicSource, sfxSource;
-        private static readonly int FadeIn = Animator.StringToHash("FadeIn");
-
-        private Animator musicAnimator;
-        private static readonly int FadeOut = Animator.StringToHash("FadeOut");
+        
+        [SerializeField] private AnimationCurve fadeOutCurve;
+        [SerializeField] private AnimationCurve fadeInCurve;
 
         private void Awake()
         {
@@ -24,7 +24,6 @@ namespace _Scripts.Managers
             {
                 Instance = this;
                 SceneManager.sceneLoaded += OnSceneLoaded;
-                musicAnimator = musicSource.GetComponent<Animator>();
                 DontDestroyOnLoad(gameObject);
             }
             else
@@ -43,15 +42,40 @@ namespace _Scripts.Managers
             switch (sceneName)
             {
                 case "Story":
-                    musicAnimator.SetTrigger(FadeOut);
-                    yield return new WaitForSeconds(waitTime); 
+                    yield return StartCoroutine(MusicFadeOut());
                     PlayStoryModeMusic();
                     break;
                 case "MenuScene":
-                    musicAnimator.SetTrigger(FadeOut);
-                    yield return new WaitForSeconds(waitTime); 
+                    yield return StartCoroutine(MusicFadeOut());
                     PlayMusic("Menu");
-                    break;
+                    break; 
+            }
+            StartCoroutine(MusicFadeIn());
+        }
+
+        private IEnumerator MusicFadeOut()
+        {
+            float e = 0;
+            var musicVolumeValue = PlayerPrefs.GetFloat(Constants.MusicVolumeValue);
+            while (e < waitTime)
+            {
+                var val = fadeOutCurve.Evaluate(Mathf.Clamp01(e / waitTime)) * musicVolumeValue;
+                SetMusicVolumeValue(val);
+                e += Time.deltaTime;
+                yield return null;
+            }
+        }
+        
+        private IEnumerator MusicFadeIn()
+        {
+            float e = 0;
+            var musicVolumeValue = PlayerPrefs.GetFloat(Constants.MusicVolumeValue);
+            while (e < waitTime)
+            {
+                var val = fadeInCurve.Evaluate(Mathf.Clamp01(e / waitTime)) * musicVolumeValue;
+                SetMusicVolumeValue(val);
+                e += Time.deltaTime;
+                yield return null;
             }
         }
 
@@ -70,10 +94,24 @@ namespace _Scripts.Managers
             }
             else
             {
-                musicAnimator.SetTrigger(FadeIn);
                 musicSource.clip = s.clip;
                 musicSource.Play();
             }
+        }
+
+        public void FadeOutMusic()
+        {
+            StartCoroutine(MusicFadeOut());
+        }
+
+        public void SetMusicVolumeValue(float volume)
+        {
+            musicSource.volume = volume;
+        }
+        
+        public void SetSfxVolumeValue(float volume)
+        {
+            sfxSource.volume = volume;
         }
     }
 }

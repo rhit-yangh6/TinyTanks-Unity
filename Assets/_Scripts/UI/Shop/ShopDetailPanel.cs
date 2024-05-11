@@ -57,14 +57,10 @@ namespace _Scripts.UI.Shop
 
         private void BuyWeapon(int weaponId)
         {
-            var result = PlayerData.Instance.BuyWeapon(weaponId);
-
+            var result = WeaponManager.Instance.UnlockWeapon(weaponId);
             if (!result) return;
             purchasePanel.SetActive(false);
             coinText.text = PlayerData.Instance.coins.ToString();
-            
-            var panel = Instantiate(newWeaponMsg, GameObject.FindGameObjectWithTag("Canvas").transform);
-            panel.GetComponent<NewWeaponMsgBehavior>().Display(weaponId);
         }
     }
 }

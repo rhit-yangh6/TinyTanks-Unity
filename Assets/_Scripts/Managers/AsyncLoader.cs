@@ -20,7 +20,7 @@ namespace _Scripts.Managers
         [Header("LoadingTime")]
         [Range(0.1f, 3f)]
         [SerializeField] private float blackScreenDefaultWaitTime;
-
+        
         private CanvasGroup _cg;
         private bool _fadeIn;
 

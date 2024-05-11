@@ -3,6 +3,7 @@ using _Scripts.GameEngine;
 using _Scripts.Projectiles;
 using _Scripts.UI;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Scripts.Managers
@@ -48,6 +49,17 @@ namespace _Scripts.Managers
         public Weapon[] GetAllWeapons()
         {
             return _weaponsFromJson.weapons;
+        }
+
+        public bool UnlockWeapon(int weaponId)
+        {
+            var result = PlayerData.Instance.BuyWeapon(weaponId);
+            if (!result) return false;
+            
+            var panel = Instantiate(Resources.Load<GameObject>("NewWeaponMsgPanel"),
+                GameObject.FindGameObjectWithTag("Canvas").transform);
+            panel.GetComponent<NewWeaponMsgBehavior>().Display(weaponId);
+            return true;
         }
     }
     

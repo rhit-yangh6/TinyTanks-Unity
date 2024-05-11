@@ -1133,7 +1133,7 @@
       ],
       "dataPath": "boombox",
       "explosionDuration": 0.3,
-      "shopPrice": 489,
+      "shopPrice": 0,
       "extraWeaponTerms": [
         {
           "term": "shockDamage",
@@ -1294,7 +1294,7 @@
       ],
       "dataPath": "airstrike",
       "explosionDuration": 0.4,
-      "shopPrice": 700,
+      "shopPrice": 0,
       "extraWeaponTerms": [
         {
           "term": "whiteDamage",
@@ -1339,7 +1339,7 @@
       ],
       "dataPath": "airstrike",
       "explosionDuration": 0.4,
-      "shopPrice": 1,
+      "shopPrice": 0,
       "extraWeaponTerms": []
     },
     {

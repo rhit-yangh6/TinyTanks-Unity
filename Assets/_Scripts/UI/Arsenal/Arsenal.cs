@@ -23,6 +23,11 @@ namespace _Scripts.UI.Arsenal
             -1, // Cannon
         };
 
+        private readonly int[] enhancedWeapons =
+        {
+            1000, // Airstrike (Enhanced)
+        };
+
         private void Start()
         {
             backButton.onClick.AddListener(SaveSystem.SavePlayer);
@@ -71,8 +76,11 @@ namespace _Scripts.UI.Arsenal
                 // Keep the weapon if you own this weapon
                 if (PlayerData.Instance.GetWeaponLevelFromId(w.id) > 0) return true;
             
-                // Do not show unobtainable ones
-                return !unobtainableWeapons.Contains(w.id);
+                var finalHiddenList = unobtainableWeapons
+                    .Concat(enhancedWeapons)
+                    .ToArray();
+                // Do not show hidden ones
+                return !finalHiddenList.Contains(w.id);
             });
 
             foreach (var w in weapons)

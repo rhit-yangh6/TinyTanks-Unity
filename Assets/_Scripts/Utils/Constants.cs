@@ -7,6 +7,11 @@ namespace _Scripts.Utils
 
         public const string ArsenalWeaponSayingPrefix = "-- ";
         
+        /* Settings */
+        public const string MasterVolumeValue = "MasterVolumeValue";
+        public const string MusicVolumeValue = "MusicVolumeValue";
+        public const string SfxVolumeValue = "SfxVolumeValue";
+        
         /* Discord and Rich Presence */
         public const long DiscordApplicationId = 1226719540390400140;
         
@@ -36,5 +41,6 @@ namespace _Scripts.Utils
         public const string AchievementTutorialCompleted = "TUTORIAL_COMPLETED";
         public const string AchievementBabySteps = "BABY_STEPS";
         public const string AchievementOops = "OOPS";
+        public const string AchievementBoombox = "BOOMBOX";
     }
 }

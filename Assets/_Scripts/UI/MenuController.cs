@@ -36,10 +36,11 @@ namespace _Scripts.UI
 
         public void ExitButtonYes()
         {
+            AudioManager.Instance.FadeOutMusic();
             SaveSystem.SavePlayer();
             Application.Quit();
         }
-        
+
         public void EnterSurvivalMode() { asyncLoader.LoadSurvivalMode(); }
         
         public void EnterShootingRange() { asyncLoader.LoadShootingRange(); }
