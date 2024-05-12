@@ -36,7 +36,7 @@ namespace _Scripts.Projectiles
         private IEnumerator TemporarilyDisableCollider()
         {
             _collider2D.enabled = false;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             _collider2D.enabled = true;
         }
     }

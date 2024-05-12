@@ -42,7 +42,7 @@ namespace _Scripts.Entities
             _rb2d = GetComponent<Rigidbody2D>();
         }
         
-        private void Update()
+        private void FixedUpdate()
         {
             CheckMovement();
             AdjustRotation();
@@ -97,8 +97,15 @@ namespace _Scripts.Entities
             {
                 fuel -= Time.deltaTime * fuelConsumptionCoefficient;
             }
-
-            transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xInput, 0, 0));
+            
+            if (IsGrounded())
+            {
+                transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xInput, 0, 0));
+            }
+            else
+            {
+                transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xInput, -1, 0));
+            }
         }
     }
 }

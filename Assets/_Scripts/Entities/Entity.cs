@@ -8,7 +8,7 @@ namespace _Scripts.Entities
 {
     public abstract class Entity: MonoBehaviour
     {
-        
+        [SerializeField] [Range(0, 20f)] private float rotationTolerance;
         [SerializeField] protected LayerMask layerMask;
 
         public float Health { get; set; }
@@ -22,6 +22,8 @@ namespace _Scripts.Entities
 
         protected virtual float MaxHealth => maxHealth;
         protected virtual HealthBarBehavior HealthBar => healthBar;
+
+        protected float angle;
 
         public virtual void TakeDamage(float amount, bool isCriticalHit = false)
         {
@@ -79,12 +81,16 @@ namespace _Scripts.Entities
 
         protected void AdjustRotation()
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 3f, layerMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 3f, layerMask);
 
             if (hit.collider)
             {
-                float angle = Vector2.SignedAngle(hit.normal, Vector2.up);
-                transform.eulerAngles = new Vector3 (0, 0, -angle);
+                var newAngle = Vector2.SignedAngle(hit.normal, Vector2.up);
+
+                transform.eulerAngles = Math.Abs(newAngle - angle) > rotationTolerance ?
+                    new Vector3 (0, 0, -newAngle) :
+                    new Vector3 (0, 0, -angle);
+                angle = newAngle;
             }
             else
             {
@@ -92,7 +98,7 @@ namespace _Scripts.Entities
             }
         }
 
-        protected virtual void CheckMovement() { }
+        protected abstract void CheckMovement();
         
         protected bool IsGrounded()
         {

@@ -29,7 +29,8 @@ namespace _Scripts.GameEngine
         private bool _needExtraForce, _isAiming;
         private float _extraForceXMultiplier, _extraForceYMultiplier;
         private float _cannonAngle;
-        
+        private static readonly int Shoot = Animator.StringToHash("Shoot");
+
         private void Start()
         {
             _cam = Camera.main;
@@ -93,6 +94,9 @@ namespace _Scripts.GameEngine
                     LaunchedProjectile lp = projectile.GetComponent<LaunchedProjectile>();
                     lp.Level = _sd.level;
                     lp.Shooter = gameObject;
+
+
+                    _playerCharacter.tankCannon.GetComponent<Animator>().SetTrigger(Shoot);
                 
                     EventBus.Broadcast(EventTypes.ProjectileShot);
                     _playerCharacter.moveable = false;

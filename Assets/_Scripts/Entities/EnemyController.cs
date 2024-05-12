@@ -16,6 +16,8 @@ namespace _Scripts.Entities
         [SerializeField] private int selectedWeaponId;
         [SerializeField] private int weaponLevel;
         [SerializeField] private float cannonLength = 1f;
+        [SerializeField] private float horizontalCastDistance = 1f;
+        [SerializeField][Range(70f, 180f)] private float climbAngleTolerance = 70f;
         
         protected override float MaxHealth => maxHealth;
         public override float MovementSpeed => movementSpeed;
@@ -29,12 +31,15 @@ namespace _Scripts.Entities
         private int _xMovingDirection = 0;
         private bool _isAiming = false;
         private Vector2 _aimVelocity;
+        private Vector2 colliderSize;
         
         private GameObject _projectilePrefab;
         private SpriteRenderer _sr, _cannonSr;
         private Rigidbody2D _projectileRigidbody2D, _rb2d;
         private LineRenderer _lr;
+        private CapsuleCollider2D _cc;
         private float _cannonAngle;
+        private static readonly int Shoot1 = Animator.StringToHash("Shoot");
 
         private void Start()
         {
@@ -53,10 +58,12 @@ namespace _Scripts.Entities
             _projectileRigidbody2D = _projectilePrefab.GetComponent<Rigidbody2D>();
 
             _rb2d = GetComponent<Rigidbody2D>();
+            _cc = GetComponent<CapsuleCollider2D>();
+            colliderSize = _cc.size;
             _player = GameObject.FindGameObjectWithTag("Player");
         }
 
-        void Update()
+        private void FixedUpdate()
         {
             CheckMovement();
             AdjustRotation();
@@ -65,9 +72,19 @@ namespace _Scripts.Entities
 
         protected override void CheckMovement()
         {
+            SlopeCheckHorizontal();
             if (_xMovingDirection != 0)
             {
-                transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xMovingDirection, 0, 0));
+                if (IsGrounded())
+                {
+                    // _rb2d.velocity = movementSpeed * new Vector3(_xMovingDirection, 0, 0);
+                    transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xMovingDirection, 0, 0));
+                }
+                else
+                {
+                    // _rb2d.velocity = movementSpeed * new Vector3(_xMovingDirection, -1, 0);
+                    transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xMovingDirection, -1, 0));
+                }
             }
             else
             {
@@ -82,6 +99,27 @@ namespace _Scripts.Entities
                     _rb2d.isKinematic = false;
                 }
             }
+        }
+
+        private void SlopeCheckHorizontal()
+        {
+            // Raycast in two horizontal directions. If the angle is too high stop moving immediately
+            Vector2 Checkpos = transform.position - new Vector3(0f, colliderSize.y / 2);
+            RaycastHit2D slopeHitRight = Physics2D.Raycast(Checkpos, transform.right, horizontalCastDistance, layerMask);
+            RaycastHit2D slopeHitLeft = Physics2D.Raycast(Checkpos, -transform.right, horizontalCastDistance, layerMask);
+
+            var slopeSideAngle = _xMovingDirection > 0
+                ? Vector2.Angle(slopeHitRight.normal, Vector2.up)
+                : Vector2.Angle(slopeHitLeft.normal, Vector2.up);
+            
+            if (slopeHitRight && _xMovingDirection > 0 && slopeSideAngle > climbAngleTolerance)
+            {
+                _xMovingDirection = 0;
+            } else if (slopeHitLeft && _xMovingDirection < 0 && slopeSideAngle > climbAngleTolerance)
+            {
+                _xMovingDirection = 0;
+            }
+            
         }
 
         private void Aim()
@@ -112,6 +150,8 @@ namespace _Scripts.Entities
             var launchPos =
                 LaunchProjectile.TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
                     TankCannon.transform.position);
+            TankCannon.GetComponent<Animator>().SetTrigger(Shoot1);
+            
             GameObject projectile = Instantiate(_projectilePrefab, launchPos, transform.rotation);
             Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
             prb.velocity = _aimVelocity;
