@@ -51,6 +51,42 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sky
+    uniqueID: 3197621835
+    locked: 0
+  - name: Farground_1
+    uniqueID: 2579589237
+    locked: 0
+  - name: Farground_2
+    uniqueID: 70304749
+    locked: 0
+  - name: Midground_1
+    uniqueID: 3446959641
+    locked: 0
+  - name: Midground_2
+    uniqueID: 454270841
+    locked: 0
+  - name: Foreground_1
+    uniqueID: 4241493659
+    locked: 0
+  - name: Foreground_2
+    uniqueID: 1056348771
+    locked: 0
+  - name: BehindProjectile
+    uniqueID: 1306533377
+    locked: 0
+  - name: Terrain
+    uniqueID: 328872581
+    locked: 0
+  - name: Entities
+    uniqueID: 3524343871
+    locked: 0
+  - name: Projectile
+    uniqueID: 623300969
+    locked: 0
+  - name: FX
+    uniqueID: 3570333925
+    locked: 0
   - name: CameraSortingLayer
     uniqueID: 1851697569
     locked: 0

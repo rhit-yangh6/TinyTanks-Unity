@@ -19124,7 +19124,7 @@ MonoBehaviour:
     _transform: {fileID: 2501646694447859677}
     _isoValue:
       _isoValue: 1.1
-    _sortingOrder: 8
+    _sortingOrder: 9
 --- !u!114 &1450722458504432533
 MonoBehaviour:
   m_ObjectHideFlags: 0
