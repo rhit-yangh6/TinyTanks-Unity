@@ -37,6 +37,7 @@ namespace _Scripts
         public GameObject coconutTreeFX;
         public GameObject targetFX;
         public GameObject electricLineFX;
+        public GameObject chargeFX;
 
         public ScriptableBuff burningBuff;
         public ScriptableBuff infectedBuff;

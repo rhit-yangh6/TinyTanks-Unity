@@ -84,7 +84,7 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
             
             // TODO: new explosion FX
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+            _explosionFX = GameAssets.i.chargeFX;
 
             // _electricChainRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "electricChainRadius").value;
         }

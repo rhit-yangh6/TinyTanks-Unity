@@ -1468,7 +1468,7 @@
         }
       ],
       "dataPath": "electricOrb",
-      "explosionDuration": 0.4,
+      "explosionDuration": 0.5,
       "shopPrice": 380,
       "extraWeaponTerms": []
     }
