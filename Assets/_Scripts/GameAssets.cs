@@ -1,5 +1,6 @@
 using _Scripts.Buffs;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Scripts
 {
@@ -34,7 +35,8 @@ namespace _Scripts
         public GameObject sacrificeFX;
         public GameObject shockwaveFX;
         public GameObject coconutTreeFX;
-        public GameObject TargetFX;
+        public GameObject targetFX;
+        public GameObject electricLineFX;
 
         public ScriptableBuff burningBuff;
         public ScriptableBuff infectedBuff;

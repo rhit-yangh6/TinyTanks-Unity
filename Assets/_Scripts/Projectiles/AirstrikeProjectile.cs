@@ -95,7 +95,7 @@ namespace _Scripts.Projectiles
             _r.enabled = false;
             
             // Instantiate a target
-            _target = Instantiate(GameAssets.i.TargetFX, pos, Quaternion.identity);
+            _target = Instantiate(GameAssets.i.targetFX, pos, Quaternion.identity);
             StartCoroutine(RotateTarget());
             StartCoroutine(ResizeTarget());
             

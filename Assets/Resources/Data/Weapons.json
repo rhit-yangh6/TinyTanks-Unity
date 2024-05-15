@@ -1431,6 +1431,46 @@
         "term": "enemyDamageMultiplier",
         "value": 0.33
       }]
+    }, {
+      "id": 28,
+      "weaponName": "Electric Orb",
+      "weaponDescription": ">>>",
+      "damage": 35,
+      "radius": 3.5,
+      "saying": "",
+      "maxMagnitude": 9,
+      "steps": 480,
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "electricOrb",
+      "explosionDuration": 0.4,
+      "shopPrice": 380,
+      "extraWeaponTerms": []
     }
   ]
 }

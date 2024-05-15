@@ -84,6 +84,28 @@ namespace _Scripts.Managers
             return hitCount;
         }
 
+        public Entity DetectNearestTarget(Vector2 pos, float radius, Entity excludingEntity)
+        {
+            var hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
+            var entities =
+                hitColliders
+                    .Select(col => col.gameObject.GetComponent<Entity>())
+                    .Where(e => e != null).ToList();
+
+            Entity closetEntity = null;
+            var minDist = Mathf.Infinity;
+            foreach(var e in entities)
+            {
+                if (ReferenceEquals(e, excludingEntity)) continue;
+                var distance = Vector2.Distance(pos, e.transform.position);
+                if (distance >= minDist) continue;
+                closetEntity = e;
+                minDist = distance;
+            }
+
+            return closetEntity;
+        }
+
         public IEnumerable<Entity> DetectTargets(Vector2 pos, float radius)
         {
             var hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
