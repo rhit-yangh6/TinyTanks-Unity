@@ -1129,7 +1129,7 @@
         {
           "name": "Sonic Singularity",
           "description": "The boombox focuses its power into a single, condensed shockwave of immense force.",
-          "cost": 900
+          "cost": 890
         }
       ],
       "dataPath": "boombox",
