@@ -17,7 +17,7 @@ namespace _Scripts.Projectiles
         // References
         protected override float Radius => _radius;
         protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
+        protected override float MaxMagnitude => Level >= 4 ? _maxMagnitude * 1.3f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
@@ -31,7 +31,33 @@ namespace _Scripts.Projectiles
         {
             _rb = gameObject.GetComponent<Rigidbody2D>();
 
-            _shockTimeLeft = 5;
+            _shockTimeLeft = Level switch
+            {
+                >= 6 => 1,
+                >= 5 => 5,
+                >= 3 => 3,
+                _ => 2
+            };
+
+            switch (Level)
+            {
+                case 6:
+                    _shockDamage *= 2;
+                    _shockRadius *= 0.7f;
+                    break;
+                case 5:
+                    _shockDamage *= 0.5f;
+                    _shockInterval *= 0.4f;
+                    break;
+                case >= 4:
+                    _shockDamage *= 1.2f;
+                    _shockRadius *= 1.3f;
+                    break;
+                case >= 2:
+                    _shockDamage *= 1.2f;
+                    _shockRadius *= 1.2f;
+                    break;
+            }
         }
 
         private void Update()
@@ -52,8 +78,8 @@ namespace _Scripts.Projectiles
                 DoCameraShake();
                 
                 GameObject insExpl = Instantiate(GameAssets.i.shockwaveFX, pos, Quaternion.identity);
-                insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
-                insExpl.transform.localScale *= _shockRadius;
+                insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.04f * _shockRadius);
+                // insExpl.transform.localScale *= _shockRadius;
                 Destroy(insExpl, ExplosionDuration);
                 
                 _shockTimeLeft--;

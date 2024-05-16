@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ec5e0b743c48be99691d7ea613dc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shockwavePrefab: {fileID: 7971136528542263083, guid: f6ef2f97f319e814bb310dd1af7eed6f, type: 3}
 --- !u!61 &8887341560703515737
 BoxCollider2D:
   m_ObjectHideFlags: 0

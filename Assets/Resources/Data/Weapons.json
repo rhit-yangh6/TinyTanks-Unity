@@ -1117,19 +1117,19 @@
           "cost": 350
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Sonic Projection",
+          "description": "Hugely increase the range of both the projectile and shockwaves.",
+          "cost": 490
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Concussion Beats",
+          "description": "Empowers the Bass Blaster Boombox with the ability to activate multiple times in quick succession, but with reduced range and damage.",
+          "cost": 890
         },
         {
           "name": "Sonic Singularity",
           "description": "The boombox focuses its power into a single, condensed shockwave of immense force.",
-          "cost": 0
+          "cost": 900
         }
       ],
       "dataPath": "boombox",
