@@ -80,12 +80,47 @@ namespace _Scripts.Managers
                 var ach = new Steamworks.Data.Achievement(id);
                 ach.Trigger();
                 
+                
                 Debug.Log($"Achievement {id} unlocked");
             }
             catch (Exception e)
             {
                 Debug.Log(e);
             } 
+        }
+        
+        public static void ClearAchievement(string id)
+        {
+            try
+            {
+                var ach = new Steamworks.Data.Achievement(id);
+                ach.Clear();
+                
+                Debug.Log($"Achievement {id} cleared");
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            } 
+        }
+        
+        public static int IncrementStat(string id)
+        {
+            try
+            {
+                var stat = new Steamworks.Data.Stat(id);
+                var value = stat.GetInt() + 1;
+                stat.Set(value);
+                
+                Debug.Log($"Stat {id} incremented to {value}");
+                return value;
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
+
+            return 0;
         }
     }
 }

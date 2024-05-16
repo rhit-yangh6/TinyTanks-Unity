@@ -1,3 +1,4 @@
+using System;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
 using _Scripts.Utils;
@@ -20,6 +21,18 @@ namespace _Scripts.UI
         private void Awake()
         {
             gameIsEnded = false;
+        }
+
+        private void Start()
+        {
+            EventBus.AddListener(EventTypes.PauseGame, SoftPause);
+            EventBus.AddListener(EventTypes.ResumeGame, Resume);
+        }
+
+        private void OnDestroy()
+        {
+            EventBus.RemoveListener(EventTypes.PauseGame, SoftPause);
+            EventBus.RemoveListener(EventTypes.ResumeGame, Resume);
         }
 
         // Update is called once per frame
@@ -48,6 +61,12 @@ namespace _Scripts.UI
         public void Pause()
         {
             pauseMenuUI.SetActive(true);
+            SoftPause();
+        }
+
+        // Soft pause is when game is paused but pause menu is not shown
+        private void SoftPause()
+        {
             Time.timeScale = 0f;
             gameIsPaused = true;
         }

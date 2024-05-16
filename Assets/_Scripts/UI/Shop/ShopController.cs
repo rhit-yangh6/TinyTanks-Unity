@@ -19,6 +19,7 @@ namespace _Scripts.UI.Shop
         private readonly int[] achievementWeapons =
         {
             22, // Boombox
+            27, // Sacrificial Bond
         };
         private readonly int[] promoCodeWeapons =
         {

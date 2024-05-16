@@ -57,8 +57,9 @@ namespace _Scripts.Managers
             if (!result) return false;
             
             var panel = Instantiate(Resources.Load<GameObject>("NewWeaponMsgPanel"),
-                GameObject.FindGameObjectWithTag("Canvas").transform);
+                GameObject.FindGameObjectWithTag("UI").transform);
             panel.GetComponent<NewWeaponMsgBehavior>().Display(weaponId);
+            SaveSystem.SavePlayer();
             return true;
         }
     }

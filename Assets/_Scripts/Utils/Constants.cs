@@ -33,8 +33,9 @@ namespace _Scripts.Utils
         public const string RichPresenceSurvivalModeDetail = "Playing Survival Mode";
         public const string RichPresenceSurvivalModeStatePrefix = "At Wave ";
 
-        /* Steam and Achievements Related */
+        /* Steam Stats and Achievements Related */
         public const uint SteamAppId = 2190060;
+        
         public const string AchievementFirstWinId = "FIRST_WIN";
         public const string AchievementFirstUpgradeId = "FIRST_UPGRADE";
         public const string AchievementMaxUpgradeId = "MAX_UPGRADE";
@@ -42,5 +43,11 @@ namespace _Scripts.Utils
         public const string AchievementBabySteps = "BABY_STEPS";
         public const string AchievementOops = "OOPS";
         public const string AchievementBoombox = "BOOMBOX";
+        public const string AchievementWillOfSacrifice = "WILL_OF_SACRIFICE";
+
+        public const string StatDoubleEdgedSwordPunishmentCount = "double_edged_sword_punishment_count";
+        
+        /* PlayerData Counter Keys */
+        public const string CounterKeySelfSacrifice = "SELF_SACRIFICE";
     }
 }

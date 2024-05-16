@@ -2,6 +2,12 @@ namespace _Scripts.Managers
 {
     public enum EventTypes
     {
+        /* Represents the event that game is paused */
+        PauseGame,
+        
+        /* Represents the event that game is resumed */
+        ResumeGame,
+        
         /* Represents the event that an Entity has taken some damage */
         DamageDealt,
         

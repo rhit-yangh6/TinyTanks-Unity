@@ -3,6 +3,8 @@ using _Scripts.Managers;
 using UnityEngine;
 using System.Collections;
 using _Scripts.Entities;
+using _Scripts.GameEngine;
+using _Scripts.Utils;
 using TerraformingTerrain2d;
 using Unity.VisualScripting;
 
@@ -86,6 +88,16 @@ namespace _Scripts.Projectiles
                 // Take damage
                 yield return new WaitForSeconds(ExplosionDuration);
                 Shooter.GetComponent<BuffableEntity>().TakeDamage(Damage);
+                
+                // Increment SELF_SACRIFICE counter
+                var sacrificeTimes = SteamManager.IncrementStat(Constants.StatDoubleEdgedSwordPunishmentCount);
+
+                if (sacrificeTimes >= 25)
+                {
+                    SteamManager.UnlockAchievement("AchievementWillOfSacrifice");
+                    WeaponManager.Instance.UnlockWeapon(27); // Sacrificial Bond 27
+                }
+                
                 Destroy(insExpl);
                 Destroy(gameObject);
             }

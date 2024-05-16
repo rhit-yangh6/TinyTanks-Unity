@@ -83,7 +83,6 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
             
-            // TODO: new explosion FX
             _explosionFX = GameAssets.i.chargeFX;
 
             // _electricChainRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "electricChainRadius").value;

@@ -14,6 +14,7 @@ namespace _Scripts.UI
         
         public void Display(int weaponId)
         {
+            EventBus.Broadcast(EventTypes.PauseGame);
             var weapon = WeaponManager.Instance.GetWeaponById(weaponId);
             
             weaponImage.sprite = weapon.weaponIconSprite;
@@ -38,6 +39,7 @@ namespace _Scripts.UI
 
         public void OnClose()
         {
+            EventBus.Broadcast(EventTypes.ResumeGame);
             Destroy(gameObject);
         }
     }
