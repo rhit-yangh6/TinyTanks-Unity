@@ -49,6 +49,7 @@ namespace _Scripts.GameEngine
 
                 if (!_isAiming && Vector2.Distance(transform.position, dragPoint) < aimProximity)
                 {
+                    EventBus.Broadcast(EventTypes.StartedDragging);
                     _isAiming = true;
                     _lr.enabled = true;
                     _startPoint = dragPoint;

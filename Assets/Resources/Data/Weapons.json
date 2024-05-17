@@ -1155,7 +1155,7 @@
       "weaponDescription": "A jackhammer projectile that digs into the terrain upon impact, creating a hole and dealing damage to any enemies caught in its path.",
       "damage": 14,
       "radius": 2.0,
-      "maxMagnitude": 8.3,
+      "maxMagnitude": 7.3,
       "steps": 350,
       "saying": "Dig deep down.",
       "upgradeInfos": [
