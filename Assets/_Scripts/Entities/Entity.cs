@@ -100,7 +100,7 @@ namespace _Scripts.Entities
 
         protected abstract void CheckMovement();
         
-        protected bool IsGrounded()
+        public bool IsGrounded()
         {
             return Physics2D.OverlapArea(topLeft.position, 
                 bottomRight.position, layerMask);

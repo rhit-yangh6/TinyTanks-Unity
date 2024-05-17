@@ -4,6 +4,7 @@ using _Scripts.GameEngine;
 using _Scripts.Managers;
 using _Scripts.Projectiles;
 using _Scripts.UI;
+using _Scripts.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -140,7 +141,7 @@ namespace _Scripts.Entities
 
             float rotateDegree = Random.Range(-degreeDelta, degreeDelta);
             
-            _aimVelocity = Rotate(_aimVelocity, rotateDegree);
+            _aimVelocity = Geometry.Rotate(_aimVelocity, rotateDegree);
             _cannonAngle = Vector2.SignedAngle(_aimVelocity, Vector2.right);
             SetCannonAngle(_cannonAngle);
         }
@@ -238,15 +239,6 @@ namespace _Scripts.Entities
             }
 
             return results;
-        }
-        
-        private Vector2 Rotate(Vector2 v, float delta)
-        {
-            float deltaRad = delta * Mathf.Deg2Rad;
-            return new Vector2(
-                v.x * Mathf.Cos(deltaRad) - v.y * Mathf.Sin(deltaRad),
-                v.x * Mathf.Sin(deltaRad) + v.y * Mathf.Cos(deltaRad)
-            );
         }
     }
 }

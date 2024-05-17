@@ -1,5 +1,6 @@
 using System;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -52,14 +53,14 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Rotate(velocity, BulletDispersion);
+            derivedRb2d.velocity = Geometry.Rotate(velocity, BulletDispersion);
             
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Rotate(velocity, -BulletDispersion);
+            derivedRb2d.velocity = Geometry.Rotate(velocity, -BulletDispersion);
 
             if (Level != 5) return;
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
@@ -67,14 +68,14 @@ namespace _Scripts.Projectiles
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Rotate(velocity, 2*BulletDispersion);
+            derivedRb2d.velocity = Geometry.Rotate(velocity, 2*BulletDispersion);
                 
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
 
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Rotate(velocity, -2*BulletDispersion);
+            derivedRb2d.velocity = Geometry.Rotate(velocity, -2*BulletDispersion);
 
         }
         
@@ -92,14 +93,7 @@ namespace _Scripts.Projectiles
             _bulletDispersion = Array.Find(extraWeaponTerms, ewt => ewt.term == "bulletDispersion").value;
         }
         
-        private Vector2 Rotate(Vector2 v, float delta)
-        {
-            float deltaRad = delta * Mathf.Deg2Rad;
-            return new Vector2(
-                v.x * Mathf.Cos(deltaRad) - v.y * Mathf.Sin(deltaRad),
-                v.x * Mathf.Sin(deltaRad) + v.y * Mathf.Cos(deltaRad)
-            );
-        }
+        
         
     }
 }

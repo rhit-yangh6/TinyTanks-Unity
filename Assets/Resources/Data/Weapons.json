@@ -1152,36 +1152,37 @@
     }, {
       "id": 23,
       "weaponName": "Jackhammer",
-      "weaponDescription": ">>>",
+      "weaponDescription": "A jackhammer projectile that digs into the terrain upon impact, creating a hole and dealing damage to any enemies caught in its path.",
       "damage": 14,
       "radius": 2.0,
       "maxMagnitude": 8.3,
       "steps": 350,
+      "saying": "Dig deep down.",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Larger Service Area",
+          "description": "Increases the distance that the jackhammer can be launched, allowing it to hit targets further away.",
+          "cost": 290
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Reinforced Bit",
+          "description": "Enhances the durability and power of the jackhammer's bit, increasing the damage it deals upon impact and while drilling.",
+          "cost": 420
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Deeper Down",
+          "description": "The jackhammer digs deeper down, destroying more terrain.",
+          "cost": 600
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Earthquake Trigger",
+          "description": "The jackhammer has a change to trigger an Earthquake, damaging all entities standing on the ground.",
+          "cost": 1040
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Bifurcated Dig",
+          "description": "The jackhammer digs down in two different directions upon impact, creating two separate tunnels that deal damage and disrupt terrain in a wider area.",
+          "cost": 1100
         }
       ],
       "dataPath": "jackhammer",
@@ -1203,6 +1204,14 @@
         {
           "term": "explosionDistance",
           "value": 1.8
+        },
+        {
+          "term": "earthquakeChance",
+          "value": 0.3
+        },
+        {
+          "term": "earthquakeShakeDuration",
+          "value": 0.9
         }
       ]
     }, {

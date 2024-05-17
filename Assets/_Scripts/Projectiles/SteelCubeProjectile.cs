@@ -1,6 +1,7 @@
 ﻿using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -77,20 +78,11 @@ namespace _Scripts.Projectiles
                     
                     var rotateDegree = Random.Range(-_smallCubeAngleDelta, _smallCubeAngleDelta);
                     var speed = Random.Range(5.5f, 9f);
-                    derivedRb2d.velocity = Rotate(Vector2.up, rotateDegree) * speed;
+                    derivedRb2d.velocity = Geometry.Rotate(Vector2.up, rotateDegree) * speed;
                 }
             }
 
             Destroy(gameObject);
-        }
-        
-        private Vector2 Rotate(Vector2 v, float delta)
-        {
-            var deltaRad = delta * Mathf.Deg2Rad;
-            return new Vector2(
-                v.x * Mathf.Cos(deltaRad) - v.y * Mathf.Sin(deltaRad),
-                v.x * Mathf.Sin(deltaRad) + v.y * Mathf.Cos(deltaRad)
-            );
         }
 
         public override void SetParameters(float damage, float radius, 

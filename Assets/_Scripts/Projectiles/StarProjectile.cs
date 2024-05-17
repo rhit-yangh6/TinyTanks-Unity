@@ -2,6 +2,7 @@
 using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using TerraformingTerrain2d;
 using UnityEngine;
 
@@ -88,7 +89,7 @@ namespace _Scripts.Projectiles
 
             for (var i = 0; i < 4; i++)
             {
-                _rb.velocity = Rotate(_rb.velocity, RotateDegree);
+                _rb.velocity = Geometry.Rotate(_rb.velocity, RotateDegree);
                 yield return new WaitForSeconds(Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval);
                 if (Level != 6) continue;
                 pos = gameObject.transform.position;
@@ -158,16 +159,6 @@ namespace _Scripts.Projectiles
             DoCameraShake();
         
             Destroy(gameObject);
-        }
-        
-        // TODO: Util Class?
-        private Vector2 Rotate(Vector2 v, float delta)
-        {
-            var deltaRad = delta * Mathf.Deg2Rad;
-            return new Vector2(
-                v.x * Mathf.Cos(deltaRad) - v.y * Mathf.Sin(deltaRad),
-                v.x * Mathf.Sin(deltaRad) + v.y * Mathf.Cos(deltaRad)
-            );
         }
         
         public override void SetParameters(float damage, float radius, 
