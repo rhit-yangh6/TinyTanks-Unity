@@ -94,7 +94,7 @@ namespace _Scripts.Projectiles
 
                 if (sacrificeTimes >= 25)
                 {
-                    SteamManager.UnlockAchievement("AchievementWillOfSacrifice");
+                    SteamManager.UnlockAchievement(Constants.AchievementWillOfSacrifice);
                     WeaponManager.Instance.UnlockWeapon(27); // Sacrificial Bond 27
                 }
                 

@@ -43,11 +43,9 @@ namespace _Scripts.Utils
         public const string AchievementBabySteps = "BABY_STEPS";
         public const string AchievementOops = "OOPS";
         public const string AchievementBoombox = "BOOMBOX";
+        public const string AchievementYinYang = "YIN_YANG";
         public const string AchievementWillOfSacrifice = "WILL_OF_SACRIFICE";
 
         public const string StatDoubleEdgedSwordPunishmentCount = "double_edged_sword_punishment_count";
-        
-        /* PlayerData Counter Keys */
-        public const string CounterKeySelfSacrifice = "SELF_SACRIFICE";
     }
 }

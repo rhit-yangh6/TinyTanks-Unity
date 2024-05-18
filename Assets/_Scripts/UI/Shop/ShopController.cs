@@ -20,6 +20,7 @@ namespace _Scripts.UI.Shop
         {
             22, // Boombox
             27, // Sacrificial Bond
+            24, // YinYang
         };
         private readonly int[] promoCodeWeapons =
         {
