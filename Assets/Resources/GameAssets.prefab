@@ -68,10 +68,11 @@ MonoBehaviour:
   - {fileID: -1829077492, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
   weaponLockedSprite: {fileID: 21300000, guid: 47ba90cf51f943e4192acdf20283ffa3, type: 3}
   regularExplosionFX: {fileID: 6624758977479615433, guid: bf9211e39af3fc547b81e87d2c190ec9, type: 3}
+  explosionFX: {fileID: 7037325690141038535, guid: ec9bddb8635a8a54bb4a71512a17814a, type: 3}
   gunpowderlessExplosionFX: {fileID: 6983152355114886887, guid: 3a34d5e69ed7df54b8f6783aa49c870a, type: 3}
   squareExplosionFX: {fileID: 7786670528002474878, guid: d8218e117436c7a45b7af6867dbc4797, type: 3}
   virusExplosionFX: {fileID: 1530589900558536253, guid: 3d8ed5dd805319c41aa626f1eaec4e48, type: 3}
-  healFX: {fileID: 5220775959749908496, guid: f42288f86daf6874d8fa441c65a152b2, type: 3}
+  healFX: {fileID: 2152503548154583231, guid: 0af1e84c0e9ddc44eafb3bc6ce060757, type: 3}
   blackExplosionFX: {fileID: 1958079762539756895, guid: 6ba0bd1cd34a14a4fbbdc20b4e2e3b19, type: 3}
   swordShadowFX: {fileID: 6855634953966181209, guid: 162c3c2030fe4f64db465a31465de817, type: 3}
   sacrificeFX: {fileID: 6884007866856075093, guid: aec87ed38dbc9734cb22566197ae1b48, type: 3}

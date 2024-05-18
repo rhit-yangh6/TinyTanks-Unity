@@ -140,7 +140,7 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
             
-            _explosionFX = GameAssets.i.regularExplosionFX;
+            _explosionFX = GameAssets.i.explosionFX;
 
             _detonateTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "detonateTime").value;
             _clusterExplosionDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "clusterExplosionDamage").value;

@@ -26,6 +26,7 @@ namespace _Scripts
         public Sprite weaponLockedSprite;
 
         public GameObject regularExplosionFX;
+        public GameObject explosionFX;
         public GameObject gunpowderlessExplosionFX;
         public GameObject squareExplosionFX;
         public GameObject virusExplosionFX;

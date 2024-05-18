@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6816072472652494682}
   - component: {fileID: 6890699591451632278}
   - component: {fileID: 7663483231909170444}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: medKit
   m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
