@@ -30,7 +30,7 @@ namespace _Scripts.Projectiles
         private void Start()
         {
             _rb = gameObject.GetComponent<Rigidbody2D>();
-
+            
             _shockTimeLeft = Level switch
             {
                 >= 6 => 1,
@@ -38,7 +38,7 @@ namespace _Scripts.Projectiles
                 >= 3 => 3,
                 _ => 2
             };
-
+            
             switch (Level)
             {
                 case 6:

@@ -87,7 +87,7 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
             
-            _explosionFX = GameAssets.i.regularExplosionFX;
+            _explosionFX = GameAssets.i.explosionFX;
   
             _velocityMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "velocityMultiplier").value;
         }

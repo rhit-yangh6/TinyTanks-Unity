@@ -182,7 +182,7 @@
         }
       ],
       "dataPath": "rocket",
-      "explosionDuration": 0.2,
+      "explosionDuration": 0.3,
       "shopPrice": 28,
       "extraWeaponTerms": [
         {
@@ -639,7 +639,7 @@
         }
       ],
       "dataPath": "curseBomb",
-      "explosionDuration": 0.2,
+      "explosionDuration": 1.5,
       "shopPrice": 622,
       "extraWeaponTerms": [
       ]

@@ -26,10 +26,17 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private Rigidbody2D _rb;
+        private int _finalBuffLevel;
         
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _finalBuffLevel = Level switch
+            {
+                5 => 2,
+                6 => 3,
+                _ => 1
+            };
         }
 
         private void Update()
@@ -42,18 +49,10 @@ namespace _Scripts.Projectiles
         {
             Vector2 pos = transform.position;
 
-            var cursedBuffLevel = Level switch
-            {
-                5 => 2,
-                6 => 3,
-                _ => 1
-            };
-
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
-                false, GameAssets.i.cursedBuff, cursedBuffLevel);
+                false, GameAssets.i.cursedBuff, _finalBuffLevel);
             
             SpawnExplosionFX();
-            DoCameraShake();
         
             Destroy(gameObject);
         }
@@ -67,11 +66,7 @@ namespace _Scripts.Projectiles
             _steps = steps;
             _explosionDuration = explosionDuration;
 
-            // TODO: new fx
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            // _boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
-            // _boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
+            _explosionFX = GameAssets.i.curseFX;
         }
     }
 }

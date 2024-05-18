@@ -81,6 +81,7 @@ MonoBehaviour:
   targetFX: {fileID: 7899387847127367874, guid: ce352401c877aba4fa565e2363772ce1, type: 3}
   electricLineFX: {fileID: 19190772009231569, guid: 9bd816811a7a3454da5980ab714e0289, type: 3}
   chargeFX: {fileID: 7082157850645742415, guid: 576c65c521d2cda4aa4aac5fa0c74886, type: 3}
+  curseFX: {fileID: 2152503548154583231, guid: 00deeae3e62eea54688ee0937ec38b15, type: 3}
   burningBuff: {fileID: 11400000, guid: b7ef3b36a4ce03f4b9d2e4570a9f7653, type: 2}
   infectedBuff: {fileID: 11400000, guid: 4ed3df647dab460488646240cf70f68a, type: 2}
   speedBuff: {fileID: 11400000, guid: 6802efc3db6826b4cb0d77db033c65f7, type: 2}

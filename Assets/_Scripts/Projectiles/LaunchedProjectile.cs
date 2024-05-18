@@ -51,10 +51,6 @@ namespace _Scripts.Projectiles
             else
             {
                 Detonate();
-                // if (col.gameObject.TryGetComponent(out TerraformingTerrain2dChunk chunk))
-                // {
-                //     Detonate(chunk);
-                // }
             }
         }
 
