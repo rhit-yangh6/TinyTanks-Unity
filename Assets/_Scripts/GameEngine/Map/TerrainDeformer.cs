@@ -25,7 +25,11 @@ namespace _Scripts.GameEngine.Map
         {
             if (type == DestroyTypes.Circular)
             {
-                DestroyTerrainCircular(pos, radius * RadiusMultiplier, 1);
+                DestroyTerrainCircular(pos, radius * RadiusMultiplier, destroyingPower);
+            }
+            else if (type == DestroyTypes.Square)
+            {
+                DestroyTerrainSquare(pos, radius * RadiusMultiplier, destroyingPower);
             }
             // TODO change type
         }
@@ -33,6 +37,19 @@ namespace _Scripts.GameEngine.Map
         private void DestroyTerrainCircular(Vector3 pos, float radius, int destroyingPower = 1)
         {
             var collider2Ds = Physics2D.OverlapCircleAll(pos, radius, layerMask);
+
+            foreach (var c in collider2Ds)
+            {
+                // TODO: Was exploded?
+                c.TryGetComponent(out TerraformingTerrain2dChunk chunk);
+                chunk.TerraformingPresenter.Rebuild(pos, radius, TerraformingMode.Carve);
+            }
+        }
+        
+        private void DestroyTerrainSquare(Vector3 pos, float radius, int destroyingPower = 1)
+        {
+            var collider2Ds = Physics2D.OverlapBoxAll(pos, new Vector2(radius * 1.414f, radius * 1.414f),
+                0, layerMask);
 
             foreach (var c in collider2Ds)
             {

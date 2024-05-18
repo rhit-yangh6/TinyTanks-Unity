@@ -16,29 +16,6 @@ namespace _Scripts.UI.Shop
         [SerializeField] private GameObject weaponScrollListContent;
         [SerializeField] private ShopDetailPanel sdp;
 
-        private readonly int[] achievementWeapons =
-        {
-            22, // Boombox
-            27, // Sacrificial Bond
-            24, // YinYang
-        };
-        private readonly int[] promoCodeWeapons =
-        {
-            // Empty for now
-        };
-        private readonly int[] bossWeapons =
-        {
-            25, // AirStrike
-        };
-        private readonly int[] enhancedWeapons =
-        {
-            1000, // AirStrike (Enhanced)
-        };
-        private readonly int[] unobtainableWeapons =
-        {
-            -1, // Cannon
-        };
-
         private void Start()
         {
             backButton.onClick.AddListener(SaveSystem.SavePlayer);
@@ -85,16 +62,9 @@ namespace _Scripts.UI.Shop
 
             foreach (var w in weapons)
             {
-                var finalHiddenList = achievementWeapons
-                    .Concat(promoCodeWeapons)
-                    .Concat(bossWeapons)
-                    .Concat(enhancedWeapons)
-                    .Concat(unobtainableWeapons)
-                    .ToArray();
-
                 // Won't displayed in shop
                 if (PlayerData.Instance.GetWeaponLevelFromId(w.id) > 0 ||
-                    finalHiddenList.Contains(w.id)) continue;
+                    w.hideInShop) continue;
                 
                 var buttonObj = Instantiate(shopWeaponButton, weaponScrollListContent.transform);
                 var s = buttonObj.GetComponent<Image>();

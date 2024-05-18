@@ -71,6 +71,7 @@ namespace _Scripts.Managers
         public int id, steps, shopPrice;
         public string weaponName, weaponDescription, dataPath, explosionFXPath, saying;
         public float damage, radius, maxMagnitude, explosionDuration;
+        public bool hideInShop, hideInArsenal;
         
         // Also Read from Weapons.json, but Extra Data Types
         public UpgradeInfo[] upgradeInfos;

@@ -39,7 +39,9 @@
       "dataPath": "cannon",
       "explosionDuration": 0.1,
       "shopPrice": -1000,
-      "extraWeaponTerms": []
+      "extraWeaponTerms": [],
+      "hideInShop": true,
+      "hideInArsenal": true
     }, {
       "id": 1,
       "weaponName": "Boulder",
@@ -1148,7 +1150,8 @@
           "term": "shockInterval",
           "value": 1.0
         }
-      ]
+      ],
+      "hideInShop": true
     }, {
       "id": 23,
       "weaponName": "Jackhammer",
@@ -1266,7 +1269,8 @@
           "term": "blackRadius",
           "value": 8.5
         }
-      ]
+      ],
+      "hideInShop": true
     }, {
       "id": 25,
       "weaponName": "Airstrike",
@@ -1310,7 +1314,8 @@
           "term": "whiteDamage",
           "value": 33
         }
-      ]
+      ],
+      "hideInShop": true
     },
     {
       "id": 1000,
@@ -1350,7 +1355,9 @@
       "dataPath": "airstrike",
       "explosionDuration": 0.4,
       "shopPrice": 0,
-      "extraWeaponTerms": []
+      "extraWeaponTerms": [],
+      "hideInShop": true,
+      "hideInArsenal": true
     },
     {
       "id": 26,
@@ -1439,7 +1446,8 @@
       }, {
         "term": "enemyDamageMultiplier",
         "value": 0.33
-      }]
+      }],
+      "hideInShop": true
     }, {
       "id": 28,
       "weaponName": "Electric Orb",
