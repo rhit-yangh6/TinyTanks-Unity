@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using _Scripts.Managers;
 using UnityEngine;
 
@@ -123,6 +124,21 @@ namespace _Scripts.GameEngine
                 (selectedWeapons[index1] == null || selectedWeapons[index2] == null)) return false;
 
             (selectedWeapons[index1], selectedWeapons[index2]) = (selectedWeapons[index2], selectedWeapons[index1]);
+            return true;
+        }
+        
+        public bool ClearWeaponSelection(int weaponId)
+        {
+            // If this is the only weapon selected
+            if (selectedWeapons.Count(sw => sw == null) == 4)
+            {
+                return false;
+            }
+            // Illegal Clear
+            var idx = Array.FindIndex(selectedWeapons, sw => sw.weaponId == weaponId);
+            if (idx == -1) return false;
+
+            selectedWeapons[idx] = null;
             return true;
         }
 

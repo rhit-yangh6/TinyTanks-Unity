@@ -32,7 +32,7 @@ namespace _Scripts.UI.Arsenal
             weaponId = wId;
             var image = GetComponent<Image>();
             var weapon = WeaponManager.Instance.GetWeaponById(weaponId);
-            image.sprite = wId == 0 ? GameAssets.i.weaponLockedSprite: weapon.weaponIconSprite;
+            image.sprite = wId == 0 ? GameAssets.i.weaponEmptySprite: weapon.weaponIconSprite;
 
             var animator = image.GetComponent<Animator>();
             // Enhanced?
@@ -82,13 +82,13 @@ namespace _Scripts.UI.Arsenal
             DragDropGrid ddg = eventData.pointerDrag.GetComponent<DragDropGrid>();
             DragDropIcon ddi = eventData.pointerDrag.GetComponent<DragDropIcon>();
             int incomingWeaponId;
-
+            
             if (ddg)
             {
                 incomingWeaponId = ddg.weaponId;
                 if (incomingWeaponId == 0) return;
 
-                bool isOverrideSuccessful = PlayerData.Instance.ChangeWeaponSelection(selectionIndex, incomingWeaponId);
+                var isOverrideSuccessful = PlayerData.Instance.ChangeWeaponSelection(selectionIndex, incomingWeaponId);
 
                 if (isOverrideSuccessful)
                 {
@@ -99,7 +99,7 @@ namespace _Scripts.UI.Arsenal
                 incomingWeaponId = ddi.weaponId;
                 if (incomingWeaponId == 0) return;
 
-                bool isSwapSuccessful = PlayerData.Instance.SwapWeaponSelection(selectionIndex, ddi.selectionIndex);
+                var isSwapSuccessful = PlayerData.Instance.SwapWeaponSelection(selectionIndex, ddi.selectionIndex);
 
                 if (isSwapSuccessful)
                 {

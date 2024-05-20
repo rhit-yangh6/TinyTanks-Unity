@@ -5,11 +5,12 @@ using _Scripts.Managers;
 using _Scripts.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace _Scripts.UI.Arsenal
 {
-    public class Arsenal : MonoBehaviour
+    public class Arsenal : MonoBehaviour, IDropHandler
     {
         [SerializeField] private GameObject arsenalWeaponButton;
         [SerializeField] private Button backButton;
@@ -105,5 +106,18 @@ namespace _Scripts.UI.Arsenal
             }
         }
 
+        public void OnDrop(PointerEventData eventData)
+        {
+            DragDropIcon ddi = eventData.pointerDrag.GetComponent<DragDropIcon>();
+
+            if (!ddi) return;
+            
+            var incomingWeaponId = ddi.weaponId;
+            if (incomingWeaponId == 0) return;
+
+            var isClearSuccessful = PlayerData.Instance.ClearWeaponSelection(incomingWeaponId);
+
+            if (isClearSuccessful) ddi.SetSprite(0);
+        }
     }
 }

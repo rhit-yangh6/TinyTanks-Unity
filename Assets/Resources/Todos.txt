@@ -17,4 +17,10 @@
 33. Weapon - Plasma Cannon
 34. Weapon - Gravity Bomb
 35. Weapon - Revolver
-36. Map - Add Props
+
+Description when hover, in weapon selection tab
+outline color disappearing in maps
+weapon selection tab, dont show locks
+ESC escapes the panels
+I18n
+
