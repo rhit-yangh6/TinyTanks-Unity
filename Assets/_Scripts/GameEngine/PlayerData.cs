@@ -134,6 +134,7 @@ namespace _Scripts.GameEngine
             {
                 return false;
             }
+            
             // Illegal Clear
             var idx = Array.FindIndex(selectedWeapons, sw => sw.weaponId == weaponId);
             if (idx == -1) return false;
