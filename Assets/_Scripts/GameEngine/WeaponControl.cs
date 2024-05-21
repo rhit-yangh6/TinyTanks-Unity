@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Scripts.Managers;
+using _Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,7 +51,9 @@ namespace _Scripts.GameEngine
                     {
                         animator.enabled = false;
                     }
-
+                    
+                    // Tooltip
+                    buttonObj.GetComponent<SelectionWeaponButton>().weaponId = selectionDatum.weaponId;
                 }
                 else
                 {

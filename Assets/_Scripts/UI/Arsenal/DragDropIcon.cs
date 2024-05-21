@@ -1,5 +1,7 @@
+using System;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,7 +9,7 @@ using UnityEngine.UI;
 namespace _Scripts.UI.Arsenal
 {
     public class DragDropIcon : MonoBehaviour, IPointerDownHandler,
-        IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+        IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
 
         [HideInInspector] public int weaponId;
@@ -107,6 +109,17 @@ namespace _Scripts.UI.Arsenal
                     SetSprite(incomingWeaponId);
                 }
             }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (weaponId == 0) return;
+            Tooltip.ShowTooltip_Static(weaponId);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            Tooltip.HideTooltip_Static();
         }
     }
 }

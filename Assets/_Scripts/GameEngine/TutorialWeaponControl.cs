@@ -45,6 +45,9 @@ namespace _Scripts.GameEngine
                     buttonImg.sprite = WeaponManager.Instance.GetWeaponById(selectionDatum.weaponId).weaponIconSprite;
                     button.onClick.AddListener(() => SwitchWeapon(index, selectionDatum));
                     starImg.sprite = GameAssets.i.stars[selectionDatum.level - 1];
+                    
+                    // Tooltip
+                    buttonObj.GetComponent<SelectionWeaponButton>().weaponId = selectionDatum.weaponId;
                 }
                 else
                 {
