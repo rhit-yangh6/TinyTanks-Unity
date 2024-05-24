@@ -3,6 +3,7 @@ using _Scripts.GameEngine;
 using _Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Exception = System.Exception;
 
 namespace _Scripts.Managers
 {
@@ -28,7 +29,7 @@ namespace _Scripts.Managers
         // Start is called before the first frame update
         private void Start()
         {
-            discord = new Discord.Discord(Constants.DiscordApplicationId, (ulong)Discord.CreateFlags.NoRequireDiscord);
+            ConnectDiscord();
             // Register listeners
             EventBus.AddListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
         }
@@ -36,7 +37,6 @@ namespace _Scripts.Managers
         private void OnDestroy()
         {
             EventBus.RemoveListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
-            // DisconnectDiscord();
         }
 
         private void OnApplicationQuit()
@@ -105,6 +105,19 @@ namespace _Scripts.Managers
             catch (Exception)
             {
                 // Debug.Log("Bad Discord Connection. " + e.Message);
+            }
+        }
+
+        private void ConnectDiscord()
+        {
+            try
+            {
+                discord = new Discord.Discord(Constants.DiscordApplicationId,
+                    (ulong)Discord.CreateFlags.NoRequireDiscord);
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Failed to Connect to discord. " + e.Message);
             }
         }
 

@@ -3,7 +3,7 @@ guid: 473fee8a2289d4b438423f159b1bfee9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1962,97 +1968,96 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tanks_spritesheetRetina_16: 1291646182
-      tanks_spritesheetRetina_18: 1853876113
-      tanks_spritesheetRetina_28: -844863466
-      tanks_spritesheetRetina_57: -1480128565
-      tanks_spritesheetRetina_83: 1393570078
-      tanks_spritesheetRetina_73: 1341063572
-      tanks_spritesheetRetina_68: 707670455
-      tanks_spritesheetRetina_78: -424541821
-      tanks_spritesheetRetina_82: 1870989338
-      tanks_spritesheetRetina_55: -414268898
-      tanks_spritesheetRetina_62: 185091386
-      tanks_spritesheetRetina_36: 1559174421
-      tanks_spritesheetRetina_44: -1879957284
-      tanks_spritesheetRetina_66: 235384143
-      tanks_spritesheetRetina_81: 1785884004
-      tanks_spritesheetRetina_11: -256835951
-      tanks_spritesheetRetina_30: 1801442092
-      tanks_spritesheetRetina_65: -727027327
-      tanks_spritesheetRetina_60: 1251816529
-      tanks_spritesheetRetina_51: 590383282
-      tanks_spritesheetRetina_69: 510625469
-      tanks_spritesheetRetina_26: -1390522389
-      tanks_spritesheetRetina_53: 1511261482
-      tanks_spritesheetRetina_74: -692297347
-      tanks_spritesheetRetina_7: -1492416776
-      tanks_spritesheetRetina_54: 33109364
-      tanks_spritesheetRetina_64: -92205295
-      tanks_spritesheetRetina_29: -748534723
-      tanks_spritesheetRetina_79: -1920960894
       tanks_spritesheetRetina_0: -28639590
-      tanks_spritesheetRetina_25: 875556
-      tanks_spritesheetRetina_59: -849618159
-      tanks_spritesheetRetina_8: -917250528
-      tanks_spritesheetRetina_41: 72543610
-      tanks_spritesheetRetina_49: 785979381
-      tanks_spritesheetRetina_85: -151944386
-      tanks_spritesheetRetina_72: 381773892
+      tanks_spritesheetRetina_1: 45525821
+      tanks_spritesheetRetina_10: 1630977092
+      tanks_spritesheetRetina_11: -256835951
+      tanks_spritesheetRetina_12: -783506327
+      tanks_spritesheetRetina_13: 1590418906
+      tanks_spritesheetRetina_14: -885746762
+      tanks_spritesheetRetina_15: 150642815
+      tanks_spritesheetRetina_16: 1291646182
+      tanks_spritesheetRetina_17: 440332672
+      tanks_spritesheetRetina_18: 1853876113
+      tanks_spritesheetRetina_19: -732736254
+      tanks_spritesheetRetina_2: -1053353413
+      tanks_spritesheetRetina_20: 266546830
+      tanks_spritesheetRetina_21: -1381100146
+      tanks_spritesheetRetina_22: -552858203
       tanks_spritesheetRetina_23: -830574607
       tanks_spritesheetRetina_24: -774928563
-      tanks_spritesheetRetina_12: -783506327
+      tanks_spritesheetRetina_25: 875556
+      tanks_spritesheetRetina_26: -1390522389
       tanks_spritesheetRetina_27: 1873260752
-      tanks_spritesheetRetina_52: -1342916540
-      tanks_spritesheetRetina_45: -392192991
-      tanks_spritesheetRetina_61: 1857861564
-      tanks_spritesheetRetina_2: -1053353413
-      tanks_spritesheetRetina_32: 1712674607
-      tanks_spritesheetRetina_50: 1336766954
-      tanks_spritesheetRetina_75: 931319624
-      tanks_spritesheetRetina_10: 1630977092
-      tanks_spritesheetRetina_4: 1993208781
-      tanks_spritesheetRetina_9: 834324600
-      tanks_spritesheetRetina_15: 150642815
-      tanks_spritesheetRetina_63: 1203408717
-      tanks_spritesheetRetina_56: 210920852
-      tanks_spritesheetRetina_80: 2094090574
-      tanks_spritesheetRetina_70: 363877922
-      tanks_spritesheetRetina_42: 702384815
-      tanks_spritesheetRetina_58: 263984021
+      tanks_spritesheetRetina_28: -844863466
+      tanks_spritesheetRetina_29: -748534723
       tanks_spritesheetRetina_3: -305120159
-      tanks_spritesheetRetina_84: -2094871964
-      tanks_spritesheetRetina_39: 1836836923
-      tanks_spritesheetRetina_76: 29571330
-      tanks_spritesheetRetina_48: -897797514
-      tanks_spritesheetRetina_21: -1381100146
-      tanks_spritesheetRetina_46: -1862821555
-      tanks_spritesheetRetina_6: 2031110212
-      tanks_spritesheetRetina_13: 1590418906
-      tanks_spritesheetRetina_17: 440332672
-      tanks_spritesheetRetina_86: 1337735557
-      tanks_spritesheetRetina_37: 1858975315
-      tanks_spritesheetRetina_87: -939782183
+      tanks_spritesheetRetina_30: 1801442092
       tanks_spritesheetRetina_31: 211806250
-      tanks_spritesheetRetina_40: -1053449130
-      tanks_spritesheetRetina_19: -732736254
-      tanks_spritesheetRetina_43: 2081404736
-      tanks_spritesheetRetina_71: -307668811
-      tanks_spritesheetRetina_47: 2029924786
+      tanks_spritesheetRetina_32: 1712674607
       tanks_spritesheetRetina_33: -1865083144
-      tanks_spritesheetRetina_35: 1343593298
-      tanks_spritesheetRetina_1: 45525821
-      tanks_spritesheetRetina_22: -552858203
-      tanks_spritesheetRetina_5: 2105249561
-      tanks_spritesheetRetina_14: -885746762
-      tanks_spritesheetRetina_67: -1014527846
       tanks_spritesheetRetina_34: -1463667349
-      tanks_spritesheetRetina_77: -1933813383
-      tanks_spritesheetRetina_20: 266546830
+      tanks_spritesheetRetina_35: 1343593298
+      tanks_spritesheetRetina_36: 1559174421
+      tanks_spritesheetRetina_37: 1858975315
       tanks_spritesheetRetina_38: 788702439
-  spritePackingTag: 
+      tanks_spritesheetRetina_39: 1836836923
+      tanks_spritesheetRetina_4: 1993208781
+      tanks_spritesheetRetina_40: -1053449130
+      tanks_spritesheetRetina_41: 72543610
+      tanks_spritesheetRetina_42: 702384815
+      tanks_spritesheetRetina_43: 2081404736
+      tanks_spritesheetRetina_44: -1879957284
+      tanks_spritesheetRetina_45: -392192991
+      tanks_spritesheetRetina_46: -1862821555
+      tanks_spritesheetRetina_47: 2029924786
+      tanks_spritesheetRetina_48: -897797514
+      tanks_spritesheetRetina_49: 785979381
+      tanks_spritesheetRetina_5: 2105249561
+      tanks_spritesheetRetina_50: 1336766954
+      tanks_spritesheetRetina_51: 590383282
+      tanks_spritesheetRetina_52: -1342916540
+      tanks_spritesheetRetina_53: 1511261482
+      tanks_spritesheetRetina_54: 33109364
+      tanks_spritesheetRetina_55: -414268898
+      tanks_spritesheetRetina_56: 210920852
+      tanks_spritesheetRetina_57: -1480128565
+      tanks_spritesheetRetina_58: 263984021
+      tanks_spritesheetRetina_59: -849618159
+      tanks_spritesheetRetina_6: 2031110212
+      tanks_spritesheetRetina_60: 1251816529
+      tanks_spritesheetRetina_61: 1857861564
+      tanks_spritesheetRetina_62: 185091386
+      tanks_spritesheetRetina_63: 1203408717
+      tanks_spritesheetRetina_64: -92205295
+      tanks_spritesheetRetina_65: -727027327
+      tanks_spritesheetRetina_66: 235384143
+      tanks_spritesheetRetina_67: -1014527846
+      tanks_spritesheetRetina_68: 707670455
+      tanks_spritesheetRetina_69: 510625469
+      tanks_spritesheetRetina_7: -1492416776
+      tanks_spritesheetRetina_70: 363877922
+      tanks_spritesheetRetina_71: -307668811
+      tanks_spritesheetRetina_72: 381773892
+      tanks_spritesheetRetina_73: 1341063572
+      tanks_spritesheetRetina_74: -692297347
+      tanks_spritesheetRetina_75: 931319624
+      tanks_spritesheetRetina_76: 29571330
+      tanks_spritesheetRetina_77: -1933813383
+      tanks_spritesheetRetina_78: -424541821
+      tanks_spritesheetRetina_79: -1920960894
+      tanks_spritesheetRetina_8: -917250528
+      tanks_spritesheetRetina_80: 2094090574
+      tanks_spritesheetRetina_81: 1785884004
+      tanks_spritesheetRetina_82: 1870989338
+      tanks_spritesheetRetina_83: 1393570078
+      tanks_spritesheetRetina_84: -2094871964
+      tanks_spritesheetRetina_85: -151944386
+      tanks_spritesheetRetina_86: 1337735557
+      tanks_spritesheetRetina_87: -939782183
+      tanks_spritesheetRetina_9: 834324600
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -1,6 +1,5 @@
 using _Scripts.Buffs;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Scripts
 {

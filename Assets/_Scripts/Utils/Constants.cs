@@ -4,7 +4,6 @@ namespace _Scripts.Utils
 {
     public static class Constants
     {
-
         public const string ArsenalWeaponSayingPrefix = "-- ";
         
         /* Settings */
