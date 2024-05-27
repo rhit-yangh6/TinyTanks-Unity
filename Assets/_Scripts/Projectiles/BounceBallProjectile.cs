@@ -1,19 +1,22 @@
 ﻿using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
     public class BounceBallProjectile: LaunchedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private MMFeedbacks bounceMmFeedbacks;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
         private static GameObject _explosionFX;
 
         // ExtraFields
-        private static int _bounceTimeTotal;
         private static float _bounceDamage, _bounceRadius, _unitBounceDamage;
         
         // References
@@ -35,18 +38,30 @@ namespace _Scripts.Projectiles
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-        
+        private int BounceTime
+        {
+            get
+            {
+                return Level switch
+                {
+                    5 => 5,
+                    >= 3 => 3,
+                    _ => 2
+                };
+            }
+        }
+
         // Other Variables
-        private int _bounceTime;
+        private int _bounceTimeLeft;
 
         private void Start()
         {
-            _bounceTime = Level switch
-            {
-                5 => 5,
-                >= 3 => 3,
-                _ => _bounceTimeTotal
-            };
+            _bounceTimeLeft = BounceTime;
+        }
+        
+        private void Update()
+        {
+            Spin();
         }
 
         protected override void OnCollisionEnter2D(Collision2D col)
@@ -55,9 +70,9 @@ namespace _Scripts.Projectiles
             {
                 Destroy(gameObject);
             }
-            else if (_bounceTime > 0)
+            else if (_bounceTimeLeft > 0)
             {
-                _bounceTime--;
+                _bounceTimeLeft--;
                 Bounce();
             }
             else
@@ -68,13 +83,19 @@ namespace _Scripts.Projectiles
 
         private void Bounce()
         {
+            bounceMmFeedbacks.PlayFeedbacks();
+            BounceDealDamage();
+        }
+
+        private void BounceDealDamage()
+        {
             var pos = transform.position;
 
             var finalCalculatedDamage = _bounceDamage;
             switch (Level)
             {
                 case 5:
-                    finalCalculatedDamage += (5 - _bounceTime) * _unitBounceDamage;
+                    finalCalculatedDamage += (5 - _bounceTimeLeft) * _unitBounceDamage;
                     break;
                 case >= 3:
                     finalCalculatedDamage += _unitBounceDamage;
@@ -85,9 +106,6 @@ namespace _Scripts.Projectiles
 
             if (Level >= 4) EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 _bounceRadius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
         }
         
         public override void SetParameters(float damage, float radius, 
@@ -101,7 +119,6 @@ namespace _Scripts.Projectiles
 
             _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
             
-            _bounceTimeTotal = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceTimeTotal").value;
             _bounceDamage = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceDamage").value;
             _bounceRadius = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceRadius").value;
             _unitBounceDamage = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "unitBounceDamage").value;

@@ -19,19 +19,10 @@ namespace _Scripts.Projectiles
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-        
-        // Other Variables
-        private Rigidbody2D _rb;
-        
-        private void Start()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
 
         private void Update()
         {
-            var velocity = _rb.velocity;
-            transform.Rotate(0,0, velocity.x > 0 ? -1 : 1);
+            Spin();
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)

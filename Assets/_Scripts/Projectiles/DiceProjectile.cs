@@ -32,26 +32,6 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private int _diceResult;
-        
-        protected override void OnCollisionEnter2D(Collision2D col)
-        {
-            
-            if (col.gameObject.CompareTag("DangerZone"))
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
-                rb.isKinematic = true;
-                rb.velocity = Vector2.zero;
-                rb.gravityScale = 0;
-                
-                _diceResult = HandleDiceResult();
-                DisplayTownDownResult(_diceResult);
-                Invoke(nameof(Detonate), 2.1f);
-            }
-        }
 
         private int HandleDiceResult()
         {
@@ -65,6 +45,16 @@ namespace _Scripts.Projectiles
 
 
         public override void Detonate()
+        {
+            if (isDetonated) return;
+            isDetonated = true;
+            Disappear();
+            _diceResult = HandleDiceResult();
+            
+            defaultMmFeedbacks.PlayFeedbacks();
+        }
+
+        public override void DealDamage()
         {
             var pos = transform.position;
 
@@ -82,13 +72,8 @@ namespace _Scripts.Projectiles
 
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 finalCalculatedRadius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
         }
-
+        
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,
             ExtraWeaponTerm[] extraWeaponTerms)
         {
@@ -103,14 +88,14 @@ namespace _Scripts.Projectiles
             _unitDiceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "unitDiceDamage").value;
         }
 
-        private void DisplayTownDownResult(int number)
+        public void DisplayTopDownResult()
         {
             Vector3 cameraCenterPos = Camera.main.transform.position;
             GameObject insTopdown = Instantiate(topDownDisplay, 
                 new Vector3(cameraCenterPos.x, cameraCenterPos.y, 0), 
                 quaternion.identity);
             insTopdown.GetComponent<SpriteRenderer>().sprite = 
-                (Level == 6 && number == 3) ? GameAssets.i.diceNumbers[6] : GameAssets.i.diceNumbers[number - 1];
+                (Level == 6 && _diceResult == 3) ? GameAssets.i.diceNumbers[6] : GameAssets.i.diceNumbers[_diceResult - 1];
             insTopdown.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(-18.0f, 18.0f)));
             Destroy(insTopdown, 1.9f);
         }

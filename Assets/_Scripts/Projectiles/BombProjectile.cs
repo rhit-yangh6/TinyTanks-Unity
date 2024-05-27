@@ -3,6 +3,7 @@ using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using JetBrains.Annotations;
+using MoreMountains.Feedbacks;
 using TerraformingTerrain2d;
 using Unity.Mathematics;
 using UnityEngine;
@@ -12,13 +13,18 @@ namespace _Scripts.Projectiles
 {
     public class BombProjectile : LaunchedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private MMFeedbacks secondaryExplosionFeedbacks;
+        [SerializeField] private MMFeedbacks clusterExplosionFeedbacks;
+        [SerializeField] private MMFeedbacks longerFeedbacks;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
         private static GameObject _explosionFX;
         
         // ExtraFields
-        private static float _detonateTime, _clusterExplosionRadius, _clusterExplosionDamage;
+        private static float _clusterExplosionRadius, _clusterExplosionDamage;
         private static float _secondaryExplosionRadius, _secondaryExplosionDamage;
 
         // References
@@ -30,16 +36,27 @@ namespace _Scripts.Projectiles
         protected override GameObject ExplosionFX => _explosionFX;
 
         // Other Variables
-        private SpriteRenderer _sr;
         private readonly int[,] _clusterDirections = 
         { { 2, 0 }, { 1, -1 }, { 0, -2 }, { -1, -1 }, {-2, 0}, {-1, 1}, {0, 2}, {1, 1} };
         
-        // TODO: Level 5???
-        
         private void Start()
         {
-            _sr = GetComponent<SpriteRenderer>();
-            StartCoroutine(TickBomb());
+            switch (Level)
+            {
+                case 6:
+                    clusterExplosionFeedbacks.PlayFeedbacks();
+                    break;
+                case 5:
+                    if (Random.value < 0.35) secondaryExplosionFeedbacks.PlayFeedbacks();
+                    else longerFeedbacks.PlayFeedbacks();
+                    break;
+                case >= 2:
+                    longerFeedbacks.PlayFeedbacks();
+                    break;
+                default:
+                    defaultMmFeedbacks.PlayFeedbacks();
+                    break;
+            }
         }
 
         protected override void OnCollisionEnter2D(Collision2D col)
@@ -47,68 +64,26 @@ namespace _Scripts.Projectiles
             if (col.gameObject.CompareTag("DangerZone")) Destroy(gameObject);
         }
 
-        private IEnumerator TickBomb()
-        {
-            var finalCalculatedDetonateTime = _detonateTime;
-            if (Level >= 2) finalCalculatedDetonateTime += 1f;
-
-            Invoke(nameof(Detonate), finalCalculatedDetonateTime);
-            while (true)
-            {
-                _sr.color = Color.red;
-                yield return new WaitForSeconds(.1f);
-                _sr.color = Color.white;
-                yield return new WaitForSeconds(.1f);
-            }
-        }
-
         public override void Detonate()
         {
-            var pos = transform.position;
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-
-            switch (Level)
-            {
-                case 6:
-                    StartCoroutine(SpawnClusterExplosion(pos));
-                    break;
-                case 5:
-                    var random = Random.value;
-                    if (random > 0.65) StartCoroutine(SpawnSecondaryExplosion(pos));
-                    else Destroy(gameObject);
-                    break;
-                default:
-                    Destroy(gameObject);
-                    break;
-            }
+            if (isDetonated) return;
+            isDetonated = true;
+            Disappear();
+            DealDamage();
         }
 
-        private IEnumerator SpawnSecondaryExplosion(Vector3 origin)
+        public void SpawnSecondaryExplosion()
         {
-            _sr.enabled = false;
-            yield return new WaitForSeconds(ExplosionDuration + .25f);
+            var origin = transform.position;
             
             DamageHandler.i.HandleDamage(origin, _secondaryExplosionRadius, _secondaryExplosionDamage, 
                 DamageHandler.DamageType.Circular);
             EventBus.Broadcast(EventTypes.DestroyTerrain, origin,
                 _secondaryExplosionRadius, 1, DestroyTypes.Circular);
-            
-            var insExpl = Instantiate(ExplosionFX, origin, Quaternion.identity);
-            insExpl.transform.localScale *= _secondaryExplosionRadius;
-            Destroy(insExpl, ExplosionDuration);  
-            
-            Destroy(gameObject);
         }
 
         private IEnumerator SpawnClusterExplosion(Vector3 origin)
         {
-            // Hide the bomb
-            _sr.enabled = false;
-
             for (var i = 0; i < 8; i++)
             {
                 var direction = Vector3.Normalize(Vector2.right * _clusterDirections[i, 0] +
@@ -127,8 +102,12 @@ namespace _Scripts.Projectiles
                 yield return new WaitForSeconds(.07f);
             }
 
-            Destroy(gameObject);
             yield return 0;
+        }
+
+        public void TriggerClusterExplosion()
+        {
+            StartCoroutine(SpawnClusterExplosion(transform.position));
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude,
@@ -142,7 +121,6 @@ namespace _Scripts.Projectiles
             
             _explosionFX = GameAssets.i.explosionFX;
 
-            _detonateTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "detonateTime").value;
             _clusterExplosionDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "clusterExplosionDamage").value;
             _clusterExplosionRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "clusterExplosionRadius").value;
             

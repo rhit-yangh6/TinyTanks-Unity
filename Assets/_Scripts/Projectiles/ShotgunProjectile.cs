@@ -37,14 +37,15 @@ namespace _Scripts.Projectiles
                 };
             }
         }
-
-        // Other Variables
-        private Rigidbody2D _rb;
         
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
-            var velocity = _rb.velocity;
+            SpawnSecondaryProjectiles();
+        }
+
+        private void SpawnSecondaryProjectiles()
+        {
+            var velocity = Rigidbody2D.velocity;
             var pos = transform.position;
             
             // Make clones
@@ -76,7 +77,6 @@ namespace _Scripts.Projectiles
 
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
             derivedRb2d.velocity = Geometry.Rotate(velocity, -2*BulletDispersion);
-
         }
         
         public override void SetParameters(float damage, float radius, 
@@ -92,8 +92,5 @@ namespace _Scripts.Projectiles
             
             _bulletDispersion = Array.Find(extraWeaponTerms, ewt => ewt.term == "bulletDispersion").value;
         }
-        
-        
-        
     }
 }

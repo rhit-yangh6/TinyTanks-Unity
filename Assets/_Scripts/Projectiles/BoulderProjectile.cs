@@ -1,8 +1,6 @@
 using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
-using TerraformingTerrain2d;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,83 +20,82 @@ namespace _Scripts.Projectiles
         private static float _boulderPieceRadius, _boulderPieceDamage;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
+        protected override float Radius
+        {
+            get
+            {
+                return Level switch
+                {
+                    5 => _radius * 1.30f,
+                    >= 3 => _radius * 1.15f,
+                    _ => _radius
+                };
+            }
+        }
+
+        protected override float Damage
+        {
+            get
+            {
+                return Level switch
+                {
+                    5 => _damage * 1.50f,
+                    >= 3 => _damage * 1.20f,
+                    _ => _damage
+                };
+            }
+        }
+
         protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.2f : _maxMagnitude;
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
 
-        // Other Variables
-        private Rigidbody2D _rb;
-        
-        private void Start()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
-        
         private void Update()
         {
-            var velocity = _rb.velocity;
-            transform.Rotate(0,0, velocity.x > 0 ? -1 : 1);
+            Spin();
         }
         
         public override void Detonate()
         {
-            var pos = transform.position;
+            if (isDetonated) return;
+            isDetonated = true;
 
-            // Gaining from Higher Levels
-            var finalCalculatedRadius = Radius;
-            var finalCalculatedDamage = Damage;
+            Disappear();
             
-            if (Level >= 3)
-            {
-                finalCalculatedRadius *= 1.15f;
-                finalCalculatedDamage *= 1.20f;
-            }
-
-            if (Level == 5)
-            {
-                finalCalculatedRadius *= 1.40f;
-                finalCalculatedDamage *= 1.35f;
-            }
-
-            DamageHandler.i.HandleDamage(pos, finalCalculatedRadius, finalCalculatedDamage, 
-                DamageHandler.DamageType.Circular);
-
-            EventBus.Broadcast(EventTypes.DestroyTerrain,
-                pos, finalCalculatedRadius, 1, DestroyTypes.Circular);
+            DealDamage();
         
-            SpawnExplosionFX();
-            DoCameraShake();
+            defaultMmFeedbacks.PlayFeedbacks();
 
             // Split into Pieces
-
             var spawnPieces = false;
             if (Level >= 4) spawnPieces = Random.value > 0.8;
-
             if (Level == 6) spawnPieces = true;
 
             if (spawnPieces)
             {
-                // First Piece
-                var derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, ExplosionDuration, ExplosionFX);
-                derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
-            
-                // Second Piece
-                derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, ExplosionDuration, ExplosionFX);
-                derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
+                SpawnPieces();
             }
+        }
 
-            Destroy(gameObject);
+        private void SpawnPieces()
+        {
+            var pos = transform.position;
+            // First Piece
+            var derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
+            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+            
+            derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, ExplosionDuration, ExplosionFX);
+            derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
+            
+            // Second Piece
+            derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
+            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+            
+            derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, ExplosionDuration, ExplosionFX);
+            derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
         }
 
         public override void SetParameters(float damage, float radius, 

@@ -3,7 +3,7 @@ using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
-using TerraformingTerrain2d;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -12,6 +12,8 @@ namespace _Scripts.Projectiles
     {
         public int Level { get; set; }
         public GameObject Shooter { get; set; }
+
+        [SerializeField] protected MMFeedbacks defaultMmFeedbacks;
 
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -27,19 +29,24 @@ namespace _Scripts.Projectiles
         protected virtual GameObject ExplosionFX => _explosionFX;
         
         // Other Fields
-        private Collider2D _collider2D;
+        protected Collider2D Collider2D;
+        protected Rigidbody2D Rigidbody2D;
+        protected Renderer renderer;
+        protected bool isDetonated;
 
         private void Awake()
         {
-            _collider2D = GetComponent<Collider2D>();
+            Collider2D = GetComponent<Collider2D>();
+            Rigidbody2D = GetComponent<Rigidbody2D>();
+            renderer = GetComponent<Renderer>();
             StartCoroutine(TemporarilyDisableCollider());
         }
 
         private IEnumerator TemporarilyDisableCollider()
         {
-            _collider2D.enabled = false;
+            Collider2D.enabled = false;
             yield return new WaitForSeconds(0.1f);
-            _collider2D.enabled = true;
+            Collider2D.enabled = true;
         }
 
         protected virtual void OnCollisionEnter2D(Collision2D col)
@@ -57,17 +64,52 @@ namespace _Scripts.Projectiles
         // The most basic detonate function
         public virtual void Detonate()
         {
-            var pos = transform.position;
+            if (isDetonated) return;
+            isDetonated = true;
+
+            Disappear();
+
+            DealDamage();
             
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            
-            EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
-            
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
+            defaultMmFeedbacks.PlayFeedbacks();
         }
+
+        public virtual void DealDamage()
+        {
+            var pos = transform.position;
+            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+            EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
+        }
+
+        protected virtual void Disappear()
+        {
+            // Stop rigidBody from moving/rotating
+            Rigidbody2D.gravityScale = 0;
+            Rigidbody2D.freezeRotation = true;
+            Rigidbody2D.velocity = Vector2.zero;
+
+            // Disable collider
+            Collider2D.enabled = false;
+            
+            // Stop rendering
+            renderer.enabled = false;
+        }
+
+        protected void Spin()
+        {
+            if (isDetonated) return;
+            var velocity = Rigidbody2D.velocity;
+            transform.Rotate(0,0, velocity.x > 0 ? -1 : 1);
+        }
+        
+        protected void Direct()
+        {
+            var velocity = Rigidbody2D.velocity;
+            var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
+        public virtual void Activate() { /* Do nothing as default */ }
         
         public virtual void SpawnExplosionFX()
         {

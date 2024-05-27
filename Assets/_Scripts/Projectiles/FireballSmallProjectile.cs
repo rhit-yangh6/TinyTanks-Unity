@@ -20,19 +20,9 @@ namespace _Scripts.Projectiles
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
-        // Other Variables
-        private Rigidbody2D _rb;
-        
-        private void Start()
-        {
-            _rb = gameObject.GetComponent<Rigidbody2D>();
-        }
-        
         private void Update()
         {
-            Vector2 velocity = _rb.velocity;
-            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Direct();
         }
 
         public override void SetParameters(float damage, float radius, float explosionDuration, GameObject explosionFX)
@@ -42,8 +32,8 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
             _explosionFX = explosionFX;
         }
-        
-        public override void Detonate()
+
+        public override void DealDamage()
         {
             var pos = transform.position;
             
@@ -52,11 +42,6 @@ namespace _Scripts.Projectiles
 
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 Radius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-            
-            Destroy(gameObject);
         }
     }
 }

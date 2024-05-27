@@ -18,78 +18,52 @@ namespace _Scripts.Projectiles
         private static float _fixedMagnitude, _extraForceXMultiplier, _extraForceYMultiplier;
 
         // References
-        protected override float Radius => _radius;
+        protected override float Radius => Level >= 3 ? _radius * 1.5f : _radius;
         protected override float Damage => _damage;
         protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
+        protected override int Steps {
+            get
+            {
+                if (Level == 4) return (int)(_steps * 3f); // LEVEl 5
+                return Level >= 2 ? (int)(_steps * 1.5f) : _steps; // LEVEL 2+
+            }
+        }
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
-        // Other Variables
-        private Rigidbody2D _rb;
-
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
-            var velocity = _rb.velocity;
-            _rb.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * _extraForceXMultiplier,
+            var velocity = Rigidbody2D.velocity;
+            Rigidbody2D.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * _extraForceXMultiplier,
                 velocity.y * _extraForceYMultiplier, 0);
         }
 
-        private void FixedUpdate()
-        {
-            Vector2 velocity = _rb.velocity;
-            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-        
-        public override void Detonate()
+        private void Update() { Direct(); }
+
+        public override void DealDamage()
         {
             var pos = transform.position;
-
-            var finalCalculatedRadius = Radius;
-            if (Level >= 3) finalCalculatedRadius *= 1.5f;
 
             var isCritical = false;
             if (Level >= 4) isCritical = Random.value > 0.75;
             if (Level == 6) isCritical = true;
 
-            DamageHandler.i.HandleDamage(pos, finalCalculatedRadius, isCritical ? Damage * 1.5f : Damage, 
+            DamageHandler.i.HandleDamage(pos, Radius, isCritical ? Damage * 1.5f : Damage, 
                 DamageHandler.DamageType.Circular, isCritical);
 
             if (Level >= 3) EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
-                finalCalculatedRadius, 1, DestroyTypes.Circular);
-
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
-        }
-
-        public override void SpawnExplosionFX()
-        {
-            GameObject insExpl = Instantiate(Level >= 3 ?
-                GameAssets.i.regularExplosionFX : 
-                GameAssets.i.gunpowderlessExplosionFX,
-                transform.position, Quaternion.identity);
-            insExpl.transform.localScale *= Radius;
-            Destroy(insExpl, ExplosionDuration);
+                Radius, 1, DestroyTypes.Circular);
         }
 
         public override float GetFixedMagnitude()
         {
             return _fixedMagnitude;
         }
-        
-        public override int GetSteps()
-        {
-            var finalCalculatedSteps = Steps;
 
-            if (Level >= 2) finalCalculatedSteps = (int)(finalCalculatedSteps * 1.5f);
-            // TODO: Another Level 5?
-            if (Level == 5) finalCalculatedSteps = (int)(finalCalculatedSteps * 2f);
-            
-            return finalCalculatedSteps;
+        protected override void Disappear()
+        {
+            base.Disappear();
+            Rigidbody2D.GetComponent<ConstantForce2D>().force = Vector2.zero;
         }
         
         public override void SetParameters(float damage, float radius, 

@@ -1,14 +1,16 @@
 using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
-using TerraformingTerrain2d;
-using Unity.Mathematics;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
     public class RocketProjectile : LaunchedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private MMFeedbacks activateMmFeedbacks;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -30,53 +32,57 @@ namespace _Scripts.Projectiles
         protected override int Steps => Level >= 2 ? (int)(_steps * 1.24f) : _steps; // LEVEL 2
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
+        private float VelocityMultiplier
+        {
+            get
+            {
+                return Level switch
+                {
+                    >= 4 => _velocityMultiplier * 1.24f,
+                    _ => _velocityMultiplier
+                };
+            }
+        }
         
         // Other Variables
         private bool _isActivated;
-        private Rigidbody2D _rb;
         private ParticleSystem _ps;
     
         private void Start()
         {
-            _rb = gameObject.GetComponent<Rigidbody2D>();
             _ps = gameObject.GetComponentInChildren<ParticleSystem>();
             _ps.Stop();
         }
 
         private void Update()
         {
-            Vector2 velocity = _rb.velocity;
-            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Direct();
+            if (!Input.GetMouseButtonDown(0) || _isActivated) return;
+            
+            _isActivated = true;
+            activateMmFeedbacks.PlayFeedbacks();
+        }
 
-            if (Input.GetMouseButtonDown(0) && !_isActivated)
+        public override void Activate()
+        {
+            var velocity = Rigidbody2D.velocity;
+            velocity *= VelocityMultiplier;
+            Rigidbody2D.velocity = velocity;
+            if (Level == 5) // LEVEL 5
             {
-                _isActivated = true;
-                velocity *= Level >= 4 ? _velocityMultiplier * 1.24f :_velocityMultiplier; // LEVEL 4
-                _rb.velocity = velocity;
-                if (Level == 5) // LEVEL 5
-                {
-                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    var guideDirection = (mousePosition - (Vector2)transform.position).normalized;
-                    _rb.velocity = _rb.velocity + guideDirection * 5f;
-                }
-                _ps.Play();
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var guideDirection = (mousePosition - (Vector2)transform.position).normalized;
+                Rigidbody2D.velocity += guideDirection * 5f;
             }
         }
-        
-        public override void Detonate()
+
+        public override void DealDamage()
         {
             var pos = transform.position;
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 Radius, Level == 6 ? 2 : 1, DestroyTypes.Circular);
-            
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)

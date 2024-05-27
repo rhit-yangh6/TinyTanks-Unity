@@ -15,13 +15,9 @@ namespace _Scripts.Projectiles
         protected override float Damage => _damage;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-
-        // Other Fields
-        private Collider2D _collider2D;
         
-        private void Awake()
+        private void Start()
         {
-            _collider2D = GetComponent<Collider2D>();
             StartCoroutine(TemporarilyDisableCollider());
         }
 
@@ -35,9 +31,9 @@ namespace _Scripts.Projectiles
         
         private IEnumerator TemporarilyDisableCollider()
         {
-            _collider2D.enabled = false;
+            Collider2D.enabled = false;
             yield return new WaitForSeconds(0.1f);
-            _collider2D.enabled = true;
+            Collider2D.enabled = true;
         }
     }
 }

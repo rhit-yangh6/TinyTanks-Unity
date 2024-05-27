@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
-using TerraformingTerrain2d;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -10,6 +11,8 @@ namespace _Scripts.Projectiles
     public class DerivedProjectile : MonoBehaviour, IProjectile
     {
         public GameObject Shooter { get; set; }
+        
+        [SerializeField] protected MMFeedbacks defaultMmFeedbacks;
         
         // Shared Fields
         private static float _radius, _damage, _explosionDuration;
@@ -21,18 +24,63 @@ namespace _Scripts.Projectiles
         protected virtual float Damage => _damage;
         protected virtual float ExplosionDuration => _explosionDuration;
         protected virtual GameObject ExplosionFX => _explosionFX;
+
+        protected Rigidbody2D Rigidbody2D;
+        protected Collider2D Collider2D;
+        protected Renderer Renderer;
+        protected bool IsDetonated;
+
+        private void Awake()
+        {
+            Rigidbody2D = GetComponent<Rigidbody2D>();
+            Collider2D = GetComponent<Collider2D>();
+            Renderer = GetComponent<Renderer>();
+        }
         
+        protected void Spin()
+        {
+            if (IsDetonated) return;
+            var velocity = Rigidbody2D.velocity;
+            transform.Rotate(0,0, velocity.x > 0 ? -1 : 1);
+        }
+
+        protected void Direct()
+        {
+            var velocity = Rigidbody2D.velocity;
+            var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
         public virtual void Detonate()
+        {
+            if (IsDetonated) return;
+            IsDetonated = true;
+
+            Disappear();
+            DealDamage();
+        
+            defaultMmFeedbacks.PlayFeedbacks();
+        }
+
+        public virtual void DealDamage()
         {
             var pos = transform.position;
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
+        }
         
-            SpawnExplosionFX();
-            DoCameraShake();
+        protected void Disappear()
+        {
+            // Stop rigidBody from moving/rotating
+            Rigidbody2D.gravityScale = 0;
+            Rigidbody2D.freezeRotation = true;
+            Rigidbody2D.velocity = Vector2.zero;
+
+            // Disable collider
+            Collider2D.enabled = false;
             
-            Destroy(gameObject);
+            // Stop rendering
+            Renderer.enabled = false;
         }
 
         public virtual void SpawnExplosionFX()

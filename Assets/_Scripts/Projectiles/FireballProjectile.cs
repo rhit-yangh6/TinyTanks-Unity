@@ -30,19 +30,23 @@ namespace _Scripts.Projectiles
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
+        private int BurningBuffLevel
+        {
+            get
+            {
+                if (Level == 5) return 4; // Level 5: Eternal Fire
+                return Level >= 4 ? 3 : 2; // LEVEL 4+
+            }
+        }
         
-        // Other Vars
-        private Rigidbody2D _rb;
-
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
             if (Level == 6) StartCoroutine(SummonSmallFireballs());
         }
 
         private IEnumerator SummonSmallFireballs()
         {
-            while (true)
+            while (!isDetonated)
             {
                 yield return new WaitForSeconds(_summonInterval);
                 var derivedObject = Instantiate(fireballSmallPrefab, gameObject.transform.position, Quaternion.identity);
@@ -56,32 +60,18 @@ namespace _Scripts.Projectiles
 
         private void Update()
         {
-            Vector2 velocity = _rb.velocity;
-            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Direct();
         }
 
-        public override void Detonate()
+        public override void DealDamage()
         {
             var pos = transform.position;
 
-            var burningBuffLevel = 2;
-            
-            if (Level >= 4) burningBuffLevel = 3;
-            
-            // Level 5: Eternal Fire
-            if (Level == 5) burningBuffLevel = 4;
-
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
-                false, GameAssets.i.burningBuff, burningBuffLevel);
+                false, GameAssets.i.burningBuff, BurningBuffLevel);
 
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 Radius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
         }
 
         public override void SetParameters(float damage, float radius, 

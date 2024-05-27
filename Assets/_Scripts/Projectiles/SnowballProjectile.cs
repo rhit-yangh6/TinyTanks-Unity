@@ -28,19 +28,15 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private float _timer;
-        private Rigidbody2D _rb;
 
         private void Start()
         {
-            _rb = gameObject.GetComponent<Rigidbody2D>();
             StartCoroutine(Scale());
         }
 
         private void Update()
         {
-            var velocity = _rb.velocity;
-            var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Direct();
         }
 
         private IEnumerator Scale()
@@ -59,12 +55,11 @@ namespace _Scripts.Projectiles
             }
         }
 
-        public override void Detonate()
+        public override void DealDamage()
         {
             var pos = transform.position;
-            
             var multiplier = GetDamageAndRadiusMultiplier();
-
+            
             if (Level == 5)
             {
                 // Apply frozen buff if Level = 5
@@ -82,18 +77,6 @@ namespace _Scripts.Projectiles
                 EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                     Radius * multiplier * 1.5f, 1, DestroyTypes.Circular);
             }
-            
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
-        }
-        
-        public override void SpawnExplosionFX()
-        {
-            var insExpl = Instantiate(ExplosionFX, transform.position, Quaternion.identity);
-            insExpl.transform.localScale *= Radius * GetDamageAndRadiusMultiplier();
-            Destroy(insExpl, ExplosionDuration);
         }
 
         private float GetDamageAndRadiusMultiplier()

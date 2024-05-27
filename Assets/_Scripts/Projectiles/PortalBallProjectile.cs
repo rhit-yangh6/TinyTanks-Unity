@@ -31,18 +31,14 @@ namespace _Scripts.Projectiles
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
-        private Rigidbody2D _rb;
         private bool _isActivated;
         private Vector2 _velocity;
         private Vector2 _originalLocation, _teleportLocation;
-        private Renderer _r;
         private SpriteRenderer _sr;
         private LineRenderer _circleRenderer;
 
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
-            _r = GetComponent<Renderer>();
             _sr = GetComponent<SpriteRenderer>();
             _circleRenderer = GetComponent<LineRenderer>();
         }
@@ -65,8 +61,7 @@ namespace _Scripts.Projectiles
             {
                 _circleRenderer.enabled = false;
             }
-            var velocity = _rb.velocity;
-            transform.Rotate(0,0, velocity.x > 0 ? -1 : 1);
+            Spin();
 
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {
@@ -76,7 +71,7 @@ namespace _Scripts.Projectiles
                 if (distance <= finalMaximumDistance || Level == 6)
                 {
                     _isActivated = true;
-                    _velocity = velocity;
+                    _velocity = GetComponent<Rigidbody2D>().velocity;
                     _circleRenderer.enabled = false;
                     _originalLocation = transform.position;
                     _teleportLocation = targetLocation;
@@ -114,17 +109,17 @@ namespace _Scripts.Projectiles
                 DamageHandler.i.HandleDamage(_teleportLocation, Radius, _portalDamage, DamageHandler.DamageType.Circular);
             }
             
-            _r.enabled = false;
-            _rb.gravityScale = 0;
-            _rb.velocity = Vector2.zero;
+            renderer.enabled = false;
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
             yield return new WaitForSeconds(1);
 
             _sr.sprite = Level == 5 ? mirrorPortalBall : orangePortalBall;
-            _r.enabled = true;
-            _rb.gravityScale = 1;
+            renderer.enabled = true;
+            GetComponent<Rigidbody2D>().gravityScale = 1;
             transform.position = _teleportLocation;
-            _rb.velocity = Level == 5 ? -_velocity : _velocity;
+            GetComponent<Rigidbody2D>().velocity = Level == 5 ? -_velocity : _velocity;
             
             yield return new WaitForSeconds(0.5f);
             

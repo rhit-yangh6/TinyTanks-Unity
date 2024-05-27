@@ -2,9 +2,8 @@ using System;
 using _Scripts.Entities;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
-using TerraformingTerrain2d;
+using MoreMountains.Feedbacks;
 using UnityEngine;
-using Object = System.Object;
 
 namespace _Scripts.Projectiles
 {
@@ -12,6 +11,7 @@ namespace _Scripts.Projectiles
     { 
         // Set in Inspector
         [SerializeField] private LayerMask layerMask;
+        [SerializeField] private MMFeedbacks activateMmFeedbacks;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -39,15 +39,12 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private bool _isActivated;
-        private Vector2 _aimingLocation;
-        private Rigidbody2D _rb;
 
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
-            var velocity = _rb.velocity;
-            _rb.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * _extraForceXMultiplier,
-                velocity.y * _extraForceYMultiplier, 0);
+            var velocity = Rigidbody2D.velocity;
+            Rigidbody2D.GetComponent<ConstantForce2D>().force =
+                new Vector3(velocity.x * _extraForceXMultiplier, velocity.y * _extraForceYMultiplier, 0);
         }
 
         // Update is called once per frame
@@ -56,33 +53,36 @@ namespace _Scripts.Projectiles
             if (Input.GetMouseButtonDown(0) && !_isActivated && Level >= 5)
             {
                 _isActivated = true;
-
-                Vector2 startPos = transform.position;
-                if (Level == 5)
-                {
-                    Vector2 endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector2 angleVelocity = (endPos - startPos).normalized;
-                    
-                    // TODO: Multiplier subject to change
-                    _rb.AddForce(angleVelocity * _addForceMultiplier);
-                }
-                else
-                {
-                    Vector2 endPos = Shooter.transform.position;
-                    Vector2 angleVelocity = (endPos - startPos).normalized;
-
-                    Destroy(_rb.GetComponent<ConstantForce2D>());
-                    _rb.gravityScale = 0;
-                    // TODO: have a minimum speed
-                    _rb.velocity = angleVelocity * (_rb.velocity.magnitude * _selfTrackSpeedMultiplier);
-                }
+                activateMmFeedbacks.PlayFeedbacks();
             }
         }
-        
-        public override void Detonate()
+
+        public override void Activate()
+        {
+            Vector2 startPos = transform.position;
+            if (Level == 5)
+            {
+                Vector2 endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 angleVelocity = (endPos - startPos).normalized;
+                    
+                // TODO: Multiplier subject to change
+                Rigidbody2D.AddForce(angleVelocity * _addForceMultiplier);
+            }
+            else
+            {
+                Vector2 endPos = Shooter.transform.position;
+                Vector2 angleVelocity = (endPos - startPos).normalized;
+
+                Destroy(Rigidbody2D.GetComponent<ConstantForce2D>());
+                Rigidbody2D.gravityScale = 0;
+                // TODO: have a minimum speed
+                Rigidbody2D.velocity = angleVelocity * (Rigidbody2D.velocity.magnitude * _selfTrackSpeedMultiplier);
+            }
+        }
+
+        public override void DealDamage()
         {
             var pos = transform.position;
-
             // TODO: Maybe move this to the Damage Handler if this is becoming more popular
             if (Level >= 2)
             {
@@ -103,13 +103,7 @@ namespace _Scripts.Projectiles
             {
                 DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
             }
-
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
         }
         
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)

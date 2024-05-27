@@ -2,6 +2,7 @@ using System;
 using _Scripts.Buffs;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using MoreMountains.Feedbacks;
 using TerraformingTerrain2d;
 using Unity.Mathematics;
 using UnityEngine;
@@ -10,6 +11,11 @@ namespace _Scripts.Projectiles
 {
     public class AnvilProjectile : LaunchedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private MMFeedbacks slamMmFeedbacks;
+        [SerializeField] private MMFeedbacks activateMmFeedbacks;
+        [SerializeField] private MMFeedbacks secondActivateFeedbacks;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
@@ -28,42 +34,69 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private bool _isActivated, _isSecondPhaseActivated;
-        private Rigidbody2D _rb;
-        
-        void Start()
-        {
-            _rb = gameObject.GetComponent<Rigidbody2D>();
-        }
 
-        void Update()
+        private void Start()
+        {
+            foreach (var ps in gameObject.GetComponentsInChildren<ParticleSystem>())
+            {
+                ps.Stop();
+            }
+        }
+        
+        private void Update()
         {
             if (!_isActivated)
             {
-                Vector2 velocity = _rb.velocity;
-                float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                Direct();
             }
             
             if (Input.GetMouseButtonDown(0) && _isActivated && Level == 5 && !_isSecondPhaseActivated)
             {
-                _rb.AddForce(Vector2.down * 30.0f);
                 _isSecondPhaseActivated = true;
+                secondActivateFeedbacks.PlayFeedbacks();
             }
             
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {
                 _isActivated = true;
-                _rb.velocity = Vector2.zero;
-                _rb.gravityScale *= _gravityScaleMultiplier;
-                transform.rotation = Quaternion.identity;
+                activateMmFeedbacks.PlayFeedbacks();
             }
+        }
+
+        public override void Activate()
+        {
+            Rigidbody2D.velocity = Vector2.zero;
+            Rigidbody2D.gravityScale *= _gravityScaleMultiplier;
+            transform.rotation = Quaternion.identity;
+        }
+
+        public void SecondActivate()
+        {
+            Rigidbody2D.AddForce(Vector2.down * 30.0f);
         }
 
         public override void Detonate()
         {
+            if (isDetonated) return;
+            isDetonated = true;
+            Disappear();
+            
+            if (_isActivated)
+            {
+                slamMmFeedbacks.PlayFeedbacks();
+            }
+            else
+            {
+                defaultMmFeedbacks.PlayFeedbacks();
+            }
+            DealDamage();
+        }
+
+        public override void DealDamage()
+        {
             var pos = transform.position;
 
-            float damageDealt = _isActivated ? (_isSecondPhaseActivated ? 
+            var damageDealt = _isActivated ? (_isSecondPhaseActivated ? 
                 Damage * _secondPhaseFallDamageMultiplier * _fallDamageMultiplier :
                 Damage * _fallDamageMultiplier) : Damage;
 
@@ -72,16 +105,13 @@ namespace _Scripts.Projectiles
                 DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular, 
                     false, GameAssets.i.stunnedBuff);    
             }
-            else DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular);
-
+            else
+            {
+                DamageHandler.i.HandleDamage(pos, Radius, damageDealt, DamageHandler.DamageType.Circular);
+            }
             
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 (Level >= 4 && _isActivated) ? Radius * 1.5f : Radius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)

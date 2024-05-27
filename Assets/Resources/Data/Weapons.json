@@ -132,9 +132,6 @@
       "shopPrice": 0,
       "extraWeaponTerms": [
         {
-          "term": "detonateTime",
-          "value": 5.0
-        }, {
           "term": "clusterExplosionRadius",
           "value": 1.5
         }, {
@@ -401,7 +398,7 @@
       "weaponName": "Sniper",
       "weaponDescription": "Powerful sniper rifle. Deals high damage to enemies with high-speed bullets that are largely unaffected by gravity.",
       "damage": 45.0,
-      "radius": 1,
+      "radius": 0.6,
       "maxMagnitude": 13.0,
       "steps": 300,
       "saying": "U R in my Sight.",

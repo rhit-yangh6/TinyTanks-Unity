@@ -29,37 +29,30 @@ namespace _Scripts.Projectiles
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
-        private Rigidbody2D _rb;
         private Renderer _r;
-        private bool isDetonated;
     
         private void Start()
         {
             isDetonated = false;
-            _rb = gameObject.GetComponent<Rigidbody2D>();
             _r = GetComponent<Renderer>();
         }
 
         private void Update()
         {
-            Vector2 velocity = _rb.velocity;
+            Vector2 velocity = Rigidbody2D.velocity;
             float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         
         public override void Detonate()
         {
-            if (isDetonated)
-            {
-                return;
-            }
-
+            if (isDetonated) return;
             isDetonated = true;
             
             Vector2 pos = transform.position;
 
-            _rb.gravityScale = 0;
-            _rb.velocity = Vector2.zero;
+            Rigidbody2D.gravityScale = 0;
+            Rigidbody2D.velocity = Vector2.zero;
             _r.enabled = false;
             
             StartCoroutine(DoubleEdgedSwordAction(pos));
