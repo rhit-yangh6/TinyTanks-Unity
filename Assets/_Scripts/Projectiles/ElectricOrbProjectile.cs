@@ -22,34 +22,20 @@ namespace _Scripts.Projectiles
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
-        // Other Variables
-        private Rigidbody2D _rb;
-        
-        private void Start()
-        {
-            _rb = gameObject.GetComponent<Rigidbody2D>();
-        }
-
         private void Update()
         {
-            var velocity = _rb.velocity;
-            transform.Rotate(0, 0, velocity.x > 0 ? -1 : 1);
+            Spin();
         }
 
-        public override void Detonate()
+        public override void DealDamage()
         {
             var pos = transform.position;
-            
-            // DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            SpawnExplosionFX();
-            DoCameraShake();
-            
+
             var closestEntity = DamageHandler.i.DetectNearestTarget(pos, Radius, null);
             Vector2 previousPosition = default;
 
             if (closestEntity == null)
             {
-                Destroy(gameObject);
                 return;
             }
 
@@ -65,14 +51,12 @@ namespace _Scripts.Projectiles
             
             if (closestEntity == null)
             {
-                Destroy(gameObject);
                 return;
             }
             electricLine = Instantiate(GameAssets.i.electricLineFX).GetComponent<LineController>();
             entityPos = closestEntity.transform.position;
             electricLine.AssignPositions(previousPosition, entityPos);
             closestEntity.TakeDamage(Damage);
-            Destroy(gameObject);
         }
         
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
@@ -84,8 +68,6 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
             
             _explosionFX = GameAssets.i.chargeFX;
-
-            // _electricChainRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "electricChainRadius").value;
         }
     }
 }
