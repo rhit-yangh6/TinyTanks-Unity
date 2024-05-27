@@ -1,7 +1,7 @@
 ﻿using System;
 using _Scripts.Managers;
+using MoreMountains.Feedbacks;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
@@ -9,6 +9,7 @@ namespace _Scripts.Projectiles
     {
          // Set in Inspector
         [SerializeField] private GameObject ballPrefab, spikePrefab;
+        [SerializeField] private MMFeedbacks activateFeedbacks;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -28,7 +29,6 @@ namespace _Scripts.Projectiles
         
         // Other Variables
         private bool _isActivated;
-        private Rigidbody2D _rb;
         private readonly int[,] _fourDirections = 
             { { 1, 0 }, { 0, -1 }, { -1, 0 }, { 0, 1 } };
         private readonly int[,] _eightDirections = 
@@ -36,87 +36,86 @@ namespace _Scripts.Projectiles
         private readonly int[,] _twelveDirections = 
             { { 3, 0 }, { 2, -1 }, { 1, -2 }, { 0, -3 }, { -1, -2 }, { -2, -1 }, { -3, 0 }, {-2, 1}, {-1, 2}, {0, 3}, {1, 2}, {2, 1} };
         
-        private void Start()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
 
         private void Update()
         {
-            var velocity = _rb.velocity;
-            transform.Rotate (0,0, velocity.x > 0 ? -1 : 1);
+            Spin();
 
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {
                 _isActivated = true;
-                GameObject derivedObject;
-                DerivedProjectile derivedProjectile;
+                Disappear();
+                activateFeedbacks.PlayFeedbacks();
+            }
+        }
 
-                if (Level >= 3)
+        public override void Activate()
+        {
+            GameObject derivedObject;
+            DerivedProjectile derivedProjectile;
+
+            if (Level >= 3)
+            {
+                derivedObject = Instantiate(ballPrefab, transform.position, Quaternion.identity);
+                derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+                derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            }
+
+
+            switch (Level)
+            {
+                case 5:
                 {
-                    derivedObject = Instantiate(ballPrefab, transform.position, Quaternion.identity);
-                    derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                    derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+                    for (var i = 0; i < 12; i++)
+                    {
+                        var direction = Vector3.Normalize(Vector2.right * _twelveDirections[i, 0] +
+                                                          Vector2.up * _twelveDirections[i, 1]);
+                
+                        derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
+                        derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+                        var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+        
+                        derivedProjectile.SetParameters(_spikeDamage, _spikeRadius, ExplosionDuration, ExplosionFX);
+                        derivedRb2d.velocity = direction * 25f;
+                    }
+
+                    break;
                 }
-
-
-                switch (Level)
+                case >= 4:
                 {
-                    case 5:
+                    for (var i = 0; i < 8; i++)
                     {
-                        for (var i = 0; i < 12; i++)
-                        {
-                            var direction = Vector3.Normalize(Vector2.right * _twelveDirections[i, 0] +
-                                                              Vector2.up * _twelveDirections[i, 1]);
-                    
-                            derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
-                            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                            derivedProjectile.SetParameters(_spikeDamage, _spikeRadius, ExplosionDuration, ExplosionFX);
-                            derivedRb2d.velocity = direction * 25f;
-                        }
-
-                        break;
+                        var direction = Vector3.Normalize(Vector2.right * _eightDirections[i, 0] +
+                                                          Vector2.up * _eightDirections[i, 1]);
+                
+                        derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
+                        derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+                        var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+        
+                        derivedProjectile.SetParameters(Level == 6 ? _spikeDamage * 2 : _spikeDamage, 
+                            Level == 6 ? _spikeRadius * 2 : _spikeRadius, ExplosionDuration, ExplosionFX);
+                        derivedRb2d.velocity = direction * 25f;
                     }
-                    case >= 4:
-                    {
-                        for (var i = 0; i < 8; i++)
-                        {
-                            var direction = Vector3.Normalize(Vector2.right * _eightDirections[i, 0] +
-                                                              Vector2.up * _eightDirections[i, 1]);
-                    
-                            derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
-                            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                            derivedProjectile.SetParameters(Level == 6 ? _spikeDamage * 2 : _spikeDamage, 
-                                Level == 6 ? _spikeRadius * 2 : _spikeRadius, ExplosionDuration, ExplosionFX);
-                            derivedRb2d.velocity = direction * 25f;
-                        }
 
-                        break;
-                    }
-                    default:
-                    {
-                        for (var i = 0; i < 4; i++)
-                        {
-                            var direction = Vector3.Normalize(Vector2.right * _fourDirections[i, 0] +
-                                                              Vector2.up * _fourDirections[i, 1]);
-                    
-                            derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
-                            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                            derivedProjectile.SetParameters(_spikeDamage, _spikeRadius, ExplosionDuration, ExplosionFX);
-                            derivedRb2d.velocity = direction * 25f;
-                        }
-
-                        break;
-                    }
+                    break;
                 }
+                default:
+                {
+                    for (var i = 0; i < 4; i++)
+                    {
+                        var direction = Vector3.Normalize(Vector2.right * _fourDirections[i, 0] +
+                                                          Vector2.up * _fourDirections[i, 1]);
+                
+                        derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
+                        derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+                        var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+        
+                        derivedProjectile.SetParameters(_spikeDamage, _spikeRadius, ExplosionDuration, ExplosionFX);
+                        derivedRb2d.velocity = direction * 25f;
+                    }
 
-                Destroy(gameObject);
+                    break;
+                }
             }
         }
 
