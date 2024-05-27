@@ -1,7 +1,4 @@
-﻿using System;
-using _Scripts.Buffs;
-using _Scripts.Managers;
-using TerraformingTerrain2d;
+﻿using _Scripts.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,9 +10,6 @@ namespace _Scripts.Projectiles
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
         private static GameObject _explosionFX;
-
-        // ExtraFields
-        // private static float _boulderPieceRadius, _boulderPieceDamage;
         
         // References
         protected override float Radius => Level >= 2 ? _radius * 1.3f : _radius;
@@ -24,24 +18,25 @@ namespace _Scripts.Projectiles
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-        
-        // Other Variables
-        private Rigidbody2D _rb;
 
-        private void Start()
+        private bool IsCompleteHeal
         {
-            _rb = GetComponent<Rigidbody2D>();
+            get
+            {
+                return Level switch
+                {
+                    5 => Random.value > 0.75,
+                    >= 4 => Random.value > 0.95,
+                    _ => false
+                };
+            }
         }
 
-        public override void Detonate()
+        public override void DealDamage()
         {
             Vector2 pos = transform.position;
 
-            var isCompleteHeal = false;
-            if (Level >= 4) isCompleteHeal = Random.value > 0.95;
-            if (Level == 5) isCompleteHeal = Random.value > 0.75;
-
-            if (isCompleteHeal)
+            if (IsCompleteHeal)
             {
                 DamageHandler.i.HandleCompleteHeals(pos, Radius, Level == 6 ? GameAssets.i.healingBuff : null);
             }
@@ -50,16 +45,11 @@ namespace _Scripts.Projectiles
                 DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
                     false, Level == 6 ? GameAssets.i.healingBuff : null);
             }
-
-            SpawnExplosionFX();
-        
-            Destroy(gameObject);
         }
 
         private void Update()
         {
-            var velocity = _rb.velocity;
-            transform.Rotate (0,0, velocity.x > 0 ? -1 : 1);
+            Spin();
         }
 
         public override void SetParameters(float damage, float radius, 
@@ -72,9 +62,6 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
 
             _explosionFX = GameAssets.i.healFX;
-
-            // _boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
-            // _boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
         }
     }
 }
