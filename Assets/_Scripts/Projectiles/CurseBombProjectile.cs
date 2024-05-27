@@ -12,9 +12,6 @@ namespace _Scripts.Projectiles
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
         private static GameObject _explosionFX;
-
-        // ExtraFields
-        private static float _boulderPieceRadius, _boulderPieceDamage;
         
         // References
         protected override float Radius => Level >= 4 ? _radius * 1.4f : _radius;
@@ -23,38 +20,30 @@ namespace _Scripts.Projectiles
         protected override int Steps => Level >= 2 ? (int)(_steps * 1.4f) : _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-        
-        // Other Variables
-        private Rigidbody2D _rb;
-        private int _finalBuffLevel;
-        
-        private void Start()
+        private int FinalBuffLevel
         {
-            _rb = GetComponent<Rigidbody2D>();
-            _finalBuffLevel = Level switch
+            get
             {
-                5 => 2,
-                6 => 3,
-                _ => 1
-            };
+                return Level switch
+                {
+                    5 => 2,
+                    6 => 3,
+                    _ => 1
+                };
+            }
         }
 
         private void Update()
         {
-            var velocity = _rb.velocity;
-            transform.Rotate(0, 0, velocity.x > 0 ? -1 : 1);
+            Spin();
         }
-
-        public override void Detonate()
+        
+        public override void DealDamage()
         {
-            Vector2 pos = transform.position;
+            var pos = transform.position;
 
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular,
-                false, GameAssets.i.cursedBuff, _finalBuffLevel);
-            
-            SpawnExplosionFX();
-        
-            Destroy(gameObject);
+                false, GameAssets.i.cursedBuff, FinalBuffLevel);
         }
 
         public override void SetParameters(float damage, float radius, 
