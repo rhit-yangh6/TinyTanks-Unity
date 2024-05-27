@@ -2,6 +2,7 @@
 using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using MoreMountains.Feedbacks;
 using TerraformingTerrain2d;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace _Scripts.Projectiles
         // Set in Inspector
         [SerializeField] private GameObject portalBluePrefab, portalOrangePrefab, portalMirror1Prefab, portalMirror2Prefab;
         [SerializeField] private Sprite orangePortalBall, mirrorPortalBall;
+        [SerializeField] private MMFeedbacks activateMmFeedbacks;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -29,6 +31,18 @@ namespace _Scripts.Projectiles
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
+
+        private float MaximumDistance
+        {
+            get
+            {
+                return Level switch
+                {
+                    >= 2 => _maximumDistance * 1.5f,
+                    _ => _maximumDistance,
+                };
+            }
+        }
         
         // Other Variables
         private bool _isActivated;
@@ -45,39 +59,37 @@ namespace _Scripts.Projectiles
 
         private void Update()
         {
-            // Calculate MaximumDistance
-            var finalMaximumDistance = Level switch
-            {
-                >= 2 => _maximumDistance * 1.5f,
-                1 => _maximumDistance,
-                _ => throw new ArgumentOutOfRangeException(nameof(Level), Level, null)
-            };
+            Spin();
 
             if (Level < 6)
             {
-                DrawCircle(_circleSteps, finalMaximumDistance);
+                DrawCircle(_circleSteps, MaximumDistance);
             }
             else
             {
                 _circleRenderer.enabled = false;
             }
-            Spin();
 
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {
                 var targetLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 var distance = Vector2.Distance(transform.position, targetLocation);
                 // Check Distance
-                if (distance <= finalMaximumDistance || Level == 6)
+                if (distance <= MaximumDistance || Level == 6)
                 {
                     _isActivated = true;
                     _velocity = GetComponent<Rigidbody2D>().velocity;
                     _circleRenderer.enabled = false;
                     _originalLocation = transform.position;
                     _teleportLocation = targetLocation;
-                    StartCoroutine(TeleportBall());
+                    activateMmFeedbacks.PlayFeedbacks();
                 }
             }
+        }
+
+        public override void Activate()
+        {
+            StartCoroutine(TeleportBall());
         }
         
         private IEnumerator TeleportBall()
@@ -105,29 +117,31 @@ namespace _Scripts.Projectiles
             // Deal Portal Damage
             if (Level >= 4)
             {
-                DamageHandler.i.HandleDamage(_originalLocation, Radius, _portalDamage, DamageHandler.DamageType.Circular);
-                DamageHandler.i.HandleDamage(_teleportLocation, Radius, _portalDamage, DamageHandler.DamageType.Circular);
+                DamageHandler.i.HandleDamage(_originalLocation, Radius,
+                    _portalDamage, DamageHandler.DamageType.Circular);
+                DamageHandler.i.HandleDamage(_teleportLocation, Radius,
+                    _portalDamage, DamageHandler.DamageType.Circular);
             }
             
             renderer.enabled = false;
-            GetComponent<Rigidbody2D>().gravityScale = 0;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            Rigidbody2D.gravityScale = 0;
+            Rigidbody2D.velocity = Vector2.zero;
 
             yield return new WaitForSeconds(1);
 
             _sr.sprite = Level == 5 ? mirrorPortalBall : orangePortalBall;
             renderer.enabled = true;
-            GetComponent<Rigidbody2D>().gravityScale = 1;
+            Rigidbody2D.gravityScale = 1;
             transform.position = _teleportLocation;
-            GetComponent<Rigidbody2D>().velocity = Level == 5 ? -_velocity : _velocity;
+            Rigidbody2D.velocity = Level == 5 ? -_velocity : _velocity;
             
             yield return new WaitForSeconds(0.5f);
             
             Destroy(bluePortal);
             Destroy(orangePortal);
         }
-        
-        public override void Detonate()
+
+        public override void DealDamage()
         {
             var pos = transform.position;
 
@@ -137,11 +151,6 @@ namespace _Scripts.Projectiles
 
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 finalRadius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
         }
 
         private void DrawCircle(int steps, float radius)
