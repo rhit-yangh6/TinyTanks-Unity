@@ -69,6 +69,8 @@ namespace _Scripts.Projectiles
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
         }
         
+        public virtual void Activate() {}
+        
         protected void Disappear()
         {
             // Stop rigidBody from moving/rotating

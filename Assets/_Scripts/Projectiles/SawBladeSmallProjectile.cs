@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using _Scripts.Managers;
+using MoreMountains.Feedbacks;
 using TerraformingTerrain2d;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,6 +10,9 @@ namespace _Scripts.Projectiles
 {
     public class SawBladeSmallProjectile : DerivedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private ParticleSystem sparks;
+        
         // Shared Fields
         private static float _radius, _damage,_explosionDuration;
         private static GameObject _explosionFX;
@@ -20,22 +24,21 @@ namespace _Scripts.Projectiles
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
-        private Rigidbody2D _rb;
         private int _moveDirection;
         private bool _isActivated;
         private float _intervalTimeLeft;
         private float _timeLeft;
         private float _moveTime;
         private float _damageInterval;
-        
+
         private void Start()
         {
-            _rb = gameObject.GetComponent<Rigidbody2D>();
+            sparks.Stop();
         }
-        
+
         private void Update()
         {
-            transform.Rotate(0, 0, _rb.velocity.x > 0 ? -1 : 1);
+            Spin();
             if (_intervalTimeLeft > 0)
             {
                 _intervalTimeLeft -= Time.deltaTime;
@@ -76,7 +79,12 @@ namespace _Scripts.Projectiles
         {
             if (_isActivated) return;
             _isActivated = true;
-            _moveDirection = _rb.velocity.x > 0 ? 1 : -1;
+            defaultMmFeedbacks.PlayFeedbacks();
+        }
+
+        public override void Activate()
+        {
+            _moveDirection = Rigidbody2D.velocity.x > 0 ? 1 : -1;
             _timeLeft = _moveTime;
         }
 

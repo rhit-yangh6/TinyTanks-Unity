@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using _Scripts.Managers;
+using MoreMountains.Feedbacks;
 using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,6 +12,8 @@ namespace _Scripts.Projectiles
     {
         // Set in Inspector
         [SerializeField] private GameObject sawBladeSmallPrefab;
+        [SerializeField] private MMFeedbacks activateMmFeedbacks;
+        [SerializeField] private ParticleSystem sparks;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -29,20 +32,19 @@ namespace _Scripts.Projectiles
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
-        private Rigidbody2D _rb;
         private int _moveDirection;
         private bool _isActivated;
         private float _intervalTimeLeft;
         private float _timeLeft;
-        
+
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
+            sparks.Stop();
         }
         
         private void Update()
         {
-            transform.Rotate(0, 0, _rb.velocity.x > 0 ? -1 : 1);
+            Spin();
             if (_intervalTimeLeft > 0)
             {
                 _intervalTimeLeft -= Time.deltaTime;
@@ -79,41 +81,7 @@ namespace _Scripts.Projectiles
 
             if (Level == 6)
             {
-                SpawnExplosionFX();
-                DoCameraShake();
-                // Spawn three smaller ones
-                
-                // First Piece
-                var derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
-                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
-                derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
-                derivedProjectile.Shooter = Shooter;
-                derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
-                
-                // Second Piece
-                derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
-                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
-                derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
-                derivedProjectile.Shooter = Shooter;
-                derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
-                
-                // Third Piece - 50/50 Left/Right
-                derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
-                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
-                derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
-                derivedProjectile.Shooter = Shooter;
-                derivedRb2d.velocity = (Random.value > 0.5 ? Vector2.right : Vector2.left + Vector2.up * 3) * 3f;
-                
-                Destroy(gameObject);
+                defaultMmFeedbacks.PlayFeedbacks();
             }
             
             _intervalTimeLeft = _damageInterval;
@@ -123,11 +91,51 @@ namespace _Scripts.Projectiles
             }
         }
 
+        public void SpawnPieces()
+        {
+            // Spawn three smaller ones
+            var pos = transform.position;
+            // First Piece
+            var derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
+            var derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
+            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+        
+            derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+            derivedProjectile.Shooter = Shooter;
+            derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
+            
+            // Second Piece
+            derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
+            derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
+            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+        
+            derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+            derivedProjectile.Shooter = Shooter;
+            derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
+            
+            // Third Piece - 50/50 Left/Right
+            derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
+            derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
+            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+        
+            derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+            derivedProjectile.Shooter = Shooter;
+            derivedRb2d.velocity = (Random.value > 0.5 ? Vector2.right : Vector2.left + Vector2.up * 3) * 3f;
+        }
+
         public override void Detonate()
         {
             if (_isActivated) return;
             _isActivated = true;
-            _moveDirection = _rb.velocity.x > 0 ? 1 : -1;
+            activateMmFeedbacks.PlayFeedbacks();
+        }
+
+        public override void Activate()
+        {
+            _moveDirection = Rigidbody2D.velocity.x > 0 ? 1 : -1;
             RefreshTimeLeft();
         }
 
