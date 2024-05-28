@@ -30,13 +30,18 @@ namespace _Scripts.Managers
         private void Start()
         {
             ConnectDiscord();
-            // Register listeners
-            EventBus.AddListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
         }
 
         private void OnDestroy()
         {
-            EventBus.RemoveListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
+            try
+            {
+                EventBus.RemoveListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
+            }
+            catch (Exception e)
+            {
+                Debug.Log( e.Message);
+            }
         }
 
         private void OnApplicationQuit()
@@ -114,6 +119,7 @@ namespace _Scripts.Managers
             {
                 discord = new Discord.Discord(Constants.DiscordApplicationId,
                     (ulong)Discord.CreateFlags.NoRequireDiscord);
+                EventBus.AddListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
             }
             catch (Exception e)
             {

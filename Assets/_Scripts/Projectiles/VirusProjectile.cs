@@ -23,42 +23,33 @@ namespace _Scripts.Projectiles
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-        
-        // Other Variables
-        private Rigidbody2D _rb;
-
-        private void Start()
+        private int BuffLevel
         {
-            _rb = GetComponent<Rigidbody2D>();
+            get
+            {
+                return Level switch
+                {
+                    6 => 5,
+                    5 => 4,
+                    4 => 3,
+                    >= 2 => 2,
+                    _ => 1
+                };
+            }
         }
         
         private void Update()
         {
-            transform.Rotate(0, 0, _rb.velocity.x > 0 ? -1 : 1);
+            Spin();
         }
 
-        public override void Detonate()
+        public override void DealDamage()
         {
-            var finalBuffLevel = Level switch
-            {
-                6 => 5,
-                5 => 4,
-                4 => 3,
-                >= 2 => 2,
-                _ => 1
-            };
-            
             var pos = transform.position;
             
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular, false,
-                GameAssets.i.infectedBuff, finalBuffLevel);
-            
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
+                GameAssets.i.infectedBuff, BuffLevel);
         }
-        
 
         public override void SetParameters(float damage, float radius, 
             float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
