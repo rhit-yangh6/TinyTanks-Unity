@@ -29,36 +29,37 @@ namespace _Scripts.Projectiles
         protected override GameObject ExplosionFX => _explosionFX;
         
         // Other Variables
-        private Rigidbody2D _rb;
-        private Renderer _r;
         private bool _isCollided;
-
-        private void Start()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-            _r = GetComponent<Renderer>();
-        }
 
         public override void Detonate()
         {
             if (!_isCollided)
             {
-                _rb.velocity = Vector2.down;
+                Rigidbody2D.velocity = Vector2.down;
                 _isCollided = true;
                 return;
             }
 
-            _rb.isKinematic = true;
-            _rb.gravityScale = 0;
-            _r.enabled = false;
-            _rb.velocity = Vector2.zero;
-            Vector2 pos = transform.position;
+            if (isDetonated) return;
+            isDetonated = true;
+            Disappear();
             
-            StartCoroutine(GrowCoconutTree(pos));
+            defaultMmFeedbacks.PlayFeedbacks();
         }
         
-        private IEnumerator GrowCoconutTree(Vector2 pos)
+        private void Update()
         {
+            Spin();
+        }
+
+        public override void Activate()
+        {
+            StartCoroutine(GrowCoconutTree());
+        }
+        
+        private IEnumerator GrowCoconutTree()
+        {
+            var pos = transform.position;
             var coconutTree = 
                 Instantiate(ExplosionFX, new Vector2(pos.x, pos.y - 1.5f), Quaternion.identity);
 
@@ -127,11 +128,6 @@ namespace _Scripts.Projectiles
             
             Destroy(coconutTree);
             Destroy(gameObject);
-        }
-
-        private void Update()
-        {
-            transform.Rotate (0,0, _rb.velocity.x > 0 ? -1 : 1);
         }
 
         public override void SetParameters(float damage, float radius, 
