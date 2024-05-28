@@ -3,16 +3,18 @@ using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using _Scripts.Utils;
-using TerraformingTerrain2d;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
+    // TODO: Change camera
     public class StarProjectile : LaunchedProjectile
     {
         // Set in Inspector
         [SerializeField] private Sprite novaStar;
         [SerializeField] private Material glowMaterial;
+        [SerializeField] private MMFeedbacks activateMmFeedbacks;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -29,9 +31,34 @@ namespace _Scripts.Projectiles
         protected override int Steps => Level >= 2 ? (int)(_steps * 1.3f) : _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
+
+        private float FinalRadiusMultiplier
+        {
+            get
+            {
+                return Level switch
+                {
+                    5 => _radiusMultiplier * 1.3f,
+                    >= 4 => _radiusMultiplier * 1.2f,
+                    _ => _radiusMultiplier
+                };
+            }
+        }
+        
+        private float FinalDamageMultiplier
+        {
+            get
+            {
+                return Level switch
+                {
+                    5 => _damageMultiplier * 1.3f,
+                    >= 4 => _damageMultiplier * 1.2f,
+                    _ => _damageMultiplier
+                };
+            }
+        }
         
         // Other Variables
-        private Rigidbody2D _rb;
         private TrailRenderer _tr;
         private SpriteRenderer _sr;
         private ParticleSystem _ps;
@@ -41,7 +68,6 @@ namespace _Scripts.Projectiles
 
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
             _tr = GetComponent<TrailRenderer>();
             _sr = GetComponent<SpriteRenderer>();
             _ps = gameObject.GetComponentInChildren<ParticleSystem>();
@@ -50,29 +76,29 @@ namespace _Scripts.Projectiles
         
         private void Update()
         {
-            if (!_isActivated) transform.Rotate(0, 0, _rb.velocity.x > 0 ? -1 : 1);
-            else
-            {
-                var velocity = _rb.velocity;
-                var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
+            if (!_isActivated) Spin();
+            else Direct();
             
             if (Input.GetMouseButtonDown(0) && !_isActivated)
             {
                 _isActivated = true;
-                StartCoroutine(DrawStar());
+                activateMmFeedbacks.PlayFeedbacks();
             }
+        }
+
+        public override void Activate()
+        {
+            StartCoroutine(DrawStar());
         }
 
         private IEnumerator DrawStar()
         {
-            var initialVelocity = _rb.velocity;
-            _rb.gravityScale = 0;
-            _rb.velocity = Vector2.zero;
+            var initialVelocity = Rigidbody2D.velocity;
+            Rigidbody2D.gravityScale = 0;
+            Rigidbody2D.velocity = Vector2.zero;
             _tr.emitting = true;
 
-            _rb.velocity = (Vector2.left + Vector2.down) * _drawStarSpeed;
+            Rigidbody2D.velocity = (Vector2.left + Vector2.down) * _drawStarSpeed;
             
             yield return new WaitForSeconds(Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval);
 
@@ -89,7 +115,7 @@ namespace _Scripts.Projectiles
 
             for (var i = 0; i < 4; i++)
             {
-                _rb.velocity = Geometry.Rotate(_rb.velocity, RotateDegree);
+                Rigidbody2D.velocity = Geometry.Rotate(Rigidbody2D.velocity, RotateDegree);
                 yield return new WaitForSeconds(Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval);
                 if (Level != 6) continue;
                 pos = gameObject.transform.position;
@@ -99,8 +125,8 @@ namespace _Scripts.Projectiles
                 DamageHandler.i.HandleDamage(pos, _shockwaveRadius, _shockwaveDamage, DamageHandler.DamageType.Circular);
             }
             
-            _rb.velocity = initialVelocity;
-            _rb.gravityScale = 1;
+            Rigidbody2D.velocity = initialVelocity;
+            Rigidbody2D.gravityScale = 1;
             _tr.emitting = false;
             _ps.Play();
             _isStarComplete = true;
@@ -124,41 +150,18 @@ namespace _Scripts.Projectiles
             yield return null;
         }
 
-        public override void Detonate()
+        public override void DealDamage()
         {
             var pos = transform.position;
-
-            var finalRadiusMultiplier = 0f;
-            var finalDamageMultiplier = 0f;
-            switch (Level)
-            {
-                case 5:
-                    finalRadiusMultiplier = _radiusMultiplier * 1.3f;
-                    finalDamageMultiplier = _damageMultiplier * 1.3f;
-                    break;
-                case >= 4:
-                    finalRadiusMultiplier = _radiusMultiplier * 1.2f;
-                    finalDamageMultiplier = _damageMultiplier * 1.2f;
-                    break;
-                default:
-                    finalRadiusMultiplier = _radiusMultiplier;
-                    finalDamageMultiplier = _damageMultiplier;
-                    break;
-            }
             
             DamageHandler.i.HandleDamage(
                 pos, 
-                _isStarComplete ? Radius * finalRadiusMultiplier : Radius,
-                _isStarComplete ? Damage * finalDamageMultiplier : Damage, 
+                _isStarComplete ? Radius * FinalRadiusMultiplier : Radius,
+                _isStarComplete ? Damage * FinalDamageMultiplier : Damage, 
                 DamageHandler.DamageType.Circular);
             
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
-                _isStarComplete ? Radius * _radiusMultiplier : Radius, 1, DestroyTypes.Circular);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-        
-            Destroy(gameObject);
+                _isStarComplete ? Radius * FinalRadiusMultiplier : Radius, 1, DestroyTypes.Circular);
         }
         
         public override void SetParameters(float damage, float radius, 

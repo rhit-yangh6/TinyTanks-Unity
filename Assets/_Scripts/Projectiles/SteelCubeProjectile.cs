@@ -2,7 +2,6 @@
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using _Scripts.Utils;
-using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
