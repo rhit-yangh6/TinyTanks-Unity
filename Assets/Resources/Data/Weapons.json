@@ -1100,7 +1100,7 @@
       "weaponName": "Boombox",
       "weaponDescription": "Deploys a boombox that emits bass vibrations while clicking in mid-air. At basic level, the boombox only has two shockwave charges.",
       "damage": 24,
-      "radius": 2.0,
+      "radius": 1.4,
       "maxMagnitude": 7.8,
       "saying": "Boom to the beat.",
       "steps": 289.5,
