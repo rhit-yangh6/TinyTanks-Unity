@@ -4913,7 +4913,7 @@ GameObject:
   - component: {fileID: 8897994929127796539}
   - component: {fileID: 6683946073593883433}
   m_Layer: 0
-  m_Name: FeelDuckPixels
+  m_Name: Pixels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
