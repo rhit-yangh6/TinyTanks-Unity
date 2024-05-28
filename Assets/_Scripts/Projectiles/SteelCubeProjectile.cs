@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
+    // TODO: Unlock this weapon
     public class SteelCubeProjectile : LaunchedProjectile
     {
         // Set in Inspector
@@ -36,21 +37,29 @@ namespace _Scripts.Projectiles
         protected override int Steps => _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-        
-        // Other Variables
-        private Rigidbody2D _rb;
-
-        private void Start()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
 
         private void Update()
         {
-            transform.Rotate(0,0, _rb.velocity.x > 0 ? -1 : 1);
+            Spin();
         }
 
         public override void Detonate()
+        {
+            if (isDetonated) return;
+            isDetonated = true;
+            Disappear();
+            
+            DealDamage();
+            
+            defaultMmFeedbacks.PlayFeedbacks();
+            
+            if (Level == 6)
+            {
+                SplitCube();
+            }
+        }
+
+        public override void DealDamage()
         {
             var pos = transform.position;
             
@@ -62,27 +71,23 @@ namespace _Scripts.Projectiles
 
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 Radius, Level == 5 ? 2 : 1, DestroyTypes.Square);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
+        }
 
-            if (Level == 6) // Level 6
+        private void SplitCube()
+        {
+            var pos = transform.position;
+            for (var i = 0; i < 4; i++)
             {
-                for (var i = 0; i < 4; i++)
-                {
-                    var derivedObject = Instantiate(smallCubePrefab, pos, Quaternion.identity);
-                    var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                    var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+                var derivedObject = Instantiate(smallCubePrefab, pos, Quaternion.identity);
+                var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
                     
-                    derivedProjectile.SetParameters(_smallCubeDamage, _smallCubeRadius, ExplosionDuration, ExplosionFX);
+                derivedProjectile.SetParameters(_smallCubeDamage, _smallCubeRadius, ExplosionDuration, ExplosionFX);
                     
-                    var rotateDegree = Random.Range(-_smallCubeAngleDelta, _smallCubeAngleDelta);
-                    var speed = Random.Range(5.5f, 9f);
-                    derivedRb2d.velocity = Geometry.Rotate(Vector2.up, rotateDegree) * speed;
-                }
+                var rotateDegree = Random.Range(-_smallCubeAngleDelta, _smallCubeAngleDelta);
+                var speed = Random.Range(5.5f, 9f);
+                derivedRb2d.velocity = Geometry.Rotate(Vector2.up, rotateDegree) * speed;
             }
-
-            Destroy(gameObject);
         }
 
         public override void SetParameters(float damage, float radius, 
@@ -100,6 +105,5 @@ namespace _Scripts.Projectiles
             _smallCubeRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "smallCubeRadius").value;
             _smallCubeAngleDelta = Array.Find(extraWeaponTerms, ewt => ewt.term == "smallCubeAngleDelta").value;
         }
-        
     }
 }

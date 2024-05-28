@@ -48,22 +48,24 @@ namespace _Scripts.GameEngine.Map
         
         private void DestroyTerrainSquare(Vector3 pos, float radius, int destroyingPower = 1)
         {
-            var collider2Ds = Physics2D.OverlapBoxAll(pos, new Vector2(radius * 1.414f, radius * 1.414f),
-                0, layerMask);
+            DestroyTerrainCircular(pos, radius, destroyingPower);
 
-            foreach (var c in collider2Ds)
-            {
-                // TODO: Was exploded?
-                c.TryGetComponent(out TerraformingTerrain2dChunk chunk);
-                chunk.TerraformingPresenter.Rebuild(pos, radius, TerraformingMode.Carve);
-            }
+            var oneThirdRadius = radius / 3;
+            // Spawn four smaller explosions
+            DestroyTerrainCircular(pos + new Vector3(oneThirdRadius, oneThirdRadius),
+                oneThirdRadius, destroyingPower);
+            DestroyTerrainCircular(pos + new Vector3(-oneThirdRadius, oneThirdRadius),
+                oneThirdRadius, destroyingPower);
+            DestroyTerrainCircular(pos + new Vector3(-oneThirdRadius, -oneThirdRadius),
+                oneThirdRadius, destroyingPower);
+            DestroyTerrainCircular(pos + new Vector3(oneThirdRadius, -oneThirdRadius),
+                oneThirdRadius, destroyingPower);
         }
     }
 
     public enum DestroyTypes
     {
         Circular,
-        
         Square,
     }
 }

@@ -1,6 +1,5 @@
 ﻿using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
-using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -17,31 +16,18 @@ namespace _Scripts.Projectiles
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
         
-        // Other Variables
-        private Rigidbody2D _rb;
-        
-        private void Start()
-        {
-            _rb = gameObject.GetComponent<Rigidbody2D>();
-        }
-        
         private void Update()
         {
-            transform.Rotate(0,0, _rb.velocity.x > 0 ? -1 : 1);
+            Spin();
         }
-        
-        public override void Detonate()
+
+        public override void DealDamage()
         {
             var pos = transform.position;
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Square);
 
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 Radius, 1, DestroyTypes.Square);
-        
-            SpawnExplosionFX();
-            DoCameraShake();
-            
-            Destroy(gameObject);
         }
 
         public override void SetParameters(float damage, float radius, float explosionDuration, GameObject explosionFX)
