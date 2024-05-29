@@ -1243,14 +1243,14 @@
       ],
       "dataPath": "yinyang",
       "explosionDuration": 0.3,
-      "shopPrice": 699,
+      "shopPrice": 0,
       "extraWeaponTerms": [
         {
           "term": "whiteDamage",
           "value": 33
         }, {
           "term": "whiteRadius",
-          "value": 2.8
+          "value": 2
         }, {
           "term": "blackDamage",
           "value": 19
