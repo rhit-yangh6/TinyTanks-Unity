@@ -1216,29 +1216,29 @@
       "steps": 500,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Flexible Orb",
+          "description": "Increases the range of the Yin-Yang orb.",
+          "cost": 190
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Amplified Light",
+          "description": "Increases the damage and radius of the white sphere.",
+          "cost": 300
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Darkness Expanded",
+          "description": "Further Increases the radius of the black sphere.",
+          "cost": 450
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "A Harmony",
+          "description": "Allows the orb to split into both a white and a black sphere simultaneously when activated.",
+          "cost": 1500
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "The One that was Left Over",
+          "description": "Spawns the other sphere with random velocity upon impact.",
+          "cost": 1800
         }
       ],
       "dataPath": "yinyang",
@@ -1256,7 +1256,7 @@
           "value": 19
         }, {
           "term": "blackRadius",
-          "value": 8.5
+          "value": 8
         }
       ],
       "hideInShop": true

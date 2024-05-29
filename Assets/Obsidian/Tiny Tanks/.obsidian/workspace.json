@@ -1,0 +1,167 @@
+{
+  "main": {
+    "id": "5b4c6e9001902035",
+    "type": "split",
+    "children": [
+      {
+        "id": "76c6af9032ad95c9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "be88aa9287daaa68",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          },
+          {
+            "id": "44c108b6a18b8d85",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "50926e3b8539fcc6",
+    "type": "split",
+    "children": [
+      {
+        "id": "8a15c0e1bdc04dde",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2306b79a175ac33f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "44e3418f0578aa8d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d82c0a719ad74ca9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1494c45a887da26d",
+    "type": "split",
+    "children": [
+      {
+        "id": "f3b23efbbc89572b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fbadd004e4a42627",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "80c46f6fc14cca77",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "ed841276bd9ab357",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "5f6c7712c48da035",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "44c108b6a18b8d85",
+  "lastOpenFiles": [
+    "Weapons.meta",
+    "Buffs/Burning Buff.md.meta",
+    "NeverNote.md.meta",
+    "Buffs.meta",
+    "Enemies.meta",
+    "Buffs/Burning Buff.md",
+    "Enemies",
+    "Buffs",
+    "Weapons",
+    "NeverNote.md",
+    "NoteStar.md",
+    "Welcome.md",
+    "Welcome.md.meta",
+    "NoteStar.md.meta",
+    "create a link.md"
+  ]
+}

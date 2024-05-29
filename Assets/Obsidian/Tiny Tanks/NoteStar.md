@@ -1,0 +1,1 @@
+Hi, a new note.
