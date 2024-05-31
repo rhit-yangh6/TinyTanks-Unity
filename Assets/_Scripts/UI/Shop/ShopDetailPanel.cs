@@ -1,8 +1,11 @@
 using _Scripts.GameEngine;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 namespace _Scripts.UI.Shop
@@ -11,8 +14,9 @@ namespace _Scripts.UI.Shop
     {
         [SerializeField] private Image weaponIcon;
         [SerializeField] private GameObject notice, infoPanel, purchasePanel;
-        [SerializeField] private TextMeshProUGUI weaponNameText, weaponDescText, priceText, coinText;
+        [SerializeField] private TextMeshProUGUI priceText, coinText;
         [SerializeField] private GameObject shopButton, newWeaponMsg;
+        [SerializeField] private LocalizeStringEvent weaponNameEvent, weaponDescEvent;
         
         private int _weaponId;
 
@@ -32,10 +36,12 @@ namespace _Scripts.UI.Shop
             _weaponId = weaponId;
             SwitchDetailView(true);
             
-            Weapon w = WeaponManager.Instance.GetWeaponById(_weaponId);
+            var w = WeaponManager.Instance.GetWeaponById(_weaponId);
             weaponIcon.sprite = w.weaponIconSprite;
-            weaponNameText.text = w.weaponName;
-            weaponDescText.text = w.weaponDescription;
+            weaponNameEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, w.weaponName);
+            weaponDescEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, w.weaponDescription);
 
             if (PlayerData.Instance.GetWeaponLevelFromId(_weaponId) > 0)
             {

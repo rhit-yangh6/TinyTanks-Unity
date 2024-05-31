@@ -15,120 +15,232 @@ MonoBehaviour:
   m_TableCollectionName: Weapon Text
   m_TableCollectionNameGuidString: 86cfa9daa78465e44be557a84c94a8fb
   m_Entries:
-  - m_Id: 6028533760
-    m_Key: weapon_boulder_name
+  - m_Id: 184980019093504
+    m_Key: weapon_iceCube_saying
     m_Metadata:
       m_Items: []
-  - m_Id: 2258449473536
-    m_Key: weapon_bomb_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2270126415872
-    m_Key: weapon_rocket_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2335217819648
-    m_Key: weapon_dice_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2446152966144
-    m_Key: weapon_snowball_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2635060224000
-    m_Key: weapon_anvil_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2701128900608
-    m_Key: weapon_boomerang_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2901113315328
-    m_Key: weapon_sniper_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2955127562240
-    m_Key: weapon_shotgun_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 3082718289920
-    m_Key: weapon_fireball_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 3187080962048
-    m_Key: weapon_bounce_ball_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 3337782304768
-    m_Key: weapon_curse_bomb_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 3448180580352
-    m_Key: weapon_med_kit_name
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4062096662528
-    m_Key: weapon_boulder_desc
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4156233621504
-    m_Key: weapon_boulder_saying
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8293708996608
-    m_Key: weapon_bomb_desc
-    m_Metadata:
-      m_Items: []
-  - m_Id: 8467361570816
-    m_Key: weapon_bomb_saying
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9320659165184
-    m_Key: weapon_rocket_desc
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9361666875392
-    m_Key: weapon_rocket_saying
-    m_Metadata:
-      m_Items: []
-  - m_Id: 12211247652864
-    m_Key: weapon_dice_desc
-    m_Metadata:
-      m_Items: []
-  - m_Id: 12336997081088
-    m_Key: weapon_dice_saying
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13172003315712
-    m_Key: weapon_snowball_desc
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13495031832576
-    m_Key: weapon_snowball_saying
+  - m_Id: 185049757786112
+    m_Key: weapon_iceCube_desc
     m_Metadata:
       m_Items: []
   - m_Id: 13700787609600
     m_Key: weapon_anvil_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 2635060224000
+    m_Key: weapon_anvil_name
+    m_Metadata:
+      m_Items: []
   - m_Id: 13802285572096
     m_Key: weapon_anvil_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8293708996608
+    m_Key: weapon_bomb_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2258449473536
+    m_Key: weapon_bomb_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8467361570816
+    m_Key: weapon_bomb_saying
     m_Metadata:
       m_Items: []
   - m_Id: 17250787794944
     m_Key: weapon_boomerang_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 2701128900608
+    m_Key: weapon_boomerang_name
+    m_Metadata:
+      m_Items: []
   - m_Id: 17325777756160
     m_Key: weapon_boomerang_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4062096662528
+    m_Key: weapon_boulder_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6028533760
+    m_Key: weapon_boulder_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4156233621504
+    m_Key: weapon_boulder_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3187080962048
+    m_Key: weapon_bounce_ball_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159569767833600
+    m_Key: weapon_bounceBall_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159616748232704
+    m_Key: weapon_bounceBall_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 183194524852224
+    m_Key: weapon_coconutSeed_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 183114799521792
+    m_Key: weapon_coconutSeed_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 183288410152960
+    m_Key: weapon_coconutSeed_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3337782304768
+    m_Key: weapon_curse_bomb_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175697093206016
+    m_Key: weapon_curseBomb_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175762897641472
+    m_Key: weapon_curseBomb_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12211247652864
+    m_Key: weapon_dice_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2335217819648
+    m_Key: weapon_dice_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12336997081088
+    m_Key: weapon_dice_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159242414989312
+    m_Key: weapon_fireball_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3082718289920
+    m_Key: weapon_fireball_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159425756405760
+    m_Key: weapon_fireball_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 184857641885696
+    m_Key: weapon_iceCube_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3448180580352
+    m_Key: weapon_med_kit_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175935065432064
+    m_Key: weapon_medKit_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 176037939126272
+    m_Key: weapon_medKit_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9320659165184
+    m_Key: weapon_rocket_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2270126415872
+    m_Key: weapon_rocket_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9361666875392
+    m_Key: weapon_rocket_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180437923405824
+    m_Key: weapon_sawBlade_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180367484264448
+    m_Key: weapon_sawBlade_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180535180926976
+    m_Key: weapon_sawBlade_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158904974843904
+    m_Key: weapon_shotgun_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2955127562240
+    m_Key: weapon_shotgun_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158948503330816
+    m_Key: weapon_shotgun_saying
     m_Metadata:
       m_Items: []
   - m_Id: 17700735950848
     m_Key: weapon_sniper_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 2901113315328
+    m_Key: weapon_sniper_name
+    m_Metadata:
+      m_Items: []
   - m_Id: 17765667971072
     m_Key: weapon_sniper_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13172003315712
+    m_Key: weapon_snowball_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2446152966144
+    m_Key: weapon_snowball_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13495031832576
+    m_Key: weapon_snowball_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 179840788733952
+    m_Key: weapon_virus_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 179777043701760
+    m_Key: weapon_virus_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180010184089600
+    m_Key: weapon_virus_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206768279134208
+    m_Key: weapon_boombox_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206841373270016
+    m_Key: weapon_boombox_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 207121221427200
+    m_Key: weapon_boombox_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 207694213685248
+    m_Key: weapon_jackhammer_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 207748827717632
+    m_Key: weapon_jackhammer_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 207756545236992
+    m_Key: weapon_jackhammer_saying
     m_Metadata:
       m_Items: []
   m_Metadata:

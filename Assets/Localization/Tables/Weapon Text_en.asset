@@ -137,6 +137,126 @@ MonoBehaviour:
     m_Localized: -- U R in my sight.
     m_Metadata:
       m_Items: []
+  - m_Id: 158904974843904
+    m_Localized: Shoots multiple bullets at the same time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158948503330816
+    m_Localized: -- A Shotty with multiple gun barrels.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159242414989312
+    m_Localized: Hits enemies and makes them burn! The enemies will take burning
+      damage for two consecutive rounds.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159425756405760
+    m_Localized: -- Burn it all!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159569767833600
+    m_Localized: Shoots a purple ball that bounces around, dealing damage with every
+      hit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159616748232704
+    m_Localized: -- Watch out!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175697093206016
+    m_Localized: The curse bomb marks affected target with a curse that after a certain
+      number of turns, they will be instantly killed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175762897641472
+    m_Localized: -- The Requiem.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175935065432064
+    m_Localized: The Med Kit heals anyone within a small range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 176037939126272
+    m_Localized: -- I got you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 179777043701760
+    m_Localized: Virus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 179840788733952
+    m_Localized: A projectile that infects enemies upon impact, dealing damage over
+      time. When the de-buff expires, it spreads to nearby enemies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180010184089600
+    m_Localized: -- From patient zero.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180367484264448
+    m_Localized: Saw Blade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180437923405824
+    m_Localized: Launches a saw blade that sticks on impact, rolling forward and
+      damaging enemies before disappearing after a set time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180535180926976
+    m_Localized: -- Where the blade lands, fate follows.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 183114799521792
+    m_Localized: Coconut Seed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 183194524852224
+    m_Localized: Grow a coconut tree at the point of collision, and drop down coconuts
+      to smash your enemies!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 183288410152960
+    m_Localized: -- Tree-mendous coconuts!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 184857641885696
+    m_Localized: Ice Cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 185049757786112
+    m_Localized: Damage and freeze the target. The movement speed of frozen targets
+      is reduced.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 184980019093504
+    m_Localized: -- Chill out, foes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206768279134208
+    m_Localized: Boombox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206841373270016
+    m_Localized: Deploys a boombox that emits bass vibrations while clicking in mid-air.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 207121221427200
+    m_Localized: -- Boom to the beat.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 207694213685248
+    m_Localized: Jackhammer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 207748827717632
+    m_Localized: A jackhammer projectile that digs into the terrain upon impact,
+      creating a hole and dealing damage to any enemies caught in its path.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 207756545236992
+    m_Localized: -- Dig deep down.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -449,12 +449,12 @@
     }, {
       "id": 9,
       "weaponName": "weapon_shotgun_name",
-      "weaponDescription": "Shoots multiple bullets at the same time.",
+      "weaponDescription": "weapon_shotgun_desc",
       "damage": 21.0,
       "radius": 1.7,
       "maxMagnitude": 9.0,
       "steps": 300,
-      "saying": "A Shotty with multiple gun barrels.",
+      "saying": "weapon_shotgun_saying",
       "upgradeInfos": [
         {
           "name": "Scopes On The Shotgun",
@@ -494,12 +494,12 @@
     }, {
       "id": 10,
       "weaponName": "weapon_fireball_name",
-      "weaponDescription": "A blazing fireball. Hits enemies and makes them burn! The enemies will take burning damage for two consecutive rounds.",
+      "weaponDescription": "weapon_fireball_desc",
       "damage": 28.0,
       "radius": 2,
       "maxMagnitude": 10.0,
       "steps": 425,
-      "saying": "Burn it all!",
+      "saying": "weapon_fireball_saying",
       "upgradeInfos": [
         {
           "name": "Metal Inside",
@@ -547,12 +547,12 @@
     }, {
       "id": 11,
       "weaponName": "weapon_bounce_ball_name",
-      "weaponDescription": "Shoots a purple ball that bounces around, dealing damage with every hit.",
+      "weaponDescription": "weapon_bounceBall_desc",
       "damage": 25.0,
       "radius": 2,
       "maxMagnitude": 11.0,
       "steps": 495,
-      "saying": "Watch out!",
+      "saying": "weapon_bounceBall_saying",
       "upgradeInfos": [
         {
           "name": "Lighter Materials",
@@ -604,12 +604,12 @@
     }, {
       "id": 12,
       "weaponName": "weapon_curse_bomb_name",
-      "weaponDescription": "The curse bomb marks affected target with a curse that after a certain number of turns, they will be instantly killed.",
+      "weaponDescription": "weapon_curseBomb_desc",
       "damage": 6.0,
       "radius": 2,
       "maxMagnitude": 8.5,
       "steps": 400,
-      "saying": "The Requiem.",
+      "saying": "weapon_curseBomb_saying",
       "upgradeInfos": [
         {
           "name": "Death's Precision",
@@ -645,12 +645,12 @@
     }, {
       "id": 13,
       "weaponName": "weapon_med_kit_name",
-      "weaponDescription": "The Med Kit heals anyone within a small range.",
+      "weaponDescription": "weapon_medKit_desc",
       "damage": -25.0,
       "radius": 2.3,
       "maxMagnitude": 6,
       "steps": 330,
-      "saying": "I got you.",
+      "saying": "weapon_medKit_saying",
       "upgradeInfos": [
         {
           "name": "More Bandages",
@@ -905,13 +905,13 @@
       ]
     }, {
       "id": 18,
-      "weaponName": "Saw Blade",
-      "weaponDescription": "Launches a saw blade that sticks on impact, rolling forward and damaging enemies before disappearing after a set time.",
+      "weaponName": "weapon_sawBlade_name",
+      "weaponDescription": "weapon_sawBlade_desc",
       "damage": 29,
       "radius": 1.0,
       "maxMagnitude": 7.22,
       "steps": 468,
-      "saying": "Where the blade lands, fate follows.",
+      "saying": "weapon_sawBlade_saying",
       "upgradeInfos": [
         {
           "name": "SawStop",
@@ -958,12 +958,12 @@
       ]
     }, {
       "id": 19,
-      "weaponName": "Virus",
-      "weaponDescription": "A projectile that infects enemies upon impact, dealing damage over time. When the de-buff expires, it spreads to nearby enemies.",
+      "weaponName": "weapon_virus_name",
+      "weaponDescription": "weapon_virus_desc",
       "damage": 19,
       "radius": 2.0,
       "maxMagnitude": 9.99,
-      "saying": "From patient zero.",
+      "saying": "weapon_virus_saying",
       "steps": 499,
       "upgradeInfos": [
         {
@@ -1003,13 +1003,13 @@
       ]
     }, {
       "id": 20,
-      "weaponName": "Coconut Seed",
-      "weaponDescription": "Grow a coconut tree at the point of collision, and drop down coconuts to smash your enemies!",
+      "weaponName": "weapon_coconutSeed_name",
+      "weaponDescription": "weapon_coconutSeed_desc",
       "damage": 16,
       "radius": 1.2,
       "maxMagnitude": 13,
       "steps": 532,
-      "saying": "Tree-mendous coconuts!",
+      "saying": "weapon_coconutSeed_saying",
       "upgradeInfos": [
         {
           "name": "Tropical Expansion",
@@ -1048,13 +1048,13 @@
       ]
     }, {
       "id": 21,
-      "weaponName": "Ice Cube",
-      "weaponDescription": "Damage and freeze the target. The movement speed of frozen targets is reduced.",
+      "weaponName": "weapon_iceCube_name",
+      "weaponDescription": "weapon_iceCube_desc",
       "damage": 21,
       "radius": 2.0,
       "maxMagnitude": 11.2,
       "steps": 400,
-      "saying": "Chill out, foes.",
+      "saying": "weapon_iceCube_saying",
       "upgradeInfos": [
         {
           "name": "Fresh From The Fridge",
@@ -1097,12 +1097,12 @@
       ]
     }, {
       "id": 22,
-      "weaponName": "Boombox",
-      "weaponDescription": "Deploys a boombox that emits bass vibrations while clicking in mid-air. At basic level, the boombox only has two shockwave charges.",
+      "weaponName": "weapon_boombox_name",
+      "weaponDescription": "weapon_boombox_desc",
       "damage": 24,
       "radius": 1.4,
       "maxMagnitude": 7.8,
-      "saying": "Boom to the beat.",
+      "saying": "weapon_boombox_saying",
       "steps": 289.5,
       "upgradeInfos": [
         {
@@ -1151,13 +1151,13 @@
       "hideInShop": true
     }, {
       "id": 23,
-      "weaponName": "Jackhammer",
-      "weaponDescription": "A jackhammer projectile that digs into the terrain upon impact, creating a hole and dealing damage to any enemies caught in its path.",
+      "weaponName": "weapon_jackhammer_name",
+      "weaponDescription": "weapon_jackhammer_desc",
       "damage": 14,
       "radius": 2.0,
       "maxMagnitude": 7.3,
       "steps": 350,
-      "saying": "Dig deep down.",
+      "saying": "weapon_jackhammer_saying",
       "upgradeInfos": [
         {
           "name": "Larger Service Area",

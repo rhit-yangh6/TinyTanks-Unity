@@ -13,6 +13,8 @@ namespace _Scripts.Utils
         public const string MasterVolumeValue = "MasterVolumeValue";
         public const string MusicVolumeValue = "MusicVolumeValue";
         public const string SfxVolumeValue = "SfxVolumeValue";
+        public const string LanguageSelectionValue = "LangaugeSelection";
+        public const string HasLaunchedValue = "HasLaunched";
         
         /* Discord and Rich Presence */
         public const long DiscordApplicationId = 1226719540390400140;

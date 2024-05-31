@@ -39,6 +39,34 @@ MonoBehaviour:
     m_Key: ui_weapon_selection_prompt
     m_Metadata:
       m_Items: []
+  - m_Id: 170316530982912
+    m_Key: ui_quit_game_prompt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188555717779456
+    m_Key: ui_new_weapon_prompt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226090183565312
+    m_Key: ui_options_language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226157128851456
+    m_Key: ui_options_master_volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226245980987392
+    m_Key: ui_options_music_volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226318429200384
+    m_Key: ui_options_sfx_volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226394870390784
+    m_Key: ui_options_replay_tutorial
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

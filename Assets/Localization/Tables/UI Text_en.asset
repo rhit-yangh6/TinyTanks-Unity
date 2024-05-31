@@ -42,6 +42,34 @@ MonoBehaviour:
     m_Localized: Select a Weapon to View Details
     m_Metadata:
       m_Items: []
+  - m_Id: 170316530982912
+    m_Localized: Quit the game?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 188555717779456
+    m_Localized: You got a new weapon!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226090183565312
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226157128851456
+    m_Localized: Master Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226245980987392
+    m_Localized: Music Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226318429200384
+    m_Localized: SFX Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 226394870390784
+    m_Localized: Replay Tutorial
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

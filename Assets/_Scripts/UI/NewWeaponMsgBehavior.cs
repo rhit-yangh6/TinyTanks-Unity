@@ -1,7 +1,10 @@
 using _Scripts.Managers;
+using _Scripts.Utils;
 using Discord;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 namespace _Scripts.UI
@@ -9,7 +12,7 @@ namespace _Scripts.UI
     public class NewWeaponMsgBehavior : MonoBehaviour
     {
         [SerializeField] private Image weaponImage;
-        [SerializeField] private TextMeshProUGUI weaponName, weaponDesc;
+        [SerializeField] private LocalizeStringEvent weaponNameEvent, weaponDescEvent;
         
         public void Display(int weaponId)
         {
@@ -17,8 +20,11 @@ namespace _Scripts.UI
             var weapon = WeaponManager.Instance.GetWeaponById(weaponId);
             
             weaponImage.sprite = weapon.weaponIconSprite;
-            weaponName.text = weapon.weaponName;
-            weaponDesc.text = weapon.weaponDescription;
+            
+            weaponNameEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponName);
+            weaponDescEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponDescription);
             
             // Enhanced?
             var animator = weaponImage.GetComponent<Animator>();
