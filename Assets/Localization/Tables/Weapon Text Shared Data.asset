@@ -115,6 +115,22 @@ MonoBehaviour:
     m_Key: weapon_anvil_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 17250787794944
+    m_Key: weapon_boomerang_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17325777756160
+    m_Key: weapon_boomerang_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17700735950848
+    m_Key: weapon_sniper_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17765667971072
+    m_Key: weapon_sniper_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

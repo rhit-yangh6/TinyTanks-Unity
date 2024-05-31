@@ -1,8 +1,11 @@
 using System;
 using _Scripts.Managers;
 using _Scripts.Projectiles;
+using _Scripts.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -16,6 +19,8 @@ namespace _Scripts.UI
         
         private TextMeshProUGUI tooltipDescText;
         private TextMeshProUGUI tooltipNameText;
+        private LocalizeStringEvent tooltipDescLocalizeStringEvent;
+        private LocalizeStringEvent tooltipNameLocalizeStringEvent;
         private RectTransform bgRectTransform;
         private RectTransform mainRectTransform;
 
@@ -26,6 +31,8 @@ namespace _Scripts.UI
             bgRectTransform = transform.Find("BG").GetComponent<RectTransform>();
             tooltipDescText = transform.Find("WeaponDescText").GetComponent<TextMeshProUGUI>();
             tooltipNameText = transform.Find("WeaponNameText").GetComponent<TextMeshProUGUI>();
+            tooltipDescLocalizeStringEvent = transform.Find("WeaponDescText").GetComponent<LocalizeStringEvent>();
+            tooltipNameLocalizeStringEvent = transform.Find("WeaponNameText").GetComponent<LocalizeStringEvent>();
         }
 
         private void Update()
@@ -40,8 +47,10 @@ namespace _Scripts.UI
             gameObject.SetActive(true);
 
             var weapon = WeaponManager.Instance.GetWeaponById(weaponId);
-            tooltipNameText.text = weapon.weaponName;
-            tooltipDescText.text = weapon.weaponDescription;
+            tooltipDescLocalizeStringEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponDescription);
+            tooltipNameLocalizeStringEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponName);
             const float textPaddingSize = 4f;
             
             var backgroundSize = new Vector2(tooltipDescText.preferredWidth + textPaddingSize * 2f,

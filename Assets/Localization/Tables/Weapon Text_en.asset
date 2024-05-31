@@ -120,6 +120,23 @@ MonoBehaviour:
     m_Localized: -- Ahh, that hurts!
     m_Metadata:
       m_Items: []
+  - m_Id: 17250787794944
+    m_Localized: The boomerang curves back to the shooter while it is in the air.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17325777756160
+    m_Localized: -- It curves back.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17700735950848
+    m_Localized: Powerful sniper rifle. Deals high damage to enemies with high-speed
+      bullets that are largely unaffected by gravity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17765667971072
+    m_Localized: -- U R in my sight.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

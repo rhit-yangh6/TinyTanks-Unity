@@ -339,12 +339,12 @@
     }, {
       "id": 7,
       "weaponName": "weapon_boomerang_name",
-      "weaponDescription": "The boomerang curves back to the shooter while it is in the air.",
+      "weaponDescription": "weapon_boomerang_desc",
       "damage": 32.0,
       "radius": 1.5,
       "maxMagnitude": 18.0,
       "steps": 900,
-      "saying": "It Curves Back.",
+      "saying": "weapon_boomerang_saying",
       "upgradeInfos": [
         {
           "name": "Good Catch",
@@ -396,12 +396,12 @@
     }, {
       "id": 8,
       "weaponName": "weapon_sniper_name",
-      "weaponDescription": "Powerful sniper rifle. Deals high damage to enemies with high-speed bullets that are largely unaffected by gravity.",
+      "weaponDescription": "weapon_sniper_desc",
       "damage": 45.0,
       "radius": 0.6,
       "maxMagnitude": 13.0,
       "steps": 300,
-      "saying": "U R in my Sight.",
+      "saying": "weapon_sniper_saying",
       "upgradeInfos": [
         {
           "name": "8X Scope",
