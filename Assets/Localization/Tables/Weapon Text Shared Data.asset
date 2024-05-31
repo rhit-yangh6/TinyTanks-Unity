@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Weapon Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Weapon Text
+  m_TableCollectionNameGuidString: 86cfa9daa78465e44be557a84c94a8fb
+  m_Entries:
+  - m_Id: 6028533760
+    m_Key: weapon_boulder_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2258449473536
+    m_Key: weapon_bomb_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2270126415872
+    m_Key: weapon_rocket_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2335217819648
+    m_Key: weapon_dice_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2446152966144
+    m_Key: weapon_snowball_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2635060224000
+    m_Key: weapon_anvil_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2701128900608
+    m_Key: weapon_boomerang_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2901113315328
+    m_Key: weapon_sniper_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2955127562240
+    m_Key: weapon_shotgun_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3082718289920
+    m_Key: weapon_fireball_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3187080962048
+    m_Key: weapon_bounce_ball_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3337782304768
+    m_Key: weapon_curse_bomb_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3448180580352
+    m_Key: weapon_med_kit_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4062096662528
+    m_Key: weapon_boulder_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4156233621504
+    m_Key: weapon_boulder_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8293708996608
+    m_Key: weapon_bomb_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8467361570816
+    m_Key: weapon_bomb_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9320659165184
+    m_Key: weapon_rocket_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9361666875392
+    m_Key: weapon_rocket_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12211247652864
+    m_Key: weapon_dice_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12336997081088
+    m_Key: weapon_dice_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13172003315712
+    m_Key: weapon_snowball_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13495031832576
+    m_Key: weapon_snowball_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13700787609600
+    m_Key: weapon_anvil_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13802285572096
+    m_Key: weapon_anvil_saying
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4516509703159939074
+  references:
+    version: 2
+    RefIds:
+    - rid: 4516509703159939074
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1717143117959

@@ -4,6 +4,9 @@ namespace _Scripts.Utils
 {
     public static class Constants
     {
+        public const string LocalizationTableWeaponText = "Weapon Text";
+        
+        
         public const string ArsenalWeaponSayingPrefix = "-- ";
         
         /* Settings */

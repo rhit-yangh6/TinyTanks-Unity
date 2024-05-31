@@ -44,9 +44,9 @@
       "hideInArsenal": true
     }, {
       "id": 1,
-      "weaponName": "Boulder",
-      "weaponDescription": "A large boulder that deals decent damage and destroys terrain.",
-      "saying": "Classic and reliable.",
+      "weaponName": "weapon_boulder_name",
+      "weaponDescription": "weapon_boulder_desc",
+      "saying": "weapon_boulder_saying",
       "damage": 35.0,
       "radius": 3.0,
       "maxMagnitude": 10.0,
@@ -93,9 +93,9 @@
       ]
     }, {
       "id": 2,
-      "weaponName": "Bomb",
-      "weaponDescription": "A larger range time bomb. Does not explode immediately when it hits the ground.",
-      "saying": "Time is Ticking.",
+      "weaponName": "weapon_bomb_name",
+      "weaponDescription": "weapon_bomb_desc",
+      "saying": "weapon_bomb_saying",
       "damage": 30.0,
       "radius": 3.5,
       "maxMagnitude": 9.5,
@@ -146,9 +146,9 @@
         }]
     }, {
       "id": 3,
-      "weaponName": "Rocket",
-      "weaponDescription": "A rocket that can accelerate through the air to its target.",
-      "saying": "Aim at the target!",
+      "weaponName": "weapon_rocket_name",
+      "weaponDescription": "weapon_rocket_desc",
+      "saying": "weapon_rocket_saying",
       "damage": 32.0,
       "radius": 3.0,
       "maxMagnitude": 14.0,
@@ -191,9 +191,9 @@
       ]
     }, {
       "id": 4,
-      "weaponName": "Dice",
-      "weaponDescription": "The result depends entirely on the number of points on the dice.",
-      "saying": "That's where luck kicks in.",
+      "weaponName": "weapon_dice_name",
+      "weaponDescription": "weapon_dice_desc",
+      "saying": "weapon_dice_saying",
       "damage": 26.0,
       "radius": 2.0,
       "maxMagnitude": 11.0,
@@ -236,11 +236,11 @@
       ]
     }, {
       "id": 5,
-      "weaponName": "Snowball",
-      "weaponDescription": "A snowball that grows bigger gradually while in the air. The larger it is, the higher the damage caused and the range of impact.",
+      "weaponName": "weapon_snowball_name",
+      "weaponDescription": "weapon_snowball_desc",
       "damage": 28.0,
       "radius": 2.0,
-      "saying": "Let's have a snowball fight!",
+      "saying": "weapon_snowball_saying",
       "maxMagnitude": 14.0,
       "steps": 510,
       "upgradeInfos": [
@@ -285,11 +285,11 @@
       ]
     }, {
       "id": 6,
-      "weaponName": "Anvil",
-      "weaponDescription": "A heavy anvil. Click in mid-air to make it fall quickly.",
+      "weaponName": "weapon_anvil_name",
+      "weaponDescription": "weapon_anvil_desc",
       "damage": 33.0,
       "radius": 2.3,
-      "saying": "Ahh, that hurts!",
+      "saying": "weapon_anvil_saying",
       "maxMagnitude": 8.0,
       "steps": 400,
       "upgradeInfos": [
@@ -338,7 +338,7 @@
       ]
     }, {
       "id": 7,
-      "weaponName": "Boomerang",
+      "weaponName": "weapon_boomerang_name",
       "weaponDescription": "The boomerang curves back to the shooter while it is in the air.",
       "damage": 32.0,
       "radius": 1.5,
@@ -395,7 +395,7 @@
       ]
     }, {
       "id": 8,
-      "weaponName": "Sniper",
+      "weaponName": "weapon_sniper_name",
       "weaponDescription": "Powerful sniper rifle. Deals high damage to enemies with high-speed bullets that are largely unaffected by gravity.",
       "damage": 45.0,
       "radius": 0.6,
@@ -448,7 +448,7 @@
       ]
     }, {
       "id": 9,
-      "weaponName": "Shotgun",
+      "weaponName": "weapon_shotgun_name",
       "weaponDescription": "Shoots multiple bullets at the same time.",
       "damage": 21.0,
       "radius": 1.7,
@@ -493,7 +493,7 @@
       ]
     }, {
       "id": 10,
-      "weaponName": "Fireball",
+      "weaponName": "weapon_fireball_name",
       "weaponDescription": "A blazing fireball. Hits enemies and makes them burn! The enemies will take burning damage for two consecutive rounds.",
       "damage": 28.0,
       "radius": 2,
@@ -546,7 +546,7 @@
       ]
     }, {
       "id": 11,
-      "weaponName": "Bounce Ball",
+      "weaponName": "weapon_bounce_ball_name",
       "weaponDescription": "Shoots a purple ball that bounces around, dealing damage with every hit.",
       "damage": 25.0,
       "radius": 2,
@@ -603,7 +603,7 @@
       ]
     }, {
       "id": 12,
-      "weaponName": "Curse Bomb",
+      "weaponName": "weapon_curse_bomb_name",
       "weaponDescription": "The curse bomb marks affected target with a curse that after a certain number of turns, they will be instantly killed.",
       "damage": 6.0,
       "radius": 2,
@@ -644,7 +644,7 @@
       ]
     }, {
       "id": 13,
-      "weaponName": "Med Kit",
+      "weaponName": "weapon_med_kit_name",
       "weaponDescription": "The Med Kit heals anyone within a small range.",
       "damage": -25.0,
       "radius": 2.3,
@@ -1214,6 +1214,7 @@
       "radius": 2.0,
       "maxMagnitude": 9.1,
       "steps": 500,
+      "saying": "Your choice.",
       "upgradeInfos": [
         {
           "name": "Flexible Orb",
@@ -1263,31 +1264,32 @@
     }, {
       "id": 25,
       "weaponName": "Airstrike",
-      "weaponDescription": ">>>",
+      "weaponDescription": "Launch a signal to call in a powerful missile strike from above.",
       "damage": 40,
-      "radius": 4.1,
+      "radius": 3.2,
       "maxMagnitude": 11,
       "steps": 660,
+      "saying": "Death from above.",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Precision Targeting",
+          "description": "Enhances the range and accuracy of the signal, and make the missile more accurate.",
+          "cost": 200
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Blast Radius Expansion",
+          "description": "Increases the blast radius of the missile.",
+          "cost": 420
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Enhanced Payload",
+          "description": "Increases the damage dealt by the missile, making the airstrike even more devastating.",
+          "cost": 650
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "Carpet Bombing",
+          "description": "Transforms the airstrike into a carpet bombing run, spawning multiple missiles.",
+          "cost": 1770
         },
         {
           "name": "",
@@ -1298,12 +1300,7 @@
       "dataPath": "airstrike",
       "explosionDuration": 0.4,
       "shopPrice": 0,
-      "extraWeaponTerms": [
-        {
-          "term": "whiteDamage",
-          "value": 33
-        }
-      ],
+      "extraWeaponTerms": [],
       "hideInShop": true
     },
     {
@@ -1341,7 +1338,7 @@
           "cost": 0
         }
       ],
-      "dataPath": "airstrike",
+      "dataPath": "airstrike_enhanced",
       "explosionDuration": 0.4,
       "shopPrice": 0,
       "extraWeaponTerms": [],

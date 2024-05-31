@@ -1,112 +1,74 @@
 ﻿using System;
 using System.Collections;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using TerraformingTerrain2d;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
-     public class AirstrikeProjectile : LaunchedProjectile
+    public class AirstrikeProjectile : LaunchedProjectile
     {
         // Set in Inspector
         [SerializeField] private GameObject missilePrefab;
         [SerializeField] private LayerMask layerMask;
+        [SerializeField] private float missileDeviateAngle = 3f;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
         private static GameObject _explosionFX;
-        
-        // ExtraFields
-        // private static float _detonateTime, _clusterExplosionRadius, _clusterExplosionDamage;
-        // private static float _secondaryExplosionRadius, _secondaryExplosionDamage;
 
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
+        protected override float Radius => Level >= 3 ? _radius * 1.2f : _radius;
+        protected override float Damage => Level >= 4 ? _damage * 1.25f : _damage;
+        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.1f : _maxMagnitude;
+        protected override int Steps => Level >= 2 ? (int)(_steps * 1.1f) : _steps;
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
+        private float MissileDeviateAngle
+        {
+            get
+            {
+                return Level switch
+                {
+                    >= 2 => 0,
+                    _ => missileDeviateAngle
+                };
+            }
+        }
 
         // Other Variables
-        private SpriteRenderer _sr;
-        private Renderer _r;
-        private Rigidbody2D _rb;
-        private GameObject _target;
-        private bool _isActivated;
-        private const float RotationAmount = 0.9f;
-        private const float ResizeAmount = 0.008f;
-        private const float DelaySpeed = .01f;
         private const float XOffset = -10f;
         private const float YOffset = -2f;
         private const float MissileSpeed = 15f;
 
-        private void Start()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-            _r = GetComponent<Renderer>();
-            _sr = GetComponent<SpriteRenderer>();
-        }
-
-        private IEnumerator RotateTarget()
-        {
-            float count = 0;
-            while(count <= 3){
-                _target.transform.Rotate(new Vector3(0, 0, RotationAmount));
-                count += DelaySpeed;
-                yield return new WaitForSeconds(DelaySpeed);
-            }
-            Destroy(_target);
-            Destroy(gameObject);
-        }
-        
-        private IEnumerator ResizeTarget()
-        {
-            float count = 0;
-            while(count <= 1)
-            {
-                _target.transform.localScale += new Vector3(ResizeAmount, ResizeAmount, 0);
-                count += DelaySpeed;
-                yield return new WaitForSeconds(DelaySpeed);
-            }
-
-            count = 0;
-            while(count <= 2)
-            {
-                _target.transform.localScale += new Vector3(-ResizeAmount, -ResizeAmount, 0);
-                count += DelaySpeed;
-                yield return new WaitForSeconds(DelaySpeed);
-            }
-        }
-
         public override void Detonate()
         {
-            if (_isActivated)
+            if (isDetonated)
             {
                 return;
             }
-
-            _isActivated = true;
-            Vector2 pos = transform.position;
-
-            _rb.velocity = Vector3.zero;
-            _rb.gravityScale = 0;
-            _r.enabled = false;
+            isDetonated = true;
+            Disappear();
             
-            // Instantiate a target
-            _target = Instantiate(GameAssets.i.targetFX, pos, Quaternion.identity);
-            StartCoroutine(RotateTarget());
-            StartCoroutine(ResizeTarget());
+            defaultMmFeedbacks.PlayFeedbacks();
+        }
+
+        public void SpawnMissile()
+        {
+            Vector2 pos = transform.position;
             
             // RayCast to sky
-            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.up, 1000, layerMask);
+            var hit = Physics2D.Raycast(pos, Vector2.up, 1000, layerMask);
             
             // Calculate missile spawn point
-            Vector2 missilePos = new Vector2(hit.point.x + XOffset, hit.point.y + YOffset);
+            var missilePos = new Vector2(hit.point.x + XOffset, hit.point.y + YOffset);
             
             // Calculate missile Velocity
-            Vector2 missileVelocity = (pos - missilePos).normalized * MissileSpeed;
+            var missileVelocity = Geometry.Rotate((pos - missilePos).normalized,
+                Random.Range(-MissileDeviateAngle, MissileDeviateAngle)) * MissileSpeed;
             
             // Instantiate Missile
             var derivedObject = Instantiate(missilePrefab, missilePos, Quaternion.identity);

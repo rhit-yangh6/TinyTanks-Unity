@@ -41,7 +41,7 @@ namespace _Scripts.UI.Arsenal
             if (wId >= 1000)
             {
                 animator.runtimeAnimatorController =
-                    Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + weapon.dataPath + "_enhanced");
+                    Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + weapon.dataPath);
                 animator.enabled = true;
             }
             else

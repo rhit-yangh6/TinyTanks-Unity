@@ -25,7 +25,7 @@ namespace _Scripts.UI
             if (weaponId >= 1000)
             {
                 animator.runtimeAnimatorController =
-                    Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + weapon.dataPath + "_enhanced");
+                    Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + weapon.dataPath);
                 animator.enabled = true;
             }
             else

@@ -3,6 +3,8 @@ using _Scripts.Managers;
 using _Scripts.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 namespace _Scripts.UI.Arsenal
@@ -11,7 +13,8 @@ namespace _Scripts.UI.Arsenal
     {
         [SerializeField] private Image weaponIcon;
         [SerializeField] private GameObject infoPanel, upgradePanel, notice;
-        [SerializeField] private TextMeshProUGUI weaponNameText, weaponDescText, weaponSayingText;
+        [SerializeField] private LocalizeStringEvent weaponNameLocalizeStringEvent,
+            weaponDescLocalizeStringEvent, weaponSayingLocalizeStringEvent;
         [SerializeField] private Slider[] weaponUpgradeProgressSliders;
         [SerializeField] private Button[] weaponUpgradeStarButtons;
         [SerializeField] private TextMeshProUGUI upgradeNameText, upgradeDescText, priceText, coinText;
@@ -35,18 +38,21 @@ namespace _Scripts.UI.Arsenal
             _weaponId = weaponId;
             SwitchDetailView(true);
             
-            Weapon w = WeaponManager.Instance.GetWeaponById(_weaponId);
+            var w = WeaponManager.Instance.GetWeaponById(_weaponId);
             weaponIcon.sprite = w.weaponIconSprite;
-            weaponNameText.text = w.weaponName;
-            weaponDescText.text = w.weaponDescription;
-            weaponSayingText.text = Constants.ArsenalWeaponSayingPrefix + w.saying;
-
+            weaponNameLocalizeStringEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, w.weaponName);
+            weaponDescLocalizeStringEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, w.weaponDescription);
+            weaponSayingLocalizeStringEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableWeaponText, w.saying);
+            
             // Enhanced?
             var animator = weaponIcon.GetComponent<Animator>();
             if (w.id >= 1000)
             {
                 animator.runtimeAnimatorController =
-                    Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + w.dataPath + "_enhanced");
+                    Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + w.dataPath);
                 animator.enabled = true;
             }
             else

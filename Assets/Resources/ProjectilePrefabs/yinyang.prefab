@@ -211,7 +211,7 @@ MonoBehaviour:
           ButtonText: 
         Owner: {fileID: 2660364697765303589}
         DebugActive: 0
-        GameObjectToInstantiate: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+        GameObjectToInstantiate: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
         PositionMode: 0
         AlsoApplyRotation: 0
         AlsoApplyScale: 0
@@ -1402,6 +1402,9 @@ MonoBehaviour:
   activateHarmonyMmFeedbacks: {fileID: 7173715974035987921}
   yinYangSplitWhitePrefab: {fileID: 2344391321563984380, guid: bc11ac1d182a445fabbdf34044ec3049, type: 3}
   yinYangSplitBlackPrefab: {fileID: 2344391321563984380, guid: 01f38751418774c06ba13641658651a4, type: 3}
+  splitOrbSpeed: 12
+  splitOrbDeviateSpeed: 3
+  splitOrbDeviateAngle: 20
 --- !u!58 &2344391321563984382
 CircleCollider2D:
   m_ObjectHideFlags: 0

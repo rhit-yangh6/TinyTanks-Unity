@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UI Text
+  m_TableCollectionNameGuidString: d658e88964c60a14ea94ed753115df14
+  m_Entries:
+  - m_Id: 45287219200
+    m_Key: ui_play_game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4636217188352
+    m_Key: ui_my_arsenal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4793985933312
+    m_Key: ui_shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4861216432128
+    m_Key: ui_options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6020337508352
+    m_Key: ui_exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6792592760832
+    m_Key: ui_weapon_selection_prompt
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4516509702572736536
+  references:
+    version: 2
+    RefIds:
+    - rid: 4516509702572736536
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1717140772838
