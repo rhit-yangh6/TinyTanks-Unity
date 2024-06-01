@@ -155,28 +155,28 @@
       "steps": 600,
       "upgradeInfos": [
         {
-          "name": "Precision Guidance",
-          "description": "Aim further, aim precisely.",
+          "name": "upgrade_rocket_2_name",
+          "description": "upgrade_rocket_2_desc",
           "cost": 80
         },
         {
-          "name": "High Explosives",
-          "description": "Increase explosive damage by 15%.",
+          "name": "upgrade_rocket_3_name",
+          "description": "upgrade_rocket_3_desc",
           "cost": 115
         },
         {
-          "name": "Anti-Tank Missiles",
-          "description": "Increase boosting speed, and boost the damage dealt even more.",
+          "name": "upgrade_rocket_4_name",
+          "description": "upgrade_rocket_4_desc",
           "cost": 489
         },
         {
-          "name": "Controlled Guidance",
-          "description": "The position of your clicks can deflect the rocket by a certain angle.",
+          "name": "upgrade_rocket_5_name",
+          "description": "upgrade_rocket_5_desc",
           "cost": 809
         },
         {
-          "name": "Highly Destructive Explosives",
-          "description": "Rocket can destroy metal tiles, easily.",
+          "name": "upgrade_rocket_6_name",
+          "description": "upgrade_rocket_6_desc",
           "cost": 1049
         }
       ],
@@ -734,13 +734,13 @@
       ]
     }, {
       "id": 15,
-      "weaponName": "Portal Ball",
-      "weaponDescription": "Within a certain radius, click to open a portal to teleport the ball, keeping its momentum.",
+      "weaponName": "weapon_portal_ball_name",
+      "weaponDescription": "weapon_portal_ball_desc",
       "damage": 20.0,
       "radius": 2,
       "maxMagnitude": 6.5,
       "steps": 500,
-      "saying": "Oh, it’s you.",
+      "saying": "weapon_portal_ball_saying",
       "upgradeInfos": [
         {
           "name": "Spatial Manipulation",
@@ -787,13 +787,13 @@
         }]
     }, {
       "id": 16,
-      "weaponName": "Steel Cube",
-      "weaponDescription": "A heavy cube that has a square blast range.",
+      "weaponName": "weapon_steel_cube_name",
+      "weaponDescription": "weapon_steel_cube_desc",
       "damage": 32,
       "radius": 2.0,
       "maxMagnitude": 8.6,
       "steps": 512,
-      "saying": "Steel cubes carve paths clear.",
+      "saying": "weapon_steel_cube_saying",
       "upgradeInfos": [
         {
           "name": "Larger Cubes",
@@ -840,13 +840,13 @@
       ]
     }, {
       "id": 17,
-      "weaponName": "Star",
-      "weaponDescription": "A radiant star-shaped projectile. While in flight, tap to draw a star shape. Completing the star shape without touching terrain empowers the star.",
+      "weaponName": "weapon_star_name",
+      "weaponDescription": "weapon_star_desc",
       "damage": 25,
       "radius": 2.5,
       "maxMagnitude": 9.1,
       "steps": 395,
-      "saying": "Stars guide, stars smite.",
+      "saying": "weapon_star_saying",
       "upgradeInfos": [
         {
           "name": "Extended Reach",
@@ -1208,13 +1208,13 @@
       ]
     }, {
       "id": 24,
-      "weaponName": "Yin-Yang",
-      "weaponDescription": "Yin-Yang is flexible. It can change mode while in mid-air. Left click to change to white mode and it does decent damage and destroys terrain. Right click to switch to black mode and create a huge but low-damage explosion.",
+      "weaponName": "weapon_yin_yang_name",
+      "weaponDescription": "weapon_yin_yang_desc",
       "damage": 10,
       "radius": 2.0,
       "maxMagnitude": 9.1,
       "steps": 500,
-      "saying": "Your choice.",
+      "saying": "weapon_yin_yang_saying",
       "upgradeInfos": [
         {
           "name": "Flexible Orb",
@@ -1272,28 +1272,28 @@
       "saying": "weapon_airstrike_saying",
       "upgradeInfos": [
         {
-          "name": "Precision Targeting",
-          "description": "Enhances the range and accuracy of the signal, and make the missile more accurate.",
+          "name": "upgrade_airstrike_2_name",
+          "description": "upgrade_airstrike_2_desc",
           "cost": 200
         },
         {
-          "name": "Blast Radius Expansion",
-          "description": "Increases the blast radius of the missile.",
+          "name": "upgrade_airstrike_3_name",
+          "description": "upgrade_airstrike_3_desc",
           "cost": 420
         },
         {
-          "name": "Enhanced Payload",
-          "description": "Increases the damage dealt by the missile, making the airstrike even more devastating.",
+          "name": "upgrade_airstrike_4_name",
+          "description": "upgrade_airstrike_4_desc",
           "cost": 650
         },
         {
-          "name": "Carpet Bombing",
-          "description": "Transforms the airstrike into a carpet bombing run, spawning multiple missiles.",
+          "name": "upgrade_airstrike_5_name",
+          "description": "upgrade_airstrike_5_desc",
           "cost": 1770
         },
         {
-          "name": "",
-          "description": "",
+          "name": "upgrade_airstrike_6_name",
+          "description": "upgrade_airstrike_6_desc",
           "cost": 0
         }
       ],
@@ -1348,12 +1348,13 @@
     },
     {
       "id": 26,
-      "weaponName": "Double-edged Sword",
-      "weaponDescription": "This sword will damage you if the projectile didn't hit any targets.",
+      "weaponName": "weapon_double_edged_sword_name",
+      "weaponDescription": "weapon_double_edged_sword_desc",
       "damage": 45,
       "radius": 2.8,
       "maxMagnitude": 8.2,
       "steps": 550,
+      "saying": "weapon_double_edged_sword_saying",
       "upgradeInfos": [
         {
           "name": "",
@@ -1437,13 +1438,13 @@
       "hideInShop": true
     }, {
       "id": 28,
-      "weaponName": "Electric Orb",
-      "weaponDescription": ">>>",
+      "weaponName": "weapon_electric_orb_name",
+      "weaponDescription": "weapon_electric_orb_desc",
       "damage": 35,
       "radius": 3.5,
-      "saying": "",
       "maxMagnitude": 9,
       "steps": 480,
+      "saying": "weapon_electric_orb_saying",
       "upgradeInfos": [
         {
           "name": "",

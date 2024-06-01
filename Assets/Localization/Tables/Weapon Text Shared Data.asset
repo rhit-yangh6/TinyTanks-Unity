@@ -295,6 +295,78 @@ MonoBehaviour:
     m_Key: weapon_cannon_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 359169871060992
+    m_Key: weapon_portal_ball_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 359220613750784
+    m_Key: weapon_portal_ball_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 359347055239168
+    m_Key: weapon_portal_ball_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566237550878720
+    m_Key: weapon_steel_cube_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566460918538240
+    m_Key: weapon_steel_cube_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566564052279296
+    m_Key: weapon_steel_cube_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566975689662464
+    m_Key: weapon_star_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567026897920000
+    m_Key: weapon_star_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567107176898560
+    m_Key: weapon_star_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567537516683264
+    m_Key: weapon_yin_yang_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567608656273408
+    m_Key: weapon_yin_yang_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567785999835136
+    m_Key: weapon_yin_yang_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567998609104896
+    m_Key: weapon_double_edged_sword_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 568076509913088
+    m_Key: weapon_double_edged_sword_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 568205891608576
+    m_Key: weapon_double_edged_sword_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569189745303552
+    m_Key: weapon_electric_orb_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569249694490624
+    m_Key: weapon_electric_orb_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569251200245760
+    m_Key: weapon_electric_orb_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

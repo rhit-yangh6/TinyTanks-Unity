@@ -309,6 +309,84 @@ MonoBehaviour:
     m_Localized: -- You are not supposed to have this....
     m_Metadata:
       m_Items: []
+  - m_Id: 359169871060992
+    m_Localized: Portal Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 359220613750784
+    m_Localized: Within a certain radius, click to open a portal to teleport the
+      ball, keeping its momentum.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 359347055239168
+    m_Localized: -- Oh. It's you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566237550878720
+    m_Localized: Steel Cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566460918538240
+    m_Localized: A heavy cube that has a square blast range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566564052279296
+    m_Localized: -- Steel cubes carve paths clear.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566975689662464
+    m_Localized: Star
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567026897920000
+    m_Localized: A radiant star-shaped projectile. While in flight, tap to draw a
+      star shape. Completing the star shape without touching terrain empowers the
+      star.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567107176898560
+    m_Localized: -- Stars guide, stars smite.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567537516683264
+    m_Localized: Yin-Yang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567608656273408
+    m_Localized: Yin-Yang is flexible. It can change mode while in mid-air. Left
+      click to change to white mode and it does decent damage and destroys terrain.
+      Right click to switch to black mode and create a huge but low-damage explosion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567785999835136
+    m_Localized: -- Your choice.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567998609104896
+    m_Localized: Double-edged Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 568076509913088
+    m_Localized: This sword will damage you if the projectile didn't hit any targets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 568205891608576
+    m_Localized: -- Risk and reward intertwined.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569189745303552
+    m_Localized: Electric Orb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569251200245760
+    m_Localized: -- Shock and awe, electrified.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569249694490624
+    m_Localized: Launches an orb that emits electricity, damaging nearby enemies
+      and chaining the electric shock to other nearby enemies.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

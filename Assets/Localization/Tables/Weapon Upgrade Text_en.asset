@@ -99,6 +99,91 @@ MonoBehaviour:
     m_Localized: The bomb explosion is followed by a chain of smaller explosions.
     m_Metadata:
       m_Items: []
+  - m_Id: 315441315848192
+    m_Localized: Precision Guidance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315476506058752
+    m_Localized: High Explosives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315488187195392
+    m_Localized: Anti-Tank Missiles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315495959240704
+    m_Localized: Controlled Guidance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315504117161984
+    m_Localized: Highly Destructive Explosives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323003398496256
+    m_Localized: Aim further, aim precisely.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323096503656448
+    m_Localized: Increase explosive damage by 15%.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323130334912512
+    m_Localized: Increase boosting speed, and boost the damage dealt even more.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323158973620224
+    m_Localized: The position of your clicks can deflect the rocket by a certain
+      angle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323168855400448
+    m_Localized: Rocket can destroy metal tiles, easily.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334848272375808
+    m_Localized: Precision Targeting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334890504822784
+    m_Localized: Blast Radius Expansion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334899291889664
+    m_Localized: Enhanced Payload
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334908729073664
+    m_Localized: Carpet Bombing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335727637569536
+    m_Localized: Enhances the range and accuracy of the signal, and make the missile
+      more accurate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335802774331392
+    m_Localized: Increases the blast radius of the missile.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335817542475776
+    m_Localized: Increases the damage dealt by the missile, making the airstrike
+      even more devastating.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335836429426688
+    m_Localized: Transforms the airstrike into a carpet bombing run, spawning multiple
+      missiles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335845031944192
+    m_Localized: Allows the missile to split into multiple smaller missiles when
+      it is close to reaching the ground.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334917029601280
+    m_Localized: MIRV
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

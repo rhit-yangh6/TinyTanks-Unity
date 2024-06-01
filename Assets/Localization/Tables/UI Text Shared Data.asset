@@ -99,6 +99,10 @@ MonoBehaviour:
     m_Key: ui_weapon_upgrade_price
     m_Metadata:
       m_Items: []
+  - m_Id: 370003208839168
+    m_Key: ui_chapter_title
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

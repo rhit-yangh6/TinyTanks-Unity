@@ -2,6 +2,7 @@
 using System.Collections;
 using _Scripts.Managers;
 using _Scripts.Utils;
+using MoreMountains.Feedbacks;
 using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,6 +15,9 @@ namespace _Scripts.Projectiles
         [SerializeField] private GameObject missilePrefab;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float missileDeviateAngle = 3f;
+        [SerializeField] private float carpetBombingMultiplier = 0.7f;
+        [SerializeField] private float missilePosDeviation = 1f;
+        [SerializeField] private MMFeedbacks carpetBombingMmFeedbacks;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -41,8 +45,15 @@ namespace _Scripts.Projectiles
             }
             isDetonated = true;
             Disappear();
-            
-            defaultMmFeedbacks.PlayFeedbacks();
+
+            if (Level == 5)
+            {
+                carpetBombingMmFeedbacks.PlayFeedbacks();
+            }
+            else
+            {
+                defaultMmFeedbacks.PlayFeedbacks();
+            }
         }
 
         public void SpawnMissile()
@@ -65,6 +76,32 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            derivedRb2d.velocity = missileVelocity;
+        }
+
+        public void SpawnCarpetBombingMissile()
+        {
+            Vector2 pos = transform.position;
+            
+            // RayCast to sky
+            var hit = Physics2D.Raycast(pos, Vector2.up, 1000, layerMask);
+            
+            // Calculate missile spawn point
+            var missilePos = new Vector2(hit.point.x + XOffset +
+                                         Random.Range(-missilePosDeviation, missilePosDeviation),
+                hit.point.y + YOffset);
+            
+            // Calculate missile Velocity
+            var missileVelocity = Geometry.Rotate((pos - missilePos).normalized,
+                Random.Range(-missileDeviateAngle, missileDeviateAngle)) * MissileSpeed;
+            
+            // Instantiate Missile
+            var derivedObject = Instantiate(missilePrefab, missilePos, Quaternion.identity);
+            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
+            
+            derivedProjectile.SetParameters(Damage * carpetBombingMultiplier,
+                Radius * carpetBombingMultiplier, ExplosionDuration, ExplosionFX);
             derivedRb2d.velocity = missileVelocity;
         }
 

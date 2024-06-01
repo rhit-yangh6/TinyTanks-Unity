@@ -95,6 +95,86 @@ MonoBehaviour:
     m_Key: upgrade_bomb_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 315441315848192
+    m_Key: upgrade_rocket_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315476506058752
+    m_Key: upgrade_rocket_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315488187195392
+    m_Key: upgrade_rocket_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315495959240704
+    m_Key: upgrade_rocket_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315504117161984
+    m_Key: upgrade_rocket_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323003398496256
+    m_Key: upgrade_rocket_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323096503656448
+    m_Key: upgrade_rocket_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323130334912512
+    m_Key: upgrade_rocket_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323158973620224
+    m_Key: upgrade_rocket_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 323168855400448
+    m_Key: upgrade_rocket_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334848272375808
+    m_Key: upgrade_airstrike_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334890504822784
+    m_Key: upgrade_airstrike_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334899291889664
+    m_Key: upgrade_airstrike_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334908729073664
+    m_Key: upgrade_airstrike_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334917029601280
+    m_Key: upgrade_airstrike_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335727637569536
+    m_Key: upgrade_airstrike_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335802774331392
+    m_Key: upgrade_airstrike_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335817542475776
+    m_Key: upgrade_airstrike_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335836429426688
+    m_Key: upgrade_airstrike_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335845031944192
+    m_Key: upgrade_airstrike_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

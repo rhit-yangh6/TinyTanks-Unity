@@ -2,6 +2,7 @@
 using System.Collections;
 using _Scripts.Managers;
 using _Scripts.Utils;
+using MoreMountains.Feedbacks;
 using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,6 +15,9 @@ namespace _Scripts.Projectiles
         [SerializeField] private GameObject missilePrefab;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float missileDeviateAngle = 3f;
+        [SerializeField] private float carpetBombingMultiplier = 0.7f;
+        [SerializeField] private float missilePosDeviation = 1.5f;
+        [SerializeField] private MMFeedbacks carpetBombingMmFeedbacks;
         
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
@@ -53,18 +57,53 @@ namespace _Scripts.Projectiles
             isDetonated = true;
             Disappear();
             
-            defaultMmFeedbacks.PlayFeedbacks();
+            if (Level == 5)
+            {
+                carpetBombingMmFeedbacks.PlayFeedbacks();
+            }
+            else
+            {
+                defaultMmFeedbacks.PlayFeedbacks();
+            }
         }
 
         public void SpawnMissile()
         {
-            Vector2 pos = transform.position;
-            
+            InstantiateMissile(false, 0);
+        }
+
+        public void SpawnCarpetBombingMiddleMissile()
+        {
+            InstantiateMissile(true, 0);
+        }
+        
+        public void SpawnCarpetBombingLeftMissile()
+        {
+            InstantiateMissile(true, -1);
+        }
+        
+        public void SpawnCarpetBombingRightMissile()
+        {
+            InstantiateMissile(true, 1);
+        }
+
+        private void InstantiateMissile(bool isCarpetBombing, int position)
+        {
+            var targetPos = transform.position;
+            Vector2 pos = position switch
+            {
+                -1 => new Vector2(targetPos.x - missilePosDeviation, targetPos.y),
+                1 => new Vector2(targetPos.x + missilePosDeviation, targetPos.y),
+                _ => targetPos
+            };
+
             // RayCast to sky
             var hit = Physics2D.Raycast(pos, Vector2.up, 1000, layerMask);
             
             // Calculate missile spawn point
-            var missilePos = new Vector2(hit.point.x + XOffset, hit.point.y + YOffset);
+            var missilePos = new Vector2(hit.point.x + XOffset +
+                                        Random.Range(-missilePosDeviation, missilePosDeviation),
+                hit.point.y + YOffset);
             
             // Calculate missile Velocity
             var missileVelocity = Geometry.Rotate((pos - missilePos).normalized,
@@ -72,10 +111,24 @@ namespace _Scripts.Projectiles
             
             // Instantiate Missile
             var derivedObject = Instantiate(missilePrefab, missilePos, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+            var derivedProjectile = derivedObject.GetComponent<AirstrikeMissileProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+
+            if (isCarpetBombing)
+            {
+                derivedProjectile.SetParameters(Damage * carpetBombingMultiplier,
+                    Radius * carpetBombingMultiplier, ExplosionDuration, ExplosionFX);
+            }
+            else
+            {
+                derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            }
+
+            if (Level == 6)
+            {
+                derivedProjectile.SetIsSplitting();
+            }
+            derivedProjectile.SetTargetPos(pos);
             derivedRb2d.velocity = missileVelocity;
         }
 
