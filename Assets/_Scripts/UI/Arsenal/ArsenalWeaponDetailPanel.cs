@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UI;
 
 namespace _Scripts.UI.Arsenal
@@ -14,17 +15,14 @@ namespace _Scripts.UI.Arsenal
         [SerializeField] private Image weaponIcon;
         [SerializeField] private GameObject infoPanel, upgradePanel, notice;
         [SerializeField] private LocalizeStringEvent weaponNameLocalizeStringEvent,
-            weaponDescLocalizeStringEvent, weaponSayingLocalizeStringEvent;
+            weaponDescLocalizeStringEvent, weaponSayingLocalizeStringEvent, weaponUpgradeNameEvent,
+            weaponUpgradeDescEvent, weaponUpgradePriceEvent;
         [SerializeField] private Slider[] weaponUpgradeProgressSliders;
         [SerializeField] private Button[] weaponUpgradeStarButtons;
-        [SerializeField] private TextMeshProUGUI upgradeNameText, upgradeDescText, priceText, coinText;
+        [SerializeField] private TextMeshProUGUI priceText, coinText;
         [SerializeField] private GameObject shopButton, setButton, shopPanel;
         
         private int _weaponId;
-        private const string FirstLevelUpgradeName = "Basic Level";
-        private const string FirstLevelUpgradeDesc = "";
-        private const string LockedLevelUpgradeName = "Locked";
-        private const string LockedLevelUpgradeDesc = "Unlock previous levels first!";
         
         public void SwitchDetailView(bool on = false)
         {
@@ -95,8 +93,12 @@ namespace _Scripts.UI.Arsenal
             // First Level
             if (level == 1)
             {
-                upgradeNameText.text = FirstLevelUpgradeName;
-                upgradeDescText.text = FirstLevelUpgradeDesc;
+                weaponUpgradeNameEvent.StringReference =
+                    new LocalizedString(Constants.LocalizationTableUIText, 
+                        Constants.LocalizationWeaponFirstLevelNameKey);
+                weaponUpgradeDescEvent.StringReference =
+                    new LocalizedString(Constants.LocalizationTableUIText, 
+                        Constants.LocalizationWeaponFirstLevelDescKey);
 
                 setButton.SetActive(level != currentLevel);
                 
@@ -110,15 +112,19 @@ namespace _Scripts.UI.Arsenal
                 Weapon w = WeaponManager.Instance.GetWeaponById(_weaponId);
                 UpgradeInfo uio = w.upgradeInfos[level - 2];
                 
-                upgradeNameText.text = uio.name;
-                upgradeDescText.text = uio.description;
-                int cost = uio.cost;
+                weaponUpgradeNameEvent.StringReference =
+                    new LocalizedString(Constants.LocalizationTableWeaponUpgradeText, uio.name);
+                weaponUpgradeDescEvent.StringReference =
+                    new LocalizedString(Constants.LocalizationTableWeaponUpgradeText, uio.description);
+                var cost = uio.cost;
                 
                 // Purchasable?
                 if (!PlayerData.Instance.GetIfLevelUnlocked(_weaponId, level))
                 {
                     shopPanel.SetActive(true);
-                    priceText.text = "Price: " + cost;
+                    weaponUpgradePriceEvent.StringReference = new LocalizedString(Constants.LocalizationTableUIText,
+                        Constants.LocalizationWeaponUpgradePriceKey)
+                        {{ "price", new IntVariable { Value = cost } }};
                     
                     var button = shopButton.GetComponent<Button>();
                     button.onClick.RemoveAllListeners();
@@ -137,8 +143,12 @@ namespace _Scripts.UI.Arsenal
             // Locked
             else if (level > highestLevel + 1)
             {
-                upgradeNameText.text = LockedLevelUpgradeName;
-                upgradeDescText.text = LockedLevelUpgradeDesc;
+                weaponUpgradeNameEvent.StringReference =
+                    new LocalizedString(Constants.LocalizationTableUIText, 
+                        Constants.LocalizationWeaponLockedLevelNameKey);
+                weaponUpgradeDescEvent.StringReference =
+                    new LocalizedString(Constants.LocalizationTableUIText, 
+                        Constants.LocalizationWeaponLockedLevelDescKey);
             }
         }
         

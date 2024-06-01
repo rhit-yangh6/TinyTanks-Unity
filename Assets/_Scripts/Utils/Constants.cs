@@ -4,10 +4,15 @@ namespace _Scripts.Utils
 {
     public static class Constants
     {
+        /* I18N References */
         public const string LocalizationTableWeaponText = "Weapon Text";
-        
-        
-        public const string ArsenalWeaponSayingPrefix = "-- ";
+        public const string LocalizationTableWeaponUpgradeText = "Weapon Upgrade Text";
+        public const string LocalizationTableUIText = "UI Text";
+        public const string LocalizationWeaponUpgradePriceKey = "ui_weapon_upgrade_price";
+        public const string LocalizationWeaponFirstLevelNameKey = "ui_weapon_first_level_name";
+        public const string LocalizationWeaponFirstLevelDescKey = "ui_weapon_first_level_desc";
+        public const string LocalizationWeaponLockedLevelNameKey = "ui_weapon_locked_level_name";
+        public const string LocalizationWeaponLockedLevelDescKey = "ui_weapon_locked_level_desc";
         
         /* Settings */
         public const string MasterVolumeValue = "MasterVolumeValue";

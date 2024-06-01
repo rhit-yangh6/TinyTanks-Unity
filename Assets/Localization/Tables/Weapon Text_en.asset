@@ -257,6 +257,58 @@ MonoBehaviour:
     m_Localized: -- Dig deep down.
     m_Metadata:
       m_Items: []
+  - m_Id: 251899225055232
+    m_Localized: Airstrike
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252006754426880
+    m_Localized: Launch a signal to call in a powerful missile strike from above.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252088870510592
+    m_Localized: -- Death from above.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252314998022144
+    m_Localized: Airstrike (Enhanced)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 253243423989760
+    m_Localized: Sacrificial Bond
+    m_Metadata:
+      m_Items: []
+  - m_Id: 253398701318144
+    m_Localized: Perform a sacrificial ritual to damage all enemies in the map.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 253463356514304
+    m_Localized: -- Whatever it takes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 253838553784320
+    m_Localized: Spiky Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 253880152891392
+    m_Localized: Click in mid-air to shoot spikes in multiple directions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 253974889635840
+    m_Localized: -- Pointy and spiky.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264876133195776
+    m_Localized: Cannon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264922698358784
+    m_Localized: --------OWNED BY ENEMIES--------
+    m_Metadata:
+      m_Items: []
+  - m_Id: 264941543366656
+    m_Localized: -- You are not supposed to have this....
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

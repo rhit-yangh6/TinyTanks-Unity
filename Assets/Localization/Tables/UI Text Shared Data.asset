@@ -67,6 +67,38 @@ MonoBehaviour:
     m_Key: ui_options_replay_tutorial
     m_Metadata:
       m_Items: []
+  - m_Id: 228368193953792
+    m_Key: ui_select_mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 228612717682688
+    m_Key: ui_story_mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 228666174087168
+    m_Key: ui_survival_mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268473545793536
+    m_Key: ui_weapon_first_level_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268502029312000
+    m_Key: ui_weapon_first_level_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268520903680000
+    m_Key: ui_weapon_locked_level_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 268529900462080
+    m_Key: ui_weapon_locked_level_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 269643647557632
+    m_Key: ui_weapon_upgrade_price
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Weapon Upgrade Text_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 5ae7e80ef1505d341aec578c346c1fe5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 12135440384
+    m_Localized: Trebuchet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147045228544
+    m_Localized: After tuning, the projectile can reach farther at maximum power.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 402402844672
+    m_Localized: Heavy Boulder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454579986432
+    m_Localized: Rubble Stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 507293999104
+    m_Localized: Massive Shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 510200651776
+    m_Localized: Hard Crush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 410095198208
+    m_Localized: Increase explosion radius by 15% and damage by 20%.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 457453084672
+    m_Localized: Upon collision, there is a small chance that the boulder will split
+      into two pieces, dealing additional damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 553074827264
+    m_Localized: An extremely large boulder that deals massive damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 565242503168
+    m_Localized: This boulder has a 100% chance of splitting into two pieces.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8409358540800
+    m_Localized: Longer Lead
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8464043876352
+    m_Localized: Lightweight Bombs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8482263932928
+    m_Localized: Lethal Gunpowder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8494238670848
+    m_Localized: Secondary Explosion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8516208435200
+    m_Localized: Cluster Bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8529038811136
+    m_Localized: Extend the detonate time by one second.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8542598995968
+    m_Localized: Bombs can reach longer distances.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8560236044288
+    m_Localized: Damage Increased by 25%.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8569274769408
+    m_Localized: Chance to have a secondary but smaller explosion after detonating.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8579253018624
+    m_Localized: The bomb explosion is followed by a chain of smaller explosions.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

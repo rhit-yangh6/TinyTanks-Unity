@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Weapon Upgrade Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Weapon Upgrade Text
+  m_TableCollectionNameGuidString: 5ae7e80ef1505d341aec578c346c1fe5
+  m_Entries:
+  - m_Id: 12135440384
+    m_Key: upgrade_boulder_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147045228544
+    m_Key: upgrade_boulder_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 402402844672
+    m_Key: upgrade_boulder_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 410095198208
+    m_Key: upgrade_boulder_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454579986432
+    m_Key: upgrade_boulder_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 457453084672
+    m_Key: upgrade_boulder_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 507293999104
+    m_Key: upgrade_boulder_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 510200651776
+    m_Key: upgrade_boulder_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 553074827264
+    m_Key: upgrade_boulder_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 565242503168
+    m_Key: upgrade_boulder_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8409358540800
+    m_Key: upgrade_bomb_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8464043876352
+    m_Key: upgrade_bomb_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8482263932928
+    m_Key: upgrade_bomb_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8494238670848
+    m_Key: upgrade_bomb_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8516208435200
+    m_Key: upgrade_bomb_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8529038811136
+    m_Key: upgrade_bomb_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8542598995968
+    m_Key: upgrade_bomb_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8560236044288
+    m_Key: upgrade_bomb_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8569274769408
+    m_Key: upgrade_bomb_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8579253018624
+    m_Key: upgrade_bomb_6_desc
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4516509716749484035
+  references:
+    version: 2
+    RefIds:
+    - rid: 4516509716749484035
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1717203803506

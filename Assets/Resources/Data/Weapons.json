@@ -2,12 +2,12 @@
   "weapons": [
     {
       "id": -1,
-      "weaponName": "Cannon",
-      "weaponDescription": "--------OWNED BY ENEMIES--------",
+      "weaponName": "weapon_cannon_name",
+      "weaponDescription": "weapon_cannon_desc",
       "damage": 18.0,
       "radius": 2.0,
       "maxMagnitude": 20.0,
-      "saying": "You are not supposed to have this....",
+      "saying": "weapon_cannon_saying",
       "steps": 500,
       "upgradeInfos": [
         {
@@ -53,28 +53,28 @@
       "steps": 500,
       "upgradeInfos": [
         {
-          "name": "Trebuchet",
-          "description": "After tuning, the projectile can reach farther at maximum power.",
+          "name": "upgrade_boulder_2_name",
+          "description": "upgrade_boulder_2_desc",
           "cost": 65
         },
         {
-          "name": "Heavy Boulder",
-          "description": "Increase explosion radius by 15% and damage by 20%.",
+          "name": "upgrade_boulder_3_name",
+          "description": "upgrade_boulder_3_desc",
           "cost": 105
         },
         {
-          "name": "Rubble Stone",
-          "description": "Upon collision, there is a small chance that the boulder will split into two pieces, dealing additional damage.",
+          "name": "upgrade_boulder_4_name",
+          "description": "upgrade_boulder_4_desc",
           "cost": 230
         },
         {
-          "name": "Massive Shot",
-          "description": "An extremely large boulder that deals massive damage.",
+          "name": "upgrade_boulder_5_name",
+          "description": "upgrade_boulder_5_desc",
           "cost": 850
         },
         {
-          "name": "Hard Crush",
-          "description": "This boulder has a 100% chance of splitting into two pieces.",
+          "name": "upgrade_boulder_6_name",
+          "description": "upgrade_boulder_6_desc",
           "cost": 830
         }
       ],
@@ -102,28 +102,28 @@
       "steps": 500,
       "upgradeInfos": [
         {
-          "name": "Longer Lead",
-          "description": "Extend the detonate time by one second.",
+          "name": "upgrade_bomb_2_name",
+          "description": "upgrade_bomb_2_desc",
           "cost": 60
         },
         {
-          "name": "Lightweight Bombs",
-          "description": "Bombs can reach longer distances.",
+          "name": "upgrade_bomb_3_name",
+          "description": "upgrade_bomb_3_desc",
           "cost": 90
         },
         {
-          "name": "Lethal Gunpowder",
-          "description": "Damage Increased by 25%.",
+          "name": "upgrade_bomb_4_name",
+          "description": "upgrade_bomb_4_desc",
           "cost": 300
         },
         {
-          "name": "Secondary Explosion",
-          "description": "Chance to have a secondary but smaller explosion after detonating.",
+          "name": "upgrade_bomb_5_name",
+          "description": "upgrade_bomb_5_desc",
           "cost": 900
         },
         {
-          "name": "Cluster Bomb",
-          "description": "The bomb explosion is followed by a chain of smaller explosions.",
+          "name": "upgrade_bomb_6_name",
+          "description": "upgrade_bomb_6_desc",
           "cost": 1299
         }
       ],
@@ -685,13 +685,13 @@
       ]
     }, {
       "id": 14,
-      "weaponName": "Spiky Ball",
-      "weaponDescription": "Click in mid-air to shoot spikes in multiple directions.",
+      "weaponName": "weapon_spiky_ball_name",
+      "weaponDescription": "weapon_spiky_ball_desc",
       "damage": 21.0,
       "radius": 2.3,
       "maxMagnitude": 9.0,
       "steps": 400,
-      "saying": "Pointy and Spiky.",
+      "saying": "weapon_spiky_ball_saying",
       "upgradeInfos": [
         {
           "name": "Steel Core",
@@ -1263,13 +1263,13 @@
       "hideInShop": true
     }, {
       "id": 25,
-      "weaponName": "Airstrike",
-      "weaponDescription": "Launch a signal to call in a powerful missile strike from above.",
+      "weaponName": "weapon_airstrike_name",
+      "weaponDescription": "weapon_airstrike_desc",
       "damage": 40,
       "radius": 3.2,
       "maxMagnitude": 11,
       "steps": 660,
-      "saying": "Death from above.",
+      "saying": "weapon_airstrike_saying",
       "upgradeInfos": [
         {
           "name": "Precision Targeting",
@@ -1305,12 +1305,13 @@
     },
     {
       "id": 1000,
-      "weaponName": "Airstrike (Enhanced)",
-      "weaponDescription": ">>>",
+      "weaponName": "weapon_airstrike_enhanced_name",
+      "weaponDescription": "weapon_airstrike_desc",
       "damage": 45,
       "radius": 4.5,
       "maxMagnitude": 12,
       "steps": 700,
+      "saying": "weapon_airstrike_saying",
       "upgradeInfos": [
         {
           "name": "",
@@ -1389,11 +1390,11 @@
       }]
     }, {
       "id": 27,
-      "weaponName": "Sacrificial Bond",
-      "weaponDescription": "Perform a sacrificial ritual to damage all enemies in the map.",
+      "weaponName": "weapon_sacrificial_bond_name",
+      "weaponDescription": "weapon_sacrificial_bond_desc",
       "damage": 50,
       "radius": 0.1,
-      "saying": "Whatever it takes.",
+      "saying": "weapon_sacrificial_bond_saying",
       "maxMagnitude": 6,
       "steps": 100,
       "upgradeInfos": [
