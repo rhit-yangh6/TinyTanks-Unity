@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using _Scripts.Managers;
+﻿using _Scripts.Managers;
 using _Scripts.Utils;
 using MoreMountains.Feedbacks;
-using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

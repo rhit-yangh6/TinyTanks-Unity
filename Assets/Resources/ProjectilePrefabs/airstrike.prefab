@@ -142,8 +142,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   missileDeviateAngle: 3
-  carpetBombingMultiplier: 0.7
-  missilePosDeviation: 1.4
+  carpetBombingMultiplier: 0.65
+  missilePosDeviation: 2
   carpetBombingMmFeedbacks: {fileID: 349249135866365186}
 --- !u!50 &325105090458958989
 Rigidbody2D:

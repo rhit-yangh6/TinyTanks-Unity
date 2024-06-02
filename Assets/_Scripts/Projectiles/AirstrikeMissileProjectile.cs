@@ -1,8 +1,6 @@
 ﻿using System;
 using _Scripts.Utils;
 using MoreMountains.Feedbacks;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Scripts.Projectiles

@@ -108,6 +108,10 @@ MonoBehaviour:
     m_Localized: Select a Chapter
     m_Metadata:
       m_Items: []
+  - m_Id: 735557455192064
+    m_Localized: Shooting Range
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

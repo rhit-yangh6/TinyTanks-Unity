@@ -184,6 +184,132 @@ MonoBehaviour:
     m_Localized: MIRV
     m_Metadata:
       m_Items: []
+  - m_Id: 444585341100032
+    m_Localized: Bigger Size
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444658280046592
+    m_Localized: Sharpened Edges
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444693612863488
+    m_Localized: A Taste Of Cheating
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444736591896576
+    m_Localized: Cheat Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444754837118976
+    m_Localized: The Magic Three
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445184287711232
+    m_Localized: When the dice reaches 3, create a huge damaging explosion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445174909247488
+    m_Localized: Even higher chance of getting a 6!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445164591259648
+    m_Localized: Higher chance of getting a 6 than any other number.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445155330236416
+    m_Localized: Increase base damage by 20%.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445121033412608
+    m_Localized: Bigger explosion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445189618671616
+    m_Localized: Compacted Snowball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454120822808576
+    m_Localized: Never lose a fight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454124861923328
+    m_Localized: Grow Bigger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454233918021632
+    m_Localized: Chilling Snow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454242499567616
+    m_Localized: Composite Materials
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454251617984512
+    m_Localized: Hardened snowball, slightly increase base damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454271524151296
+    m_Localized: Hugely increase the aim of the snowball.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454281758253056
+    m_Localized: Snowballs can get bigger, dealing more damage and with a larger
+      radius.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454290213969920
+    m_Localized: The snowball applies Frozen buff, slowing the target and increase
+      their damage received.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454303165980672
+    m_Localized: Using composite materials, snowballs can cause extensive damage
+      to the terrain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455311904481280
+    m_Localized: Rusty but Pointy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455344276119552
+    m_Localized: Aerodynamic Design
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455353910435840
+    m_Localized: Earth-shaking Strikes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455387431313408
+    m_Localized: Slam it Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455399070507008
+    m_Localized: Smash to Dizziness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455752235098112
+    m_Localized: Slightly increase base damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455794014560256
+    m_Localized: The anvil can be launched further.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455806740078592
+    m_Localized: If anvil is falling straight down, it will make a much bigger terrain
+      damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455815619420160
+    m_Localized: While falling, click a second time to further boost its speed and
+      damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455825002078208
+    m_Localized: If the anvil is falling straight down, it will stun the target,
+      making it unable to move for one turn.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

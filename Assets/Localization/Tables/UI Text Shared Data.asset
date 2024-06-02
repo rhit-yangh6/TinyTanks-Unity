@@ -103,6 +103,10 @@ MonoBehaviour:
     m_Key: ui_chapter_title
     m_Metadata:
       m_Items: []
+  - m_Id: 735557455192064
+    m_Key: ui_shooting_range_mode
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

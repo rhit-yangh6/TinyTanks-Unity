@@ -175,6 +175,126 @@ MonoBehaviour:
     m_Key: upgrade_airstrike_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 444585341100032
+    m_Key: upgrade_dice_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444658280046592
+    m_Key: upgrade_dice_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444693612863488
+    m_Key: upgrade_dice_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444736591896576
+    m_Key: upgrade_dice_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444754837118976
+    m_Key: upgrade_dice_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445121033412608
+    m_Key: upgrade_dice_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445155330236416
+    m_Key: upgrade_dice_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445164591259648
+    m_Key: upgrade_dice_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445174909247488
+    m_Key: upgrade_dice_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445184287711232
+    m_Key: upgrade_dice_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 445189618671616
+    m_Key: upgrade_snowball_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454120822808576
+    m_Key: upgrade_snowball_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454124861923328
+    m_Key: upgrade_snowball_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454233918021632
+    m_Key: upgrade_snowball_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454242499567616
+    m_Key: upgrade_snowball_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454251617984512
+    m_Key: upgrade_snowball_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454271524151296
+    m_Key: upgrade_snowball_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454281758253056
+    m_Key: upgrade_snowball_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454290213969920
+    m_Key: upgrade_snowball_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 454303165980672
+    m_Key: upgrade_snowball_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455311904481280
+    m_Key: upgrade_anvil_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455344276119552
+    m_Key: upgrade_anvil_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455353910435840
+    m_Key: upgrade_anvil_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455387431313408
+    m_Key: upgrade_anvil_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455399070507008
+    m_Key: upgrade_anvil_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455752235098112
+    m_Key: upgrade_anvil_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455794014560256
+    m_Key: upgrade_anvil_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455806740078592
+    m_Key: upgrade_anvil_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455815619420160
+    m_Key: upgrade_anvil_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 455825002078208
+    m_Key: upgrade_anvil_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

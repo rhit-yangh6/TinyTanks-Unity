@@ -200,28 +200,28 @@
       "steps": 500,
       "upgradeInfos": [
         {
-          "name": "Bigger Size",
-          "description": "Bigger explosion.",
+          "name": "upgrade_dice_2_name",
+          "description": "upgrade_dice_2_desc",
           "cost": 65
         },
         {
-          "name": "Sharpened Edges",
-          "description": "Increase base damage by 20%.",
+          "name": "upgrade_dice_3_name",
+          "description": "upgrade_dice_3_desc",
           "cost": 135
         },
         {
-          "name": "A Taste Of Cheating",
-          "description": "Higher chance of getting a 6 than any other number.",
+          "name": "upgrade_dice_4_name",
+          "description": "upgrade_dice_4_desc",
           "cost": 466
         },
         {
-          "name": "Cheat Master",
-          "description": "Even higher chance of getting a 6!",
+          "name": "upgrade_dice_5_name",
+          "description": "upgrade_dice_5_desc",
           "cost": 866
         },
         {
-          "name": "The Magic Three",
-          "description": "When the dice reaches 3, create a huge damaging explosion.",
+          "name": "upgrade_dice_6_name",
+          "description": "upgrade_dice_6_desc",
           "cost": 1200
         }
       ],
@@ -245,28 +245,28 @@
       "steps": 510,
       "upgradeInfos": [
         {
-          "name": "Compacted Snowball",
-          "description": "Hardened snowball, slightly increase base damage.",
+          "name": "upgrade_snowball_2_name",
+          "description": "upgrade_snowball_2_desc",
           "cost": 70
         },
         {
-          "name": "Never lose a fight",
-          "description": "Hugely increase the aim of the snowball.",
+          "name": "upgrade_snowball_3_name",
+          "description": "upgrade_snowball_3_desc",
           "cost": 175
         },
         {
-          "name": "Grow Bigger",
-          "description": "Snowballs can get bigger, dealing more damage and with a larger radius.",
+          "name": "upgrade_snowball_4_name",
+          "description": "upgrade_snowball_4_desc",
           "cost": 250
         },
         {
-          "name": "Chilling Snow",
-          "description": "The snowball applies Frozen buff, slowing the target and increase their damage received.",
+          "name": "upgrade_snowball_5_name",
+          "description": "upgrade_snowball_5_desc",
           "cost": 780
         },
         {
-          "name": "Composite Materials",
-          "description": "Using composite materials, snowballs can cause extensive damage to the terrain.",
+          "name": "upgrade_snowball_6_name",
+          "description": "upgrade_snowball_6_desc",
           "cost": 970
         }
       ],
@@ -294,28 +294,28 @@
       "steps": 400,
       "upgradeInfos": [
         {
-          "name": "Rusty but Pointy",
-          "description": "Slightly increase base damage.",
+          "name": "upgrade_anvil_2_name",
+          "description": "upgrade_anvil_2_desc",
           "cost": 130
         },
         {
-          "name": "Aerodynamic Design",
-          "description": "The anvil can be launched further.",
+          "name": "upgrade_anvil_3_name",
+          "description": "upgrade_anvil_3_desc",
           "cost": 370
         },
         {
-          "name": "Earth-shaking Strikes",
-          "description": "If anvil is falling straight down, it will make a much bigger terrain damage.",
+          "name": "upgrade_anvil_4_name",
+          "description": "upgrade_anvil_4_desc",
           "cost": 620
         },
         {
-          "name": "Slam it Hard",
-          "description": "While falling, click a second time to further boost its speed and damage.",
+          "name": "upgrade_anvil_5_name",
+          "description": "upgrade_anvil_5_desc",
           "cost": 1220
         }, 
         {
-          "name": "Smash to Dizziness",
-          "description": "If the anvil is falling straight down, it will stun the target, making it unable to move for one turn.",
+          "name": "upgrade_anvil_6_name",
+          "description": "upgrade_anvil_6_desc",
           "cost": 1440
         }
       ],
