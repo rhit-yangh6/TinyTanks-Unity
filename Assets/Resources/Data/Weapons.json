@@ -347,28 +347,28 @@
       "saying": "weapon_boomerang_saying",
       "upgradeInfos": [
         {
-          "name": "Good Catch",
-          "description": "Boomerang does no self-damage.",
+          "name": "upgrade_boomerang_2_name",
+          "description": "upgrade_boomerang_2_desc",
           "cost": 50
         },
         {
-          "name": "Lightweight Boomerangs",
-          "description": "Made with carbon-based materials. Can be thrown further.",
+          "name": "upgrade_boomerang_3_name",
+          "description": "upgrade_boomerang_3_desc",
           "cost": 100
         },
         {
-          "name": "Sharp Boomerangs",
-          "description": "Boomerangs have sharp blades installed, doing much more damage.",
+          "name": "upgrade_boomerang_4_name",
+          "description": "upgrade_boomerang_4_desc",
           "cost": 400
         },
         {
-          "name": "Remote-controlled Boomerangs",
-          "description": "Click while in mid-air to slightly change the direction of the boomerang.",
+          "name": "upgrade_boomerang_5_name",
+          "description": "upgrade_boomerang_5_desc",
           "cost": 680
         },
         {
-          "name": "Self-tracking Boomerangs",
-          "description": "Click while in mid-air to recall the boomerang at a much higher speed and increased damage.",
+          "name": "upgrade_boomerang_6_name",
+          "description": "upgrade_boomerang_6_desc",
           "cost": 780
         }
       ],
@@ -404,28 +404,28 @@
       "saying": "weapon_sniper_saying",
       "upgradeInfos": [
         {
-          "name": "8X Scope",
-          "description": "Use this optical sight to aim farther.",
+          "name": "upgrade_sniper_2_name",
+          "description": "upgrade_sniper_2_desc",
           "cost": 120
         },
         {
-          "name": "Explosive Bullets",
-          "description": "Sniper bullets explode on contact, and have the ability to destroy terrain.",
+          "name": "upgrade_sniper_3_name",
+          "description": "upgrade_sniper_3_desc",
           "cost": 330
         },
         {
-          "name": "Headshot",
-          "description": "Chance to cause headshot and deal more damage.",
+          "name": "upgrade_sniper_4_name",
+          "description": "upgrade_sniper_4_desc",
           "cost": 470
         },
         {
-          "name": "15X Scope",
-          "description": "Aim extremely far.",
+          "name": "upgrade_sniper_5_name",
+          "description": "upgrade_sniper_5_desc",
           "cost": 820
         },
         {
-          "name": "Marksman",
-          "description": "Just go for the head.",
+          "name": "upgrade_sniper_6_name",
+          "description": "upgrade_sniper_6_desc",
           "cost": 1500
         }
       ],
@@ -457,28 +457,28 @@
       "saying": "weapon_shotgun_saying",
       "upgradeInfos": [
         {
-          "name": "Scopes On The Shotgun",
-          "description": "Aim farther with the shotgun.",
+          "name": "upgrade_shotgun_2_name",
+          "description": "upgrade_shotgun_2_desc",
           "cost": 225
         },
         {
-          "name": "Improved Bullets",
-          "description": "Each bullet shot deals more damage.",
+          "name": "upgrade_shotgun_3_name",
+          "description": "upgrade_shotgun_3_desc",
           "cost": 305
         },
         {
-          "name": "Tactical Shotgun",
-          "description": "Tactical shotgun capable of long-range combats with less bullet dispersion.",
+          "name": "upgrade_shotgun_4_name",
+          "description": "upgrade_shotgun_4_desc",
           "cost": 745
         },
         {
-          "name": "Bring It To Five!",
-          "description": "Shoots five bullets instead of three.",
+          "name": "upgrade_shotgun_5_name",
+          "description": "upgrade_shotgun_5_desc",
           "cost": 1995
         },
         {
-          "name": "Born To Be Destructive",
-          "description": "Low bullet dispersion, high explosion radius for all bullets.",
+          "name": "upgrade_shotgun_6_name",
+          "description": "upgrade_shotgun_6_desc",
           "cost": 1355
         }
       ],
@@ -502,28 +502,28 @@
       "saying": "weapon_fireball_saying",
       "upgradeInfos": [
         {
-          "name": "Metal Inside",
-          "description": "Slight increase in base damage.",
+          "name": "weapon_fireball_2_name",
+          "description": "weapon_fireball_2_desc",
           "cost": 166
         },
         {
-          "name": "Big Burner",
-          "description": "Explosion Radius increased by 30%.",
+          "name": "weapon_fireball_3_name",
+          "description": "weapon_fireball_3_desc",
           "cost": 266
         },
         {
-          "name": "Smelting Temperature",
-          "description": "DOUBLE the burn damage.",
+          "name": "weapon_fireball_4_name",
+          "description": "weapon_fireball_4_desc",
           "cost": 666
         },
         {
-          "name": "Eternal Fire",
-          "description": "Burns forever (almost).",
+          "name": "weapon_fireball_5_name",
+          "description": "weapon_fireball_5_desc",
           "cost": 1288
         },
         {
-          "name": "Rain of Fire",
-          "description": "While the fireball is in the air, create smaller fireballs that go straight down.",
+          "name": "weapon_fireball_6_name",
+          "description": "weapon_fireball_6_desc",
           "cost": 1666
         }
       ],

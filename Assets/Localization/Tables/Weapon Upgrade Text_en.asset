@@ -310,6 +310,170 @@ MonoBehaviour:
       making it unable to move for one turn.
     m_Metadata:
       m_Items: []
+  - m_Id: 765138178416640
+    m_Localized: Good Catch!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765267245539328
+    m_Localized: Lightweight Boomerangs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765274338107392
+    m_Localized: Sharp Boomerangs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765282273730560
+    m_Localized: Remote-controlled Boomerangs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765289789923328
+    m_Localized: Self-tracking Boomerangs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765715641802752
+    m_Localized: Boomerang does no self-damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765739641610240
+    m_Localized: Made with carbon-based materials. Can be thrown further.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765763620446208
+    m_Localized: Boomerangs have sharp blades installed, doing much more damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765772290072576
+    m_Localized: Click while in mid-air to slightly change the direction of the boomerang.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765780376690688
+    m_Localized: Click while in mid-air to recall the boomerang at a much higher
+      speed and increased damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766719531687936
+    m_Localized: 8X Scope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766781141819392
+    m_Localized: Explosive Bullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766836405968896
+    m_Localized: Headshot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766913056874496
+    m_Localized: 15X Scope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766958644764672
+    m_Localized: Marksman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767013405597696
+    m_Localized: Use this optical sight to aim farther.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767040186228736
+    m_Localized: Sniper bullets explode on contact, and have the ability to destroy
+      terrain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767047551426560
+    m_Localized: Chance to cause headshot and deal more damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767054161649664
+    m_Localized: Aim extremely far.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767063921795072
+    m_Localized: Just go for the head.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768243544629248
+    m_Localized: Scopes On The Shotgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768283214356480
+    m_Localized: Improved Bullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768318362624000
+    m_Localized: Tactical Shotgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768328181489664
+    m_Localized: Bring It To Five!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768339996844032
+    m_Localized: Born To Be Destructive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768504375812096
+    m_Localized: Low bullet dispersion, high explosion radius for all bullets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768496389857280
+    m_Localized: Shoots five bullets instead of three.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768488768806912
+    m_Localized: Tactical shotgun capable of long-range combats with less bullet
+      dispersion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768476370444288
+    m_Localized: Each bullet shot deals more damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768457869369344
+    m_Localized: Aim farther with the shotgun.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769574695084032
+    m_Localized: Metal Inside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769631028781056
+    m_Localized: Big Burner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769649198505984
+    m_Localized: Smelting Temperature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769658954457088
+    m_Localized: Eternal Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769666592284672
+    m_Localized: Rain of Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769981743898624
+    m_Localized: Slight increase in base damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770002568617984
+    m_Localized: Explosion Radius increased significantly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770017961713664
+    m_Localized: DOUBLE the burn damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770026622951424
+    m_Localized: Burns forever (almost).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770035988832256
+    m_Localized: While the fireball is in the air, create smaller fireballs that
+      go straight down.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

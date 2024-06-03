@@ -295,6 +295,166 @@ MonoBehaviour:
     m_Key: upgrade_anvil_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 765138178416640
+    m_Key: upgrade_boomerang_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765267245539328
+    m_Key: upgrade_boomerang_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765274338107392
+    m_Key: upgrade_boomerang_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765282273730560
+    m_Key: upgrade_boomerang_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765289789923328
+    m_Key: upgrade_boomerang_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765715641802752
+    m_Key: upgrade_boomerang_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765739641610240
+    m_Key: upgrade_boomerang_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765763620446208
+    m_Key: upgrade_boomerang_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765772290072576
+    m_Key: upgrade_boomerang_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 765780376690688
+    m_Key: upgrade_boomerang_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766719531687936
+    m_Key: upgrade_sniper_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766781141819392
+    m_Key: upgrade_sniper_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766836405968896
+    m_Key: upgrade_sniper_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766913056874496
+    m_Key: upgrade_sniper_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 766958644764672
+    m_Key: upgrade_sniper_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767013405597696
+    m_Key: upgrade_sniper_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767040186228736
+    m_Key: upgrade_sniper_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767047551426560
+    m_Key: upgrade_sniper_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767054161649664
+    m_Key: upgrade_sniper_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 767063921795072
+    m_Key: upgrade_sniper_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768243544629248
+    m_Key: upgrade_shotgun_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768283214356480
+    m_Key: upgrade_shotgun_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768318362624000
+    m_Key: upgrade_shotgun_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768328181489664
+    m_Key: upgrade_shotgun_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768339996844032
+    m_Key: upgrade_shotgun_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768457869369344
+    m_Key: upgrade_shotgun_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768476370444288
+    m_Key: upgrade_shotgun_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768488768806912
+    m_Key: upgrade_shotgun_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768496389857280
+    m_Key: upgrade_shotgun_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 768504375812096
+    m_Key: upgrade_shotgun_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769574695084032
+    m_Key: weapon_fireball_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769631028781056
+    m_Key: weapon_fireball_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769649198505984
+    m_Key: weapon_fireball_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769658954457088
+    m_Key: weapon_fireball_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769666592284672
+    m_Key: weapon_fireball_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769981743898624
+    m_Key: weapon_fireball_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770002568617984
+    m_Key: weapon_fireball_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770017961713664
+    m_Key: weapon_fireball_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770026622951424
+    m_Key: weapon_fireball_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 770035988832256
+    m_Key: weapon_fireball_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
