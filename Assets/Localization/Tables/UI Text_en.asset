@@ -112,6 +112,41 @@ MonoBehaviour:
     m_Localized: Shooting Range
     m_Metadata:
       m_Items: []
+  - m_Id: 1351998462238720
+    m_Localized: Welcome to Tiny Tanks!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1352928393961472
+    m_Localized: 'Press [A] and [D] to move your tank
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1353258250805248
+    m_Localized: Click on your tank and drag to aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1353755049336832
+    m_Localized: When moving, your fuel is reduced
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1354275210141696
+    m_Localized: Release your mouse to launch the projectile!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1354598867804160
+    m_Localized: "\u2193Switch your weapon to Rocket!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1355249941225472
+    m_Localized: For some weapons, clicking the screen while in mid-air triggers
+      special effects!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1355319654752256
+    m_Localized: Now defeat your opponent!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
