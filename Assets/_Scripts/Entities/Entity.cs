@@ -37,17 +37,17 @@ namespace _Scripts.Entities
             // Broadcast DamageDealt Event
             EventBus.Broadcast(EventTypes.DamageDealt, roundedDamageAmount);
             
-            if (Health - amount < 0)
+            if (Health - roundedDamageAmount < 0)
             {
                 Health = 0;
             }
-            else if (Health - amount > MaxHealth)
+            else if (Health - roundedDamageAmount > MaxHealth)
             {
                 Health = maxHealth;
             }
             else
             {
-                Health -= amount;
+                Health -= roundedDamageAmount;
             }
             HealthBar.SetHealth(Health, MaxHealth);
 

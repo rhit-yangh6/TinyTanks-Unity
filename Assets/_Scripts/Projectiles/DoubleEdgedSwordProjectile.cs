@@ -5,43 +5,99 @@ using System.Collections;
 using _Scripts.Entities;
 using _Scripts.GameEngine;
 using _Scripts.Utils;
-using TerraformingTerrain2d;
-using Unity.VisualScripting;
+using MoreMountains.Feedbacks;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
     public class DoubleEdgedSwordProjectile : LaunchedProjectile
     {
+        // Set in Inspector
+        [SerializeField] private Sprite macheteSprite;
+        [SerializeField] private MMFeedbacks activateMmFeedbacks, punishmentMmFeedbacks;
+        [SerializeField] private float swordShadowYOffset = 4.6f;
+        [SerializeField] private float animationDuration = 0.8f;
+        [SerializeField] private float activationMultiplier = 0.77f;
+        [SerializeField] private float punishmentMultiplier = 0.6f;
+        [SerializeField] private float dodgeChance = 0.92f;
+        
         // Shared Fields
         private static float _radius, _damage, _maxMagnitude, _explosionDuration;
         private static int _steps;
         private static GameObject _explosionFX;
         
-        // ExtraFields
-        private static float _swordShadowYOffset;
-        
         // References
         protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
+        protected override float Damage
+        {
+            get
+            {
+                return Level switch
+                {
+                    6 => _damage * 1.27f,
+                    >= 2 => _damage * 1.06f,
+                    _ => _damage
+                };
+            }
+        }
+
+        protected override float MaxMagnitude
+        {
+            get
+            {
+                return Level switch
+                {
+                    6 => _maxMagnitude * 0.7f,
+                    >= 3 => _maxMagnitude * 1.2f,
+                    _ => _maxMagnitude
+                };
+            }
+        }
+
+        protected override int Steps
+        {
+            get
+            {
+                return Level switch
+                {
+                    6 => (int)(_steps * 0.5f),
+                    >= 3 => (int)(_steps * 1.2f),
+                    _ => _steps
+                };
+            }
+        }
+
         protected override float ExplosionDuration => _explosionDuration;
         protected override GameObject ExplosionFX => _explosionFX;
-        
-        // Other Variables
-        private Renderer _r;
     
+        // Other Variables
+        private SpriteRenderer _sr;
+        private bool _isActivated;
+        
         private void Start()
         {
-            isDetonated = false;
-            _r = GetComponent<Renderer>();
+            _sr = GetComponent<SpriteRenderer>();
+            if (Level == 6)
+            {
+                _sr.sprite = macheteSprite;
+            }
         }
 
         private void Update()
         {
-            Vector2 velocity = Rigidbody2D.velocity;
-            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            if (_isActivated)
+            {
+                Spin();
+            }
+            else
+            {
+                Direct();
+            }
+            
+            if (!Input.GetMouseButtonDown(0) || _isActivated || Level != 5) return;
+            
+            _isActivated = true;
+            activateMmFeedbacks.PlayFeedbacks();
         }
         
         public override void Detonate()
@@ -49,62 +105,57 @@ namespace _Scripts.Projectiles
             if (isDetonated) return;
             isDetonated = true;
             
-            Vector2 pos = transform.position;
-
-            Rigidbody2D.gravityScale = 0;
-            Rigidbody2D.velocity = Vector2.zero;
-            _r.enabled = false;
+            Disappear();
             
-            StartCoroutine(DoubleEdgedSwordAction(pos));
-            // Destroy(gameObject);
+            defaultMmFeedbacks.PlayFeedbacks();
         }
         
-        private IEnumerator DoubleEdgedSwordAction(Vector2 pos)
+        public void DoubleEdgedSwordAction()
         {
-            // Spawn FX first
-            SpawnExplosionFX();
-            DoCameraShake();
-            yield return new WaitForSeconds(ExplosionDuration);
+            Vector2 pos = transform.position;
             
             // Calculate Damage
-            var damagedNumber = DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
-            
-            // It doesn't destroy tiles, for now
-            // TerrainDestroyer.instance.DestroyTerrainCircular(pos, Radius);
+            var damagedNumber = DamageHandler.i.HandleDamage(pos,
+                _isActivated ? Radius * activationMultiplier : Radius,
+                _isActivated ? Damage * activationMultiplier : Damage,
+                DamageHandler.DamageType.Circular);
 
             if (damagedNumber == 0)
             {
-                // Spawn another sword at shooter's position
-                var shooterPos = Shooter.transform.position;
-                GameObject insExpl = Instantiate(ExplosionFX, new Vector2(shooterPos.x, shooterPos.y + _swordShadowYOffset), Quaternion.identity);
-            
-                // Take damage
-                yield return new WaitForSeconds(ExplosionDuration);
-                Shooter.GetComponent<BuffableEntity>().TakeDamage(Damage);
+                punishmentMmFeedbacks.PlayFeedbacks();
+            }
+        }
+
+        public void HandlePunishment()
+        {
+            StartCoroutine(Punish());
+        }
+
+        private IEnumerator Punish()
+        {
+            // Spawn another sword at shooter's position
+            var shooterPos = Shooter.transform.position;
+            var insExpl = Instantiate(ExplosionFX, new Vector2(shooterPos.x, shooterPos.y + swordShadowYOffset), Quaternion.identity);
+
+            yield return new WaitForSeconds(animationDuration);
+            // Take damage
+            if (Level >= 4 && Random.value < dodgeChance)
+            {
+                Shooter.GetComponent<BuffableEntity>().TakeDamage(0);
+            }
+            else
+            {
+                Shooter.GetComponent<BuffableEntity>().TakeDamage(_isActivated ? Damage * activationMultiplier * punishmentMultiplier : Damage * punishmentMultiplier);
                 
                 // Increment SELF_SACRIFICE counter
                 var sacrificeTimes = SteamManager.IncrementStat(Constants.StatDoubleEdgedSwordPunishmentCount);
-
                 if (sacrificeTimes >= 25)
                 {
                     SteamManager.UnlockAchievement(Constants.AchievementWillOfSacrifice);
                     WeaponManager.Instance.UnlockWeapon(27); // Sacrificial Bond 27
                 }
-                
-                Destroy(insExpl);
-                Destroy(gameObject);
             }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-        
-        public override void SpawnExplosionFX()
-        {
-            var pos = transform.position;
-            GameObject insExpl = Instantiate(ExplosionFX, new Vector2(pos.x, pos.y + _swordShadowYOffset), Quaternion.identity);
-            Destroy(insExpl, ExplosionDuration);
+            Destroy(insExpl);
         }
 
         public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,
@@ -117,8 +168,6 @@ namespace _Scripts.Projectiles
             _explosionDuration = explosionDuration;
             
             _explosionFX = GameAssets.i.swordShadowFX;
-            
-            _swordShadowYOffset = Array.Find(extraWeaponTerms, ewt => ewt.term == "swordShadowYOffset").value;
         } 
     }
     

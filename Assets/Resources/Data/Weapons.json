@@ -502,28 +502,28 @@
       "saying": "weapon_fireball_saying",
       "upgradeInfos": [
         {
-          "name": "weapon_fireball_2_name",
-          "description": "weapon_fireball_2_desc",
+          "name": "upgrade_fireball_2_name",
+          "description": "upgrade_fireball_2_desc",
           "cost": 166
         },
         {
-          "name": "weapon_fireball_3_name",
-          "description": "weapon_fireball_3_desc",
+          "name": "upgrade_fireball_3_name",
+          "description": "upgrade_fireball_3_desc",
           "cost": 266
         },
         {
-          "name": "weapon_fireball_4_name",
-          "description": "weapon_fireball_4_desc",
+          "name": "upgrade_fireball_4_name",
+          "description": "upgrade_fireball_4_desc",
           "cost": 666
         },
         {
-          "name": "weapon_fireball_5_name",
-          "description": "weapon_fireball_5_desc",
+          "name": "upgrade_fireball_5_name",
+          "description": "upgrade_fireball_5_desc",
           "cost": 1288
         },
         {
-          "name": "weapon_fireball_6_name",
-          "description": "weapon_fireball_6_desc",
+          "name": "upgrade_fireball_6_name",
+          "description": "upgrade_fireball_6_desc",
           "cost": 1666
         }
       ],
@@ -1351,35 +1351,35 @@
       "weaponName": "weapon_double_edged_sword_name",
       "weaponDescription": "weapon_double_edged_sword_desc",
       "damage": 45,
-      "radius": 2.8,
+      "radius": 2,
       "maxMagnitude": 8.2,
       "steps": 550,
       "saying": "weapon_double_edged_sword_saying",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_double_edged_sword_2_name",
+          "description": "upgrade_double_edged_sword_2_desc",
+          "cost": 200
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_double_edged_sword_3_name",
+          "description": "upgrade_double_edged_sword_3_desc",
+          "cost": 490
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_double_edged_sword_4_name",
+          "description": "upgrade_double_edged_sword_4_desc",
+          "cost": 700
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_double_edged_sword_5_name",
+          "description": "upgrade_double_edged_sword_5_desc",
+          "cost": 1000
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_double_edged_sword_6_name",
+          "description": "upgrade_double_edged_sword_6_desc",
+          "cost": 1600
         }
       ],
       "dataPath": "doubleEdgedSword",

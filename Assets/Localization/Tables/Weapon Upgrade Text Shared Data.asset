@@ -416,43 +416,83 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 769574695084032
-    m_Key: weapon_fireball_2_name
+    m_Key: upgrade_fireball_2_name
     m_Metadata:
       m_Items: []
   - m_Id: 769631028781056
-    m_Key: weapon_fireball_3_name
+    m_Key: upgrade_fireball_3_name
     m_Metadata:
       m_Items: []
   - m_Id: 769649198505984
-    m_Key: weapon_fireball_4_name
+    m_Key: upgrade_fireball_4_name
     m_Metadata:
       m_Items: []
   - m_Id: 769658954457088
-    m_Key: weapon_fireball_5_name
+    m_Key: upgrade_fireball_5_name
     m_Metadata:
       m_Items: []
   - m_Id: 769666592284672
-    m_Key: weapon_fireball_6_name
+    m_Key: upgrade_fireball_6_name
     m_Metadata:
       m_Items: []
   - m_Id: 769981743898624
-    m_Key: weapon_fireball_2_desc
+    m_Key: upgrade_fireball_2_desc
     m_Metadata:
       m_Items: []
   - m_Id: 770002568617984
-    m_Key: weapon_fireball_3_desc
+    m_Key: upgrade_fireball_3_desc
     m_Metadata:
       m_Items: []
   - m_Id: 770017961713664
-    m_Key: weapon_fireball_4_desc
+    m_Key: upgrade_fireball_4_desc
     m_Metadata:
       m_Items: []
   - m_Id: 770026622951424
-    m_Key: weapon_fireball_5_desc
+    m_Key: upgrade_fireball_5_desc
     m_Metadata:
       m_Items: []
   - m_Id: 770035988832256
-    m_Key: weapon_fireball_6_desc
+    m_Key: upgrade_fireball_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108397438279680
+    m_Key: upgrade_double_edged_sword_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108898213011456
+    m_Key: upgrade_double_edged_sword_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108907209793536
+    m_Key: upgrade_double_edged_sword_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108921034219520
+    m_Key: upgrade_double_edged_sword_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108929431216128
+    m_Key: upgrade_double_edged_sword_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117773196697600
+    m_Key: upgrade_double_edged_sword_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117811335503872
+    m_Key: upgrade_double_edged_sword_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117823415099392
+    m_Key: upgrade_double_edged_sword_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117839496060928
+    m_Key: upgrade_double_edged_sword_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117851177197568
+    m_Key: upgrade_double_edged_sword_6_desc
     m_Metadata:
       m_Items: []
   m_Metadata:

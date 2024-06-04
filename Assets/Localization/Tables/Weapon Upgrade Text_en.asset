@@ -474,6 +474,49 @@ MonoBehaviour:
       go straight down.
     m_Metadata:
       m_Items: []
+  - m_Id: 1108397438279680
+    m_Localized: Sharp Edges
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108898213011456
+    m_Localized: Precise Throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108929431216128
+    m_Localized: Heavyweight Machete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108907209793536
+    m_Localized: Dodged That
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108921034219520
+    m_Localized: Whirling Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117773196697600
+    m_Localized: Increases the damage dealt by the sword.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117811335503872
+    m_Localized: Extends the range and accuracy of the sword, reducing the likelihood
+      of missing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117823415099392
+    m_Localized: Chance of dodging the punishment when the sword misses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117839496060928
+    m_Localized: Allows the player to click in mid-air to make the sword spin, increasing
+      its hitbox and making it easier to hit enemies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1117851177197568
+    m_Localized: The sword becomes significantly heavier and harder to aim, requiring
+      more skill to use effectively.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
