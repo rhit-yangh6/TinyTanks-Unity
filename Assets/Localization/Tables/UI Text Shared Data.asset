@@ -139,6 +139,18 @@ MonoBehaviour:
     m_Key: ui_tutorial_fifth_prompt_2
     m_Metadata:
       m_Items: []
+  - m_Id: 2114921971326976
+    m_Key: ui_game_paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2115131028021248
+    m_Key: ui_game_win
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2115250263695360
+    m_Key: ui_game_lose
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

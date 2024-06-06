@@ -387,6 +387,19 @@ MonoBehaviour:
       and chaining the electric shock to other nearby enemies.
     m_Metadata:
       m_Items: []
+  - m_Id: 2098284836691968
+    m_Localized: Gear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2098346727841792
+    m_Localized: A type of metal gear that leaves a permanent gear mark and starts
+      spinning. Its damage increases with the number of gears in the map.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2098365786759168
+    m_Localized: -- Turning gears of fate...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

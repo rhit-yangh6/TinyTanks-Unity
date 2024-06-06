@@ -367,6 +367,18 @@ MonoBehaviour:
     m_Key: weapon_electric_orb_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 2098284836691968
+    m_Key: weapon_gear_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2098346727841792
+    m_Key: weapon_gear_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2098365786759168
+    m_Key: weapon_gear_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1385,10 +1385,7 @@
       "dataPath": "doubleEdgedSword",
       "explosionDuration": 0.8,
       "shopPrice": 920,
-      "extraWeaponTerms": [{
-        "term": "swordShadowYOffset",
-        "value": 4.6
-      }]
+      "extraWeaponTerms": []
     }, {
       "id": 27,
       "weaponName": "weapon_sacrificial_bond_name",
@@ -1475,6 +1472,45 @@
       "dataPath": "electricOrb",
       "explosionDuration": 0.5,
       "shopPrice": 380,
+      "extraWeaponTerms": []
+    }, {
+      "id": 29,
+      "weaponName": "weapon_gear_name",
+      "weaponDescription": "weapon_gear_desc",
+      "damage": 22,
+      "radius": 1.4,
+      "maxMagnitude": 9,
+      "steps": 500,
+      "saying": "weapon_gear_saying",
+      "upgradeInfos": [
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        },
+        {
+          "name": "",
+          "description": "",
+          "cost": 0
+        }
+      ],
+      "dataPath": "gear",
+      "shopPrice": 500,
       "extraWeaponTerms": []
     }
   ]

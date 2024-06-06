@@ -147,6 +147,18 @@ MonoBehaviour:
     m_Localized: Now defeat your opponent!
     m_Metadata:
       m_Items: []
+  - m_Id: 2114921971326976
+    m_Localized: Game Paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2115131028021248
+    m_Localized: You Win!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2115250263695360
+    m_Localized: You Lose...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
