@@ -22,6 +22,7 @@ namespace _Scripts.UI.Arsenal
         private void Start()
         {
             backButton.onClick.AddListener(SaveSystem.SavePlayer);
+            EventBus.AddListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
         private void OnEnable ()
@@ -39,6 +40,11 @@ namespace _Scripts.UI.Arsenal
             EventBus.Broadcast(EventTypes.DiscordStateChange,
                 Constants.RichPresenceMenuDetail,
                 Constants.RichPresenceMenuState);
+        }
+
+        private void OnDestroy()
+        {
+            EventBus.RemoveListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
         private void PopulateWeaponIcons()

@@ -19,6 +19,7 @@ namespace _Scripts.UI.Shop
         private void Start()
         {
             backButton.onClick.AddListener(SaveSystem.SavePlayer);
+            EventBus.AddListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
         private void OnEnable ()
@@ -35,6 +36,11 @@ namespace _Scripts.UI.Shop
             EventBus.Broadcast(EventTypes.DiscordStateChange,
                 Constants.RichPresenceMenuDetail,
                 Constants.RichPresenceMenuState);
+        }
+        
+        private void OnDestroy()
+        {
+            EventBus.RemoveListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
         private void PopulateWeaponIcons()

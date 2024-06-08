@@ -5,6 +5,9 @@ namespace _Scripts.Managers
         /* Represents the event that game is paused */
         PauseGame,
         
+        /* Represents the event that a weapon is unlocked */
+        WeaponUnlocked,
+        
         /* Represents the event that game is resumed */
         ResumeGame,
         

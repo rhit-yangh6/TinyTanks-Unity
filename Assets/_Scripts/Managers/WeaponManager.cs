@@ -60,6 +60,7 @@ namespace _Scripts.Managers
                 GameObject.FindGameObjectWithTag("UI").transform);
             panel.GetComponent<NewWeaponMsgBehavior>().Display(weaponId);
             SaveSystem.SavePlayer();
+            EventBus.Broadcast(EventTypes.WeaponUnlocked);
             return true;
         }
     }

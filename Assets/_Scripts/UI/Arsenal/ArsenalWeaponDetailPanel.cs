@@ -196,6 +196,14 @@ namespace _Scripts.UI.Arsenal
             if (!result) return;
             
             SteamManager.UnlockAchievement(Constants.AchievementFirstUpgradeId);
+            
+            var upgradeTimes = SteamManager.IncrementStat(Constants.StatUpgradeCount);
+            if (upgradeTimes >= 12)
+            {
+                SteamManager.UnlockAchievement(Constants.AchievementUpgrade12);
+                WeaponManager.Instance.UnlockWeapon(14); // Spiky Ball 14
+            }
+            
             if (levelToBuy > 4)
             {
                 SteamManager.UnlockAchievement(Constants.AchievementMaxUpgradeId);

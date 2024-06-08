@@ -54,7 +54,9 @@ namespace _Scripts.Utils
         public const string AchievementBoombox = "BOOMBOX";
         public const string AchievementYinYang = "YIN_YANG";
         public const string AchievementWillOfSacrifice = "WILL_OF_SACRIFICE";
+        public const string AchievementUpgrade12 = "UPGRADE_12";
 
         public const string StatDoubleEdgedSwordPunishmentCount = "double_edged_sword_punishment_count";
+        public const string StatUpgradeCount = "upgrade_count";
     }
 }

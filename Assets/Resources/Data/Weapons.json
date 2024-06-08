@@ -722,6 +722,7 @@
       "dataPath": "spikyBall",
       "explosionDuration": 0.2,
       "shopPrice": 220,
+      "hideInShop": true,
       "extraWeaponTerms": [
         {
           "term": "spikeDamage",
