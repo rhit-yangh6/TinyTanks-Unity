@@ -561,6 +561,87 @@ MonoBehaviour:
       it safer to use.
     m_Metadata:
       m_Items: []
+  - m_Id: 2800055850639360
+    m_Localized: Lighter Materials
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800103317577728
+    m_Localized: Bouncier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800116949065728
+    m_Localized: Destructive Rubber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800127850061824
+    m_Localized: Ultimate Bounciness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800135991205888
+    m_Localized: Kinetic Energy Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800428413886464
+    m_Localized: The bounce ball can be launched further.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800430267768832
+    m_Localized: The ball bounces three times, with a slight increase in bounce damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800432025182208
+    m_Localized: Destroys terrains while bouncing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800433883258880
+    m_Localized: The ball can bounce five times. Damage increases while bouncing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800434864726016
+    m_Localized: Stores kinetic energy for every bounce, dealing extremely high damage
+      for the final blast.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801018648928256
+    m_Localized: Death's Precision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801104720240640
+    m_Localized: Death's Reach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801110021840896
+    m_Localized: Death's Rage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801130989166592
+    m_Localized: Death's Call
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801139402940416
+    m_Localized: Death's Explosion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802162473377792
+    m_Localized: You aim more precisely with the curse bomb.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802217460703232
+    m_Localized: The curse bomb can be launched further.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802248028790784
+    m_Localized: Increase the range of effect.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802258615214080
+    m_Localized: '''Cursed'' debuff lasts one turn less.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802266626334720
+    m_Localized: Affected targets explodes upon death.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

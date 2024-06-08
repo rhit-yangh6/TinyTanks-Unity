@@ -159,6 +159,10 @@ MonoBehaviour:
     m_Localized: You Lose...
     m_Metadata:
       m_Items: []
+  - m_Id: 3069521633222656
+    m_Localized: Right click when dragging to cancel aiming
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

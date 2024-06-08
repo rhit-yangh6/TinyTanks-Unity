@@ -555,28 +555,28 @@
       "saying": "weapon_bounceBall_saying",
       "upgradeInfos": [
         {
-          "name": "Lighter Materials",
-          "description": "The bounce ball can be launched further.",
+          "name": "upgrade_bounce_ball_2_name",
+          "description": "upgrade_bounce_ball_2_desc",
           "cost": 75
         },
         {
-          "name": "Bouncier",
-          "description": "The ball bounces three times, with a slight increase in bounce damage.",
+          "name": "upgrade_bounce_ball_3_name",
+          "description": "upgrade_bounce_ball_3_desc",
           "cost": 200
         },
         {
-          "name": "Destructive Rubber",
-          "description": "Destroys terrains while bouncing.",
+          "name": "upgrade_bounce_ball_4_name",
+          "description": "upgrade_bounce_ball_4_desc",
           "cost": 300
         },
         {
-          "name": "Ultimate Bounciness",
-          "description": "The ball can bounce five times. Damage increases while bouncing.",
+          "name": "upgrade_bounce_ball_5_name",
+          "description": "upgrade_bounce_ball_5_desc",
           "cost": 700
         },
         {
-          "name": "Kinetic Energy Storage",
-          "description": "Stores kinetic energy for every bounce, dealing extremely high damage for the final blast.",
+          "name": "upgrade_bounce_ball_6_name",
+          "description": "upgrade_bounce_ball_6_desc",
           "cost": 1020
         }
       ],
@@ -612,28 +612,28 @@
       "saying": "weapon_curseBomb_saying",
       "upgradeInfos": [
         {
-          "name": "Death's Precision",
-          "description": "You aim more precisely with the curse bomb.",
+          "name": "upgrade_curse_bomb_2_name",
+          "description": "upgrade_curse_bomb_2_desc",
           "cost": 82
         },
         {
-          "name": "Death's Reach",
-          "description": "The curse bomb can be launched further.",
+          "name": "upgrade_curse_bomb_3_name",
+          "description": "upgrade_curse_bomb_3_desc",
           "cost": 302
         },
         {
-          "name": "Death's Rage",
-          "description": "Increase the range of effect.",
+          "name": "upgrade_curse_bomb_4_name",
+          "description": "upgrade_curse_bomb_4_desc",
           "cost": 442
         },
         {
-          "name": "Death's Call",
-          "description": "'Cursed' debuff lasts one turn less.",
+          "name": "upgrade_curse_bomb_5_name",
+          "description": "upgrade_curse_bomb_5_desc",
           "cost": 2012
         },
         {
-          "name": "Death's Explosion",
-          "description": "Affected targets explodes upon death.",
+          "name": "upgrade_curse_bomb_6_name",
+          "description": "upgrade_curse_bomb_6_desc",
           "cost": 1032
         }
       ],
@@ -1427,13 +1427,7 @@
       "dataPath": "sacrificialBond",
       "explosionDuration": 0.4,
       "shopPrice": 666,
-      "extraWeaponTerms": [{
-        "term": "initialGrowDuration",
-        "value": 1.1
-      }, {
-        "term": "enemyDamageMultiplier",
-        "value": 0.33
-      }],
+      "extraWeaponTerms": [],
       "hideInShop": false
     }, {
       "id": 28,

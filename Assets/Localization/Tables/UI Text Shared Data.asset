@@ -124,7 +124,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1354275210141696
-    m_Key: ui_tutorial_third_prompt
+    m_Key: ui_tutorial_third_prompt_1
     m_Metadata:
       m_Items: []
   - m_Id: 1354598867804160
@@ -149,6 +149,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2115250263695360
     m_Key: ui_game_lose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3069521633222656
+    m_Key: ui_tutorial_third_prompt_2
     m_Metadata:
       m_Items: []
   m_Metadata:

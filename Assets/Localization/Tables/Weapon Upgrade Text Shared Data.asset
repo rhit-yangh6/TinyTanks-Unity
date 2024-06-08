@@ -535,6 +535,86 @@ MonoBehaviour:
     m_Key: upgrade_sacrificial_bond_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 2800055850639360
+    m_Key: upgrade_bounce_ball_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800103317577728
+    m_Key: upgrade_bounce_ball_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800116949065728
+    m_Key: upgrade_bounce_ball_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800127850061824
+    m_Key: upgrade_bounce_ball_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800135991205888
+    m_Key: upgrade_bounce_ball_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800428413886464
+    m_Key: upgrade_bounce_ball_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800430267768832
+    m_Key: upgrade_bounce_ball_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800432025182208
+    m_Key: upgrade_bounce_ball_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800433883258880
+    m_Key: upgrade_bounce_ball_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2800434864726016
+    m_Key: upgrade_bounce_ball_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801018648928256
+    m_Key: upgrade_curse_bomb_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801104720240640
+    m_Key: upgrade_curse_bomb_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801110021840896
+    m_Key: upgrade_curse_bomb_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801130989166592
+    m_Key: upgrade_curse_bomb_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2801139402940416
+    m_Key: upgrade_curse_bomb_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802162473377792
+    m_Key: upgrade_curse_bomb_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802217460703232
+    m_Key: upgrade_curse_bomb_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802248028790784
+    m_Key: upgrade_curse_bomb_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802258615214080
+    m_Key: upgrade_curse_bomb_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2802266626334720
+    m_Key: upgrade_curse_bomb_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

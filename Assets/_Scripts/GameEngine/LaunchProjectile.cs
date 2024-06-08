@@ -43,7 +43,14 @@ namespace _Scripts.GameEngine
         {
             var launchPos = TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
                 _playerCharacter.tankCannon.transform.position);
-            if (Input.GetMouseButton(0) && _playerCharacter.moveable)
+            if (Input.GetMouseButton(1) && _isAiming)
+            {
+                _lr.enabled = false;
+                _isAiming = false;
+                _playerCharacter.moveable = true;
+            }
+            
+            if (Input.GetMouseButton(0) && (_playerCharacter.moveable || _isAiming))
             {
                 Vector2 dragPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -52,6 +59,7 @@ namespace _Scripts.GameEngine
                     EventBus.Broadcast(EventTypes.StartedDragging);
                     _isAiming = true;
                     _lr.enabled = true;
+                    _playerCharacter.moveable = false;
                     _startPoint = dragPoint;
                 }
 
@@ -75,10 +83,11 @@ namespace _Scripts.GameEngine
             }
             else
             {
-                if (_playerCharacter.moveable && _isAiming)
+                if (_isAiming)
                 {
                     _lr.enabled = false;
                     _isAiming = false;
+                    _playerCharacter.moveable = true;
                     
                     EventBus.Broadcast(EventTypes.StoppedDragging);
                     _endPoint = _cam.ScreenToWorldPoint(Input.mousePosition);
