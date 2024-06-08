@@ -943,6 +943,7 @@
       "dataPath": "sawBlade",
       "explosionDuration": 0.1,
       "shopPrice": 468,
+      "hideInShop": true,
       "extraWeaponTerms": [
         {
           "term": "damageInterval",
