@@ -517,6 +517,50 @@ MonoBehaviour:
       more skill to use effectively.
     m_Metadata:
       m_Items: []
+  - m_Id: 2636497242300416
+    m_Localized: Balanced Distribution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636431324618752
+    m_Localized: Efficient Sacrifice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636480251174912
+    m_Localized: Widespread Agony
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636488945967104
+    m_Localized: Mediation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636506000007168
+    m_Localized: Vital Sacrifice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637504596680704
+    m_Localized: The self-damage is significantly increased, but the damage dealt
+      to enemies is massively boosted.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637486930272256
+    m_Localized: The damage to enemies is evenly distributed based on the number
+      of enemies present, ensuring a fair and consistent spread of damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637479321804800
+    m_Localized: Heals a small amount of health after each use, partially mitigating
+      the self-damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637462720749568
+    m_Localized: Increases the damage dealt to all enemies on the map.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637442420318208
+    m_Localized: Reduces the self-damage taken when using Sacrificial Bond, making
+      it safer to use.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

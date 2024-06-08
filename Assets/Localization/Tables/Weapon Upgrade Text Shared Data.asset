@@ -495,6 +495,46 @@ MonoBehaviour:
     m_Key: upgrade_double_edged_sword_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 2636431324618752
+    m_Key: upgrade_sacrificial_bond_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636480251174912
+    m_Key: upgrade_sacrificial_bond_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636488945967104
+    m_Key: upgrade_sacrificial_bond_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636497242300416
+    m_Key: upgrade_sacrificial_bond_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636506000007168
+    m_Key: upgrade_sacrificial_bond_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637442420318208
+    m_Key: upgrade_sacrificial_bond_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637462720749568
+    m_Key: upgrade_sacrificial_bond_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637479321804800
+    m_Key: upgrade_sacrificial_bond_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637486930272256
+    m_Key: upgrade_sacrificial_bond_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637504596680704
+    m_Key: upgrade_sacrificial_bond_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

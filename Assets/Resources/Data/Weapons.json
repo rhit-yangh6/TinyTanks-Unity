@@ -1399,29 +1399,29 @@
       "steps": 100,
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_sacrificial_bond_2_name",
+          "description": "upgrade_sacrificial_bond_2_desc",
+          "cost": 280
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_sacrificial_bond_3_name",
+          "description": "upgrade_sacrificial_bond_3_desc",
+          "cost": 300
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_sacrificial_bond_4_name",
+          "description": "upgrade_sacrificial_bond_4_desc",
+          "cost": 580
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_sacrificial_bond_5_name",
+          "description": "upgrade_sacrificial_bond_5_desc",
+          "cost": 1060
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_sacrificial_bond_6_name",
+          "description": "upgrade_sacrificial_bond_6_desc",
+          "cost": 966
         }
       ],
       "dataPath": "sacrificialBond",
@@ -1434,7 +1434,7 @@
         "term": "enemyDamageMultiplier",
         "value": 0.33
       }],
-      "hideInShop": true
+      "hideInShop": false
     }, {
       "id": 28,
       "weaponName": "weapon_electric_orb_name",
