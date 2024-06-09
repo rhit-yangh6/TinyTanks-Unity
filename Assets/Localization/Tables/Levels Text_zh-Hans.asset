@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Levels Text_zh-Hans
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: zh-Hans
+  m_SharedData: {fileID: 11400000, guid: aca2760ba8eafff4bb0ab3f09c52fef6, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1981772210176
+    m_Localized: "\u5DE8\u77F3\u7FA4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5221779775488
+    m_Localized: "\u5F00\u7AEF"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5291786903552
+    m_Localized: "\u5BF9\u51B3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5373869432832
+    m_Localized: "\u5C71\u5CF0"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5345436246016
+    m_Localized: "\u3002\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5570129305600
+    m_Localized: "\u5DE8\u5927\u6C34\u6676"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601917935616
+    m_Localized: "\u5939\u51FB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9025573101568
+    m_Localized: "\u6C99\u6F20"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

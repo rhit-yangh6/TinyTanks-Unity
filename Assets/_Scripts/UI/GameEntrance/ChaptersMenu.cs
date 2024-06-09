@@ -1,8 +1,11 @@
 using System;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 namespace _Scripts.UI.GameEntrance
@@ -87,10 +90,12 @@ namespace _Scripts.UI.GameEntrance
                 var cellObj = Instantiate(chapterCellPrefab, chapterScrollListContent.transform);
                 var s = cellObj.GetComponentsInChildren<Image>()[1];
                 var lockedImg = cellObj.GetComponentsInChildren<Image>()[2];
-                var tmpGUI = cellObj.GetComponentInChildren<TextMeshProUGUI>();
+                var localizeEvent = cellObj.GetComponentInChildren<LocalizeStringEvent>();
                 var button = cellObj.GetComponent<Button>();
 
-                tmpGUI.text = c.name;
+                localizeEvent.StringReference =
+                    new LocalizedString(Constants.LocalizationTableLevelsText, 
+                        c.name);
 
                 if (PlayerData.Instance.IsChapterUnlocked(c.id))
                 {

@@ -155,6 +155,14 @@ MonoBehaviour:
     m_Key: ui_tutorial_third_prompt_2
     m_Metadata:
       m_Items: []
+  - m_Id: 3419739008540672
+    m_Key: ui_select_level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3424227358416896
+    m_Key: ui_level_text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

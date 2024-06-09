@@ -8,6 +8,8 @@ namespace _Scripts.Utils
         public const string LocalizationTableWeaponText = "Weapon Text";
         public const string LocalizationTableWeaponUpgradeText = "Weapon Upgrade Text";
         public const string LocalizationTableUIText = "UI Text";
+        public const string LocalizationTableLevelsText = "Levels Text";
+        public const string LocalizationLevelTextKey = "ui_level_text";
         public const string LocalizationWeaponUpgradePriceKey = "ui_weapon_upgrade_price";
         public const string LocalizationWeaponFirstLevelNameKey = "ui_weapon_first_level_name";
         public const string LocalizationWeaponFirstLevelDescKey = "ui_weapon_first_level_desc";

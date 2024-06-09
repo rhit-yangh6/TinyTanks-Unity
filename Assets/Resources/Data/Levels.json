@@ -2,12 +2,12 @@
   "chapters": [
     {
       "id": 1,
-      "name": "The Plain",
-      "path": "plain",
+      "name": "chapter_rocks_name",
+      "path": "rocks",
       "levels": [
         {
           "id": "1-1",
-          "name": "The Beginning",
+          "name": "level_1_1_name",
           "prize": 50,
           "weaponPrize": 0,
           "unlocksChapter": 0,
@@ -15,7 +15,7 @@
         },
         {
           "id": "1-2",
-          "name": "Duel",
+          "name": "level_1_2_name",
           "prize": 50,
           "weaponPrize": 0,
           "unlocksChapter": 0,
@@ -23,7 +23,7 @@
         },
         {
           "id": "1-3",
-          "name": "Height Difference",
+          "name": "level_1_3_name",
           "prize": 50,
           "weaponPrize": 0,
           "unlocksChapter": 0,
@@ -31,7 +31,7 @@
         },
         {
           "id": "1-4",
-          "name": "Peaks",
+          "name": "level_1_4_name",
           "prize": 50,
           "weaponPrize": 0,
           "unlocksChapter": 0,
@@ -39,7 +39,7 @@
         },
         {
           "id": "1-5",
-          "name": "Huge Crystal",
+          "name": "level_1_5_name",
           "prize": 50,
           "weaponPrize": 0,
           "unlocksChapter": 0,
@@ -47,7 +47,7 @@
         },
         {
           "id": "1-6",
-          "name": "Two Foes",
+          "name": "level_1_6_name",
           "prize": 50,
           "weaponPrize": 0,
           "unlocksChapter": 0,
@@ -65,7 +65,7 @@
     },
     {
       "id": 2,
-      "name": "The Desert",
+      "name": "chapter_desert_name",
       "path": "desert",
       "levels": []
     }

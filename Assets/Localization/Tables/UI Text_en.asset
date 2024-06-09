@@ -163,10 +163,19 @@ MonoBehaviour:
     m_Localized: Right click when dragging to cancel aiming
     m_Metadata:
       m_Items: []
+  - m_Id: 3419739008540672
+    m_Localized: Select a Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3424227358416896
+    m_Localized: Level {level_id}
+    m_Metadata:
+      m_Items:
+      - rid: 4516509716749484045
   references:
     version: 2
     RefIds:
     - rid: 4516509716749484045
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0020d44d3df50000
+        m_Entries: 0020d44d3df500000020540f512a0c00

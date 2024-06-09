@@ -1,7 +1,10 @@
 using _Scripts.GameEngine;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -28,14 +31,17 @@ namespace _Scripts.UI.GameEntrance
 
             for (var i = 0; i < levels.Length; i++)
             {
-                Level l = levels[i];
-                GameObject cellObj = Instantiate(levelCellPrefab, levelScrollListContent.transform);
-                Image s = cellObj.GetComponentsInChildren<Image>()[1];
+                var l = levels[i];
+                var cellObj = Instantiate(levelCellPrefab, levelScrollListContent.transform);
+                var s = cellObj.GetComponentsInChildren<Image>()[1];
                 
-                Image lockedImg = cellObj.GetComponentsInChildren<Image>()[2];
-                TextMeshProUGUI tmpGUI = cellObj.GetComponentInChildren<TextMeshProUGUI>();
-                Button button = cellObj.GetComponent<Button>();
-                tmpGUI.text = l.name;
+                var lockedImg = cellObj.GetComponentsInChildren<Image>()[2];
+                var localizeEvent = cellObj.GetComponentInChildren<LocalizeStringEvent>();
+                var button = cellObj.GetComponent<Button>();
+                
+                localizeEvent.StringReference =
+                    new LocalizedString(Constants.LocalizationTableLevelsText, 
+                        l.name);
                 
                 if (progress >= i)
                 {

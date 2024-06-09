@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Levels Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Levels Text
+  m_TableCollectionNameGuidString: aca2760ba8eafff4bb0ab3f09c52fef6
+  m_Entries:
+  - m_Id: 1981772210176
+    m_Key: chapter_rocks_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5221779775488
+    m_Key: level_1_1_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5291786903552
+    m_Key: level_1_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5345436246016
+    m_Key: level_1_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5373869432832
+    m_Key: level_1_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5570129305600
+    m_Key: level_1_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601917935616
+    m_Key: level_1_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9025573101568
+    m_Key: chapter_desert_name
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4311787845563711488
+  references:
+    version: 2
+    RefIds:
+    - rid: 4311787845563711488
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1717955435291
