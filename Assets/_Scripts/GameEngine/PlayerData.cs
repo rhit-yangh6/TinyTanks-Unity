@@ -136,7 +136,7 @@ namespace _Scripts.GameEngine
             }
             
             // Illegal Clear
-            var idx = Array.FindIndex(selectedWeapons, sw => sw.weaponId == weaponId);
+            var idx = Array.FindIndex(selectedWeapons, sw => sw != null && sw.weaponId == weaponId);
             if (idx == -1) return false;
 
             selectedWeapons[idx] = null;

@@ -653,28 +653,28 @@
       "saying": "weapon_medKit_saying",
       "upgradeInfos": [
         {
-          "name": "More Bandages",
-          "description": "Effect radius increased.",
+          "name": "upgrade_med_kit_2_name",
+          "description": "upgrade_med_kit_2_desc",
           "cost": 35
         },
         {
-          "name": "Advanced Med-Kit",
-          "description": "Increases Healing Amount.",
+          "name": "upgrade_med_kit_3_name",
+          "description": "upgrade_med_kit_3_desc",
           "cost": 170
         },
         {
-          "name": "First Aid",
-          "description": "The Med Kit has a very low chance of completely healing the target.",
+          "name": "upgrade_med_kit_4_name",
+          "description": "upgrade_med_kit_4_desc",
           "cost": 400
         },
         {
-          "name": "Best Medical Supplies",
-          "description": "Has a higher chance of completely healing you.",
+          "name": "upgrade_med_kit_5_name",
+          "description": "upgrade_med_kit_5_desc",
           "cost": 800
         },
         {
-          "name": "Continuous Healing",
-          "description": "Besides healing you instantly, the Med Kit also applies a Healing Buff that heals you over time.",
+          "name": "upgrade_med_kit_6_name",
+          "description": "upgrade_med_kit_6_desc",
           "cost": 800
         }
       ],
@@ -694,28 +694,28 @@
       "saying": "weapon_spiky_ball_saying",
       "upgradeInfos": [
         {
-          "name": "Steel Core",
-          "description": "Increased base damage.",
+          "name": "upgrade_spiky_ball_2_name",
+          "description": "upgrade_spiky_ball_2_desc",
           "cost": 80
         },
         {
-          "name": "'It Still Counts'",
-          "description": "The core of the spiky ball does not disappear upon activation. It will fall straight down and deal base damage to the target.",
+          "name": "upgrade_spiky_ball_3_name",
+          "description": "upgrade_spiky_ball_3_desc",
           "cost": 200
         },
         {
-          "name": "Eight Directions",
-          "description": "Spiky ball spawns eight spikes in 8 directions.",
+          "name": "upgrade_spiky_ball_4_name",
+          "description": "upgrade_spiky_ball_4_desc",
           "cost": 480
         },
         {
-          "name": "So Many Spikes",
-          "description": "12 Spikes, 12 Directions.",
+          "name": "upgrade_spiky_ball_5_name",
+          "description": "upgrade_spiky_ball_5_desc",
           "cost": 1080
         },
         {
-          "name": "Lethal Spikes",
-          "description": "Spikes have double damage and explosion radius.",
+          "name": "upgrade_spiky_ball_6_name",
+          "description": "upgrade_spiky_ball_6_desc",
           "cost": 1380
         }
       ],
@@ -744,28 +744,28 @@
       "saying": "weapon_portal_ball_saying",
       "upgradeInfos": [
         {
-          "name": "Spatial Manipulation",
-          "description": "Increases the range at which players can create portals, allowing longer-distance teleportation.",
+          "name": "upgrade_portal_ball_2_name",
+          "description": "upgrade_portal_ball_2_desc",
           "cost": 200
         },
         {
-          "name": "Platinum Coating",
-          "description": "Increase the base damage of portal ball by 25%",
+          "name": "upgrade_portal_ball_3_name",
+          "description": "upgrade_portal_ball_3_desc",
           "cost": 250
         },
         {
-          "name": "Radioactive Portals",
-          "description": "The portals themselves deal damage to nearby targets.",
+          "name": "upgrade_portal_ball_4_name",
+          "description": "upgrade_portal_ball_4_desc",
           "cost": 450
         },
         {
-          "name": "Mirror Dimension",
-          "description": "Opens a portal to the mirror dimension, and spawn a devastating portal ball instead.",
+          "name": "upgrade_portal_ball_5_name",
+          "description": "upgrade_portal_ball_5_desc",
           "cost": 2000
         },
         {
-          "name": "Full Control of Space and Time",
-          "description": "No teleportation limits.",
+          "name": "upgrade_portal_ball_6_name",
+          "description": "upgrade_portal_ball_6_desc",
           "cost": 2500
         }
       ],
@@ -797,28 +797,28 @@
       "saying": "weapon_steel_cube_saying",
       "upgradeInfos": [
         {
-          "name": "Larger Cubes",
-          "description": "Increase explosion Radius by 20%.",
+          "name": "upgrade_steel_cube_2_name",
+          "description": "upgrade_steel_cube_2_desc",
           "cost": 64
         },
         {
-          "name": "Stainless Steel",
-          "description": "Moderate chance of dealing critical damage on hit.",
+          "name": "upgrade_steel_cube_3_name",
+          "description": "upgrade_steel_cube_3_desc",
           "cost": 128
         },
         {
-          "name": "Titanium Cube",
-          "description": "Great increase in damage.",
+          "name": "upgrade_steel_cube_4_name",
+          "description": "upgrade_steel_cube_4_desc",
           "cost": 256
         },
         {
-          "name": "Adamantium Core",
-          "description": "Destroy enemies with this special, but insanely heavy alloy. Also destroys metal tiles.",
+          "name": "upgrade_steel_cube_5_name",
+          "description": "upgrade_steel_cube_5_desc",
           "cost": 1024
         },
         {
-          "name": "Splitting Cube",
-          "description": "The cube splits into four smaller pieces on hit.",
+          "name": "upgrade_steel_cube_6_name",
+          "description": "upgrade_steel_cube_6_desc",
           "cost": 1024
         }
       ],

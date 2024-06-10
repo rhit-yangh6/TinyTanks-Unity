@@ -642,6 +642,167 @@ MonoBehaviour:
     m_Localized: Affected targets explodes upon death.
     m_Metadata:
       m_Items: []
+  - m_Id: 3242142094073856
+    m_Localized: More Bandages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242191934988288
+    m_Localized: Advanced Med-Kit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242202571743232
+    m_Localized: First Aid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242224650559488
+    m_Localized: Best Medical Supplies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242233605398528
+    m_Localized: Continuous Healing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242503559192576
+    m_Localized: Effect radius increased.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242527844212736
+    m_Localized: Increases Healing Amount.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242541781884928
+    m_Localized: The Med Kit has a very low chance of completely healing the target.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242550485065728
+    m_Localized: Has a higher chance of completely healing you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3242560463314944
+    m_Localized: Besides healing you instantly, the Med Kit also applies a Healing
+      Buff that heals you over time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243137251418112
+    m_Localized: Steel Core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243205601796096
+    m_Localized: '''It Still Counts'''
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243213046685696
+    m_Localized: Eight Directions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243220684513280
+    m_Localized: So Many Spikes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243228238454784
+    m_Localized: Lethal Spikes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243556967030784
+    m_Localized: Increased base damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243579020681216
+    m_Localized: The core of the spiky ball does not disappear upon activation. It
+      will fall straight down and deal base damage to the target.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243593566527488
+    m_Localized: Spiky ball spawns eight spikes in 8 directions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243601774780416
+    m_Localized: 12 Spikes, 12 Directions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243610469572608
+    m_Localized: Spikes have double damage and explosion radius.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3266622828847104
+    m_Localized: Spatial Manipulation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3266706698149888
+    m_Localized: Platinum Coating
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3266717607534592
+    m_Localized: Radioactive Portals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3266726210052096
+    m_Localized: Mirror Dimension
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3266733860462592
+    m_Localized: Full Control of Space and Time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3267000265875456
+    m_Localized: Increases the range at which players can create portals, allowing
+      longer-distance teleportation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3267020683747328
+    m_Localized: Increase the base damage of portal ball.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3267043156828160
+    m_Localized: The portals themselves deal damage to nearby targets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3267051251834880
+    m_Localized: Opens a portal to the mirror dimension, and spawn a devastating
+      portal ball instead.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3267059703357440
+    m_Localized: No teleportation limits.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3269629154959360
+    m_Localized: Larger Cubes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3269680602292224
+    m_Localized: Stainless Steel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3269689221586944
+    m_Localized: Titanium Cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3269697593417728
+    m_Localized: Adamantium Core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3269706200129536
+    m_Localized: Splitting Cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270015488106496
+    m_Localized: Increases explosion Radius.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270049168367616
+    m_Localized: Moderate chance of dealing critical damage on hit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270061814194176
+    m_Localized: Great increase in damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3270070035030016
+    m_Localized: Destroy enemies with this special, but insanely heavy alloy. Also
+      destroys metal tiles.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
