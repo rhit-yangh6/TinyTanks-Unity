@@ -14,22 +14,14 @@ namespace _Scripts.Projectiles
         [SerializeField] private GameObject sawBladeSmallPrefab;
         [SerializeField] private MMFeedbacks activateMmFeedbacks;
         [SerializeField] private ParticleSystem sparks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-
-        // ExtraFields
-        private static float _damageInterval, _moveTime, _sawBladeSmallDamage;
+        [SerializeField] private float damageInterval = 0.5f;
+        [SerializeField] private float moveTime = 1.0f;
+        [SerializeField] private float sawBladeSmallDamage = 16f;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => Level >= 3 ? _damage * 1.3f : _damage;
-        protected override float MaxMagnitude => Level >= 4 ? _maxMagnitude * 1.2f : _maxMagnitude;
-        protected override int Steps => Level >= 4 ? (int)(_steps * 1.3f) : _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Damage => Level >= 3 ? damage * 1.3f : damage;
+        protected override float MaxMagnitude => Level >= 4 ? maxMagnitude * 1.2f : maxMagnitude;
+        protected override int Steps => Level >= 4 ? (int)(steps * 1.3f) : steps;
         
         // Other Variables
         private int _moveDirection;
@@ -84,7 +76,7 @@ namespace _Scripts.Projectiles
                 defaultMmFeedbacks.PlayFeedbacks();
             }
             
-            _intervalTimeLeft = _damageInterval;
+            _intervalTimeLeft = damageInterval;
             if (Level == 5)
             {
                 RefreshTimeLeft();
@@ -100,8 +92,8 @@ namespace _Scripts.Projectiles
             var derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
         
-            derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
-            derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+            derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
+            derivedProjectile.SetOtherParameters(damageInterval, moveTime);
             derivedProjectile.Shooter = Shooter;
             derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
             
@@ -110,8 +102,8 @@ namespace _Scripts.Projectiles
             derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
         
-            derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
-            derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+            derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
+            derivedProjectile.SetOtherParameters(damageInterval, moveTime);
             derivedProjectile.Shooter = Shooter;
             derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
             
@@ -120,8 +112,8 @@ namespace _Scripts.Projectiles
             derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
         
-            derivedProjectile.SetParameters(_sawBladeSmallDamage, Radius, ExplosionDuration, ExplosionFX);
-            derivedProjectile.SetOtherParameters(_damageInterval, _moveTime);
+            derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
+            derivedProjectile.SetOtherParameters(damageInterval, moveTime);
             derivedProjectile.Shooter = Shooter;
             derivedRb2d.velocity = (Random.value > 0.5 ? Vector2.right : Vector2.left + Vector2.up * 3) * 3f;
         }
@@ -135,29 +127,13 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            _moveDirection = Rigidbody2D.velocity.x > 0 ? 1 : -1;
+            _moveDirection = rigidBody2D.velocity.x > 0 ? 1 : -1;
             RefreshTimeLeft();
         }
 
         private void RefreshTimeLeft()
         {
-            _timeLeft = Level >= 3 ? _moveTime * 1.8f : _moveTime;
-        }
-
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-            
-            _damageInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "damageInterval").value;
-            _moveTime = Array.Find(extraWeaponTerms, ewt => ewt.term == "moveTime").value;
-            _sawBladeSmallDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "sawBladeSmallDamage").value;
+            _timeLeft = Level >= 3 ? moveTime * 1.8f : moveTime;
         }
     }
 }

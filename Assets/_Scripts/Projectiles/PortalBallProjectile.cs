@@ -13,32 +13,22 @@ namespace _Scripts.Projectiles
         [SerializeField] private GameObject portalBluePrefab, portalOrangePrefab, portalMirror1Prefab, portalMirror2Prefab;
         [SerializeField] private Sprite orangePortalBall, mirrorPortalBall;
         [SerializeField] private MMFeedbacks activateMmFeedbacks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // ExtraFields
-        private static float _maximumDistance, _mirrorMultiplier, _portalDamage;
-        private static int _circleSteps;
+
+        [SerializeField] private float maximumDistance = 10.0f;
+        [SerializeField] private float mirrorMultiplier = 1.6f;
+        [SerializeField] private float portalDamage = 10f;
+        [SerializeField] private int circleSteps = 100;
 
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => Level >= 3 ? _damage * 1.25f : _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
-
+        protected override float Damage => Level >= 3 ? damage * 1.25f : damage;
         private float MaximumDistance
         {
             get
             {
                 return Level switch
                 {
-                    >= 2 => _maximumDistance * 1.5f,
-                    _ => _maximumDistance,
+                    >= 2 => maximumDistance * 1.5f,
+                    _ => maximumDistance,
                 };
             }
         }
@@ -62,7 +52,7 @@ namespace _Scripts.Projectiles
 
             if (Level < 6)
             {
-                DrawCircle(_circleSteps, MaximumDistance);
+                DrawCircle(circleSteps, MaximumDistance);
             }
             else
             {
@@ -117,22 +107,22 @@ namespace _Scripts.Projectiles
             if (Level >= 4)
             {
                 DamageHandler.i.HandleDamage(_originalLocation, Radius,
-                    _portalDamage, DamageHandler.DamageType.Circular);
+                    portalDamage, DamageHandler.DamageType.Circular);
                 DamageHandler.i.HandleDamage(_teleportLocation, Radius,
-                    _portalDamage, DamageHandler.DamageType.Circular);
+                    portalDamage, DamageHandler.DamageType.Circular);
             }
             
             renderer.enabled = false;
-            Rigidbody2D.gravityScale = 0;
-            Rigidbody2D.velocity = Vector2.zero;
+            rigidBody2D.gravityScale = 0;
+            rigidBody2D.velocity = Vector2.zero;
 
             yield return new WaitForSeconds(1);
 
             _sr.sprite = Level == 5 ? mirrorPortalBall : orangePortalBall;
             renderer.enabled = true;
-            Rigidbody2D.gravityScale = 1;
+            rigidBody2D.gravityScale = 1;
             transform.position = _teleportLocation;
-            Rigidbody2D.velocity = Level == 5 ? -_velocity : _velocity;
+            rigidBody2D.velocity = Level == 5 ? -_velocity : _velocity;
             
             yield return new WaitForSeconds(0.5f);
             
@@ -144,50 +134,33 @@ namespace _Scripts.Projectiles
         {
             var pos = transform.position;
 
-            var finalRadius = Level == 5 ? Radius * _mirrorMultiplier : Radius;
+            var finalRadius = Level == 5 ? Radius * mirrorMultiplier : Radius;
             
-            DamageHandler.i.HandleDamage(pos, finalRadius, Level == 5 ? Damage * _mirrorMultiplier : Damage, DamageHandler.DamageType.Circular);
+            DamageHandler.i.HandleDamage(pos, finalRadius, Level == 5 ? Damage * mirrorMultiplier : Damage, DamageHandler.DamageType.Circular);
 
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 finalRadius, 1, DestroyTypes.Circular);
         }
 
-        private void DrawCircle(int steps, float radius)
+        private void DrawCircle(int circleStepCount, float circleRadius)
         {
-            _circleRenderer.positionCount = steps;
-            for (var currentStep = 0; currentStep < steps; currentStep++)
+            _circleRenderer.positionCount = circleStepCount;
+            for (var currentStep = 0; currentStep < circleStepCount; currentStep++)
             {
-                var circumferenceProgress = (float)currentStep / steps;
+                var circumferenceProgress = (float)currentStep / circleStepCount;
 
                 var currentRadian = circumferenceProgress * 2 * Mathf.PI;
 
                 var xScaled = Mathf.Cos(currentRadian);
                 var yScaled = Mathf.Sin(currentRadian);
 
-                var x = xScaled * radius;
-                var y = yScaled * radius;
+                var x = xScaled * circleRadius;
+                var y = yScaled * circleRadius;
                 var pos = gameObject.transform.position;
 
                 var currentPosition = new Vector3(pos.x + x, pos.y + y, 0);
                 _circleRenderer.SetPosition(currentStep, currentPosition);
             }
-        }
-        
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-            
-            _maximumDistance = Array.Find(extraWeaponTerms, ewt => ewt.term == "maximumDistance").value;
-            _circleSteps = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "circleSteps").value;
-            _mirrorMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "mirrorMultiplier").value;
-            _portalDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "portalDamage").value;
         }
         
     }

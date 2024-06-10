@@ -13,22 +13,11 @@ namespace _Scripts.Projectiles
     {
         // Set in Inspector
         [SerializeField] private GameObject topDownDisplay;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // ExtraFields
-        private static float _unitDiceDamage;
+        [SerializeField] private float unitDiceDamage = 3.0f;
         
         // References
-        protected override float Radius => Level >= 2 ? _radius * 1.5f : _radius;
-        protected override float Damage => Level >= 3 ? _damage * 1.2f : _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Radius => Level >= 2 ? radius * 1.5f : radius;
+        protected override float Damage => Level >= 3 ? damage * 1.2f : damage;
         
         // Other Variables
         private int _diceResult;
@@ -58,7 +47,7 @@ namespace _Scripts.Projectiles
         {
             var pos = transform.position;
 
-            var finalCalculatedDamage = Damage + _diceResult * _unitDiceDamage;
+            var finalCalculatedDamage = Damage + _diceResult * unitDiceDamage;
             var finalCalculatedRadius = Radius;
 
             if (_diceResult == 3 && Level == 6)
@@ -72,20 +61,6 @@ namespace _Scripts.Projectiles
 
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 finalCalculatedRadius, 1, DestroyTypes.Circular);
-        }
-        
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,
-            ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-            
-            _unitDiceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "unitDiceDamage").value;
         }
 
         public void DisplayTopDownResult()

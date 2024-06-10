@@ -13,16 +13,6 @@ namespace _Scripts.Projectiles
         // Set in Inspector
         [SerializeField] private ParticleSystem sparks;
         
-        // Shared Fields
-        private static float _radius, _damage,_explosionDuration;
-        private static GameObject _explosionFX;
-        
-        // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
-        
         // Other Variables
         private int _moveDirection;
         private bool _isActivated;
@@ -84,7 +74,7 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            _moveDirection = Rigidbody2D.velocity.x > 0 ? 1 : -1;
+            _moveDirection = rigidBody2D.velocity.x > 0 ? 1 : -1;
             _timeLeft = _moveTime;
         }
 
@@ -93,14 +83,6 @@ namespace _Scripts.Projectiles
             _damageInterval = damageInterval;
             _moveTime = moveTime;
             _intervalTimeLeft = _damageInterval;
-        }
-
-        public override void SetParameters(float damage, float radius, float explosionDuration, GameObject explosionFX)
-        {
-            _radius = radius;
-            _damage = damage;
-            _explosionDuration = explosionDuration;
-            _explosionFX = explosionFX;
         }
     }
 }

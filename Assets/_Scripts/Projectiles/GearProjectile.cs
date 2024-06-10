@@ -15,19 +15,13 @@ namespace _Scripts.Projectiles
         [SerializeField] private float extraUnitDamageMultiplier = 0.1f;
         [SerializeField] private MMFeedbacks spinMmFeedbacks;
         
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
         private static readonly int SpinIndex = Animator.StringToHash("Spin");
 
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Radius => radius;
+        protected override float Damage => damage;
+        protected override float MaxMagnitude => maxMagnitude;
+        protected override int Steps => steps;
         
         // Other Variables
         private int _gearNumber;
@@ -81,26 +75,15 @@ namespace _Scripts.Projectiles
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
         }
         
-        protected override void Disappear()
+        public override void Disappear()
         {
             // Stop rigidBody from moving/rotating
-            Rigidbody2D.gravityScale = 0;
-            Rigidbody2D.freezeRotation = true;
-            Rigidbody2D.velocity = Vector2.zero;
+            rigidBody2D.gravityScale = 0;
+            rigidBody2D.freezeRotation = true;
+            rigidBody2D.velocity = Vector2.zero;
 
             // Disable collider
-            Collider2D.enabled = false;
-        }
-
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
+            collider2D.enabled = false;
         }
     }
 }

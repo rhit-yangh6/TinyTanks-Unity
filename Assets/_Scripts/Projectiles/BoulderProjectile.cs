@@ -10,14 +10,8 @@ namespace _Scripts.Projectiles
     {
         // Set in Inspector
         [SerializeField] private GameObject boulderPiecePrefab;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-
-        // ExtraFields
-        private static float _boulderPieceRadius, _boulderPieceDamage;
+        [SerializeField] private float boulderPieceRadius = 2.0f;
+        [SerializeField] private float boulderPieceDamage = 15.0f;
         
         // References
         protected override float Radius
@@ -26,9 +20,9 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    5 => _radius * 1.30f,
-                    >= 3 => _radius * 1.15f,
-                    _ => _radius
+                    5 => radius * 1.30f,
+                    >= 3 => radius * 1.15f,
+                    _ => radius
                 };
             }
         }
@@ -39,18 +33,15 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    5 => _damage * 1.50f,
-                    >= 3 => _damage * 1.20f,
-                    _ => _damage
+                    5 => damage * 1.50f,
+                    >= 3 => damage * 1.20f,
+                    _ => damage
                 };
             }
         }
 
-        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.2f : _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
-
+        protected override float MaxMagnitude => Level >= 2 ? maxMagnitude * 1.2f : maxMagnitude;
+        
         private void Update()
         {
             Spin();
@@ -86,7 +77,7 @@ namespace _Scripts.Projectiles
             var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetParameters(boulderPieceDamage, boulderPieceRadius);
             derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
             
             // Second Piece
@@ -94,23 +85,8 @@ namespace _Scripts.Projectiles
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(_boulderPieceDamage, _boulderPieceRadius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetParameters(boulderPieceDamage, boulderPieceRadius);
             derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
-        }
-
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            _boulderPieceDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceDamage").value;
-            _boulderPieceRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "boulderPieceRadius").value;
         }
     }
 }

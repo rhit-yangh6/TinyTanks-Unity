@@ -1,3 +1,4 @@
+using System.Collections;
 using TerraformingTerrain2d;
 
 namespace _Scripts.Projectiles
@@ -5,10 +6,11 @@ namespace _Scripts.Projectiles
     public interface IProjectile
     {
         void Detonate();
-
-        void SpawnExplosionFX();
-
-        void DoCameraShake();
-
+        void Activate();
+        void DealDamage();
+        void Spin();
+        void Direct();
+        void Disappear();
+        IEnumerator TemporarilyDisableCollider();
     }
 }

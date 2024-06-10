@@ -803,6 +803,10 @@ MonoBehaviour:
       destroys metal tiles.
     m_Metadata:
       m_Items: []
+  - m_Id: 3270078222311424
+    m_Localized: The cube splits into several smaller cubes upon impact.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

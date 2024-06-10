@@ -18,30 +18,22 @@ namespace _Scripts.Projectiles
         [SerializeField] private float earthquakeChance = 0.3f;
         [SerializeField] private MMFeedbacks bifurcateMmFeedbacks;
         [SerializeField] private MMFeedbacks earthquakeMmFeedbacks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // ExtraFields
-        private static float _explosionNumber, _explosionRadius, _explosionDamage, _explosionDistance;
+        [SerializeField] private float explosionNumber = 3f;
+        [SerializeField] private float explosionRadius = 1.5f;
+        [SerializeField] private float explosionDamage = 10f;
+        [SerializeField] private float explosionDistance = 1.8f;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage =>  Level >= 3 ? _damage * 1.3f : _damage;
-        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.16f : _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Damage =>  Level >= 3 ? damage * 1.3f : damage;
+        protected override float MaxMagnitude => Level >= 2 ? maxMagnitude * 1.16f : maxMagnitude;
         private float ExplosionDamage
         {
             get
             {
                 return Level switch
                 {
-                    >= 3 => _explosionDamage * 1.3f,
-                    _ => _explosionDamage
+                    >= 3 => explosionDamage * 1.3f,
+                    _ => explosionDamage
                 };
             }
         }
@@ -51,8 +43,8 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    >= 3 => _explosionRadius * 1.2f,
-                    _ => _explosionRadius
+                    >= 3 => explosionRadius * 1.2f,
+                    _ => explosionRadius
                 };
             }
         }
@@ -62,8 +54,8 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    >= 4 => (int)_explosionNumber + 1,
-                    _ => (int)_explosionNumber
+                    >= 4 => (int)explosionNumber + 1,
+                    _ => (int)explosionNumber
                 };
             }
         }
@@ -142,12 +134,11 @@ namespace _Scripts.Projectiles
             for (var i = 0; i < ExplosionNumber; i++)
             {
                 yield return new WaitForSeconds(explosionTimeInterval);
-                newPos += _collisionDirection * _explosionDistance;
+                newPos += _collisionDirection * explosionDistance;
                 DamageHandler.i.HandleDamage(newPos, ExplosionRadius, ExplosionDamage, DamageHandler.DamageType.Circular);
                 EventBus.Broadcast(EventTypes.DestroyTerrain, (Vector3)newPos,
                     ExplosionRadius, 1, DestroyTypes.Circular);
-                var insExpl = Instantiate(ExplosionFX, newPos, Quaternion.identity);
-                insExpl.transform.localScale *= ExplosionRadius;
+                var insExpl = Instantiate(GameAssets.i.explosionFX, newPos, Quaternion.identity);
                 Destroy(insExpl, explosionTimeInterval);
             }
         }
@@ -162,38 +153,20 @@ namespace _Scripts.Projectiles
             for (var i = 0; i < ExplosionNumber; i++)
             {
                 yield return new WaitForSeconds(explosionTimeInterval);
-                newPos1 += collisionDirection1 * _explosionDistance;
+                newPos1 += collisionDirection1 * explosionDistance;
                 DamageHandler.i.HandleDamage(newPos1, ExplosionRadius, ExplosionDamage, DamageHandler.DamageType.Circular);
                 EventBus.Broadcast(EventTypes.DestroyTerrain, (Vector3)newPos1,
                     ExplosionRadius, 1, DestroyTypes.Circular);
-                var insExpl = Instantiate(ExplosionFX, newPos1, Quaternion.identity);
-                insExpl.transform.localScale *= ExplosionRadius;
+                var insExpl = Instantiate(GameAssets.i.explosionFX, newPos1, Quaternion.identity);
                 Destroy(insExpl, explosionTimeInterval);
                 
-                newPos2 += collisionDirection2 * _explosionDistance;
+                newPos2 += collisionDirection2 * explosionDistance;
                 DamageHandler.i.HandleDamage(newPos2, ExplosionRadius, ExplosionDamage, DamageHandler.DamageType.Circular);
                 EventBus.Broadcast(EventTypes.DestroyTerrain, (Vector3)newPos2,
                     ExplosionRadius, 1, DestroyTypes.Circular);
-                insExpl = Instantiate(ExplosionFX, newPos2, Quaternion.identity);
-                insExpl.transform.localScale *= ExplosionRadius;
+                insExpl = Instantiate(GameAssets.i.explosionFX, newPos2, Quaternion.identity);
                 Destroy(insExpl, explosionTimeInterval);
             }
-        }
-        
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.explosionFX;
-            
-            _explosionNumber = Array.Find(extraWeaponTerms, ewt => ewt.term == "explosionNumber").value;
-            _explosionRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "explosionRadius").value;
-            _explosionDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "explosionDamage").value;
-            _explosionDistance = Array.Find(extraWeaponTerms, ewt => ewt.term == "explosionDistance").value;
         }
     }
 }

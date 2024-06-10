@@ -14,16 +14,6 @@ namespace _Scripts.Projectiles
         [SerializeField] private float smallMissileDamage = 12f;
         [SerializeField] private float smallMissileRadius = 2f;
         
-        // Shared Fields
-        private static float _radius, _damage,_explosionDuration;
-        private static GameObject _explosionFX;
-        
-        // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
-        
         // Other variables
         private Vector2 targetPos;
         private bool isSplitting;
@@ -60,29 +50,29 @@ namespace _Scripts.Projectiles
             var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Geometry.Rotate(Rigidbody2D.velocity, -20);
+            derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius);
+            derivedRb2d.velocity = Geometry.Rotate(rigidBody2D.velocity, -20);
             
             derivedObject = Instantiate(smallMissilePrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Geometry.Rotate(Rigidbody2D.velocity, -5);
+            derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius);
+            derivedRb2d.velocity = Geometry.Rotate(rigidBody2D.velocity, -5);
             
             derivedObject = Instantiate(smallMissilePrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Geometry.Rotate(Rigidbody2D.velocity, 5);
+            derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius);
+            derivedRb2d.velocity = Geometry.Rotate(rigidBody2D.velocity, 5);
             
             derivedObject = Instantiate(smallMissilePrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius, ExplosionDuration, ExplosionFX);
-            derivedRb2d.velocity = Geometry.Rotate(Rigidbody2D.velocity, 20);
+            derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius);
+            derivedRb2d.velocity = Geometry.Rotate(rigidBody2D.velocity, 20);
         }
 
         public void SetTargetPos(Vector2 pos)
@@ -93,14 +83,6 @@ namespace _Scripts.Projectiles
         public void SetIsSplitting()
         {
             isSplitting = true;
-        }
-
-        public override void SetParameters(float damage, float radius, float explosionDuration, GameObject explosionFX)
-        {
-            _radius = radius;
-            _damage = damage;
-            _explosionDuration = explosionDuration;
-            _explosionFX = explosionFX;
         }
     }
 }

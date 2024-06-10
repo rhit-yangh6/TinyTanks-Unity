@@ -12,30 +12,22 @@ namespace _Scripts.Projectiles
     {
         // Set in Inspector
         [SerializeField] private GameObject smallCubePrefab;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-
-        // ExtraFields
-        private static float _smallCubeDamage, _smallCubeRadius, _smallCubeAngleDelta;
+        [SerializeField] private float smallCubeDamage = 8.0f;
+        [SerializeField] private float smallCubeRadius = 1.28f;
+        [SerializeField] private float smallCubeAngleDelta = 15.0f;
         
         // References
-        protected override float Radius => Level >= 2 ? _radius * 1.2f : _radius;
+        protected override float Radius => Level >= 2 ? radius * 1.2f : radius;
         protected override float Damage
         {
             get
             {
-                if (Level == 5) return _damage * 1.9f; // Level 5
-                return Level >= 4 ? _damage * 1.25f : _damage; // Level 4
+                if (Level == 5) return damage * 1.9f; // Level 5
+                return Level >= 4 ? damage * 1.25f : damage; // Level 4
             }
         }
 
-        protected override float MaxMagnitude => Level == 5 ? _maxMagnitude * 0.6f : _maxMagnitude; // Level 5
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float MaxMagnitude => Level == 5 ? maxMagnitude * 0.6f : maxMagnitude; // Level 5
 
         private void Update()
         {
@@ -81,28 +73,12 @@ namespace _Scripts.Projectiles
                 var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
                 var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
                     
-                derivedProjectile.SetParameters(_smallCubeDamage, _smallCubeRadius, ExplosionDuration, ExplosionFX);
+                derivedProjectile.SetParameters(smallCubeDamage, smallCubeRadius);
                     
-                var rotateDegree = Random.Range(-_smallCubeAngleDelta, _smallCubeAngleDelta);
+                var rotateDegree = Random.Range(-smallCubeAngleDelta, smallCubeAngleDelta);
                 var speed = Random.Range(5.5f, 9f);
                 derivedRb2d.velocity = Geometry.Rotate(Vector2.up, rotateDegree) * speed;
             }
-        }
-
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.squareExplosionFX;
-
-            _smallCubeDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "smallCubeDamage").value;
-            _smallCubeRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "smallCubeRadius").value;
-            _smallCubeAngleDelta = Array.Find(extraWeaponTerms, ewt => ewt.term == "smallCubeAngleDelta").value;
         }
     }
 }

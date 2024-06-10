@@ -21,22 +21,15 @@ namespace _Scripts.Projectiles
         [SerializeField] private float punishmentMultiplier = 0.6f;
         [SerializeField] private float dodgeChance = 0.92f;
         
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // References
-        protected override float Radius => _radius;
         protected override float Damage
         {
             get
             {
                 return Level switch
                 {
-                    6 => _damage * 1.27f,
-                    >= 2 => _damage * 1.06f,
-                    _ => _damage
+                    6 => damage * 1.27f,
+                    >= 2 => damage * 1.06f,
+                    _ => damage
                 };
             }
         }
@@ -47,9 +40,9 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    6 => _maxMagnitude * 0.7f,
-                    >= 3 => _maxMagnitude * 1.2f,
-                    _ => _maxMagnitude
+                    6 => maxMagnitude * 0.7f,
+                    >= 3 => maxMagnitude * 1.2f,
+                    _ => maxMagnitude
                 };
             }
         }
@@ -60,15 +53,12 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    6 => (int)(_steps * 0.5f),
-                    >= 3 => (int)(_steps * 1.2f),
-                    _ => _steps
+                    6 => (int)(steps * 0.5f),
+                    >= 3 => (int)(steps * 1.2f),
+                    _ => steps
                 };
             }
         }
-
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
     
         // Other Variables
         private SpriteRenderer _sr;
@@ -135,7 +125,8 @@ namespace _Scripts.Projectiles
         {
             // Spawn another sword at shooter's position
             var shooterPos = Shooter.transform.position;
-            var insExpl = Instantiate(ExplosionFX, new Vector2(shooterPos.x, shooterPos.y + swordShadowYOffset), Quaternion.identity);
+            var insExpl = Instantiate(GameAssets.i.swordShadowFX, 
+                new Vector2(shooterPos.x, shooterPos.y + swordShadowYOffset), Quaternion.identity);
 
             yield return new WaitForSeconds(animationDuration);
             // Take damage
@@ -157,18 +148,5 @@ namespace _Scripts.Projectiles
             }
             Destroy(insExpl);
         }
-
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,
-            ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.swordShadowFX;
-        } 
     }
-    
 }

@@ -24,27 +24,21 @@ namespace _Scripts.Projectiles
         [SerializeField] private float splitOrbSpeed = 12.0f;
         [SerializeField] private float splitOrbDeviateSpeed = 3f;
         [SerializeField] private float splitOrbDeviateAngle = 20f;
+        [SerializeField] private float whiteDamage = 33f;
+        [SerializeField] private float whiteRadius = 2f;
+        [SerializeField] private float blackDamage = 19f;
+        [SerializeField] private float blackRadius = 8f;
         
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => Level >= 2 ? (int)(_steps * 1.2f) : _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override int Steps => Level >= 2 ? (int)(steps * 1.2f) : steps;
         private float WhiteDamage
         {
             get
             {
                 return Level switch
                 {
-                    >= 3 => _whiteDamage * 1.2f,
-                    _ => _whiteDamage
+                    >= 3 => whiteDamage * 1.2f,
+                    _ => whiteDamage
                 };
             }
         }
@@ -54,8 +48,8 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    >= 3 => _whiteRadius * 1.2f,
-                    _ => _whiteRadius
+                    >= 3 => whiteRadius * 1.2f,
+                    _ => whiteRadius
                 };
             }
         }
@@ -65,14 +59,11 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    >= 4 => _blackRadius * 1.2f,
-                    _ => _blackRadius
+                    >= 4 => blackRadius * 1.2f,
+                    _ => blackRadius
                 };
             }
         }
-        
-        // ExtraFields
-        private static float _whiteDamage, _whiteRadius, _blackDamage, _blackRadius;
         
         // Other Variables
         private int _currentState;
@@ -153,7 +144,7 @@ namespace _Scripts.Projectiles
             var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(_blackDamage, BlackRadius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetParameters(blackDamage, BlackRadius);
             derivedRb2d.velocity = Geometry.Rotate(Vector2.up,
                 Random.Range(-splitOrbDeviateAngle, splitOrbDeviateAngle)) *
                                    (splitOrbSpeed + Random.Range(-splitOrbDeviateSpeed, splitOrbDeviateSpeed));
@@ -162,7 +153,7 @@ namespace _Scripts.Projectiles
         private void DealBlackDamage()
         {
             var pos = transform.position;
-            DamageHandler.i.HandleDamage(pos, BlackRadius, _blackDamage, DamageHandler.DamageType.Circular);
+            DamageHandler.i.HandleDamage(pos, BlackRadius, blackDamage, DamageHandler.DamageType.Circular);
             
             if (Level != 6) return;
             
@@ -170,7 +161,7 @@ namespace _Scripts.Projectiles
             var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(WhiteDamage, WhiteRadius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetParameters(WhiteDamage, WhiteRadius);
             derivedRb2d.velocity = Geometry.Rotate(Vector2.up,
                 Random.Range(-splitOrbDeviateAngle, splitOrbDeviateAngle)) *
                                    (splitOrbSpeed + Random.Range(-splitOrbDeviateSpeed, splitOrbDeviateSpeed));
@@ -202,27 +193,5 @@ namespace _Scripts.Projectiles
             _currentState = 3;
             _sr.sprite = harmonySprite;
         }
-        
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-            
-            _whiteDamage = Array.Find(extraWeaponTerms, ewt => 
-                ewt.term == "whiteDamage").value;
-            _whiteRadius = Array.Find(extraWeaponTerms, ewt => 
-                ewt.term == "whiteRadius").value;
-            _blackDamage = Array.Find(extraWeaponTerms, ewt => 
-                ewt.term == "blackDamage").value;
-            _blackRadius = Array.Find(extraWeaponTerms, ewt => 
-                ewt.term == "blackRadius").value;
-        }
-        
     }
 }

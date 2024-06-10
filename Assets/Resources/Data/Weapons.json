@@ -81,16 +81,7 @@
       "dataPath": "boulder",
       "explosionDuration": 0.2,
       "shopPrice": 0,
-      "extraWeaponTerms": [
-        {
-          "term": "boulderPieceRadius",
-          "value": 2.0
-        },
-        {
-          "term": "boulderPieceDamage",
-          "value": 15.0
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 2,
       "weaponName": "weapon_bomb_name",
@@ -130,20 +121,7 @@
       "dataPath": "bomb",
       "explosionDuration": 0.2,
       "shopPrice": 0,
-      "extraWeaponTerms": [
-        {
-          "term": "clusterExplosionRadius",
-          "value": 1.5
-        }, {
-          "term": "clusterExplosionDamage",
-          "value": 10
-        }, {
-          "term": "secondaryExplosionRadius",
-          "value": 2.6
-        }, {
-          "term": "secondaryExplosionDamage",
-          "value": 20
-        }]
+      "extraWeaponTerms": []
     }, {
       "id": 3,
       "weaponName": "weapon_rocket_name",
@@ -183,12 +161,7 @@
       "dataPath": "rocket",
       "explosionDuration": 0.3,
       "shopPrice": 28,
-      "extraWeaponTerms": [
-        {
-          "term": "velocityMultiplier",
-          "value": 4.0
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 4,
       "weaponName": "weapon_dice_name",
@@ -228,12 +201,7 @@
       "dataPath": "dice",
       "explosionDuration": 0.3,
       "shopPrice": 456,
-      "extraWeaponTerms": [
-        {
-          "term" : "unitDiceDamage",
-          "value": 3.0
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 5,
       "weaponName": "weapon_snowball_name",
@@ -273,16 +241,7 @@
       "dataPath": "snowball",
       "explosionDuration": 0.1,
       "shopPrice": 305,
-      "extraWeaponTerms": [
-        {
-          "term": "maxSize",
-          "value": 3.0
-        },
-        {
-          "term": "growFactor",
-          "value": 0.27
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 6,
       "weaponName": "weapon_anvil_name",
@@ -322,20 +281,7 @@
       "dataPath": "anvil",
       "explosionDuration": 0.15,
       "shopPrice": 600,
-      "extraWeaponTerms": [
-        {
-          "term": "gravityScaleMultiplier",
-          "value": 5.0
-        },
-        {
-          "term": "fallDamageMultiplier",
-          "value": 1.4
-        },
-        {
-          "term": "secondPhaseFallDamageMultiplier",
-          "value": 1.1
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 7,
       "weaponName": "weapon_boomerang_name",
@@ -383,14 +329,6 @@
         {
           "term": "extraForceYMultiplier",
           "value": -0.25
-        },
-        {
-          "term": "addForceMultiplier",
-          "value": 555
-        },
-        {
-          "term": "selfTrackSpeedMultiplier",
-          "value": 2.55
         }
       ]
     }, {
@@ -433,10 +371,6 @@
       "explosionDuration": 0.1,
       "shopPrice": 550,
       "extraWeaponTerms": [
-        {
-          "term": "fixedMagnitude",
-          "value": 13.0
-        },
         {
           "term": "extraForceXMultiplier",
           "value": 0.5
@@ -485,12 +419,7 @@
       "dataPath": "shotgun",
       "explosionDuration": 0.2,
       "shopPrice": 633,
-      "extraWeaponTerms": [
-        {
-          "term": "bulletDispersion",
-          "value": 10.0
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 10,
       "weaponName": "weapon_fireball_name",
@@ -530,20 +459,7 @@
       "dataPath": "fireball",
       "explosionDuration": 0.18,
       "shopPrice": 450,
-      "extraWeaponTerms": [
-        {
-          "term": "summonInterval",
-          "value": 0.3
-        },
-        {
-          "term": "fireballSmallDamage",
-          "value": 10.0
-        },
-        {
-          "term": "fireballSmallRadius",
-          "value": 1.5
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 11,
       "weaponName": "weapon_bounce_ball_name",
@@ -583,24 +499,7 @@
       "dataPath": "bounceBall",
       "explosionDuration": 0.1,
       "shopPrice": 120,
-      "extraWeaponTerms": [
-        {
-          "term": "bounceTimeTotal",
-          "value": 2
-        },
-        {
-          "term": "bounceDamage",
-          "value": 15
-        },
-        {
-          "term": "bounceRadius",
-          "value": 2
-        },
-        {
-          "term": "unitBounceDamage",
-          "value": 4
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 12,
       "weaponName": "weapon_curse_bomb_name",
@@ -640,8 +539,7 @@
       "dataPath": "curseBomb",
       "explosionDuration": 1.5,
       "shopPrice": 622,
-      "extraWeaponTerms": [
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 13,
       "weaponName": "weapon_med_kit_name",
@@ -681,8 +579,7 @@
       "dataPath": "medKit",
       "explosionDuration": 1.5,
       "shopPrice": 220,
-      "extraWeaponTerms": [
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 14,
       "weaponName": "weapon_spiky_ball_name",
@@ -723,16 +620,7 @@
       "explosionDuration": 0.2,
       "shopPrice": 220,
       "hideInShop": true,
-      "extraWeaponTerms": [
-        {
-          "term": "spikeDamage",
-          "value": 8.0
-        }, 
-        {
-          "term": "spikeRadius",
-          "value": 1.0
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 15,
       "weaponName": "weapon_portal_ball_name",
@@ -772,20 +660,7 @@
       "dataPath": "portalBall",
       "explosionDuration": 0.2,
       "shopPrice": 830,
-      "extraWeaponTerms": [
-        {
-          "term": "maximumDistance",
-          "value": 10.0
-        }, {
-          "term": "circleSteps",
-          "value": 100
-        }, {
-          "term": "mirrorMultiplier",
-          "value": 1.6
-        }, {
-          "term": "portalDamage",
-          "value": 10
-        }]
+      "extraWeaponTerms": []
     }, {
       "id": 16,
       "weaponName": "weapon_steel_cube_name",
@@ -825,20 +700,7 @@
       "dataPath": "steelCube",
       "explosionDuration": 0.4,
       "shopPrice": 256,
-      "extraWeaponTerms": [
-        {
-          "term": "smallCubeDamage",
-          "value": 8.0
-        },
-        {
-          "term": "smallCubeRadius",
-          "value": 1.28
-        },
-        {
-          "term": "smallCubeAngleDelta",
-          "value": 15.0
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 17,
       "weaponName": "weapon_star_name",
@@ -878,32 +740,7 @@
       "dataPath": "star",
       "explosionDuration": 0.25,
       "shopPrice": 525,
-      "extraWeaponTerms": [
-        {
-          "term": "damageMultiplier",
-          "value": 1.7
-        },
-        {
-          "term": "radiusMultiplier",
-          "value": 1.5
-        },
-        {
-          "term": "drawStarSpeed",
-          "value": 16.0
-        },
-        {
-          "term": "drawStarInterval",
-          "value": 0.4
-        }, 
-        {
-          "term": "shockwaveRadius",
-          "value": 1.5
-        }, 
-        {
-          "term": "shockwaveDamage",
-          "value": 15
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 18,
       "weaponName": "weapon_sawBlade_name",
@@ -944,20 +781,7 @@
       "explosionDuration": 0.1,
       "shopPrice": 468,
       "hideInShop": true,
-      "extraWeaponTerms": [
-        {
-          "term": "damageInterval",
-          "value": 0.5
-        },
-        {
-          "term": "moveTime",
-          "value": 1.0
-        },
-        {
-          "term": "sawBladeSmallDamage",
-          "value": 16
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 19,
       "weaponName": "weapon_virus_name",
@@ -997,12 +821,7 @@
       "dataPath": "virus",
       "explosionDuration": 0.3,
       "shopPrice": 399,
-      "extraWeaponTerms": [
-        {
-          "term": "damageInterval",
-          "value": 0.5
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 20,
       "weaponName": "weapon_coconutSeed_name",
@@ -1042,12 +861,7 @@
       "dataPath": "coconutSeed",
       "explosionDuration": 0.1,
       "shopPrice": 532,
-      "extraWeaponTerms": [
-        {
-          "term": "coconutRadius",
-          "value": 1.2
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 21,
       "weaponName": "weapon_iceCube_name",
@@ -1190,24 +1004,7 @@
       "dataPath": "jackhammer",
       "explosionDuration": 0.2,
       "shopPrice": 530,
-      "extraWeaponTerms": [
-        {
-          "term": "explosionNumber",
-          "value": 3
-        },
-        {
-          "term": "explosionRadius",
-          "value": 1.5
-        },
-        {
-          "term": "explosionDamage",
-          "value": 10
-        },
-        {
-          "term": "explosionDistance",
-          "value": 1.8
-        }
-      ]
+      "extraWeaponTerms": []
     }, {
       "id": 24,
       "weaponName": "weapon_yin_yang_name",
@@ -1247,21 +1044,7 @@
       "dataPath": "yinyang",
       "explosionDuration": 0.3,
       "shopPrice": 0,
-      "extraWeaponTerms": [
-        {
-          "term": "whiteDamage",
-          "value": 33
-        }, {
-          "term": "whiteRadius",
-          "value": 2
-        }, {
-          "term": "blackDamage",
-          "value": 19
-        }, {
-          "term": "blackRadius",
-          "value": 8
-        }
-      ],
+      "extraWeaponTerms": [],
       "hideInShop": true
     }, {
       "id": 25,
@@ -1296,7 +1079,7 @@
         {
           "name": "upgrade_airstrike_6_name",
           "description": "upgrade_airstrike_6_desc",
-          "cost": 0
+          "cost": 1560
         }
       ],
       "dataPath": "airstrike",
@@ -1316,32 +1099,32 @@
       "saying": "weapon_airstrike_saying",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_airstrike_2_name",
+          "description": "upgrade_airstrike_2_desc",
+          "cost": 200
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_airstrike_3_name",
+          "description": "upgrade_airstrike_3_desc",
+          "cost": 420
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_airstrike_4_name",
+          "description": "upgrade_airstrike_4_desc",
+          "cost": 650
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_airstrike_5_name",
+          "description": "upgrade_airstrike_5_desc",
+          "cost": 1770
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_airstrike_6_name",
+          "description": "upgrade_airstrike_6_desc",
+          "cost": 1560
         }
       ],
-      "dataPath": "airstrike_enhanced",
+      "dataPath": "airstrike",
       "explosionDuration": 0.4,
       "shopPrice": 0,
       "extraWeaponTerms": [],

@@ -9,22 +9,13 @@ namespace _Scripts.Projectiles
     {
         // Set in Inspector
         [SerializeField] private MMFeedbacks activateMmFeedbacks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // ExtraFields
-        private static float _shockDamage, _shockRadius, _shockInterval;
+        [SerializeField] private float shockDamage = 20f;
+        [SerializeField] private float shockRadius = 5f;
+        [SerializeField] private float shockInterval = 1f;
+        [SerializeField] private float waveDuration = 0.3f;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => Level >= 4 ? _maxMagnitude * 1.3f : _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float MaxMagnitude => Level >= 4 ? maxMagnitude * 1.3f : maxMagnitude;
         private int ShockTimes
         {
             get
@@ -44,11 +35,11 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    6 => _shockDamage * 2f,
-                    5 => _shockDamage * 0.5f,
-                    >= 4 => _shockDamage * 1.2f,
-                    >= 2 => _shockDamage * 1.18f,
-                    _ => _shockDamage
+                    6 => shockDamage * 2f,
+                    5 => shockDamage * 0.5f,
+                    >= 4 => shockDamage * 1.2f,
+                    >= 2 => shockDamage * 1.18f,
+                    _ => shockDamage
                 };
             }
         }
@@ -58,10 +49,10 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    6 => _shockRadius * 0.7f,
-                    >= 4 => _shockRadius * 1.3f,
-                    >= 2 => _shockRadius * 1.2f,
-                    _ => _shockRadius
+                    6 => shockRadius * 0.7f,
+                    >= 4 => shockRadius * 1.3f,
+                    >= 2 => shockRadius * 1.2f,
+                    _ => shockRadius
                 };
             }
         }
@@ -71,8 +62,8 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    5 => _shockInterval * 0.4f,
-                    _ => _shockInterval
+                    5 => shockInterval * 0.4f,
+                    _ => shockInterval
                 };
             }
         }
@@ -113,26 +104,10 @@ namespace _Scripts.Projectiles
             var pos = transform.position;
             DamageHandler.i.HandleDamage(pos,
                 ShockRadius, ShockDamage, DamageHandler.DamageType.Circular);
-            DoCameraShake();
                 
             GameObject insExpl = Instantiate(GameAssets.i.shockwaveFX, pos, Quaternion.identity);
-            insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.04f * ShockRadius);
-            Destroy(insExpl, ExplosionDuration);
-        }
-
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            _shockDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockDamage").value;
-            _shockRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockRadius").value;
-            _shockInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockInterval").value;
+            insExpl.GetComponent<ShockwaveManager>().CallShockwave(waveDuration, 0.04f * ShockRadius);
+            Destroy(insExpl, waveDuration);
         }
     }
 }

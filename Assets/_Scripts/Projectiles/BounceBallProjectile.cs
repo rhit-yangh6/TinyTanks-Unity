@@ -10,34 +10,25 @@ namespace _Scripts.Projectiles
     {
         // Set in Inspector
         [SerializeField] private MMFeedbacks bounceMmFeedbacks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-
-        // ExtraFields
-        private static float _bounceDamage, _bounceRadius, _unitBounceDamage;
+        [SerializeField] private float bounceDamage = 15f;
+        [SerializeField] private float bounceRadius = 2f;
+        [SerializeField] private float unitBounceDamage = 4f;
         
         // References
-        protected override float Radius => _radius;
         protected override float Damage
         {
             get
             {
                 return Level switch
                 {
-                    5 => _damage + _unitBounceDamage * 5,
-                    6 => _damage + (_bounceDamage + _unitBounceDamage) * 3,
-                    _ => _damage,
+                    5 => damage + unitBounceDamage * 5,
+                    6 => damage + (bounceDamage + unitBounceDamage) * 3,
+                    _ => damage,
                 };
             }
         }
 
-        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.2f : _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float MaxMagnitude => Level >= 2 ? maxMagnitude * 1.2f : maxMagnitude;
         private int BounceTime
         {
             get
@@ -91,39 +82,21 @@ namespace _Scripts.Projectiles
         {
             var pos = transform.position;
 
-            var finalCalculatedDamage = _bounceDamage;
+            var finalCalculatedDamage = bounceDamage;
             switch (Level)
             {
                 case 5:
-                    finalCalculatedDamage += (5 - _bounceTimeLeft) * _unitBounceDamage;
+                    finalCalculatedDamage += (5 - _bounceTimeLeft) * unitBounceDamage;
                     break;
                 case >= 3:
-                    finalCalculatedDamage += _unitBounceDamage;
+                    finalCalculatedDamage += unitBounceDamage;
                     break;
             }
 
-            DamageHandler.i.HandleDamage(pos, _bounceRadius, finalCalculatedDamage, DamageHandler.DamageType.Circular);
+            DamageHandler.i.HandleDamage(pos, bounceRadius, finalCalculatedDamage, DamageHandler.DamageType.Circular);
 
             if (Level >= 4) EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
-                _bounceRadius, 1, DestroyTypes.Circular);
+                bounceRadius, 1, DestroyTypes.Circular);
         }
-        
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-            
-            _bounceDamage = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceDamage").value;
-            _bounceRadius = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "bounceRadius").value;
-            _unitBounceDamage = (int)Array.Find(extraWeaponTerms, ewt => ewt.term == "unitBounceDamage").value;
-        }
-
-
     }
 }

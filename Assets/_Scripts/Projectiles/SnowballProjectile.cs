@@ -10,21 +10,13 @@ namespace _Scripts.Projectiles
 {
     public class SnowballProjectile : LaunchedProjectile
     {
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // ExtraFields
-        private static float _maxSize, _growFactor;
+        // Set in Inspector
+        [SerializeField] private float maxEnlargement = 3.0f;
+        [SerializeField] private float growFactor = 0.27f;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => Level >= 2 ? _damage * 1.1f : _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => Level >= 3 ? (int)(_steps * 1.75f) : _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Damage => Level >= 2 ? damage * 1.1f : damage;
+        protected override int Steps => Level >= 3 ? (int)(steps * 1.75f) : steps;
         
         // Other Variables
         private float _timer;
@@ -45,11 +37,11 @@ namespace _Scripts.Projectiles
             {
                 // we scale all axis, so they will have the same value, 
                 // so we can work with a float instead of comparing vectors
-                var maxSize = Level >= 4 ? _maxSize * 1.17f : _maxSize;
+                var maxSize = Level >= 4 ? maxEnlargement * 1.17f : maxEnlargement;
                 while(maxSize > transform.localScale.x)
                 {
                     _timer += Time.deltaTime;
-                    transform.localScale +=  Time.deltaTime * _growFactor * new Vector3(1, 1, 0);
+                    transform.localScale +=  Time.deltaTime * growFactor * new Vector3(1, 1, 0);
                     yield return null;
                 }
             }
@@ -81,23 +73,8 @@ namespace _Scripts.Projectiles
 
         private float GetDamageAndRadiusMultiplier()
         {
-            var maxSize = Level >= 4 ? _maxSize * 1.17f : _maxSize;
+            var maxSize = Level >= 4 ? maxEnlargement * 1.17f : maxEnlargement;
             return Math.Max(Math.Min(maxSize / 2, _timer / 2), 1f);
-        }
-
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration,
-            ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-            
-            _maxSize = Array.Find(extraWeaponTerms, ewt => ewt.term == "maxSize").value;
-            _growFactor = Array.Find(extraWeaponTerms, ewt => ewt.term == "growFactor").value;
         }
     }
 }

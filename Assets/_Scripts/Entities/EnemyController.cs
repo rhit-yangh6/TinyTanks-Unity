@@ -157,7 +157,9 @@ namespace _Scripts.Entities
             Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
             prb.velocity = _aimVelocity;
             
-            LaunchedProjectile proj = projectile.GetComponent<LaunchedProjectile>();
+            var proj = projectile.GetComponent<LaunchedProjectile>();
+            var w = WeaponManager.Instance.GetWeaponById(selectedWeaponId);
+            proj.SetParameters(w.damage, w.radius, w.maxMagnitude, w.steps);
             proj.Level = weaponLevel;
             proj.Shooter = gameObject;
 

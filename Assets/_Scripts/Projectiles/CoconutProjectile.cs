@@ -10,23 +10,13 @@ namespace _Scripts.Projectiles
         // Set in Inspector
         [SerializeField] private MMFeedbacks icedMmFeedbacks;
         
-        // Shared Fields
-        private static float _radius, _damage,_explosionDuration;
-        private static GameObject _explosionFX;
-        
-        // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
-        
         // Extra Fields
         [HideInInspector] public bool isIced;
         
         public override void Detonate()
         {
-            if (IsDetonated) return;
-            IsDetonated = true;
+            if (isDetonated) return;
+            isDetonated = true;
 
             Disappear();
             DealDamage();
@@ -53,14 +43,6 @@ namespace _Scripts.Projectiles
             {
                 DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
             }
-        }
-        
-        public override void SetParameters(float damage, float radius, float explosionDuration, GameObject explosionFX)
-        {
-            _radius = radius;
-            _damage = damage;
-            _explosionDuration = explosionDuration;
-            _explosionFX = explosionFX;
         }
     }
 }

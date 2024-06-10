@@ -1,10 +1,6 @@
-using System;
-using _Scripts.Buffs;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using MoreMountains.Feedbacks;
-using TerraformingTerrain2d;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -15,22 +11,13 @@ namespace _Scripts.Projectiles
         [SerializeField] private MMFeedbacks slamMmFeedbacks;
         [SerializeField] private MMFeedbacks activateMmFeedbacks;
         [SerializeField] private MMFeedbacks secondActivateFeedbacks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // ExtraFields
-        private static float _gravityScaleMultiplier, _fallDamageMultiplier, _secondPhaseFallDamageMultiplier;
+        [SerializeField] private float gravityScaleMultiplier = 5.0f;
+        [SerializeField] private float fallDamageMultiplier = 1.4f;
+        [SerializeField] private float secondPhaseFallDamageMultiplier = 1.1f;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => Level >= 2 ? _damage * 1.1f : _damage;
-        protected override float MaxMagnitude => Level >= 3 ? _maxMagnitude * 1.1f : _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Damage => Level >= 2 ? damage * 1.1f : damage;
+        protected override float MaxMagnitude => Level >= 3 ? maxMagnitude * 1.1f : maxMagnitude;
         
         // Other Variables
         private bool _isActivated, _isSecondPhaseActivated;
@@ -65,14 +52,14 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            Rigidbody2D.velocity = Vector2.zero;
-            Rigidbody2D.gravityScale *= _gravityScaleMultiplier;
+            rigidBody2D.velocity = Vector2.zero;
+            rigidBody2D.gravityScale *= gravityScaleMultiplier;
             transform.rotation = Quaternion.identity;
         }
 
         public void SecondActivate()
         {
-            Rigidbody2D.AddForce(Vector2.down * 30.0f);
+            rigidBody2D.AddForce(Vector2.down * 30.0f);
         }
 
         public override void Detonate()
@@ -97,8 +84,8 @@ namespace _Scripts.Projectiles
             var pos = transform.position;
 
             var damageDealt = _isActivated ? (_isSecondPhaseActivated ? 
-                Damage * _secondPhaseFallDamageMultiplier * _fallDamageMultiplier :
-                Damage * _fallDamageMultiplier) : Damage;
+                Damage * secondPhaseFallDamageMultiplier * fallDamageMultiplier :
+                Damage * fallDamageMultiplier) : Damage;
 
             if (Level == 6 && _isActivated)
             {
@@ -112,24 +99,6 @@ namespace _Scripts.Projectiles
             
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 (Level >= 4 && _isActivated) ? Radius * 1.5f : Radius, 1, DestroyTypes.Circular);
-        }
-
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            _gravityScaleMultiplier = Array.Find(extraWeaponTerms, ewt => 
-                ewt.term == "gravityScaleMultiplier").value;
-            _fallDamageMultiplier = Array.Find(extraWeaponTerms, ewt =>
-                ewt.term == "fallDamageMultiplier").value;
-            _secondPhaseFallDamageMultiplier = Array.Find(extraWeaponTerms, ewt => 
-                ewt.term == "secondPhaseFallDamageMultiplier").value;
         }
     }
 }

@@ -15,22 +15,17 @@ namespace _Scripts.Projectiles
         [SerializeField] private Sprite novaStar;
         [SerializeField] private Material glowMaterial;
         [SerializeField] private MMFeedbacks activateMmFeedbacks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-
-        // ExtraFields
-        private static float _damageMultiplier, _radiusMultiplier, _drawStarSpeed, _drawStarInterval, _shockwaveRadius, _shockwaveDamage;
+        [SerializeField] private float damageMultiplier = 1.7f;
+        [SerializeField] private float radiusMultiplier = 1.5f;
+        [SerializeField] private float drawStarSpeed = 16f;
+        [SerializeField] private float drawStarInterval = 0.4f;
+        [SerializeField] private float shockwaveRadius = 1.5f;
+        [SerializeField] private float shockwaveDamage = 15f;
+        [SerializeField] private float shockDuration = 0.25f;
         
         // References
-        protected override float Radius => Level >= 2 ? _radius * 1.3f : _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => Level >= 2 ? (int)(_steps * 1.3f) : _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Radius => Level >= 2 ? radius * 1.3f : radius;
+        protected override int Steps => Level >= 2 ? (int)(steps * 1.3f) : steps;
 
         private float FinalRadiusMultiplier
         {
@@ -38,9 +33,9 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    5 => _radiusMultiplier * 1.3f,
-                    >= 4 => _radiusMultiplier * 1.2f,
-                    _ => _radiusMultiplier
+                    5 => radiusMultiplier * 1.3f,
+                    >= 4 => radiusMultiplier * 1.2f,
+                    _ => radiusMultiplier
                 };
             }
         }
@@ -51,9 +46,9 @@ namespace _Scripts.Projectiles
             {
                 return Level switch
                 {
-                    5 => _damageMultiplier * 1.3f,
-                    >= 4 => _damageMultiplier * 1.2f,
-                    _ => _damageMultiplier
+                    5 => damageMultiplier * 1.3f,
+                    >= 4 => damageMultiplier * 1.2f,
+                    _ => damageMultiplier
                 };
             }
         }
@@ -93,14 +88,14 @@ namespace _Scripts.Projectiles
 
         private IEnumerator DrawStar()
         {
-            var initialVelocity = Rigidbody2D.velocity;
-            Rigidbody2D.gravityScale = 0;
-            Rigidbody2D.velocity = Vector2.zero;
+            var initialVelocity = rigidBody2D.velocity;
+            rigidBody2D.gravityScale = 0;
+            rigidBody2D.velocity = Vector2.zero;
             _tr.emitting = true;
 
-            Rigidbody2D.velocity = (Vector2.left + Vector2.down) * _drawStarSpeed;
+            rigidBody2D.velocity = (Vector2.left + Vector2.down) * drawStarSpeed;
             
-            yield return new WaitForSeconds(Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval);
+            yield return new WaitForSeconds(Level >= 3 ? drawStarInterval * 0.75f : drawStarInterval);
 
             Vector2 pos;
             GameObject insExpl;
@@ -108,25 +103,25 @@ namespace _Scripts.Projectiles
             {
                 pos = gameObject.transform.position;
                 insExpl = Instantiate(GameAssets.i.shockwaveFX, pos, Quaternion.identity);
-                insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
-                Destroy(insExpl, ExplosionDuration);
-                DamageHandler.i.HandleDamage(pos, _shockwaveRadius, _shockwaveDamage, DamageHandler.DamageType.Circular);
+                insExpl.GetComponent<ShockwaveManager>().CallShockwave(shockDuration, 0.09f);
+                Destroy(insExpl, shockDuration);
+                DamageHandler.i.HandleDamage(pos, shockwaveRadius, shockwaveDamage, DamageHandler.DamageType.Circular);
             }
 
             for (var i = 0; i < 4; i++)
             {
-                Rigidbody2D.velocity = Geometry.Rotate(Rigidbody2D.velocity, RotateDegree);
-                yield return new WaitForSeconds(Level >= 3 ? _drawStarInterval * 0.75f : _drawStarInterval);
+                rigidBody2D.velocity = Geometry.Rotate(rigidBody2D.velocity, RotateDegree);
+                yield return new WaitForSeconds(Level >= 3 ? drawStarInterval * 0.75f : drawStarInterval);
                 if (Level != 6) continue;
                 pos = gameObject.transform.position;
                 insExpl = Instantiate(GameAssets.i.shockwaveFX, pos, Quaternion.identity);
-                insExpl.GetComponent<ShockwaveManager>().CallShockwave(ExplosionDuration, 0.09f);
-                Destroy(insExpl, ExplosionDuration);
-                DamageHandler.i.HandleDamage(pos, _shockwaveRadius, _shockwaveDamage, DamageHandler.DamageType.Circular);
+                insExpl.GetComponent<ShockwaveManager>().CallShockwave(shockDuration, 0.09f);
+                Destroy(insExpl, shockDuration);
+                DamageHandler.i.HandleDamage(pos, shockwaveRadius, shockwaveDamage, DamageHandler.DamageType.Circular);
             }
             
-            Rigidbody2D.velocity = initialVelocity;
-            Rigidbody2D.gravityScale = 1;
+            rigidBody2D.velocity = initialVelocity;
+            rigidBody2D.gravityScale = 1;
             _tr.emitting = false;
             _ps.Play();
             _isStarComplete = true;
@@ -162,28 +157,6 @@ namespace _Scripts.Projectiles
             
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 _isStarComplete ? Radius * FinalRadiusMultiplier : Radius, 1, DestroyTypes.Circular);
-        }
-        
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            _damageMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "damageMultiplier").value;
-            _radiusMultiplier = Array.Find(extraWeaponTerms, ewt => ewt.term == "radiusMultiplier").value;
-            
-            _drawStarSpeed = Array.Find(extraWeaponTerms, ewt => ewt.term == "drawStarSpeed").value;
-            
-            _drawStarInterval = Array.Find(extraWeaponTerms, ewt => ewt.term == "drawStarInterval").value;
-            
-            _shockwaveRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockwaveRadius").value;
-            _shockwaveDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "shockwaveDamage").value;
         }
     }
 }

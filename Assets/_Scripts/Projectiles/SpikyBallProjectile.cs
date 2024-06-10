@@ -10,22 +10,11 @@ namespace _Scripts.Projectiles
          // Set in Inspector
         [SerializeField] private GameObject ballPrefab, spikePrefab;
         [SerializeField] private MMFeedbacks activateFeedbacks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-
-        // ExtraFields
-        private static float _spikeDamage, _spikeRadius;
+        [SerializeField] private float spikeDamage = 8f;
+        [SerializeField] private float spikeRadius = 1f;
         
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => Level >= 2 ? _damage * 1.2f : _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Damage => Level >= 2 ? damage * 1.2f : damage;
         
         // Other Variables
         private bool _isActivated;
@@ -58,7 +47,7 @@ namespace _Scripts.Projectiles
             {
                 derivedObject = Instantiate(ballPrefab, transform.position, Quaternion.identity);
                 derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+                derivedProjectile.SetParameters(Damage, Radius);
             }
 
 
@@ -75,7 +64,7 @@ namespace _Scripts.Projectiles
                         derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
                         var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
         
-                        derivedProjectile.SetParameters(_spikeDamage, _spikeRadius, ExplosionDuration, ExplosionFX);
+                        derivedProjectile.SetParameters(spikeDamage, spikeRadius);
                         derivedRb2d.velocity = direction * 25f;
                     }
 
@@ -92,8 +81,8 @@ namespace _Scripts.Projectiles
                         derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
                         var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
         
-                        derivedProjectile.SetParameters(Level == 6 ? _spikeDamage * 2 : _spikeDamage, 
-                            Level == 6 ? _spikeRadius * 2 : _spikeRadius, ExplosionDuration, ExplosionFX);
+                        derivedProjectile.SetParameters(Level == 6 ? spikeDamage * 2 : spikeDamage, 
+                            Level == 6 ? spikeRadius * 2 : spikeRadius);
                         derivedRb2d.velocity = direction * 25f;
                     }
 
@@ -110,28 +99,13 @@ namespace _Scripts.Projectiles
                         derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
                         var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
         
-                        derivedProjectile.SetParameters(_spikeDamage, _spikeRadius, ExplosionDuration, ExplosionFX);
+                        derivedProjectile.SetParameters(spikeDamage, spikeRadius);
                         derivedRb2d.velocity = direction * 25f;
                     }
 
                     break;
                 }
             }
-        }
-
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-
-            _spikeDamage = Array.Find(extraWeaponTerms, ewt => ewt.term == "spikeDamage").value;
-            _spikeRadius = Array.Find(extraWeaponTerms, ewt => ewt.term == "spikeRadius").value;
         }
     }
 }

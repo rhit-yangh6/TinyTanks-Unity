@@ -70,8 +70,8 @@ namespace _Scripts.Managers
     {
         // Read from Weapons.json
         public int id, steps, shopPrice;
-        public string weaponName, weaponDescription, dataPath, explosionFXPath, saying;
-        public float damage, radius, maxMagnitude, explosionDuration;
+        public string weaponName, weaponDescription, dataPath, saying;
+        public float damage, radius, maxMagnitude;
         public bool hideInShop, hideInArsenal;
         
         // Also Read from Weapons.json, but Extra Data Types
@@ -85,7 +85,7 @@ namespace _Scripts.Managers
         public void SetParams()
         {
             LaunchedProjectile p = projectilePrefab.GetComponent<LaunchedProjectile>();
-            p.SetParameters(damage, radius, maxMagnitude, steps, explosionDuration, extraWeaponTerms);
+            p.SetParameters(damage, radius, maxMagnitude, steps);
         }
         
     }

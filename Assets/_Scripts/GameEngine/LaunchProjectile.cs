@@ -26,6 +26,7 @@ namespace _Scripts.GameEngine
         private GameObject _projectilePrefab;
         private LaunchedProjectile _selectedProjectile;
         private Rigidbody2D _rb;
+        private Weapon _selectedWeapon;
         private bool _needExtraForce, _isAiming;
         private float _extraForceXMultiplier, _extraForceYMultiplier;
         private float _cannonAngle;
@@ -102,9 +103,9 @@ namespace _Scripts.GameEngine
                     prb.velocity = velocity;
                 
                     LaunchedProjectile lp = projectile.GetComponent<LaunchedProjectile>();
+                    lp.SetParameters(_selectedWeapon.damage, _selectedWeapon.radius, _selectedWeapon.maxMagnitude, _selectedWeapon.steps);
                     lp.Level = _sd.level;
                     lp.Shooter = gameObject;
-
 
                     _playerCharacter.tankCannon.GetComponent<Animator>().SetTrigger(Shoot);
                 
@@ -212,9 +213,9 @@ namespace _Scripts.GameEngine
         {
             _sd = sd;
 
-            var w = WeaponManager.Instance.GetWeaponById(sd.weaponId);
+            _selectedWeapon = WeaponManager.Instance.GetWeaponById(sd.weaponId);
             
-            _projectilePrefab = w.projectilePrefab;
+            _projectilePrefab = _selectedWeapon.projectilePrefab;
             _rb = _projectilePrefab.GetComponent<Rigidbody2D>();
             _selectedProjectile = _projectilePrefab.GetComponent<LaunchedProjectile>();
             
@@ -224,10 +225,9 @@ namespace _Scripts.GameEngine
 
             if (_needExtraForce)
             {
-                _extraForceXMultiplier = Array.Find(w.extraWeaponTerms, ewt => ewt.term == "extraForceXMultiplier").value;
-                _extraForceYMultiplier = Array.Find(w.extraWeaponTerms, ewt => ewt.term == "extraForceYMultiplier").value;
+                _extraForceXMultiplier = Array.Find(_selectedWeapon.extraWeaponTerms, ewt => ewt.term == "extraForceXMultiplier").value;
+                _extraForceYMultiplier = Array.Find(_selectedWeapon.extraWeaponTerms, ewt => ewt.term == "extraForceYMultiplier").value;
             }
-            
         }
 
         public static Vector3 TrajectoryStartPositionHelper(float cannonAngle, float cannonLength, Vector3 cannonPos)

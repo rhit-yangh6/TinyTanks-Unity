@@ -1,26 +1,15 @@
-﻿using System;
-using _Scripts.Managers;
+﻿using _Scripts.Managers;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
     public class ElectricOrbProjectile: LaunchedProjectile
     {
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // ExtraFields
-        // private static float _electricChainRadius;
-        
         // References
-        protected override float Radius => _radius;
-        protected override float Damage => _damage;
-        protected override float MaxMagnitude => _maxMagnitude;
-        protected override int Steps => _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Radius => radius;
+        protected override float Damage => damage;
+        protected override float MaxMagnitude => maxMagnitude;
+        protected override int Steps => steps;
         
         private void Update()
         {
@@ -57,17 +46,6 @@ namespace _Scripts.Projectiles
             entityPos = closestEntity.transform.position;
             electricLine.AssignPositions(previousPosition, entityPos);
             closestEntity.TakeDamage(Damage);
-        }
-        
-        public override void SetParameters(float damage, float radius, float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.chargeFX;
         }
     }
 }

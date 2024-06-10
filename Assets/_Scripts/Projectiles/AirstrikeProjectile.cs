@@ -1,5 +1,4 @@
-﻿using _Scripts.Managers;
-using _Scripts.Utils;
+﻿using _Scripts.Utils;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,19 +14,12 @@ namespace _Scripts.Projectiles
         [SerializeField] private float carpetBombingMultiplier = 0.7f;
         [SerializeField] private float missilePosDeviation = 1.5f;
         [SerializeField] private MMFeedbacks carpetBombingMmFeedbacks;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
 
         // References
-        protected override float Radius => Level >= 3 ? _radius * 1.2f : _radius;
-        protected override float Damage => Level >= 4 ? _damage * 1.25f : _damage;
-        protected override float MaxMagnitude => Level >= 2 ? _maxMagnitude * 1.1f : _maxMagnitude;
-        protected override int Steps => Level >= 2 ? (int)(_steps * 1.1f) : _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Radius => Level >= 3 ? radius * 1.2f : radius;
+        protected override float Damage => Level >= 4 ? damage * 1.25f : damage;
+        protected override float MaxMagnitude => Level >= 2 ? maxMagnitude * 1.1f : maxMagnitude;
+        protected override int Steps => Level >= 2 ? (int)(steps * 1.1f) : steps;
         private float MissileDeviateAngle
         {
             get
@@ -114,11 +106,11 @@ namespace _Scripts.Projectiles
             if (isCarpetBombing)
             {
                 derivedProjectile.SetParameters(Damage * carpetBombingMultiplier,
-                    Radius * carpetBombingMultiplier, ExplosionDuration, ExplosionFX);
+                    Radius * carpetBombingMultiplier);
             }
             else
             {
-                derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+                derivedProjectile.SetParameters(Damage, Radius);
             }
 
             if (Level == 6)
@@ -127,18 +119,6 @@ namespace _Scripts.Projectiles
             }
             derivedProjectile.SetTargetPos(pos);
             derivedRb2d.velocity = missileVelocity;
-        }
-
-        public override void SetParameters(float damage, float radius, float maxMagnitude,
-            int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-            
-            _explosionFX = GameAssets.i.regularExplosionFX;
         }
     }
 }

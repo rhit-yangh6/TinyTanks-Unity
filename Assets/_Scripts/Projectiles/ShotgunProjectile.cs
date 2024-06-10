@@ -9,31 +9,22 @@ namespace _Scripts.Projectiles
     {
         // Set In Inspector        
         [SerializeField] private GameObject shotgunSecondaryPrefab;
-        
-        // Shared Fields
-        private static float _radius, _damage, _maxMagnitude, _explosionDuration;
-        private static int _steps;
-        private static GameObject _explosionFX;
-        
-        // Extra Fields
-        private static float _bulletDispersion;
+        [SerializeField] private float bulletDispersion = 10.0f;
         
         // References
-        protected override float Radius => Level == 6 ? _radius * 1.5f : _radius;
-        protected override float Damage => Level >= 3 ? _damage * 1.25f : _damage;
-        protected override float MaxMagnitude => Level >= 4 ? _maxMagnitude * 1.3f : _maxMagnitude;
-        protected override int Steps => Level >= 2 ? (int)(_steps * 1.3) : _steps;
-        protected override float ExplosionDuration => _explosionDuration;
-        protected override GameObject ExplosionFX => _explosionFX;
+        protected override float Radius => Level == 6 ? radius * 1.5f : radius;
+        protected override float Damage => Level >= 3 ? damage * 1.25f : damage;
+        protected override float MaxMagnitude => Level >= 4 ? maxMagnitude * 1.3f : maxMagnitude;
+        protected override int Steps => Level >= 2 ? (int)(steps * 1.3) : steps;
         private float BulletDispersion
         {
             get
             {
                 return Level switch
                 {
-                    6 => _bulletDispersion * 0.5f,
-                    >= 4 => _bulletDispersion * 0.7f,
-                    _ => _bulletDispersion
+                    6 => bulletDispersion * 0.5f,
+                    >= 4 => bulletDispersion * 0.7f,
+                    _ => bulletDispersion
                 };
             }
         }
@@ -45,7 +36,7 @@ namespace _Scripts.Projectiles
 
         private void SpawnSecondaryProjectiles()
         {
-            var velocity = Rigidbody2D.velocity;
+            var velocity = rigidBody2D.velocity;
             var pos = transform.position;
             
             // Make clones
@@ -53,14 +44,14 @@ namespace _Scripts.Projectiles
             var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetParameters(Damage, Radius);
             derivedRb2d.velocity = Geometry.Rotate(velocity, BulletDispersion);
             
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetParameters(Damage, Radius);
             derivedRb2d.velocity = Geometry.Rotate(velocity, -BulletDispersion);
 
             if (Level != 5) return;
@@ -68,29 +59,15 @@ namespace _Scripts.Projectiles
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
-            derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetParameters(Damage, Radius);
             derivedRb2d.velocity = Geometry.Rotate(velocity, 2*BulletDispersion);
                 
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
 
-            derivedProjectile.SetParameters(Damage, Radius, ExplosionDuration, ExplosionFX);
+            derivedProjectile.SetParameters(Damage, Radius);
             derivedRb2d.velocity = Geometry.Rotate(velocity, -2*BulletDispersion);
-        }
-        
-        public override void SetParameters(float damage, float radius, 
-            float maxMagnitude, int steps, float explosionDuration, ExtraWeaponTerm[] extraWeaponTerms)
-        {
-            _damage = damage;
-            _radius = radius;
-            _maxMagnitude = maxMagnitude;
-            _steps = steps;
-            _explosionDuration = explosionDuration;
-
-            _explosionFX = GameAssets.i.gunpowderlessExplosionFX;
-            
-            _bulletDispersion = Array.Find(extraWeaponTerms, ewt => ewt.term == "bulletDispersion").value;
         }
     }
 }
