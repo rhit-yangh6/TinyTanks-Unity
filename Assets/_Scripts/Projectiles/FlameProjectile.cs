@@ -17,7 +17,6 @@ namespace _Scripts.Projectiles
         
         private void Update()
         {
-            Debug.Log(isDetonated);
             if (!isDetonated) return;
             _lifeTime += Time.deltaTime;
             if (_lifeTime >= _lifeSpan)
@@ -65,7 +64,6 @@ namespace _Scripts.Projectiles
         
         protected override void OnCollisionEnter2D(Collision2D col)
         {
-            Debug.Log("aa");
             if (col.gameObject.CompareTag("DangerZone"))
             {
                 Destroy(gameObject);

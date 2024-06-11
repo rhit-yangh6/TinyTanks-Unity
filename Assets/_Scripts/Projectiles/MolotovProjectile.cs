@@ -1,5 +1,4 @@
-﻿using _Scripts.GameEngine.Map;
-using _Scripts.Managers;
+﻿using _Scripts.Managers;
 using _Scripts.Utils;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace _Scripts.Projectiles
         
         private void Update()
         {
-            Direct();
+            Spin();
         }
         
         public override void DealDamage()
@@ -38,7 +37,6 @@ namespace _Scripts.Projectiles
                 derivedProjectile.SetLifeSpan(flameLifeSpan);
 
                 var angle = Random.Range(-flameSpreadRange / 2, flameSpreadRange / 2);
-                Debug.Log(angle);
                 derivedRb2d.velocity =  Geometry.Rotate(Vector2.up * flameSpeed, angle);
             }
         }
