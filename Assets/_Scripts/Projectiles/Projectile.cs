@@ -87,12 +87,12 @@ namespace _Scripts.Projectiles
             // Stop rendering
             renderer.enabled = false;
         }
-        
-        public void Spin()
+
+        public void Spin(float spinSpeed = 1)
         {
             if (isDetonated) return;
             var velocity = rigidBody2D.velocity;
-            transform.Rotate(0,0, velocity.x > 0 ? -1 : 1);
+            transform.Rotate(0,0, velocity.x > 0 ? -spinSpeed : spinSpeed);
         }
         
         public void Direct()

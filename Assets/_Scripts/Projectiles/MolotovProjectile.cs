@@ -16,7 +16,7 @@ namespace _Scripts.Projectiles
         
         private void Update()
         {
-            Spin();
+            Spin(1.6f);
         }
         
         public override void DealDamage()

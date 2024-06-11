@@ -8,7 +8,7 @@ namespace _Scripts.Projectiles
         void Detonate();
         void Activate();
         void DealDamage();
-        void Spin();
+        void Spin(float spinSpeed);
         void Direct();
         void Disappear();
         IEnumerator TemporarilyDisableCollider();
