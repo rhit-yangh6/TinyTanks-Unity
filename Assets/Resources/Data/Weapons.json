@@ -1291,6 +1291,45 @@
       "dataPath": "gear",
       "shopPrice": 500,
       "extraWeaponTerms": []
+    }, {
+      "id": 30,
+      "weaponName": "weapon_molotov_name",
+      "weaponDescription": "weapon_molotov_desc",
+      "damage": 10,
+      "radius": 1.4,
+      "maxMagnitude": 7,
+      "steps": 400,
+      "saying": "weapon_molotov_saying",
+      "upgradeInfos": [
+        {
+          "name": "upgrade_molotov_2_name",
+          "description": "upgrade_molotov_2_desc",
+          "cost": 0
+        },
+        {
+          "name": "upgrade_molotov_3_name",
+          "description": "upgrade_molotov_3_desc",
+          "cost": 0
+        },
+        {
+          "name": "upgrade_molotov_4_name",
+          "description": "upgrade_molotov_4_desc",
+          "cost": 0
+        },
+        {
+          "name": "upgrade_molotov_5_name",
+          "description": "upgrade_molotov_5_desc",
+          "cost": 0
+        },
+        {
+          "name": "upgrade_molotov_6_name",
+          "description": "upgrade_molotov_6_desc",
+          "cost": 0
+        }
+      ],
+      "dataPath": "molotov",
+      "shopPrice": 0,
+      "extraWeaponTerms": []
     }
   ]
 }
