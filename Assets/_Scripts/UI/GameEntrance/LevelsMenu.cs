@@ -14,14 +14,12 @@ namespace _Scripts.UI.GameEntrance
     {
         [SerializeField] private GameObject levelScrollListContent;
         [SerializeField] private GameObject levelCellPrefab;
-        [SerializeField] private LevelDetailPanel detailPanel;
+        [SerializeField] private AsyncLoader asyncLoader;
         
         private void OnEnable() { PopulateLevels(); }
 
         private void PopulateLevels()
         {
-            detailPanel.gameObject.SetActive(false);
-            
             foreach (Transform child in levelScrollListContent.transform) {
                 Destroy(child.gameObject);
             }
@@ -33,22 +31,24 @@ namespace _Scripts.UI.GameEntrance
             {
                 var l = levels[i];
                 var cellObj = Instantiate(levelCellPrefab, levelScrollListContent.transform);
-                var s = cellObj.GetComponentsInChildren<Image>()[1];
-                
+                var chapterImage = cellObj.GetComponentsInChildren<Image>()[0];
+                var levelPreviewImage = cellObj.GetComponentsInChildren<Image>()[1];
                 var lockedImg = cellObj.GetComponentsInChildren<Image>()[2];
+                
+                var levelIdText = cellObj.GetComponentsInChildren<TextMeshProUGUI>()[1];
                 var localizeEvent = cellObj.GetComponentInChildren<LocalizeStringEvent>();
                 var button = cellObj.GetComponent<Button>();
                 
                 localizeEvent.StringReference =
                     new LocalizedString(Constants.LocalizationTableLevelsText, 
                         l.name);
+                levelIdText.text = l.id;
                 
                 if (progress >= i)
                 {
                     button.onClick.AddListener(() =>
                     {
-                        detailPanel.gameObject.SetActive(true);
-                        detailPanel.SetDetails(l.id);
+                        asyncLoader.LoadLevelBtn(l.id);
                     });
                     var color = lockedImg.color;
                     color.a = 0;
@@ -62,7 +62,8 @@ namespace _Scripts.UI.GameEntrance
                     lockedImg.color = color;
                 }
 
-                s.sprite = l.levelPreviewSprite;
+                chapterImage.sprite = l.chapterBackgroundSprite;
+                levelPreviewImage.sprite = l.levelPreviewSprite;
             }
         }
     }

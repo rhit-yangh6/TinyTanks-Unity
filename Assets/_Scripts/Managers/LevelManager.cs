@@ -32,7 +32,8 @@ namespace _Scripts.Managers
                 chapter.chapterPreviewSprite = Resources.Load<Sprite>("ChapterPreviews/" + chapter.path);
                 foreach (var level in chapter.levels)
                 {
-                    level.levelPreviewSprite = Resources.Load<Sprite>("LevelPreviews/" + level.path);
+                    level.chapterBackgroundSprite = Resources.Load<Sprite>("ChapterBackgrounds/" + chapter.path);
+                    level.levelPreviewSprite = Resources.Load<Sprite>("LevelPreviews/" + level.id);
                 }
             }
         }
@@ -73,6 +74,7 @@ namespace _Scripts.Managers
         public int prize, weaponPrize, unlocksChapter;
         public string name, path, id;
 
+        public Sprite chapterBackgroundSprite;
         public Sprite levelPreviewSprite;
     }
 

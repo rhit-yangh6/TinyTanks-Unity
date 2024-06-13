@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.discord.game-sdk": "3.1.0",
+    "com.nobi.roundedcorners": "https://github.com/kirevdokimov/Unity-UI-Rounded-Corners.git",
     "com.unity.2d.animation": "9.1.1",
     "com.unity.2d.spriteshape": "9.0.3",
     "com.unity.2d.tilemap.extras": "https://github.com/Unity-Technologies/2d-extras.git",
