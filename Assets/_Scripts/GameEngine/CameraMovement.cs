@@ -17,6 +17,7 @@ namespace _Scripts.GameEngine
         private bool _isShaking;
 
         private float _mapMinX, _mapMinY, _mapMaxX, _mapMaxY;
+        private Bounds bounds;
         
         private void Awake()
         {
@@ -28,7 +29,7 @@ namespace _Scripts.GameEngine
                 boundsSr = GameObject.FindGameObjectWithTag("CameraBoundingBox").GetComponent<SpriteRenderer>();
             }
             var pos = boundsSr.transform.position;
-            var bounds = boundsSr.bounds;
+            bounds = boundsSr.bounds;
             
             _mapMinX = pos.x - bounds.size.x / 2f;
             _mapMaxX = pos.x + bounds.size.x / 2f;
@@ -52,7 +53,7 @@ namespace _Scripts.GameEngine
 
         private void MoveCamera()
         {
-            if ( Input.mousePosition.x <= Screen.width * 0.04) 
+            if (Input.mousePosition.x <= Screen.width * 0.04) 
                 cam.transform.Translate(Time.deltaTime * moveStep * Vector3.left, Space.World);
             if (Input.mousePosition.x >= Screen.width * 0.96) 
                 cam.transform.Translate(Time.deltaTime * moveStep * Vector3.right, Space.World);
@@ -75,14 +76,13 @@ namespace _Scripts.GameEngine
 
         private void ZoomOut()
         {
+            var newHeight = (cam.orthographicSize + zoomStep) * 2f;
+            var newWidth = newHeight * cam.aspect;
+            if (newHeight > bounds.size.y || newWidth > bounds.size.x)
+            {
+                return;
+            }
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize + zoomStep, minCamSize, maxCamSize);
-        }
-
-        public void ShakeCamera(float duration)
-        {
-            _originalPos = cam.transform.localPosition;
-            _isShaking = true;
-            _shakeDuration = duration;
         }
 
         private void Shake()

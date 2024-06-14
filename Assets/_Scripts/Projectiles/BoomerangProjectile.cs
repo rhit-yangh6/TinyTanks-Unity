@@ -87,7 +87,7 @@ namespace _Scripts.Projectiles
                     // Skip if it is the shooter
                     if (ReferenceEquals(Shooter, rb.gameObject)) continue;
                     var e = rb.gameObject.GetComponent<Entity>();
-                    e.TakeDamage((float)Math.Round(Damage), false);
+                    e.TakeDamage((float)Math.Round(Damage));
                 }
             }
             else

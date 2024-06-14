@@ -400,6 +400,32 @@ MonoBehaviour:
     m_Localized: -- Turning gears of fate...
     m_Metadata:
       m_Items: []
+  - m_Id: 5087478634782720
+    m_Localized: Fuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5087538135179264
+    m_Localized: Fuel yourself, or make your opponent take more burn damage!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5087749028978688
+    m_Localized: -- Fuel your fire, burn theirs.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5088217620815872
+    m_Localized: Molotov
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5088277767135232
+    m_Localized: Upon impact, the Molotov spreads fire in the surrounding area. The
+      fire burns the ground, dealing damage over time to any enemies caught in the
+      flames.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5088445803536384
+    m_Localized: -- Set the world ablaze.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

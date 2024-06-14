@@ -48,6 +48,7 @@ namespace _Scripts
         public ScriptableBuff cursedBuff;
         public ScriptableBuff frozenBuff;
         public ScriptableBuff healingBuff;
+        public ScriptableBuff oilyBuff;
 
     }
 }

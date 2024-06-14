@@ -1,5 +1,4 @@
 ﻿using _Scripts.Managers;
-using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
@@ -7,7 +6,6 @@ namespace _Scripts.Projectiles
     {
         // References
         protected override float Damage => Level >= 2 ? damage * 1.1f : damage;
-        protected override float MaxMagnitude => maxMagnitude;
 
         private int BuffLevel
         {

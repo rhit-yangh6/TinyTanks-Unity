@@ -269,6 +269,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: buffs_7
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 283
+        width: 59
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 740eaf05f74d17e43b2d9aea07c12700
+      internalID: 342469003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -287,6 +308,7 @@ TextureImporter:
       buffs_4: 2087630626
       buffs_5: -2115343984
       buffs_6: -1884515853
+      buffs_7: 342469003
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

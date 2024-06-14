@@ -1,4 +1,5 @@
 ﻿using _Scripts.Entities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Scripts.Buffs
@@ -39,7 +40,16 @@ namespace _Scripts.Buffs
 
         protected override void TurnTrigger()
         {
-            _be.TakeDamage(_finalBurningDamage);
+            var oilyBuff = _be.GetBuff("OilyBuff");
+            Debug.Log(oilyBuff);
+            if (oilyBuff != null)
+            {
+                _be.TakeDamage(_finalBurningDamage * ((OilyBuff)oilyBuff).burnDamageMultiplier);
+            }
+            else
+            {
+                _be.TakeDamage(_finalBurningDamage);
+            }
         }
     }
 }

@@ -379,6 +379,30 @@ MonoBehaviour:
     m_Key: weapon_gear_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 5087478634782720
+    m_Key: weapon_fuel_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5087538135179264
+    m_Key: weapon_fuel_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5087749028978688
+    m_Key: weapon_fuel_saying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5088217620815872
+    m_Key: weapon_molotov_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5088277767135232
+    m_Key: weapon_molotov_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5088445803536384
+    m_Key: weapon_molotov_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

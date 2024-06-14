@@ -47,7 +47,7 @@ namespace _Scripts.Managers
                 // TODO: Calculating the square damage
                 DamageType.Square => Physics2D.OverlapBoxAll(pos, new Vector2(radius*1.414f, radius*1.414f), 
                     0,layerMask),
-                _ => null
+                _ => new Collider2D[]{}
             };
 
             var hitCount = 0;
@@ -80,7 +80,60 @@ namespace _Scripts.Managers
                 }
                 */
             }
+            return hitCount;
+        }
+        
+        public int HandleDamageExcludingEntity(
+            Vector2 pos, 
+            float radius, 
+            float damage, 
+            DamageType type,
+            Entity excludingEntity,
+            bool isCriticalHit = false, 
+            ScriptableBuff buff = null, 
+            int buffLevel = 1)
+        {
+            var hitColliders = type switch
+            {
+                DamageType.Circular => Physics2D.OverlapCircleAll(pos, radius, layerMask),
+                // TODO: Calculating the square damage
+                DamageType.Square => Physics2D.OverlapBoxAll(pos, new Vector2(radius*1.414f, radius*1.414f), 
+                    0,layerMask),
+                _ => new Collider2D[]{}
+            };
 
+            var hitCount = 0;
+
+            foreach(var col in hitColliders)
+            {
+                var rb = col.GetComponent<Rigidbody2D>();
+                if (rb == null) continue;
+                
+                // Find the Enemy script and apply damage.
+                var e = rb.gameObject.GetComponent<Entity>();
+                if (ReferenceEquals(e, excludingEntity)) continue;
+                
+                var roundedDamage = (float)Math.Round(damage);
+                e.TakeDamage(roundedDamage, isCriticalHit);
+                
+                hitCount += 1;
+
+                var be = rb.gameObject.GetComponent<BuffableEntity>();
+                // Apply Buff
+                if (be != null && buff != null)
+                {
+                    be.AddBuff(buff.InitializeBuff(col.gameObject, buffLevel));
+                }
+                
+                /*
+                // TODO: Push Force
+                if (force != 0f)
+                {
+                    var forceDirection = Vector3.Normalize(rb.position - pos);
+                    rb.AddForce(forceDirection * force);
+                }
+                */
+            }
             return hitCount;
         }
 

@@ -104,5 +104,10 @@ namespace _Scripts.Entities
         {
             TakeDamage(MaxHealth * 2);
         }
+
+        public ScriptableBuff GetBuff(string buffTypeName)
+        {
+            return Buffs.Keys.ToList().Find(k => k.GetType().Name.Equals(buffTypeName));
+        }
     }
 }

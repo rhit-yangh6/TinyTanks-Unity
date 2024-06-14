@@ -1293,6 +1293,45 @@
       "extraWeaponTerms": []
     }, {
       "id": 30,
+      "weaponName": "weapon_fuel_name",
+      "weaponDescription": "weapon_fuel_desc",
+      "damage": 12,
+      "radius": 1.2,
+      "maxMagnitude": 5,
+      "steps": 400,
+      "saying": "weapon_fuel_saying",
+      "upgradeInfos": [
+        {
+          "name": "upgrade_fuel_2_name",
+          "description": "upgrade_fuel_2_desc",
+          "cost": 0
+        },
+        {
+          "name": "upgrade_fuel_3_name",
+          "description": "upgrade_fuel_3_desc",
+          "cost": 0
+        },
+        {
+          "name": "upgrade_fuel_4_name",
+          "description": "upgrade_fuel_4_desc",
+          "cost": 0
+        },
+        {
+          "name": "upgrade_fuel_5_name",
+          "description": "upgrade_fuel_5_desc",
+          "cost": 0
+        },
+        {
+          "name": "upgrade_fuel_6_name",
+          "description": "upgrade_fuel_6_desc",
+          "cost": 0
+        }
+      ],
+      "dataPath": "fuel",
+      "shopPrice": 220,
+      "extraWeaponTerms": []
+    }, {
+      "id": 31,
       "weaponName": "weapon_molotov_name",
       "weaponDescription": "weapon_molotov_desc",
       "damage": 10,

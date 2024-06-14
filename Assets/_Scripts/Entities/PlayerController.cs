@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Buffs;
@@ -106,6 +107,11 @@ namespace _Scripts.Entities
             {
                 transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xInput, -1, 0));
             }
+        }
+
+        public void Refuel(float amount)
+        {
+            fuel = Math.Min(maxFuel, fuel + amount);
         }
     }
 }
