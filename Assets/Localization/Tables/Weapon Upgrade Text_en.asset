@@ -807,6 +807,50 @@ MonoBehaviour:
     m_Localized: The cube splits into several smaller cubes upon impact.
     m_Metadata:
       m_Items: []
+  - m_Id: 5130184350244864
+    m_Localized: Expanded Radius
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5130237102006272
+    m_Localized: Enhanced Conduction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5130249961742336
+    m_Localized: Premature Discharge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5130258874638336
+    m_Localized: Stun Charge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5130268110495744
+    m_Localized: Dual Chain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131624783290368
+    m_Localized: Increases the chaining radius of the orb.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131626511343616
+    m_Localized: Increases the number of enemies the electric orb can chain to, allowing
+      it to affect more targets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131627434090496
+    m_Localized: Players can click on the screen to pre-release the chaining effect
+      in mid-air. However, the orb gets decharged after activation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131630223302656
+    m_Localized: Each chaining has a chance to stun the enemy, immobilizing them
+      for one turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131631909412864
+    m_Localized: Further increases the total number of chaining targets and allows
+      the orb to release two chains simultaneously.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

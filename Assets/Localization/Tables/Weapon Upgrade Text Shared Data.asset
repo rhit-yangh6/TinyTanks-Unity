@@ -775,6 +775,46 @@ MonoBehaviour:
     m_Key: upgrade_steel_cube_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 5130184350244864
+    m_Key: upgrade_electric_orb_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5130237102006272
+    m_Key: upgrade_electric_orb_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5130249961742336
+    m_Key: upgrade_electric_orb_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5130258874638336
+    m_Key: upgrade_electric_orb_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5130268110495744
+    m_Key: upgrade_electric_orb_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131624783290368
+    m_Key: upgrade_electric_orb_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131626511343616
+    m_Key: upgrade_electric_orb_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131627434090496
+    m_Key: upgrade_electric_orb_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131630223302656
+    m_Key: upgrade_electric_orb_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5131631909412864
+    m_Key: upgrade_electric_orb_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

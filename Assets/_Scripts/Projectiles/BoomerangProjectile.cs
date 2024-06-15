@@ -10,7 +10,6 @@ namespace _Scripts.Projectiles
     public class BoomerangProjectile : LaunchedProjectile
     { 
         // Set in Inspector
-        [SerializeField] private LayerMask layerMask;
         [SerializeField] private MMFeedbacks activateMmFeedbacks;
         [SerializeField] private float addForceMultiplier = 555f;
         [SerializeField] private float selfTrackSpeedMultiplier = 2.55f;
@@ -77,18 +76,9 @@ namespace _Scripts.Projectiles
             // TODO: Maybe move this to the Damage Handler if this is becoming more popular
             if (Level >= 2)
             {
-                var hitColliders = Physics2D.OverlapCircleAll(pos, Radius, layerMask);
-            
-                foreach(var col in hitColliders)
-                {
-                    var rb = col.GetComponent<Rigidbody2D>();
-                    if (rb == null) continue;
-
-                    // Skip if it is the shooter
-                    if (ReferenceEquals(Shooter, rb.gameObject)) continue;
-                    var e = rb.gameObject.GetComponent<Entity>();
-                    e.TakeDamage((float)Math.Round(Damage));
-                }
+                // Deal damage to all the other entities
+                DamageHandler.i.HandleDamageExcludingEntity(pos, Radius, Damage, DamageHandler.DamageType.Circular, 
+                    Shooter.GetComponent<Entity>());
             }
             else
             {

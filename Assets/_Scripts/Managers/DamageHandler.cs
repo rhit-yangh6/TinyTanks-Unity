@@ -137,7 +137,7 @@ namespace _Scripts.Managers
             return hitCount;
         }
 
-        public Entity DetectNearestTarget(Vector2 pos, float radius, Entity excludingEntity)
+        public Entity DetectNearestTarget(Vector2 pos, float radius, List<Entity> excludingEntities)
         {
             var hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
             var entities =
@@ -149,7 +149,17 @@ namespace _Scripts.Managers
             var minDist = Mathf.Infinity;
             foreach(var e in entities)
             {
-                if (ReferenceEquals(e, excludingEntity)) continue;
+                var skipEntity = false;
+                foreach (var unused in
+                         excludingEntities.Where(excludingEntity => ReferenceEquals(e, excludingEntity)))
+                {
+                    skipEntity = true;
+                }
+
+                if (skipEntity)
+                {
+                    continue;
+                }
                 var distance = Vector2.Distance(pos, e.transform.position);
                 if (distance >= minDist) continue;
                 closetEntity = e;

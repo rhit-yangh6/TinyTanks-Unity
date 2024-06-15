@@ -8,7 +8,7 @@
       "radius": 2.0,
       "maxMagnitude": 20.0,
       "saying": "weapon_cannon_saying",
-      "steps": 500,
+      "steps": 1000,
       "upgradeInfos": [
         {
           "name": "---L2---",
@@ -1223,29 +1223,29 @@
       "saying": "weapon_electric_orb_saying",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_electric_orb_2_name",
+          "description": "upgrade_electric_orb_2_desc",
+          "cost": 300
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_electric_orb_3_name",
+          "description": "upgrade_electric_orb_3_desc",
+          "cost": 400
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_electric_orb_4_name",
+          "description": "upgrade_electric_orb_4_desc",
+          "cost": 500
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_electric_orb_5_name",
+          "description": "upgrade_electric_orb_5_desc",
+          "cost": 1400
         },
         {
-          "name": "",
-          "description": "",
-          "cost": 0
+          "name": "upgrade_electric_orb_6_name",
+          "description": "upgrade_electric_orb_6_desc",
+          "cost": 1500
         }
       ],
       "dataPath": "electricOrb",
