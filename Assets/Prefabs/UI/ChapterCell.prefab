@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 6697402701158281185}
   - component: {fileID: 8964907148482116193}
   - component: {fileID: 9124961676571811998}
+  - component: {fileID: 4476733247700304748}
   m_Layer: 5
   m_Name: LockedMask
   m_TagString: Untagged
@@ -373,6 +374,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4476733247700304748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7189123556907407409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 40
+  image: {fileID: 9124961676571811998}
 --- !u!1 &7915062885811108296
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +400,7 @@ GameObject:
   - component: {fileID: 6972473556732554859}
   - component: {fileID: 4307758665539765936}
   - component: {fileID: 5150028951927672280}
+  - component: {fileID: 145621908765890995}
   m_Layer: 5
   m_Name: ChapterPreviewImg
   m_TagString: Untagged
@@ -439,7 +455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e172132fe1d2244be9ab527153041e5a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e9ccc3ef18e3b4f4a880d792b35b7f67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -464,3 +480,17 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &145621908765890995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7915062885811108296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 40
+  image: {fileID: 4307758665539765936}
