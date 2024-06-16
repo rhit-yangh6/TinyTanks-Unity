@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -42,6 +43,13 @@ namespace _Scripts.Projectiles
                 
                 derivedProjectile.SetParameters(fireballSmallDamage, fireballSmallRadius);
                 derivedRb2d.velocity = Vector2.down;
+                
+                var spawnTimes = SteamManager.IncrementStat(Constants.StatSmallFireballSpawned);
+                if (spawnTimes >= 100)
+                {
+                    SteamManager.UnlockAchievement(Constants.AchievementSpreadTheFire);
+                    WeaponManager.UnlockWeapon(31); // Molotov 31
+                }
             }
         }
 

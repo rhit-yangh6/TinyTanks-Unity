@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 623300969
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ffb3736c76e70fc4cba7dcaecfd1cd42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -185,7 +185,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultMmFeedbacks: {fileID: 3375145273870194309}
-  fireballSmallPrefab: {fileID: 4535981218058402318, guid: fdcde7f4bfacdc04680154e4d6494e54, type: 3}
+  fireballSmallPrefab: {fileID: 2571311846931634792, guid: 4978faf1c166f9b49ab1e11e51075715, type: 3}
+  summonInterval: 0.3
+  fireballSmallDamage: 2
+  fireballSmallRadius: 0.23
 --- !u!1 &4766940171704408258
 GameObject:
   m_ObjectHideFlags: 0

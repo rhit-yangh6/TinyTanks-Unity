@@ -205,7 +205,7 @@ namespace _Scripts.UI.Arsenal
             }
             if (upgradeTimes >= 50)
             {
-                SteamManager.UnlockAchievement(Constants.AchievementUpgrade12);
+                SteamManager.UnlockAchievement(Constants.AchievementUpgrade50);
                 WeaponManager.UnlockWeapon(18); // Saw Blade 18
             }
             

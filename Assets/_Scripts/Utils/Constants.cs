@@ -56,10 +56,12 @@ namespace _Scripts.Utils
         public const string AchievementBoombox = "BOOMBOX";
         public const string AchievementYinYang = "YIN_YANG";
         public const string AchievementWillOfSacrifice = "WILL_OF_SACRIFICE";
+        public const string AchievementSpreadTheFire = "SREAD_THE_FIRE";
         public const string AchievementUpgrade12 = "UPGRADE_12";
         public const string AchievementUpgrade50 = "UPGRADE_50";
 
         public const string StatDoubleEdgedSwordPunishmentCount = "double_edged_sword_punishment_count";
+        public const string StatSmallFireballSpawned = "small_fireball_spawned";
         public const string StatUpgradeCount = "upgrade_count";
     }
 }
