@@ -70,7 +70,7 @@ namespace _Scripts.UI
             if (masterVolumeValue == 5.0f && musicVolumeValue == 1.0f && sfxVolumeValue == 9.0f)
             {
                 SteamManager.UnlockAchievement(Constants.AchievementBoombox);
-                WeaponManager.Instance.UnlockWeapon(22); // Boombox 22
+                WeaponManager.UnlockWeapon(22); // Boombox 22
             }
             
             PlayerPrefs.SetInt(Constants.LanguageSelectionValue, languageSelection);

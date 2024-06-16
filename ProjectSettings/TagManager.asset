@@ -29,7 +29,7 @@ TagManager:
   - DangerZone
   - Drag
   - Props
-  - 
+  - Pickups
   - 
   - 
   - 
@@ -72,6 +72,9 @@ TagManager:
     locked: 0
   - name: Foreground_2
     uniqueID: 1056348771
+    locked: 0
+  - name: Pickups
+    uniqueID: 1457321759
     locked: 0
   - name: BehindProjectile
     uniqueID: 1306533377

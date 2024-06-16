@@ -66,7 +66,7 @@ namespace _Scripts.UI
             if (currentIsDay == isDay) return;
             
             SteamManager.UnlockAchievement(Constants.AchievementYinYang);
-            WeaponManager.Instance.UnlockWeapon(24); // YinYang 24
+            WeaponManager.UnlockWeapon(24); // YinYang 24
             isDay = currentIsDay;
             StartCoroutine(SwitchBackground());
         }

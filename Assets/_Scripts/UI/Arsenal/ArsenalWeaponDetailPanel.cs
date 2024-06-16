@@ -201,12 +201,12 @@ namespace _Scripts.UI.Arsenal
             if (upgradeTimes >= 12)
             {
                 SteamManager.UnlockAchievement(Constants.AchievementUpgrade12);
-                WeaponManager.Instance.UnlockWeapon(14); // Spiky Ball 14
+                WeaponManager.UnlockWeapon(14); // Spiky Ball 14
             }
             if (upgradeTimes >= 50)
             {
                 SteamManager.UnlockAchievement(Constants.AchievementUpgrade12);
-                WeaponManager.Instance.UnlockWeapon(18); // Saw Blade 18
+                WeaponManager.UnlockWeapon(18); // Saw Blade 18
             }
             
             if (levelToBuy > 4)

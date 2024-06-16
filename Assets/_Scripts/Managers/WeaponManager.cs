@@ -51,7 +51,7 @@ namespace _Scripts.Managers
             return _weaponsFromJson.weapons;
         }
 
-        public bool UnlockWeapon(int weaponId)
+        public static bool UnlockWeapon(int weaponId)
         {
             var result = PlayerData.Instance.BuyWeapon(weaponId);
             if (!result) return false;

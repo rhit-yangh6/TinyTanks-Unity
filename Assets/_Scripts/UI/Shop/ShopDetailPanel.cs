@@ -63,7 +63,7 @@ namespace _Scripts.UI.Shop
 
         private void BuyWeapon(int weaponId)
         {
-            var result = WeaponManager.Instance.UnlockWeapon(weaponId);
+            var result = WeaponManager.UnlockWeapon(weaponId);
             if (!result) return;
             purchasePanel.SetActive(false);
             coinText.text = PlayerData.Instance.coins.ToString();

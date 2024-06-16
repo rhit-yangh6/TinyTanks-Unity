@@ -739,7 +739,8 @@
       ],
       "dataPath": "star",
       "explosionDuration": 0.25,
-      "shopPrice": 525,
+      "shopPrice": 0,
+      "hideInShop": true,
       "extraWeaponTerms": []
     }, {
       "id": 18,
