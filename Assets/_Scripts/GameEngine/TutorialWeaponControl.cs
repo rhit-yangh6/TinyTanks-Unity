@@ -33,7 +33,7 @@ namespace _Scripts.GameEngine
             {
                 GameObject buttonObj = Instantiate(buttonPrefab, transform);
                 Button button = buttonObj.GetComponent<Button>();
-                Image buttonImg = buttonObj.GetComponentsInChildren<Image>()[1];
+                Image buttonImg = buttonObj.GetComponentsInChildren<Image>()[0];
                 Image starImg = buttonObj.GetComponentsInChildren<Image>()[2];
                 
                 var selectionDatum = selectedWeapons[i];

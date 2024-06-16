@@ -26,7 +26,7 @@ namespace _Scripts.GameEngine
             {
                 GameObject buttonObj = Instantiate(buttonPrefab, transform);
                 Button button = buttonObj.GetComponent<Button>();
-                Image buttonImg = buttonObj.GetComponentsInChildren<Image>()[1];
+                Image buttonImg = buttonObj.GetComponentsInChildren<Image>()[0];
                 var animator = buttonImg.GetComponent<Animator>();
                 Image starImg = buttonObj.GetComponentsInChildren<Image>()[2];
                 
