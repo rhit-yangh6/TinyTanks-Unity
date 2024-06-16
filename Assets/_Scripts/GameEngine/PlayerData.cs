@@ -45,7 +45,6 @@ namespace _Scripts.GameEngine
              */
             
             // Deprecated
-            level = 1;
             
             levels = new Dictionary<int, int> { { 1, 0 } };
 
@@ -59,12 +58,20 @@ namespace _Scripts.GameEngine
                 null,
                 null
             };
+            
             weaponLevels = new List<WeaponDatum>
             {
                 new(-1, 1, new[]{true, true, true, true, true, false}), // TODO: Delete!
                 new(1, 1, new[]{true, false, false, false, false, false}),
                 new(2, 1, new[]{true, false, false, false, false, false})
             };
+
+            // Uncomment this if you want everything unlocked
+            /*
+            var datumList = new List<WeaponDatum> { };
+            datumList.AddRange(WeaponManager.Instance.GetAllWeapons().Select(w => new WeaponDatum(w.id, 1, new[] { true, true, true, true, true, true })));
+            weaponLevels = datumList;
+            */
         }
 
         public int GetLevelStatusInChapter(int chapterId)
