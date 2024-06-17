@@ -9,6 +9,7 @@ namespace _Scripts.UI
     {
         [SerializeField] private GameObject buffPanel;
         [SerializeField] private GameObject buffIconPrefab;
+        [SerializeField] private Transform target;
         [SerializeField] private Vector3 offset;
 
         public void RefreshBuffDisplay(Dictionary<ScriptableBuff, TimedBuff> buffs)
@@ -27,8 +28,8 @@ namespace _Scripts.UI
         
         private void Update()
         {
-            buffPanel.transform.position =
-                Camera.main.WorldToScreenPoint(transform.parent.transform.position + offset);
+            buffPanel.transform.rotation = Quaternion.identity;
+            transform.position = target.position + offset;
         }
     }
 }

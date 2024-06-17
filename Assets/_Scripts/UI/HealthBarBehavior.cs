@@ -7,9 +7,10 @@ namespace _Scripts.UI
     {
 
         [SerializeField] private Slider slider;
+        [SerializeField] private Transform target;
+        [SerializeField] private Vector3 offset;
         public Color low;
         public Color high;
-        public Vector3 offset;
 
         protected virtual Slider Slider => slider;
 
@@ -23,8 +24,10 @@ namespace _Scripts.UI
 
         protected virtual void Update()
         {
-            Slider.transform.position =
-                Camera.main.WorldToScreenPoint(transform.parent.transform.position + offset);
+            // Slider.transform.position =
+            //     Camera.main.WorldToScreenPoint(transform.parent.transform.position + offset);
+            Slider.transform.rotation = Quaternion.identity;
+            transform.position = target.position + offset;
         }
     }
 }

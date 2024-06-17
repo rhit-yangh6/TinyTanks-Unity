@@ -57,7 +57,7 @@ namespace _Scripts.GameEngine
                 }
                 else
                 {
-                    buttonImg.sprite = GameAssets.i.weaponLockedSprite;
+                    buttonImg.sprite = GameAssets.i.weaponEmptySprite;
                     button.interactable = false;
                     starImg.gameObject.SetActive(false);
                 }
