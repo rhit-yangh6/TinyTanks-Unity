@@ -26,7 +26,7 @@ namespace _Scripts.UI
         {
             // Slider.transform.position =
             //     Camera.main.WorldToScreenPoint(transform.parent.transform.position + offset);
-            Slider.transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.identity;
             transform.position = target.position + offset;
         }
     }

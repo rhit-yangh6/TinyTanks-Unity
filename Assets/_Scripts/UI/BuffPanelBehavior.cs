@@ -28,7 +28,7 @@ namespace _Scripts.UI
         
         private void Update()
         {
-            buffPanel.transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.identity;
             transform.position = target.position + offset;
         }
     }

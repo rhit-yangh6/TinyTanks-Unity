@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 623300969
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d29005ac6bd624b4cb2fdc708faa10af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -380,7 +380,7 @@ MonoBehaviour:
         AlsoApplyScale: 0
         TargetTransform: {fileID: 0}
         TargetPosition: {x: 0, y: 0, z: 0}
-        PositionOffset: {x: 0, y: 0, z: 0}
+        PositionOffset: {x: 0, y: -0.4, z: 0}
         RandomizePosition: 0
         RandomizedPositionMin: {x: 0, y: 0, z: 0}
         RandomizedPositionMax: {x: 1, y: 1, z: 1}
