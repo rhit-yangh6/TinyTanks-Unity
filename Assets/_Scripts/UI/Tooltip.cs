@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using _Scripts.Managers;
 using _Scripts.Projectiles;
 using _Scripts.Utils;
@@ -6,7 +8,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -25,6 +29,8 @@ namespace _Scripts.UI
         private RectTransform bgRectTransform;
         private RectTransform mainRectTransform;
 
+        private const float TextPaddingSize = 4f;
+
         private void Awake()
         {
             _instance = this;
@@ -42,46 +48,73 @@ namespace _Scripts.UI
                 Input.mousePosition + new Vector3(tooltipMouseDistance,tooltipMouseDistance, 0);
         }
 
-        private void ShowTooltipWeapon(int weaponId)
+        private async void ShowTooltipWeapon(int weaponId)
         {
             if (weaponId == 0) return;
             gameObject.SetActive(true);
 
             var weapon = WeaponManager.Instance.GetWeaponById(weaponId);
-            tooltipDescLocalizeStringEvent.StringReference =
-                new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponDescription);
-            tooltipNameLocalizeStringEvent.StringReference =
-                new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponName);
-            const float textPaddingSize = 4f;
             
-            var backgroundSize = new Vector2(tooltipDescText.preferredWidth + textPaddingSize * 2f,
-                tooltipNameText.preferredHeight + textPaddingSize * 3f + tooltipDescText.preferredHeight);
+            var nameOperationAsync =
+                LocalizationSettings.StringDatabase.GetLocalizedStringAsync(
+                    Constants.LocalizationTableWeaponText, weapon.weaponName);
+            var descOperationAsync =
+                LocalizationSettings.StringDatabase.GetLocalizedStringAsync(
+                    Constants.LocalizationTableWeaponText, weapon.weaponDescription);
+            await nameOperationAsync.Task;
+            await descOperationAsync.Task;
+            
+            if (nameOperationAsync.IsDone && descOperationAsync.IsDone)
+            {
+                tooltipNameText.text = nameOperationAsync.Result;
+                tooltipDescText.text = descOperationAsync.Result;
+            }
+            // tooltipDescLocalizeStringEvent.StringReference =
+            //     new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponDescription);
+            // tooltipNameLocalizeStringEvent.StringReference =
+            //     new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponName);
+            
+            var backgroundSize = new Vector2(tooltipDescText.preferredWidth + TextPaddingSize * 2f,
+                tooltipNameText.preferredHeight + TextPaddingSize * 3f + tooltipDescText.preferredHeight);
             
             tooltipNameText.rectTransform.anchoredPosition =
-                new Vector2(textPaddingSize, tooltipDescText.preferredHeight + textPaddingSize * 2f);
+                new Vector2(TextPaddingSize, tooltipDescText.preferredHeight + TextPaddingSize * 2f);
             
             bgRectTransform.sizeDelta = backgroundSize;
         }
         
-        private void ShowTooltipBuff(string buffKey, int duration)
+        private async void ShowTooltipBuff(string buffKey, int duration)
         {
             // Plus 1 to the duration
             duration += 1;
-            Debug.Log(buffKey + " " + duration);
             gameObject.SetActive(true);
             
-            tooltipDescLocalizeStringEvent.StringReference =
-                new LocalizedString(Constants.LocalizationTableBuffText, "buff_" + buffKey + "_desc")
-                    {{ "duration", new IntVariable { Value = duration } }};
-            tooltipNameLocalizeStringEvent.StringReference =
-                new LocalizedString(Constants.LocalizationTableBuffText, "buff_" + buffKey + "_name");
-            const float textPaddingSize = 4f;
+            var nameOperationAsync =
+                LocalizationSettings.StringDatabase.GetLocalizedStringAsync(
+                    Constants.LocalizationTableBuffText, "buff_" + buffKey + "_name");
+            var descOperationAsync =
+                LocalizationSettings.StringDatabase.GetLocalizedStringAsync(
+                    Constants.LocalizationTableBuffText, "buff_" + buffKey + "_desc",
+                    new object[] {new Dictionary<string, string> {{ "duration", duration.ToString() }}});
+            await nameOperationAsync.Task;
+            await descOperationAsync.Task;
+            // tooltipDescLocalizeStringEvent.StringReference =
+            //     new LocalizedString(Constants.LocalizationTableBuffText, "buff_" + buffKey + "_desc")
+            //         {{ "duration", new IntVariable { Value = duration } }};
+            // tooltipNameLocalizeStringEvent.StringReference =
+            //     new LocalizedString(Constants.LocalizationTableBuffText, "buff_" + buffKey + "_name");
             
-            var backgroundSize = new Vector2(tooltipDescText.preferredWidth + textPaddingSize * 2f,
-                tooltipNameText.preferredHeight + textPaddingSize * 3f + tooltipDescText.preferredHeight);
+            if (nameOperationAsync.IsDone && descOperationAsync.IsDone)
+            {
+                tooltipNameText.text = nameOperationAsync.Result;
+                tooltipDescText.text = descOperationAsync.Result;
+            }
+            
+            var backgroundSize = new Vector2(tooltipDescText.preferredWidth + TextPaddingSize * 2f,
+                tooltipNameText.preferredHeight + TextPaddingSize * 3f + tooltipDescText.preferredHeight);
             
             tooltipNameText.rectTransform.anchoredPosition =
-                new Vector2(textPaddingSize, tooltipDescText.preferredHeight + textPaddingSize * 2f);
+                new Vector2(TextPaddingSize, tooltipDescText.preferredHeight + TextPaddingSize * 2f);
             
             bgRectTransform.sizeDelta = backgroundSize;
         }
