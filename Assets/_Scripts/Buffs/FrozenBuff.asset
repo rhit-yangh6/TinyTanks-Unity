@@ -17,6 +17,7 @@ MonoBehaviour:
   isEffectStacked: 0
   isTurnTriggered: 1
   buffIcon: {fileID: -2115343984, guid: 7adbad068adf20a448df0e0caf039767, type: 3}
+  buffKey: frozen
   damageMultiplierFirstTier: 1.3
   damageMultiplierSecondTier: 2
   firstTierMovementSpeed: 2

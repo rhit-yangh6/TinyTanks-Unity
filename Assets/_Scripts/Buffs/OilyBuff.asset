@@ -17,4 +17,5 @@ MonoBehaviour:
   isEffectStacked: 0
   isTurnTriggered: 0
   buffIcon: {fileID: 342469003, guid: 7adbad068adf20a448df0e0caf039767, type: 3}
+  buffKey: oily
   burnDamageMultiplier: 1.5

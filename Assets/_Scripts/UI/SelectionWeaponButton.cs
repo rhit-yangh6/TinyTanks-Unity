@@ -9,7 +9,7 @@ namespace _Scripts.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Tooltip.ShowTooltip_Static(weaponId);
+            Tooltip.ShowTooltipWeapon_Static(weaponId);
         }
 
         public void OnPointerExit(PointerEventData eventData)

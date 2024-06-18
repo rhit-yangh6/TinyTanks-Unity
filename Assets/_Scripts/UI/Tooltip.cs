@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -29,10 +30,10 @@ namespace _Scripts.UI
             _instance = this;
             mainRectTransform = GetComponent<RectTransform>();
             bgRectTransform = transform.Find("BG").GetComponent<RectTransform>();
-            tooltipDescText = transform.Find("WeaponDescText").GetComponent<TextMeshProUGUI>();
-            tooltipNameText = transform.Find("WeaponNameText").GetComponent<TextMeshProUGUI>();
-            tooltipDescLocalizeStringEvent = transform.Find("WeaponDescText").GetComponent<LocalizeStringEvent>();
-            tooltipNameLocalizeStringEvent = transform.Find("WeaponNameText").GetComponent<LocalizeStringEvent>();
+            tooltipDescText = transform.Find("DescText").GetComponent<TextMeshProUGUI>();
+            tooltipNameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+            tooltipDescLocalizeStringEvent = transform.Find("DescText").GetComponent<LocalizeStringEvent>();
+            tooltipNameLocalizeStringEvent = transform.Find("NameText").GetComponent<LocalizeStringEvent>();
         }
 
         private void Update()
@@ -41,7 +42,7 @@ namespace _Scripts.UI
                 Input.mousePosition + new Vector3(tooltipMouseDistance,tooltipMouseDistance, 0);
         }
 
-        private void ShowTooltip(int weaponId)
+        private void ShowTooltipWeapon(int weaponId)
         {
             if (weaponId == 0) return;
             gameObject.SetActive(true);
@@ -61,15 +62,43 @@ namespace _Scripts.UI
             
             bgRectTransform.sizeDelta = backgroundSize;
         }
+        
+        private void ShowTooltipBuff(string buffKey, int duration)
+        {
+            // Plus 1 to the duration
+            duration += 1;
+            Debug.Log(buffKey + " " + duration);
+            gameObject.SetActive(true);
+            
+            tooltipDescLocalizeStringEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableBuffText, "buff_" + buffKey + "_desc")
+                    {{ "duration", new IntVariable { Value = duration } }};
+            tooltipNameLocalizeStringEvent.StringReference =
+                new LocalizedString(Constants.LocalizationTableBuffText, "buff_" + buffKey + "_name");
+            const float textPaddingSize = 4f;
+            
+            var backgroundSize = new Vector2(tooltipDescText.preferredWidth + textPaddingSize * 2f,
+                tooltipNameText.preferredHeight + textPaddingSize * 3f + tooltipDescText.preferredHeight);
+            
+            tooltipNameText.rectTransform.anchoredPosition =
+                new Vector2(textPaddingSize, tooltipDescText.preferredHeight + textPaddingSize * 2f);
+            
+            bgRectTransform.sizeDelta = backgroundSize;
+        }
 
         private void HideTooltip()
         {
             gameObject.SetActive(false);
         }
 
-        public static void ShowTooltip_Static(int weaponId)
+        public static void ShowTooltipWeapon_Static(int weaponId)
         {
-            _instance.ShowTooltip(weaponId);
+            _instance.ShowTooltipWeapon(weaponId);
+        }
+        
+        public static void ShowTooltipBuff_Static(string buffKey, int duration)
+        {
+            _instance.ShowTooltipBuff(buffKey, duration);
         }
         
         public static void HideTooltip_Static()

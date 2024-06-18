@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Buff Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Buff Text
+  m_TableCollectionNameGuidString: 93773defee67b7a4bb2ff1aebb2b0302
+  m_Entries:
+  - m_Id: 14702354432
+    m_Key: buff_burning_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42946797568
+    m_Key: buff_burning_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 885221761024
+    m_Key: buff_frozen_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 924153290752
+    m_Key: buff_frozen_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3210460012544
+    m_Key: buff_stunned_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3266412027904
+    m_Key: buff_stunned_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3404731785216
+    m_Key: buff_cursed_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3469072408576
+    m_Key: buff_cursed_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4262701834240
+    m_Key: buff_healing_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4336920043520
+    m_Key: buff_healing_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4493929619456
+    m_Key: buff_infected_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4542352859136
+    m_Key: buff_infected_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4922495213568
+    m_Key: buff_oily_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4954011213824
+    m_Key: buff_oily_desc
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4311788039228096512
+  references:
+    version: 2
+    RefIds:
+    - rid: 4311788039228096512
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1718694206141

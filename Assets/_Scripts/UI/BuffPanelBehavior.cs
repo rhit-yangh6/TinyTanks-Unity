@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using _Scripts.Buffs;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,10 @@ namespace _Scripts.UI
                 var obj = Instantiate(buffIconPrefab, buffPanel.transform);
                 var img = obj.GetComponent<Image>();
                 img.sprite = buff.Key.buffIcon;
+
+                var bd = obj.GetComponent<BuffDisplay>();
+                bd.buffKey = buff.Key.buffKey;
+                bd.buffDuration = buff.Value.duration;
             }
         }
         

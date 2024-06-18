@@ -114,7 +114,7 @@ namespace _Scripts.UI.Arsenal
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (weaponId == 0) return;
-            Tooltip.ShowTooltip_Static(weaponId);
+            Tooltip.ShowTooltipWeapon_Static(weaponId);
         }
 
         public void OnPointerExit(PointerEventData eventData)

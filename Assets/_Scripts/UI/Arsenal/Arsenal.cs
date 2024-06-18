@@ -22,6 +22,7 @@ namespace _Scripts.UI.Arsenal
         /*
          * 0 - sort by id
          * 1 - sort by name
+         * 2 - sort by level
          */
         private int sortMode;
 

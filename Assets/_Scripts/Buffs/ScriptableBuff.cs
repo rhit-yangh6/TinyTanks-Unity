@@ -29,13 +29,18 @@ namespace _Scripts.Buffs
         * Icon of the buff
         */
         public Sprite buffIcon;
+        
+        /**
+        * Key of the buff
+        */
+        public string buffKey;
 
         public abstract TimedBuff InitializeBuff(GameObject obj, int level = 1);
     }
     
     public abstract class TimedBuff
     {
-        protected int duration;
+        public int duration;
         protected int effectStacks;
         public ScriptableBuff Buff { get; }
         protected readonly GameObject obj;

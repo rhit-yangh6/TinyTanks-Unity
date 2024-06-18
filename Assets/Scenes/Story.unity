@@ -456,6 +456,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7886591661586508584, guid: 1717590c23a4442419c9691fee168f54, type: 3}
+      propertyPath: managedReferences[4311788039228096524]
+      value: Unity.Localization UnityEngine.Localization.SmartFormat.PersistentVariables.IntVariable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886591661586508584, guid: 1717590c23a4442419c9691fee168f54, type: 3}
+      propertyPath: m_StringReference.m_LocalVariables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886591661586508584, guid: 1717590c23a4442419c9691fee168f54, type: 3}
+      propertyPath: managedReferences[4311788039228096524].m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886591661586508584, guid: 1717590c23a4442419c9691fee168f54, type: 3}
+      propertyPath: m_StringReference.m_LocalVariables.Array.data[0].name
+      value: duration
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886591661586508584, guid: 1717590c23a4442419c9691fee168f54, type: 3}
+      propertyPath: m_StringReference.m_LocalVariables.Array.data[0].variable
+      value: 4311788039228096524
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

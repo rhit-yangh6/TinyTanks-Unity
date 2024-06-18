@@ -6,6 +6,7 @@ namespace _Scripts.Utils
     {
         /* I18N References */
         public const string LocalizationTableWeaponText = "Weapon Text";
+        public const string LocalizationTableBuffText = "Buff Text";
         public const string LocalizationTableWeaponUpgradeText = "Weapon Upgrade Text";
         public const string LocalizationTableUIText = "UI Text";
         public const string LocalizationTableLevelsText = "Levels Text";

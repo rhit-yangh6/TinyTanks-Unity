@@ -1943,7 +1943,7 @@ GameObject:
   - component: {fileID: 9208621007020876422}
   - component: {fileID: 7886591661586508584}
   m_Layer: 5
-  m_Name: WeaponDescText
+  m_Name: DescText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2957,7 +2957,7 @@ GameObject:
   - component: {fileID: 7162245224845122893}
   - component: {fileID: 8399343286300335730}
   m_Layer: 5
-  m_Name: WeaponNameText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3324,9 +3324,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 3034723298046240478}
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
   low: {r: 0, g: 0, b: 0, a: 0}
   high: {r: 0, g: 0, b: 0, a: 0}
-  offset: {x: 0, y: 0, z: 0}
   playerSlider: {fileID: 3034723298046240478}
   textMesh: {fileID: 7701248599860372563}
 --- !u!114 &7037062138540176784
