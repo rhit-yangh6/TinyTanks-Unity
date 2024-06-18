@@ -1212,7 +1212,7 @@
       "explosionDuration": 0.4,
       "shopPrice": 666,
       "extraWeaponTerms": [],
-      "hideInShop": false
+      "hideInShop": true
     }, {
       "id": 28,
       "weaponName": "weapon_electric_orb_name",

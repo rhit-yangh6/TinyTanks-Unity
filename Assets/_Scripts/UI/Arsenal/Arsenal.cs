@@ -24,7 +24,7 @@ namespace _Scripts.UI.Arsenal
             EventBus.AddListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
-        private void OnEnable ()
+        private void OnEnable()
         {
             EventBus.Broadcast(EventTypes.DiscordStateChange,
                 Constants.RichPresenceMenuDetail,
@@ -57,14 +57,7 @@ namespace _Scripts.UI.Arsenal
                 delegate(Weapon w1, Weapon w2) {  
                     var hasW1 = (PlayerData.Instance.GetWeaponLevelFromId(w1.id) > 0) ? 1 : 0;
                     var hasW2 = (PlayerData.Instance.GetWeaponLevelFromId(w2.id) > 0) ? 1 : 0;
-                    if (hasW1 == hasW2)
-                    {
-                        return w1.id.CompareTo(w2.id);
-                    }
-                    else
-                    {
-                        return hasW2.CompareTo(hasW1);
-                    } 
+                    return hasW1 == hasW2 ? w1.id.CompareTo(w2.id) : hasW2.CompareTo(hasW1); 
                 });
 
             weapons = Array.FindAll(weapons, w =>
@@ -112,7 +105,7 @@ namespace _Scripts.UI.Arsenal
 
         public void OnDrop(PointerEventData eventData)
         {
-            DragDropIcon ddi = eventData.pointerDrag.GetComponent<DragDropIcon>();
+            var ddi = eventData.pointerDrag.GetComponent<DragDropIcon>();
 
             if (!ddi) return;
             

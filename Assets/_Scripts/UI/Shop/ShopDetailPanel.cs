@@ -13,28 +13,24 @@ namespace _Scripts.UI.Shop
     public class ShopDetailPanel : MonoBehaviour
     {
         [SerializeField] private Image weaponIcon;
-        [SerializeField] private GameObject notice, infoPanel, purchasePanel;
         [SerializeField] private TextMeshProUGUI priceText, coinText;
-        [SerializeField] private GameObject shopButton, newWeaponMsg;
+        [SerializeField] private Button cancelButton, shopButton;
+        [SerializeField] private GameObject blurPanel;
         [SerializeField] private LocalizeStringEvent weaponNameEvent, weaponDescEvent;
         
         private int _weaponId;
 
-        private void OnEnable()
+        private void Update()
         {
-            SwitchDetailView();
-        }
-
-        private void SwitchDetailView(bool on = false)
-        {
-            infoPanel.gameObject.SetActive(on);
-            notice.gameObject.SetActive(!on);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                cancelButton.onClick.Invoke();
+            }
         }
 
         public void SetDetails(int weaponId)
         {
             _weaponId = weaponId;
-            SwitchDetailView(true);
             
             var w = WeaponManager.Instance.GetWeaponById(_weaponId);
             weaponIcon.sprite = w.weaponIconSprite;
@@ -42,22 +38,13 @@ namespace _Scripts.UI.Shop
                 new LocalizedString(Constants.LocalizationTableWeaponText, w.weaponName);
             weaponDescEvent.StringReference =
                 new LocalizedString(Constants.LocalizationTableWeaponText, w.weaponDescription);
-
-            if (PlayerData.Instance.GetWeaponLevelFromId(_weaponId) > 0)
-            {
-                purchasePanel.SetActive(false);
-                return;
-            }
             
-            purchasePanel.SetActive(true);
             priceText.text = w.shopPrice.ToString();
 
-            shopButton.SetActive(true);
-            var button = shopButton.GetComponent<Button>();
-            button.onClick.RemoveAllListeners();
+            shopButton.onClick.RemoveAllListeners();
 
             var wId = _weaponId;
-            button.onClick.AddListener(() => BuyWeapon(wId));
+            shopButton.onClick.AddListener(() => BuyWeapon(wId));
 
         }
 
@@ -65,8 +52,9 @@ namespace _Scripts.UI.Shop
         {
             var result = WeaponManager.UnlockWeapon(weaponId);
             if (!result) return;
-            purchasePanel.SetActive(false);
             coinText.text = PlayerData.Instance.coins.ToString();
+            blurPanel.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

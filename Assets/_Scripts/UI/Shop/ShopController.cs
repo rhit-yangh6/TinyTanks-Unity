@@ -10,7 +10,7 @@ namespace _Scripts.UI.Shop
 {
     public class ShopController : MonoBehaviour
     {
-        [SerializeField] private GameObject shopWeaponButton;
+        [SerializeField] private GameObject shopWeaponButton, blurPanel;
         [SerializeField] private Button backButton;
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private GameObject weaponScrollListContent;
@@ -75,10 +75,17 @@ namespace _Scripts.UI.Shop
                 var buttonObj = Instantiate(shopWeaponButton, weaponScrollListContent.transform);
                 var s = buttonObj.GetComponent<Image>();
                 var button = buttonObj.GetComponent<Button>();
+                var buttonCoinText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
                 var weaponId = w.id;
 
+                buttonCoinText.text = w.shopPrice.ToString();
                 s.sprite = w.weaponIconSprite; 
-                button.onClick.AddListener(() => sdp.SetDetails(weaponId));
+                button.onClick.AddListener(() =>
+                {
+                    blurPanel.SetActive(true);
+                    sdp.gameObject.SetActive(true);
+                    sdp.SetDetails(weaponId);
+                });
             }
         }
     }
