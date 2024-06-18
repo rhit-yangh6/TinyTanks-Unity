@@ -13,15 +13,29 @@ namespace _Scripts.UI.Arsenal
     {
         [SerializeField] private GameObject arsenalWeaponButton;
         [SerializeField] private Button backButton;
+        [SerializeField] public GameObject weaponScrollListContent;
+        [SerializeField] public TextMeshProUGUI coinText;
+        [SerializeField] public ArsenalWeaponDetailPanel wdp;
+        [SerializeField] private Image sortButtonImage;
+        [SerializeField] private Sprite[] sortIcons;
 
-        public GameObject weaponScrollListContent;
-        public TextMeshProUGUI coinText;
-        public ArsenalWeaponDetailPanel wdp;
+        /*
+         * 0 - sort by id
+         * 1 - sort by name
+         */
+        private int sortMode;
 
         private void Start()
         {
             backButton.onClick.AddListener(SaveSystem.SavePlayer);
             EventBus.AddListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
+        }
+
+        public void SwitchSortMode()
+        {
+            sortMode = (sortMode + 1) % sortIcons.Length;
+            sortButtonImage.sprite = sortIcons[sortMode];
+            PopulateWeaponIcons();
         }
 
         private void OnEnable()
@@ -57,7 +71,29 @@ namespace _Scripts.UI.Arsenal
                 delegate(Weapon w1, Weapon w2) {  
                     var hasW1 = (PlayerData.Instance.GetWeaponLevelFromId(w1.id) > 0) ? 1 : 0;
                     var hasW2 = (PlayerData.Instance.GetWeaponLevelFromId(w2.id) > 0) ? 1 : 0;
-                    return hasW1 == hasW2 ? w1.id.CompareTo(w2.id) : hasW2.CompareTo(hasW1); 
+                    if (hasW1 != hasW2)
+                    {
+                        return hasW2.CompareTo(hasW1);
+                    }
+
+                    switch (sortMode)
+                    {
+                        case 0:
+                            return w1.id.CompareTo(w2.id);
+                        case 1:
+                            return string.Compare(w1.dataPath, w2.dataPath, StringComparison.Ordinal);
+                        case 2:
+                            var w1Level = PlayerData.Instance.GetWeaponLevelFromId(w1.id);
+                            var w2Level = PlayerData.Instance.GetWeaponLevelFromId(w2.id);
+                            if (w1Level >= 5 && w2Level >= 5)
+                            {
+                                return w1.id.CompareTo(w2.id);
+                            }
+
+                            return w2Level.CompareTo(w1Level);
+                    }
+
+                    return 0;
                 });
 
             weapons = Array.FindAll(weapons, w =>
@@ -71,10 +107,10 @@ namespace _Scripts.UI.Arsenal
 
             foreach (var w in weapons)
             {
-                GameObject buttonObj = Instantiate(arsenalWeaponButton, weaponScrollListContent.transform);
-                Image s = buttonObj.GetComponent<Image>();
+                var buttonObj = Instantiate(arsenalWeaponButton, weaponScrollListContent.transform);
+                var s = buttonObj.GetComponent<Image>();
                 var animator = buttonObj.GetComponent<Animator>();
-                Button button = buttonObj.GetComponent<Button>();
+                var button = buttonObj.GetComponent<Button>();
                 var weaponId = w.id;
 
                 if (PlayerData.Instance.GetWeaponLevelFromId(weaponId) > 0)
