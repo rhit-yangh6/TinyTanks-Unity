@@ -851,6 +851,49 @@ MonoBehaviour:
       the orb to release two chains simultaneously.
     m_Metadata:
       m_Items: []
+  - m_Id: 6552054467403776
+    m_Localized: Grinding Edges
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6552074134495232
+    m_Localized: Overclocked Rotation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6552065766858752
+    m_Localized: Gearstorm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6552045080551424
+    m_Localized: Gear Synergy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6551999354249216
+    m_Localized: Lightweight Gears
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553048618115072
+    m_Localized: Reduces the weight of the gears, allowing them to be launched further.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553050505551872
+    m_Localized: Increases the maximum number of gears that can contribute to the
+      damage boost, raising the cap to 7 gears.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553051377967104
+    m_Localized: When a gear spins, it deals damage to nearby enemies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553052984385536
+    m_Localized: Increases the cap to 12 gears and boosts the base damage of each
+      gear.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553053760331776
+    m_Localized: Players can click in mid-air to activate the gear, causing all gears
+      on the map to explode after spinning, dealing massive damage in their vicinity.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

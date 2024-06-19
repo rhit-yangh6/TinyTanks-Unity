@@ -815,6 +815,46 @@ MonoBehaviour:
     m_Key: upgrade_electric_orb_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 6551999354249216
+    m_Key: upgrade_gear_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6552045080551424
+    m_Key: upgrade_gear_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6552054467403776
+    m_Key: upgrade_gear_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6552065766858752
+    m_Key: upgrade_gear_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6552074134495232
+    m_Key: upgrade_gear_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553048618115072
+    m_Key: upgrade_gear_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553050505551872
+    m_Key: upgrade_gear_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553051377967104
+    m_Key: upgrade_gear_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553052984385536
+    m_Key: upgrade_gear_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6553053760331776
+    m_Key: upgrade_gear_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

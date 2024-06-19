@@ -1264,28 +1264,28 @@
       "saying": "weapon_gear_saying",
       "upgradeInfos": [
         {
-          "name": "",
-          "description": "",
+          "name": "upgrade_gear_2_name",
+          "description": "upgrade_gear_2_desc",
           "cost": 0
         },
         {
-          "name": "",
-          "description": "",
+          "name": "upgrade_gear_3_name",
+          "description": "upgrade_gear_3_desc",
           "cost": 0
         },
         {
-          "name": "",
-          "description": "",
+          "name": "upgrade_gear_4_name",
+          "description": "upgrade_gear_4_desc",
           "cost": 0
         },
         {
-          "name": "",
-          "description": "",
+          "name": "upgrade_gear_5_name",
+          "description": "upgrade_gear_5_desc",
           "cost": 0
         },
         {
-          "name": "",
-          "description": "",
+          "name": "upgrade_gear_6_name",
+          "description": "upgrade_gear_6_desc",
           "cost": 0
         }
       ],
