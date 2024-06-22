@@ -28,40 +28,30 @@ namespace _Scripts.UI.Arsenal
 
         private void Start()
         {
-            backButton.onClick.AddListener(SaveSystem.SavePlayer);
-            EventBus.AddListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
+            // backButton.onClick.AddListener(SaveSystem.SavePlayer);
+            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
         public void SwitchSortMode()
         {
             sortMode = (sortMode + 1) % sortIcons.Length;
             sortButtonImage.sprite = sortIcons[sortMode];
-            PopulateWeaponIcons();
+            PopulateWeaponIcons(0);
         }
 
         private void OnEnable()
         {
-            EventBus.Broadcast(EventTypes.DiscordStateChange,
-                Constants.RichPresenceMenuDetail,
-                Constants.RichPresenceArsenalState);
-            PopulateWeaponIcons();
+            PopulateWeaponIcons(0);
             wdp.SwitchDetailView();
-            coinText.text = PlayerData.Instance.coins.ToString();
-        }
-
-        private void OnDisable()
-        {
-            EventBus.Broadcast(EventTypes.DiscordStateChange,
-                Constants.RichPresenceMenuDetail,
-                Constants.RichPresenceMenuState);
+            // coinText.text = PlayerData.Instance.coins.ToString();
         }
 
         private void OnDestroy()
         {
-            EventBus.RemoveListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
+            EventBus.RemoveListener<int>(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
-        private void PopulateWeaponIcons()
+        private void PopulateWeaponIcons(int unusedWeaponId)
         {
             foreach (Transform child in weaponScrollListContent.transform) {
                 Destroy(child.gameObject);

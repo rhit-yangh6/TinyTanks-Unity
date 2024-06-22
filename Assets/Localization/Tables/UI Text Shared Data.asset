@@ -163,6 +163,144 @@ MonoBehaviour:
     m_Key: ui_level_text
     m_Metadata:
       m_Items: []
+  - m_Id: 7128035192217600
+    m_Key: ui_loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7129539353518080
+    m_Key: ui_exit_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7129934909939712
+    m_Key: ui_cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7130577150156800
+    m_Key: ui_confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7131276965584896
+    m_Key: ui_press_any_key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7133002581942272
+    m_Key: ui_game_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7133958765813760
+    m_Key: ui_settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7138291876110336
+    m_Key: ui_home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7144470874431488
+    m_Key: 'ui_next_page
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7144529829568512
+    m_Key: 'ui_previous_page
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7151795735633920
+    m_Key: ui_survival_mode_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7153568378527744
+    m_Key: ui_story_mode_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7154821699477504
+    m_Key: ui_shooting_range_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7155348902518784
+    m_Key: ui_replay_tutorial_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7156660360716288
+    m_Key: ui_coming_soon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7178610621554688
+    m_Key: ui_chapter_locked_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7179238211067904
+    m_Key: ui_chapter_locked_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7874732428107776
+    m_Key: ui_confirm_play_tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7876191496445952
+    m_Key: 'ui_skip_tutorial
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7888942193188864
+    m_Key: ui_purchase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7943706780114944
+    m_Key: ui_settings_audio_category
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7944429936844800
+    m_Key: ui_settings_interface_category
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7952282651205632
+    m_Key: ui_options_master_volume_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7952445704773632
+    m_Key: ui_options_music_volume_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7952685056925696
+    m_Key: ui_options_sfx_volume_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7952874744324096
+    m_Key: ui_options_language_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7955309135142912
+    m_Key: ui_options_preview
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7955373433823232
+    m_Key: ui_options_preview_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8148866022252544
+    m_Key: ui_main_menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8150229036834816
+    m_Key: ui_next_level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8184816861454336
+    m_Key: ui_restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8185292562636800
+    m_Key: ui_restart_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8186249241436160
+    m_Key: ui_resume
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

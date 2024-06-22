@@ -15,7 +15,7 @@ namespace _Scripts.UI
         {
             Slider.maxValue = maxHealth;
             Slider.value = health;
-            textMesh.text = health + " / " + maxHealth;
+            textMesh.text = Mathf.Round(health * 100 / maxHealth) + "%";
         }
 
         protected override void Update() { }

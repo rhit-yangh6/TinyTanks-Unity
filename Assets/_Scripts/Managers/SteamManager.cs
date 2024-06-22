@@ -1,12 +1,16 @@
 using System;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using _Scripts.Utils;
+using Steamworks;
+using Steamworks.Data;
 using UnityEngine;
 
 namespace _Scripts.Managers
 {
     public class SteamManager : MonoBehaviour
     {
+        private static bool _isSteamConnected;
         private static SteamManager _i;
         
         public static SteamManager Instance
@@ -24,8 +28,10 @@ namespace _Scripts.Managers
         {
             try
             {
-                Steamworks.SteamClient.Init(Constants.SteamAppId);
+                SteamClient.Init(Constants.SteamAppId);
                 PrintYourName();
+                _isSteamConnected = true;
+                EventBus.Broadcast(EventTypes.SteamConnected);
             }
             catch (Exception e)
             {
@@ -36,6 +42,38 @@ namespace _Scripts.Managers
         private void Update()
         {
             Steamworks.SteamClient.RunCallbacks();
+        }
+
+        public string GetClientName()
+        {
+            if (_isSteamConnected)
+            {
+                return Steamworks.SteamClient.Name;
+            }
+            else
+            {
+                return "ERROR";
+            }
+        }
+
+        public bool IsConnected()
+        {
+            return _isSteamConnected;
+        }
+        
+        public async Task<Image?> GetAvatar()
+        {
+            try
+            {
+                // Get Avatar using await
+                return await SteamFriends.GetLargeAvatarAsync( SteamClient.SteamId );
+            }
+            catch ( Exception e )
+            {
+                // If something goes wrong, log it
+                Debug.Log( e );
+                return null;
+            }
         }
 
         private void PrintYourName()

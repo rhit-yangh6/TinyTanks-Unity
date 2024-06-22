@@ -15,7 +15,6 @@ namespace _Scripts.UI.Arsenal
                 if (PlayerData.Instance.selectedWeapons[i] != null)
                 {
                     selectionIcons[i].SetSprite(PlayerData.Instance.selectedWeapons[i].weaponId);    
-
                 }
             }
         }

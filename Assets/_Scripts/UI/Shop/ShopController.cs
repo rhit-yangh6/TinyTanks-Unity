@@ -2,6 +2,7 @@ using System.Linq;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
 using _Scripts.Utils;
+using Michsky.UI.Shift;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,35 +16,27 @@ namespace _Scripts.UI.Shop
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private GameObject weaponScrollListContent;
         [SerializeField] private ShopDetailPanel sdp;
+        [SerializeField] private ModalWindowManager modalWindowManager;
+        [SerializeField] private BlurManager blurManager;
 
         private void Start()
         {
-            backButton.onClick.AddListener(SaveSystem.SavePlayer);
-            EventBus.AddListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
+            // backButton.onClick.AddListener(SaveSystem.SavePlayer);
+            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
         private void OnEnable ()
         {
-            EventBus.Broadcast(EventTypes.DiscordStateChange,
-                Constants.RichPresenceMenuDetail,
-                Constants.RichPresenceShopState);
-            PopulateWeaponIcons();
-            coinText.text = PlayerData.Instance.coins.ToString();
-        }
-
-        private void OnDisable()
-        {
-            EventBus.Broadcast(EventTypes.DiscordStateChange,
-                Constants.RichPresenceMenuDetail,
-                Constants.RichPresenceMenuState);
+            PopulateWeaponIcons(0);
+            // coinText.text = PlayerData.Instance.coins.ToString();
         }
         
         private void OnDestroy()
         {
-            EventBus.RemoveListener(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
+            EventBus.RemoveListener<int>(EventTypes.WeaponUnlocked, PopulateWeaponIcons);
         }
 
-        private void PopulateWeaponIcons()
+        private void PopulateWeaponIcons(int unusedWeaponId)
         {
             foreach (Transform child in weaponScrollListContent.transform) {
                 Destroy(child.gameObject);
@@ -73,8 +66,8 @@ namespace _Scripts.UI.Shop
                     w.hideInShop) continue;
                 
                 var buttonObj = Instantiate(shopWeaponButton, weaponScrollListContent.transform);
-                var s = buttonObj.GetComponent<Image>();
-                var button = buttonObj.GetComponent<Button>();
+                var s = buttonObj.GetComponentInChildren<Image>();
+                var button = buttonObj.GetComponentInChildren<Button>();
                 var buttonCoinText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
                 var weaponId = w.id;
 
@@ -82,9 +75,12 @@ namespace _Scripts.UI.Shop
                 s.sprite = w.weaponIconSprite; 
                 button.onClick.AddListener(() =>
                 {
-                    blurPanel.SetActive(true);
-                    sdp.gameObject.SetActive(true);
+                    modalWindowManager.ModalWindowIn();
+                    blurManager.BlurInAnim();
                     sdp.SetDetails(weaponId);
+                    // blurPanel.SetActive(true);
+                    // sdp.gameObject.SetActive(true);
+                    // sdp.SetDetails(weaponId);
                 });
             }
         }

@@ -24,8 +24,8 @@ namespace _Scripts.UI
         {
             fuelSlider.maxValue = maxFuel;
             fuelSlider.value = fuel;
-            fuelSlider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, fuelSlider.normalizedValue);
-            textMesh.text = (int)fuel + " / " + maxFuel;
+            // fuelSlider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, fuelSlider.normalizedValue);
+            textMesh.text = Mathf.Round(fuel * 100 / maxFuel) + "%";
         }
 
         public void Update()

@@ -28,8 +28,13 @@ namespace _Scripts.UI.Arsenal
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (weaponId == 0) return;
-
-            _clone = Instantiate(draggableIconPrefab, eventData.position, Quaternion.identity, _wst);
+            
+            var screenPoint = Input.mousePosition;
+            screenPoint.z = 10.0f; //distance of the plane from the camera
+            if (Camera.main != null)
+                _clone = Instantiate(draggableIconPrefab, Camera.main.ScreenToWorldPoint(screenPoint),
+                    Quaternion.identity);
+            _clone.transform.SetParent (GameObject.FindGameObjectWithTag("UI").transform, false);
             _cloneRectTransform = _clone.GetComponent<RectTransform>();
             _cloneRectTransform.sizeDelta = _rectTransform.sizeDelta;
             _canvasGroup = _clone.GetComponent<CanvasGroup>();
@@ -51,7 +56,9 @@ namespace _Scripts.UI.Arsenal
         {
             if (weaponId == 0) return;
 
-            _cloneRectTransform.position = eventData.position;
+            var screenPoint = Input.mousePosition;
+            screenPoint.z = 10.0f; //distance of the plane from the camera
+            if (Camera.main != null) _cloneRectTransform.position = Camera.main.ScreenToWorldPoint(screenPoint);
         }
         
     }

@@ -66,7 +66,7 @@ MonoBehaviour:
   - {fileID: -82914510, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
   - {fileID: 1993477033, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
   - {fileID: -1829077492, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
-  weaponLockedSprite: {fileID: 21300000, guid: 47ba90cf51f943e4192acdf20283ffa3, type: 3}
+  weaponLockedSprite: {fileID: 21300000, guid: 2e4084541499f8940b2321b5b980f0c8, type: 3}
   weaponEmptySprite: {fileID: 21300000, guid: 2aaa8cae8b064f3468e288a54e5bf8dc, type: 3}
   regularExplosionFX: {fileID: 6624758977479615433, guid: bf9211e39af3fc547b81e87d2c190ec9, type: 3}
   explosionFX: {fileID: 7037325690141038535, guid: ec9bddb8635a8a54bb4a71512a17814a, type: 3}

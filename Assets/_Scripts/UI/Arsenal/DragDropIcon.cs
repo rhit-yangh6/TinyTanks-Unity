@@ -1,6 +1,7 @@
 using System;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
+using Michsky.UI.Shift;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,6 +16,7 @@ namespace _Scripts.UI.Arsenal
         [HideInInspector] public int weaponId;
         [HideInInspector] public int selectionIndex;
         
+        private LayoutGroupPositionFix _lgpf;
         private Canvas _canvas;
         private RectTransform _rectTransform;
         private CanvasGroup _canvasGroup;
@@ -25,6 +27,7 @@ namespace _Scripts.UI.Arsenal
             _rectTransform = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            _lgpf = GameObject.Find("WeaponSelectionTab").GetComponent<LayoutGroupPositionFix>();
             
             _initPos = _rectTransform.anchoredPosition;
         }
@@ -67,7 +70,8 @@ namespace _Scripts.UI.Arsenal
         public void OnEndDrag(PointerEventData eventData)
         {
             _canvasGroup.blocksRaycasts = true;
-            ResetPos();
+            // ResetPos();
+            _lgpf.FixLayout();
             // Destroy(gameObject);
         }
 

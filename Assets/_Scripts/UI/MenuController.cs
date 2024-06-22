@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
-using _Scripts.Utils;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using EventBus = _Scripts.Managers.EventBus;
 
@@ -30,45 +30,40 @@ namespace _Scripts.UI
             // Create a SteamManager Singleton
             var unusedSteamManager = SteamManager.Instance;
             
-            optionsController.LoadSettings();
+            // optionsController.LoadSettings();
         }
 
         private void Start()
         {
-            if (!PlayerData.Instance.isTutorialCompleted)
-            {
-                // Didn't pass tutorial, change to tutorial scene
-                SceneManager.LoadScene("Tutorial");
-            }
+            
         }
 
         public void OnEnable()
         {
-            EventBus.Broadcast(EventTypes.DiscordStateChange, "Browsing Menu", "");
 
-            isDay = CheckIsDay();
-            if (isDay)
-            {
-                nightCanvasGroup.alpha = 0;
-                dayCanvasGroup.alpha = 1;
-            }
-            else
-            {
-                dayCanvasGroup.alpha = 0;
-                nightCanvasGroup.alpha = 1;
-            }
+            // isDay = CheckIsDay();
+            // if (isDay)
+            // {
+            //     nightCanvasGroup.alpha = 0;
+            //     dayCanvasGroup.alpha = 1;
+            // }
+            // else
+            // {
+            //     dayCanvasGroup.alpha = 0;
+            //     nightCanvasGroup.alpha = 1;
+            // }
         }
 
         private void Update()
         {
-            var currentIsDay = CheckIsDay();
-            // Switch background
-            if (currentIsDay == isDay) return;
-            
-            SteamManager.UnlockAchievement(Constants.AchievementYinYang);
-            WeaponManager.UnlockWeapon(24); // YinYang 24
-            isDay = currentIsDay;
-            StartCoroutine(SwitchBackground());
+            // var currentIsDay = CheckIsDay();
+            // // Switch background
+            // if (currentIsDay == isDay) return;
+            //
+            // SteamManager.UnlockAchievement(Constants.AchievementYinYang);
+            // WeaponManager.UnlockWeapon(24); // YinYang 24
+            // isDay = currentIsDay;
+            // StartCoroutine(SwitchBackground());
         }
 
         private IEnumerator SwitchBackground()
@@ -89,7 +84,7 @@ namespace _Scripts.UI
 
         public void ExitButtonYes()
         {
-            AudioManager.Instance.FadeOutMusic();
+            // AudioManager.Instance.FadeOutMusic();
             SaveSystem.SavePlayer();
             Application.Quit();
         }
@@ -104,6 +99,11 @@ namespace _Scripts.UI
         {
             var now = DateTime.Now;
             return now.Hour is >= 6 and < 18;
+        }
+
+        public void SwitchLanguage(int index)
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
         }
     }
 }

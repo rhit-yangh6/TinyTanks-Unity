@@ -1,6 +1,7 @@
 using _Scripts.GameEngine;
 using _Scripts.Managers;
 using _Scripts.Utils;
+using Michsky.UI.Shift;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -17,15 +18,17 @@ namespace _Scripts.UI.Shop
         [SerializeField] private Button cancelButton, shopButton;
         [SerializeField] private GameObject blurPanel;
         [SerializeField] private LocalizeStringEvent weaponNameEvent, weaponDescEvent;
+        [SerializeField] private ModalWindowManager modalWindowManager;
+        [SerializeField] private BlurManager blurManager;
         
         private int _weaponId;
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                cancelButton.onClick.Invoke();
-            }
+            // if (Input.GetKeyDown(KeyCode.Escape))
+            // {
+            //     cancelButton.onClick.Invoke();
+            // }
         }
 
         public void SetDetails(int weaponId)
@@ -44,17 +47,15 @@ namespace _Scripts.UI.Shop
             shopButton.onClick.RemoveAllListeners();
 
             var wId = _weaponId;
-            shopButton.onClick.AddListener(() => BuyWeapon(wId));
-
-        }
-
-        private void BuyWeapon(int weaponId)
-        {
-            var result = WeaponManager.UnlockWeapon(weaponId);
-            if (!result) return;
-            coinText.text = PlayerData.Instance.coins.ToString();
-            blurPanel.SetActive(false);
-            gameObject.SetActive(false);
+            shopButton.onClick.AddListener(() =>
+            { 
+                var isSuccessful = WeaponManager.UnlockWeapon(weaponId);
+                if (isSuccessful)
+                {
+                    modalWindowManager.ModalWindowOut();
+                    blurManager.BlurOutAnim();
+                }
+            });
         }
     }
 }

@@ -14,17 +14,17 @@ namespace _Scripts.GameEngine
     {
         protected override void ChangeTurn()
         {
-            if (PauseMenu.gameIsEnded) return;
+            if (isEnded) return;
         
             if (playerCharacter.Health <= 0)
             {
-                pauseMenu.Lose();
+                HandleLose();
                 return;
             }
             
             if (IsAllEnemyDead())
             {
-                pauseMenu.Win();
+                HandleWin();
                 return;
             }
         

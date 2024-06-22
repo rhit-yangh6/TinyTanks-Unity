@@ -215,7 +215,7 @@ namespace _Scripts.UI.Arsenal
             }
             shopPanel.SetActive(false);
             SetWeaponLevel(weaponId, levelToBuy);
-            coinText.text = PlayerData.Instance.coins.ToString();
+            // coinText.text = PlayerData.Instance.coins.ToString();
         }
 
     }

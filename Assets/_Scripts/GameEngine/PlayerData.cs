@@ -121,6 +121,7 @@ namespace _Scripts.GameEngine
             if (sd != null) return false;
 
             selectedWeapons[index] = new SelectionDatum(weaponId, GetWeaponLevelFromId(weaponId));
+            SaveSystem.SavePlayer();
             return true;
         }
 
@@ -131,6 +132,7 @@ namespace _Scripts.GameEngine
                 (selectedWeapons[index1] == null || selectedWeapons[index2] == null)) return false;
 
             (selectedWeapons[index1], selectedWeapons[index2]) = (selectedWeapons[index2], selectedWeapons[index1]);
+            SaveSystem.SavePlayer();
             return true;
         }
         
@@ -147,6 +149,7 @@ namespace _Scripts.GameEngine
             if (idx == -1) return false;
 
             selectedWeapons[idx] = null;
+            SaveSystem.SavePlayer();
             return true;
         }
 
@@ -162,6 +165,7 @@ namespace _Scripts.GameEngine
             var sd = Array.Find(selectedWeapons, sd => sd != null && sd.weaponId == idToFind);
             if (sd != null) sd.level = levelToSet;
 
+            SaveSystem.SavePlayer();
             return true;
         }
 
@@ -174,6 +178,8 @@ namespace _Scripts.GameEngine
 
             coins -= cost;
             datum.unlocked[levelToBuy - 1] = true;
+            EventBus.Broadcast(EventTypes.CoinChanged);
+            SaveSystem.SavePlayer();
             return true;
         }
 
@@ -185,6 +191,8 @@ namespace _Scripts.GameEngine
 
             coins -= cost;
             weaponLevels.Add(new WeaponDatum(idToFind, 1, new []{true, false, false, false, false, false}));
+            EventBus.Broadcast(EventTypes.CoinChanged);
+            SaveSystem.SavePlayer();
             return true;
         }
 
@@ -217,9 +225,21 @@ namespace _Scripts.GameEngine
                 return;
             }
             levels.Add(chapterId, 0);
+            SaveSystem.SavePlayer();
         }
-        
-        public void GainMoney(int prize) { coins += prize; }
+
+        public void GainMoney(int prize)
+        {
+            coins += prize;
+            EventBus.Broadcast(EventTypes.CoinChanged);
+            SaveSystem.SavePlayer();
+        }
+
+        public void CompleteTutorial()
+        {
+            isTutorialCompleted = true;
+            SaveSystem.SavePlayer();
+        }
     }
 
     [Serializable]

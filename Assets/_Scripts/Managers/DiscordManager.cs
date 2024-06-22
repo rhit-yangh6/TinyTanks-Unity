@@ -30,6 +30,7 @@ namespace _Scripts.Managers
         private void Start()
         {
             ConnectDiscord();
+            ChangeActivity("Browsing Menu", "");
         }
 
         private void OnDestroy()
@@ -40,7 +41,7 @@ namespace _Scripts.Managers
             }
             catch (Exception e)
             {
-                Debug.Log( e.Message);
+                Debug.LogWarning(e.Message);
             }
         }
 
@@ -98,7 +99,7 @@ namespace _Scripts.Managers
             {
                 return newState;
             }
-            return Constants.RichPresenceStoryModeLevelStatePrefix + currentLevel.path + ": " + currentLevel.name;
+            return Constants.RichPresenceStoryModeLevelStatePrefix + currentLevel.path;
         }
 
         private void Update()
@@ -120,6 +121,7 @@ namespace _Scripts.Managers
                 discord = new Discord.Discord(Constants.DiscordApplicationId,
                     (ulong)Discord.CreateFlags.NoRequireDiscord);
                 EventBus.AddListener<string, string>(EventTypes.DiscordStateChange, ChangeActivity);
+                Debug.Log("Connected to Discord successfully!");
             }
             catch (Exception e)
             {

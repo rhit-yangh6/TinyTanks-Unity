@@ -19,5 +19,10 @@
 35. Weapon - Revolver
 
 ESC escapes the panels
-I18n
+
+shopping cart UI a bit confusing
+enemy kill both, you still win
+use last power + angle
+explode center, max damage [Weapon]
+
 

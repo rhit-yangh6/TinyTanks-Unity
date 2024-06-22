@@ -10,48 +10,39 @@ namespace _Scripts.Managers
     public class AsyncLoader : MonoBehaviour
     {
         // Source: https://www.youtube.com/watch?v=NyFYNsC3H8k
-        // Source 2: https://www.youtube.com/watch?v=tF9RMjF9wDc
-        [Header("Menu Screens")]
-        [SerializeField] private GameObject loadingScreen;
+        [Header("Animator")]
+        [SerializeField] private Animator loadingMenuAnimator;
         
-        [Header("Slider")]
-        [SerializeField] private Slider loadingSlider;
-
         [Header("LoadingTime")]
         [Range(0.1f, 3f)]
         [SerializeField] private float blackScreenDefaultWaitTime;
-        
-        private CanvasGroup _cg;
-        private bool _fadeIn;
-
-        private void Start()
-        {
-            _cg = loadingScreen.GetComponent<CanvasGroup>();
-        }
 
         public void LoadLevelBtn(string levelToLoad)
         {
-            // mainMenu.SetActive(false);
-            loadingScreen.SetActive(true);
-            
             // Set currentLevelId
             GameStateController.currentLevelId = levelToLoad;
-            
-            // Set _fadeIn
-            _cg.alpha = 0;
-            _fadeIn = true;
             
             // Run Async
             StartCoroutine(LoadLevelAsync("Story"));
         }
 
+        public void ReloadLevel()
+        {
+            LoadLevelBtn(GameStateController.currentLevelId);
+        }
+
+        public void LoadNextLevel()
+        {
+            var nextLevel = LevelManager.Instance.GetNextLevel(GameStateController.currentLevelId);
+            if (nextLevel != null)
+            {
+                LoadLevelBtn(nextLevel.id);
+            }
+        }
+
         public void LoadSurvivalMode()
         {
-            loadingScreen.SetActive(true);
-            
-            // Set _fadeIn
-            _cg.alpha = 0;
-            _fadeIn = true;
+            // loadingScreen.SetActive(true);
             
             // Run Async
             StartCoroutine(LoadLevelAsync("Survival"));
@@ -59,55 +50,32 @@ namespace _Scripts.Managers
         
         public void LoadShootingRange()
         {
-            loadingScreen.SetActive(true);
-            
-            // Set _fadeIn
-            _cg.alpha = 0;
-            _fadeIn = true;
-            
             // Run Async
             StartCoroutine(LoadLevelAsync("ShootingRange"));
         }
         
         public void LoadTutorial()
         {
-            loadingScreen.SetActive(true);
-            
-            // Set _fadeIn
-            _cg.alpha = 0;
-            _fadeIn = true;
-            
             // Run Async
             StartCoroutine(LoadLevelAsync("Tutorial"));
         }
 
+        public void LoadMainMenu()
+        {
+            // Run Async
+            StartCoroutine(LoadLevelAsync("Main Menu"));
+        }
+
         private IEnumerator LoadLevelAsync(string sceneToLoad)
         {
+            loadingMenuAnimator.Play("UI_LoadingMenu_Loading");
             yield return new WaitForSeconds(blackScreenDefaultWaitTime);
             
-            // var level = LevelManager.Instance.GetLevelById(levelToLoad);
             var loadOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 
             while (!loadOperation.isDone)
             {
-                var progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
-                loadingSlider.value = progressValue;
                 yield return null;
-            }
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-            if (!_fadeIn) return;
-            
-            if (_cg.alpha < 1)
-            {
-                _cg.alpha += Time.deltaTime * 3;
-                if (_cg.alpha >= 1)
-                {
-                    _fadeIn = false;
-                }
             }
         }
     }

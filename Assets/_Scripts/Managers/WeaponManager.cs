@@ -56,11 +56,11 @@ namespace _Scripts.Managers
             var result = PlayerData.Instance.BuyWeapon(weaponId);
             if (!result) return false;
             
-            var panel = Instantiate(Resources.Load<GameObject>("NewWeaponMsgPanel"),
-                GameObject.FindGameObjectWithTag("UI").transform);
-            panel.GetComponent<NewWeaponMsgBehavior>().Display(weaponId);
+            // var panel = Instantiate(Resources.Load<GameObject>("NewWeaponMsgPanel"),
+            //     GameObject.FindGameObjectWithTag("UI").transform);
+            // panel.GetComponent<WeaponUnlockedModalWindow>().Display(weaponId);
             SaveSystem.SavePlayer();
-            EventBus.Broadcast(EventTypes.WeaponUnlocked);
+            EventBus.Broadcast(EventTypes.WeaponUnlocked, weaponId);
             return true;
         }
     }

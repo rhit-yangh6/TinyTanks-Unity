@@ -5,6 +5,9 @@ namespace _Scripts.Managers
         /* Represents the event that game is paused */
         PauseGame,
         
+        /* Represents the event that coins number changed */
+        CoinChanged,
+        
         /* Represents the event that a weapon is unlocked */
         WeaponUnlocked,
         
@@ -28,6 +31,9 @@ namespace _Scripts.Managers
         
         /* Represents the event that a turn is ended by either player/enemy */
         EndTurn,
+        
+        /* Represents the event that Steam is successfully connected */
+        SteamConnected,
         
         /* Represents the change of state of Discord Rich Presence */
         DiscordStateChange

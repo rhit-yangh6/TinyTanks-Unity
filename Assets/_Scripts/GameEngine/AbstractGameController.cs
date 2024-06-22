@@ -6,14 +6,22 @@ using _Scripts.Entities;
 using _Scripts.Managers;
 using _Scripts.UI;
 using _Scripts.Utils;
+using Michsky.UI.Shift;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _Scripts.GameEngine
 {
     public abstract class AbstractGameController : MonoBehaviour
     {
         [SerializeField] protected float turnTime = 45f;
+        [SerializeField] protected BlurManager blurManager;
+        [SerializeField] protected BlurManager backgroundBlurManager;
+        [SerializeField] protected Animator pauseMenuAnimator;
+        [SerializeField] protected ModalWindowManager winModalManager;
+        [SerializeField] protected TextMeshProUGUI winCoinText;
+        [SerializeField] protected ModalWindowManager loseModalManager;
         
         protected bool projectileShot;
         
@@ -25,6 +33,7 @@ namespace _Scripts.GameEngine
         protected PauseMenu pauseMenu;
         protected float remainingTime;
         protected int turn, playerNum;
+        protected bool isEnded;
 
         protected bool isInterTurn;
 
@@ -106,6 +115,40 @@ namespace _Scripts.GameEngine
 
         protected abstract void ChangeTurn();
 
+        protected virtual void HandleWin()
+        {
+            isEnded = true;
+            if (SceneManager.GetActiveScene().name == "Story")
+            {
+                PlayerData.Instance.CompleteLevel();
+                // Unlock FIRST_WIN achievement during level completion
+                SteamManager.UnlockAchievement(Constants.AchievementFirstWinId);
+                var prize = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId).prize;
+
+                winCoinText.text = "+" + prize;
+                PlayerData.Instance.GainMoney(prize);
+            } else if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                SteamManager.UnlockAchievement(Constants.AchievementTutorialCompleted);
+                PlayerData.Instance.isTutorialCompleted = true;
+            }
+            pauseMenuAnimator.Play("Window In");
+            backgroundBlurManager.BlurInAnim();
+            blurManager.BlurInAnim();
+            winModalManager.ModalWindowIn();
+            PauseGame();
+        }
+
+        protected virtual void HandleLose()
+        {
+            isEnded = true;
+            pauseMenuAnimator.Play("Window In");
+            backgroundBlurManager.BlurInAnim();
+            blurManager.BlurInAnim();
+            loseModalManager.ModalWindowIn();
+            PauseGame();
+        }
+
         // Hitting the edge or dying in their turn
         protected void EndTurnByCharacter(BuffableEntity be)
         {
@@ -168,6 +211,18 @@ namespace _Scripts.GameEngine
                     }
                 }
             }
+        }
+        
+        public void PauseGame()
+        {
+            Debug.Log("Game Paused");
+            Time.timeScale = 0f;
+        }
+
+        public void ResumeGame()
+        {
+            Debug.Log("Game Resumed");
+            Time.timeScale = 1f;
         }
     }
 }

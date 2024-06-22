@@ -1,18 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using _Scripts.Managers;
-using _Scripts.Projectiles;
 using _Scripts.Utils;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.SmartFormat.PersistentVariables;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.UI;
-using Random = System.Random;
 
 namespace _Scripts.UI
 {
@@ -20,16 +12,15 @@ namespace _Scripts.UI
     {
         private static Tooltip _instance;
 
-        [SerializeField] private float tooltipMouseDistance = 3f;
+        [SerializeField] private float tooltipMouseDistanceX = 100f;
+        [SerializeField] private float tooltipMouseDistanceY = 3f;
         
         private TextMeshProUGUI tooltipDescText;
         private TextMeshProUGUI tooltipNameText;
-        private LocalizeStringEvent tooltipDescLocalizeStringEvent;
-        private LocalizeStringEvent tooltipNameLocalizeStringEvent;
         private RectTransform bgRectTransform;
         private RectTransform mainRectTransform;
 
-        private const float TextPaddingSize = 4f;
+        private const float TextPaddingSize = 6f;
 
         private void Awake()
         {
@@ -38,14 +29,12 @@ namespace _Scripts.UI
             bgRectTransform = transform.Find("BG").GetComponent<RectTransform>();
             tooltipDescText = transform.Find("DescText").GetComponent<TextMeshProUGUI>();
             tooltipNameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
-            tooltipDescLocalizeStringEvent = transform.Find("DescText").GetComponent<LocalizeStringEvent>();
-            tooltipNameLocalizeStringEvent = transform.Find("NameText").GetComponent<LocalizeStringEvent>();
         }
 
         private void Update()
         {
             mainRectTransform.anchoredPosition =
-                Input.mousePosition + new Vector3(tooltipMouseDistance,tooltipMouseDistance, 0);
+                Input.mousePosition + new Vector3(tooltipMouseDistanceX,tooltipMouseDistanceY, 0);
         }
 
         private async void ShowTooltipWeapon(int weaponId)
