@@ -127,7 +127,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1353755049336832
-    m_Localized: When moving, your fuel is reduced
+    m_Localized: You lose fuel while moving
     m_Metadata:
       m_Items: []
   - m_Id: 1354275210141696

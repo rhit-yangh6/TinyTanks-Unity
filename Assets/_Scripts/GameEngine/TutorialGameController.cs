@@ -45,28 +45,18 @@ namespace _Scripts.GameEngine
                 CheckAggressiveProjectiles();
             }
         }
-        
-        protected override void ChangeTurn()
+
+        protected override void HandleWin()
         {
-            if (PauseMenu.gameIsEnded) return;
-        
-            if (playerCharacter.Health <= 0)
-            {
-                SteamManager.UnlockAchievement(Constants.AchievementBabySteps);
-                pauseMenu.Lose();
-                return;
-            }
-            
-            if (IsAllEnemyDead())
-            {
-                pauseMenu.Win();
-                return;
-            }
-        
-            projectileShot = false;
-            turn = (turn + 1) % playerNum;
-            isInterTurn = false;
-            StartCoroutine(HandleMovements());
+            SteamManager.UnlockAchievement(Constants.AchievementTutorialCompleted);
+            PlayerData.Instance.isTutorialCompleted = true;
+            base.HandleWin();
+        }
+
+        protected override void HandleLose()
+        {
+            SteamManager.UnlockAchievement(Constants.AchievementBabySteps);
+            base.HandleLose();
         }
     }
 }

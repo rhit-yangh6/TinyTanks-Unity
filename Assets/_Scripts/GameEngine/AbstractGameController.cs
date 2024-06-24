@@ -113,25 +113,31 @@ namespace _Scripts.GameEngine
             }
         }
 
-        protected abstract void ChangeTurn();
+        protected virtual void ChangeTurn()
+        {
+            if (isEnded) return;
+        
+            if (playerCharacter.Health <= 0)
+            {
+                HandleLose();
+                return;
+            }
+            
+            if (IsAllEnemyDead())
+            {
+                HandleWin();
+                return;
+            }
+        
+            projectileShot = false;
+            turn = (turn + 1) % playerNum;
+            isInterTurn = false;
+            StartCoroutine(HandleMovements());
+        }
 
         protected virtual void HandleWin()
         {
             isEnded = true;
-            if (SceneManager.GetActiveScene().name == "Story")
-            {
-                PlayerData.Instance.CompleteLevel();
-                // Unlock FIRST_WIN achievement during level completion
-                SteamManager.UnlockAchievement(Constants.AchievementFirstWinId);
-                var prize = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId).prize;
-
-                winCoinText.text = "+" + prize;
-                PlayerData.Instance.GainMoney(prize);
-            } else if (SceneManager.GetActiveScene().name == "Tutorial")
-            {
-                SteamManager.UnlockAchievement(Constants.AchievementTutorialCompleted);
-                PlayerData.Instance.isTutorialCompleted = true;
-            }
             pauseMenuAnimator.Play("Window In");
             backgroundBlurManager.BlurInAnim();
             blurManager.BlurInAnim();
