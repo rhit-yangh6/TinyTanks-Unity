@@ -2,16 +2,13 @@ using System;
 using _Scripts.Managers;
 using Destructible2D;
 using Destructible2D.Examples;
-using TerraformingTerrain2d;
 using UnityEngine;
 
 namespace _Scripts.GameEngine.Map
 {
     public class TerrainDeformer : MonoBehaviour
     {
-        [SerializeField] private LayerMask layerMask;
-
-        private const float RadiusMultiplier = 1.3f;
+        private const float RadiusMultiplier = 1.25f;
 
         private void Start()
         {

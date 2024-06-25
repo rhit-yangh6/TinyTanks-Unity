@@ -16,9 +16,9 @@ MonoBehaviour:
   enableExtendedColorPicker: 0
   editorHints: 1
   backgroundColorTint: {r: 1, g: 1, b: 1, a: 1}
-  backgroundType: 0
+  backgroundType: 1
   backgroundImage: {fileID: 21300000, guid: 59da25cc8872f164da4db6b05ad99d57, type: 3}
-  backgroundVideo: {fileID: 32900000, guid: c0db1beb20cd15a45ac53f3a5f85eca2, type: 3}
+  backgroundVideo: {fileID: 32900000, guid: 488f8fa32c1a5f24cbac413b5e63b1f6, type: 3}
   backgroundPreserveAspect: 0
   backgroundSpeed: 0.57
   primaryColor: {r: 0.3882353, g: 0.7764706, b: 1, a: 1}

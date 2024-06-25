@@ -32,7 +32,6 @@ namespace _Scripts.Entities
         private int _xMovingDirection = 0;
         private bool _isAiming = false;
         private Vector2 _aimVelocity;
-        private Vector2 colliderSize;
         
         private GameObject _projectilePrefab;
         private SpriteRenderer _sr, _cannonSr;
@@ -60,7 +59,7 @@ namespace _Scripts.Entities
 
             _rb2d = GetComponent<Rigidbody2D>();
             _cc = GetComponent<CapsuleCollider2D>();
-            colliderSize = _cc.size;
+            // colliderSize = _cc.size;
             _player = GameObject.FindGameObjectWithTag("Player");
         }
 

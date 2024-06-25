@@ -24,6 +24,12 @@ namespace _Scripts.Entities
         protected virtual HealthBarBehavior HealthBar => healthBar;
 
         protected float angle;
+        protected Vector2 colliderSize;
+
+        private void Awake()
+        {
+            colliderSize = GetComponent<CapsuleCollider2D>().size;
+        }
 
         public virtual void TakeDamage(float amount, bool isCriticalHit = false)
         {
@@ -81,16 +87,36 @@ namespace _Scripts.Entities
 
         protected void AdjustRotation()
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 3f, layerMask);
+            Vector2 leftCheckPos = transform.position - new Vector3(colliderSize.x / 2, 0);
+            Vector2 rightCheckPos = transform.position + new Vector3(colliderSize.x / 2, 0);
+            
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, layerMask);
+            RaycastHit2D hitRight = Physics2D.Raycast(rightCheckPos, Vector2.down, 2f, layerMask);
+            RaycastHit2D hitLeft = Physics2D.Raycast(leftCheckPos, Vector2.down, 2f, layerMask);
 
             if (hit.collider)
             {
-                var newAngle = Vector2.SignedAngle(hit.normal, Vector2.up);
+                var hitCount = 1;
+                var totalAngle = Vector2.SignedAngle(hit.normal, Vector2.up);
 
-                transform.eulerAngles = Math.Abs(newAngle - angle) > rotationTolerance ?
-                    new Vector3 (0, 0, -newAngle) :
+                if (hitRight.collider)
+                {
+                    totalAngle += Vector2.SignedAngle(hitRight.normal, Vector2.up);
+                    hitCount += 1;
+                }
+
+                if (hitLeft.collider)
+                {
+                    totalAngle += Vector2.SignedAngle(hitLeft.normal, Vector2.up);
+                    hitCount += 1;
+                }
+
+                var finalAngle = totalAngle / hitCount;
+
+                transform.eulerAngles = Math.Abs(finalAngle - angle) > rotationTolerance ?
+                    new Vector3 (0, 0, -finalAngle) :
                     new Vector3 (0, 0, -angle);
-                angle = newAngle;
+                angle = finalAngle;
             }
             else
             {
