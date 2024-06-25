@@ -1,0 +1,24 @@
+{
+    "name": "Destructible2D.SpriteShape",
+    "references": [
+        "Unity.2D.SpriteShape.Runtime",
+        "Destructible2D"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "__SPRITESHAPE__"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.2d.spriteshape",
+            "expression": "",
+            "define": "__SPRITESHAPE__"
+        }
+    ],
+    "noEngineReferences": false
+}

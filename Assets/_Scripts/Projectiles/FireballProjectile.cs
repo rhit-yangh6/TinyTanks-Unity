@@ -42,7 +42,7 @@ namespace _Scripts.Projectiles
                 var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
                 
                 derivedProjectile.SetParameters(fireballSmallDamage, fireballSmallRadius);
-                derivedRb2d.velocity = Vector2.down;
+                derivedRb2d.velocity = Vector2.zero;
                 
                 var spawnTimes = SteamManager.IncrementStat(Constants.StatSmallFireballSpawned);
                 if (spawnTimes >= 100)

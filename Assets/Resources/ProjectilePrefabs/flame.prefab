@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 623300969
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 6713289c713294e47af9ccc9811f4b9b, type: 3}
   m_Color: {r: 0.7169812, g: 0, b: 0, a: 1}
@@ -120,9 +120,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2249465, y: 0}
+  m_Offset: {x: -0.020705067, y: 0}
   serializedVersion: 2
-  m_Radius: 3.461908
+  m_Radius: 3.7075596
 --- !u!50 &8647940970348448353
 Rigidbody2D:
   serializedVersion: 4
@@ -135,7 +135,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -239,7 +239,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 623300969
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

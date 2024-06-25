@@ -156,7 +156,8 @@ namespace _Scripts.Projectiles
                 DamageHandler.DamageType.Circular);
             
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
-                _isStarComplete ? Radius * FinalRadiusMultiplier : Radius, 1, DestroyTypes.Circular);
+                _isStarComplete ? Radius * FinalRadiusMultiplier : Radius, 1,  _isStarComplete ?
+                    DestroyTypes.Star : DestroyTypes.Circular);
         }
     }
 }

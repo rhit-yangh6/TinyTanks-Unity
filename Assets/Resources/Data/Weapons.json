@@ -706,7 +706,7 @@
       "weaponName": "weapon_star_name",
       "weaponDescription": "weapon_star_desc",
       "damage": 25,
-      "radius": 2.5,
+      "radius": 2,
       "maxMagnitude": 9.1,
       "steps": 395,
       "saying": "weapon_star_saying",

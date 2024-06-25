@@ -91,3 +91,10 @@ MonoBehaviour:
   frozenBuff: {fileID: 11400000, guid: c1827828a38c8154b9ef2ea57ebecf30, type: 2}
   healingBuff: {fileID: 11400000, guid: b3183d944d5b31a44a46eaf19d67cf7c, type: 2}
   oilyBuff: {fileID: 11400000, guid: 99e3aa980406a34488d43c1d62f7a3be, type: 2}
+  d2dExplosion: {fileID: 100000, guid: 800eae39832e4fc4f81f76579329a706, type: 3}
+  explosionCircleAlpha: {fileID: 2800000, guid: bf9956bc6dcb3854d90f4ad02da6b2d9, type: 3}
+  explosionCircleColor: {fileID: 2800000, guid: e91ed3d132196f341bf01a198a23c9de, type: 3}
+  explosionSquareAlpha: {fileID: 2800000, guid: 21f9f66708eb2744584090a01c19eb13, type: 3}
+  explosionSquareColor: {fileID: 2800000, guid: b7f364bc924bfce498bda8ee57b08e8e, type: 3}
+  explosionStarAlpha: {fileID: 2800000, guid: 06c8b100032ba8645ad39c7241d608f6, type: 3}
+  explosionStarColor: {fileID: 2800000, guid: 1c14fdeeece062143a7153fa33e5e4a1, type: 3}

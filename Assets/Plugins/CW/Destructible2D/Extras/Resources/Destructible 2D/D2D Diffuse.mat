@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: D2D Diffuse
+  m_Shader: {fileID: 4800000, guid: f9877eb0794f01e48a998a1452f414ac, type: 3}
+  m_ValidKeywords:
+  - _D2DOUTPUTALPHA_DESTRUCTIBLE
+  - _D2DOUTPUTRGB_ORIGINAL
+  m_InvalidKeywords:
+  - ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AT:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AlphaMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _D2dAlpha:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: e182fa814462b66459e3a205170ba255, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _AlphaContrast: 1
+    - _AlphaThreshold: 0
+    - _Cutoff: 0.44
+    - _D2dOutline: 0
+    - _D2dOutlineMax: 1
+    - _D2dOutlineMin: 0
+    - _D2dOutlinePower: 10
+    - _D2dOutputAlpha: 0
+    - _D2dOutputRgb: 0
+    - _D2dSharpness: 1
+    - _Sharpness: 5.82
+    m_Colors:
+    - _AlphaOffset: {r: 0.010067114, g: -0.0011600928, b: 0, a: 0}
+    - _AlphaScale: {r: 1.0642858, g: 0.9976852, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _D2dOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _D2dOutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _D2dScale: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []

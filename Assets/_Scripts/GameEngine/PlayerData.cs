@@ -67,11 +67,11 @@ namespace _Scripts.GameEngine
             };
 
             // Uncomment this if you want everything unlocked
-            /*
-            var datumList = new List<WeaponDatum> { };
+            
+            var datumList = new List<WeaponDatum>();
             datumList.AddRange(WeaponManager.Instance.GetAllWeapons().Select(w => new WeaponDatum(w.id, 1, new[] { true, true, true, true, true, true })));
             weaponLevels = datumList;
-            */
+             
         }
 
         public int GetLevelStatusInChapter(int chapterId)
