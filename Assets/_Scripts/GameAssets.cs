@@ -51,13 +51,8 @@ namespace _Scripts
         public ScriptableBuff healingBuff;
         public ScriptableBuff oilyBuff;
 
-        public GameObject d2dExplosion;
-
-        public Texture2D explosionCircleAlpha;
-        public Texture2D explosionCircleColor;
-        public Texture2D explosionSquareAlpha;
-        public Texture2D explosionSquareColor;
-        public Texture2D explosionStarAlpha;
-        public Texture2D explosionStarColor;
+        public GameObject d2dCircleExplosion;
+        public GameObject d2dSquareExplosion;
+        public GameObject d2dStarExplosion;
     }
 }

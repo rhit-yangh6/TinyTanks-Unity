@@ -22,6 +22,8 @@ namespace _Scripts.GameEngine
         [SerializeField] protected ModalWindowManager winModalManager;
         [SerializeField] protected TextMeshProUGUI winCoinText;
         [SerializeField] protected ModalWindowManager loseModalManager;
+        [SerializeField] protected ModalWindowManager newWeaponModalManager;
+        [SerializeField] protected WeaponUnlockedModalWindow weaponUnlockedModalWindow;
         
         protected bool projectileShot;
         
@@ -58,6 +60,7 @@ namespace _Scripts.GameEngine
             // Register listeners
             EventBus.AddListener(EventTypes.ProjectileShot, () => projectileShot = true);
             EventBus.AddListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
+            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
             
             // Update Discord
             EventBus.Broadcast(EventTypes.DiscordStateChange,
@@ -70,6 +73,7 @@ namespace _Scripts.GameEngine
         {
             EventBus.RemoveListener(EventTypes.ProjectileShot, () => projectileShot = true);
             EventBus.RemoveListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
+            EventBus.RemoveListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
         }
 
         private void Update()
@@ -217,6 +221,16 @@ namespace _Scripts.GameEngine
                     }
                 }
             }
+        }
+        
+        protected void ShowNewWeaponWindow(int weaponId)
+        {
+            pauseMenuAnimator.Play("Window In");
+            backgroundBlurManager.BlurInAnim();
+            blurManager.BlurInAnim();
+            weaponUnlockedModalWindow.Display(weaponId);
+            newWeaponModalManager.ModalWindowIn();
+            PauseGame();
         }
         
         public void PauseGame()

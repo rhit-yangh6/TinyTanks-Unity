@@ -33,7 +33,8 @@ namespace _Scripts.GameEngine
                 
                 PlayerData data = formatter.Deserialize(stream) as PlayerData;
                 stream.Close();
-                
+
+                data.passedLevels ??= new HashSet<string>();
                 return data;
             }
 

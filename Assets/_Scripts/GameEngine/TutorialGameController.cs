@@ -30,6 +30,7 @@ namespace _Scripts.GameEngine
             // Register listeners
             EventBus.AddListener(EventTypes.ProjectileShot, () => projectileShot = true);
             EventBus.AddListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
+            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
             
             // Update Discord
             EventBus.Broadcast(EventTypes.DiscordStateChange,

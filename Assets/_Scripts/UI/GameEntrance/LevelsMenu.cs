@@ -33,7 +33,7 @@ namespace _Scripts.UI.GameEntrance
                 var cellObj = Instantiate(levelCellPrefab, levelScrollListContent.transform);
                 var previewImage = cellObj.transform.Find("Content/Preview").GetComponent<Image>();
                 var button = cellObj.GetComponent<Button>();
-                var chapterButton = cellObj.GetComponent<ChapterButton>();
+                var levelButton = cellObj.GetComponent<ChapterButton>();
                 
                 var nameOperationAsync =
                     LocalizationSettings.StringDatabase.GetLocalizedStringAsync(
@@ -42,11 +42,11 @@ namespace _Scripts.UI.GameEntrance
                 
                 if (nameOperationAsync.IsDone)
                 {
-                    chapterButton.backgroundImage = l.chapterBackgroundSprite;
+                    levelButton.backgroundImage = l.chapterBackgroundSprite;
                     previewImage.sprite = l.levelPreviewSprite;
-                    chapterButton.buttonTitle = nameOperationAsync.Result;
-                    chapterButton.buttonDescription = l.id;
-                    chapterButton.Refresh();
+                    levelButton.buttonTitle = nameOperationAsync.Result;
+                    levelButton.buttonDescription = l.id;
+                    levelButton.Refresh();
                 }
                 
                 if (progress >= i)
@@ -55,6 +55,15 @@ namespace _Scripts.UI.GameEntrance
                     {
                         asyncLoader.LoadLevelBtn(l.id);
                     });
+                    if (PlayerData.Instance.IsLevelPassed(l.id))
+                    {
+                        levelButton.statusItem = ChapterButton.StatusItem.Completed;
+                    }
+                }
+                else
+                {
+                    // Locked
+                    levelButton.statusItem = ChapterButton.StatusItem.Locked;
                 }
 
                 // var chapterImage = cellObj.GetComponentsInChildren<Image>()[0];

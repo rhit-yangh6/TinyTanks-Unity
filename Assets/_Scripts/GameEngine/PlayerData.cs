@@ -11,6 +11,7 @@ namespace _Scripts.GameEngine
     {
         public int level;
         public Dictionary<int, int> levels;
+        public HashSet<string> passedLevels;
         public int coins;
 
         public SelectionDatum[] selectedWeapons;
@@ -47,6 +48,7 @@ namespace _Scripts.GameEngine
             // Deprecated
             
             levels = new Dictionary<int, int> { { 1, 0 } };
+            passedLevels = new HashSet<string>();
 
             coins = 88888888;
             isTutorialCompleted = false;
@@ -67,11 +69,11 @@ namespace _Scripts.GameEngine
             };
 
             // Uncomment this if you want everything unlocked
-            
+            /*
             var datumList = new List<WeaponDatum>();
             datumList.AddRange(WeaponManager.Instance.GetAllWeapons().Select(w => new WeaponDatum(w.id, 1, new[] { true, true, true, true, true, true })));
             weaponLevels = datumList;
-             
+            */
         }
 
         public int GetLevelStatusInChapter(int chapterId)
@@ -83,6 +85,11 @@ namespace _Scripts.GameEngine
             }
 
             return levels[chapterId];
+        }
+
+        public bool IsLevelPassed(string levelId)
+        {
+            return passedLevels.Contains(levelId);
         }
 
         public bool IsChapterUnlocked(int chapterId)
@@ -204,6 +211,8 @@ namespace _Scripts.GameEngine
             var currentIdx = Array.FindIndex(chapter.levels, l => l.id == GameStateController.currentLevelId);
             var currentLevel = chapter.levels[currentIdx];
             var progress = GetLevelStatusInChapter(GameStateController.currentChapterId);
+
+            passedLevels.Add(currentLevel.id);
             
             // First completion
             if (progress <= currentIdx && currentIdx < chapter.levels.Length - 1)

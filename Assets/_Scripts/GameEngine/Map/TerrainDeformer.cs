@@ -48,11 +48,9 @@ namespace _Scripts.GameEngine.Map
             //     chunk.TerraformingPresenter.Rebuild(pos, radius, TerraformingMode.Carve);
             // }
 
-            var explosion = Instantiate(GameAssets.i.d2dExplosion, pos, Quaternion.identity)
+            var explosion = Instantiate(GameAssets.i.d2dCircleExplosion, pos, Quaternion.identity)
                 .GetComponent<D2dExplosion>();
             explosion.StampSize *= radius;
-            explosion.StampShape = new D2dShape(GameAssets.i.explosionCircleColor,
-                GameAssets.i.explosionCircleAlpha);
         }
         
         private void DestroyTerrainSquare(Vector3 pos, float radius, int destroyingPower = 1)
@@ -69,20 +67,16 @@ namespace _Scripts.GameEngine.Map
             //     oneThirdRadius, destroyingPower);
             // DestroyTerrainCircular(pos + new Vector3(oneThirdRadius, -oneThirdRadius),
             //     oneThirdRadius, destroyingPower);
-            var explosion = Instantiate(GameAssets.i.d2dExplosion, pos, Quaternion.identity)
+            var explosion = Instantiate(GameAssets.i.d2dSquareExplosion, pos, Quaternion.identity)
                 .GetComponent<D2dExplosion>();
             explosion.StampSize *= radius;
-            explosion.StampShape = new D2dShape(GameAssets.i.explosionSquareColor,
-                GameAssets.i.explosionSquareAlpha);
         }
         
         private void DestroyTerrainStar(Vector3 pos, float radius, int destroyingPower = 1)
         {
-            var explosion = Instantiate(GameAssets.i.d2dExplosion, pos, Quaternion.identity)
+            var explosion = Instantiate(GameAssets.i.d2dStarExplosion, pos, Quaternion.identity)
                 .GetComponent<D2dExplosion>();
             explosion.StampSize *= radius;
-            explosion.StampShape = new D2dShape(GameAssets.i.explosionStarColor,
-                GameAssets.i.explosionStarAlpha);
         }
     }
 
