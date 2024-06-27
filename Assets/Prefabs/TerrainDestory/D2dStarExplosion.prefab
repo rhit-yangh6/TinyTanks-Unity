@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8237358}
   - component: {fileID: 11401416}
   m_Layer: 0
-  m_Name: D2dStarExplosion 1
+  m_Name: D2dStarExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

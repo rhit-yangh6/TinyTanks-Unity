@@ -55,5 +55,6 @@ namespace _Scripts
         public GameObject d2dSquareExplosion;
         public GameObject d2dStarExplosion;
         public GameObject d2dOvalExplosion;
+        public GameObject d2dSparkExplosion;
     }
 }

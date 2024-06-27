@@ -79,7 +79,7 @@ MonoBehaviour:
   sacrificeFX: {fileID: 6884007866856075093, guid: aec87ed38dbc9734cb22566197ae1b48, type: 3}
   shockwaveFX: {fileID: 7971136528542263083, guid: f6ef2f97f319e814bb310dd1af7eed6f, type: 3}
   coconutTreeFX: {fileID: 4668241860939206746, guid: 850714d79fa3a7c4b9a221c92582c49b, type: 3}
-  targetFX: {fileID: 7899387847127367874, guid: ce352401c877aba4fa565e2363772ce1, type: 3}
+  targetFX: {fileID: 7037325690141038535, guid: 816bca962860a9348831fd89d9315d67, type: 3}
   electricLineFX: {fileID: 19190772009231569, guid: 9bd816811a7a3454da5980ab714e0289, type: 3}
   chargeFX: {fileID: 7082157850645742415, guid: 576c65c521d2cda4aa4aac5fa0c74886, type: 3}
   curseFX: {fileID: 2152503548154583231, guid: 00deeae3e62eea54688ee0937ec38b15, type: 3}
@@ -95,3 +95,4 @@ MonoBehaviour:
   d2dSquareExplosion: {fileID: 100000, guid: eb37e11035efcf041a8ef44d5a6c67c6, type: 3}
   d2dStarExplosion: {fileID: 100000, guid: e1391b0a276854549b2c2f2918bee305, type: 3}
   d2dOvalExplosion: {fileID: 100000, guid: 3d81822e143bce84088f9b8f112e0bed, type: 3}
+  d2dSparkExplosion: {fileID: 100000, guid: 3eb353b2bd81e2e48aba2fcddff7ed36, type: 3}
