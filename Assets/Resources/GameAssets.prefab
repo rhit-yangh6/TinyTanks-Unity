@@ -94,3 +94,4 @@ MonoBehaviour:
   d2dCircleExplosion: {fileID: 100000, guid: 800eae39832e4fc4f81f76579329a706, type: 3}
   d2dSquareExplosion: {fileID: 100000, guid: eb37e11035efcf041a8ef44d5a6c67c6, type: 3}
   d2dStarExplosion: {fileID: 100000, guid: e1391b0a276854549b2c2f2918bee305, type: 3}
+  d2dOvalExplosion: {fileID: 100000, guid: 3d81822e143bce84088f9b8f112e0bed, type: 3}

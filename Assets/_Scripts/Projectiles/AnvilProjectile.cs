@@ -98,7 +98,8 @@ namespace _Scripts.Projectiles
             }
             
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
-                (Level >= 4 && _isActivated) ? Radius * 1.5f : Radius, 1, DestroyTypes.Circular);
+                (Level >= 4 && _isActivated) ? Radius * 1.2f : Radius, 1,
+                _isActivated ? DestroyTypes.Oval : DestroyTypes.Circular);
         }
     }
 }
