@@ -712,28 +712,28 @@
       "saying": "weapon_star_saying",
       "upgradeInfos": [
         {
-          "name": "Extended Reach",
-          "description": "Increase the range and aim of the star.",
+          "name": "upgrade_star_2_name",
+          "description": "upgrade_star_2_desc",
           "cost": 199
         },
         {
-          "name": "Celestial Precision",
-          "description": "Makes it easier to draw the star shape, enhancing the chances of empowerment.",
+          "name": "upgrade_star_3_name",
+          "description": "upgrade_star_3_desc",
           "cost": 499
         },
         {
-          "name": "Cosmic Enhancement",
-          "description": "Enhances the power of the empowered star.",
+          "name": "upgrade_star_4_name",
+          "description": "upgrade_star_4_desc",
           "cost": 699
         },
         {
-          "name": "Nova Genesis",
-          "description": "Further amplifies the empowerment of the star, turning it into a radiant nova upon impact.",
+          "name": "upgrade_star_5_name",
+          "description": "upgrade_star_5_desc",
           "cost": 1899
         },
         {
-          "name": "Comet Cascade",
-          "description": "The star sens shockwaves through the air while drawing the star shape, damaging nearby targets.",
+          "name": "upgrade_star_6_name",
+          "description": "upgrade_star_6_desc",
           "cost": 1299
         }
       ],

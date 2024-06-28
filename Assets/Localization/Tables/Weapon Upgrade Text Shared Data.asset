@@ -855,6 +855,46 @@ MonoBehaviour:
     m_Key: upgrade_gear_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 9488861102350336
+    m_Key: upgrade_star_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9488890303094784
+    m_Key: upgrade_star_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9488911085871104
+    m_Key: upgrade_star_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9488922272079872
+    m_Key: upgrade_star_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9488929742135296
+    m_Key: upgrade_star_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489388590604288
+    m_Key: upgrade_star_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489408983310336
+    m_Key: upgrade_star_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489417036374016
+    m_Key: upgrade_star_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489425072660480
+    m_Key: upgrade_star_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489436648939520
+    m_Key: upgrade_star_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -894,6 +894,49 @@ MonoBehaviour:
       on the map to explode after spinning, dealing massive damage in their vicinity.
     m_Metadata:
       m_Items: []
+  - m_Id: 9488929742135296
+    m_Localized: Comet Cascade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9488922272079872
+    m_Localized: Nova Genesis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9488911085871104
+    m_Localized: Cosmic Enhancement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9488861102350336
+    m_Localized: Extended Reach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9488890303094784
+    m_Localized: Celestial Precision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489388590604288
+    m_Localized: "Increase the range and aim of the star\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489408983310336
+    m_Localized: Makes it easier to draw the star shape, enhancing the chances of
+      empowerment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489417036374016
+    m_Localized: Enhances the power of the empowered star.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489425072660480
+    m_Localized: Further amplifies the empowerment of the star, turning it into a
+      radiant nova upon activation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9489436648939520
+    m_Localized: The star sens shockwaves through the air while drawing the star
+      shape, damaging nearby targets.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

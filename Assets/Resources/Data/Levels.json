@@ -55,11 +55,19 @@
         },
         {
           "id": "1-7",
-          "name": "Grounded",
+          "name": "level_1_7_name",
           "prize": 50,
           "weaponPrize": 0,
           "unlocksChapter": 0,
           "path": "Level1-7"
+        },
+        {
+          "id": "1-8",
+          "name": "level_1_8_name",
+          "prize": 50,
+          "weaponPrize": 0,
+          "unlocksChapter": 0,
+          "path": "Level1-8"
         }
       ]
     },

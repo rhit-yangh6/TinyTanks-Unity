@@ -50,6 +50,14 @@ MonoBehaviour:
     m_Localized: The Desert
     m_Metadata:
       m_Items: []
+  - m_Id: 6639923726917632
+    m_Localized: Slope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6642718253260800
+    m_Localized: Two Foes
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
