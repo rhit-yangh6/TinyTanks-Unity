@@ -105,5 +105,10 @@ namespace _Scripts.UI
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
         }
+
+        public void OpenSteamPage()
+        {
+            Application.OpenURL("steam://news/2190060");
+        }
     }
 }

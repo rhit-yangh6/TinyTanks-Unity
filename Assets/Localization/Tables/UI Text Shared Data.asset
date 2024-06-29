@@ -301,6 +301,14 @@ MonoBehaviour:
     m_Key: ui_resume
     m_Metadata:
       m_Items: []
+  - m_Id: 10741927306862592
+    m_Key: ui_latest_update_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10742097402667008
+    m_Key: ui_latest_update_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

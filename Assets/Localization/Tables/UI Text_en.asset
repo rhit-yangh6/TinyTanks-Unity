@@ -304,6 +304,14 @@ MonoBehaviour:
     m_Localized: Resume
     m_Metadata:
       m_Items: []
+  - m_Id: 10741927306862592
+    m_Localized: Latest Updates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10742097402667008
+    m_Localized: Check out the latest updates
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
