@@ -83,7 +83,12 @@ namespace _Scripts.Managers
 
         private void OnDisable()
         {
-            Steamworks.SteamClient.Shutdown();
+            SteamClient.Shutdown();
+        }
+
+        public void OpenWebOverlay(string url)
+        {
+            SteamFriends.OpenWebOverlay(url);
         }
 
         // private void OnApplicationQuit()

@@ -108,7 +108,7 @@ namespace _Scripts.UI
 
         public void OpenSteamPage()
         {
-            Application.OpenURL("steam://news/2190060");
+            SteamManager.Instance.OpenWebOverlay("https://store.steampowered.com/news/app/2190060?updates=true");
         }
     }
 }
