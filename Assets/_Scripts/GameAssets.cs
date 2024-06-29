@@ -41,6 +41,7 @@ namespace _Scripts
         public GameObject electricLineFX;
         public GameObject chargeFX;
         public GameObject curseFX;
+        public GameObject deathFX;
 
         public ScriptableBuff burningBuff;
         public ScriptableBuff infectedBuff;

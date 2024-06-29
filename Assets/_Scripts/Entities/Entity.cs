@@ -60,6 +60,7 @@ namespace _Scripts.Entities
             if (Health <= 0)
             {
                 IsDead = true;
+                OnDeath();
                 Destroy(gameObject);
             }
         }
@@ -130,6 +131,11 @@ namespace _Scripts.Entities
         {
             return Physics2D.OverlapArea(topLeft.position, 
                 bottomRight.position, layerMask);
+        }
+
+        protected virtual void OnDeath()
+        {
+            // Do nothing as default
         }
     }
 }

@@ -33,15 +33,6 @@ namespace _Scripts.Entities
 
         protected override void CheckMovement() { }
 
-        public override void TakeDamage(float amount, bool isCriticalHit = false)
-        {
-            base.TakeDamage(amount, isCriticalHit);
-            if (Health <= 0)
-            {
-                EventBus.Broadcast(EventTypes.EndTurn, this);
-            }
-        }
-
         public void Flip()
         {
             FacingDirection *= -1;
@@ -108,6 +99,13 @@ namespace _Scripts.Entities
         public ScriptableBuff GetBuff(string buffTypeName)
         {
             return Buffs.Keys.ToList().Find(k => k.GetType().Name.Equals(buffTypeName));
+        }
+
+        protected override void OnDeath()
+        {
+            var deathFX = Instantiate(GameAssets.i.deathFX, transform.position, Quaternion.identity);
+            Destroy(deathFX, 3);
+            EventBus.Broadcast(EventTypes.EndTurn, this);
         }
     }
 }
