@@ -71,6 +71,14 @@ MonoBehaviour:
     m_Key: buff_oily_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 4507990096093184
+    m_Key: buff_supercharged_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4508102650241024
+    m_Key: buff_supercharged_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

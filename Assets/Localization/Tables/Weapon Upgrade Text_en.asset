@@ -937,6 +937,48 @@ MonoBehaviour:
       shape, damaging nearby targets.
     m_Metadata:
       m_Items: []
+  - m_Id: 10749144156348416
+    m_Localized: "Full Tank\uFF01"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10748963004358656
+    m_Localized: Supercharged Fuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10749132127084544
+    m_Localized: Time to attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10749154415616000
+    m_Localized: Fire Sparkles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10749162871332864
+    m_Localized: Efficient Burn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750683700797440
+    m_Localized: Enhances the refuel effect.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750709613207552
+    m_Localized: Increases attack range and slightly increases damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750719947972608
+    m_Localized: Completely refuels your tank.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750728776982528
+    m_Localized: Enemies are also inflicted with a burning debuff, dealing damage
+      over time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750741682855936
+    m_Localized: Applies a buff to yourself that increases fuel efficiency, enhancing
+      movement for a few rounds.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

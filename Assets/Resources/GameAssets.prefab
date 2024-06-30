@@ -92,6 +92,7 @@ MonoBehaviour:
   frozenBuff: {fileID: 11400000, guid: c1827828a38c8154b9ef2ea57ebecf30, type: 2}
   healingBuff: {fileID: 11400000, guid: b3183d944d5b31a44a46eaf19d67cf7c, type: 2}
   oilyBuff: {fileID: 11400000, guid: 99e3aa980406a34488d43c1d62f7a3be, type: 2}
+  superchargedBuff: {fileID: 11400000, guid: 1687209daed6d494ba950c8f3f82588b, type: 2}
   d2dCircleExplosion: {fileID: 100000, guid: 800eae39832e4fc4f81f76579329a706, type: 3}
   d2dSquareExplosion: {fileID: 100000, guid: eb37e11035efcf041a8ef44d5a6c67c6, type: 3}
   d2dStarExplosion: {fileID: 100000, guid: e1391b0a276854549b2c2f2918bee305, type: 3}

@@ -8,7 +8,41 @@ namespace _Scripts.Projectiles
     public class FuelProjectile : LaunchedProjectile
     {
         [SerializeField] private LayerMask layerMask;
-        [SerializeField] private float fuelAmount = 35f;
+
+        protected override float Damage
+        {
+            get
+            {
+                return Level switch
+                {
+                    >= 3 => damage * 1.15f,
+                    _ => damage
+                };
+            }
+        }
+        protected override float MaxMagnitude
+        {
+            get
+            {
+                return Level switch
+                {
+                    >= 3 => maxMagnitude * 1.2f,
+                    _ => maxMagnitude
+                };
+            }
+        }
+        private float FuelAmount
+        {
+            get
+            {
+                return Level switch
+                {
+                    >= 4 => 200f,
+                    >= 2 => 60f,
+                    _ => 35f
+                };
+            }
+        }
         
         private void Update()
         {
@@ -31,7 +65,11 @@ namespace _Scripts.Projectiles
                     var playerController = Shooter.GetComponent<PlayerController>();
                     if (playerController != null)
                     {
-                        playerController.Refuel(fuelAmount);
+                        playerController.Refuel(FuelAmount);
+                        if (Level == 6)
+                        {
+                            playerController.AddBuff(GameAssets.i.superchargedBuff.InitializeBuff(col.gameObject, 1));
+                        }
                     }
                 }
             }
@@ -39,6 +77,13 @@ namespace _Scripts.Projectiles
             // Deal damage to all the other entities
             DamageHandler.i.HandleDamageExcludingEntity(pos, Radius, Damage, DamageHandler.DamageType.Circular, 
                 Shooter.GetComponent<Entity>(),false, GameAssets.i.oilyBuff, 1);
+            
+            // Also apply burning buff (Level 5)
+            if (Level == 5)
+            {
+                DamageHandler.i.HandleDamageExcludingEntity(pos, Radius, 0, DamageHandler.DamageType.Circular, 
+                    Shooter.GetComponent<Entity>(),false, GameAssets.i.burningBuff, 1);
+            }
         }
     }
 }

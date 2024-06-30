@@ -1305,27 +1305,27 @@
         {
           "name": "upgrade_fuel_2_name",
           "description": "upgrade_fuel_2_desc",
-          "cost": 0
+          "cost": 250
         },
         {
           "name": "upgrade_fuel_3_name",
           "description": "upgrade_fuel_3_desc",
-          "cost": 0
+          "cost": 300
         },
         {
           "name": "upgrade_fuel_4_name",
           "description": "upgrade_fuel_4_desc",
-          "cost": 0
+          "cost": 400
         },
         {
           "name": "upgrade_fuel_5_name",
           "description": "upgrade_fuel_5_desc",
-          "cost": 0
+          "cost": 600
         },
         {
           "name": "upgrade_fuel_6_name",
           "description": "upgrade_fuel_6_desc",
-          "cost": 0
+          "cost": 600
         }
       ],
       "dataPath": "fuel",

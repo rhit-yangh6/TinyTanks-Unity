@@ -51,6 +51,7 @@ namespace _Scripts
         public ScriptableBuff frozenBuff;
         public ScriptableBuff healingBuff;
         public ScriptableBuff oilyBuff;
+        public ScriptableBuff superchargedBuff;
 
         public GameObject d2dCircleExplosion;
         public GameObject d2dSquareExplosion;

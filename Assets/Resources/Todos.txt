@@ -25,4 +25,5 @@ enemy kill both, you still win
 use last power + angle
 explode center, max damage [Weapon]
 
-
+no fuel cons when not moving
+empty shop...?

@@ -84,10 +84,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 4311788039228096521
+  - m_Id: 4507990096093184
+    m_Localized: Efficient Fuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4508102650241024
+    m_Localized: Increase fuel efficiency, ends after {duration} turn(s)
+    m_Metadata:
+      m_Items:
+      - rid: 4311788039228096521
   references:
     version: 2
     RefIds:
     - rid: 4311788039228096521
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0020d42bd70000000020d4ff0900000000205485f80200000020d4b427030000002094c4f103000000205499210400000020147281040000
+        m_Entries: 0020d42bd70000000020d4ff0900000000205485f80200000020d4b427030000002094c4f1030000002054992104000000201472810400000020147118041000

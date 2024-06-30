@@ -895,6 +895,46 @@ MonoBehaviour:
     m_Key: upgrade_star_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 10748963004358656
+    m_Key: upgrade_fuel_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10749132127084544
+    m_Key: upgrade_fuel_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10749144156348416
+    m_Key: upgrade_fuel_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10749154415616000
+    m_Key: upgrade_fuel_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10749162871332864
+    m_Key: upgrade_fuel_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750683700797440
+    m_Key: upgrade_fuel_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750709613207552
+    m_Key: upgrade_fuel_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750719947972608
+    m_Key: upgrade_fuel_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750728776982528
+    m_Key: upgrade_fuel_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10750741682855936
+    m_Key: upgrade_fuel_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
