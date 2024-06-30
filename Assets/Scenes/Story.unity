@@ -7975,12 +7975,6 @@ MonoBehaviour:
   - panelName: Audio
     panelObject: {fileID: 685775024}
     buttonObject: {fileID: 30725675}
-  - panelName: Controls
-    panelObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-  - panelName: Visuals
-    panelObject: {fileID: 0}
-    buttonObject: {fileID: 0}
   useCulling: 1
   currentPanelIndex: 0
 --- !u!225 &798623184
@@ -15939,7 +15933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224962817517893130, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1727.2461
+      value: 3051.6262
       objectReference: {fileID: 0}
     - target: {fileID: 224962817517893130, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -19546,7 +19540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1259.628, y: -542.89105}
+  m_AnchoredPosition: {x: 1921.8181, y: -542.89105}
   m_SizeDelta: {x: 599.8402, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1891417801
@@ -20487,7 +20481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224962817517893130, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1179.376
+      value: 2503.756
       objectReference: {fileID: 0}
     - target: {fileID: 224962817517893130, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -21247,7 +21241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224962817517893130, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1462.526
+      value: 2786.9062
       objectReference: {fileID: 0}
     - target: {fileID: 224962817517893130, guid: 7ea731f501442984589dad30e8f89c28, type: 3}
       propertyPath: m_AnchoredPosition.y

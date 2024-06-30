@@ -17,7 +17,7 @@ namespace _Scripts.GameEngine
         private bool _isShaking;
 
         private float _mapMinX, _mapMinY, _mapMaxX, _mapMaxY;
-        private Bounds bounds;
+        private Bounds _bounds;
         
         private void Awake()
         {
@@ -29,13 +29,23 @@ namespace _Scripts.GameEngine
                 boundsSr = GameObject.FindGameObjectWithTag("CameraBoundingBox").GetComponent<SpriteRenderer>();
             }
             var pos = boundsSr.transform.position;
-            bounds = boundsSr.bounds;
+            _bounds = boundsSr.bounds;
             
-            _mapMinX = pos.x - bounds.size.x / 2f;
-            _mapMaxX = pos.x + bounds.size.x / 2f;
+            _mapMinX = pos.x - _bounds.size.x / 2f;
+            _mapMaxX = pos.x + _bounds.size.x / 2f;
             
-            _mapMinY = pos.y - bounds.size.y / 2f;
-            _mapMaxY = pos.y + bounds.size.y / 2f;
+            _mapMinY = pos.y - _bounds.size.y / 2f;
+            _mapMaxY = pos.y + _bounds.size.y / 2f;
+            
+            
+            var height = cam.orthographicSize * 2f;
+            var width = height * cam.aspect;
+            while (height > _bounds.size.y || width > _bounds.size.x)
+            {
+                ZoomIn();
+                height = cam.orthographicSize * 2f;
+                width = height * cam.aspect;
+            }
         }
 
         private void Update()
@@ -78,7 +88,7 @@ namespace _Scripts.GameEngine
         {
             var newHeight = (cam.orthographicSize + zoomStep) * 2f;
             var newWidth = newHeight * cam.aspect;
-            if (newHeight > bounds.size.y || newWidth > bounds.size.x)
+            if (newHeight > _bounds.size.y || newWidth > _bounds.size.x)
             {
                 return;
             }
