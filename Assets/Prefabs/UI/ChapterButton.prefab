@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 8249076520999301769}
   - component: {fileID: 1182134955084770336}
   - component: {fileID: 6656673795364493683}
+  - component: {fileID: 4431457748921536623}
   m_Layer: 5
   m_Name: ChapterButton
   m_TagString: Untagged
@@ -661,7 +662,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3351467776034807287}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -802,6 +803,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4431457748921536623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351467776034807287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 2
+  m_AspectRatio: 0.8
 --- !u!1 &3475045825853400292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1863,8 +1878,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -20.005}
-  m_SizeDelta: {x: 450, y: 0}
+  m_AnchoredPosition: {x: 228.184, y: -385.44504}
+  m_SizeDelta: {x: 406.368, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4881952330303451308
 CanvasRenderer:
@@ -2031,8 +2046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -70.015}
-  m_SizeDelta: {x: 450, y: 0}
+  m_AnchoredPosition: {x: 228.184, y: -435.45505}
+  m_SizeDelta: {x: 406.368, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6152581208399006110
 CanvasRenderer:

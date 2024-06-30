@@ -20,6 +20,7 @@ namespace _Scripts.UI.GameEntrance
         [SerializeField] private LevelsMenu levelsMenu;
         [SerializeField] private BlurManager modalWindows;
         [SerializeField] private ModalWindowManager chapterLockedModal;
+        [SerializeField] private LayoutGroupPositionFix layoutGroupPositionFix;
 
         public GameObject scrollBar;
         private float scrollPos = 0;
@@ -151,6 +152,8 @@ namespace _Scripts.UI.GameEntrance
                 //     lockedImg.color = color;
                 // }
             }
+            
+            layoutGroupPositionFix.FixLayout();
         }
     }
 }
