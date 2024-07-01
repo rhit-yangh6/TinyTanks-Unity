@@ -8,6 +8,8 @@ namespace _Scripts.Buffs
     public class FrozenBuff: ScriptableBuff
     {
         public float damageMultiplierFirstTier, damageMultiplierSecondTier, firstTierMovementSpeed;
+        public float firstTierMovementSpeedMultiplier = 0.5f;
+        public float secondTierMovementSpeedMultiplier = 0.01f;
         
         public override TimedBuff InitializeBuff(GameObject obj, int level = 1)
         {
@@ -25,15 +27,14 @@ namespace _Scripts.Buffs
     public class TimedFrozenBuff : TimedBuff
     {
         private readonly BuffableEntity _be;
-        private float oldMovementSpeed;
-        private readonly float finalDamageMultiplier, finalMovementSpeed;
+        private readonly float _finalDamageMultiplier, _finalMovementSpeedMultiplier;
 
         public TimedFrozenBuff(ScriptableBuff buff, GameObject obj, int duration, int level) : base(buff, obj, duration)
         {
             _be = obj.GetComponent<BuffableEntity>();
             
             var frozenBuff = (FrozenBuff) Buff;
-            finalDamageMultiplier = level switch
+            _finalDamageMultiplier = level switch
             {
                 5 => frozenBuff.damageMultiplierSecondTier,
                 >= 2 => frozenBuff.damageMultiplierFirstTier,
@@ -41,26 +42,25 @@ namespace _Scripts.Buffs
                 _ => throw new ArgumentOutOfRangeException(nameof(level), level, null)
             };
 
-            finalMovementSpeed = level switch
+            _finalMovementSpeedMultiplier = level switch
             {
-                >= 3 => 0,
-                _ => frozenBuff.firstTierMovementSpeed
+                >= 3 => frozenBuff.secondTierMovementSpeedMultiplier,
+                _ => frozenBuff.firstTierMovementSpeedMultiplier
             };
         }
 
         protected override void ApplyEffect()
         {
-            oldMovementSpeed = _be.MovementSpeed;
-            _be.MovementSpeed = finalMovementSpeed;
+            _be.MovementSpeed *= _finalMovementSpeedMultiplier;
 
-            _be.DamageMultiplier *= finalDamageMultiplier;
+            _be.DamageMultiplier *= _finalDamageMultiplier;
         }
 
         protected override void End()
         {
-            _be.MovementSpeed = oldMovementSpeed;
+            _be.MovementSpeed /= _finalMovementSpeedMultiplier;
             
-            _be.DamageMultiplier /= finalDamageMultiplier;
+            _be.DamageMultiplier /= _finalDamageMultiplier;
         }
 
         protected override void TurnTrigger()
