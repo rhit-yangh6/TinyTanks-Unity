@@ -963,16 +963,16 @@ MonoBehaviour:
     m_Key: upgrade_molotov_3_desc
     m_Metadata:
       m_Items: []
-  - m_Id: 10904648073617408
+  - m_Id: 10904664574009344
+    m_Key: upgrade_molotov_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10920718159323136
     m_Key: upgrade_molotov_4_desc
     m_Metadata:
       m_Items: []
-  - m_Id: 10904657078788096
+  - m_Id: 10920727411957760
     m_Key: upgrade_molotov_5_desc
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10904664574009344
-    m_Key: upgrade_molotov_6_desc
     m_Metadata:
       m_Items: []
   m_Metadata:

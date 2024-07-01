@@ -1008,18 +1008,18 @@ MonoBehaviour:
       area with burning ground.
     m_Metadata:
       m_Items: []
-  - m_Id: 10904648073617408
-    m_Localized: Enhances the damage dealt by the fireballs.
+  - m_Id: 10904664574009344
+    m_Localized: Creates an enormous amount of fireballs upon impact, also increase
+      the spread of the flames.
     m_Metadata:
       m_Items: []
-  - m_Id: 10904657078788096
+  - m_Id: 10920727411957760
     m_Localized: Hugely increases the duration of the fire, making the burning ground
       persist for a significantly longer time.
     m_Metadata:
       m_Items: []
-  - m_Id: 10904664574009344
-    m_Localized: Creates an enormous amount of fireballs upon impact, also increase
-      the spread of the flames.
+  - m_Id: 10920718159323136
+    m_Localized: Enhances the damage dealt by the flames.
     m_Metadata:
       m_Items: []
   references:

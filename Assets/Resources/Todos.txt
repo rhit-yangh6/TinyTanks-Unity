@@ -27,3 +27,17 @@ explode center, max damage [Weapon]
 
 no fuel cons when not moving
 empty shop...?
+
+unlock modal, close pause menu when hit continue
+level - stars?
+star - deviation after activated
+display stars in selection panel
+spend money sfx sound
+display NEW label
+gear upgrade prices
+no border 1-8
+unlock modal in-game -> steam notification like
+burning - burn at the last turn
+combine weapons in arsenal
+portals in map
+double edged sword, punish when out of bounds
