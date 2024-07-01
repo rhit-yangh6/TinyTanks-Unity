@@ -34,7 +34,6 @@ star - deviation after activated
 display stars in selection panel
 spend money sfx sound
 display NEW label
-gear upgrade prices
 no border 1-8
 unlock modal in-game -> steam notification like
 burning - burn at the last turn
