@@ -979,6 +979,49 @@ MonoBehaviour:
       movement for a few rounds.
     m_Metadata:
       m_Items: []
+  - m_Id: 10903485836173312
+    m_Localized: Heated Throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10903575325843456
+    m_Localized: Inferno Spread
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10903591645880320
+    m_Localized: Endless Blaze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10903584578478080
+    m_Localized: Scorching Heat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10903598348378112
+    m_Localized: Arsonist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10904511293169664
+    m_Localized: Increases the range and base damage of the Molotov.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10904638028259328
+    m_Localized: Increases the number of fire projectiles created, covering a larger
+      area with burning ground.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10904648073617408
+    m_Localized: Enhances the damage dealt by the fireballs.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10904657078788096
+    m_Localized: Hugely increases the duration of the fire, making the burning ground
+      persist for a significantly longer time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10904664574009344
+    m_Localized: Creates an enormous amount of fireballs upon impact, also increase
+      the spread of the flames.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

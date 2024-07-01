@@ -1344,27 +1344,27 @@
         {
           "name": "upgrade_molotov_2_name",
           "description": "upgrade_molotov_2_desc",
-          "cost": 0
+          "cost": 290
         },
         {
           "name": "upgrade_molotov_3_name",
           "description": "upgrade_molotov_3_desc",
-          "cost": 0
+          "cost": 390
         },
         {
           "name": "upgrade_molotov_4_name",
           "description": "upgrade_molotov_4_desc",
-          "cost": 0
+          "cost": 510
         },
         {
           "name": "upgrade_molotov_5_name",
           "description": "upgrade_molotov_5_desc",
-          "cost": 0
+          "cost": 1088
         },
         {
           "name": "upgrade_molotov_6_name",
           "description": "upgrade_molotov_6_desc",
-          "cost": 0
+          "cost": 1300
         }
       ],
       "dataPath": "molotov",
