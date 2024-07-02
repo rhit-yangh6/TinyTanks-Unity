@@ -9,7 +9,6 @@ namespace _Scripts.GameEngine
     [Serializable]
     public class PlayerData
     {
-        public int level;
         public Dictionary<int, int> Levels;
         public HashSet<string> PassedLevels;
         public HashSet<int> CheckedWeapons;

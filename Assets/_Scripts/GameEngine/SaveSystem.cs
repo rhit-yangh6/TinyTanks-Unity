@@ -38,6 +38,7 @@ namespace _Scripts.GameEngine
                 
                 data.PassedLevels ??= new HashSet<string>();
                 data.CheckedWeapons ??= new HashSet<int>();
+                data.Levels ??= new Dictionary<int, int> { { 1, 0 } };;
                 return data;
             }
 
