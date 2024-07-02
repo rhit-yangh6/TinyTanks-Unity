@@ -313,6 +313,18 @@ MonoBehaviour:
     m_Key: ui_new_label
     m_Metadata:
       m_Items: []
+  - m_Id: 11514426407788544
+    m_Key: ui_achievements
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11514805065359360
+    m_Key: ui_achieved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11514932224073728
+    m_Key: ui_unachieved
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using _Scripts.Utils;
 using Steamworks;
 using Steamworks.Data;
+using Unity.VisualScripting;
 using UnityEngine;
+using Achievement = Steamworks.Data.Achievement;
 
 namespace _Scripts.Managers
 {
@@ -48,12 +51,9 @@ namespace _Scripts.Managers
         {
             if (_isSteamConnected)
             {
-                return Steamworks.SteamClient.Name;
+                return SteamClient.Name;
             }
-            else
-            {
-                return "ERROR";
-            }
+            return "ERROR";
         }
 
         public bool IsConnected()
@@ -107,7 +107,7 @@ namespace _Scripts.Managers
         {
             try
             {
-                var ach = new Steamworks.Data.Achievement(id);
+                var ach = new Achievement(id);
                 Debug.Log($"Achievement {id} status: " + ach.State);
             }
             catch (Exception e)
@@ -164,6 +164,15 @@ namespace _Scripts.Managers
             }
 
             return 0;
+        }
+
+        public IEnumerable<Achievement> GetAllAchievements()
+        {
+            if (_isSteamConnected)
+            {
+                return SteamUserStats.Achievements;
+            }
+            return new List<Achievement>();
         }
     }
 }

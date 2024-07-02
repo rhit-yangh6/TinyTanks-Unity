@@ -316,6 +316,18 @@ MonoBehaviour:
     m_Localized: NEW
     m_Metadata:
       m_Items: []
+  - m_Id: 11514426407788544
+    m_Localized: Achievements
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11514805065359360
+    m_Localized: Achieved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11514932224073728
+    m_Localized: Not Achieved
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
