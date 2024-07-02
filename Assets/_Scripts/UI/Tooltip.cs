@@ -19,6 +19,7 @@ namespace _Scripts.UI
         private TextMeshProUGUI _tooltipNameText;
         private RectTransform _bgRectTransform;
         private RectTransform _mainRectTransform;
+        private Canvas _canvas;
 
         private const float TextPaddingSize = 6f;
 
@@ -29,18 +30,14 @@ namespace _Scripts.UI
             _bgRectTransform = transform.Find("BG").GetComponent<RectTransform>();
             _tooltipDescText = transform.Find("DescText").GetComponent<TextMeshProUGUI>();
             _tooltipNameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+            _canvas = GameObject.FindWithTag("UI").GetComponent<Canvas>();
         }
 
         private void Update()
         {
-            // mainRectTransform.anchoredPosition =
-            //     Input.mousePosition + new Vector3(tooltipMouseDistanceX,tooltipMouseDistanceY, 0);
-            var screenPoint = Input.mousePosition;
-            Debug.Log(screenPoint);
-            screenPoint.z = 10.0f; //distance of the plane from the camera
-            Debug.Log(Camera.main.ScreenToWorldPoint(screenPoint));
-            _mainRectTransform.anchoredPosition = 
-                Camera.main.ScreenToWorldPoint(screenPoint) + new Vector3(tooltipMouseDistanceX,tooltipMouseDistanceY, 0);
+            var screenPoint = Input.mousePosition / _canvas.scaleFactor;
+            _mainRectTransform.anchoredPosition =
+                screenPoint + new Vector3(tooltipMouseDistanceX,tooltipMouseDistanceY, 0);
         }
 
         private async void ShowTooltipWeapon(int weaponId)
