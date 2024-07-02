@@ -15,26 +15,32 @@ namespace _Scripts.UI
         [SerializeField] private float tooltipMouseDistanceX = 100f;
         [SerializeField] private float tooltipMouseDistanceY = 3f;
         
-        private TextMeshProUGUI tooltipDescText;
-        private TextMeshProUGUI tooltipNameText;
-        private RectTransform bgRectTransform;
-        private RectTransform mainRectTransform;
+        private TextMeshProUGUI _tooltipDescText;
+        private TextMeshProUGUI _tooltipNameText;
+        private RectTransform _bgRectTransform;
+        private RectTransform _mainRectTransform;
 
         private const float TextPaddingSize = 6f;
 
         private void Awake()
         {
             _instance = this;
-            mainRectTransform = GetComponent<RectTransform>();
-            bgRectTransform = transform.Find("BG").GetComponent<RectTransform>();
-            tooltipDescText = transform.Find("DescText").GetComponent<TextMeshProUGUI>();
-            tooltipNameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+            _mainRectTransform = GetComponent<RectTransform>();
+            _bgRectTransform = transform.Find("BG").GetComponent<RectTransform>();
+            _tooltipDescText = transform.Find("DescText").GetComponent<TextMeshProUGUI>();
+            _tooltipNameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
         }
 
         private void Update()
         {
-            mainRectTransform.anchoredPosition =
-                Input.mousePosition + new Vector3(tooltipMouseDistanceX,tooltipMouseDistanceY, 0);
+            // mainRectTransform.anchoredPosition =
+            //     Input.mousePosition + new Vector3(tooltipMouseDistanceX,tooltipMouseDistanceY, 0);
+            var screenPoint = Input.mousePosition;
+            Debug.Log(screenPoint);
+            screenPoint.z = 10.0f; //distance of the plane from the camera
+            Debug.Log(Camera.main.ScreenToWorldPoint(screenPoint));
+            _mainRectTransform.anchoredPosition = 
+                Camera.main.ScreenToWorldPoint(screenPoint) + new Vector3(tooltipMouseDistanceX,tooltipMouseDistanceY, 0);
         }
 
         private async void ShowTooltipWeapon(int weaponId)
@@ -55,21 +61,21 @@ namespace _Scripts.UI
             
             if (nameOperationAsync.IsDone && descOperationAsync.IsDone)
             {
-                tooltipNameText.text = nameOperationAsync.Result;
-                tooltipDescText.text = descOperationAsync.Result;
+                _tooltipNameText.text = nameOperationAsync.Result;
+                _tooltipDescText.text = descOperationAsync.Result;
             }
             // tooltipDescLocalizeStringEvent.StringReference =
             //     new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponDescription);
             // tooltipNameLocalizeStringEvent.StringReference =
             //     new LocalizedString(Constants.LocalizationTableWeaponText, weapon.weaponName);
             
-            var backgroundSize = new Vector2(tooltipDescText.preferredWidth + TextPaddingSize * 2f,
-                tooltipNameText.preferredHeight + TextPaddingSize * 3f + tooltipDescText.preferredHeight);
+            var backgroundSize = new Vector2(_tooltipDescText.preferredWidth + TextPaddingSize * 2f,
+                _tooltipNameText.preferredHeight + TextPaddingSize * 3f + _tooltipDescText.preferredHeight);
             
-            tooltipNameText.rectTransform.anchoredPosition =
-                new Vector2(TextPaddingSize, tooltipDescText.preferredHeight + TextPaddingSize * 2f);
+            _tooltipNameText.rectTransform.anchoredPosition =
+                new Vector2(TextPaddingSize, _tooltipDescText.preferredHeight + TextPaddingSize * 2f);
             
-            bgRectTransform.sizeDelta = backgroundSize;
+            _bgRectTransform.sizeDelta = backgroundSize;
         }
         
         private async void ShowTooltipBuff(string buffKey, int duration)
@@ -95,17 +101,17 @@ namespace _Scripts.UI
             
             if (nameOperationAsync.IsDone && descOperationAsync.IsDone)
             {
-                tooltipNameText.text = nameOperationAsync.Result;
-                tooltipDescText.text = descOperationAsync.Result;
+                _tooltipNameText.text = nameOperationAsync.Result;
+                _tooltipDescText.text = descOperationAsync.Result;
             }
             
-            var backgroundSize = new Vector2(tooltipDescText.preferredWidth + TextPaddingSize * 2f,
-                tooltipNameText.preferredHeight + TextPaddingSize * 3f + tooltipDescText.preferredHeight);
+            var backgroundSize = new Vector2(_tooltipDescText.preferredWidth + TextPaddingSize * 2f,
+                _tooltipNameText.preferredHeight + TextPaddingSize * 3f + _tooltipDescText.preferredHeight);
             
-            tooltipNameText.rectTransform.anchoredPosition =
-                new Vector2(TextPaddingSize, tooltipDescText.preferredHeight + TextPaddingSize * 2f);
+            _tooltipNameText.rectTransform.anchoredPosition =
+                new Vector2(TextPaddingSize, _tooltipDescText.preferredHeight + TextPaddingSize * 2f);
             
-            bgRectTransform.sizeDelta = backgroundSize;
+            _bgRectTransform.sizeDelta = backgroundSize;
         }
 
         private void HideTooltip()

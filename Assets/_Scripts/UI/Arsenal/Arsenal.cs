@@ -25,7 +25,7 @@ namespace _Scripts.UI.Arsenal
          * 2 - sort by level
          */
         private int sortMode;
-
+        
         private void Start()
         {
             // backButton.onClick.AddListener(SaveSystem.SavePlayer);
@@ -102,13 +102,19 @@ namespace _Scripts.UI.Arsenal
                 var s = buttonObj.GetComponent<Image>();
                 var animator = buttonObj.GetComponent<Animator>();
                 var button = buttonObj.GetComponent<Button>();
+                var newLabelCanvasGroup = buttonObj.GetComponentInChildren<CanvasGroup>();
                 var weaponId = w.id;
 
                 if (PlayerData.Instance.GetWeaponLevelFromId(weaponId) > 0)
                 {
                     s.sprite = w.weaponIconSprite;
 
-                    button.onClick.AddListener(() => wdp.SetDetails(weaponId));
+                    button.onClick.AddListener(() =>
+                    {
+                        newLabelCanvasGroup.alpha = 0;
+                        PlayerData.Instance.CheckWeapon(weaponId);
+                        wdp.SetDetails(weaponId);
+                    });
 
                     s.GetComponent<DragDropGrid>().weaponId = weaponId;
 
@@ -120,6 +126,8 @@ namespace _Scripts.UI.Arsenal
                         animator.enabled = true;
                     }
                     else animator.enabled = false;
+
+                    newLabelCanvasGroup.alpha = PlayerData.Instance.IsWeaponChecked(weaponId) ? 0 : 1;
                 }
                 else
                 {

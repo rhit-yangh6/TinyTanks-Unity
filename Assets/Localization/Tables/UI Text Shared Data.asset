@@ -309,6 +309,10 @@ MonoBehaviour:
     m_Key: ui_latest_update_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 11504101088305152
+    m_Key: ui_new_label
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

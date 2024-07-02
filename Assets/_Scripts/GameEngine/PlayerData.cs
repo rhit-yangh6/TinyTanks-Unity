@@ -10,8 +10,9 @@ namespace _Scripts.GameEngine
     public class PlayerData
     {
         public int level;
-        public Dictionary<int, int> levels;
-        public HashSet<string> passedLevels;
+        public Dictionary<int, int> Levels;
+        public HashSet<string> PassedLevels;
+        public HashSet<int> CheckedWeapons;
         public int coins;
 
         public SelectionDatum[] selectedWeapons;
@@ -47,8 +48,9 @@ namespace _Scripts.GameEngine
             
             // Deprecated
             
-            levels = new Dictionary<int, int> { { 1, 0 } };
-            passedLevels = new HashSet<string>();
+            Levels = new Dictionary<int, int> { { 1, 0 } };
+            PassedLevels = new HashSet<string>();
+            CheckedWeapons = new HashSet<int>();
 
             coins = 88888888;
             isTutorialCompleted = false;
@@ -78,23 +80,23 @@ namespace _Scripts.GameEngine
 
         public int GetLevelStatusInChapter(int chapterId)
         {
-            if (levels.TryAdd(chapterId, 0))
+            if (Levels.TryAdd(chapterId, 0))
             {
                 SaveSystem.SavePlayer();
                 return 0;
             }
 
-            return levels[chapterId];
+            return Levels[chapterId];
         }
 
         public bool IsLevelPassed(string levelId)
         {
-            return passedLevels.Contains(levelId);
+            return PassedLevels.Contains(levelId);
         }
 
         public bool IsChapterUnlocked(int chapterId)
         {
-            return levels.ContainsKey(chapterId);
+            return Levels.ContainsKey(chapterId);
         }
 
         public int GetWeaponLevelFromId(int idToFind)
@@ -212,12 +214,12 @@ namespace _Scripts.GameEngine
             var currentLevel = chapter.levels[currentIdx];
             var progress = GetLevelStatusInChapter(GameStateController.currentChapterId);
 
-            passedLevels.Add(currentLevel.id);
+            PassedLevels.Add(currentLevel.id);
             
             // First completion
             if (progress <= currentIdx && currentIdx < chapter.levels.Length - 1)
             {
-                levels[GameStateController.currentChapterId] = currentIdx + 1;
+                Levels[GameStateController.currentChapterId] = currentIdx + 1;
             }
             // If the level unlocks a chapter
             else if (currentLevel.unlocksChapter != 0)
@@ -229,11 +231,11 @@ namespace _Scripts.GameEngine
 
         public void UnlockChapter(int chapterId)
         {
-            if (levels.ContainsKey(chapterId))
+            if (Levels.ContainsKey(chapterId))
             {
                 return;
             }
-            levels.Add(chapterId, 0);
+            Levels.Add(chapterId, 0);
             SaveSystem.SavePlayer();
         }
 
@@ -247,6 +249,17 @@ namespace _Scripts.GameEngine
         public void CompleteTutorial()
         {
             isTutorialCompleted = true;
+            SaveSystem.SavePlayer();
+        }
+
+        public bool IsWeaponChecked(int weaponId)
+        {
+            return CheckedWeapons.Contains(weaponId);
+        }
+        
+        public void CheckWeapon(int weaponId)
+        {
+            CheckedWeapons.Add(weaponId);
             SaveSystem.SavePlayer();
         }
     }

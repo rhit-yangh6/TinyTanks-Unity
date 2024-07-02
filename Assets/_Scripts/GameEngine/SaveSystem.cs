@@ -25,16 +25,19 @@ namespace _Scripts.GameEngine
         public static PlayerData LoadPlayer()
         {
             Debug.Log("Loading Player Data...");
-            string path = Application.persistentDataPath + "/player.data";
+            var path = Application.persistentDataPath + "/player.data";
             if (File.Exists(path))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.Open);
                 
-                PlayerData data = formatter.Deserialize(stream) as PlayerData;
+                var data = formatter.Deserialize(stream) as PlayerData;
                 stream.Close();
 
-                data.passedLevels ??= new HashSet<string>();
+                if (data == null) return null;
+                
+                data.PassedLevels ??= new HashSet<string>();
+                data.CheckedWeapons ??= new HashSet<int>();
                 return data;
             }
 
