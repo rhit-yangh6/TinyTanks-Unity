@@ -1,0 +1,49 @@
+﻿{
+  "achievements": [
+    {
+      "id": "FIRST_UPGRADE"
+    },
+    {
+      "id": "MAX_UPGRADE"
+    },
+    {
+      "id": "TUTORIAL_COMPLETED"
+    },
+    {
+      "id": "BABY_STEPS",
+      "isHidden": true
+    },
+    {
+      "id": "BOOMBOX"
+    },
+    {
+      "id": "FIRST_WIN"
+    },
+    {
+      "id": "OOPS"  
+    },
+    {
+      "id": "SPREAD_THE_FIRE",
+      "trackerStats": "small_fireball_spawned",
+      "targetValue": 100
+    },
+    {
+      "id": "UPGRADE_12",
+      "trackerStats": "upgrade_count",
+      "targetValue": 12
+    },
+    {
+      "id": "UPGRADE_50",
+      "trackerStats": "upgrade_count",
+      "targetValue": 50
+    },
+    {
+      "id": "WILL_OF_SACRIFICE",
+      "trackerStats": "double_edged_sword_punishment_count",
+      "targetValue": 25
+    },
+    {
+      "id": "YIN_YANG"
+    }
+  ]
+}

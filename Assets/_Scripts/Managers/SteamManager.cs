@@ -166,6 +166,20 @@ namespace _Scripts.Managers
             return 0;
         }
 
+        public int GetStatValue(string id)
+        {
+            try
+            {
+                return new Stat(id).GetInt();
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
+
+            return 0;
+        }
+
         public IEnumerable<Achievement> GetAllAchievements()
         {
             if (_isSteamConnected)

@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Achievement Text_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: dc1641cc96e655b4b95b9cfed4f8c3b5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 8419287040
+    m_Localized: First Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97124622336
+    m_Localized: Buy your first weapon upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8802184470528
+    m_Localized: Purchase a final weapon upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8780961292288
+    m_Localized: Max Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9191650762752
+    m_Localized: First Win
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9258554105856
+    m_Localized: Beat your first level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9992158846976
+    m_Localized: Tutorial Completed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10145703927808
+    m_Localized: Completed the tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10790959849472
+    m_Localized: Get yourself killed in the tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10772970479616
+    m_Localized: Baby Steps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11017452265472
+    m_Localized: Oops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11051409350656
+    m_Localized: Fell out of the map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11125778554880
+    m_Localized: Will of Sacrifice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11183433457664
+    m_Localized: Gets punished by Double Edged Sword 25 times. Unlocks Sacrificial
+      Bond
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11463248060416
+    m_Localized: 12 Upgrades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11519057469440
+    m_Localized: 50 Upgrades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11573486952448
+    m_Localized: Spread the Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11586774507520
+    m_Localized: Spawn 100 flame projectiles from Fireball. Unlocks Molotov
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11506650718208
+    m_Localized: Purchased 12 upgrades. Unlocks Spiky Ball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11536983924736
+    m_Localized: Purchased 50 upgrades. Unlocks Saw Blade
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

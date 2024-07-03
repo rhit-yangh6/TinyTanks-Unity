@@ -328,6 +328,14 @@ MonoBehaviour:
     m_Localized: Not Achieved
     m_Metadata:
       m_Items: []
+  - m_Id: 11915711611150336
+    m_Localized: Hidden Achievement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11915812287029248
+    m_Localized: ???
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -325,6 +325,14 @@ MonoBehaviour:
     m_Key: ui_unachieved
     m_Metadata:
       m_Items: []
+  - m_Id: 11915711611150336
+    m_Key: ui_hidden_achievement_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11915812287029248
+    m_Key: ui_hidden_achievement_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

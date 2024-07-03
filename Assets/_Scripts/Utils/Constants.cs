@@ -6,6 +6,7 @@ namespace _Scripts.Utils
     {
         /* I18N References */
         public const string LocalizationTableWeaponText = "Weapon Text";
+        public const string LocalizationTableAchievementText = "Achievement Text";
         public const string LocalizationTableBuffText = "Buff Text";
         public const string LocalizationTableWeaponUpgradeText = "Weapon Upgrade Text";
         public const string LocalizationTableUIText = "UI Text";
@@ -16,6 +17,8 @@ namespace _Scripts.Utils
         public const string LocalizationWeaponFirstLevelDescKey = "ui_weapon_first_level_desc";
         public const string LocalizationWeaponLockedLevelNameKey = "ui_weapon_locked_level_name";
         public const string LocalizationWeaponLockedLevelDescKey = "ui_weapon_locked_level_desc";
+        public const string LocalizationHiddenAchievementNameKey = "ui_hidden_achievement_name";
+        public const string LocalizationHiddenAchievementDescKey = "ui_hidden_achievement_desc";
         
         /* Settings */
         public const string MasterVolumeValue = "MasterVolumeValue";
