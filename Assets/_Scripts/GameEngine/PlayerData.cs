@@ -258,7 +258,11 @@ namespace _Scripts.GameEngine
         
         public void CheckWeapon(int weaponId)
         {
-            CheckedWeapons.Add(weaponId);
+            if (!CheckedWeapons.Add(weaponId))
+            {
+                return;
+            }
+
             SaveSystem.SavePlayer();
         }
     }
