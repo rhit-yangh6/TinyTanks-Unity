@@ -41,7 +41,7 @@ namespace _Scripts.Projectiles
 
         public override void DealDamage()
         {
-            var isComplete = _puzzleExtraData.AddStatus(_result);
+            _puzzleExtraData.AddStatus(_result);
             EventBus.Broadcast(EventTypes.ExternalDisplayChange, _puzzleExtraData);
             var pos = transform.position;
             DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Square);

@@ -14,6 +14,7 @@ namespace _Scripts.UI.WeaponExternalDisplay
     public class PuzzleExternalDisplay: WeaponExternalDisplay
     {
         [SerializeField] private CanvasGroup[] pieces;
+        [SerializeField] private GameObject sparkle;
         
         private PuzzleExtraData _puzzleExtraData;
         private void Start()
@@ -29,6 +30,8 @@ namespace _Scripts.UI.WeaponExternalDisplay
         public override void UpdateDisplay(WeaponExtraData wed)
         {
             _puzzleExtraData = (PuzzleExtraData) wed;
+            sparkle.SetActive(_puzzleExtraData.IsComplete());
+            
             var status = _puzzleExtraData.GetStatus();
             for (var i = 0; i < pieces.Length; i++)
             {

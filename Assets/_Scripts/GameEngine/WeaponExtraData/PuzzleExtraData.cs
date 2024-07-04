@@ -6,14 +6,19 @@ namespace _Scripts.GameEngine.WeaponExtraData
     {
         private readonly HashSet<int> _puzzleStatus = new ();
 
-        public bool AddStatus(int piece)
+        public void AddStatus(int piece)
         {
             _puzzleStatus.Add(piece);
-            
-            if (_puzzleStatus.Count != 4) return false;
-            
+        }
+
+        public bool IsComplete()
+        {
+            return _puzzleStatus.Count == 4;
+        }
+
+        public void ClearStatus()
+        {
             _puzzleStatus.Clear();
-            return true;
         }
 
         public HashSet<int> GetStatus()
