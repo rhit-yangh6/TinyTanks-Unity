@@ -1,9 +1,11 @@
+using _Scripts.GameEngine.WeaponExtraData;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
     public class LaunchedProjectile : Projectile
     {
+        public WeaponExtraData WeaponExtraData;
         public int Level { get; set; }
 
         private void Awake()

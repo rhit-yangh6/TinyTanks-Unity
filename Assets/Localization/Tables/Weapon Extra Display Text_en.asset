@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Weapon Extra Display Text_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 445ae309c88240444a04a70b7df99b52, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 6841646323189153808
+  m_TableData:
+  - m_Id: 6313746432
+    m_Localized: Number of Gears
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142033035264
+    m_Localized: There are {count} effective gear(s) in the map
+    m_Metadata:
+      m_Items:
+      - rid: 6841646323189153808
+  references:
+    version: 2
+    RefIds:
+    - rid: 6841646323189153808
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0020d41121000000

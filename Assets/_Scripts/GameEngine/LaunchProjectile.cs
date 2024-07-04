@@ -23,6 +23,7 @@ namespace _Scripts.GameEngine
         private Vector2 _startPoint, _endPoint;
 
         private SelectionDatum _sd;
+        private WeaponExtraData.WeaponExtraData _wed;
         private GameObject _projectilePrefab;
         private LaunchedProjectile _selectedProjectile;
         private Rigidbody2D _rb;
@@ -106,6 +107,7 @@ namespace _Scripts.GameEngine
                     lp.SetParameters(_selectedWeapon.damage, _selectedWeapon.radius, _selectedWeapon.maxMagnitude, _selectedWeapon.steps);
                     lp.Level = _sd.level;
                     lp.Shooter = gameObject;
+                    lp.WeaponExtraData = _wed;
 
                     _playerCharacter.tankCannon.GetComponent<Animator>().SetTrigger(Shoot);
                 
@@ -209,9 +211,10 @@ namespace _Scripts.GameEngine
             return power * fixedMagnitude * finalDirection;
         }
 
-        public void SwitchWeapon(SelectionDatum sd)
+        public void SwitchWeapon(SelectionDatum sd, WeaponExtraData.WeaponExtraData wed)
         {
             _sd = sd;
+            _wed = wed;
 
             _selectedWeapon = WeaponManager.Instance.GetWeaponById(sd.weaponId);
             

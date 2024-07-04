@@ -111,6 +111,21 @@ namespace _Scripts.UI
             _bgRectTransform.sizeDelta = backgroundSize;
         }
 
+        private void ShowTooltipString(string displayName, string displayDesc)
+        {
+            gameObject.SetActive(true);
+            
+            _tooltipNameText.text = displayName;
+            _tooltipDescText.text = displayDesc; 
+            var backgroundSize = new Vector2(_tooltipDescText.preferredWidth + TextPaddingSize * 2f,
+                _tooltipNameText.preferredHeight + TextPaddingSize * 3f + _tooltipDescText.preferredHeight);
+            
+            _tooltipNameText.rectTransform.anchoredPosition =
+                new Vector2(TextPaddingSize, _tooltipDescText.preferredHeight + TextPaddingSize * 2f);
+            
+            _bgRectTransform.sizeDelta = backgroundSize;
+        }
+
         private void HideTooltip()
         {
             gameObject.SetActive(false);
@@ -124,6 +139,11 @@ namespace _Scripts.UI
         public static void ShowTooltipBuff_Static(string buffKey, int duration)
         {
             _instance.ShowTooltipBuff(buffKey, duration);
+        }
+
+        public static void ShowTooltipString_Static(string displayName, string displayDesc)
+        {
+            _instance.ShowTooltipString(displayName, displayDesc);
         }
         
         public static void HideTooltip_Static()

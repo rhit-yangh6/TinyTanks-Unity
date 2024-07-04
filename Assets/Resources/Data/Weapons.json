@@ -1291,7 +1291,8 @@
       ],
       "dataPath": "gear",
       "shopPrice": 500,
-      "extraWeaponTerms": []
+      "extraWeaponTerms": [],
+      "hasExternalDisplay": true
     }, {
       "id": 30,
       "weaponName": "weapon_fuel_name",

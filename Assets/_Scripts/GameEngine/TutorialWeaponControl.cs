@@ -77,7 +77,7 @@ namespace _Scripts.GameEngine
             if (bypass || (tutorialManager.popUpIndex == 3 && index == 1))
             {
                 _selectedIdx = index;
-                _lp.SwitchWeapon(sd);
+                _lp.SwitchWeapon(sd, null);
                 if (!bypass)
                 {
                     tutorialManager.HandleWeaponSelected();

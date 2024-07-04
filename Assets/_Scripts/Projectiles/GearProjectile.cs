@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using _Scripts.GameEngine.Map;
+using _Scripts.GameEngine.WeaponExtraData;
 using _Scripts.Managers;
 using MoreMountains.Feedbacks;
 using UnityEngine;
@@ -58,8 +59,15 @@ namespace _Scripts.Projectiles
         // Other Variables
         private int _gearNumber;
         private bool _isActivated;
+        private GearExtraData _gearExtraData;
         private static readonly int OverclockIndex = Animator.StringToHash("Overclock");
         private static readonly int SpinIndex = Animator.StringToHash("Spin");
+
+        private void Start()
+        {
+            _gearExtraData = (GearExtraData) WeaponExtraData;
+            _gearExtraData.cap = MaximumGears;
+        }
 
         private void Update()
         {
@@ -99,6 +107,11 @@ namespace _Scripts.Projectiles
             {
                 defaultMmFeedbacks.PlayFeedbacks();
                 Instantiate(gearBackgroundPrefab, pos, Quaternion.identity);
+                
+                // Update External Display
+                _gearExtraData.AddOneGear();
+                EventBus.Broadcast(EventTypes.ExternalDisplayChange, _gearExtraData);
+                
                 DealDamage();
                 yield break;
             }
@@ -120,9 +133,17 @@ namespace _Scripts.Projectiles
                         gearExplosionDamage, DamageHandler.DamageType.Circular);
                     Destroy(gearObject, 0.3f);
                 }
+                
+                // Update External Display
+                _gearExtraData.ClearAllGears();
+                EventBus.Broadcast(EventTypes.ExternalDisplayChange, _gearExtraData);
             }
             
             Instantiate(gearBackgroundPrefab, pos, Quaternion.identity);
+            
+            // Update External Display
+            _gearExtraData.AddOneGear();
+            EventBus.Broadcast(EventTypes.ExternalDisplayChange, _gearExtraData);
         }
 
         public override void DealDamage()

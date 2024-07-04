@@ -8,6 +8,7 @@ namespace _Scripts.Utils
         public const string LocalizationTableWeaponText = "Weapon Text";
         public const string LocalizationTableAchievementText = "Achievement Text";
         public const string LocalizationTableBuffText = "Buff Text";
+        public const string LocalizationTableWeaponExtraDisplayText = "Weapon Extra Display Text";
         public const string LocalizationTableWeaponUpgradeText = "Weapon Upgrade Text";
         public const string LocalizationTableUIText = "UI Text";
         public const string LocalizationTableLevelsText = "Levels Text";

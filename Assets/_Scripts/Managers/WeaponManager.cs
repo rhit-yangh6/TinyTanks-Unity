@@ -1,10 +1,13 @@
 using System;
 using _Scripts.GameEngine;
+using _Scripts.GameEngine.WeaponExtraData;
 using _Scripts.Projectiles;
 using _Scripts.UI;
+using _Scripts.UI.WeaponExternalDisplay;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Scripts.Managers
 {
@@ -37,6 +40,18 @@ namespace _Scripts.Managers
             {
                 weapon.weaponIconSprite = Resources.Load<Sprite>("WeaponIcons/" + weapon.dataPath);
                 weapon.projectilePrefab = Resources.Load<GameObject>("ProjectilePrefabs/" + weapon.dataPath);
+                
+                if (weapon.hasExternalDisplay)
+                {
+                    weapon.weaponExternalDisplay = 
+                        Resources.Load<GameObject>("WeaponExternalDisplay/" + weapon.dataPath);
+
+                    weapon.WeaponExtraData = weapon.id switch
+                    {
+                        29 => new GearExtraData(),
+                        _ => (WeaponExtraData)null
+                    };
+                }
                 weapon.SetParams();
             }
         }
@@ -72,7 +87,7 @@ namespace _Scripts.Managers
         public int id, steps, shopPrice;
         public string weaponName, weaponDescription, dataPath, saying;
         public float damage, radius, maxMagnitude;
-        public bool hideInShop, hideInArsenal;
+        public bool hideInShop, hideInArsenal, hasExternalDisplay;
         
         // Also Read from Weapons.json, but Extra Data Types
         public UpgradeInfo[] upgradeInfos;
@@ -81,6 +96,8 @@ namespace _Scripts.Managers
         // Later Generated
         public Sprite weaponIconSprite;
         public GameObject projectilePrefab;
+        public GameObject weaponExternalDisplay;
+        public WeaponExtraData WeaponExtraData;
 
         public void SetParams()
         {
