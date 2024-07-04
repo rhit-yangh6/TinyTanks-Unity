@@ -49,7 +49,8 @@ namespace _Scripts.Managers
                     weapon.WeaponExtraData = weapon.id switch
                     {
                         29 => new GearExtraData(),
-                        _ => (WeaponExtraData)null
+                        32 => new PuzzleExtraData(),
+                        _ => null
                     };
                 }
                 weapon.SetParams();

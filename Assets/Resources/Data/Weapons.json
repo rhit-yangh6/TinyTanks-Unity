@@ -1372,6 +1372,47 @@
       "shopPrice": 0,
       "hideInShop": true,
       "extraWeaponTerms": []
+    }, {
+      "id": 32,
+      "weaponName": "weapon_puzzle_name",
+      "weaponDescription": "weapon_puzzle_desc",
+      "damage": 20,
+      "radius": 1.9,
+      "maxMagnitude": 7,
+      "steps": 380,
+      "saying": "weapon_puzzle_saying",
+      "upgradeInfos": [
+        {
+          "name": "upgrade_puzzle_2_name",
+          "description": "upgrade_puzzle_2_desc",
+          "cost": 290
+        },
+        {
+          "name": "upgrade_puzzle_3_name",
+          "description": "upgrade_puzzle_3_desc",
+          "cost": 390
+        },
+        {
+          "name": "upgrade_puzzle_4_name",
+          "description": "upgrade_puzzle_4_desc",
+          "cost": 510
+        },
+        {
+          "name": "upgrade_puzzle_5_name",
+          "description": "upgrade_puzzle_5_desc",
+          "cost": 1088
+        },
+        {
+          "name": "upgrade_puzzle_6_name",
+          "description": "upgrade_puzzle_6_desc",
+          "cost": 1300
+        }
+      ],
+      "dataPath": "puzzle",
+      "shopPrice": 100,
+      "hideInShop": false,
+      "hasExternalDisplay": true,
+      "extraWeaponTerms": []
     }
   ]
 }

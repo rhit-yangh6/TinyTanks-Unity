@@ -36,6 +36,9 @@ namespace _Scripts.GameEngine.Map
                 case DestroyTypes.Oval:
                     DestroyTerrainOval(pos, radius * RadiusMultiplier, destroyingPower);
                     break;
+                case DestroyTypes.Puzzle:
+                    DestroyTerrainPuzzle(pos, radius * RadiusMultiplier, destroyingPower);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
@@ -88,6 +91,13 @@ namespace _Scripts.GameEngine.Map
                 .GetComponent<D2dExplosion>();
             explosion.StampSize *= radius;
         }
+        
+        private void DestroyTerrainPuzzle(Vector3 pos, float radius, int destroyingPower = 1)
+        {
+            var explosion = Instantiate(GameAssets.i.d2dPuzzleExplosion, pos, Quaternion.identity)
+                .GetComponent<D2dExplosion>();
+            explosion.StampSize *= radius;
+        }
     }
 
     public enum DestroyTypes
@@ -95,6 +105,7 @@ namespace _Scripts.GameEngine.Map
         Circular,
         Square,
         Star,
-        Oval
+        Oval,
+        Puzzle
     }
 }

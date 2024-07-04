@@ -1,8 +1,6 @@
 using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
-using JetBrains.Annotations;
-using TerraformingTerrain2d;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -65,8 +63,8 @@ namespace _Scripts.Projectiles
 
         public void DisplayTopDownResult()
         {
-            Vector3 cameraCenterPos = Camera.main.transform.position;
-            GameObject insTopdown = Instantiate(topDownDisplay, 
+            var cameraCenterPos = Camera.main.transform.position;
+            var insTopdown = Instantiate(topDownDisplay, 
                 new Vector3(cameraCenterPos.x, cameraCenterPos.y, 0), 
                 quaternion.identity);
             insTopdown.GetComponent<SpriteRenderer>().sprite = 

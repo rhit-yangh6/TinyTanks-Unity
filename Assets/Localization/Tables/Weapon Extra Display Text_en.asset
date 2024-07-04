@@ -28,6 +28,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 6841646323189153808
+  - m_Id: 92128211640320
+    m_Localized: Puzzle Progress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92220792512512
+    m_Localized: Collect all four pieces to initiate a powerful attack!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

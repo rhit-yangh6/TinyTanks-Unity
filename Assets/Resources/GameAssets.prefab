@@ -53,6 +53,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8e12b5652c8ace547bfd6a54499ea473, type: 3}
   - {fileID: 21300000, guid: 1b5bcd0de25403e42be53b137a0ad8e6, type: 3}
   - {fileID: 21300000, guid: 17dcce506f151394a80836c282c0bd4e, type: 3}
+  puzzlePieces:
+  - {fileID: 21300000, guid: bf1b06410634864448ec5d89246e9df9, type: 3}
+  - {fileID: 21300000, guid: 804a3246006837b41b5f9a51648c71b9, type: 3}
+  - {fileID: 21300000, guid: 00ac438b2ef41bd45a78e702d05891ca, type: 3}
+  - {fileID: 21300000, guid: eb9254378e8eadc4d899d2754f9f7949, type: 3}
   stars:
   - {fileID: 118153446, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
   - {fileID: -545359726, guid: 0c1b76a2e9d36f1488e94095fdf42f78, type: 3}
@@ -98,3 +103,4 @@ MonoBehaviour:
   d2dStarExplosion: {fileID: 100000, guid: e1391b0a276854549b2c2f2918bee305, type: 3}
   d2dOvalExplosion: {fileID: 100000, guid: 3d81822e143bce84088f9b8f112e0bed, type: 3}
   d2dSparkExplosion: {fileID: 100000, guid: 3eb353b2bd81e2e48aba2fcddff7ed36, type: 3}
+  d2dPuzzleExplosion: {fileID: 100000, guid: ae56bc9ba8313ed49b77f7269c17daac, type: 3}

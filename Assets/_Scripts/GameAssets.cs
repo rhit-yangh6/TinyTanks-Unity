@@ -20,6 +20,7 @@ namespace _Scripts
         public Transform damagePopupPrefab;
 
         public Sprite[] diceNumbers;
+        public Sprite[] puzzlePieces;
 
         public Sprite[] stars;
 
@@ -58,5 +59,6 @@ namespace _Scripts
         public GameObject d2dStarExplosion;
         public GameObject d2dOvalExplosion;
         public GameObject d2dSparkExplosion;
+        public GameObject d2dPuzzleExplosion;
     }
 }

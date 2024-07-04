@@ -23,6 +23,14 @@ MonoBehaviour:
     m_Key: gear_extra_display_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 92128211640320
+    m_Key: puzzle_extra_display_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92220792512512
+    m_Key: puzzle_extra_display_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
