@@ -426,6 +426,18 @@ MonoBehaviour:
     m_Localized: -- Set the world ablaze.
     m_Metadata:
       m_Items: []
+  - m_Id: 12679158682624000
+    m_Localized: Puzzle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12679180006465536
+    m_Localized: Collect all four puzzle pieces to unleash a powerful attack.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12679185073184768
+    m_Localized: -- Piece it together!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -403,6 +403,18 @@ MonoBehaviour:
     m_Key: weapon_molotov_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 12679158682624000
+    m_Key: weapon_puzzle_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12679180006465536
+    m_Key: weapon_puzzle_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12679185073184768
+    m_Key: weapon_puzzle_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
