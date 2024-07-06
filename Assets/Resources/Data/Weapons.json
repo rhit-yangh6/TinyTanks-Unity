@@ -1413,6 +1413,46 @@
       "hideInShop": false,
       "hasExternalDisplay": true,
       "extraWeaponTerms": []
+    }, {
+      "id": 33,
+      "weaponName": "weapon_splitter_name",
+      "weaponDescription": "weapon_splitter_desc",
+      "damage": 27,
+      "radius": 1.7,
+      "maxMagnitude": 7,
+      "steps": 390,
+      "saying": "weapon_splitter_saying",
+      "upgradeInfos": [
+        {
+          "name": "upgrade_splitter_2_name",
+          "description": "upgrade_splitter_2_desc",
+          "cost": 290
+        },
+        {
+          "name": "upgrade_splitter_3_name",
+          "description": "upgrade_splitter_3_desc",
+          "cost": 390
+        },
+        {
+          "name": "upgrade_splitter_4_name",
+          "description": "upgrade_splitter_4_desc",
+          "cost": 510
+        },
+        {
+          "name": "upgrade_splitter_5_name",
+          "description": "upgrade_splitter_5_desc",
+          "cost": 1088
+        },
+        {
+          "name": "upgrade_splitter_6_name",
+          "description": "upgrade_splitter_6_desc",
+          "cost": 1300
+        }
+      ],
+      "dataPath": "splitter",
+      "shopPrice": 100,
+      "hideInShop": false,
+      "extraWeaponTerms": []
     }
   ]
 }

@@ -415,6 +415,18 @@ MonoBehaviour:
     m_Key: weapon_puzzle_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 13006050535153664
+    m_Key: weapon_splitter_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13006130235318272
+    m_Key: weapon_splitter_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13006144076521472
+    m_Key: weapon_splitter_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -438,6 +438,18 @@ MonoBehaviour:
     m_Localized: -- Piece it together!
     m_Metadata:
       m_Items: []
+  - m_Id: 13006050535153664
+    m_Localized: Splitter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13006130235318272
+    m_Localized: Splits into two identical projectiles when clicked in mid-air.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13006144076521472
+    m_Localized: -- Divide and conquer.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
