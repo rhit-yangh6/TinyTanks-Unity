@@ -11,23 +11,22 @@ namespace _Scripts.Projectiles
         // Set in Inspector
         [SerializeField] private MMFeedbacks activateMmFeedbacks;
         [SerializeField] private GameObject splitterSmallPrefab;
+        [SerializeField] private float spawnVelocity = 3f;
         
         // References
         protected override float Damage {
             get
             {
-                if (Level >= 1) return damage * 1.38f;
-                return Level >= 3 ? damage * 1.15f : damage;
+                return Level switch
+                {
+                    _ => damage
+                };
             }
         }
         protected override int Steps => steps;
         
         // Other Variables
         private bool _isActivated;
-    
-        private void Start()
-        {
-        }
 
         private void Update()
         {
@@ -47,7 +46,7 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
+            derivedRb2d.velocity = (Vector2.left * 2 + Vector2.up) * spawnVelocity;
             
             // Second Piece
             derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
@@ -55,7 +54,7 @@ namespace _Scripts.Projectiles
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
+            derivedRb2d.velocity = (Vector2.right * 2 + Vector2.up) * spawnVelocity;
         }
     }
 }
