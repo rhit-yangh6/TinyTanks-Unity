@@ -450,6 +450,18 @@ MonoBehaviour:
     m_Localized: -- Divide and conquer.
     m_Metadata:
       m_Items: []
+  - m_Id: 13735616950050816
+    m_Localized: Packed Stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13735687535992832
+    m_Localized: Splits into three smaller stones when clicked in mid-air.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13735980092891136
+    m_Localized: -- Three for the price of one.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -427,6 +427,18 @@ MonoBehaviour:
     m_Key: weapon_splitter_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 13735616950050816
+    m_Key: weapon_packed_stone_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13735687535992832
+    m_Key: weapon_packed_stone_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13735980092891136
+    m_Key: weapon_packed_stone_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

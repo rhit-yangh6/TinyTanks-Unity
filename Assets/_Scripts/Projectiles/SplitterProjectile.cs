@@ -30,7 +30,7 @@ namespace _Scripts.Projectiles
 
         private void Update()
         {
-            Direct();
+            Spin();
             if (!Input.GetMouseButtonDown(0) || _isActivated) return;
             
             _isActivated = true;

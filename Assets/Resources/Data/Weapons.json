@@ -1453,6 +1453,46 @@
       "shopPrice": 100,
       "hideInShop": false,
       "extraWeaponTerms": []
+    }, {
+      "id": 34,
+      "weaponName": "weapon_packed_stone_name",
+      "weaponDescription": "weapon_packed_stone_desc",
+      "damage": 30,
+      "radius": 2.6,
+      "maxMagnitude": 8,
+      "steps": 400,
+      "saying": "weapon_packed_stone_saying",
+      "upgradeInfos": [
+        {
+          "name": "upgrade_packed_stone_2_name",
+          "description": "upgrade_packed_stone_2_desc",
+          "cost": 290
+        },
+        {
+          "name": "upgrade_packed_stone_3_name",
+          "description": "upgrade_packed_stone_3_desc",
+          "cost": 390
+        },
+        {
+          "name": "upgrade_packed_stone_4_name",
+          "description": "upgrade_packed_stone_4_desc",
+          "cost": 510
+        },
+        {
+          "name": "upgrade_packed_stone_5_name",
+          "description": "upgrade_packed_stone_5_desc",
+          "cost": 1088
+        },
+        {
+          "name": "upgrade_packed_stone_6_name",
+          "description": "upgrade_packed_stone_6_desc",
+          "cost": 1300
+        }
+      ],
+      "dataPath": "packedStone",
+      "shopPrice": 0,
+      "hideInShop": false,
+      "extraWeaponTerms": []
     }
   ]
 }
