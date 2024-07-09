@@ -1409,8 +1409,8 @@
         }
       ],
       "dataPath": "puzzle",
-      "shopPrice": 100,
-      "hideInShop": false,
+      "shopPrice": 0,
+      "hideInShop": true,
       "hasExternalDisplay": true,
       "extraWeaponTerms": []
     }, {
