@@ -975,6 +975,46 @@ MonoBehaviour:
     m_Key: upgrade_molotov_5_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 13803054186110976
+    m_Key: upgrade_puzzle_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13803070027997184
+    m_Key: upgrade_puzzle_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13803073857396736
+    m_Key: upgrade_puzzle_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13803095218987008
+    m_Key: upgrade_puzzle_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13803103179776000
+    m_Key: upgrade_puzzle_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804905723863040
+    m_Key: upgrade_puzzle_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804919611203584
+    m_Key: upgrade_puzzle_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804938191970304
+    m_Key: upgrade_puzzle_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804946693824512
+    m_Key: upgrade_puzzle_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804954914660352
+    m_Key: upgrade_puzzle_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

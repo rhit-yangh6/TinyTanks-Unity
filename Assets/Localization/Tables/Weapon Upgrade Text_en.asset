@@ -1022,6 +1022,49 @@ MonoBehaviour:
     m_Localized: Enhances the damage dealt by the flames.
     m_Metadata:
       m_Items: []
+  - m_Id: 13803054186110976
+    m_Localized: Expansive Puzzle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13803070027997184
+    m_Localized: Lucky Draw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13803073857396736
+    m_Localized: Instant Unleash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13803095218987008
+    m_Localized: Unique Pieces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13803103179776000
+    m_Localized: Skyfall Completion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804905723863040
+    m_Localized: Increases the blast range of the puzzles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804919611203584
+    m_Localized: Increases the chance of obtaining a missing puzzle piece.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804938191970304
+    m_Localized: The powerful attack is unleashed immediately upon completing the
+      puzzle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804946693824512
+    m_Localized: The puzzle cannot be duplicated, ensuring that you always receive
+      a new piece until the puzzle is completed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13804954914660352
+    m_Localized: When the powerful attack is unleashed, all four puzzle pieces spawn
+      from the sky.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

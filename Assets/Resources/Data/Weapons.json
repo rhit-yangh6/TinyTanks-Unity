@@ -1385,27 +1385,27 @@
         {
           "name": "upgrade_puzzle_2_name",
           "description": "upgrade_puzzle_2_desc",
-          "cost": 290
+          "cost": 299
         },
         {
           "name": "upgrade_puzzle_3_name",
           "description": "upgrade_puzzle_3_desc",
-          "cost": 390
+          "cost": 399
         },
         {
           "name": "upgrade_puzzle_4_name",
           "description": "upgrade_puzzle_4_desc",
-          "cost": 510
+          "cost": 359
         },
         {
           "name": "upgrade_puzzle_5_name",
           "description": "upgrade_puzzle_5_desc",
-          "cost": 1088
+          "cost": 799
         },
         {
           "name": "upgrade_puzzle_6_name",
           "description": "upgrade_puzzle_6_desc",
-          "cost": 1300
+          "cost": 809
         }
       ],
       "dataPath": "puzzle",

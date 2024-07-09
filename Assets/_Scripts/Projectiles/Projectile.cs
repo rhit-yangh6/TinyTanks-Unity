@@ -13,6 +13,7 @@ namespace _Scripts.Projectiles
         protected new Collider2D collider2D;
         protected Rigidbody2D rigidBody2D;
         protected new Renderer renderer;
+        protected SpriteRenderer SpriteRenderer;
         protected bool isDetonated;
         
         [SerializeField] protected MMFeedbacks defaultMmFeedbacks;
@@ -29,6 +30,7 @@ namespace _Scripts.Projectiles
         
         private void Awake()
         {
+            SpriteRenderer = GetComponent<SpriteRenderer>();
             collider2D = GetComponent<Collider2D>();
             rigidBody2D = GetComponent<Rigidbody2D>();
             renderer = GetComponent<Renderer>();
