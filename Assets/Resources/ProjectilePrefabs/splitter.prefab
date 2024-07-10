@@ -167,6 +167,9 @@ MonoBehaviour:
   defaultMmFeedbacks: {fileID: 4347998678651866768}
   activateMmFeedbacks: {fileID: 4863903696873003519}
   splitterSmallPrefab: {fileID: 651377434096371971, guid: a81feccda0a6fcb4d9f2388f04791ac8, type: 3}
+  spawnVelocity: 3
+  thirdProjectileChance: 0.35
+  unpredictableSplitSuccessChance: 0.8
 --- !u!96 &6665370722037585415
 TrailRenderer:
   serializedVersion: 3

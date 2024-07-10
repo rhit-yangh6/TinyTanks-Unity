@@ -1426,27 +1426,27 @@
         {
           "name": "upgrade_splitter_2_name",
           "description": "upgrade_splitter_2_desc",
-          "cost": 290
+          "cost": 150
         },
         {
           "name": "upgrade_splitter_3_name",
           "description": "upgrade_splitter_3_desc",
-          "cost": 390
+          "cost": 250
         },
         {
           "name": "upgrade_splitter_4_name",
           "description": "upgrade_splitter_4_desc",
-          "cost": 510
+          "cost": 450
         },
         {
           "name": "upgrade_splitter_5_name",
           "description": "upgrade_splitter_5_desc",
-          "cost": 1088
+          "cost": 850
         },
         {
           "name": "upgrade_splitter_6_name",
           "description": "upgrade_splitter_6_desc",
-          "cost": 1300
+          "cost": 850
         }
       ],
       "dataPath": "splitter",

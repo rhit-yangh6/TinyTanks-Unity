@@ -1065,6 +1065,47 @@ MonoBehaviour:
       from the sky.
     m_Metadata:
       m_Items: []
+  - m_Id: 14179722201407488
+    m_Localized: Split Force
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14179818045448192
+    m_Localized: Third Entity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14179831433666560
+    m_Localized: Unpredictable Split
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14179839713222656
+    m_Localized: Chain Reaction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14179800349679616
+    m_Localized: Fractal Reach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182617214885888
+    m_Localized: Increases the damage of each split projectile.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182641994833920
+    m_Localized: Increases the range of the projectiles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182740208656384
+    m_Localized: Occasionally, a third projectile is created when splitting.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182752061759488
+    m_Localized: The projectile can split into four, but it is possible for the split
+      to fail, causing the projectile to explode instantly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182759678615552
+    m_Localized: Projectiles created after splitting can split once again.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

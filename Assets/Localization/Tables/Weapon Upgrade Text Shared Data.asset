@@ -1015,6 +1015,46 @@ MonoBehaviour:
     m_Key: upgrade_puzzle_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 14179722201407488
+    m_Key: upgrade_splitter_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14179800349679616
+    m_Key: upgrade_splitter_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14179818045448192
+    m_Key: upgrade_splitter_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14179831433666560
+    m_Key: upgrade_splitter_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14179839713222656
+    m_Key: upgrade_splitter_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182617214885888
+    m_Key: upgrade_splitter_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182641994833920
+    m_Key: upgrade_splitter_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182740208656384
+    m_Key: upgrade_splitter_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182752061759488
+    m_Key: upgrade_splitter_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14182759678615552
+    m_Key: upgrade_splitter_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
