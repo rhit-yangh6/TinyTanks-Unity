@@ -49,7 +49,7 @@
       "saying": "weapon_boulder_saying",
       "damage": 35.0,
       "radius": 3.0,
-      "maxMagnitude": 10.0,
+      "maxMagnitude": 7.0,
       "steps": 500,
       "upgradeInfos": [
         {
