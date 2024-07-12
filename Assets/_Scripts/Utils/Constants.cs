@@ -64,9 +64,11 @@ namespace _Scripts.Utils
         public const string AchievementSpreadTheFire = "SREAD_THE_FIRE";
         public const string AchievementUpgrade12 = "UPGRADE_12";
         public const string AchievementUpgrade50 = "UPGRADE_50";
+        public const string AchievementPackThemUp = "PACK_THEM_UP";
 
         public const string StatDoubleEdgedSwordPunishmentCount = "double_edged_sword_punishment_count";
         public const string StatSmallFireballSpawned = "small_fireball_spawned";
         public const string StatUpgradeCount = "upgrade_count";
+        public const string StatBoulderSplitCount = "boulder_split_count";
     }
 }

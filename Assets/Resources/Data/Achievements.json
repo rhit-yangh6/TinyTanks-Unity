@@ -44,6 +44,11 @@
     },
     {
       "id": "YIN_YANG"
+    },
+    {
+      "id": "PACK_THEM_UP",
+      "trackerStats": "boulder_split_count",
+      "targetValue": 20
     }
   ]
 }

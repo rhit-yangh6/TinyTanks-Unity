@@ -1106,6 +1106,48 @@ MonoBehaviour:
     m_Localized: Projectiles created after splitting can split once again.
     m_Metadata:
       m_Items: []
+  - m_Id: 14866991535104000
+    m_Localized: Stone Slam
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14867499146551296
+    m_Localized: Fourth Piece
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14867485057884160
+    m_Localized: Shatter Burst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14868060658999296
+    m_Localized: Fragment Fury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14868081395638272
+    m_Localized: Shrapnel Storm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14868938673627136
+    m_Localized: Slightly increase the damage of projectiles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14869087235874816
+    m_Localized: Increases the blast range of small rocks that split off.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14869099277721600
+    m_Localized: A fourth stone is created when splitting.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14869107838296064
+    m_Localized: Increases the damage of each smaller stone and enhances the spread
+      of the projectiles, making it easier to hit multiple targets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14869120295378944
+    m_Localized: When splitting, the stone spawns seven smaller projectiles with
+      reduced damage, overwhelming enemies with sheer volume.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

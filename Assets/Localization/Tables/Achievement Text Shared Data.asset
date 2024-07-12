@@ -95,6 +95,14 @@ MonoBehaviour:
     m_Key: SPREAD_THE_FIRE_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 3226194784034816
+    m_Key: PACK_THEM_UP_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3226275935428608
+    m_Key: PACK_THEM_UP_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

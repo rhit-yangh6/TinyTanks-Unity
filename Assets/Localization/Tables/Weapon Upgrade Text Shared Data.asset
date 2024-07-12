@@ -1055,6 +1055,46 @@ MonoBehaviour:
     m_Key: upgrade_splitter_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 14866991535104000
+    m_Key: upgrade_packed_stone_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14867485057884160
+    m_Key: upgrade_packed_stone_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14867499146551296
+    m_Key: upgrade_packed_stone_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14868060658999296
+    m_Key: upgrade_packed_stone_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14868081395638272
+    m_Key: upgrade_packed_stone_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14868938673627136
+    m_Key: upgrade_packed_stone_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14869087235874816
+    m_Key: upgrade_packed_stone_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14869099277721600
+    m_Key: upgrade_packed_stone_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14869107838296064
+    m_Key: upgrade_packed_stone_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14869120295378944
+    m_Key: upgrade_packed_stone_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

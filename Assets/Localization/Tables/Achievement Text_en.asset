@@ -99,6 +99,14 @@ MonoBehaviour:
     m_Localized: Purchased 50 upgrades. Unlocks Saw Blade
     m_Metadata:
       m_Items: []
+  - m_Id: 3226194784034816
+    m_Localized: Pack Them Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3226275935428608
+    m_Localized: Split the boulder 20 times. Unlocks Packed Stone
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

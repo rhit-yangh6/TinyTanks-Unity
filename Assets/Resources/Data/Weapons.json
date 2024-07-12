@@ -1491,7 +1491,7 @@
       ],
       "dataPath": "packedStone",
       "shopPrice": 0,
-      "hideInShop": false,
+      "hideInShop": true,
       "extraWeaponTerms": []
     }
   ]

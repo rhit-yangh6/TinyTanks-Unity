@@ -1,6 +1,7 @@
 using System;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -66,6 +67,12 @@ namespace _Scripts.Projectiles
             if (spawnPieces)
             {
                 SpawnPieces();
+                var splitCount = SteamManager.IncrementStat(Constants.StatBoulderSplitCount);
+                if (splitCount >= 20)
+                {
+                    SteamManager.UnlockAchievement(Constants.AchievementPackThemUp);
+                    WeaponManager.UnlockWeapon(34); // Packed Stone 34
+                }
             }
         }
 
