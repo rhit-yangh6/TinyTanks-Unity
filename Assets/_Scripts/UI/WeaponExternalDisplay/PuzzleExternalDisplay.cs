@@ -19,12 +19,12 @@ namespace _Scripts.UI.WeaponExternalDisplay
         private PuzzleExtraData _puzzleExtraData;
         private void Start()
         {
-            EventBus.AddListener<PuzzleExtraData>(EventTypes.ExternalDisplayChange, UpdateDisplay);
+            EventBus.AddListener<PuzzleExtraData>(EventTypes.ExternalDisplayChangePuzzle, UpdateDisplay);
         }
 
         private void OnDestroy()
         {
-            EventBus.RemoveListener<PuzzleExtraData>(EventTypes.ExternalDisplayChange, UpdateDisplay);
+            EventBus.RemoveListener<PuzzleExtraData>(EventTypes.ExternalDisplayChangePuzzle, UpdateDisplay);
         }
         
         public override void UpdateDisplay(WeaponExtraData wed)

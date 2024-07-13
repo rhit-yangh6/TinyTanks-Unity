@@ -8,16 +8,6 @@ namespace _Scripts.UI.WeaponExternalDisplay
 {
     public abstract class WeaponExternalDisplay: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        private void Start()
-        {
-            EventBus.AddListener<WeaponExtraData>(EventTypes.ExternalDisplayChange, UpdateDisplay);
-        }
-
-        private void OnDestroy()
-        {
-            EventBus.RemoveListener<WeaponExtraData>(EventTypes.ExternalDisplayChange, UpdateDisplay);
-        }
-
         public abstract void UpdateDisplay(WeaponExtraData wed);
 
         public abstract void OnPointerEnter(PointerEventData eventData);

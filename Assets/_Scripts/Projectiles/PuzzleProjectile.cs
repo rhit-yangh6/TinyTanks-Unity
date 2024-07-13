@@ -77,7 +77,7 @@ namespace _Scripts.Projectiles
         {
             var pos = transform.position;
             _puzzleExtraData.AddStatus(_result);
-            EventBus.Broadcast(EventTypes.ExternalDisplayChange, _puzzleExtraData);
+            EventBus.Broadcast(EventTypes.ExternalDisplayChangePuzzle, _puzzleExtraData);
             
             if (Level >= 4 && _puzzleExtraData.IsComplete())
             {
@@ -94,7 +94,7 @@ namespace _Scripts.Projectiles
         {
             var pos = transform.position;
             _puzzleExtraData.ClearStatus();
-            EventBus.Broadcast(EventTypes.ExternalDisplayChange, _puzzleExtraData);
+            EventBus.Broadcast(EventTypes.ExternalDisplayChangePuzzle, _puzzleExtraData);
             
             // Sky fall?
             if (Level == 6)

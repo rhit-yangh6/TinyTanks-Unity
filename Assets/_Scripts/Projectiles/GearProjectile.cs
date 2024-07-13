@@ -110,7 +110,7 @@ namespace _Scripts.Projectiles
                 
                 // Update External Display
                 _gearExtraData.AddOneGear();
-                EventBus.Broadcast(EventTypes.ExternalDisplayChange, _gearExtraData);
+                EventBus.Broadcast(EventTypes.ExternalDisplayChangeGear, _gearExtraData);
                 
                 DealDamage();
                 yield break;
@@ -136,14 +136,14 @@ namespace _Scripts.Projectiles
                 
                 // Update External Display
                 _gearExtraData.ClearAllGears();
-                EventBus.Broadcast(EventTypes.ExternalDisplayChange, _gearExtraData);
+                EventBus.Broadcast(EventTypes.ExternalDisplayChangeGear, _gearExtraData);
             }
             
             Instantiate(gearBackgroundPrefab, pos, Quaternion.identity);
             
             // Update External Display
             _gearExtraData.AddOneGear();
-            EventBus.Broadcast(EventTypes.ExternalDisplayChange, _gearExtraData);
+            EventBus.Broadcast(EventTypes.ExternalDisplayChangeGear, _gearExtraData);
         }
 
         public override void DealDamage()

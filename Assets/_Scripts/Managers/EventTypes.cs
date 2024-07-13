@@ -32,8 +32,9 @@ namespace _Scripts.Managers
         /* Represents the event that a turn is ended by either player/enemy */
         EndTurn,
         
-        /* Represents the event that a change is needed in weapon external display */
-        ExternalDisplayChange,
+        /* Represents events that a change is needed in weapon external display */
+        ExternalDisplayChangeGear,
+        ExternalDisplayChangePuzzle,
         
         /* Represents the event that Steam is successfully connected */
         SteamConnected,

@@ -18,12 +18,12 @@ namespace _Scripts.UI.WeaponExternalDisplay
         
         private void Start()
         {
-            EventBus.AddListener<GearExtraData>(EventTypes.ExternalDisplayChange, UpdateDisplay);
+            EventBus.AddListener<GearExtraData>(EventTypes.ExternalDisplayChangeGear, UpdateDisplay);
         }
 
         private void OnDestroy()
         {
-            EventBus.RemoveListener<GearExtraData>(EventTypes.ExternalDisplayChange, UpdateDisplay);
+            EventBus.RemoveListener<GearExtraData>(EventTypes.ExternalDisplayChangeGear, UpdateDisplay);
         }
 
         public override void UpdateDisplay(WeaponExtraData wed)
