@@ -5,6 +5,7 @@ using _Scripts.Managers;
 using _Scripts.Utils;
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Projectiles
 {
@@ -22,6 +23,7 @@ namespace _Scripts.Projectiles
         [SerializeField] private float shockwaveRadius = 1.5f;
         [SerializeField] private float shockwaveDamage = 15f;
         [SerializeField] private float shockDuration = 0.25f;
+        [SerializeField] private float starCompletionDeviation = 14f;
         
         // References
         protected override float Radius => Level >= 2 ? radius * 1.3f : radius;
@@ -120,7 +122,8 @@ namespace _Scripts.Projectiles
                 DamageHandler.i.HandleDamage(pos, shockwaveRadius, shockwaveDamage, DamageHandler.DamageType.Circular);
             }
             
-            rigidBody2D.velocity = initialVelocity;
+            rigidBody2D.velocity = Geometry.Rotate(initialVelocity,
+                Random.Range(-starCompletionDeviation, starCompletionDeviation));
             rigidBody2D.gravityScale = 1;
             _tr.emitting = false;
             _ps.Play();

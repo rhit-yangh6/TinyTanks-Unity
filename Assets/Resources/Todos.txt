@@ -22,7 +22,6 @@ use last power + angle
 explode center, max damage (damage falloff) [Weapon]
 
 no fuel cons when not moving
-empty shop...?
 
 unlock modal, close pause menu when hit continue
 level - stars?
