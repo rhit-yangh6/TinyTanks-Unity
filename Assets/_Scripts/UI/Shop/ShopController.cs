@@ -18,6 +18,9 @@ namespace _Scripts.UI.Shop
         [SerializeField] private ShopDetailPanel sdp;
         [SerializeField] private ModalWindowManager modalWindowManager;
         [SerializeField] private BlurManager blurManager;
+        [SerializeField] private GameObject noticePanel;
+
+        private int shopItemNum;
 
         private void Start()
         {
@@ -82,6 +85,13 @@ namespace _Scripts.UI.Shop
                     // sdp.gameObject.SetActive(true);
                     // sdp.SetDetails(weaponId);
                 });
+                shopItemNum++;
+            }
+
+            // Show Notice Panel if there is no shop items
+            if (shopItemNum == 0)
+            {
+                noticePanel.SetActive(true);
             }
         }
     }

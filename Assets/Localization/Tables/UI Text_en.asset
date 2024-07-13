@@ -336,6 +336,10 @@ MonoBehaviour:
     m_Localized: ???
     m_Metadata:
       m_Items: []
+  - m_Id: 15564503057178624
+    m_Localized: There's nothing in the shop now, please check back later!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

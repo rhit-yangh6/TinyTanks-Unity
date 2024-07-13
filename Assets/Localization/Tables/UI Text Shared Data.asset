@@ -333,6 +333,10 @@ MonoBehaviour:
     m_Key: ui_hidden_achievement_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 15564503057178624
+    m_Key: ui_shop_empty
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
