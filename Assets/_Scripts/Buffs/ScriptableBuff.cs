@@ -58,17 +58,17 @@ namespace _Scripts.Buffs
         {
             duration -= 1;
             // Debug.Log(duration);
+            
+            if (Buff.isTurnTriggered)
+            {
+                TurnTrigger();
+            }
+            
+            // Mark buff as ended
             if (duration < 0)
             {
                 End();
                 isFinished = true;
-            }
-            else
-            {
-                if (Buff.isTurnTriggered)
-                {
-                    TurnTrigger();
-                }
             }
         }
 

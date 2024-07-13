@@ -25,10 +25,8 @@ no fuel cons when not moving
 
 unlock modal, close pause menu when hit continue
 level - stars?
-star - deviation after activated
 display stars in selection panel
 spend money sfx sound
-no border 1-8
 unlock modal in-game -> steam notification like
 burning - burn at the last turn
 combine weapons in arsenal

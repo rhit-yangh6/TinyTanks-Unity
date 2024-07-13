@@ -97,7 +97,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.2384, y: 25.54}
+  m_AnchoredPosition: {x: 1.24, y: 12.09}
   m_SizeDelta: {x: 91.24, y: 24.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9158794845666529246
@@ -302,8 +302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00002670288}
+  m_SizeDelta: {x: 0, y: 5.1849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9158794846049913772
 CanvasRenderer:
@@ -693,8 +693,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.24, y: 1.5}
-  m_SizeDelta: {x: 91.24, y: 23.74}
+  m_AnchoredPosition: {x: 1.24, y: -5.185}
+  m_SizeDelta: {x: 91.24, y: 10.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9158794846948146500
 MonoBehaviour:
@@ -855,8 +855,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.0000076294, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00008106232}
+  m_SizeDelta: {x: 0, y: 5.1849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &9158794847481794279
 GameObject:
@@ -1079,4 +1079,4 @@ MonoBehaviour:
   buffPanel: {fileID: 9158794845666529242}
   buffIconPrefab: {fileID: 604330633405261007, guid: a02c7868e93c3a540a2f55ec793680a3, type: 3}
   target: {fileID: 9158794846393297893}
-  offset: {x: 0, y: 1.4, z: 0}
+  offset: {x: 0, y: 1.44, z: 0}
