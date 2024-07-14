@@ -753,28 +753,28 @@
       "saying": "weapon_sawBlade_saying",
       "upgradeInfos": [
         {
-          "name": "SawStop",
-          "description": "The blade will stop instantly if it touches the shooter, dealing no damage its shooter.",
+          "name": "upgrade_saw_blade_2_name",
+          "description": "upgrade_saw_blade_2_desc",
           "cost": 70
         },
         {
-          "name": "Reinforced Structure",
-          "description": "Increases the durability and sharpness of the saw blade, increasing its damage and making it travel farther.",
+          "name": "upgrade_saw_blade_3_name",
+          "description": "upgrade_saw_blade_3_desc",
           "cost": 220
         },
         {
-          "name": "Precision Deployment",
-          "description": "Hugely improve the range of accuracy of saw blades.",
+          "name": "upgrade_saw_blade_4_name",
+          "description": "upgrade_saw_blade_4_desc",
           "cost": 310
         },
         {
-          "name": "Relentless Fury",
-          "description": "Damaging an enemy refreshes the timer for the saw blade's roll-forward action, allowing it to continue its relentless assault on foes without interruption.",
+          "name": "upgrade_saw_blade_5_name",
+          "description": "upgrade_saw_blade_5_desc",
           "cost": 1450
         },
         {
-          "name": "Shredder Storm",
-          "description": "The saw blades explode upon impact with an enemy, releasing smaller saw blades that goes in different directions.",
+          "name": "upgrade_saw_blade_6_name",
+          "description": "upgrade_saw_blade_6_desc",
           "cost": 1300
         }
       ],
@@ -794,28 +794,28 @@
       "steps": 499,
       "upgradeInfos": [
         {
-          "name": "Contagious Vector",
-          "description": "Increases the radius of the de-buff spread upon expiration.",
+          "name": "upgrade_virus_2_name",
+          "description": "upgrade_virus_2_desc",
           "cost": 110
         },
         {
-          "name": "Viral Expansion",
-          "description": "Increase the range and explosion radius of the virus projectile.",
+          "name": "upgrade_virus_3_name",
+          "description": "upgrade_virus_3_desc",
           "cost": 210
         },
         {
-          "name": "Viral Amplification",
-          "description": "Enhances the damage of the DoT effect inflicted by the de-buff.",
+          "name": "upgrade_virus_4_name",
+          "description": "upgrade_virus_4_desc",
           "cost": 410
         },
         {
-          "name": "Pandemic Dominance",
-          "description": "Radius of de-buff spread is significantly expanded. Chance to spread the virus on every turn.",
+          "name": "upgrade_virus_5_name",
+          "description": "upgrade_virus_5_desc",
           "cost": 1300
         },
         {
-          "name": "Lethal Contagion",
-          "description": "The viral pathogen evolves into a lethal contagion. Infected enemies have a chance to succumb to the lethal infection, causing instant death.",
+          "name": "upgrade_virus_6_name",
+          "description": "upgrade_virus_6_desc",
           "cost": 1600
         }
       ],
@@ -834,28 +834,28 @@
       "saying": "weapon_coconutSeed_saying",
       "upgradeInfos": [
         {
-          "name": "Tropical Expansion",
-          "description": "The coconut seed reaches further.",
+          "name": "upgrade_coconut_seed_2_name",
+          "description": "upgrade_coconut_seed_2_desc",
           "cost": 150
         },
         {
-          "name": "Enhanced Impact",
-          "description": "Slight increase in the damage dealt by the coconuts.",
+          "name": "upgrade_coconut_seed_3_name",
+          "description": "upgrade_coconut_seed_3_desc",
           "cost": 400
         },
         {
-          "name": "Nutrient Enrichment",
-          "description": "The coconut tree grows one more coconut.",
+          "name": "upgrade_coconut_seed_4_name",
+          "description": "upgrade_coconut_seed_4_desc",
           "cost": 700
         },
         {
-          "name": "Coconut Ice Bomb",
-          "description": "The coconuts inflict frozen de-buff to targets, slowing them down and leaving them vulnerable to further attacks.",
+          "name": "upgrade_coconut_seed_5_name",
+          "description": "upgrade_coconut_seed_5_desc",
           "cost": 895
         },
         {
-          "name": "Fruity Barrage",
-          "description": "The coconut tree grows four coconuts in total, doubling the offensive capabilities of the weapon.",
+          "name": "upgrade_coconut_seed_6_name",
+          "description": "upgrade_coconut_seed_6_desc",
           "cost": 1200
         }
       ],
@@ -874,28 +874,28 @@
       "saying": "weapon_iceCube_saying",
       "upgradeInfos": [
         {
-          "name": "Fresh From The Fridge",
-          "description": "Higher base damage for the Ice Cube.",
+          "name": "upgrade_ice_cube_2_name",
+          "description": "upgrade_ice_cube_2_desc",
           "cost": 94
         },
         {
-          "name": "Ice Weakening",
-          "description": "The frozen de-buff increases incoming damage by 30%.",
+          "name": "upgrade_ice_cube_3_name",
+          "description": "upgrade_ice_cube_3_desc",
           "cost": 104
         },
         {
-          "name": "Go Frosty",
-          "description": "Ice Cube completely immobilize targets.",
+          "name": "upgrade_ice_cube_4_name",
+          "description": "upgrade_ice_cube_4_desc",
           "cost": 492
         },
         {
-          "name": "Permafrost",
-          "description": "The frozen de-buff lasts forever (almost).",
+          "name": "upgrade_ice_cube_5_name",
+          "description": "upgrade_ice_cube_5_desc",
           "cost": 940
         },
         {
-          "name": "Cold & Fragile",
-          "description": "The de-buff lasts longer while incoming damage is increased even further.",
+          "name": "upgrade_ice_cube_6_name",
+          "description": "upgrade_ice_cube_6_desc",
           "cost": 880
         }
       ],
@@ -923,28 +923,28 @@
       "steps": 289.5,
       "upgradeInfos": [
         {
-          "name": "Amplified Beats",
-          "description": "Upgrades the boombox's speakers to enhance the intensity and range of the shockwave.",
+          "name": "upgrade_boombox_2_name",
+          "description": "upgrade_boombox_2_desc",
           "cost": 200
         },
         {
-          "name": "Resonance Resupply",
-          "description": "Increases the number of shockwave charges available.",
+          "name": "upgrade_boombox_3_name",
+          "description": "upgrade_boombox_3_desc",
           "cost": 350
         },
         {
-          "name": "Sonic Projection",
-          "description": "Hugely increase the range of both the projectile and shockwaves.",
+          "name": "upgrade_boombox_4_name",
+          "description": "upgrade_boombox_4_desc",
           "cost": 490
         },
         {
-          "name": "Concussion Beats",
-          "description": "Empowers the Bass Blaster Boombox with the ability to activate multiple times in quick succession, but with reduced range and damage.",
+          "name": "upgrade_boombox_5_name",
+          "description": "upgrade_boombox_5_desc",
           "cost": 890
         },
         {
-          "name": "Sonic Singularity",
-          "description": "The boombox focuses its power into a single, condensed shockwave of immense force.",
+          "name": "upgrade_boombox_6_name",
+          "description": "upgrade_boombox_6_desc",
           "cost": 890
         }
       ],
@@ -977,28 +977,28 @@
       "saying": "weapon_jackhammer_saying",
       "upgradeInfos": [
         {
-          "name": "Larger Service Area",
-          "description": "Increases the distance that the jackhammer can be launched, allowing it to hit targets further away.",
+          "name": "upgrade_jackhammer_2_name",
+          "description": "upgrade_jackhammer_2_desc",
           "cost": 290
         },
         {
-          "name": "Reinforced Bit",
-          "description": "Enhances the durability and power of the jackhammer's bit, increasing the damage it deals upon impact and while drilling.",
+          "name": "upgrade_jackhammer_3_name",
+          "description": "upgrade_jackhammer_3_desc",
           "cost": 420
         },
         {
-          "name": "Deeper Down",
-          "description": "The jackhammer digs deeper down, destroying more terrain.",
+          "name": "upgrade_jackhammer_4_name",
+          "description": "upgrade_jackhammer_4_desc",
           "cost": 600
         },
         {
-          "name": "Earthquake Trigger",
-          "description": "The jackhammer has a change to trigger an Earthquake, damaging all entities standing on the ground.",
+          "name": "upgrade_jackhammer_5_name",
+          "description": "upgrade_jackhammer_5_desc",
           "cost": 1040
         },
         {
-          "name": "Bifurcated Dig",
-          "description": "The jackhammer digs down in two different directions upon impact, creating two separate tunnels that deal damage and disrupt terrain in a wider area.",
+          "name": "upgrade_jackhammer_6_name",
+          "description": "upgrade_jackhammer_6_desc",
           "cost": 1100
         }
       ],
@@ -1017,28 +1017,28 @@
       "saying": "weapon_yin_yang_saying",
       "upgradeInfos": [
         {
-          "name": "Flexible Orb",
-          "description": "Increases the range of the Yin-Yang orb.",
+          "name": "upgrade_yin_yang_2_name",
+          "description": "upgrade_yin_yang_2_desc",
           "cost": 190
         },
         {
-          "name": "Amplified Light",
-          "description": "Increases the damage and radius of the white sphere.",
+          "name": "upgrade_yin_yang_3_name",
+          "description": "upgrade_yin_yang_3_desc",
           "cost": 300
         },
         {
-          "name": "Darkness Expanded",
-          "description": "Further Increases the radius of the black sphere.",
+          "name": "upgrade_yin_yang_4_name",
+          "description": "upgrade_yin_yang_4_desc",
           "cost": 450
         },
         {
-          "name": "A Harmony",
-          "description": "Allows the orb to split into both a white and a black sphere simultaneously when activated.",
+          "name": "upgrade_yin_yang_5_name",
+          "description": "upgrade_yin_yang_5_desc",
           "cost": 1500
         },
         {
-          "name": "The One that was Left Over",
-          "description": "Spawns the other sphere with random velocity upon impact.",
+          "name": "upgrade_yin_yang_6_name",
+          "description": "upgrade_yin_yang_6_desc",
           "cost": 1800
         }
       ],

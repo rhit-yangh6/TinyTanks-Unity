@@ -1148,6 +1148,304 @@ MonoBehaviour:
       reduced damage, overwhelming enemies with sheer volume.
     m_Metadata:
       m_Items: []
+  - m_Id: 15655680829825024
+    m_Localized: SawStop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655713864163328
+    m_Localized: Reinforced Structure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655721934004224
+    m_Localized: Precision Deployment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655729659912192
+    m_Localized: Relentless Fury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655737142550528
+    m_Localized: Shredder Storm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655995184521216
+    m_Localized: The blade will stop instantly if it touches the shooter, dealing
+      no damage its shooter.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656018823618560
+    m_Localized: Increases the durability and sharpness of the saw blade, increasing
+      its damage and making it travel farther.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656027119951872
+    m_Localized: Hugely improve the range of accuracy of saw blades.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656033965056000
+    m_Localized: Damaging an enemy refreshes the timer for the saw blade's roll-forward
+      action, allowing it to continue its relentless assault on foes without interruption.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656041254756352
+    m_Localized: The saw blades explode upon impact with an enemy, releasing smaller
+      saw blades that goes in different directions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656800595746816
+    m_Localized: Contagious Vector
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656845126672384
+    m_Localized: Viral Expansion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656854932955136
+    m_Localized: Viral Amplification
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656863065710592
+    m_Localized: Pandemic Dominance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656870791618560
+    m_Localized: Lethal Contagion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657153311547392
+    m_Localized: Increases the radius of the de-buff spread upon expiration.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657170944401408
+    m_Localized: Increase the range and explosion radius of the virus projectile.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657181983809536
+    m_Localized: Enhances the damage of the DoT effect inflicted by the de-buff.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657189562916864
+    m_Localized: Radius of de-buff spread is significantly expanded. Chance to spread
+      the virus on every turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657196777119744
+    m_Localized: The viral pathogen evolves into a lethal contagion. Infected enemies
+      have a chance to succumb to the lethal infection, causing instant death.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657901940285440
+    m_Localized: Tropical Effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657951416295424
+    m_Localized: Enhanced Impact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658020265795584
+    m_Localized: Nutrient Enrichment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658029438738432
+    m_Localized: Coconut Ice Bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658039073054720
+    m_Localized: Fruity Barrage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658440295981056
+    m_Localized: The coconut seed reaches further.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658464488726528
+    m_Localized: Slight increase in the damage dealt by the coconuts.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658471883284480
+    m_Localized: The coconut tree grows one more coconut.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658480611631104
+    m_Localized: The coconuts inflict frozen de-buff to targets, slowing them down
+      and leaving them vulnerable to further attacks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658487523844096
+    m_Localized: The coconut tree grows four coconuts in total, doubling the offensive
+      capabilities of the weapon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659061061361664
+    m_Localized: Fresh From The Fridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659111082631168
+    m_Localized: Ice Weakening
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659119756451840
+    m_Localized: Go Frosty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659143617847296
+    m_Localized: Permafrost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659153675788288
+    m_Localized: Cold & Fragile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659534438899712
+    m_Localized: Higher base damage for the Ice Cube.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659593452756992
+    m_Localized: The frozen de-buff increases incoming damage by a lot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659601828782080
+    m_Localized: Ice Cube completely immobilize targets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659615535767552
+    m_Localized: The de-buff lasts longer while incoming damage is increased even
+      further.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659609156231168
+    m_Localized: The frozen de-buff lasts forever (almost).
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660741811249152
+    m_Localized: Amplified Beats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660782181425152
+    m_Localized: Resonance Resupply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660789441765376
+    m_Localized: Sonic Projection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660797725515776
+    m_Localized: Concussion Beats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660805111685120
+    m_Localized: Sonic Singularity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661114349330432
+    m_Localized: Upgrades the boombox's speakers to enhance the intensity and range
+      of the shockwave.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661135090163712
+    m_Localized: Increases the number of shockwave charges available.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661143109672960
+    m_Localized: Hugely increase the range of both the projectile and shockwaves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661151112404992
+    m_Localized: Empowers the Bass Blaster Boombox with the ability to activate multiple
+      times in quick succession, but with reduced range and damage."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661157668102144
+    m_Localized: The boombox focuses its power into a single, condensed shockwave
+      of immense force.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662184777654272
+    m_Localized: Larger Service Area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662275538198528
+    m_Localized: Reinforced Bit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662283163443200
+    m_Localized: Deeper Down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662289337458688
+    m_Localized: Earthquake Trigger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662295322730496
+    m_Localized: Bifurcated Dig
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662535027204096
+    m_Localized: Increases the distance that the jackhammer can be launched, allowing
+      it to hit targets further away.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662553079488512
+    m_Localized: Enhances the durability and power of the jackhammer's bit, increasing
+      the damage it deals upon impact and while drilling.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662565687566336
+    m_Localized: The jackhammer digs deeper down, destroying more terrain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662572444590080
+    m_Localized: The jackhammer has a change to trigger an Earthquake, damaging all
+      entities standing on the ground.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662580527013888
+    m_Localized: The jackhammer digs down in two different directions upon impact,
+      creating two separate tunnels that deal damage and disrupt terrain in a wider
+      area.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663612883640320
+    m_Localized: Flexible Orb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663673264840704
+    m_Localized: Amplified Light
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663717414084608
+    m_Localized: Darkness Expanded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663725743972352
+    m_Localized: A Harmonic Beauty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663797957304320
+    m_Localized: The One that was Left Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664043349254144
+    m_Localized: Increases the range of the Yin-Yang orb.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664119274545152
+    m_Localized: Increases the damage and radius of the white sphere.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664124790054912
+    m_Localized: Further Increases the radius of the black sphere.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664144507478016
+    m_Localized: When activated, the sphere can turn into a combined state of white
+      and black mixed in one.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664153906913280
+    m_Localized: Spawns the other sphere with random velocity upon impact.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

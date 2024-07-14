@@ -1095,6 +1095,286 @@ MonoBehaviour:
     m_Key: upgrade_packed_stone_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 15655680829825024
+    m_Key: upgrade_saw_blade_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655713864163328
+    m_Key: upgrade_saw_blade_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655721934004224
+    m_Key: upgrade_saw_blade_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655729659912192
+    m_Key: upgrade_saw_blade_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655737142550528
+    m_Key: upgrade_saw_blade_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15655995184521216
+    m_Key: upgrade_saw_blade_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656018823618560
+    m_Key: upgrade_saw_blade_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656027119951872
+    m_Key: upgrade_saw_blade_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656033965056000
+    m_Key: upgrade_saw_blade_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656041254756352
+    m_Key: upgrade_saw_blade_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656800595746816
+    m_Key: upgrade_virus_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656845126672384
+    m_Key: upgrade_virus_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656854932955136
+    m_Key: upgrade_virus_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656863065710592
+    m_Key: upgrade_virus_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15656870791618560
+    m_Key: upgrade_virus_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657153311547392
+    m_Key: upgrade_virus_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657170944401408
+    m_Key: upgrade_virus_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657181983809536
+    m_Key: upgrade_virus_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657189562916864
+    m_Key: upgrade_virus_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657196777119744
+    m_Key: upgrade_virus_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657901940285440
+    m_Key: upgrade_coconut_seed_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15657951416295424
+    m_Key: upgrade_coconut_seed_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658020265795584
+    m_Key: upgrade_coconut_seed_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658029438738432
+    m_Key: upgrade_coconut_seed_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658039073054720
+    m_Key: upgrade_coconut_seed_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658440295981056
+    m_Key: upgrade_coconut_seed_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658464488726528
+    m_Key: upgrade_coconut_seed_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658471883284480
+    m_Key: upgrade_coconut_seed_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658480611631104
+    m_Key: upgrade_coconut_seed_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15658487523844096
+    m_Key: upgrade_coconut_seed_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659061061361664
+    m_Key: upgrade_ice_cube_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659111082631168
+    m_Key: upgrade_ice_cube_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659119756451840
+    m_Key: upgrade_ice_cube_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659143617847296
+    m_Key: upgrade_ice_cube_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659153675788288
+    m_Key: upgrade_ice_cube_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659534438899712
+    m_Key: upgrade_ice_cube_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659593452756992
+    m_Key: upgrade_ice_cube_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659601828782080
+    m_Key: upgrade_ice_cube_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659609156231168
+    m_Key: upgrade_ice_cube_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659615535767552
+    m_Key: upgrade_ice_cube_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660741811249152
+    m_Key: upgrade_boombox_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660782181425152
+    m_Key: upgrade_boombox_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660789441765376
+    m_Key: upgrade_boombox_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660797725515776
+    m_Key: upgrade_boombox_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15660805111685120
+    m_Key: upgrade_boombox_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661114349330432
+    m_Key: upgrade_boombox_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661135090163712
+    m_Key: upgrade_boombox_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661143109672960
+    m_Key: upgrade_boombox_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661151112404992
+    m_Key: upgrade_boombox_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15661157668102144
+    m_Key: upgrade_boombox_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662184777654272
+    m_Key: upgrade_jackhammer_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662275538198528
+    m_Key: upgrade_jackhammer_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662283163443200
+    m_Key: upgrade_jackhammer_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662289337458688
+    m_Key: upgrade_jackhammer_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662295322730496
+    m_Key: upgrade_jackhammer_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662535027204096
+    m_Key: upgrade_jackhammer_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662553079488512
+    m_Key: upgrade_jackhammer_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662565687566336
+    m_Key: upgrade_jackhammer_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662572444590080
+    m_Key: upgrade_jackhammer_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15662580527013888
+    m_Key: upgrade_jackhammer_6_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663612883640320
+    m_Key: upgrade_yin_yang_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663673264840704
+    m_Key: upgrade_yin_yang_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663717414084608
+    m_Key: upgrade_yin_yang_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663725743972352
+    m_Key: upgrade_yin_yang_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15663797957304320
+    m_Key: upgrade_yin_yang_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664043349254144
+    m_Key: upgrade_yin_yang_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664119274545152
+    m_Key: upgrade_yin_yang_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664124790054912
+    m_Key: upgrade_yin_yang_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664144507478016
+    m_Key: upgrade_yin_yang_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15664153906913280
+    m_Key: upgrade_yin_yang_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
