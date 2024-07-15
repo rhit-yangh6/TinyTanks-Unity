@@ -50,8 +50,8 @@ namespace _Scripts.Projectiles
                 5 => possibleResultsList[Random.Range(0, possibleResultsList.Count - 1)],
                 >= 3 => Random.value < newPieceChance
                     ? possibleResultsList[Random.Range(0, possibleResultsList.Count - 1)]
-                    : Random.Range(0, 3),
-                _ => Random.Range(0, 3)
+                    : Random.Range(0, 4),
+                _ => Random.Range(0, 4)
             };
         }
         

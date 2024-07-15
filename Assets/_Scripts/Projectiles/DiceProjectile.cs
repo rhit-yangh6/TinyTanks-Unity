@@ -24,9 +24,9 @@ namespace _Scripts.Projectiles
         {
             return Level switch
             {
-                5 => Random.value > 0.7 ? 6 : Random.Range(1, 5),
-                >= 4 => Random.value > 0.78 ? 6 : Random.Range(1, 5),
-                _ => Random.Range(1, 6)
+                5 => Random.value > 0.7 ? 6 : Random.Range(1, 6),
+                >= 4 => Random.value > 0.78 ? 6 : Random.Range(1, 6),
+                _ => Random.Range(1, 7)
             };
         }
 
