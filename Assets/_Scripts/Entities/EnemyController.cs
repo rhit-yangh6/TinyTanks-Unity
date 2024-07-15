@@ -98,6 +98,8 @@ namespace _Scripts.Entities
                 _ => 0
             };
             
+            // Debug.Log(XMovingDirection + "---" + slopeSideAngle);
+            
             if (slopeHitRight && XMovingDirection > 0 && slopeSideAngle > climbAngleTolerance)
             {
                 XMovingDirection = 0;

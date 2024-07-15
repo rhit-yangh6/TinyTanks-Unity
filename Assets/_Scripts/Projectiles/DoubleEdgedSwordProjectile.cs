@@ -90,6 +90,11 @@ namespace _Scripts.Projectiles
             activateMmFeedbacks.PlayFeedbacks();
         }
         
+        protected override void OnCollisionEnter2D(Collision2D col)
+        {
+            Detonate();
+        }
+        
         public override void Detonate()
         {
             if (isDetonated) return;
