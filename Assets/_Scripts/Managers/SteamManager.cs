@@ -151,7 +151,7 @@ namespace _Scripts.Managers
         {
             try
             {
-                var stat = new Steamworks.Data.Stat(id);
+                var stat = new Stat(id);
                 var value = stat.GetInt() + 1;
                 stat.Set(value);
                 

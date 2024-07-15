@@ -373,7 +373,7 @@ Transform:
   m_GameObject: {fileID: 9158794846393297889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35.44, y: 18.33, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -489,9 +489,9 @@ MonoBehaviour:
   degreeDelta: 10
   selectedWeaponId: -1
   weaponLevel: 1
-  cannonLength: 1
   horizontalCastDistance: 1
-  climbAngleTolerance: 79.2
+  cannonLength: 1
+  climbAngleTolerance: 55
 --- !u!120 &9158794846393297915
 LineRenderer:
   serializedVersion: 2

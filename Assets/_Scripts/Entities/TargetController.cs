@@ -8,16 +8,26 @@ using Random = UnityEngine.Random;
 
 namespace _Scripts.Entities
 {
-    public class TargetController : BuffableEntity
+    public class TargetController : EnemyController
     {
-        protected override float MaxHealth => maxHealth;
-        public override float MovementSpeed => movementSpeed;
-        protected override HealthBarBehavior HealthBar => healthBar;
-
-        private void Start()
+        protected override void Start()
         {
-            Health = maxHealth;
-            HealthBar.SetHealth(Health, MaxHealth);
+            Health = MaxHealth;
+            healthBar.SetHealth(Health, MaxHealth);
+            
+            Rigidbody2D = GetComponent<Rigidbody2D>();
+            ColliderSize = GetComponent<CapsuleCollider2D>().size;
+        }
+        
+        private void FixedUpdate()
+        {
+            // Do nothing
+        }
+
+        public override IEnumerator MakeMove()
+        {
+            EventBus.Broadcast(EventTypes.EndTurn, GetComponent<BuffableEntity>());
+            yield return 0;
         }
     }
 }

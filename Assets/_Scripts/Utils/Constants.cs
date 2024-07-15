@@ -70,5 +70,6 @@ namespace _Scripts.Utils
         public const string StatSmallFireballSpawned = "small_fireball_spawned";
         public const string StatUpgradeCount = "upgrade_count";
         public const string StatBoulderSplitCount = "boulder_split_count";
+        public const string StatEnemiesKilled = "enemies_killed";
     }
 }

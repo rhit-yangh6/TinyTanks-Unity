@@ -3,7 +3,6 @@ using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
 using _Scripts.Projectiles;
-using _Scripts.UI;
 using _Scripts.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,55 +11,36 @@ namespace _Scripts.Entities
 {
     public class EnemyController : BuffableEntity
     {
-        // TODO: move this under buffable entity
-        [SerializeField] private float degreeDelta = 10f;
-        [SerializeField] private int selectedWeaponId;
-        [SerializeField] private int weaponLevel;
-        [SerializeField] private float cannonLength = 1f;
-        [SerializeField] private float horizontalCastDistance = 1f;
-        [SerializeField][Range(70f, 180f)] private float climbAngleTolerance = 70f;
+        [SerializeField] protected float degreeDelta = 10f;
+        [SerializeField] protected int selectedWeaponId;
+        [SerializeField] protected int weaponLevel;
+        [SerializeField] protected float horizontalCastDistance = 1f;
+        [SerializeField] protected float cannonLength = 1f;
+        [SerializeField][Range(40f, 180f)] protected float climbAngleTolerance = 70f;
         
-        protected override float MaxHealth => maxHealth;
-        public override float MovementSpeed => movementSpeed;
-        protected override GameObject TankCannon => tankCannon;
-        protected override HealthBarBehavior HealthBar => healthBar;
-        protected override SpriteRenderer CannonSr => _cannonSr;
-        protected override SpriteRenderer MainSr => _sr;
-
-        private GameObject _player;
-
-        private int _xMovingDirection = 0;
-        private bool _isAiming = false;
-        private Vector2 _aimVelocity;
+        // The projectilePrefab of the selected weapon, applied to enemies
+        protected GameObject ProjectilePrefab;
         
-        private GameObject _projectilePrefab;
-        private SpriteRenderer _sr, _cannonSr;
-        private Rigidbody2D _projectileRigidbody2D, _rb2d;
-        private LineRenderer _lr;
-        private CapsuleCollider2D _cc;
-        private float _cannonAngle;
-        private static readonly int Shoot1 = Animator.StringToHash("Shoot");
-
-        private void Start()
+        // Line Renderer
+        protected LineRenderer LineRenderer;
+        
+        // If the enemy is aiming
+        protected bool IsAiming = false;
+        
+        // Aim Velocity of projectiles
+        protected Vector2 AimVelocity;
+        
+        // Moving direction of enemies
+        protected int XMovingDirection;
+        
+        // Rotation angle of enemy cannon
+        protected float CannonAngle;
+        
+        protected override void Start()
         {
-            Health = maxHealth;
-            HealthBar.SetHealth(Health, MaxHealth);
-            
-            _sr = GetComponent<SpriteRenderer>();
-            _sr.flipX = FacingDirection == -1;
-
-            _cannonSr = tankCannon.GetComponent<SpriteRenderer>();
-            _cannonSr.flipX = FacingDirection == -1;
-            
-            _lr = GetComponent<LineRenderer>();
-
-            _projectilePrefab = WeaponManager.Instance.GetWeaponById(selectedWeaponId).projectilePrefab;
-            _projectileRigidbody2D = _projectilePrefab.GetComponent<Rigidbody2D>();
-
-            _rb2d = GetComponent<Rigidbody2D>();
-            _cc = GetComponent<CapsuleCollider2D>();
-            // colliderSize = _cc.size;
-            _player = GameObject.FindGameObjectWithTag("Player");
+            base.Start();
+            ProjectilePrefab = WeaponManager.Instance.GetWeaponById(selectedWeaponId).projectilePrefab;
+            LineRenderer = GetComponent<LineRenderer>();
         }
 
         private void FixedUpdate()
@@ -73,30 +53,31 @@ namespace _Scripts.Entities
         protected override void CheckMovement()
         {
             SlopeCheckHorizontal();
-            if (_xMovingDirection != 0)
+            if (XMovingDirection != 0)
             {
                 if (IsGrounded())
                 {
                     // _rb2d.velocity = movementSpeed * new Vector3(_xMovingDirection, 0, 0);
-                    transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xMovingDirection, 0, 0));
+                    transform.Translate(Time.deltaTime * movementSpeed * new Vector3(XMovingDirection, 0, 0));
                 }
                 else
                 {
                     // _rb2d.velocity = movementSpeed * new Vector3(_xMovingDirection, -1, 0);
-                    transform.Translate(Time.deltaTime * movementSpeed * new Vector3(_xMovingDirection, -1, 0));
+                    transform.Translate(Time.deltaTime * movementSpeed * new Vector3(XMovingDirection, -1, 0));
                 }
+                // Rigidbody2D.velocity = new Vector2(XMovingDirection * movementSpeed, Rigidbody2D.velocity.y);
             }
             else
             {
                 // _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
                 if (IsGrounded())
                 {
-                    _rb2d.velocity = Vector2.zero;
-                    _rb2d.isKinematic = true;
+                    Rigidbody2D.velocity = Vector2.zero;
+                    Rigidbody2D.isKinematic = true;
                 }
                 else
                 {
-                    _rb2d.isKinematic = false;
+                    Rigidbody2D.isKinematic = false;
                 }
             }
         }
@@ -104,81 +85,40 @@ namespace _Scripts.Entities
         private void SlopeCheckHorizontal()
         {
             // Raycast in two horizontal directions. If the angle is too high stop moving immediately
-            Vector2 Checkpos = transform.position - new Vector3(0f, colliderSize.y / 2);
-            RaycastHit2D slopeHitRight = Physics2D.Raycast(Checkpos, transform.right, horizontalCastDistance, layerMask);
-            RaycastHit2D slopeHitLeft = Physics2D.Raycast(Checkpos, -transform.right, horizontalCastDistance, layerMask);
+            Vector2 Checkpos = transform.position - new Vector3(0f, ColliderSize.y / 3);
+            var slopeHitRight = Physics2D.Raycast(Checkpos, Vector2.right, horizontalCastDistance, layerMask);
+            var slopeHitLeft = Physics2D.Raycast(Checkpos, Vector2.left, horizontalCastDistance, layerMask);
+            // Debug.DrawRay(Checkpos, Vector2.right, Color.green, 10);
+            // Debug.DrawRay(Checkpos, Vector2.left, Color.red, 10);
 
-            var slopeSideAngle = _xMovingDirection > 0
-                ? Vector2.Angle(slopeHitRight.normal, Vector2.up)
-                : Vector2.Angle(slopeHitLeft.normal, Vector2.up);
+            var slopeSideAngle = XMovingDirection switch
+            {
+                1 => Vector2.Angle(slopeHitRight.normal, Vector2.up),
+                -1 => Vector2.Angle(slopeHitLeft.normal, Vector2.up),
+                _ => 0
+            };
             
-            if (slopeHitRight && _xMovingDirection > 0 && slopeSideAngle > climbAngleTolerance)
+            if (slopeHitRight && XMovingDirection > 0 && slopeSideAngle > climbAngleTolerance)
             {
-                _xMovingDirection = 0;
-            } else if (slopeHitLeft && _xMovingDirection < 0 && slopeSideAngle > climbAngleTolerance)
+                XMovingDirection = 0;
+            } else if (slopeHitLeft && XMovingDirection < 0 && slopeSideAngle > climbAngleTolerance)
             {
-                _xMovingDirection = 0;
+                XMovingDirection = 0;
             }
-            
-        }
-
-        private void Aim()
-        {
-            _lr.enabled = true;
-            _isAiming = true;
-            
-            Vector2 startPos =
-                LaunchProjectile.TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
-                    TankCannon.transform.position);
-            var endPos = _player.transform.position;
-            float t = 3f;
-
-            float vx = (endPos.x - startPos.x) / t;
-            float vy = (endPos.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * t * t) / t;
-
-            _aimVelocity = new Vector2(vx, vy);
-
-            float rotateDegree = Random.Range(-degreeDelta, degreeDelta);
-            
-            _aimVelocity = Geometry.Rotate(_aimVelocity, rotateDegree);
-            _cannonAngle = Vector2.SignedAngle(_aimVelocity, Vector2.right);
-            SetCannonAngle(_cannonAngle);
-        }
-
-        private void Shoot()
-        {
-            var launchPos =
-                LaunchProjectile.TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
-                    TankCannon.transform.position);
-            TankCannon.GetComponent<Animator>().SetTrigger(Shoot1);
-            
-            GameObject projectile = Instantiate(_projectilePrefab, launchPos, transform.rotation);
-            Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
-            prb.velocity = _aimVelocity;
-            
-            var proj = projectile.GetComponent<LaunchedProjectile>();
-            var w = WeaponManager.Instance.GetWeaponById(selectedWeaponId);
-            proj.SetParameters(w.damage, w.radius, w.maxMagnitude, w.steps);
-            proj.Level = weaponLevel;
-            proj.Shooter = gameObject;
-
-            _isAiming = false;
-            EventBus.Broadcast(EventTypes.ProjectileShot);
         }
         
-
-        public IEnumerator MakeMove()
+        public override IEnumerator MakeMove()
         {
             // Simple Enemy AI 0.0.1
             // Initial Wait
             yield return new WaitForSeconds(1);
             
             // Randomly get the direction of going
-            int random = Random.Range(1, 3);
-            _xMovingDirection = random == 1 ? 1 : -1;
+            var random = Random.Range(1, 3);
+            XMovingDirection = random == 1 ? 1 : -1;
 
             // Flip if facing opposite direction
-            if (_xMovingDirection != FacingDirection)
+            if (XMovingDirection != FacingDirection)
             {
                 Flip();
             }
@@ -186,7 +126,7 @@ namespace _Scripts.Entities
             // Walk for fixed second(s)
             yield return new WaitForSeconds(1);
             // Disable Walking
-            _xMovingDirection = 0;
+            XMovingDirection = 0;
 
             // Aim and get the velocity
             Aim();
@@ -195,28 +135,36 @@ namespace _Scripts.Entities
             // Shoot projectile
             Shoot();
         }
-
+        
+        // Override functions
+        protected override void OnDeath()
+        {
+            base.OnDeath();
+            SteamManager.IncrementStat(Constants.StatEnemiesKilled);
+        }
+        
+        // Private functions
         private void DrawTrajectory()
         {
-            if (_isAiming)
+            if (IsAiming)
             {
                 var launchPos =
-                    LaunchProjectile.TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
-                        TankCannon.transform.position);
+                    LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
+                        tankCannon.transform.position);
                 
-                Vector2[] trajectory = Plot(_projectileRigidbody2D, (Vector2)launchPos, _aimVelocity, 500);
-                _lr.positionCount = trajectory.Length;
+                Vector2[] trajectory = Plot(ProjectilePrefab.GetComponent<Rigidbody2D>(), (Vector2)launchPos, AimVelocity, 500);
+                LineRenderer.positionCount = trajectory.Length;
 
                 Vector3[] positions = new Vector3[trajectory.Length];
                 for (int i = 0; i < trajectory.Length; i++)
                 {
                     positions[i] = trajectory[i];
                 }
-                _lr.SetPositions(positions);
+                LineRenderer.SetPositions(positions);
             }
             else
             {
-                _lr.enabled = false;
+                LineRenderer.enabled = false;
             }
         }
         
@@ -240,6 +188,57 @@ namespace _Scripts.Entities
             }
 
             return results;
+        }
+
+        private void Shoot()
+        {
+            var launchPos =
+                LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
+                    tankCannon.transform.position);
+            tankCannon.GetComponent<Animator>().SetTrigger(Shoot1);
+
+            var projectile = Instantiate(ProjectilePrefab, launchPos, transform.rotation);
+            var prb = projectile.GetComponent<Rigidbody2D>();
+            prb.velocity = AimVelocity;
+
+            var proj = projectile.GetComponent<LaunchedProjectile>();
+            var w = WeaponManager.Instance.GetWeaponById(selectedWeaponId);
+            proj.SetParameters(w.damage, w.radius, w.maxMagnitude, w.steps);
+            proj.Level = weaponLevel;
+            proj.Shooter = gameObject;
+
+            IsAiming = false;
+            EventBus.Broadcast(EventTypes.ProjectileShot);
+        }
+
+        private void Aim()
+        {
+            var targetObject = FindTarget();
+            LineRenderer.enabled = true;
+            IsAiming = true;
+            
+            Vector2 startPos =
+                LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
+                    tankCannon.transform.position);
+            var endPos = targetObject.transform.position;
+            float t = 3f;
+
+            float vx = (endPos.x - startPos.x) / t;
+            float vy = (endPos.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * t * t) / t;
+
+            AimVelocity = new Vector2(vx, vy);
+
+            float rotateDegree = Random.Range(-degreeDelta, degreeDelta);
+            
+            AimVelocity = Geometry.Rotate(AimVelocity, rotateDegree);
+            CannonAngle = Vector2.SignedAngle(AimVelocity, Vector2.right);
+            SetCannonAngle(CannonAngle);
+        }
+
+        // Locate the target that it is attacking
+        private GameObject FindTarget()
+        {
+            return GameObject.FindGameObjectWithTag("Player");
         }
     }
 }

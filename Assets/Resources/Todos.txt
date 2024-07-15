@@ -32,3 +32,4 @@ burning - burn at the last turn
 combine weapons in arsenal
 portals in map
 double edged sword, punish when out of bounds
+fix inclusive range!

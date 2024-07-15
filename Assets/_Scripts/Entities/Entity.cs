@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using _Scripts.Buffs;
 using _Scripts.Managers;
 using _Scripts.UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Entities
 {
@@ -13,7 +15,6 @@ namespace _Scripts.Entities
 
         public float Health { get; set; }
         public bool IsDead { get; set; }
-
         public float DamageMultiplier { get; set; } = 1.0f;
 
         [SerializeField] protected float maxHealth;
@@ -21,14 +22,23 @@ namespace _Scripts.Entities
         [SerializeField] protected Transform topLeft, bottomRight;
 
         protected virtual float MaxHealth => maxHealth;
-        protected virtual HealthBarBehavior HealthBar => healthBar;
 
-        protected float angle;
-        protected Vector2 colliderSize;
+        // Rotation Angle of the entity
+        private float _angle;
+        
+        // Rb2D
+        protected Rigidbody2D Rigidbody2D;
+        
+        // Capsule Collider Size
+        protected Vector2 ColliderSize;
 
-        private void Awake()
+        protected virtual void Start()
         {
-            colliderSize = GetComponent<CapsuleCollider2D>().size;
+            Health = MaxHealth;
+            healthBar.SetHealth(Health, MaxHealth);
+            
+            Rigidbody2D = GetComponent<Rigidbody2D>();
+            ColliderSize = GetComponent<CapsuleCollider2D>().size;
         }
 
         public virtual void TakeDamage(float amount, bool isCriticalHit = false)
@@ -55,7 +65,7 @@ namespace _Scripts.Entities
             {
                 Health -= roundedDamageAmount;
             }
-            HealthBar.SetHealth(Health, MaxHealth);
+            healthBar.SetHealth(Health, MaxHealth);
 
             if (Health <= 0)
             {
@@ -75,7 +85,7 @@ namespace _Scripts.Entities
             DamagePopup.Create(rb.position, healAmount, false);
 
             Health = maxHealth;
-            HealthBar.SetHealth(Health, MaxHealth);
+            healthBar.SetHealth(Health, MaxHealth);
         }
         
         protected virtual void OnCollisionEnter2D(Collision2D col)
@@ -88,8 +98,8 @@ namespace _Scripts.Entities
 
         protected void AdjustRotation()
         {
-            Vector2 leftCheckPos = transform.position - new Vector3(colliderSize.x / 2, 0);
-            Vector2 rightCheckPos = transform.position + new Vector3(colliderSize.x / 2, 0);
+            Vector2 leftCheckPos = transform.position - new Vector3(ColliderSize.x / 2, 0);
+            Vector2 rightCheckPos = transform.position + new Vector3(ColliderSize.x / 2, 0);
             
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, layerMask);
             RaycastHit2D hitRight = Physics2D.Raycast(rightCheckPos, Vector2.down, 2f, layerMask);
@@ -114,10 +124,10 @@ namespace _Scripts.Entities
 
                 var finalAngle = totalAngle / hitCount;
 
-                transform.eulerAngles = Math.Abs(finalAngle - angle) > rotationTolerance ?
+                transform.eulerAngles = Math.Abs(finalAngle - _angle) > rotationTolerance ?
                     new Vector3 (0, 0, -finalAngle) :
-                    new Vector3 (0, 0, -angle);
-                angle = finalAngle;
+                    new Vector3 (0, 0, -_angle);
+                _angle = finalAngle;
             }
             else
             {
@@ -136,6 +146,21 @@ namespace _Scripts.Entities
         protected virtual void OnDeath()
         {
             // Do nothing as default
+        }
+
+        public virtual void SelfExplode()
+        {
+            // Do nothing as default
+        }
+        
+        public virtual void InstantDeath()
+        {
+            TakeDamage(MaxHealth * 2);
+        }
+        
+        public virtual IEnumerator MakeMove()
+        {
+            yield return 0;
         }
     }
 }

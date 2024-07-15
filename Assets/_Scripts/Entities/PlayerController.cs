@@ -16,31 +16,14 @@ namespace _Scripts.Entities
         public float fuel;
         [SerializeField] public float maxFuel = 100f;
         [SerializeField] public float fuelConsumptionCoefficient = 10f;
-
-        protected override float MaxHealth => maxHealth;
-        public override float MovementSpeed => movementSpeed;
-        protected override HealthBarBehavior HealthBar => GameObject.FindGameObjectWithTag("UI").GetComponent<HealthBarBehavior>();
-        protected override GameObject TankCannon => tankCannon;
-        protected override SpriteRenderer MainSr => _mainSr;
-        protected override SpriteRenderer CannonSr => _cannonSr;
-
-        private float _xInput;
-        private SpriteRenderer _mainSr, _cannonSr;
-        private Rigidbody2D _rb2d;
-
-        private readonly Dictionary<ScriptableBuff, TimedBuff> _buffs = new ();
         
-        private void Start()
+        private float _xInput;
+        
+        protected override void Start()
         {
-            Health = MaxHealth;
-            HealthBar.SetHealth(Health, MaxHealth);
-
+            healthBar = GameObject.FindGameObjectWithTag("UI").GetComponent<HealthBarBehavior>();
             fuel = maxFuel;
-
-            _mainSr = GetComponent<SpriteRenderer>();
-            _cannonSr = TankCannon.GetComponent<SpriteRenderer>();
-
-            _rb2d = GetComponent<Rigidbody2D>();
+            base.Start();
         }
         
         private void FixedUpdate()
@@ -64,18 +47,18 @@ namespace _Scripts.Entities
             {
                 if (IsGrounded())
                 {
-                    _rb2d.velocity = Vector2.zero;
-                    _rb2d.isKinematic = true;
+                    Rigidbody2D.velocity = Vector2.zero;
+                    Rigidbody2D.isKinematic = true;
                 }
                 else
                 {
-                    _rb2d.isKinematic = false;
+                    Rigidbody2D.isKinematic = false;
                 }
                 return;
             }
 
             _xInput = Input.GetAxisRaw("Horizontal");
-            _rb2d.isKinematic = false;
+            Rigidbody2D.isKinematic = false;
 
             // Cannot move if player has no fuel
             if (fuel <= 0) return;
@@ -90,8 +73,8 @@ namespace _Scripts.Entities
             }
             else if (_xInput == 0 && IsGrounded())
             {
-                _rb2d.velocity = Vector2.zero;
-                _rb2d.isKinematic = true;
+                Rigidbody2D.velocity = Vector2.zero;
+                Rigidbody2D.isKinematic = true;
             }
 
             if (_xInput != 0)

@@ -15,61 +15,71 @@ namespace _Scripts.Entities
 
         [SerializeField] protected float movementSpeed;
         [SerializeField] public GameObject tankCannon;
-        
         [SerializeField] protected BuffPanelBehavior bpb;
-        
-        protected readonly Dictionary<ScriptableBuff, TimedBuff> Buffs = new ();
-        
-        protected virtual GameObject TankCannon => tankCannon;
-        protected virtual SpriteRenderer MainSr => null;
-        protected virtual SpriteRenderer CannonSr => null;
+
+        private readonly Dictionary<ScriptableBuff, TimedBuff> _buffs = new ();
         public virtual float MovementSpeed
         {
             get => movementSpeed;
             set => movementSpeed = value;
         }
+        
+        // Tank + Cannon Sprite Renderer
+        protected SpriteRenderer MainSpriteRenderer, CannonSpriteRenderer;
+        
+        // Animation indices
+        protected static readonly int Shoot1 = Animator.StringToHash("Shoot");
+        
+        protected override void Start()
+        {
+            base.Start();
 
-        protected virtual BuffPanelBehavior Bpb => bpb;
+            MainSpriteRenderer = GetComponent<SpriteRenderer>();
+            MainSpriteRenderer.flipX = FacingDirection == -1;
+
+            CannonSpriteRenderer = tankCannon.GetComponent<SpriteRenderer>();
+            CannonSpriteRenderer.flipX = FacingDirection == -1;
+        }
 
         protected override void CheckMovement() { }
 
         public void Flip()
         {
             FacingDirection *= -1;
-            MainSr.flipX = FacingDirection == -1;
-            CannonSr.flipX = FacingDirection == -1;
+            MainSpriteRenderer.flipX = FacingDirection == -1;
+            CannonSpriteRenderer.flipX = FacingDirection == -1;
         }
 
-        public void SetCannonAngle(float angle)
+        public void SetCannonAngle(float newAngle)
         {
-            TankCannon.transform.eulerAngles = (FacingDirection == 1 ? -angle : (180 - angle)) * Vector3.forward;
+            tankCannon.transform.eulerAngles = (FacingDirection == 1 ? -newAngle : (180 - newAngle)) * Vector3.forward;
         }
 
         public void AddBuff(TimedBuff buff)
         {
-            if (Buffs.ContainsKey(buff.Buff))
+            if (_buffs.ContainsKey(buff.Buff))
             {
-                Buffs[buff.Buff].Activate();
+                _buffs[buff.Buff].Activate();
             }
             else
             {
-                Buffs.Add(buff.Buff, buff);
+                _buffs.Add(buff.Buff, buff);
                 buff.Activate();
             }
-            bpb.RefreshBuffDisplay(Buffs);
+            bpb.RefreshBuffDisplay(_buffs);
         }
 
         public void TickBuffs()
         {
-            foreach (var buff in Buffs.Values.ToList())
+            foreach (var buff in _buffs.Values.ToList())
             {
                 buff.Tick();
                 if (buff.isFinished)
                 {
-                    Buffs.Remove(buff.Buff);
+                    _buffs.Remove(buff.Buff);
                 }
             }
-            bpb.RefreshBuffDisplay(Buffs);
+            bpb.RefreshBuffDisplay(_buffs);
         }
 
         protected override void OnCollisionEnter2D(Collision2D col)
@@ -77,7 +87,7 @@ namespace _Scripts.Entities
             if (col.gameObject.CompareTag("DangerZone")) InstantDeath();
         }
 
-        public void SelfExplode()
+        public override void SelfExplode()
         {
             var pos = transform.position;
             
@@ -86,19 +96,14 @@ namespace _Scripts.Entities
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
                 3, 1, DestroyTypes.Circular);
             
-            GameObject insExpl = Instantiate(GameAssets.i.regularExplosionFX, pos, Quaternion.identity);
+            var insExpl = Instantiate(GameAssets.i.explosionFX, pos, Quaternion.identity);
             insExpl.transform.localScale *= 3;
             Destroy(insExpl, 0.5f);
         }
 
-        public virtual void InstantDeath()
-        {
-            TakeDamage(MaxHealth * 2);
-        }
-
         public ScriptableBuff GetBuff(string buffTypeName)
         {
-            return Buffs.Keys.ToList().Find(k => k.GetType().Name.Equals(buffTypeName));
+            return _buffs.Keys.ToList().Find(k => k.GetType().Name.Equals(buffTypeName));
         }
 
         protected override void OnDeath()
