@@ -109,44 +109,22 @@ namespace _Scripts.Entities
             }
         }
         
-        public override IEnumerator MakeMove()
+        public virtual IEnumerator MakeMove()
         {
-            // Simple Enemy AI 0.0.1
-            // Initial Wait
-            yield return new WaitForSeconds(1);
-            
-            // Randomly get the direction of going
-            var random = Random.Range(1, 3);
-            XMovingDirection = random == 1 ? 1 : -1;
-
-            // Flip if facing opposite direction
-            if (XMovingDirection != FacingDirection)
-            {
-                Flip();
-            }
-            
-            // Walk for fixed second(s)
-            yield return new WaitForSeconds(1);
-            // Disable Walking
-            XMovingDirection = 0;
-
-            // Aim and get the velocity
-            Aim();
-            // Aim for seconds
-            yield return new WaitForSeconds(1);
-            // Shoot projectile
-            Shoot();
+           // Empty AI
+           // Enemies do nothing by default
+           yield return 0;
         }
         
         // Override functions
         protected override void OnDeath()
         {
             base.OnDeath();
-            SteamManager.IncrementStat(Constants.StatEnemiesKilled);
+            // SteamManager.IncrementStat(Constants.StatBasicEnemiesKilled);
         }
         
         // Private functions
-        private void DrawTrajectory()
+        protected void DrawTrajectory()
         {
             if (IsAiming)
             {
@@ -170,7 +148,7 @@ namespace _Scripts.Entities
             }
         }
         
-        private Vector2[] Plot(Rigidbody2D prb, Vector2 pos, Vector2 velocity, int steps)
+        protected Vector2[] Plot(Rigidbody2D prb, Vector2 pos, Vector2 velocity, int steps)
         {
             Vector2[] results = new Vector2[steps];
             float timestep = Time.fixedDeltaTime / Physics2D.velocityIterations;
@@ -192,7 +170,7 @@ namespace _Scripts.Entities
             return results;
         }
 
-        private void Shoot()
+        protected void Shoot()
         {
             var launchPos =
                 LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
@@ -213,7 +191,7 @@ namespace _Scripts.Entities
             EventBus.Broadcast(EventTypes.ProjectileShot);
         }
 
-        private void Aim()
+        protected void Aim()
         {
             var targetObject = FindTarget();
             LineRenderer.enabled = true;
@@ -238,7 +216,7 @@ namespace _Scripts.Entities
         }
 
         // Locate the target that it is attacking
-        private GameObject FindTarget()
+        protected GameObject FindTarget()
         {
             return GameObject.FindGameObjectWithTag("Player");
         }

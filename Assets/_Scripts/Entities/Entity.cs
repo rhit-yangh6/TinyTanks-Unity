@@ -157,10 +157,5 @@ namespace _Scripts.Entities
         {
             TakeDamage(MaxHealth * 2);
         }
-        
-        public virtual IEnumerator MakeMove()
-        {
-            yield return 0;
-        }
     }
 }

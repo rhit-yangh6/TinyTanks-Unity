@@ -83,6 +83,11 @@ namespace _Scripts.Managers
 
         private void OnDisable()
         {
+            Shutdown();
+        }
+
+        public static void Shutdown()
+        {
             SteamClient.Shutdown();
         }
 

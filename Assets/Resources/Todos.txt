@@ -36,8 +36,20 @@ display stars in selection panel
 unlock modal in-game -> steam notification like
 
 
-double edged sword, punish when out of bounds
-
-
 enemy kill count unlocks stuff
 two more raycast to avoid suicides
+
+==== James Playtest ====
+Fading of maps in preview
+space and enter highlights buttons in arsenal
+bounceball -- dont increase velocity
+portal ball -- portal directions
+damage based on speed
+boomerang damage too high
+does not cancel when turn changes
+does not change state when fuel runs out
+edge collider issue
+tolerance angle too low
+shotgun - destructive power too high
+sawblade aim less
+achievement - display nothing if not in json

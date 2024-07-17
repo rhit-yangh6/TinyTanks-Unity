@@ -49,6 +49,11 @@
       "id": "PACK_THEM_UP",
       "trackerStats": "boulder_split_count",
       "targetValue": 20
+    },
+    {
+      "id": "10_BASIC_KILLS",
+      "trackerStats": "basic_enemies_killed",
+      "targetValue": 10
     }
   ]
 }

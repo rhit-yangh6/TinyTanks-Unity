@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 9158794846393297893}
   - component: {fileID: 9158794846393297892}
   - component: {fileID: 9158794846393297895}
-  - component: {fileID: 9158794846393297914}
+  - component: {fileID: 8251114349470539292}
   - component: {fileID: 9158794846393297915}
   - component: {fileID: 8553650911607392612}
   m_Layer: 7
@@ -463,7 +463,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &9158794846393297914
+--- !u!114 &8251114349470539292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -472,14 +472,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 9158794846393297889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e84469a513520dd4bab8d662193de8db, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b3caf2ac79c475db221091e7e5b9a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationTolerance: 11.5
+  rotationTolerance: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 50
+  maxHealth: 100
   healthBar: {fileID: 9158794847514487213}
   topLeft: {fileID: 4203563522699712342}
   bottomRight: {fileID: 7129748718396832576}
@@ -488,7 +488,7 @@ MonoBehaviour:
   bpb: {fileID: 9158794847514487206}
   degreeDelta: 10
   selectedWeaponId: -1
-  weaponLevel: 1
+  weaponLevel: 0
   horizontalCastDistance: 1
   cannonLength: 1
   climbAngleTolerance: 55
