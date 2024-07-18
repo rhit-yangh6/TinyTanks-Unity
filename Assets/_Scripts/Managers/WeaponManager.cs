@@ -50,6 +50,7 @@ namespace _Scripts.Managers
                     {
                         29 => new GearExtraData(),
                         32 => new PuzzleExtraData(),
+                        35 => new PiggyBankExtraData(),
                         _ => null
                     };
                 }

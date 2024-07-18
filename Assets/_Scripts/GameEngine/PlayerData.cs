@@ -201,6 +201,18 @@ namespace _Scripts.GameEngine
             SaveSystem.SavePlayer();
             return true;
         }
+        
+        public bool SpendCoins(int amount)
+        {
+            // Spend Coins from other sources (weapons)
+
+            if (amount > coins) return false;
+
+            coins -= amount;
+            EventBus.Broadcast(EventTypes.CoinChanged);
+            SaveSystem.SavePlayer();
+            return true;
+        }
 
         public void CompleteLevel()
         {

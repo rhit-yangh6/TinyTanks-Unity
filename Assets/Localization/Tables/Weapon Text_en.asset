@@ -462,6 +462,19 @@ MonoBehaviour:
     m_Localized: -- Three for the price of one.
     m_Metadata:
       m_Items: []
+  - m_Id: 17365233816576000
+    m_Localized: Piggy Bank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17365321867599872
+    m_Localized: Relatively high damage. When detonated, the Piggy Bank costs the
+      player a certain amount of in-game coins.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17365337805955072
+    m_Localized: -- Money power!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

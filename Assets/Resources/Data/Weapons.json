@@ -1493,6 +1493,47 @@
       "shopPrice": 0,
       "hideInShop": true,
       "extraWeaponTerms": []
+    }, {
+      "id": 35,
+      "weaponName": "weapon_piggy_bank_name",
+      "weaponDescription": "weapon_piggy_bank_desc",
+      "damage": 42,
+      "radius": 2.4,
+      "maxMagnitude": 9,
+      "steps": 300,
+      "saying": "weapon_piggy_bank_saying",
+      "upgradeInfos": [
+        {
+          "name": "upgrade_piggy_bank_2_name",
+          "description": "upgrade_piggy_bank_2_desc",
+          "cost": 183
+        },
+        {
+          "name": "upgrade_piggy_bank_3_name",
+          "description": "upgrade_piggy_bank_3_desc",
+          "cost": 383
+        },
+        {
+          "name": "upgrade_piggy_bank_4_name",
+          "description": "upgrade_piggy_bank_4_desc",
+          "cost": 533
+        },
+        {
+          "name": "upgrade_piggy_bank_5_name",
+          "description": "upgrade_piggy_bank_5_desc",
+          "cost": 733
+        },
+        {
+          "name": "upgrade_piggy_bank_6_name",
+          "description": "upgrade_piggy_bank_6_desc",
+          "cost": 973
+        }
+      ],
+      "dataPath": "piggyBank",
+      "shopPrice": 0,
+      "hideInShop": false,
+      "hasExternalDisplay": true,
+      "extraWeaponTerms": []
     }
   ]
 }

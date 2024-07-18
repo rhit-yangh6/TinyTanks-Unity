@@ -439,6 +439,18 @@ MonoBehaviour:
     m_Key: weapon_packed_stone_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 17365233816576000
+    m_Key: weapon_piggy_bank_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17365321867599872
+    m_Key: weapon_piggy_bank_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17365337805955072
+    m_Key: weapon_piggy_bank_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
