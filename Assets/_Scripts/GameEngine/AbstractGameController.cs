@@ -18,6 +18,7 @@ namespace _Scripts.GameEngine
         [SerializeField] protected float turnTime = 45f;
         [SerializeField] protected BlurManager blurManager;
         [SerializeField] protected BlurManager backgroundBlurManager;
+        [SerializeField] protected GameObject pauseMenuObject;
         [SerializeField] protected Animator pauseMenuAnimator;
         [SerializeField] protected ModalWindowManager winModalManager;
         [SerializeField] protected TextMeshProUGUI winCoinText;

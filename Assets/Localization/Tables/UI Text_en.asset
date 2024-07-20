@@ -340,6 +340,10 @@ MonoBehaviour:
     m_Localized: There's nothing in the shop now, please check back later!
     m_Metadata:
       m_Items: []
+  - m_Id: 18080262232743936
+    m_Localized: Select an Upgrade
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

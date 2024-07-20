@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 0bf8c2918a34dfb4db2e9fe7d8df8a95
   - enabled: 1
-    path: Assets/Scenes/Survival.unity
+    path: Assets/Scenes/Survival-old.unity
     guid: d8e9368524ec8954d9798a5c8ea3f029
   - enabled: 1
     path: Assets/Scenes/ShootingRange.unity

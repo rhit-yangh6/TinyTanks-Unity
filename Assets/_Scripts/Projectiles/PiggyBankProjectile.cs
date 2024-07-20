@@ -64,8 +64,9 @@ namespace _Scripts.Projectiles
             else
             {
                 DealMinimalDamage();
-                defaultMmFeedbacks.PlayFeedbacks();
+                
             }
+            defaultMmFeedbacks.PlayFeedbacks();
         }
 
         private void DealMinimalDamage()

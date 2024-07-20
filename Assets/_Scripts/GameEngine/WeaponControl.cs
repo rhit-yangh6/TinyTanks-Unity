@@ -9,23 +9,34 @@ namespace _Scripts.GameEngine
 {
     public class WeaponControl : MonoBehaviour
     {
-        public GameObject buttonPrefab;
+        [SerializeField] private GameObject buttonPrefab;
         [SerializeField] private GameObject weaponExtraDisplayPanel;
         
         private readonly List<Button> _weaponButtons = new ();
         private List<WeaponExtraData.WeaponExtraData> _weaponExtraData = new ();
-        private int _selectedIdx;
-        private GameObject _player;
-        private LaunchProjectile _lp;
+        
+        protected LaunchProjectile Lp;
+        protected int SelectedIdx;
+        protected SelectionDatum[] SelectedWeapons;
 
         private void Start()
         {
-            SelectionDatum[] selectedWeapons = PlayerData.Instance.selectedWeapons;
-            
-            _player = GameObject.FindGameObjectWithTag("Player");
-            _lp = _player.GetComponent<LaunchProjectile>();
+            GetSelectedWeapons();
+            var player = GameObject.FindGameObjectWithTag("Player");
+            Lp = player.GetComponent<LaunchProjectile>();
 
-            for (int i = 0; i < 5; i++)
+            RefreshDisplay();
+            SwitchWeapon(SelectedIdx, SelectedWeapons[0], _weaponExtraData[0]);
+        }
+
+        protected virtual void GetSelectedWeapons()
+        {
+            SelectedWeapons = PlayerData.Instance.selectedWeapons;
+        }
+
+        protected void RefreshDisplay()
+        {
+            for (var i = 0; i < 5; i++)
             {
                 GameObject buttonObj = Instantiate(buttonPrefab, transform);
                 Button button = buttonObj.GetComponent<Button>();
@@ -33,9 +44,9 @@ namespace _Scripts.GameEngine
                 var animator = buttonImg.GetComponent<Animator>();
                 Image starImg = buttonObj.GetComponentsInChildren<Image>()[2];
                 
-                var selectionDatum = selectedWeapons[i];
+                var selectionDatum = SelectedWeapons[i];
                 
-                if (selectedWeapons[i] != null)
+                if (SelectedWeapons[i] != null)
                 {
                     var index = i;
                     var weapon = WeaponManager.Instance.GetWeaponById(selectionDatum.weaponId);
@@ -49,7 +60,7 @@ namespace _Scripts.GameEngine
                     starImg.sprite = GameAssets.i.stars[selectionDatum.level - 1];
                     
                     // Enhanced?
-                    if (selectedWeapons[i].weaponId >= 1000)
+                    if (SelectedWeapons[i].weaponId >= 1000)
                     {
                         animator.runtimeAnimatorController =
                             Resources.Load<RuntimeAnimatorController>("AnimatorControllers/" + weapon.dataPath);
@@ -62,8 +73,6 @@ namespace _Scripts.GameEngine
                     
                     // Tooltip
                     buttonObj.GetComponent<SelectionWeaponButton>().weaponId = selectionDatum.weaponId;
-                    
-                    
                 }
                 else
                 {
@@ -73,7 +82,6 @@ namespace _Scripts.GameEngine
                 }
                 _weaponButtons.Add(button);
             }
-            SwitchWeapon(_selectedIdx, selectedWeapons[0], _weaponExtraData[0]);
         }
         
         private void Update() 
@@ -81,7 +89,7 @@ namespace _Scripts.GameEngine
             // Change Buttons' highlight state
             for (var i = 0; i < 5; i++)
             {
-                if (i == _selectedIdx)
+                if (i == SelectedIdx)
                 {
                     _weaponButtons[i].Select();
                 }
@@ -104,8 +112,8 @@ namespace _Scripts.GameEngine
                 weaponExternalDisplay.UpdateDisplay(wed);
             }
             
-            _selectedIdx = index;
-            _lp.SwitchWeapon(sd, wed);
+            SelectedIdx = index;
+            Lp.SwitchWeapon(sd, wed);
         }
     }
 }

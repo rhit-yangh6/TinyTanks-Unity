@@ -337,6 +337,10 @@ MonoBehaviour:
     m_Key: ui_shop_empty
     m_Metadata:
       m_Items: []
+  - m_Id: 18080262232743936
+    m_Key: ui_select_upgrade
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
