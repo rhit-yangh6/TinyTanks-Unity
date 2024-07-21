@@ -1375,6 +1375,46 @@ MonoBehaviour:
     m_Key: upgrade_yin_yang_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 18154440264785920
+    m_Key: upgrade_piggy_bank_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154594275434496
+    m_Key: upgrade_piggy_bank_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154616782069760
+    m_Key: upgrade_piggy_bank_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154628022804480
+    m_Key: upgrade_piggy_bank_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154635820015616
+    m_Key: upgrade_piggy_bank_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154692396982272
+    m_Key: upgrade_piggy_bank_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154731810856960
+    m_Key: upgrade_piggy_bank_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154748864897024
+    m_Key: upgrade_piggy_bank_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154758465658880
+    m_Key: upgrade_piggy_bank_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154767223365632
+    m_Key: upgrade_piggy_bank_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

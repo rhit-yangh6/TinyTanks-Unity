@@ -1446,6 +1446,49 @@ MonoBehaviour:
     m_Localized: Spawns the other sphere with random velocity upon impact.
     m_Metadata:
       m_Items: []
+  - m_Id: 18154440264785920
+    m_Localized: Wealth Explosion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154594275434496
+    m_Localized: Coin Scatter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154616782069760
+    m_Localized: Investment Return
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154635820015616
+    m_Localized: Payday
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154628022804480
+    m_Localized: Ultimate Cashback
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154758465658880
+    m_Localized: If the projectile hits more than 3 targets, the player gets a full
+      refund of the coins spent on that detonation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154767223365632
+    m_Localized: Upon detonation, spawns a few coin pickups that players can collect
+      to restore the coins they've spent, making the weapon more sustainable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154731810856960
+    m_Localized: Increases the blast range of the Piggy Bank explosion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154692396982272
+    m_Localized: Reduces the coin cost for each detonation while maintaining the
+      same damage output.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18154748864897024
+    m_Localized: Grants a chance to refund a portion of the coins spent on detonation.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

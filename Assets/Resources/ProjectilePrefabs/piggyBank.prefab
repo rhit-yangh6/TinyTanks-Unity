@@ -403,7 +403,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultMmFeedbacks: {fileID: 3812291426065659194}
-  coinPickupPrefab: {fileID: 0}
+  coinPickupPrefab: {fileID: 7189843864353292647, guid: e5ccec5b6f524244d94d59919e11db10, type: 3}
+  minimalDamage: 8
+  minimalRadius: 1.2
+  refundChance: 0.2
+  refundPortion: 0.4
+  spawnCoinRange: 1.5
 --- !u!70 &5409858052780150308
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
