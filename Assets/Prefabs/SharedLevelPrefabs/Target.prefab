@@ -495,7 +495,7 @@ MonoBehaviour:
   rotationTolerance: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 49216
   maxHealth: 1e+9
   healthBar: {fileID: 281014317305438630}
   topLeft: {fileID: 2923689691212197619}
