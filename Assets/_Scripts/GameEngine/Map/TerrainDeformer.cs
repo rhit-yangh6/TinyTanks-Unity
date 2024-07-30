@@ -9,11 +9,13 @@ namespace _Scripts.GameEngine.Map
     public class TerrainDeformer : MonoBehaviour
     {
         private const float RadiusMultiplier = 1.25f;
-        private readonly LayerMask _strongerDestroyingPowerMask = LayerMask.GetMask(new[] { "Terrain", "HarderTerrain" });
-        private readonly LayerMask _strongestDestroyingPowerMask = LayerMask.GetMask(new[] { "Terrain", "HarderTerrain", "HardestTerrain" });
+        private LayerMask _strongerDestroyingPowerMask;
+        private LayerMask _strongestDestroyingPowerMask;
 
         private void Start()
         {
+            _strongerDestroyingPowerMask = LayerMask.GetMask(new[] { "Terrain", "HarderTerrain" });
+            _strongestDestroyingPowerMask = LayerMask.GetMask(new[] { "Terrain", "HarderTerrain", "HardestTerrain" });
             EventBus.AddListener<Vector3, float, int, DestroyTypes>(EventTypes.DestroyTerrain, DestroyTerrainHandler);
         }
 

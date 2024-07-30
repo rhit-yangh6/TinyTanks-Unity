@@ -20,12 +20,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Survival-old.unity
     guid: d8e9368524ec8954d9798a5c8ea3f029
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ShootingRange-old.unity
     guid: b3f6ad04bdc96c748a6e5d7cc559a96b
   - enabled: 1
     path: Assets/Scenes/Story.unity
     guid: 4857cd3ceadc9044c80c013bd0d9a406
+  - enabled: 1
+    path: Assets/Scenes/ShootingRange.unity
+    guid: a48a66c6a93b96646917e8607895a1bd
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 47d37b34785a48949a6064fe412fd2ed, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: c73087e7940c28544986a550768731ef, type: 2}
