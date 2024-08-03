@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6816072472652494682}
   - component: {fileID: 6890699591451632278}
   - component: {fileID: 1534604733054266481}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: medKit
   m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 623300969
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 542c643cafd3b78439aaa558af917666, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2213433684530604963}
   - component: {fileID: 6944019626282961877}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MMFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

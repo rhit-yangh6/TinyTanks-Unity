@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3885097546111402383}
   - component: {fileID: 5590604362205986690}
   - component: {fileID: 8151015812560823335}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4796,7 +4796,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -724633371
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 1423776947997344903}
   - component: {fileID: 6192363179957118674}
   - component: {fileID: 7845947890711607470}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: molotov
   m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
@@ -4907,7 +4907,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 623300969
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 639437a22403df547bc5fb441c0b9f97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4954,12 +4954,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultMmFeedbacks: {fileID: 6910849509614913790}
-  flameNumber: 10
   flamePrefab: {fileID: 2571311846931634792, guid: 4978faf1c166f9b49ab1e11e51075715, type: 3}
-  flameLifeSpan: 2
-  flameDamage: 2
   flameRadius: 0.23
-  flameSpreadRange: 130
   flameSpeed: 3.5
 --- !u!70 &6192363179957118674
 CapsuleCollider2D:
@@ -5033,7 +5029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2971314003389687190}
   - component: {fileID: 6910849509614913790}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MMFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

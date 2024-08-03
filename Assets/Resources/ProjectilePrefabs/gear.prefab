@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6293472930685918350}
   - component: {fileID: 9194389316918415184}
   - component: {fileID: 5324713309453593941}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: gear
   m_TagString: AggressiveProjectile
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3116216156812527312}
   - component: {fileID: 6851082018118928569}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: SpinMmFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,7 +734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7932398533524598498}
   - component: {fileID: 4084257635338409870}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: MMFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 118695301177096354}
   - component: {fileID: 8348511704146258753}
   - component: {fileID: 889557322831007917}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6007,7 +6007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5007376757895135945}
   - component: {fileID: 7923873393850399178}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: ActivateMmFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
