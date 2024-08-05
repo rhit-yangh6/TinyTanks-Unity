@@ -286,7 +286,7 @@
       "id": 7,
       "weaponName": "weapon_boomerang_name",
       "weaponDescription": "weapon_boomerang_desc",
-      "damage": 32.0,
+      "damage": 29.0,
       "radius": 1.5,
       "maxMagnitude": 18.0,
       "steps": 900,

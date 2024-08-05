@@ -56,12 +56,17 @@ namespace _Scripts.Entities
                 }
                 return;
             }
+            
+            // Cannot move if player has no fuel
+            if (fuel <= 0)
+            {
+                Rigidbody2D.velocity = Vector2.zero;
+                Rigidbody2D.isKinematic = true;
+                return;
+            }
 
             _xInput = Input.GetAxisRaw("Horizontal");
             Rigidbody2D.isKinematic = false;
-
-            // Cannot move if player has no fuel
-            if (fuel <= 0) return;
 
             if (_xInput == 1 && FacingDirection == -1)
             {
