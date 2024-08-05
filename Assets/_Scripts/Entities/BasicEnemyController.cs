@@ -10,12 +10,23 @@ namespace _Scripts.Entities
         public override IEnumerator MakeMove()
         {
             // Simple Enemy AI 0.0.1
+            
+            // Find and locate the target
+            TargetObject = FindTarget();
+            
             // Initial Wait
             yield return new WaitForSeconds(1);
             
             // Randomly get the direction of going
-            var random = Random.Range(1, 3);
-            XMovingDirection = random == 1 ? 1 : -1;
+            var randomValue = Random.value;
+            if (randomValue < approachTargetTendency)
+            {
+                XMovingDirection = TargetObject.transform.position.x < transform.position.x ? -1 : 1;
+            }
+            else
+            {
+                XMovingDirection = TargetObject.transform.position.x < transform.position.x ? 1 : -1;
+            }
 
             // Flip if facing opposite direction
             if (XMovingDirection != FacingDirection)

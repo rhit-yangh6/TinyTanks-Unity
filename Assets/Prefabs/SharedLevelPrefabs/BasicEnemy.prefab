@@ -490,7 +490,9 @@ MonoBehaviour:
   selectedWeaponId: -1
   weaponLevel: 0
   horizontalCastDistance: 1
+  verticalCastDistance: 1
   cannonLength: 1
+  approachTargetTendency: 0.75
   climbAngleTolerance: 55
 --- !u!120 &9158794846393297915
 LineRenderer:

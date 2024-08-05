@@ -15,7 +15,9 @@ namespace _Scripts.Entities
         [SerializeField] protected int selectedWeaponId;
         [SerializeField] protected int weaponLevel;
         [SerializeField] protected float horizontalCastDistance = 1f;
+        [SerializeField] protected float verticalCastDistance = 1f;
         [SerializeField] protected float cannonLength = 1f;
+        [SerializeField] protected float approachTargetTendency = 0.5f;
         [SerializeField][Range(40f, 180f)] protected float climbAngleTolerance = 70f;
         
         // The projectilePrefab of the selected weapon, applied to enemies
@@ -36,6 +38,9 @@ namespace _Scripts.Entities
         // Rotation angle of enemy cannon
         protected float CannonAngle;
         
+        // Rotation angle of enemy cannon
+        protected GameObject TargetObject;
+        
         protected override void Start()
         {
             base.Start();
@@ -53,6 +58,7 @@ namespace _Scripts.Entities
         protected override void CheckMovement()
         {
             SlopeCheckHorizontal();
+            EdgeCheckVertical();
             if (XMovingDirection != 0)
             {
                 if (IsGrounded())
@@ -106,6 +112,27 @@ namespace _Scripts.Entities
             } else if (slopeHitLeft && XMovingDirection < 0 && slopeSideAngle > climbAngleTolerance)
             {
                 XMovingDirection = 0;
+            }
+        }
+
+        private void EdgeCheckVertical()
+        {
+            var pos = transform.position;
+            Vector2 leftCheckPos = pos - new Vector3(ColliderSize.x / 2, ColliderSize.y / 3);
+            Vector2 rightCheckPos = pos - new Vector3(-ColliderSize.x / 2, ColliderSize.y / 3);
+            Debug.DrawRay(leftCheckPos, Vector2.down, Color.green, 10);
+            Debug.DrawRay(rightCheckPos, Vector2.down, Color.red, 10);
+            
+            var hitLeft = Physics2D.Raycast(leftCheckPos, Vector2.down, verticalCastDistance, layerMask);
+            var hitRight = Physics2D.Raycast(rightCheckPos, Vector2.down, verticalCastDistance, layerMask);
+
+            switch (XMovingDirection)
+            {
+                // Moving right but not seeing floor
+                case 1 when !hitRight:
+                case -1 when !hitLeft:
+                    XMovingDirection = 0;
+                    break;
             }
         }
         
@@ -193,14 +220,13 @@ namespace _Scripts.Entities
 
         protected void Aim()
         {
-            var targetObject = FindTarget();
             LineRenderer.enabled = true;
             IsAiming = true;
             
             Vector2 startPos =
                 LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
                     tankCannon.transform.position);
-            var endPos = targetObject.transform.position;
+            var endPos = TargetObject.transform.position;
             float t = 3f;
 
             float vx = (endPos.x - startPos.x) / t;
