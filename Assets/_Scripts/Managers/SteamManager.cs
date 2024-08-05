@@ -152,12 +152,12 @@ namespace _Scripts.Managers
             } 
         }
         
-        public static int IncrementStat(string id)
+        public static int IncrementStat(string id, int amount = 1)
         {
             try
             {
                 var stat = new Stat(id);
-                var value = stat.GetInt() + 1;
+                var value = stat.GetInt() + amount;
                 stat.Set(value);
                 
                 Debug.Log($"Stat {id} incremented to {value}");

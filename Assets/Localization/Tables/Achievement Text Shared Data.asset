@@ -103,6 +103,22 @@ MonoBehaviour:
     m_Key: PACK_THEM_UP_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 11999039802580992
+    m_Key: 10_BASIC_KILLS_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11999065303949312
+    m_Key: 10_BASIC_KILLS_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11999079858184192
+    m_Key: EARNED_A_BIT_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11999102897496064
+    m_Key: EARNED_A_BIT_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

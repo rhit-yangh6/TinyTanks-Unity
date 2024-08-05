@@ -54,6 +54,11 @@
       "id": "10_BASIC_KILLS",
       "trackerStats": "basic_enemies_killed",
       "targetValue": 10
+    },
+    {
+      "id": "EARNED_A_BIT",
+      "trackerStats": "coins_gained",
+      "targetValue": 2500
     }
   ]
 }

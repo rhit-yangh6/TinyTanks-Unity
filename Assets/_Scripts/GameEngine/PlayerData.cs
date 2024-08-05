@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Managers;
+using _Scripts.Utils;
 using UnityEngine;
 
 namespace _Scripts.GameEngine
@@ -251,6 +252,12 @@ namespace _Scripts.GameEngine
         public void GainMoney(int prize)
         {
             coins += prize;
+            var gainedAmount = SteamManager.IncrementStat(Constants.StatCoinsGained, prize);
+            if (gainedAmount > 2500)
+            {
+                SteamManager.UnlockAchievement(Constants.AchievementEarnedABit);
+                WeaponManager.UnlockWeapon(35); // Piggy Bank 35
+            }
             EventBus.Broadcast(EventTypes.CoinChanged);
             SaveSystem.SavePlayer();
         }

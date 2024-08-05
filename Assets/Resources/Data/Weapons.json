@@ -1531,7 +1531,7 @@
       ],
       "dataPath": "piggyBank",
       "shopPrice": 0,
-      "hideInShop": false,
+      "hideInShop": true,
       "hasExternalDisplay": true,
       "extraWeaponTerms": []
     }

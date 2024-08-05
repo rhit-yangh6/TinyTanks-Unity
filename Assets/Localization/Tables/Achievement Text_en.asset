@@ -107,6 +107,22 @@ MonoBehaviour:
     m_Localized: Split the boulder 20 times. Unlocks Packed Stone
     m_Metadata:
       m_Items: []
+  - m_Id: 11999039802580992
+    m_Localized: 10 Basic Kills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11999079858184192
+    m_Localized: Earned a Bit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11999065303949312
+    m_Localized: Kill 10 basic enemies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11999102897496064
+    m_Localized: Earned a total of 2500 coins
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
