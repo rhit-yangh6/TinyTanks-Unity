@@ -25,7 +25,6 @@ spend money sfx sound
 
 
 ======
-shopping cart UI a bit confusing
 enemy kill both, you still win
 use last power + angle
 explode center, max damage (damage falloff) [Weapon]
@@ -47,6 +46,5 @@ space and enter highlights buttons in arsenal
 portal ball -- portal directions
 damage based on speed
 does not cancel when turn changes
-edge collider issue
 tolerance angle too low
 achievement - display nothing if not in json

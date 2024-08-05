@@ -20,7 +20,7 @@ namespace _Scripts.UI.Shop
         [SerializeField] private BlurManager blurManager;
         [SerializeField] private GameObject noticePanel;
 
-        private int shopItemNum;
+        private int _shopItemNum;
 
         private void Start()
         {
@@ -44,7 +44,8 @@ namespace _Scripts.UI.Shop
             foreach (Transform child in weaponScrollListContent.transform) {
                 Destroy(child.gameObject);
             }
-            
+
+            _shopItemNum = 0;
             var weapons = WeaponManager.Instance.GetAllWeapons();
             /*
             Array.Sort(weapons,
@@ -85,11 +86,11 @@ namespace _Scripts.UI.Shop
                     // sdp.gameObject.SetActive(true);
                     // sdp.SetDetails(weaponId);
                 });
-                shopItemNum++;
+                _shopItemNum++;
             }
 
             // Show Notice Panel if there is no shop items
-            if (shopItemNum == 0)
+            if (_shopItemNum == 0)
             {
                 noticePanel.SetActive(true);
             }

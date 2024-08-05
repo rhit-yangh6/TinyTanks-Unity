@@ -120,8 +120,8 @@ namespace _Scripts.Entities
             var pos = transform.position;
             Vector2 leftCheckPos = pos - new Vector3(ColliderSize.x / 2, ColliderSize.y / 3);
             Vector2 rightCheckPos = pos - new Vector3(-ColliderSize.x / 2, ColliderSize.y / 3);
-            Debug.DrawRay(leftCheckPos, Vector2.down, Color.green, 10);
-            Debug.DrawRay(rightCheckPos, Vector2.down, Color.red, 10);
+            // Debug.DrawRay(leftCheckPos, Vector2.down, Color.green, 10);
+            // Debug.DrawRay(rightCheckPos, Vector2.down, Color.red, 10);
             
             var hitLeft = Physics2D.Raycast(leftCheckPos, Vector2.down, verticalCastDistance, layerMask);
             var hitRight = Physics2D.Raycast(rightCheckPos, Vector2.down, verticalCastDistance, layerMask);
