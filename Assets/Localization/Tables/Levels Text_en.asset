@@ -58,6 +58,10 @@ MonoBehaviour:
     m_Localized: Two Foes
     m_Metadata:
       m_Items: []
+  - m_Id: 21567300806385664
+    m_Localized: Crevice
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

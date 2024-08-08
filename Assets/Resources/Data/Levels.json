@@ -68,6 +68,14 @@
           "weaponPrize": 0,
           "unlocksChapter": 0,
           "path": "Level1-8"
+        },
+        {
+          "id": "1-9",
+          "name": "level_1_9_name",
+          "prize": 50,
+          "weaponPrize": 0,
+          "unlocksChapter": 0,
+          "path": "Level1-9"
         }
       ]
     },
