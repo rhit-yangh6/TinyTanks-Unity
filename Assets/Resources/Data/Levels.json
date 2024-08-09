@@ -76,6 +76,15 @@
           "weaponPrize": 0,
           "unlocksChapter": 0,
           "path": "Level1-9"
+        },
+        {
+          "id": "1-10",
+          "name": "level_1_10_name",
+          "prize": 50,
+          "weaponPrize": 25,
+          "unlocksChapter": 2,
+          "isBossLevel": true,
+          "path": "Level1-10"
         }
       ]
     },

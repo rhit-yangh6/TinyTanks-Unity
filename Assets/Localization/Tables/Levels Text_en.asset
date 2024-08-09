@@ -62,6 +62,10 @@ MonoBehaviour:
     m_Localized: Crevice
     m_Metadata:
       m_Items: []
+  - m_Id: 21917114618355712
+    m_Localized: Field of Airstrike
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

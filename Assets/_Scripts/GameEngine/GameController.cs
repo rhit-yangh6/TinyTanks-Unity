@@ -15,10 +15,19 @@ namespace _Scripts.GameEngine
             PlayerData.Instance.CompleteLevel();
             // Unlock FIRST_WIN achievement during level completion
             SteamManager.UnlockAchievement(Constants.AchievementFirstWinId);
-            var prize = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId).prize;
-
+            
+            var level = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId);
+            var prize = level.prize;
             winCoinText.text = "+" + prize;
             PlayerData.Instance.GainMoney(prize);
+
+            // Unlock weapon?
+            if (level.weaponPrize != 0)
+            {
+                WeaponManager.UnlockWeapon(level.weaponPrize);
+            }
+            
+            // Unlock Achievement?
             base.HandleWin();
         }
     }

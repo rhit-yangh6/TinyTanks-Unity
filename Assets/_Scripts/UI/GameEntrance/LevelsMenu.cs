@@ -32,6 +32,7 @@ namespace _Scripts.UI.GameEntrance
                 var l = levels[i];
                 var cellObj = Instantiate(levelCellPrefab, levelScrollListContent.transform);
                 var previewImage = cellObj.transform.Find("Content/Preview").GetComponent<Image>();
+                var bossIconCanvasGroup = cellObj.transform.Find("Boss Icon").GetComponent<CanvasGroup>();
                 var button = cellObj.GetComponent<Button>();
                 var levelButton = cellObj.GetComponent<ChapterButton>();
                 
@@ -64,6 +65,11 @@ namespace _Scripts.UI.GameEntrance
                 {
                     // Locked
                     levelButton.statusItem = ChapterButton.StatusItem.Locked;
+                }
+
+                if (l.isBossLevel)
+                {
+                    bossIconCanvasGroup.alpha = 1;
                 }
 
                 // var chapterImage = cellObj.GetComponentsInChildren<Image>()[0];
