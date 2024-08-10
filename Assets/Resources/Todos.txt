@@ -48,3 +48,5 @@ damage based on speed
 does not cancel when turn changes
 tolerance angle too low
 achievement - display nothing if not in json
+
+enemy flip before shooting
