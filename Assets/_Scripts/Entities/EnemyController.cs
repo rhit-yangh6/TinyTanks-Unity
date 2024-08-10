@@ -23,6 +23,7 @@ namespace _Scripts.Entities
         
         private const float DegreeDeltaMaxDistance = 40f;
         private const float DegreeDeltaMinDistance = 5f;
+        private const float ProjectileTravelTime = 3f;
         
         // The projectilePrefab of the selected weapon, applied to enemies
         protected GameObject ProjectilePrefab;
@@ -95,9 +96,9 @@ namespace _Scripts.Entities
         private void SlopeCheckHorizontal()
         {
             // Raycast in two horizontal directions. If the angle is too high stop moving immediately
-            Vector2 Checkpos = transform.position - new Vector3(0f, ColliderSize.y / 3);
-            var slopeHitRight = Physics2D.Raycast(Checkpos, Vector2.right, horizontalCastDistance, layerMask);
-            var slopeHitLeft = Physics2D.Raycast(Checkpos, Vector2.left, horizontalCastDistance, layerMask);
+            Vector2 checkPos = transform.position - new Vector3(0f, ColliderSize.y / 3);
+            var slopeHitRight = Physics2D.Raycast(checkPos, Vector2.right, horizontalCastDistance, layerMask);
+            var slopeHitLeft = Physics2D.Raycast(checkPos, Vector2.left, horizontalCastDistance, layerMask);
             // Debug.DrawRay(Checkpos, Vector2.right, Color.green, 10);
             // Debug.DrawRay(Checkpos, Vector2.left, Color.red, 10);
 
@@ -163,11 +164,11 @@ namespace _Scripts.Entities
                     LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
                         tankCannon.transform.position);
                 
-                Vector2[] trajectory = Plot(ProjectilePrefab.GetComponent<Rigidbody2D>(), (Vector2)launchPos, AimVelocity, 500);
+                var trajectory = Plot(ProjectilePrefab.GetComponent<Rigidbody2D>(), (Vector2)launchPos, AimVelocity, 500);
                 LineRenderer.positionCount = trajectory.Length;
 
-                Vector3[] positions = new Vector3[trajectory.Length];
-                for (int i = 0; i < trajectory.Length; i++)
+                var positions = new Vector3[trajectory.Length];
+                for (var i = 0; i < trajectory.Length; i++)
                 {
                     positions[i] = trajectory[i];
                 }
@@ -181,14 +182,14 @@ namespace _Scripts.Entities
         
         protected Vector2[] Plot(Rigidbody2D prb, Vector2 pos, Vector2 velocity, int steps)
         {
-            Vector2[] results = new Vector2[steps];
-            float timestep = Time.fixedDeltaTime / Physics2D.velocityIterations;
+            var results = new Vector2[steps];
+            var timestep = Time.fixedDeltaTime / Physics2D.velocityIterations;
 
-            Vector2 gravityAccel = prb.gravityScale * timestep * timestep * Physics2D.gravity;
+            var gravityAccel = prb.gravityScale * timestep * timestep * Physics2D.gravity;
 
-            float drag = 1f - timestep * prb.drag;
+            var drag = 1f - timestep * prb.drag;
 
-            Vector2 moveStep = velocity * timestep;
+            var moveStep = velocity * timestep;
 
             for (int i = 0; i < steps; i++)
             {
@@ -237,10 +238,8 @@ namespace _Scripts.Entities
                 LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
                     tankCannon.transform.position);
             
-            float t = 3f;
-
-            float vx = (targetPosition.x - startPos.x) / t;
-            float vy = (targetPosition.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * t * t) / t;
+            var vx = (targetPosition.x - startPos.x) / ProjectileTravelTime;
+            var vy = (targetPosition.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * ProjectileTravelTime * ProjectileTravelTime) / ProjectileTravelTime;
 
             AimVelocity = new Vector2(vx, vy);
 
