@@ -11,7 +11,8 @@ namespace _Scripts.Entities
 {
     public class EnemyController : BuffableEntity
     {
-        [SerializeField] protected float degreeDelta = 10f;
+        [SerializeField] protected float degreeDeltaMax = 25f;
+        [SerializeField] protected float degreeDeltaMin = 2f;
         [SerializeField] protected int selectedWeaponId;
         [SerializeField] protected int weaponLevel;
         [SerializeField] protected float horizontalCastDistance = 1f;
@@ -19,6 +20,9 @@ namespace _Scripts.Entities
         [SerializeField] protected float cannonLength = 1f;
         [SerializeField] protected float approachTargetTendency = 0.5f;
         [SerializeField][Range(40f, 180f)] protected float climbAngleTolerance = 70f;
+        
+        private const float DegreeDeltaMaxDistance = 40f;
+        private const float DegreeDeltaMinDistance = 5f;
         
         // The projectilePrefab of the selected weapon, applied to enemies
         protected GameObject ProjectilePrefab;
@@ -222,8 +226,8 @@ namespace _Scripts.Entities
         {
             LineRenderer.enabled = true;
             IsAiming = true;
-            
-            var aimingDirection = TargetObject.transform.position.x < transform.position.x ? -1 : 1;
+            var targetPosition = TargetObject.transform.position;
+            var aimingDirection = targetPosition.x < transform.position.x ? -1 : 1;
             if (aimingDirection != FacingDirection)
             {
                 Flip();
@@ -232,15 +236,24 @@ namespace _Scripts.Entities
             Vector2 startPos =
                 LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
                     tankCannon.transform.position);
-            var endPos = TargetObject.transform.position;
+            
             float t = 3f;
 
-            float vx = (endPos.x - startPos.x) / t;
-            float vy = (endPos.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * t * t) / t;
+            float vx = (targetPosition.x - startPos.x) / t;
+            float vy = (targetPosition.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * t * t) / t;
 
             AimVelocity = new Vector2(vx, vy);
 
-            float rotateDegree = Random.Range(-degreeDelta, degreeDelta);
+            // Calculate the deviation angle depending on the distance to its target
+            var distance = Vector2.Distance(targetPosition, transform.position);
+            var finalDegreeDelta = distance switch
+            {
+                < DegreeDeltaMinDistance => degreeDeltaMin,
+                > DegreeDeltaMaxDistance => degreeDeltaMax,
+                _ => (degreeDeltaMax - degreeDeltaMin) / (DegreeDeltaMaxDistance - DegreeDeltaMinDistance) *
+                    (distance - DegreeDeltaMinDistance) + degreeDeltaMin
+            };
+            var rotateDegree = Random.Range(-finalDegreeDelta, finalDegreeDelta);
             
             AimVelocity = Geometry.Rotate(AimVelocity, rotateDegree);
             CannonAngle = Vector2.SignedAngle(AimVelocity, Vector2.right);
