@@ -223,6 +223,12 @@ namespace _Scripts.Entities
             LineRenderer.enabled = true;
             IsAiming = true;
             
+            var aimingDirection = TargetObject.transform.position.x < transform.position.x ? -1 : 1;
+            if (aimingDirection != FacingDirection)
+            {
+                Flip();
+            }
+            
             Vector2 startPos =
                 LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
                     tankCannon.transform.position);
