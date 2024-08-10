@@ -479,7 +479,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 49216
-  maxHealth: 100
+  maxHealth: 200
   healthBar: {fileID: 9158794847514487213}
   topLeft: {fileID: 4203563522699712342}
   bottomRight: {fileID: 7129748718396832576}

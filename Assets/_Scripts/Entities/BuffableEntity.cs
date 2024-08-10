@@ -16,6 +16,7 @@ namespace _Scripts.Entities
         [SerializeField] protected float movementSpeed;
         [SerializeField] public GameObject tankCannon;
         [SerializeField] protected BuffPanelBehavior bpb;
+        [SerializeField] private bool startFacingLeft;
 
         private readonly Dictionary<ScriptableBuff, TimedBuff> _buffs = new ();
         public virtual float MovementSpeed
@@ -34,11 +35,13 @@ namespace _Scripts.Entities
         {
             base.Start();
 
+            FacingDirection = startFacingLeft ? -1 : 1;
+
             MainSpriteRenderer = GetComponent<SpriteRenderer>();
-            MainSpriteRenderer.flipX = FacingDirection == -1;
+            MainSpriteRenderer.flipX = startFacingLeft;
 
             CannonSpriteRenderer = tankCannon.GetComponent<SpriteRenderer>();
-            CannonSpriteRenderer.flipX = FacingDirection == -1;
+            CannonSpriteRenderer.flipX = startFacingLeft;
         }
 
         protected override void CheckMovement() { }
