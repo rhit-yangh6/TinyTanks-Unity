@@ -25,6 +25,7 @@ namespace _Scripts.GameEngine
         [SerializeField] protected ModalWindowManager loseModalManager;
         [SerializeField] protected ModalWindowManager newWeaponModalManager;
         [SerializeField] protected WeaponUnlockedModalWindow weaponUnlockedModalWindow;
+        [SerializeField] protected AudioSource bgmAudioSource;
         
         protected bool projectileShot;
         
@@ -42,6 +43,7 @@ namespace _Scripts.GameEngine
 
         private void Start()
         {
+            HandleBgm();
             player = GameObject.FindGameObjectWithTag("Player");
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -244,6 +246,33 @@ namespace _Scripts.GameEngine
         {
             Debug.Log("Game Resumed");
             Time.timeScale = 1f;
+        }
+
+        protected void HandleBgm()
+        {
+            AudioClip audioClip = null;
+            if (SceneManager.GetActiveScene().name == "Story")
+            {
+                audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Chapter" + GameStateController.currentChapterId));
+            }
+            else if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Tutorial"));
+            }
+            else if (SceneManager.GetActiveScene().name == "Survival")
+            {
+                audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Survival"));
+            }
+            else if (SceneManager.GetActiveScene().name == "ShootingRange")
+            {
+                audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Shooting Range"));
+            }
+
+            bgmAudioSource.clip = audioClip;
+            if (!bgmAudioSource.isPlaying)
+            {
+                bgmAudioSource.Play();
+            }
         }
     }
 }

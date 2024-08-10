@@ -33,6 +33,7 @@ namespace _Scripts.GameEngine
 
         private void Start()
         {
+            HandleBgm();
             _waveText = GameObject.FindGameObjectWithTag("Wave").GetComponent<TextMeshProUGUI>();
             player = GameObject.FindGameObjectWithTag("Player");
             

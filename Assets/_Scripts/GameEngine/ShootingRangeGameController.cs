@@ -17,6 +17,7 @@ namespace _Scripts.GameEngine
         
         private void Start()
         {
+            HandleBgm();
             player = GameObject.FindGameObjectWithTag("Player");
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
             
