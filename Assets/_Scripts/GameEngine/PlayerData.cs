@@ -282,6 +282,11 @@ namespace _Scripts.GameEngine
 
             SaveSystem.SavePlayer();
         }
+
+        public int WeaponsSelected()
+        {
+            return selectedWeapons.Count(sw => sw != null);
+        }
     }
 
     [Serializable]

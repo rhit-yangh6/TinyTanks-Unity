@@ -59,7 +59,7 @@ namespace _Scripts.Utils
         public const string AchievementBabySteps = "BABY_STEPS";
         public const string AchievementOops = "OOPS";
         public const string AchievementBoombox = "BOOMBOX";
-        public const string AchievementYinYang = "YIN_YANG";
+        public const string AchievementDuality = "DUALITY";
         public const string AchievementWillOfSacrifice = "WILL_OF_SACRIFICE";
         public const string AchievementSpreadTheFire = "SREAD_THE_FIRE";
         public const string AchievementUpgrade12 = "UPGRADE_12";

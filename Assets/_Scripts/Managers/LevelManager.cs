@@ -72,7 +72,7 @@ namespace _Scripts.Managers
     {
         // Read from Levels.json
         public int prize, weaponPrize, unlocksChapter;
-        public string name, path, id;
+        public string name, path, id, unlocksAchievement;
         public bool isBossLevel;
 
         public Sprite chapterBackgroundSprite;

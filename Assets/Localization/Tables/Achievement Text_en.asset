@@ -123,6 +123,22 @@ MonoBehaviour:
     m_Localized: Earned a total of 2500 coins
     m_Metadata:
       m_Items: []
+  - m_Id: 14080911080693760
+    m_Localized: Duality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14080964574846976
+    m_Localized: Beat any boss with only two weapons equipped. Unlocks Yin-Yang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14081011748184064
+    m_Localized: Airstrike Interceptor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14081015904739328
+    m_Localized: Defeat General Williams. Unlocks Airstrike
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

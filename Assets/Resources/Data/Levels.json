@@ -66,7 +66,7 @@
           "name": "level_1_8_name",
           "prize": 50,
           "weaponPrize": 0,
-          "unlocksChapter": 0,
+          "unlocksChapter": 2,
           "path": "Level1-8"
         },
         {
@@ -82,7 +82,8 @@
           "name": "level_1_10_name",
           "prize": 50,
           "weaponPrize": 25,
-          "unlocksChapter": 2,
+          "unlocksChapter": 0,
+          "unlocksAchievement": "AIRSTRIKE_INTERCEPTOR",
           "isBossLevel": true,
           "path": "Level1-10"
         }
