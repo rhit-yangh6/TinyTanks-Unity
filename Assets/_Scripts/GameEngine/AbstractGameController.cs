@@ -40,6 +40,7 @@ namespace _Scripts.GameEngine
         protected bool isEnded;
 
         protected bool isInterTurn;
+        private bool _isInCutScene;
 
         private void Start()
         {
@@ -82,7 +83,7 @@ namespace _Scripts.GameEngine
         private void Update()
         {
             // If It's the player's turn and the player has not performed a shot
-            if (turn == 0 && !projectileShot)
+            if (turn == 0 && !projectileShot && !_isInCutScene)
             {
                 remainingTime -= Time.deltaTime;
                 timerText.text = Math.Round(remainingTime).ToString(CultureInfo.InvariantCulture);
@@ -253,7 +254,15 @@ namespace _Scripts.GameEngine
             AudioClip audioClip = null;
             if (SceneManager.GetActiveScene().name == "Story")
             {
-                audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Chapter" + GameStateController.currentChapterId));
+                var level = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId);
+                if (level.isBossLevel)
+                {
+                    audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Boss Fight"));
+                }
+                else
+                {
+                    audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Chapter" + GameStateController.currentChapterId));
+                }
             }
             else if (SceneManager.GetActiveScene().name == "Tutorial")
             {
@@ -273,6 +282,16 @@ namespace _Scripts.GameEngine
             {
                 bgmAudioSource.Play();
             }
+        }
+
+        public void EnterCutscene()
+        {
+            _isInCutScene = true;
+        }
+
+        public void ExitCutscene()
+        {
+            _isInCutScene = false;
         }
     }
 }
