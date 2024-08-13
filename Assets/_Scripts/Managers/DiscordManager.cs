@@ -52,26 +52,33 @@ namespace _Scripts.Managers
 
         private void ChangeActivity(string newDetails, string newState)
         {
-            var activityManager = discord.GetActivityManager();
-            var activity = new Discord.Activity
+            try
             {
-                State = GetLevelOrNormalState(newState),
-                Details = newDetails,
-                Timestamps =
+                var activityManager = discord.GetActivityManager();
+                var activity = new Discord.Activity
                 {
-                    Start = IsInGame() ? DateTimeOffset.Now.ToUnixTimeMilliseconds() : 0
-                },
-                Assets =
+                    State = GetLevelOrNormalState(newState),
+                    Details = newDetails,
+                    Timestamps =
+                    {
+                        Start = IsInGame() ? DateTimeOffset.Now.ToUnixTimeMilliseconds() : 0
+                    },
+                    Assets =
+                    {
+                        LargeImage = Constants.RichPresenceLargeImage,
+                        LargeText = Constants.RichPresenceLargeText
+                    }
+                };
+
+                activityManager.UpdateActivity(activity, (res) =>
                 {
-                    LargeImage = Constants.RichPresenceLargeImage,
-                    LargeText = Constants.RichPresenceLargeText
-                }
-            };
-            
-            activityManager.UpdateActivity(activity, (res) =>
+                    if (res != Discord.Result.Ok) Debug.LogWarning("Failed connecting to Discord.");
+                });
+            }
+            catch
             {
-                if (res != Discord.Result.Ok) Debug.LogWarning("Failed connecting to Discord.");
-            });
+                Debug.Log("Discord is not connected.");
+            }
         }
 
         private static bool IsInGame()
