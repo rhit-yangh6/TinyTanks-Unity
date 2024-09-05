@@ -62,6 +62,9 @@
       "id": "EARNED_A_BIT",
       "trackerStats": "coins_gained",
       "targetValue": 2500
+    },
+    {
+      "id": "AUDIOPHILE"
     }
   ]
 }

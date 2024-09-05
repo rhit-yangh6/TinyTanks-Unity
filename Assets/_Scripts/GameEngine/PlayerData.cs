@@ -11,7 +11,7 @@ namespace _Scripts.GameEngine
     public class PlayerData
     {
         public Dictionary<int, int> Levels;
-        public HashSet<string> PassedLevels;
+        public HashSet<string> PassedLevels, DiscoveredMusic;
         public HashSet<int> CheckedWeapons;
         public int coins;
 
@@ -50,6 +50,7 @@ namespace _Scripts.GameEngine
             
             Levels = new Dictionary<int, int> { { 1, 0 } };
             PassedLevels = new HashSet<string>();
+            DiscoveredMusic = new HashSet<string>();
             CheckedWeapons = new HashSet<int>();
 
             coins = 88888888;
@@ -286,6 +287,19 @@ namespace _Scripts.GameEngine
         public int WeaponsSelected()
         {
             return selectedWeapons.Count(sw => sw != null);
+        }
+
+        public void DiscoverMusic(string musicName)
+        {
+            DiscoveredMusic.Add(musicName);
+            if (DiscoveredMusic.Count >= 5)
+            {
+                SteamManager.UnlockAchievement(Constants.AchievementAudiophile);
+                WeaponManager.UnlockWeapon(22); // Boombox 22
+            }
+            
+            Debug.Log(DiscoveredMusic.ToString());
+            SaveSystem.SavePlayer();
         }
     }
 

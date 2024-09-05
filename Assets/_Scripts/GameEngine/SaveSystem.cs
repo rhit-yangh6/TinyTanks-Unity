@@ -37,8 +37,12 @@ namespace _Scripts.GameEngine
                 if (data == null) return null;
                 
                 data.PassedLevels ??= new HashSet<string>();
+                data.DiscoveredMusic ??= new HashSet<string>();
                 data.CheckedWeapons ??= new HashSet<int>();
                 data.Levels ??= new Dictionary<int, int> { { 1, 0 } };;
+                
+                // Main Menu music must be discovered at launch
+                data.DiscoveredMusic.Add("Main Menu");
                 return data;
             }
 

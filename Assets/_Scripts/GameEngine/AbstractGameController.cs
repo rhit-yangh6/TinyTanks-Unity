@@ -73,7 +73,7 @@ namespace _Scripts.GameEngine
             StartCoroutine(HandleMovements());
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             EventBus.RemoveListener(EventTypes.ProjectileShot, () => projectileShot = true);
             EventBus.RemoveListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
@@ -252,30 +252,34 @@ namespace _Scripts.GameEngine
         protected void HandleBgm()
         {
             AudioClip audioClip = null;
+            var audioFileName = "";
             if (SceneManager.GetActiveScene().name == "Story")
             {
                 var level = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId);
                 if (level.isBossLevel)
                 {
-                    audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Boss Fight"));
+                    audioFileName = "Boss Fight";
                 }
                 else
                 {
-                    audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Chapter" + GameStateController.currentChapterId));
+                    audioFileName = "Chapter" + GameStateController.currentChapterId;
                 }
             }
             else if (SceneManager.GetActiveScene().name == "Tutorial")
             {
-                audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Tutorial"));
+                audioFileName = "Tutorial";
             }
             else if (SceneManager.GetActiveScene().name == "Survival")
             {
-                audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Survival"));
+                audioFileName = "Survival";
             }
             else if (SceneManager.GetActiveScene().name == "ShootingRange")
             {
-                audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/Shooting Range"));
+                audioFileName = "Shooting Range";
             }
+            
+            PlayerData.Instance.DiscoverMusic(audioFileName);
+            audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/" + audioFileName));
 
             bgmAudioSource.clip = audioClip;
             if (!bgmAudioSource.isPlaying)

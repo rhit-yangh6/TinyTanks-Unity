@@ -139,6 +139,14 @@ MonoBehaviour:
     m_Localized: Defeat General Williams. Unlocks Airstrike
     m_Metadata:
       m_Items: []
+  - m_Id: 23176140282929152
+    m_Localized: Audiophile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23176277914820608
+    m_Localized: Discover all the music in the game. Unlocks Boombox
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
