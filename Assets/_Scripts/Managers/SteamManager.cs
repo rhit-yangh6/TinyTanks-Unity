@@ -189,6 +189,7 @@ namespace _Scripts.Managers
         {
             if (_isSteamConnected)
             {
+                Debug.Log("Achievements");
                 return SteamUserStats.Achievements;
             }
             return new List<Achievement>();

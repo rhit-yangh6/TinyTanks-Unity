@@ -17,13 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 5c5da42b4384f2e489e2579d238fddbd
   m_SerializeEntries:
-  - m_GUID: d658e88964c60a14ea94ed753115df14
-    m_Address: Assets/Localization/Tables/UI Text Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 86cfa9daa78465e44be557a84c94a8fb
-    m_Address: Assets/Localization/Tables/Weapon Text Shared Data.asset
+  - m_GUID: 445ae309c88240444a04a70b7df99b52
+    m_Address: Assets/Localization/Tables/Weapon Extra Display Text Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -32,8 +27,8 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aca2760ba8eafff4bb0ab3f09c52fef6
-    m_Address: Assets/Localization/Tables/Levels Text Shared Data.asset
+  - m_GUID: 86cfa9daa78465e44be557a84c94a8fb
+    m_Address: Assets/Localization/Tables/Weapon Text Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -42,13 +37,18 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dc1641cc96e655b4b95b9cfed4f8c3b5
-    m_Address: Assets/Localization/Tables/Achievements Text Shared Data.asset
+  - m_GUID: aca2760ba8eafff4bb0ab3f09c52fef6
+    m_Address: Assets/Localization/Tables/Levels Text Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 445ae309c88240444a04a70b7df99b52
-    m_Address: Assets/Localization/Tables/Weapon Extra Display Text Shared Data.asset
+  - m_GUID: d658e88964c60a14ea94ed753115df14
+    m_Address: Assets/Localization/Tables/UI Text Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc1641cc96e655b4b95b9cfed4f8c3b5
+    m_Address: Assets/Localization/Tables/Achievements Text Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

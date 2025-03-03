@@ -41,6 +41,7 @@ namespace _Scripts.Managers
             }
             catch (Exception e)
             {
+                Debug.LogWarning("hahahahahahaha");
                 Debug.LogWarning(e.Message);
             }
         }
@@ -132,7 +133,7 @@ namespace _Scripts.Managers
             }
             catch (Exception e)
             {
-                Debug.Log("Failed to Connect to discord. " + e.Message);
+                Debug.LogWarning("Failed to Connect to discord. " + e.Message);
             }
         }
 

@@ -29,20 +29,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-zh-Hans
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dff9a3a2143feac4f9da5927aa67c9cf
-    m_Address: Weapon Upgrade Text_zh-Hans
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-zh-Hans
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f7b911f4bceef64448dd92debf3c06dd
-    m_Address: Levels Text_zh-Hans
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-zh-Hans
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f282cf129ca9e5b43b22ecfa83c8c70c
-    m_Address: Buff Text_zh-Hans
+  - m_GUID: 47d560a19a3809a40a17c90cdaa38891
+    m_Address: Enemies Text_zh-Hans
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-zh-Hans
@@ -53,14 +41,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-zh-Hans
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dff9a3a2143feac4f9da5927aa67c9cf
+    m_Address: Weapon Upgrade Text_zh-Hans
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-Hans
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f06d41659a82bb9488de5356b1f135e9
     m_Address: Weapon Extra Display Text_zh-Hans
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-zh-Hans
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 47d560a19a3809a40a17c90cdaa38891
-    m_Address: Enemies Text_zh-Hans
+  - m_GUID: f282cf129ca9e5b43b22ecfa83c8c70c
+    m_Address: Buff Text_zh-Hans
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-Hans
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7b911f4bceef64448dd92debf3c06dd
+    m_Address: Levels Text_zh-Hans
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-zh-Hans

@@ -26,7 +26,8 @@ namespace _Scripts.UI
 
             // Get all achievements from Steam and split them based on state
             var achievements = SteamManager.Instance.GetAllAchievements().ToArray();
-            // Filter all achievements that isn't defined in the json file
+            Debug.Log(achievements);
+            // Filter out all achievements that isn't defined in the json file
             achievements = Array.FindAll(achievements,
                 a => AchievementManager.Instance.GetAchievementById(a.Identifier) != null);
             // Split into achieved/un-achieved lists

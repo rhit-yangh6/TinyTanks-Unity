@@ -17,32 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: e17d24a06207dab43b39db5464920e21
   m_SerializeEntries:
-  - m_GUID: 67a55e956ab667c4193ebbbc736e5692
-    m_Address: UI Text_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e1c520693f6e67d41a4223b23ec51797
-    m_Address: Weapon Text_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b717836d01bffa545bb589f54a94c09f
-    m_Address: Weapon Upgrade Text_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fd197d781a51c4343a76154674254c09
-    m_Address: Levels Text_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0e00b6e7d59cd734299770cc6fa30b04
     m_Address: Buff Text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67a55e956ab667c4193ebbbc736e5692
+    m_Address: UI Text_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
@@ -53,14 +35,32 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f15b68801f18d14fb12a82ec6831572
+    m_Address: Enemies Text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b2c16b21a3be7174cadec163dc4e85f8
     m_Address: Weapon Extra Display Text_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8f15b68801f18d14fb12a82ec6831572
-    m_Address: Enemies Text_en
+  - m_GUID: b717836d01bffa545bb589f54a94c09f
+    m_Address: Weapon Upgrade Text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1c520693f6e67d41a4223b23ec51797
+    m_Address: Weapon Text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd197d781a51c4343a76154674254c09
+    m_Address: Levels Text_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
