@@ -27,8 +27,9 @@ namespace _Scripts.Projectiles
             }
         }
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             if (Level == 6) StartCoroutine(SummonSmallFireballs());
         }
 

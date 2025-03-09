@@ -29,8 +29,9 @@ namespace _Scripts.Projectiles
         private float _intervalTimeLeft;
         private float _timeLeft;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             sparks.Stop();
         }
         

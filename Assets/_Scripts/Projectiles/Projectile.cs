@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using MoreMountains.Feedbacks;
@@ -17,6 +18,8 @@ namespace _Scripts.Projectiles
         protected bool isDetonated;
         
         [SerializeField] protected MMFeedbacks defaultMmFeedbacks;
+
+        [SerializeField] protected MMFeedbacks spawnMmFeedbacks;
         
         // Shared Fields
         protected float radius, damage, maxMagnitude;
@@ -35,7 +38,16 @@ namespace _Scripts.Projectiles
             rigidBody2D = GetComponent<Rigidbody2D>();
             renderer = GetComponent<Renderer>();
         }
-        
+
+        protected virtual void Start()
+        {
+            // Play spawn effects
+            if (spawnMmFeedbacks != null)
+            {
+                spawnMmFeedbacks.PlayFeedbacks();
+            }
+        }
+
         protected virtual void OnCollisionEnter2D(Collision2D col)
         {
             if (col.gameObject.CompareTag("DangerZone"))

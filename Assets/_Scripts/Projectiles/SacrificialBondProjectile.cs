@@ -41,8 +41,9 @@ namespace _Scripts.Projectiles
             }
         }
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             rigidBody2D.velocity = Vector2.zero;
             rigidBody2D.gravityScale = 0;
             renderer.enabled = false;

@@ -29,8 +29,9 @@ namespace _Scripts.Projectiles
             }
         }
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             SpawnSecondaryProjectiles();
         }
 

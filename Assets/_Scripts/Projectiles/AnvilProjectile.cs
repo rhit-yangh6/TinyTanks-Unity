@@ -22,8 +22,9 @@ namespace _Scripts.Projectiles
         // Other Variables
         private bool _isActivated, _isSecondPhaseActivated;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             foreach (var ps in gameObject.GetComponentsInChildren<ParticleSystem>())
             {
                 ps.Stop();

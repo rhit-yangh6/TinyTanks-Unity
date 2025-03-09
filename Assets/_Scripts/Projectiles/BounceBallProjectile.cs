@@ -45,8 +45,9 @@ namespace _Scripts.Projectiles
         // Other Variables
         private int _bounceTimeLeft;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _bounceTimeLeft = BounceTime;
         }
         

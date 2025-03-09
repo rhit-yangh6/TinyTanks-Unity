@@ -63,8 +63,9 @@ namespace _Scripts.Projectiles
         private static readonly int OverclockIndex = Animator.StringToHash("Overclock");
         private static readonly int SpinIndex = Animator.StringToHash("Spin");
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _gearExtraData = (GearExtraData) WeaponExtraData;
             _gearExtraData.cap = MaximumGears;
         }

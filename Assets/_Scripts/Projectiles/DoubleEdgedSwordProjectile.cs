@@ -64,8 +64,9 @@ namespace _Scripts.Projectiles
         private SpriteRenderer _sr;
         private bool _isActivated;
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _sr = GetComponent<SpriteRenderer>();
             if (Level == 6)
             {

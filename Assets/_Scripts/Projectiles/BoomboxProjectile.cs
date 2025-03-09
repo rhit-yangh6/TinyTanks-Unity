@@ -72,8 +72,9 @@ namespace _Scripts.Projectiles
         private int _shockTimeLeft; 
         private float _shockIntervalLeft;
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _shockTimeLeft = ShockTimes;
         }
 

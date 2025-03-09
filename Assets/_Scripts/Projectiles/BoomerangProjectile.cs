@@ -30,8 +30,9 @@ namespace _Scripts.Projectiles
         // Other Variables
         private bool _isActivated;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             var velocity = rigidBody2D.velocity;
             rigidBody2D.GetComponent<ConstantForce2D>().force =
                 new Vector3(velocity.x * extraForceXMultiplier, velocity.y * extraForceYMultiplier, 0);

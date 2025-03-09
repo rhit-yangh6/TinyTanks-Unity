@@ -13,6 +13,7 @@ namespace _Scripts.Projectiles
         [SerializeField] private MMFeedbacks secondaryExplosionFeedbacks;
         [SerializeField] private MMFeedbacks clusterExplosionFeedbacks;
         [SerializeField] private MMFeedbacks longerFeedbacks;
+        [SerializeField] private MMFeedbacks clusterSoundFeedbacks;
         [SerializeField] private float clusterExplosionRadius = 1.5f;
         [SerializeField] private float clusterExplosionDamage = 10f;
         [SerializeField] private float clusterExplosionDuration = 0.2f;
@@ -27,8 +28,9 @@ namespace _Scripts.Projectiles
         private readonly int[,] _clusterDirections = 
         { { 2, 0 }, { 1, -1 }, { 0, -2 }, { -1, -1 }, {-2, 0}, {-1, 1}, {0, 2}, {1, 1} };
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             switch (Level)
             {
                 case 6:
@@ -85,6 +87,7 @@ namespace _Scripts.Projectiles
 
                 var insExpl = Instantiate(GameAssets.i.explosionFX, pos, Quaternion.identity);
                 insExpl.transform.localScale *= clusterExplosionRadius;
+                clusterSoundFeedbacks.PlayFeedbacks();
                 Destroy(insExpl, clusterExplosionDuration);  
                 
                 yield return new WaitForSeconds(.07f);

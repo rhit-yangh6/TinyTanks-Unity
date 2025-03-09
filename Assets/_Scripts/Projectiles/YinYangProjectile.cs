@@ -70,8 +70,9 @@ namespace _Scripts.Projectiles
         private bool _isActivated;
         private SpriteRenderer _sr;
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _sr = GetComponent<SpriteRenderer>();
         }
         

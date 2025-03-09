@@ -21,8 +21,9 @@ namespace _Scripts.Projectiles
         private float _moveTime;
         private float _damageInterval;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             sparks.Stop();
         }
 

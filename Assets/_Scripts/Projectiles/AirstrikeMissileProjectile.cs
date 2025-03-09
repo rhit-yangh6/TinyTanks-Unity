@@ -19,8 +19,9 @@ namespace _Scripts.Projectiles
         private bool isSplitting;
         private bool isActivated;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             GetComponentInChildren<ParticleSystem>().Play();
         }
 

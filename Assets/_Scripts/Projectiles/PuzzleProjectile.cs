@@ -29,8 +29,9 @@ namespace _Scripts.Projectiles
         
         protected override float Radius => Level >= 2 ? radius * 1.25f : radius;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _puzzleExtraData = (PuzzleExtraData) WeaponExtraData;
         }
 

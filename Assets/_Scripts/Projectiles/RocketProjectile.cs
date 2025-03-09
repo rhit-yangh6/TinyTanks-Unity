@@ -37,8 +37,9 @@ namespace _Scripts.Projectiles
         private bool _isActivated;
         private ParticleSystem _ps;
     
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _ps = gameObject.GetComponentInChildren<ParticleSystem>();
             _ps.Stop();
         }

@@ -7,8 +7,9 @@ namespace _Scripts.Projectiles
 {
     public class AirstrikeSmallMissileProjectile : DerivedProjectile
     {
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             GetComponentInChildren<ParticleSystem>().Play();
         }
 

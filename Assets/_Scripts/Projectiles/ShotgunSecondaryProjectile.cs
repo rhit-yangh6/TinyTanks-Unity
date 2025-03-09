@@ -6,8 +6,9 @@ namespace _Scripts.Projectiles
 {
     public class ShotgunSecondaryProjectile : DerivedProjectile
     {
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             StartCoroutine(TemporarilyDisableCollider());
         }
     }

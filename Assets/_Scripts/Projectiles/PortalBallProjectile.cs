@@ -40,8 +40,9 @@ namespace _Scripts.Projectiles
         private SpriteRenderer _sr;
         private LineRenderer _circleRenderer;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _sr = GetComponent<SpriteRenderer>();
             _circleRenderer = GetComponent<LineRenderer>();
         }

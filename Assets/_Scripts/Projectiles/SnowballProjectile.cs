@@ -21,8 +21,9 @@ namespace _Scripts.Projectiles
         // Other Variables
         private float _timer;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             StartCoroutine(Scale());
         }
 

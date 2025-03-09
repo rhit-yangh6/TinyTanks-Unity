@@ -63,8 +63,9 @@ namespace _Scripts.Projectiles
         private const float RotateDegree = -144f;
         private static readonly int GlowColor = Shader.PropertyToID("_GlowColor");
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _tr = GetComponent<TrailRenderer>();
             _sr = GetComponent<SpriteRenderer>();
             _ps = gameObject.GetComponentInChildren<ParticleSystem>();

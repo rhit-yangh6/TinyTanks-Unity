@@ -23,8 +23,9 @@ namespace _Scripts.Projectiles
                 return Level >= 2 ? (int)(steps * 1.5f) : steps; // LEVEL 2+
             }
         }
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             var velocity = rigidBody2D.velocity;
             rigidBody2D.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * extraForceXMultiplier,
                 velocity.y * extraForceYMultiplier, 0);
