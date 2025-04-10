@@ -1415,6 +1415,46 @@ MonoBehaviour:
     m_Key: upgrade_piggy_bank_6_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 113496211971891200
+    m_Key: upgrade_medal_of_valor_2_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496248319729664
+    m_Key: upgrade_medal_of_valor_2_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496685001302016
+    m_Key: upgrade_medal_of_valor_3_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496733411958784
+    m_Key: upgrade_medal_of_valor_3_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496752005308416
+    m_Key: upgrade_medal_of_valor_4_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496768568614912
+    m_Key: upgrade_medal_of_valor_4_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496795135336448
+    m_Key: upgrade_medal_of_valor_5_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496815272189952
+    m_Key: upgrade_medal_of_valor_5_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496837262925824
+    m_Key: upgrade_medal_of_valor_6_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496852182065152
+    m_Key: upgrade_medal_of_valor_6_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1534,6 +1534,47 @@
       "hideInShop": true,
       "hasExternalDisplay": true,
       "extraWeaponTerms": []
+    }, {
+      "id": 36,
+      "weaponName": "weapon_medal_of_valor_name",
+      "weaponDescription": "weapon_medal_of_valor_desc",
+      "damage": 22,
+      "radius": 2.2,
+      "maxMagnitude": 9,
+      "steps": 400,
+      "saying": "weapon_medal_of_valor_saying",
+      "upgradeInfos": [
+        {
+          "name": "upgrade_medal_of_valor_2_name",
+          "description": "upgrade_medal_of_valor_2_desc",
+          "cost": 80
+        },
+        {
+          "name": "upgrade_medal_of_valor_3_name",
+          "description": "upgrade_medal_of_valor_3_desc",
+          "cost": 300
+        },
+        {
+          "name": "upgrade_medal_of_valor_4_name",
+          "description": "upgrade_medal_of_valor_4_desc",
+          "cost": 515
+        },
+        {
+          "name": "upgrade_medal_of_valor_5_name",
+          "description": "upgrade_medal_of_valor_5_desc",
+          "cost": 1225
+        },
+        {
+          "name": "upgrade_medal_of_valor_6_name",
+          "description": "upgrade_medal_of_valor_6_desc",
+          "cost": 955
+        }
+      ],
+      "dataPath": "medalOfValor",
+      "shopPrice": 0,
+      "hideInShop": false,
+      "hasExternalDisplay": false,
+      "extraWeaponTerms": []
     }
   ]
 }

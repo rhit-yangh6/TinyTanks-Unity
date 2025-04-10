@@ -157,5 +157,10 @@ namespace _Scripts.Entities
         {
             TakeDamage(MaxHealth * 2);
         }
+
+        public float GetHealthPercentage()
+        {
+            return Health / MaxHealth;
+        }
     }
 }

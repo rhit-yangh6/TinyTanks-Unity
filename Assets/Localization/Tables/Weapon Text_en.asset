@@ -475,6 +475,19 @@ MonoBehaviour:
     m_Localized: -- Money power!
     m_Metadata:
       m_Items: []
+  - m_Id: 113745356301262848
+    m_Localized: Medal Of Valor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113745594818748416
+    m_Localized: -- Worn in glory. Shed in fire.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113745558533824512
+    m_Localized: A tactical explosive worn as a badge. The lower your current health,
+      the more devastating its power.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

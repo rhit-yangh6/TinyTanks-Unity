@@ -451,6 +451,18 @@ MonoBehaviour:
     m_Key: weapon_piggy_bank_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 113745356301262848
+    m_Key: weapon_medal_of_valor_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113745558533824512
+    m_Key: weapon_medal_of_valor_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113745594818748416
+    m_Key: weapon_medal_of_valor_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

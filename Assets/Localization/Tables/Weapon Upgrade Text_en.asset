@@ -1489,6 +1489,49 @@ MonoBehaviour:
     m_Localized: Grants a chance to refund a portion of the coins spent on detonation.
     m_Metadata:
       m_Items: []
+  - m_Id: 113496795135336448
+    m_Localized: Hero's Insurance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496837262925824
+    m_Localized: Honor Eternal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496852182065152
+    m_Localized: "If you\u2019re under 25% HP, Medal of Valor automatically triggers
+      a second detonation at the same location, at reduced power."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496815272189952
+    m_Localized: If the explosion affects at least 2 enemies, restore a portion of
+      your HP.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496752005308416
+    m_Localized: Brush With Death
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496211971891200
+    m_Localized: Gravestone Precision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496248319729664
+    m_Localized: Increases throw range with the cost of slightly losing blast radius.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496768568614912
+    m_Localized: Increases the damage multiplier based on missing HP, especially
+      effective below 30% HP.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496685001302016
+    m_Localized: Glorious Impact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113496733411958784
+    m_Localized: Increase base damage.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
