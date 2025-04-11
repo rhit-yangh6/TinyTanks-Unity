@@ -1426,11 +1426,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 113496837262925824
-    m_Localized: "\u8363\u8000\u6C38\u5951"
+    m_Localized: "\u7EC8\u672B\u8363\u51A0"
     m_Metadata:
       m_Items: []
   - m_Id: 113496852182065152
-    m_Localized: "\u5982\u679C\u4F60\u7684\u751F\u547D\u503C\u4F4E\u4E8E 25%\uFF0C\u82F1\u52C7\u52CB\u7AE0\u4F1A\u81EA\u52A8\u5728\u540C\u4E00\u5730\u70B9\u89E6\u53D1\u7B2C\u4E8C\u6B21\u7206\u70B8\uFF0C\u4F46\u5A01\u529B\u4F1A\u51CF\u5F31\u3002"
+    m_Localized: "\u5F53\u4F60\u7684 HP \u503C\u4F4E\u4E8E 10%\u65F6\uFF0C\u52CB\u7AE0\u4F1A\u7206\u70B8\uFF0C\u534A\u5F84\u6269\u5927\uFF0C\u9AD8\u4F24\u5BB3\uFF0C\u5C06\u7EDD\u671B\u8F6C\u5316\u4E3A\u6BC1\u706D\u3002"
     m_Metadata:
       m_Items: []
   - m_Id: 113496815272189952

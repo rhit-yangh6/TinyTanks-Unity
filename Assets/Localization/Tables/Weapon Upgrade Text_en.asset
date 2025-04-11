@@ -1494,12 +1494,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 113496837262925824
-    m_Localized: Honor Eternal
+    m_Localized: Last Laurels
     m_Metadata:
       m_Items: []
   - m_Id: 113496852182065152
-    m_Localized: "If you\u2019re under 25% HP, Medal of Valor automatically triggers
-      a second detonation at the same location, at reduced power."
+    m_Localized: When your HP drops below 10%, the medal explodes with increased
+      radius and double damage scaling, turning desperation into devastation.
     m_Metadata:
       m_Items: []
   - m_Id: 113496815272189952
