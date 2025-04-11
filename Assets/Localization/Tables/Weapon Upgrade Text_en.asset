@@ -1499,7 +1499,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 113496852182065152
     m_Localized: When your HP drops below 10%, the medal explodes with increased
-      radius and double damage scaling, turning desperation into devastation.
+      radius and increase damage scaling, turning desperation into devastation.
     m_Metadata:
       m_Items: []
   - m_Id: 113496815272189952
