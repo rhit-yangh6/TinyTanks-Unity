@@ -463,6 +463,18 @@ MonoBehaviour:
     m_Key: weapon_medal_of_valor_saying
     m_Metadata:
       m_Items: []
+  - m_Id: 115135262965620736
+    m_Key: weapon_minigun_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 115135340241477632
+    m_Key: weapon_minigun_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 115135360965533696
+    m_Key: weapon_minigun_saying
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

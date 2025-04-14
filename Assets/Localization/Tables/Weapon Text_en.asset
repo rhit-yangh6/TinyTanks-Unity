@@ -488,6 +488,10 @@ MonoBehaviour:
       the more devastating its power.
     m_Metadata:
       m_Items: []
+  - m_Id: 115135262965620736
+    m_Localized: Minigun
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

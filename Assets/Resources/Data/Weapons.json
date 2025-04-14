@@ -1575,6 +1575,47 @@
       "hideInShop": false,
       "hasExternalDisplay": false,
       "extraWeaponTerms": []
+    }, {
+      "id": 37,
+      "weaponName": "weapon_minigun_name",
+      "weaponDescription": "weapon_minigun_desc",
+      "damage": 8,
+      "radius": 1.0,
+      "maxMagnitude": 11,
+      "steps": 380,
+      "saying": "weapon_minigun_saying",
+      "upgradeInfos": [
+        {
+          "name": "upgrade_minigun_2_name",
+          "description": "upgrade_minigun_2_desc",
+          "cost": 80
+        },
+        {
+          "name": "upgrade_minigun_3_name",
+          "description": "upgrade_minigun_3_desc",
+          "cost": 300
+        },
+        {
+          "name": "upgrade_minigun_4_name",
+          "description": "upgrade_minigun_4_desc",
+          "cost": 515
+        },
+        {
+          "name": "upgrade_minigun_5_name",
+          "description": "upgrade_minigun_5_desc",
+          "cost": 1225
+        },
+        {
+          "name": "upgrade_minigun_6_name",
+          "description": "upgrade_minigun_6_desc",
+          "cost": 955
+        }
+      ],
+      "dataPath": "minigun",
+      "shopPrice": 0,
+      "hideInShop": false,
+      "hasExternalDisplay": false,
+      "extraWeaponTerms": []
     }
   ]
 }
