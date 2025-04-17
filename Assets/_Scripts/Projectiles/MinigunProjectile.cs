@@ -12,44 +12,107 @@ namespace _Scripts.Projectiles
     public class MinigunProjectile : LaunchedProjectile
     {
         [SerializeField] private float velocityMultiplier = 1.5f;
-        [SerializeField] private float bulletDispersion = 7f;
+        [SerializeField] private float windUpSpeed = 2f;
+        [SerializeField] private float damageIncrease = 1f;
         [SerializeField] private GameObject secondaryBulletPrefab;
+        [SerializeField] private GameObject bulletShellPrefab;
         // References
+
+        private float BulletDispersion
+        {
+            get
+            {
+                return Level switch
+                {
+                    5 => 10,
+                    >= 2 => 5,
+                    _ => 7
+                };
+            }
+        }
+        private int Bullets
+        {
+            get
+            {
+                return Level switch
+                {
+                    6 => 6,
+                    5 => 10,
+                    >= 3 => 7,
+                    _ => 6
+                };
+            }
+        }
         
         // Other Variables
         private Vector2 _initialVelocity;
+        private Vector2 _initialPosition;
+        private float _bulletDamage;
         protected override void Start()
         {
             base.Start();
+            _bulletDamage = Damage;
             _initialVelocity = rigidBody2D.velocity;
             var newVelocity = Geometry.Rotate(_initialVelocity, CalculateBulletDispersion());
             rigidBody2D.velocity = newVelocity * velocityMultiplier;
+            _initialPosition = transform.position;
             StartCoroutine(SpawnSecondaryProjectiles());
         }
 
         private IEnumerator SpawnSecondaryProjectiles()
         {
-            var velocity = rigidBody2D.velocity;
-            var pos = transform.position;
-
-            for (int i = 0; i < 10; i++)
+            var oldInfo = Disappear();
+            // Minigun wind-up time
+            yield return new WaitForSeconds(windUpSpeed);
+            Reappear(oldInfo);
+            SpawnBulletShell();
+            
+            for (var i = 0; i < Bullets - 1; i++)
             {
+                if (Level >= 4)
+                {
+                    _bulletDamage += damageIncrease;
+                }
                 yield return new WaitForSeconds(0.2f);
-                var derivedObject = Instantiate(secondaryBulletPrefab, pos, Quaternion.identity);
+                var derivedObject = Instantiate(secondaryBulletPrefab, _initialPosition, Quaternion.identity);
                 var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
                 var derivedRigidBody2D = derivedObject.GetComponent<Rigidbody2D>();
                 
-                derivedProjectile.SetParameters(Damage, Radius);
+                derivedProjectile.SetParameters(_bulletDamage, Radius);
                 derivedRigidBody2D.velocity = Geometry.Rotate(_initialVelocity, 
                                                   CalculateBulletDispersion()) * velocityMultiplier;
+                SpawnBulletShell();
             }
+
+            if (Level == 6)
+            {
+                yield return new WaitForSeconds(1f);
+                for (var i = 0; i < Bullets; i++)
+                {
+                    _bulletDamage += damageIncrease;
+                    yield return new WaitForSeconds(0.2f);
+                    var derivedObject = Instantiate(secondaryBulletPrefab, _initialPosition, Quaternion.identity);
+                    var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
+                    var derivedRigidBody2D = derivedObject.GetComponent<Rigidbody2D>();
+                
+                    derivedProjectile.SetParameters(_bulletDamage, Radius);
+                    derivedRigidBody2D.velocity = Geometry.Rotate(_initialVelocity, 
+                        CalculateBulletDispersion()) * velocityMultiplier;
+                    SpawnBulletShell();
+                }
+            }
+        }
+
+        private void SpawnBulletShell()
+        {
+            Instantiate(bulletShellPrefab, _initialPosition, Quaternion.identity);
         }
 
         private void Update() { Direct(); }
 
         private float CalculateBulletDispersion()
         {
-            return Random.Range(-bulletDispersion, bulletDispersion);
+            return Random.Range(-BulletDispersion, BulletDispersion);
         }
 
         // public override void DealDamage()

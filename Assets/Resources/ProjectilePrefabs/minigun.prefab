@@ -168,6 +168,7 @@ MonoBehaviour:
   velocityMultiplier: 1.5
   bulletDispersion: 5
   secondaryBulletPrefab: {fileID: 4807012405771658446, guid: 157d54d3a74904c9188b65d441500f69, type: 3}
+  bulletShellPrefab: {fileID: 4019815472032839807, guid: 37e676e0c5e7d4df2808cef9de3cf9e0, type: 3}
 --- !u!96 &7464430326744309846
 TrailRenderer:
   serializedVersion: 3

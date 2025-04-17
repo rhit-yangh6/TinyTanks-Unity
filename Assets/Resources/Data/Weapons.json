@@ -1588,27 +1588,27 @@
         {
           "name": "upgrade_minigun_2_name",
           "description": "upgrade_minigun_2_desc",
-          "cost": 80
+          "cost": 100
         },
         {
           "name": "upgrade_minigun_3_name",
           "description": "upgrade_minigun_3_desc",
-          "cost": 300
+          "cost": 200
         },
         {
           "name": "upgrade_minigun_4_name",
           "description": "upgrade_minigun_4_desc",
-          "cost": 515
+          "cost": 720
         },
         {
           "name": "upgrade_minigun_5_name",
           "description": "upgrade_minigun_5_desc",
-          "cost": 1225
+          "cost": 1410
         },
         {
           "name": "upgrade_minigun_6_name",
           "description": "upgrade_minigun_6_desc",
-          "cost": 955
+          "cost": 1412
         }
       ],
       "dataPath": "minigun",

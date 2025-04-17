@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using TerraformingTerrain2d;
+using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
@@ -10,7 +12,8 @@ namespace _Scripts.Projectiles
         void DealDamage();
         void Spin(float spinSpeed);
         void Direct();
-        void Disappear();
+        Tuple<Vector2, float> Disappear();
+        void Reappear(Tuple<Vector2, float> oldInfo);
         IEnumerator TemporarilyDisableCollider();
     }
 }

@@ -155,8 +155,10 @@ namespace _Scripts.Projectiles
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
         }
         
-        public override void Disappear()
+        public override Tuple<Vector2, float> Disappear()
         {
+            var pos = rigidBody2D.position;
+            var gravityScale = rigidBody2D.gravityScale;
             // Stop rigidBody from moving/rotating
             rigidBody2D.gravityScale = 0;
             rigidBody2D.freezeRotation = true;
@@ -164,6 +166,8 @@ namespace _Scripts.Projectiles
 
             // Disable collider
             collider2D.enabled = false;
+            
+            return Tuple.Create(pos, gravityScale);
         }
     }
 }

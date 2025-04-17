@@ -53,10 +53,11 @@ namespace _Scripts.Projectiles
             return fixedMagnitude;
         }
 
-        public override void Disappear()
+        public override Tuple<Vector2, float> Disappear()
         {
-            base.Disappear();
             rigidBody2D.GetComponent<ConstantForce2D>().force = Vector2.zero;
+            return base.Disappear();
+
         }
     }
 }

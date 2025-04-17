@@ -492,6 +492,15 @@ MonoBehaviour:
     m_Localized: Minigun
     m_Metadata:
       m_Items: []
+  - m_Id: 115135340241477632
+    m_Localized: Fires 6 bullets in rapid succession. Each bullet deals low damage
+      with some dispersion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 115135360965533696
+    m_Localized: "-- Barrels don\u2019t cool, and neither do I."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

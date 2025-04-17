@@ -7,5 +7,7 @@ namespace _Scripts.Projectiles
             base.Start();
             StartCoroutine(TemporarilyDisableCollider());
         }
+        
+        private void Update() { Direct(); }
     }
 }

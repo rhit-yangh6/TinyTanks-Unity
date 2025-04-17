@@ -59,7 +59,7 @@ namespace _Scripts.Projectiles
                 Detonate();
             }
         }
-        
+
         public IEnumerator TemporarilyDisableCollider()
         {
             collider2D.enabled = false;
@@ -88,8 +88,10 @@ namespace _Scripts.Projectiles
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
         }
         
-        public virtual void Disappear()
+        public virtual Tuple<Vector2, float> Disappear()
         {
+            var velocity = rigidBody2D.velocity;
+            var gravity = rigidBody2D.gravityScale;
             // Stop rigidBody from moving/rotating
             rigidBody2D.gravityScale = 0;
             rigidBody2D.freezeRotation = true;
@@ -100,6 +102,22 @@ namespace _Scripts.Projectiles
             
             // Stop rendering
             renderer.enabled = false;
+
+            return Tuple.Create(velocity, gravity);
+        }
+
+        public virtual void Reappear(Tuple<Vector2, float> oldInfo)
+        {
+            // Resume rigidBody state
+            rigidBody2D.gravityScale = oldInfo.Item2;
+            rigidBody2D.velocity = oldInfo.Item1;
+            rigidBody2D.freezeRotation = false;
+            
+            // Re-enable collider
+            collider2D.enabled = true;
+            
+            // Start Rendering again
+            renderer.enabled = true;
         }
 
         public void Spin(float spinSpeed = 1)

@@ -1532,6 +1532,46 @@ MonoBehaviour:
     m_Localized: Increase base damage.
     m_Metadata:
       m_Items: []
+  - m_Id: 116018996258529280
+    m_Localized: Tighter Grouping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019092882710528
+    m_Localized: Reduces bullet dispersion, improving accuracy and concentrated damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019540511416320
+    m_Localized: Extra Chamber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019566704844800
+    m_Localized: Adds a 7th bullet to each burst.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019605254692864
+    m_Localized: Gradually increases damage when firing bullets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019598560583680
+    m_Localized: Overheat Protocol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019725866098688
+    m_Localized: Unleashes 10 bullets in one rapid burst, but accuracy drops sharply.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019711332835328
+    m_Localized: Bullet Storm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019860591337472
+    m_Localized: Locked and Spinning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 116019897438298112
+    m_Localized: The minigun now fires two six-bullet bursts per use.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
