@@ -68,6 +68,7 @@ namespace _Scripts.Utils
         public const string AchievementPackThemUp = "PACK_THEM_UP";
         public const string AchievementEarnedABit = "EARNED_A_BIT";
         public const string AchievementAudiophile = "AUDIOPHILE";
+        public const string AchievementGloryInTheLastBreath = "GLORY_IN_THE_LAST_BREATH";
 
         public const string StatDoubleEdgedSwordPunishmentCount = "double_edged_sword_punishment_count";
         public const string StatSmallFireballSpawned = "small_fireball_spawned";

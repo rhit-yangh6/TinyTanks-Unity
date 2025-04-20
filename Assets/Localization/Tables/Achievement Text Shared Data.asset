@@ -143,6 +143,14 @@ MonoBehaviour:
     m_Key: AUDIOPHILE_desc
     m_Metadata:
       m_Items: []
+  - m_Id: 105738259965927424
+    m_Key: GLORY_IN_THE_LAST_BREATH_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105738370833965056
+    m_Key: GLORY_IN_THE_LAST_BREATH_desc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -147,6 +147,14 @@ MonoBehaviour:
     m_Localized: Discover all the music in the game. Unlocks Boombox
     m_Metadata:
       m_Items: []
+  - m_Id: 105738259965927424
+    m_Localized: Glory in the Last Breath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105738370833965056
+    m_Localized: Win a game with exactly 1 HP remaining. Unlocks Medal of Valor
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

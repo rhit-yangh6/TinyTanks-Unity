@@ -33,11 +33,19 @@ namespace _Scripts.GameEngine
                 SteamManager.UnlockAchievement(level.unlocksAchievement);
             }
             
-            // Custom checkers
+            /* Custom checkers - Achievement - Duality */
             if (level.isBossLevel && PlayerData.Instance.WeaponsSelected() == 2)
             {
                 SteamManager.UnlockAchievement(Constants.AchievementDuality);
                 WeaponManager.UnlockWeapon(24); // Yin-yang 24
+            }
+            
+            /* Custom checkers - Achievement - Glory in the Last Breath */
+            var playerHealth = player.GetComponent<Entity>().Health;
+            if (playerHealth is < 2f and > 0)
+            {
+                SteamManager.UnlockAchievement(Constants.AchievementGloryInTheLastBreath);
+                WeaponManager.UnlockWeapon(36); // Medal of Valor
             }
             
             base.HandleWin();

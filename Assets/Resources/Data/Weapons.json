@@ -1572,7 +1572,7 @@
       ],
       "dataPath": "medalOfValor",
       "shopPrice": 0,
-      "hideInShop": false,
+      "hideInShop": true,
       "hasExternalDisplay": false,
       "extraWeaponTerms": []
     }, {
