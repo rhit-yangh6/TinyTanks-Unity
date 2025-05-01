@@ -17,6 +17,7 @@
 35. Weapon - Revolver
 36. Weapon - Honor Badge
 37. Weapon - Divine Shield (last breath achievement)
+38. New Map - Desert with Mines on the ground, with a Mine weapon?
 
 Future plans:
 portals in map
