@@ -47,12 +47,12 @@ namespace _Scripts.Entities
             {
                 if (IsGrounded())
                 {
-                    Rigidbody2D.velocity = Vector2.zero;
-                    Rigidbody2D.isKinematic = true;
+                    Rigidbody2D.linearVelocity = Vector2.zero;
+                    Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
                 }
                 else
                 {
-                    Rigidbody2D.isKinematic = false;
+                    Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                 }
                 return;
             }
@@ -60,13 +60,13 @@ namespace _Scripts.Entities
             // Cannot move if player has no fuel
             if (fuel <= 0)
             {
-                Rigidbody2D.velocity = Vector2.zero;
-                Rigidbody2D.isKinematic = true;
+                Rigidbody2D.linearVelocity = Vector2.zero;
+                Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
                 return;
             }
 
             _xInput = Input.GetAxisRaw("Horizontal");
-            Rigidbody2D.isKinematic = false;
+            Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
 
             if (_xInput == 1 && FacingDirection == -1)
             {
@@ -78,8 +78,8 @@ namespace _Scripts.Entities
             }
             else if (_xInput == 0 && IsGrounded())
             {
-                Rigidbody2D.velocity = Vector2.zero;
-                Rigidbody2D.isKinematic = true;
+                Rigidbody2D.linearVelocity = Vector2.zero;
+                Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
             }
 
             if (_xInput != 0)

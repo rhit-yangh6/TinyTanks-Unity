@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using _Scripts.Entities;
@@ -13,6 +14,12 @@ using UnityEngine.SceneManagement;
 
 namespace _Scripts.GameEngine
 {
+    public struct TurnParticipant
+    {
+        public BuffableEntity Entity;
+        public TurnFaction Faction;
+    }
+
     public abstract class AbstractGameController : MonoBehaviour
     {
         [SerializeField] protected float turnTime = 45f;
@@ -26,126 +33,323 @@ namespace _Scripts.GameEngine
         [SerializeField] protected ModalWindowManager newWeaponModalManager;
         [SerializeField] protected WeaponUnlockedModalWindow weaponUnlockedModalWindow;
         [SerializeField] protected AudioSource bgmAudioSource;
-        
-        protected bool projectileShot;
-        
+
+        // Entity references (kept for subclass convenience)
         protected GameObject player;
         protected PlayerController playerCharacter;
         protected EnemyController[] enemyCharacters;
         protected GameObject[] enemies;
+
+        // UI
         protected TextMeshProUGUI timerText;
         protected PauseMenu pauseMenu;
         protected float remainingTime;
-        protected int turn, playerNum;
-        protected bool isEnded;
 
-        protected bool isInterTurn;
+        // Turn system
+        protected readonly List<TurnParticipant> turnOrder = new();
+        protected int turnIndex;
+        protected TurnState currentState = TurnState.PlayerMoving;
+
         private bool _isInCutScene;
+        private Coroutine _activeMovementCoroutine;
+        private Coroutine _projectileCheckCoroutine;
 
-        private void Start()
+        #region Initialization
+
+        protected virtual void Start()
         {
             HandleBgm();
-            player = GameObject.FindGameObjectWithTag("Player");
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            InitializeEntities();
+            InitializeUI();
+            RegisterEventListeners();
+            OnStartComplete();
+            BroadcastDiscordState();
+            BeginFirstTurn();
+        }
 
-            playerNum = enemies.Length + 1;
-            
+        protected virtual void OnDisable()
+        {
+            UnregisterEventListeners();
+        }
+
+        protected virtual void InitializeEntities()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerCharacter = player.GetComponent<PlayerController>();
+
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
             enemyCharacters = new EnemyController[enemies.Length];
-            
             for (var i = 0; i < enemies.Length; i++)
             {
                 enemyCharacters[i] = enemies[i].GetComponent<EnemyController>();
             }
-            playerCharacter = player.GetComponent<PlayerController>();
 
-            timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
-            pauseMenu = GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>();
-            
-            // Register listeners
-            EventBus.AddListener(EventTypes.ProjectileShot, () => projectileShot = true);
-            EventBus.AddListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
-            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
-            
-            // Update Discord
-            EventBus.Broadcast(EventTypes.DiscordStateChange,
-                Constants.RichPresenceStoryModeDetail, "");
-            
-            StartCoroutine(HandleMovements());
+            RebuildTurnOrder();
         }
 
-        private void OnDisable()
+        protected void RebuildTurnOrder()
         {
-            EventBus.RemoveListener(EventTypes.ProjectileShot, () => projectileShot = true);
+            turnOrder.Clear();
+
+            // 1. Player always first
+            turnOrder.Add(new TurnParticipant { Entity = playerCharacter, Faction = TurnFaction.Player });
+
+            // 2. Allies
+            foreach (var obj in SafeFindWithTag("Ally"))
+            {
+                var entity = obj.GetComponent<BuffableEntity>();
+                if (entity != null)
+                    turnOrder.Add(new TurnParticipant { Entity = entity, Faction = TurnFaction.Ally });
+            }
+
+            // 3. Enemies
+            foreach (var ec in enemyCharacters)
+            {
+                turnOrder.Add(new TurnParticipant { Entity = ec, Faction = TurnFaction.Enemy });
+            }
+
+            // 4. Neutrals
+            foreach (var obj in SafeFindWithTag("Neutral"))
+            {
+                var entity = obj.GetComponent<BuffableEntity>();
+                if (entity != null)
+                    turnOrder.Add(new TurnParticipant { Entity = entity, Faction = TurnFaction.Neutral });
+            }
+        }
+
+        protected virtual void InitializeUI()
+        {
+            var timerObj = GameObject.FindGameObjectWithTag("Timer");
+            if (timerObj != null)
+                timerText = timerObj.GetComponent<TextMeshProUGUI>();
+
+            pauseMenu = GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>();
+        }
+
+        private void RegisterEventListeners()
+        {
+            EventBus.AddListener(EventTypes.ProjectileShot, OnProjectileShot);
+            EventBus.AddListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
+            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
+        }
+
+        private void UnregisterEventListeners()
+        {
+            EventBus.RemoveListener(EventTypes.ProjectileShot, OnProjectileShot);
             EventBus.RemoveListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
             EventBus.RemoveListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
         }
 
+        protected virtual void OnStartComplete() { }
+
+        protected virtual void BroadcastDiscordState()
+        {
+            EventBus.Broadcast(EventTypes.DiscordStateChange,
+                Constants.RichPresenceStoryModeDetail, "");
+        }
+
+        protected virtual void BeginFirstTurn()
+        {
+            turnIndex = 0;
+            currentState = TurnState.PlayerMoving;
+            StartMovementCoroutine();
+        }
+
+        #endregion
+
+        #region Update Loop
+
         private void Update()
         {
-            // If It's the player's turn and the player has not performed a shot
-            if (turn == 0 && !projectileShot && !_isInCutScene)
+            if (_isInCutScene) return;
+
+            switch (currentState)
             {
-                remainingTime -= Time.deltaTime;
+                case TurnState.PlayerMoving:
+                    UpdatePlayerMovingState();
+                    break;
+
+                case TurnState.PlayerShooting:
+                    if (timerText != null) timerText.text = "Please Wait...";
+                    BeginProjectileCheck();
+                    break;
+
+                case TurnState.NpcTurn:
+                    if (timerText != null) timerText.text = "Waiting for Opponent...";
+                    break;
+
+                case TurnState.WaitingForProjectiles:
+                    if (timerText != null) timerText.text = "Waiting for Opponent...";
+                    BeginProjectileCheck();
+                    break;
+
+                case TurnState.InterTurn:
+                case TurnState.GameOver:
+                    break;
+            }
+        }
+
+        private void UpdatePlayerMovingState()
+        {
+            remainingTime -= Time.deltaTime;
+            if (timerText != null)
                 timerText.text = Math.Round(remainingTime).ToString(CultureInfo.InvariantCulture);
-                // Time Out, Change Turn
-                if (remainingTime <= 0)
-                {
-                    ChangeTurn();
-                }
-            }
-            // If It's the player's turn and the player has shot
-            else if (turn == 0 && projectileShot)
-            {
-                CheckAggressiveProjectiles();
-                timerText.text = "Please Wait...";
-            } 
-            // Enemies turn
-            else
-            {
-                timerText.text = "Waiting for Opponent...";
-                if (projectileShot)
-                {
-                    CheckAggressiveProjectiles();
-                }
-            }
-            
-        }
 
-        protected void CheckAggressiveProjectiles()
-        {
-            var aggressiveProjectiles = GameObject.FindGameObjectsWithTag("AggressiveProjectile");
-            if (aggressiveProjectiles.Length == 0 && !isInterTurn)
+            if (remainingTime <= 0)
             {
-                isInterTurn = true;
-                Invoke(nameof(ChangeTurn), 1f);
+                TransitionToNextTurn();
             }
         }
 
-        protected virtual void ChangeTurn()
+        #endregion
+
+        #region Projectile Shot Callback
+
+        private void OnProjectileShot()
         {
-            if (isEnded) return;
-        
+            switch (currentState)
+            {
+                case TurnState.PlayerMoving:
+                    currentState = TurnState.PlayerShooting;
+                    break;
+                case TurnState.NpcTurn:
+                    currentState = TurnState.WaitingForProjectiles;
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region Projectile Resolution
+
+        private void BeginProjectileCheck()
+        {
+            if (_projectileCheckCoroutine == null)
+            {
+                _projectileCheckCoroutine = StartCoroutine(WaitForProjectilesAndChangeTurn());
+            }
+        }
+
+        private IEnumerator WaitForProjectilesAndChangeTurn()
+        {
+            while (GameObject.FindGameObjectsWithTag("AggressiveProjectile").Length > 0)
+            {
+                yield return new WaitForSeconds(0.25f);
+            }
+
+            currentState = TurnState.InterTurn;
+            yield return new WaitForSeconds(1f);
+
+            _projectileCheckCoroutine = null;
+            TransitionToNextTurn();
+        }
+
+        #endregion
+
+        #region Turn Management
+
+        protected TurnParticipant CurrentParticipant => turnOrder[turnIndex];
+
+        protected bool IsPlayerTurn => CurrentParticipant.Faction == TurnFaction.Player;
+
+        protected virtual void TransitionToNextTurn()
+        {
+            if (currentState == TurnState.GameOver) return;
+
+            CancelProjectileCheck();
+
             if (playerCharacter.Health <= 0)
             {
                 HandleLose();
                 return;
             }
-            
+
             if (IsAllEnemyDead())
             {
                 HandleWin();
                 return;
             }
-        
-            projectileShot = false;
-            turn = (turn + 1) % playerNum;
-            isInterTurn = false;
-            StartCoroutine(HandleMovements());
+
+            AdvanceTurnIndex();
+
+            currentState = IsPlayerTurn ? TurnState.PlayerMoving : TurnState.NpcTurn;
+            StartMovementCoroutine();
         }
+
+        private void AdvanceTurnIndex()
+        {
+            var start = turnIndex;
+            do
+            {
+                turnIndex = (turnIndex + 1) % turnOrder.Count;
+                var p = turnOrder[turnIndex];
+
+                // Player turn is always valid (alive check is in TransitionToNextTurn)
+                if (p.Faction == TurnFaction.Player) break;
+
+                // Skip dead non-player participants
+                if (!p.Entity.IsDead) break;
+            } while (turnIndex != start);
+        }
+
+        protected void EndTurnByCharacter(BuffableEntity be)
+        {
+            if (currentState == TurnState.InterTurn || currentState == TurnState.GameOver) return;
+
+            // Only end turn if this entity is the current participant
+            if (turnIndex >= turnOrder.Count) return;
+            if (!CurrentParticipant.Entity.Equals(be)) return;
+
+            CancelProjectileCheck();
+            TransitionToNextTurn();
+        }
+
+        protected virtual IEnumerator HandleMovements()
+        {
+            var participant = CurrentParticipant;
+            var entity = participant.Entity;
+
+            // Tick buffs for the active participant
+            entity.TickBuffs();
+
+            if (entity.IsDead)
+            {
+                TransitionToNextTurn();
+                yield break;
+            }
+
+            if (participant.Faction == TurnFaction.Player)
+            {
+                playerCharacter.moveable = true;
+                remainingTime = turnTime;
+            }
+            else
+            {
+                playerCharacter.moveable = false;
+
+                // Execute AI move if the entity has one
+                var actor = entity.GetComponent<ITurnActor>();
+                if (actor != null)
+                {
+                    yield return StartCoroutine(actor.MakeMove());
+                }
+            }
+        }
+
+        protected bool IsAllEnemyDead()
+        {
+            return turnOrder
+                .Where(p => p.Faction == TurnFaction.Enemy)
+                .All(p => p.Entity.IsDead);
+        }
+
+        #endregion
+
+        #region Win / Lose
 
         protected virtual void HandleWin()
         {
-            isEnded = true;
+            SetGameOver();
             pauseMenuAnimator.Play("Window In");
             backgroundBlurManager.BlurInAnim();
             blurManager.BlurInAnim();
@@ -155,7 +359,7 @@ namespace _Scripts.GameEngine
 
         protected virtual void HandleLose()
         {
-            isEnded = true;
+            SetGameOver();
             pauseMenuAnimator.Play("Window In");
             backgroundBlurManager.BlurInAnim();
             blurManager.BlurInAnim();
@@ -163,70 +367,16 @@ namespace _Scripts.GameEngine
             PauseGame();
         }
 
-        // Hitting the edge or dying in their turn
-        protected void EndTurnByCharacter(BuffableEntity be)
+        private void SetGameOver()
         {
-            if (playerCharacter.Equals(be))
-            {
-                if (turn != 0) return;
-                ChangeTurn();
-                return;
-            }
-
-            var idx = Array.IndexOf(enemyCharacters, (EnemyController)be);
-            if (idx != turn - 1) return;
-            ChangeTurn();
+            currentState = TurnState.GameOver;
+            StopActiveCoroutines();
         }
 
-        protected bool IsAllEnemyDead()
-        {
-            return enemyCharacters.All(t => t.IsDead);
-        }
+        #endregion
 
-        protected virtual IEnumerator HandleMovements()
-        {
-            var t = turn;
-            if (turn == 0)
-            {
-                playerCharacter.TickBuffs();
-                playerCharacter.moveable = true;
-                remainingTime = turnTime;
-            }
-            else
-            {
-                playerCharacter.moveable = false;
-                if (enemyCharacters[turn - 1].IsDead)
-                {
-                    ChangeTurn();
-                }
-                else
-                {
-                    enemyCharacters[turn - 1].TickBuffs();
+        #region Weapon Unlock Modal
 
-                    EnemyController currentEnemy;
-                    try
-                    {
-                        currentEnemy = enemyCharacters[turn - 1];
-                    }
-                    catch (Exception)
-                    {
-                        yield break;
-                    }
-                    
-                    if (currentEnemy.IsDead)
-                    {
-                        // In case that the enemy is dead because of the buff tick
-                        ChangeTurn();
-                        yield break;
-                    }
-                    if (t == turn) // Not Skipped
-                    {
-                        yield return StartCoroutine(currentEnemy.MakeMove());
-                    }
-                }
-            }
-        }
-        
         protected void ShowNewWeaponWindow(int weaponId)
         {
             pauseMenuAnimator.Play("Window In");
@@ -236,7 +386,11 @@ namespace _Scripts.GameEngine
             newWeaponModalManager.ModalWindowIn();
             PauseGame();
         }
-        
+
+        #endregion
+
+        #region Pause / Resume
+
         public void PauseGame()
         {
             Debug.Log("Game Paused");
@@ -249,21 +403,27 @@ namespace _Scripts.GameEngine
             Time.timeScale = 1f;
         }
 
+        public void EnterCutscene()
+        {
+            _isInCutScene = true;
+        }
+
+        public void ExitCutscene()
+        {
+            _isInCutScene = false;
+        }
+
+        #endregion
+
+        #region BGM
+
         protected void HandleBgm()
         {
-            AudioClip audioClip = null;
             var audioFileName = "";
             if (SceneManager.GetActiveScene().name == "Story")
             {
                 var level = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId);
-                if (level.isBossLevel)
-                {
-                    audioFileName = "Boss Fight";
-                }
-                else
-                {
-                    audioFileName = "Chapter" + GameStateController.currentChapterId;
-                }
+                audioFileName = level.isBossLevel ? "Boss Fight" : "Chapter" + GameStateController.currentChapterId;
             }
             else if (SceneManager.GetActiveScene().name == "Tutorial")
             {
@@ -277,9 +437,9 @@ namespace _Scripts.GameEngine
             {
                 audioFileName = "Shooting Range";
             }
-            
+
             PlayerData.Instance.DiscoverMusic(audioFileName);
-            audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/" + audioFileName));
+            var audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/" + audioFileName));
 
             bgmAudioSource.clip = audioClip;
             if (!bgmAudioSource.isPlaying)
@@ -288,14 +448,43 @@ namespace _Scripts.GameEngine
             }
         }
 
-        public void EnterCutscene()
+        #endregion
+
+        #region Helpers
+
+        private void StartMovementCoroutine()
         {
-            _isInCutScene = true;
+            if (_activeMovementCoroutine != null)
+                StopCoroutine(_activeMovementCoroutine);
+            _activeMovementCoroutine = StartCoroutine(HandleMovements());
         }
 
-        public void ExitCutscene()
+        private void CancelProjectileCheck()
         {
-            _isInCutScene = false;
+            if (_projectileCheckCoroutine != null)
+            {
+                StopCoroutine(_projectileCheckCoroutine);
+                _projectileCheckCoroutine = null;
+            }
         }
+
+        private void StopActiveCoroutines()
+        {
+            if (_activeMovementCoroutine != null)
+            {
+                StopCoroutine(_activeMovementCoroutine);
+                _activeMovementCoroutine = null;
+            }
+            CancelProjectileCheck();
+            CancelInvoke();
+        }
+
+        private static GameObject[] SafeFindWithTag(string tag)
+        {
+            try { return GameObject.FindGameObjectsWithTag(tag); }
+            catch { return Array.Empty<GameObject>(); }
+        }
+
+        #endregion
     }
 }

@@ -1,112 +1,57 @@
-using System;
 using System.Collections;
-using System.Globalization;
 using _Scripts.Entities;
 using _Scripts.Managers;
-using _Scripts.UI;
 using _Scripts.Utils;
-using TMPro;
-using UnityEngine;
 
 namespace _Scripts.GameEngine
 {
     public class ShootingRangeGameController : AbstractGameController
     {
+        private TargetController[] _targets;
 
-        private TargetController[] targets;
-        
-        private void Start()
+        protected override void InitializeEntities()
         {
-            HandleBgm();
-            player = GameObject.FindGameObjectWithTag("Player");
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            
-            playerNum = enemies.Length + 1;
-            
-            targets = new TargetController[enemies.Length];
-            
+            base.InitializeEntities();
+
+            _targets = new TargetController[enemies.Length];
             for (var i = 0; i < enemies.Length; i++)
             {
-                targets[i] = enemies[i].GetComponent<TargetController>();
+                _targets[i] = enemies[i].GetComponent<TargetController>();
             }
-            
-            playerCharacter = player.GetComponent<PlayerController>();
+        }
 
-            timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
-            pauseMenu = GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>();
-            
-            // Register listeners
-            EventBus.AddListener(EventTypes.ProjectileShot, () => projectileShot = true);
-            EventBus.AddListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
-            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
-            
-            // Update Discord
+        protected override void BroadcastDiscordState()
+        {
             EventBus.Broadcast(EventTypes.DiscordStateChange,
                 Constants.RichPresenceShootingRangeDetail, "");
-            
-            StartCoroutine(HandleMovements());
         }
-        
-        private void OnDestroy()
-        {
-            EventBus.RemoveListener(EventTypes.ProjectileShot, () => projectileShot = true);
-            EventBus.RemoveListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
-        }
-        
-        protected override void ChangeTurn()
-        {
-            if (PauseMenu.gameIsEnded) return;
 
-            if (playerCharacter.Health <= 0)
-            {
-                pauseMenu.Lose();
-                return;
-            }
-
-            projectileShot = false;
-            turn = (turn + 1) % playerNum;
-            isInterTurn = false;
-            StartCoroutine(HandleMovements());
-        }
-        
-        // Hitting the edge or dying in their turn
-        private new void EndTurnByCharacter(BuffableEntity be)
-        {
-            if (playerCharacter.Equals(be))
-            {
-                if (turn != 0) return;
-                ChangeTurn();
-                return;
-            }
-
-            var idx = Array.IndexOf(targets, (TargetController)be);
-            if (idx != turn - 1) return;
-            ChangeTurn();
-        }
-        
+        // Targets don't shoot — just tick buffs and immediately end their turn
         protected override IEnumerator HandleMovements()
         {
-            var t = turn;
-            if (turn == 0)
+            var participant = CurrentParticipant;
+
+            if (participant.Faction == TurnFaction.Player)
             {
                 playerCharacter.TickBuffs();
+                if (playerCharacter.Health <= 0)
+                {
+                    HandleLose();
+                    yield break;
+                }
+
                 playerCharacter.moveable = true;
                 remainingTime = turnTime;
             }
             else
             {
                 playerCharacter.moveable = false;
-                if (targets[turn - 1].IsDead)
+                if (!participant.Entity.IsDead)
                 {
-                    ChangeTurn();
+                    participant.Entity.TickBuffs();
                 }
-                else
-                {
-                    targets[turn - 1].TickBuffs();
-                    ChangeTurn();
-                }
+                TransitionToNextTurn();
             }
-            yield return 0;
         }
     }
 }

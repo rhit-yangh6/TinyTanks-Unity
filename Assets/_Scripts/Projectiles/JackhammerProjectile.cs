@@ -108,7 +108,7 @@ namespace _Scripts.Projectiles
 
         public void TriggerEarthquake()
         {
-            var entities = FindObjectsOfType<Entity>();
+            var entities = FindObjectsByType<Entity>(FindObjectsSortMode.None);
             foreach (var e in entities)
             {
                 if (e.IsGrounded())

@@ -1,51 +1,14 @@
-﻿using _Scripts.Entities;
 using _Scripts.Managers;
-using _Scripts.UI;
 using _Scripts.Utils;
-using TMPro;
-using UnityEngine;
 
 namespace _Scripts.GameEngine
 {
-    public class TutorialGameController: AbstractGameController
+    public class TutorialGameController : AbstractGameController
     {
-        
-        private void Start()
+        protected override void BroadcastDiscordState()
         {
-            HandleBgm();
-            player = GameObject.FindGameObjectWithTag("Player");
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            playerNum = enemies.Length + 1;
-            
-            enemyCharacters = new EnemyController[enemies.Length];
-            
-            for (var i = 0; i < enemies.Length; i++)
-            {
-                enemyCharacters[i] = enemies[i].GetComponent<EnemyController>();
-            }
-            playerCharacter = player.GetComponent<PlayerController>();
-
-            pauseMenu = GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>();
-            
-            // Register listeners
-            EventBus.AddListener(EventTypes.ProjectileShot, () => projectileShot = true);
-            EventBus.AddListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
-            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
-            
-            // Update Discord
             EventBus.Broadcast(EventTypes.DiscordStateChange,
                 Constants.RichPresenceTutorialDetail, "");
-            
-            StartCoroutine(HandleMovements());
-        }
-        
-        private void Update()
-        {
-            if (projectileShot)
-            {
-                CheckAggressiveProjectiles();
-            }
         }
 
         protected override void HandleWin()

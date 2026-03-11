@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace _Scripts.Entities
 {
-    public class EnemyController : BuffableEntity
+    public class EnemyController : BuffableEntity, ITurnActor
     {
         [SerializeField] protected float degreeDeltaMax = 25f;
         [SerializeField] protected float degreeDeltaMin = 2f;
@@ -83,12 +83,12 @@ namespace _Scripts.Entities
                 // _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
                 if (IsGrounded())
                 {
-                    Rigidbody2D.velocity = Vector2.zero;
-                    Rigidbody2D.isKinematic = true;
+                    Rigidbody2D.linearVelocity = Vector2.zero;
+                    Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
                 }
                 else
                 {
-                    Rigidbody2D.isKinematic = false;
+                    Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                 }
             }
         }
@@ -187,7 +187,7 @@ namespace _Scripts.Entities
 
             var gravityAccel = prb.gravityScale * timestep * timestep * Physics2D.gravity;
 
-            var drag = 1f - timestep * prb.drag;
+            var drag = 1f - timestep * prb.linearDamping;
 
             var moveStep = velocity * timestep;
 
@@ -211,7 +211,7 @@ namespace _Scripts.Entities
 
             var projectile = Instantiate(ProjectilePrefab, launchPos, transform.rotation);
             var prb = projectile.GetComponent<Rigidbody2D>();
-            prb.velocity = AimVelocity;
+            prb.linearVelocity = AimVelocity;
 
             var proj = projectile.GetComponent<LaunchedProjectile>();
             var w = WeaponManager.Instance.GetWeaponById(selectedWeaponId);

@@ -95,22 +95,6 @@ namespace _Scripts.UI
 
         public void Win()
         {
-            // TODO: Give Weapon
-            if (SceneManager.GetActiveScene().name == "Story")
-            {
-                PlayerData.Instance.CompleteLevel();
-                // Unlock FIRST_WIN achievement during level completion
-                SteamManager.UnlockAchievement(Constants.AchievementFirstWinId);
-                var prize = LevelManager.Instance.GetLevelById(GameStateController.currentLevelId).prize;
-
-                coinText.text = "+" + prize;
-                PlayerData.Instance.GainMoney(prize);
-            } else if (SceneManager.GetActiveScene().name == "Tutorial")
-            {
-                SteamManager.UnlockAchievement(Constants.AchievementTutorialCompleted);
-                PlayerData.Instance.isTutorialCompleted = true;
-            }
-            
             gameIsEnded = true;
             winMenuUI.SetActive(true);
         }

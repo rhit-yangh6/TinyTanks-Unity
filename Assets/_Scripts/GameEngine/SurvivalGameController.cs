@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using _Scripts.Entities;
 using _Scripts.Managers;
 using _Scripts.SurvivalUpgrades;
@@ -11,7 +7,6 @@ using Michsky.UI.Shift;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace _Scripts.GameEngine
 {
@@ -31,100 +26,98 @@ namespace _Scripts.GameEngine
         private int _wave;
         private TextMeshProUGUI _waveText;
 
-        private void Start()
+        // Survival spawns enemies dynamically — only init the player at start,
+        // then rebuild turn order each wave.
+        protected override void InitializeEntities()
         {
-            HandleBgm();
-            _waveText = GameObject.FindGameObjectWithTag("Wave").GetComponent<TextMeshProUGUI>();
             player = GameObject.FindGameObjectWithTag("Player");
-            
             playerCharacter = player.GetComponent<PlayerController>();
 
-            timerText = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
-            pauseMenu = GameObject.FindGameObjectWithTag("UI").GetComponent<PauseMenu>();
-            
-            // Register listeners
-            EventBus.AddListener(EventTypes.ProjectileShot, () => projectileShot = true);
-            EventBus.AddListener<BuffableEntity>(EventTypes.EndTurn, EndTurnByCharacter);
-            EventBus.AddListener<int>(EventTypes.WeaponUnlocked, ShowNewWeaponWindow);
-            
-            // Update Discord
+            enemies = new GameObject[0];
+            enemyCharacters = new EnemyController[0];
+            RebuildTurnOrder();
+        }
+
+        protected override void OnStartComplete()
+        {
+            _waveText = GameObject.FindGameObjectWithTag("Wave").GetComponent<TextMeshProUGUI>();
+            AdvanceWave();
+        }
+
+        protected override void BroadcastDiscordState()
+        {
             EventBus.Broadcast(EventTypes.DiscordStateChange,
                 Constants.RichPresenceSurvivalModeDetail, Constants.RichPresenceSurvivalModeStatePrefix + 1);
-            AdvanceWave();
-            
-            StartCoroutine(HandleMovements());
         }
 
         private void AdvanceWave()
         {
             _wave += 1;
             _waveText.text = "Wave " + _wave;
-            
-            // Spawn Enemies
-            Instantiate(enemyPrefab, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            
-            //
+
+            Instantiate(enemyPrefab,
+                spawnPoints[Random.Range(0, spawnPoints.Length)].position,
+                Quaternion.identity);
+
+            // Re-discover all living enemies and rebuild turn order
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            playerNum = enemies.Length + 1;
-            
             enemyCharacters = new EnemyController[enemies.Length];
-            
             for (var i = 0; i < enemies.Length; i++)
             {
                 enemyCharacters[i] = enemies[i].GetComponent<EnemyController>();
             }
-            
+            RebuildTurnOrder();
+
             EventBus.Broadcast(EventTypes.DiscordStateChange,
                 Constants.RichPresenceSurvivalModeDetail, Constants.RichPresenceSurvivalModeStatePrefix + _wave);
         }
-        
-        protected override void ChangeTurn()
+
+        protected override void TransitionToNextTurn()
         {
-            if (PauseMenu.gameIsEnded) return;
+            if (currentState == TurnState.GameOver) return;
 
             if (playerCharacter.Health <= 0)
             {
-                pauseMenu.Lose();
+                HandleLose();
                 return;
             }
-            
+
             if (IsAllEnemyDead())
             {
                 ShowUpgradesWindow();
                 return;
             }
 
-            projectileShot = false;
-            turn = (turn + 1) % playerNum;
-            isInterTurn = false;
-            StartCoroutine(HandleMovements());
+            base.TransitionToNextTurn();
+        }
+
+        protected override void HandleLose()
+        {
+            currentState = TurnState.GameOver;
+            StopAllCoroutines();
+            pauseMenu.Lose();
         }
 
         private void UpgradeSelected()
         {
-            // Resume Game First
             pauseMenuObject.SetActive(true);
             pauseMenuAnimator.Play("Window Out");
             backgroundBlurManager.BlurOutAnim();
             ResumeGame();
-            
-            // Advance wave
+
             AdvanceWave();
-            projectileShot = false;
-            turn = 0;
-            isInterTurn = false;
-            StartCoroutine(HandleMovements());
+            BeginFirstTurn();
         }
-        
+
         private void ShowUpgradesWindow()
         {
             pauseMenuAnimator.Play("Window In");
             backgroundBlurManager.BlurInAnim();
             blurManager.BlurInAnim();
             upgradesModalWindowManager.ModalWindowIn();
-            
-            // Clear and Re-populate upgrade icons
-            foreach (Transform child in upgradeModalContent.transform) {
+
+            foreach (Transform child in upgradeModalContent.transform)
+            {
                 Destroy(child.gameObject);
             }
 
@@ -134,16 +127,16 @@ namespace _Scripts.GameEngine
                 var buttonObj = Instantiate(upgradeButtonPrefab, upgradeModalContent.transform);
                 var button = buttonObj.GetComponent<Button>();
                 var survivalUpgradeButton = buttonObj.GetComponent<SurvivalUpgradeButton>();
-                
+
                 survivalUpgradeButton.UpdateDisplay(survivalUpgrade);
-                
+
                 button.onClick.AddListener(() =>
                 {
                     survivalUpgrade.ApplyEffect();
                     UpgradeSelected();
                 });
             }
-            
+
             PauseGame();
         }
 
@@ -153,8 +146,6 @@ namespace _Scripts.GameEngine
 
             return randomValue switch
             {
-                // >= 0.98f => extremeProbabilityUpgrades[Random.Range(0, extremeProbabilityUpgrades.Length)],
-                // >= 0.9f => lowProbabilityUpgrades[Random.Range(0, lowProbabilityUpgrades.Length)],
                 >= 0.65f => mediumProbabilityUpgrades[Random.Range(0, mediumProbabilityUpgrades.Length)],
                 _ => highProbabilityUpgrades[Random.Range(0, highProbabilityUpgrades.Length)]
             };
