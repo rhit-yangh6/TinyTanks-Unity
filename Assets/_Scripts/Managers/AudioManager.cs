@@ -39,18 +39,32 @@ namespace _Scripts.Managers
 
         private IEnumerator HandleChangeMusic(string sceneName)
         {
+            // Game scenes handle their own music via AbstractGameController.HandleBgm()
+            // Only auto-switch for menu scenes
             switch (sceneName)
             {
-                case "Story":
-                    yield return StartCoroutine(MusicFadeOut());
-                    PlayStoryModeMusic();
-                    break;
                 case "MenuScene":
+                case "Main Menu":
                     yield return StartCoroutine(MusicFadeOut());
                     PlayMusic("Menu");
-                    break; 
+                    StartCoroutine(MusicFadeIn());
+                    break;
             }
-            StartCoroutine(MusicFadeIn());
+        }
+
+        /// <summary>
+        /// Play a music clip directly on the persistent AudioSource.
+        /// Used by AbstractGameController.HandleBgm() to unify all music
+        /// through the DontDestroyOnLoad AudioManager.
+        /// </summary>
+        public void PlayMusicClip(AudioClip clip)
+        {
+            if (clip == null) return;
+            StopAllCoroutines();
+            musicSource.clip = clip;
+            musicSource.Play();
+            var musicVolumeValue = PlayerPrefs.GetFloat(Constants.MusicVolumeValue);
+            SetMusicVolumeValue(musicVolumeValue / 10f);
         }
 
         private IEnumerator MusicFadeOut()
@@ -61,11 +75,11 @@ namespace _Scripts.Managers
             {
                 var val = fadeOutCurve.Evaluate(Mathf.Clamp01(e / waitTime)) * (musicVolumeValue / 10f);
                 SetMusicVolumeValue(val);
-                e += Time.deltaTime;
+                e += Time.unscaledDeltaTime;
                 yield return null;
             }
         }
-        
+
         private IEnumerator MusicFadeIn()
         {
             float e = 0;
@@ -74,7 +88,7 @@ namespace _Scripts.Managers
             {
                 var val = fadeInCurve.Evaluate(Mathf.Clamp01(e / waitTime)) * (musicVolumeValue / 10f);
                 SetMusicVolumeValue(val);
-                e += Time.deltaTime;
+                e += Time.unscaledDeltaTime;
                 yield return null;
             }
         }

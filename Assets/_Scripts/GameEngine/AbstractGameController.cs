@@ -439,12 +439,21 @@ namespace _Scripts.GameEngine
             }
 
             PlayerData.Instance.DiscoverMusic(audioFileName);
-            var audioClip = Instantiate(Resources.Load<AudioClip>("AudioClips/Music/" + audioFileName));
+            var audioClip = Resources.Load<AudioClip>("AudioClips/Music/" + audioFileName);
 
-            bgmAudioSource.clip = audioClip;
-            if (!bgmAudioSource.isPlaying)
+            // Route through the persistent AudioManager so music survives scene transitions
+            if (AudioManager.Instance != null)
             {
-                bgmAudioSource.Play();
+                AudioManager.Instance.PlayMusicClip(audioClip);
+            }
+            else
+            {
+                // Fallback to scene-local source if AudioManager isn't available
+                bgmAudioSource.clip = audioClip;
+                if (!bgmAudioSource.isPlaying)
+                {
+                    bgmAudioSource.Play();
+                }
             }
         }
 

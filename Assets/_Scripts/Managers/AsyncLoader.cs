@@ -69,7 +69,7 @@ namespace _Scripts.Managers
         private IEnumerator LoadLevelAsync(string sceneToLoad)
         {
             loadingMenuAnimator.Play("UI_LoadingMenu_Loading");
-            yield return new WaitForSeconds(blackScreenDefaultWaitTime);
+            yield return new WaitForSecondsRealtime(blackScreenDefaultWaitTime);
             
             var loadOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 
