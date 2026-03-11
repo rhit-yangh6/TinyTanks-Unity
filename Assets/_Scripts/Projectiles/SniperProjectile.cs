@@ -26,7 +26,7 @@ namespace _Scripts.Projectiles
         protected override void Start()
         {
             base.Start();
-            var velocity = rigidBody2D.velocity;
+            var velocity = rigidBody2D.linearVelocity;
             rigidBody2D.GetComponent<ConstantForce2D>().force = new Vector3(velocity.x * extraForceXMultiplier,
                 velocity.y * extraForceYMultiplier, 0);
         }

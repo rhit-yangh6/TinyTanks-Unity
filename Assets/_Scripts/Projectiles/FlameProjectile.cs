@@ -57,7 +57,7 @@ namespace _Scripts.Projectiles
         {
             if (isDetonated) return;
             isDetonated = true;
-            rigidBody2D.velocity = Vector2.zero;
+            rigidBody2D.linearVelocity = Vector2.zero;
             
             _burnIntervalLeft = burnInterval;
             _terrainDestroyIntervalLeft = terrainDestroyInterval;

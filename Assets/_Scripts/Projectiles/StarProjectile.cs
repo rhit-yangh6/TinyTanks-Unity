@@ -91,12 +91,12 @@ namespace _Scripts.Projectiles
 
         private IEnumerator DrawStar()
         {
-            var initialVelocity = rigidBody2D.velocity;
+            var initialVelocity = rigidBody2D.linearVelocity;
             rigidBody2D.gravityScale = 0;
-            rigidBody2D.velocity = Vector2.zero;
+            rigidBody2D.linearVelocity = Vector2.zero;
             _tr.emitting = true;
 
-            rigidBody2D.velocity = (Vector2.left + Vector2.down) * drawStarSpeed;
+            rigidBody2D.linearVelocity = (Vector2.left + Vector2.down) * drawStarSpeed;
             
             yield return new WaitForSeconds(Level >= 3 ? drawStarInterval * 0.75f : drawStarInterval);
 
@@ -113,7 +113,7 @@ namespace _Scripts.Projectiles
 
             for (var i = 0; i < 4; i++)
             {
-                rigidBody2D.velocity = Geometry.Rotate(rigidBody2D.velocity, RotateDegree);
+                rigidBody2D.linearVelocity = Geometry.Rotate(rigidBody2D.linearVelocity, RotateDegree);
                 yield return new WaitForSeconds(Level >= 3 ? drawStarInterval * 0.75f : drawStarInterval);
                 if (Level != 6) continue;
                 pos = gameObject.transform.position;
@@ -123,7 +123,7 @@ namespace _Scripts.Projectiles
                 DamageHandler.i.HandleDamage(pos, shockwaveRadius, shockwaveDamage, DamageHandler.DamageType.Circular);
             }
             
-            rigidBody2D.velocity = Geometry.Rotate(initialVelocity,
+            rigidBody2D.linearVelocity = Geometry.Rotate(initialVelocity,
                 Random.Range(-starCompletionDeviation, starCompletionDeviation));
             rigidBody2D.gravityScale = 1;
             _tr.emitting = false;

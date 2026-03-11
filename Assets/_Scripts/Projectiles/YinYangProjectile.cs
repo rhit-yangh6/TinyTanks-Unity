@@ -146,7 +146,7 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(blackDamage, BlackRadius);
-            derivedRb2d.velocity = Geometry.Rotate(Vector2.up,
+            derivedRb2d.linearVelocity = Geometry.Rotate(Vector2.up,
                 Random.Range(-splitOrbDeviateAngle, splitOrbDeviateAngle)) *
                                    (splitOrbSpeed + Random.Range(-splitOrbDeviateSpeed, splitOrbDeviateSpeed));
         }
@@ -163,7 +163,7 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(WhiteDamage, WhiteRadius);
-            derivedRb2d.velocity = Geometry.Rotate(Vector2.up,
+            derivedRb2d.linearVelocity = Geometry.Rotate(Vector2.up,
                 Random.Range(-splitOrbDeviateAngle, splitOrbDeviateAngle)) *
                                    (splitOrbSpeed + Random.Range(-splitOrbDeviateSpeed, splitOrbDeviateSpeed));
         }

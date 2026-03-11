@@ -37,7 +37,7 @@ namespace _Scripts.Projectiles
 
         private void SpawnSecondaryProjectiles()
         {
-            var velocity = rigidBody2D.velocity;
+            var velocity = rigidBody2D.linearVelocity;
             var pos = transform.position;
             
             // Make clones
@@ -46,14 +46,14 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.velocity = Geometry.Rotate(velocity, BulletDispersion);
+            derivedRb2d.linearVelocity = Geometry.Rotate(velocity, BulletDispersion);
             
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.velocity = Geometry.Rotate(velocity, -BulletDispersion);
+            derivedRb2d.linearVelocity = Geometry.Rotate(velocity, -BulletDispersion);
 
             if (Level != 5) return;
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
@@ -61,14 +61,14 @@ namespace _Scripts.Projectiles
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.velocity = Geometry.Rotate(velocity, 2*BulletDispersion);
+            derivedRb2d.linearVelocity = Geometry.Rotate(velocity, 2*BulletDispersion);
                 
             derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
 
             derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.velocity = Geometry.Rotate(velocity, -2*BulletDispersion);
+            derivedRb2d.linearVelocity = Geometry.Rotate(velocity, -2*BulletDispersion);
         }
     }
 }

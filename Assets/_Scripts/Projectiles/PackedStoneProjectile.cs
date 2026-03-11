@@ -86,7 +86,7 @@ namespace _Scripts.Projectiles
         private void SpawnSmallStones(int amount)
         {
             var pos = transform.position;
-            var currentVelocity = rigidBody2D.velocity;
+            var currentVelocity = rigidBody2D.linearVelocity;
             var currentAngle = -SmallProjectileSpread;
             var angleStep = (SmallProjectileSpread * 2) / (amount - 1);
 
@@ -97,7 +97,7 @@ namespace _Scripts.Projectiles
                 var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
                 derivedProjectile.SetParameters(PackedStoneSmallDamage, PackedStoneSmallRadius);
-                derivedRb2d.velocity = Geometry.Rotate(currentVelocity, currentAngle);
+                derivedRb2d.linearVelocity = Geometry.Rotate(currentVelocity, currentAngle);
                 currentAngle += angleStep;
             }
         }

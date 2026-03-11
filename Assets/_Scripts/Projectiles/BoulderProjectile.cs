@@ -85,7 +85,7 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(boulderPieceDamage, boulderPieceRadius);
-            derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
+            derivedRb2d.linearVelocity = (Vector2.left + Vector2.up * 2) * 3f;
             
             // Second Piece
             derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
@@ -93,7 +93,7 @@ namespace _Scripts.Projectiles
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(boulderPieceDamage, boulderPieceRadius);
-            derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
+            derivedRb2d.linearVelocity = (Vector2.right + Vector2.up * 2) * 3f;
         }
     }
 }

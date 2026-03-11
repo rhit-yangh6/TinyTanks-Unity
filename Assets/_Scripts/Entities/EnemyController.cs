@@ -49,7 +49,9 @@ namespace _Scripts.Entities
         protected override void Start()
         {
             base.Start();
-            ProjectilePrefab = WeaponManager.Instance.GetWeaponById(selectedWeaponId).projectilePrefab;
+            var weapon = WeaponManager.Instance.GetWeaponById(selectedWeaponId);
+            if (weapon != null)
+                ProjectilePrefab = weapon.projectilePrefab;
             LineRenderer = GetComponent<LineRenderer>();
         }
 
@@ -162,7 +164,7 @@ namespace _Scripts.Entities
             {
                 var launchPos =
                     LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
-                        tankCannon.transform.position);
+                        TankCannon.transform.position);
                 
                 var trajectory = Plot(ProjectilePrefab.GetComponent<Rigidbody2D>(), (Vector2)launchPos, AimVelocity, 500);
                 LineRenderer.positionCount = trajectory.Length;
@@ -206,8 +208,8 @@ namespace _Scripts.Entities
         {
             var launchPos =
                 LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
-                    tankCannon.transform.position);
-            tankCannon.GetComponent<Animator>().SetTrigger(Shoot1);
+                    TankCannon.transform.position);
+            TankCannon.GetComponent<Animator>().SetTrigger(Shoot1);
 
             var projectile = Instantiate(ProjectilePrefab, launchPos, transform.rotation);
             var prb = projectile.GetComponent<Rigidbody2D>();
@@ -236,7 +238,7 @@ namespace _Scripts.Entities
             
             Vector2 startPos =
                 LaunchProjectile.TrajectoryStartPositionHelper(CannonAngle, cannonLength,
-                    tankCannon.transform.position);
+                    TankCannon.transform.position);
             
             var vx = (targetPosition.x - startPos.x) / ProjectileTravelTime;
             var vy = (targetPosition.y - startPos.y + 0.5f * Physics2D.gravity.magnitude * ProjectileTravelTime * ProjectileTravelTime) / ProjectileTravelTime;

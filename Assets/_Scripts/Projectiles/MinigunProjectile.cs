@@ -52,9 +52,9 @@ namespace _Scripts.Projectiles
         {
             base.Start();
             _bulletDamage = Damage;
-            _initialVelocity = rigidBody2D.velocity;
+            _initialVelocity = rigidBody2D.linearVelocity;
             var newVelocity = Geometry.Rotate(_initialVelocity, CalculateBulletDispersion());
-            rigidBody2D.velocity = newVelocity * velocityMultiplier;
+            rigidBody2D.linearVelocity = newVelocity * velocityMultiplier;
             _initialPosition = transform.position;
             StartCoroutine(SpawnSecondaryProjectiles());
         }
@@ -79,7 +79,7 @@ namespace _Scripts.Projectiles
                 var derivedRigidBody2D = derivedObject.GetComponent<Rigidbody2D>();
                 
                 derivedProjectile.SetParameters(_bulletDamage, Radius);
-                derivedRigidBody2D.velocity = Geometry.Rotate(_initialVelocity, 
+                derivedRigidBody2D.linearVelocity = Geometry.Rotate(_initialVelocity, 
                                                   CalculateBulletDispersion()) * velocityMultiplier;
                 SpawnBulletShell();
             }
@@ -96,7 +96,7 @@ namespace _Scripts.Projectiles
                     var derivedRigidBody2D = derivedObject.GetComponent<Rigidbody2D>();
                 
                     derivedProjectile.SetParameters(_bulletDamage, Radius);
-                    derivedRigidBody2D.velocity = Geometry.Rotate(_initialVelocity, 
+                    derivedRigidBody2D.linearVelocity = Geometry.Rotate(_initialVelocity, 
                         CalculateBulletDispersion()) * velocityMultiplier;
                     SpawnBulletShell();
                 }

@@ -10,20 +10,19 @@ namespace _Scripts.Managers
     public class DamageHandler : MonoBehaviour
     {
         public static DamageHandler i { get; private set; }
-        
+
         public LayerMask layerMask;
-        
-        private void Awake() 
-        { 
-            // If there is an instance, and it's not me, delete myself.
-            if (i != null && i != this) 
-            { 
-                Destroy(this); 
-            } 
-            else 
-            { 
-                i = this; 
-            } 
+
+        private void Awake()
+        {
+            if (i != null && i != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                i = this;
+            }
         }
 
         public enum DamageType
@@ -31,108 +30,64 @@ namespace _Scripts.Managers
             Circular,
             Square
         }
-        
+
         public int HandleDamage(
-            Vector2 pos, 
-            float radius, 
-            float damage, 
+            Vector2 pos,
+            float radius,
+            float damage,
             DamageType type,
-            bool isCriticalHit = false, 
-            ScriptableBuff buff = null, 
+            bool isCriticalHit = false,
+            ScriptableBuff buff = null,
             int buffLevel = 1)
         {
-            var hitColliders = type switch
-            {
-                DamageType.Circular => Physics2D.OverlapCircleAll(pos, radius, layerMask),
-                // TODO: Calculating the square damage
-                DamageType.Square => Physics2D.OverlapBoxAll(pos, new Vector2(radius*1.414f, radius*1.414f), 
-                    0,layerMask),
-                _ => new Collider2D[]{}
-            };
-
+            var hitColliders = OverlapByType(pos, radius, type);
             var hitCount = 0;
 
-            foreach(var col in hitColliders)
+            foreach (var col in hitColliders)
             {
                 var rb = col.GetComponent<Rigidbody2D>();
                 if (rb == null) continue;
 
+                var e = rb.gameObject.GetComponent<Entity>();
+                if (e == null) continue;
+
                 hitCount += 1;
 
-                // Find the Enemy script and apply damage.
-                var e = rb.gameObject.GetComponent<Entity>();
                 var roundedDamage = (float)Math.Round(damage);
                 e.TakeDamage(roundedDamage, isCriticalHit);
 
-                var be = rb.gameObject.GetComponent<BuffableEntity>();
-                // Apply Buff
-                if (be != null && buff != null)
-                {
-                    be.AddBuff(buff.InitializeBuff(col.gameObject, buffLevel));
-                }
-                
-                /*
-                // TODO: Push Force
-                if (force != 0f)
-                {
-                    var forceDirection = Vector3.Normalize(rb.position - pos);
-                    rb.AddForce(forceDirection * force);
-                }
-                */
+                ApplyBuff(col.gameObject, buff, buffLevel);
             }
             return hitCount;
         }
-        
+
         public int HandleDamageExcludingEntity(
-            Vector2 pos, 
-            float radius, 
-            float damage, 
+            Vector2 pos,
+            float radius,
+            float damage,
             DamageType type,
             Entity excludingEntity,
-            bool isCriticalHit = false, 
-            ScriptableBuff buff = null, 
+            bool isCriticalHit = false,
+            ScriptableBuff buff = null,
             int buffLevel = 1)
         {
-            var hitColliders = type switch
-            {
-                DamageType.Circular => Physics2D.OverlapCircleAll(pos, radius, layerMask),
-                // TODO: Calculating the square damage
-                DamageType.Square => Physics2D.OverlapBoxAll(pos, new Vector2(radius*1.414f, radius*1.414f), 
-                    0,layerMask),
-                _ => new Collider2D[]{}
-            };
-
+            var hitColliders = OverlapByType(pos, radius, type);
             var hitCount = 0;
 
-            foreach(var col in hitColliders)
+            foreach (var col in hitColliders)
             {
                 var rb = col.GetComponent<Rigidbody2D>();
                 if (rb == null) continue;
-                
-                // Find the Enemy script and apply damage.
+
                 var e = rb.gameObject.GetComponent<Entity>();
-                if (ReferenceEquals(e, excludingEntity)) continue;
-                
+                if (e == null || ReferenceEquals(e, excludingEntity)) continue;
+
                 var roundedDamage = (float)Math.Round(damage);
                 e.TakeDamage(roundedDamage, isCriticalHit);
-                
+
                 hitCount += 1;
 
-                var be = rb.gameObject.GetComponent<BuffableEntity>();
-                // Apply Buff
-                if (be != null && buff != null)
-                {
-                    be.AddBuff(buff.InitializeBuff(col.gameObject, buffLevel));
-                }
-                
-                /*
-                // TODO: Push Force
-                if (force != 0f)
-                {
-                    var forceDirection = Vector3.Normalize(rb.position - pos);
-                    rb.AddForce(forceDirection * force);
-                }
-                */
+                ApplyBuff(col.gameObject, buff, buffLevel);
             }
             return hitCount;
         }
@@ -140,39 +95,28 @@ namespace _Scripts.Managers
         public Entity DetectNearestTarget(Vector2 pos, float radius, List<Entity> excludingEntities)
         {
             var hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
-            var entities =
-                hitColliders
-                    .Select(col => col.gameObject.GetComponent<Entity>())
-                    .Where(e => e != null).ToList();
+            var excludeSet = new HashSet<Entity>(excludingEntities);
 
-            Entity closetEntity = null;
+            Entity closestEntity = null;
             var minDist = Mathf.Infinity;
-            foreach(var e in entities)
-            {
-                var skipEntity = false;
-                foreach (var unused in
-                         excludingEntities.Where(excludingEntity => ReferenceEquals(e, excludingEntity)))
-                {
-                    skipEntity = true;
-                }
 
-                if (skipEntity)
-                {
-                    continue;
-                }
+            foreach (var col in hitColliders)
+            {
+                var e = col.gameObject.GetComponent<Entity>();
+                if (e == null || excludeSet.Contains(e)) continue;
+
                 var distance = Vector2.Distance(pos, e.transform.position);
                 if (distance >= minDist) continue;
-                closetEntity = e;
+                closestEntity = e;
                 minDist = distance;
             }
 
-            return closetEntity;
+            return closestEntity;
         }
 
         public IEnumerable<Entity> DetectTargets(Vector2 pos, float radius)
         {
             var hitColliders = Physics2D.OverlapCircleAll(pos, radius, layerMask);
-
             return hitColliders.Select(col => col.gameObject.GetComponent<Entity>()).Where(e => e != null);
         }
 
@@ -184,18 +128,35 @@ namespace _Scripts.Managers
             {
                 var rb = col.GetComponent<Rigidbody2D>();
                 if (rb == null) continue;
-                
+
                 var e = rb.gameObject.GetComponent<Entity>();
+                if (e == null) continue;
+
                 e.CompleteHeal();
-                
-                var be = rb.gameObject.GetComponent<BuffableEntity>();
-                // Apply Buff
-                if (be != null && buff != null)
-                {
-                    be.AddBuff(buff.InitializeBuff(col.gameObject, 1));
-                }
+
+                ApplyBuff(col.gameObject, buff, 1);
             }
         }
 
+        private static void ApplyBuff(GameObject obj, ScriptableBuff buff, int buffLevel)
+        {
+            if (buff == null) return;
+            var be = obj.GetComponent<BuffableEntity>();
+            if (be != null)
+            {
+                be.AddBuff(buff.InitializeBuff(obj, buffLevel));
+            }
+        }
+
+        private Collider2D[] OverlapByType(Vector2 pos, float radius, DamageType type)
+        {
+            return type switch
+            {
+                DamageType.Circular => Physics2D.OverlapCircleAll(pos, radius, layerMask),
+                DamageType.Square => Physics2D.OverlapBoxAll(pos,
+                    new Vector2(radius * 1.414f, radius * 1.414f), 0, layerMask),
+                _ => Array.Empty<Collider2D>()
+            };
+        }
     }
 }

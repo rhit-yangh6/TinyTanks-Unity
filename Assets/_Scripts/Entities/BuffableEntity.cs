@@ -14,7 +14,8 @@ namespace _Scripts.Entities
         public int FacingDirection { get; set; } = 1;
 
         [SerializeField] protected float movementSpeed;
-        [SerializeField] public GameObject tankCannon;
+        [SerializeField] private GameObject tankCannon;
+        public GameObject TankCannon => tankCannon;
         [SerializeField] protected BuffPanelBehavior bpb;
         [SerializeField] private bool startFacingLeft;
 
@@ -72,15 +73,22 @@ namespace _Scripts.Entities
             bpb.RefreshBuffDisplay(_buffs);
         }
 
+        private static readonly List<ScriptableBuff> _expiredBuffKeys = new();
+
         public void TickBuffs()
         {
-            foreach (var buff in _buffs.Values.ToList())
+            _expiredBuffKeys.Clear();
+            foreach (var kvp in _buffs)
             {
-                buff.Tick();
-                if (buff.isFinished)
+                kvp.Value.Tick();
+                if (kvp.Value.isFinished)
                 {
-                    _buffs.Remove(buff.Buff);
+                    _expiredBuffKeys.Add(kvp.Key);
                 }
+            }
+            foreach (var key in _expiredBuffKeys)
+            {
+                _buffs.Remove(key);
             }
             bpb.RefreshBuffDisplay(_buffs);
         }

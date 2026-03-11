@@ -44,7 +44,7 @@ namespace _Scripts.GameEngine
         private void Update()
         {
             var launchPos = TrajectoryStartPositionHelper(_cannonAngle, cannonLength,
-                _playerCharacter.tankCannon.transform.position);
+                _playerCharacter.TankCannon.transform.position);
             if (Input.GetMouseButton(1) && _isAiming)
             {
                 _lr.enabled = false;
@@ -101,7 +101,7 @@ namespace _Scripts.GameEngine
 
                     GameObject projectile = Instantiate(_projectilePrefab, launchPos, transform.rotation);
                     Rigidbody2D prb = projectile.GetComponent<Rigidbody2D>();
-                    prb.velocity = velocity;
+                    prb.linearVelocity = velocity;
                 
                     LaunchedProjectile lp = projectile.GetComponent<LaunchedProjectile>();
                     lp.SetParameters(_selectedWeapon.damage, _selectedWeapon.radius, _selectedWeapon.maxMagnitude, _selectedWeapon.steps);
@@ -109,7 +109,7 @@ namespace _Scripts.GameEngine
                     lp.Shooter = gameObject;
                     lp.WeaponExtraData = _wed;
 
-                    _playerCharacter.tankCannon.GetComponent<Animator>().SetTrigger(Shoot);
+                    _playerCharacter.TankCannon.GetComponent<Animator>().SetTrigger(Shoot);
                 
                     EventBus.Broadcast(EventTypes.ProjectileShot);
                     _playerCharacter.moveable = false;
@@ -135,7 +135,7 @@ namespace _Scripts.GameEngine
                 gravityAccel = prb.gravityScale * timeStep * timeStep * Physics2D.gravity;
             }
 
-            float drag = 1f - timeStep * prb.drag;
+            float drag = 1f - timeStep * prb.linearDamping;
 
             Vector2 moveStep = velocity * timeStep;
 

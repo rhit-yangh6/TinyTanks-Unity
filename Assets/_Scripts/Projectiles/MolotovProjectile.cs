@@ -107,7 +107,7 @@ namespace _Scripts.Projectiles
                 derivedProjectile.SetLifeSpan(FlameLifeSpan);
 
                 var angle = Random.Range(-FlameSpreadRange / 2, FlameSpreadRange / 2);
-                derivedRb2d.velocity =  Geometry.Rotate(Vector2.up * flameSpeed, angle);
+                derivedRb2d.linearVelocity =  Geometry.Rotate(Vector2.up * flameSpeed, angle);
             }
         }
     }

@@ -1,6 +1,4 @@
-﻿using Unity.VisualScripting;
-
-namespace _Scripts.Projectiles
+﻿namespace _Scripts.Projectiles
 {
     public class PackedStoneSmallProjectile :DerivedProjectile
     {

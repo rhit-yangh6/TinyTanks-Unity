@@ -15,12 +15,8 @@ namespace _Scripts.Buffs
     
     public class TimedOilyBuff : TimedBuff
     {
-        private readonly BuffableEntity _be;
-        private readonly float _finalBurningDamage;
-
         public TimedOilyBuff(ScriptableBuff buff, GameObject obj, int duration, int level) : base(buff, obj, duration)
         {
-            _be = obj.GetComponent<BuffableEntity>();
         }
 
         protected override void ApplyEffect() { }

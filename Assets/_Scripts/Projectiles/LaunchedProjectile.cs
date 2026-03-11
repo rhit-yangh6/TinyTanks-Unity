@@ -10,9 +10,9 @@ namespace _Scripts.Projectiles
 
         private void Awake()
         {
-            collider2D = GetComponent<Collider2D>();
+            projectileCollider = GetComponent<Collider2D>();
             rigidBody2D = GetComponent<Rigidbody2D>();
-            renderer = GetComponent<Renderer>();
+            projectileRenderer = GetComponent<Renderer>();
             StartCoroutine(TemporarilyDisableCollider());
         }
 

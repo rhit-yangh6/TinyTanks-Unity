@@ -96,7 +96,7 @@ namespace _Scripts.Projectiles
             derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
             derivedProjectile.SetOtherParameters(damageInterval, moveTime);
             derivedProjectile.Shooter = Shooter;
-            derivedRb2d.velocity = (Vector2.left + Vector2.up * 2) * 3f;
+            derivedRb2d.linearVelocity = (Vector2.left + Vector2.up * 2) * 3f;
             
             // Second Piece
             derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
@@ -106,7 +106,7 @@ namespace _Scripts.Projectiles
             derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
             derivedProjectile.SetOtherParameters(damageInterval, moveTime);
             derivedProjectile.Shooter = Shooter;
-            derivedRb2d.velocity = (Vector2.right + Vector2.up * 2) * 3f;
+            derivedRb2d.linearVelocity = (Vector2.right + Vector2.up * 2) * 3f;
             
             // Third Piece - 50/50 Left/Right
             derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
@@ -116,7 +116,7 @@ namespace _Scripts.Projectiles
             derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
             derivedProjectile.SetOtherParameters(damageInterval, moveTime);
             derivedProjectile.Shooter = Shooter;
-            derivedRb2d.velocity = (Random.value > 0.5 ? Vector2.right : Vector2.left + Vector2.up * 3) * 3f;
+            derivedRb2d.linearVelocity = (Random.value > 0.5 ? Vector2.right : Vector2.left + Vector2.up * 3) * 3f;
         }
 
         public override void Detonate()
@@ -128,7 +128,7 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            _moveDirection = rigidBody2D.velocity.x > 0 ? 1 : -1;
+            _moveDirection = rigidBody2D.linearVelocity.x > 0 ? 1 : -1;
             RefreshTimeLeft();
         }
 

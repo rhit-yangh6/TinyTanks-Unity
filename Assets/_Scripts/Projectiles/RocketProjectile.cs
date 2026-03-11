@@ -55,14 +55,14 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            var velocity = rigidBody2D.velocity;
+            var velocity = rigidBody2D.linearVelocity;
             velocity *= VelocityMultiplier;
-            rigidBody2D.velocity = velocity;
+            rigidBody2D.linearVelocity = velocity;
             if (Level == 5) // LEVEL 5
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 var guideDirection = (mousePosition - (Vector2)transform.position).normalized;
-                rigidBody2D.velocity += guideDirection * 5f;
+                rigidBody2D.linearVelocity += guideDirection * 5f;
             }
         }
 

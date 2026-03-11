@@ -13,7 +13,7 @@ namespace _Scripts.GameEngine.Props
         private void Start()
         {
             var rigidBody2D = GetComponent<Rigidbody2D>();
-            rigidBody2D.velocity = Geometry.Rotate(Vector2.up, 
+            rigidBody2D.linearVelocity = Geometry.Rotate(Vector2.up, 
                 Random.Range(-dispersionAngle, dispersionAngle)) * initialVelocity;
             rigidBody2D.rotation = Random.Range(-360, 360);
             StartCoroutine(DisappearAfterLifetime());

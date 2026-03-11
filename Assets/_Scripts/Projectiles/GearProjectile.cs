@@ -162,10 +162,10 @@ namespace _Scripts.Projectiles
             // Stop rigidBody from moving/rotating
             rigidBody2D.gravityScale = 0;
             rigidBody2D.freezeRotation = true;
-            rigidBody2D.velocity = Vector2.zero;
+            rigidBody2D.linearVelocity = Vector2.zero;
 
             // Disable collider
-            collider2D.enabled = false;
+            projectileCollider.enabled = false;
             
             return Tuple.Create(pos, gravityScale);
         }

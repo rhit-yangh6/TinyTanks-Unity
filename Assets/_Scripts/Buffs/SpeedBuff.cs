@@ -1,4 +1,4 @@
-﻿using _Scripts.Entities;
+using _Scripts.Entities;
 using UnityEngine;
 
 namespace _Scripts.Buffs
@@ -13,30 +13,26 @@ namespace _Scripts.Buffs
             return new TimedSpeedBuff(this, obj, duration, level);
         }
     }
-    
+
     public class TimedSpeedBuff : TimedBuff
     {
         private readonly BuffableEntity _be;
+        private readonly float _speedIncrease;
 
         public TimedSpeedBuff(ScriptableBuff buff, GameObject obj, int duration, int level) : base(buff, obj, duration)
         {
-            //Getting MovementComponent, replace with your own implementation
             _be = obj.GetComponent<BuffableEntity>();
+            _speedIncrease = ((SpeedBuff)Buff).speedIncrease;
         }
 
         protected override void ApplyEffect()
         {
-            //Add speed increase to MovementComponent
-            SpeedBuff speedBuff = (SpeedBuff) Buff;
-            
-            // TODO: No Method Here? Need to finish
+            _be.MovementSpeed += _speedIncrease * effectStacks;
         }
 
         protected override void End()
         {
-            // Revert speed increase
-            SpeedBuff speedBuff = (SpeedBuff) Buff;
-            // _entity.IncreaseMovementSpeed(-speedBuff.speedIncrease * effectStacks);
+            _be.MovementSpeed -= _speedIncrease * effectStacks;
             effectStacks = 0;
         }
     }

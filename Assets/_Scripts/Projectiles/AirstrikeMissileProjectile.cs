@@ -52,28 +52,28 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius);
-            derivedRb2d.velocity = Geometry.Rotate(rigidBody2D.velocity, -20);
+            derivedRb2d.linearVelocity = Geometry.Rotate(rigidBody2D.linearVelocity, -20);
             
             derivedObject = Instantiate(smallMissilePrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius);
-            derivedRb2d.velocity = Geometry.Rotate(rigidBody2D.velocity, -5);
+            derivedRb2d.linearVelocity = Geometry.Rotate(rigidBody2D.linearVelocity, -5);
             
             derivedObject = Instantiate(smallMissilePrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius);
-            derivedRb2d.velocity = Geometry.Rotate(rigidBody2D.velocity, 5);
+            derivedRb2d.linearVelocity = Geometry.Rotate(rigidBody2D.linearVelocity, 5);
             
             derivedObject = Instantiate(smallMissilePrefab, pos, Quaternion.identity);
             derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(smallMissileDamage, smallMissileRadius);
-            derivedRb2d.velocity = Geometry.Rotate(rigidBody2D.velocity, 20);
+            derivedRb2d.linearVelocity = Geometry.Rotate(rigidBody2D.linearVelocity, 20);
         }
 
         public void SetTargetPos(Vector2 pos)

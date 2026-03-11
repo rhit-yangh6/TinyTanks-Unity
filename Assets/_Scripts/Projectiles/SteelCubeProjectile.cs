@@ -77,7 +77,7 @@ namespace _Scripts.Projectiles
                     
                 var rotateDegree = Random.Range(-smallCubeAngleDelta, smallCubeAngleDelta);
                 var speed = Random.Range(5.5f, 9f);
-                derivedRb2d.velocity = Geometry.Rotate(Vector2.up, rotateDegree) * speed;
+                derivedRb2d.linearVelocity = Geometry.Rotate(Vector2.up, rotateDegree) * speed;
             }
         }
     }

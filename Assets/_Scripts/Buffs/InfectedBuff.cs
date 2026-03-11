@@ -1,6 +1,5 @@
 ﻿using _Scripts.Entities;
 using _Scripts.Managers;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Scripts.Buffs
@@ -31,8 +30,7 @@ namespace _Scripts.Buffs
             _finalInfectedDamage = _level switch
             {
                 >= 3 => infectedBuff.infectedDamage * 3,
-                >= 1 => infectedBuff.infectedDamage,
-                _ => _finalInfectedDamage
+                _ => infectedBuff.infectedDamage
             };
         }
 

@@ -75,7 +75,7 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            _moveDirection = rigidBody2D.velocity.x > 0 ? 1 : -1;
+            _moveDirection = rigidBody2D.linearVelocity.x > 0 ? 1 : -1;
             _timeLeft = _moveTime;
         }
 

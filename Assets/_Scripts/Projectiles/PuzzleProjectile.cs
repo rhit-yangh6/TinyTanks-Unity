@@ -127,7 +127,7 @@ namespace _Scripts.Projectiles
             
                 derivedProjectile.SetParameters(Damage, Radius);
                 derivedProjectile.ChangeSprite(i);
-                derivedRb2d.velocity = Geometry.Rotate(Vector2.down, 
+                derivedRb2d.linearVelocity = Geometry.Rotate(Vector2.down, 
                     Random.Range(-skyFallAngleDeviation, skyFallAngleDeviation));
 
                 yield return new WaitForSeconds(0.1f);

@@ -58,9 +58,11 @@ namespace _Scripts.Buffs
 
         protected override void End()
         {
-            _be.MovementSpeed /= _finalMovementSpeedMultiplier;
-            
-            _be.DamageMultiplier /= _finalDamageMultiplier;
+            if (_finalMovementSpeedMultiplier != 0f)
+                _be.MovementSpeed /= _finalMovementSpeedMultiplier;
+
+            if (_finalDamageMultiplier != 0f)
+                _be.DamageMultiplier /= _finalDamageMultiplier;
         }
 
         protected override void TurnTrigger()

@@ -21,7 +21,7 @@ namespace _Scripts.Projectiles
         {
             if (!_isCollided)
             {
-                rigidBody2D.velocity = Vector2.down;
+                rigidBody2D.linearVelocity = Vector2.down;
                 _isCollided = true;
                 return;
             }

@@ -11,9 +11,9 @@ namespace _Scripts.Projectiles
     {
         public GameObject Shooter { get; set; }
         
-        protected new Collider2D collider2D;
+        protected Collider2D projectileCollider;
         protected Rigidbody2D rigidBody2D;
-        protected new Renderer renderer;
+        protected Renderer projectileRenderer;
         protected SpriteRenderer SpriteRenderer;
         protected bool isDetonated;
         
@@ -34,9 +34,9 @@ namespace _Scripts.Projectiles
         private void Awake()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
-            collider2D = GetComponent<Collider2D>();
+            projectileCollider = GetComponent<Collider2D>();
             rigidBody2D = GetComponent<Rigidbody2D>();
-            renderer = GetComponent<Renderer>();
+            projectileRenderer = GetComponent<Renderer>();
         }
 
         protected virtual void Start()
@@ -62,9 +62,9 @@ namespace _Scripts.Projectiles
 
         public IEnumerator TemporarilyDisableCollider()
         {
-            collider2D.enabled = false;
+            projectileCollider.enabled = false;
             yield return new WaitForSeconds(0.1f);
-            collider2D.enabled = true;
+            projectileCollider.enabled = true;
         }
         
         public virtual void Detonate()
@@ -90,18 +90,18 @@ namespace _Scripts.Projectiles
         
         public virtual Tuple<Vector2, float> Disappear()
         {
-            var velocity = rigidBody2D.velocity;
+            var velocity = rigidBody2D.linearVelocity;
             var gravity = rigidBody2D.gravityScale;
             // Stop rigidBody from moving/rotating
             rigidBody2D.gravityScale = 0;
             rigidBody2D.freezeRotation = true;
-            rigidBody2D.velocity = Vector2.zero;
+            rigidBody2D.linearVelocity = Vector2.zero;
 
             // Disable collider
-            collider2D.enabled = false;
+            projectileCollider.enabled = false;
             
             // Stop rendering
-            renderer.enabled = false;
+            projectileRenderer.enabled = false;
 
             return Tuple.Create(velocity, gravity);
         }
@@ -110,26 +110,26 @@ namespace _Scripts.Projectiles
         {
             // Resume rigidBody state
             rigidBody2D.gravityScale = oldInfo.Item2;
-            rigidBody2D.velocity = oldInfo.Item1;
+            rigidBody2D.linearVelocity = oldInfo.Item1;
             rigidBody2D.freezeRotation = false;
             
             // Re-enable collider
-            collider2D.enabled = true;
+            projectileCollider.enabled = true;
             
             // Start Rendering again
-            renderer.enabled = true;
+            projectileRenderer.enabled = true;
         }
 
         public void Spin(float spinSpeed = 1)
         {
             if (isDetonated) return;
-            var velocity = rigidBody2D.velocity;
+            var velocity = rigidBody2D.linearVelocity;
             transform.Rotate(0,0, velocity.x > 0 ? -spinSpeed : spinSpeed);
         }
         
         public void Direct()
         {
-            var velocity = rigidBody2D.velocity;
+            var velocity = rigidBody2D.linearVelocity;
             var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }

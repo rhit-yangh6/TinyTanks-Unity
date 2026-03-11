@@ -33,7 +33,7 @@ namespace _Scripts.Projectiles
         protected override void Start()
         {
             base.Start();
-            var velocity = rigidBody2D.velocity;
+            var velocity = rigidBody2D.linearVelocity;
             rigidBody2D.GetComponent<ConstantForce2D>().force =
                 new Vector3(velocity.x * extraForceXMultiplier, velocity.y * extraForceYMultiplier, 0);
         }
@@ -67,7 +67,7 @@ namespace _Scripts.Projectiles
                 Destroy(rigidBody2D.GetComponent<ConstantForce2D>());
                 rigidBody2D.gravityScale = 0;
                 // TODO: have a minimum speed
-                rigidBody2D.velocity = angleVelocity * (rigidBody2D.velocity.magnitude * selfTrackSpeedMultiplier);
+                rigidBody2D.linearVelocity = angleVelocity * (rigidBody2D.linearVelocity.magnitude * selfTrackSpeedMultiplier);
             }
         }
 

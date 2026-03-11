@@ -21,6 +21,7 @@ namespace _Scripts.UI
         private void Awake()
         {
             gameIsEnded = false;
+            gameIsPaused = false;
         }
 
         private void Start()

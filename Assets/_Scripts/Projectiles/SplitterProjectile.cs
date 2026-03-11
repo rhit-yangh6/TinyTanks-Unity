@@ -67,7 +67,7 @@ namespace _Scripts.Projectiles
             
             derivedProjectile.SetParameters(Damage, Radius);
             derivedProjectile.SetExtraFields(Level == 6);
-            derivedRb2d.velocity = (Vector2.left * 2 + Vector2.up) * spawnVelocity;
+            derivedRb2d.linearVelocity = (Vector2.left * 2 + Vector2.up) * spawnVelocity;
             
             // Second Piece
             derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
@@ -76,7 +76,7 @@ namespace _Scripts.Projectiles
             
             derivedProjectile.SetParameters(Damage, Radius);
             derivedProjectile.SetExtraFields(Level == 6);
-            derivedRb2d.velocity = (Vector2.right * 2 + Vector2.up) * spawnVelocity;
+            derivedRb2d.linearVelocity = (Vector2.right * 2 + Vector2.up) * spawnVelocity;
 
             if (Level == 5 && isUnpredictableSplitSuccessful)
             {
@@ -87,7 +87,7 @@ namespace _Scripts.Projectiles
             
                 derivedProjectile.SetParameters(Damage, Radius);
                 derivedProjectile.SetExtraFields(Level == 6);
-                derivedRb2d.velocity = (Vector2.up * 2 + Vector2.left) * spawnVelocity;
+                derivedRb2d.linearVelocity = (Vector2.up * 2 + Vector2.left) * spawnVelocity;
                     
                 // Fourth Piece
                 derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
@@ -96,7 +96,7 @@ namespace _Scripts.Projectiles
             
                 derivedProjectile.SetParameters(Damage, Radius);
                 derivedProjectile.SetExtraFields(Level == 6);
-                derivedRb2d.velocity = (Vector2.up * 2 + Vector2.right) * spawnVelocity;
+                derivedRb2d.linearVelocity = (Vector2.up * 2 + Vector2.right) * spawnVelocity;
             }
             else if (Level >= 4 && Random.value < thirdProjectileChance)
             {
@@ -107,7 +107,7 @@ namespace _Scripts.Projectiles
             
                 derivedProjectile.SetParameters(Damage, Radius);
                 derivedProjectile.SetExtraFields(Level == 6);
-                derivedRb2d.velocity = Vector2.up * spawnVelocity;
+                derivedRb2d.linearVelocity = Vector2.up * spawnVelocity;
             }
         }
     }

@@ -1,11 +1,11 @@
 using System;
+using System.Collections.Generic;
 using _Scripts.GameEngine;
 using _Scripts.GameEngine.WeaponExtraData;
 using _Scripts.Projectiles;
 using _Scripts.UI;
 using _Scripts.UI.WeaponExternalDisplay;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,7 +17,8 @@ namespace _Scripts.Managers
         
         private static WeaponManager _i;
         private static Weapons _weaponsFromJson;
-        
+        private static Dictionary<int, Weapon> _weaponLookup;
+
         public static WeaponManager Instance
         {
             get
@@ -30,20 +31,22 @@ namespace _Scripts.Managers
                 return _i;
             }
         }
-        
+
         private static void LoadWeapons()
         {
             TextAsset jsonFile = Resources.Load<TextAsset>("Data/Weapons");
 
             _weaponsFromJson = JsonUtility.FromJson<Weapons>(jsonFile.text);
+            _weaponLookup = new Dictionary<int, Weapon>();
+
             foreach (Weapon weapon in _weaponsFromJson.weapons)
             {
                 weapon.weaponIconSprite = Resources.Load<Sprite>("WeaponIcons/" + weapon.dataPath);
                 weapon.projectilePrefab = Resources.Load<GameObject>("ProjectilePrefabs/" + weapon.dataPath);
-                
+
                 if (weapon.hasExternalDisplay)
                 {
-                    weapon.weaponExternalDisplay = 
+                    weapon.weaponExternalDisplay =
                         Resources.Load<GameObject>("WeaponExternalDisplay/" + weapon.dataPath);
 
                     weapon.WeaponExtraData = weapon.id switch
@@ -55,12 +58,13 @@ namespace _Scripts.Managers
                     };
                 }
                 weapon.SetParams();
+                _weaponLookup[weapon.id] = weapon;
             }
         }
 
         public Weapon GetWeaponById(int idToFind)
         {
-            return Array.Find(_weaponsFromJson.weapons, w => w.id == idToFind); 
+            return _weaponLookup.TryGetValue(idToFind, out var weapon) ? weapon : null;
         }
 
         public Weapon[] GetAllWeapons()

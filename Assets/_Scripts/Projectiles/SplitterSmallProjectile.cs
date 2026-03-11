@@ -33,7 +33,7 @@ namespace _Scripts.Projectiles
             var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.velocity = (Vector2.left * 2 + Vector2.up) * spawnVelocity;
+            derivedRb2d.linearVelocity = (Vector2.left * 2 + Vector2.up) * spawnVelocity;
             
             // Second Piece
             derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
@@ -41,7 +41,7 @@ namespace _Scripts.Projectiles
             derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
             derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.velocity = (Vector2.right * 2 + Vector2.up) * spawnVelocity;
+            derivedRb2d.linearVelocity = (Vector2.right * 2 + Vector2.up) * spawnVelocity;
             
             if (Random.value < thirdProjectileChance)
             {
@@ -51,7 +51,7 @@ namespace _Scripts.Projectiles
                 derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
             
                 derivedProjectile.SetParameters(Damage, Radius);
-                derivedRb2d.velocity = Vector2.up * spawnVelocity;
+                derivedRb2d.linearVelocity = Vector2.up * spawnVelocity;
             }
         }
 

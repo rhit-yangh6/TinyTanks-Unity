@@ -118,7 +118,7 @@ namespace _Scripts.Projectiles
                 derivedProjectile.SetIsSplitting();
             }
             derivedProjectile.SetTargetPos(pos);
-            derivedRb2d.velocity = missileVelocity;
+            derivedRb2d.linearVelocity = missileVelocity;
         }
     }
 }

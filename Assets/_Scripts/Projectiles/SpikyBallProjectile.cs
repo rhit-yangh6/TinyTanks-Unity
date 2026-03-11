@@ -65,7 +65,7 @@ namespace _Scripts.Projectiles
                         var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
         
                         derivedProjectile.SetParameters(spikeDamage, spikeRadius);
-                        derivedRb2d.velocity = direction * 25f;
+                        derivedRb2d.linearVelocity = direction * 25f;
                     }
 
                     break;
@@ -83,7 +83,7 @@ namespace _Scripts.Projectiles
         
                         derivedProjectile.SetParameters(Level == 6 ? spikeDamage * 2 : spikeDamage, 
                             Level == 6 ? spikeRadius * 2 : spikeRadius);
-                        derivedRb2d.velocity = direction * 25f;
+                        derivedRb2d.linearVelocity = direction * 25f;
                     }
 
                     break;
@@ -100,7 +100,7 @@ namespace _Scripts.Projectiles
                         var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
         
                         derivedProjectile.SetParameters(spikeDamage, spikeRadius);
-                        derivedRb2d.velocity = direction * 25f;
+                        derivedRb2d.linearVelocity = direction * 25f;
                     }
 
                     break;

@@ -46,20 +46,19 @@ namespace _Scripts.Entities
             if (amount == 0) return;
 
             amount *= DamageMultiplier;
-            var rb = gameObject.GetComponent<Rigidbody2D>();
             var roundedDamageAmount = (int)Math.Round(amount);
-            DamagePopup.Create(rb.position, roundedDamageAmount, isCriticalHit);
-            
+            DamagePopup.Create(Rigidbody2D.position, roundedDamageAmount, isCriticalHit);
+
             // Broadcast DamageDealt Event
             EventBus.Broadcast(EventTypes.DamageDealt, roundedDamageAmount);
-            
+
             if (Health - roundedDamageAmount < 0)
             {
                 Health = 0;
             }
             else if (Health - roundedDamageAmount > MaxHealth)
             {
-                Health = maxHealth;
+                Health = MaxHealth;
             }
             else
             {
@@ -77,14 +76,13 @@ namespace _Scripts.Entities
 
         public void CompleteHeal()
         {
-            var healAmount = (int) (Health - maxHealth);
+            var healAmount = (int)(MaxHealth - Health);
 
             if (healAmount == 0) return;
-            
-            var rb = gameObject.GetComponent<Rigidbody2D>();
-            DamagePopup.Create(rb.position, healAmount, false);
 
-            Health = maxHealth;
+            DamagePopup.Create(Rigidbody2D.position, -healAmount, false);
+
+            Health = MaxHealth;
             healthBar.SetHealth(Health, MaxHealth);
         }
         

@@ -53,7 +53,7 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            rigidBody2D.velocity = Vector2.zero;
+            rigidBody2D.linearVelocity = Vector2.zero;
             rigidBody2D.gravityScale *= gravityScaleMultiplier;
             transform.rotation = Quaternion.identity;
         }

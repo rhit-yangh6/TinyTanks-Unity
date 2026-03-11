@@ -68,7 +68,7 @@ namespace _Scripts.Projectiles
                 if (distance <= MaximumDistance || Level == 6)
                 {
                     _isActivated = true;
-                    _velocity = GetComponent<Rigidbody2D>().velocity;
+                    _velocity = GetComponent<Rigidbody2D>().linearVelocity;
                     _circleRenderer.enabled = false;
                     _originalLocation = transform.position;
                     _teleportLocation = targetLocation;
@@ -113,17 +113,17 @@ namespace _Scripts.Projectiles
                     portalDamage, DamageHandler.DamageType.Circular);
             }
             
-            renderer.enabled = false;
+            projectileRenderer.enabled = false;
             rigidBody2D.gravityScale = 0;
-            rigidBody2D.velocity = Vector2.zero;
+            rigidBody2D.linearVelocity = Vector2.zero;
 
             yield return new WaitForSeconds(1);
 
             _sr.sprite = Level == 5 ? mirrorPortalBall : orangePortalBall;
-            renderer.enabled = true;
+            projectileRenderer.enabled = true;
             rigidBody2D.gravityScale = 1;
             transform.position = _teleportLocation;
-            rigidBody2D.velocity = Level == 5 ? -_velocity : _velocity;
+            rigidBody2D.linearVelocity = Level == 5 ? -_velocity : _velocity;
             
             yield return new WaitForSeconds(0.5f);
             
