@@ -1,5 +1,4 @@
-﻿using System;
-using _Scripts.GameEngine.Map;
+﻿using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using _Scripts.Utils;
 using UnityEngine;
@@ -66,18 +65,13 @@ namespace _Scripts.Projectiles
 
         private void SplitCube()
         {
-            var pos = transform.position;
+            Vector2 pos = transform.position;
             for (var i = 0; i < 4; i++)
             {
-                var derivedObject = Instantiate(smallCubePrefab, pos, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-                    
-                derivedProjectile.SetParameters(smallCubeDamage, smallCubeRadius);
-                    
                 var rotateDegree = Random.Range(-smallCubeAngleDelta, smallCubeAngleDelta);
                 var speed = Random.Range(5.5f, 9f);
-                derivedRb2d.linearVelocity = Geometry.Rotate(Vector2.up, rotateDegree) * speed;
+                SpawnDerived(smallCubePrefab, pos, smallCubeDamage, smallCubeRadius,
+                    Geometry.Rotate(Vector2.up, rotateDegree) * speed);
             }
         }
     }

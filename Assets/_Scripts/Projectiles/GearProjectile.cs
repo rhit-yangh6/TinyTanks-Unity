@@ -164,9 +164,10 @@ namespace _Scripts.Projectiles
             rigidBody2D.freezeRotation = true;
             rigidBody2D.linearVelocity = Vector2.zero;
 
-            // Disable collider
+            // Disable collider and renderer
             projectileCollider.enabled = false;
-            
+            projectileRenderer.enabled = false;
+
             return Tuple.Create(pos, gravityScale);
         }
     }

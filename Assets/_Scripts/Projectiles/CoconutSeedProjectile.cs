@@ -46,75 +46,46 @@ namespace _Scripts.Projectiles
         private IEnumerator GrowCoconutTree()
         {
             var pos = transform.position;
-            var coconutTree = 
+            var coconutTree =
                 Instantiate(GameAssets.i.coconutTreeFX, new Vector2(pos.x, pos.y - 1.5f),
                     Quaternion.identity);
 
             yield return new WaitForSeconds(2.2f);
-            
-            // First Coconut
-            var derivedObject = Instantiate(coconutProjectilePrefab, 
-                new Vector2(pos.x - 1.0f, pos.y + 3.1f), 
-                Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<CoconutProjectile>();
-            derivedProjectile.SetParameters(Damage, coconutRadius);
 
-            if (Level == 5)
-            {
-                derivedObject.GetComponent<SpriteRenderer>().sprite = coconutIceSprite;
-                derivedProjectile.isIced = true;
-            }
-
-            yield return new WaitForSeconds(0.15f);
-            
-            // Second Coconut
-            derivedObject = Instantiate(coconutProjectilePrefab, 
-                new Vector2(pos.x + 0.8f, pos.y + 3.3f), 
-                Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<CoconutProjectile>();
-            derivedProjectile.SetParameters(Damage, coconutRadius);
-            
-            if (Level == 5)
-            {
-                derivedObject.GetComponent<SpriteRenderer>().sprite = coconutIceSprite;
-                derivedProjectile.isIced = true;
-            }
-            
+            SpawnCoconut(new Vector2(pos.x - 1.0f, pos.y + 3.1f));
             yield return new WaitForSeconds(0.15f);
 
-            // Third Coconut
+            SpawnCoconut(new Vector2(pos.x + 0.8f, pos.y + 3.3f));
+            yield return new WaitForSeconds(0.15f);
+
             if (Level >= 4)
             {
-                derivedObject = Instantiate(coconutProjectilePrefab, 
-                    new Vector2(pos.x + 0.1f, pos.y + 3.2f), 
-                    Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<CoconutProjectile>();
-                derivedProjectile.SetParameters(Damage, coconutRadius);
-                
-                if (Level == 5)
-                {
-                    derivedObject.GetComponent<SpriteRenderer>().sprite = coconutIceSprite;
-                    derivedProjectile.isIced = true;
-                }
+                SpawnCoconut(new Vector2(pos.x + 0.1f, pos.y + 3.2f));
             }
-            
             yield return new WaitForSeconds(0.15f);
-            
-            // Fourth Coconut
+
             if (Level == 6)
             {
-                derivedObject = Instantiate(coconutProjectilePrefab, 
-                    new Vector2(pos.x - 0.5f, pos.y + 3.5f), 
-                    Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<CoconutProjectile>();
-                derivedProjectile.SetParameters(Damage, coconutRadius);
+                SpawnCoconut(new Vector2(pos.x - 0.5f, pos.y + 3.5f));
             }
-            
-            // Wait for everything finished
+
             yield return new WaitForSeconds(1.5f);
-            
+
             Destroy(coconutTree);
             Destroy(gameObject);
+        }
+
+        private void SpawnCoconut(Vector2 spawnPos)
+        {
+            var obj = Instantiate(coconutProjectilePrefab, spawnPos, Quaternion.identity);
+            var coconut = obj.GetComponent<CoconutProjectile>();
+            coconut.SetParameters(Damage, coconutRadius);
+
+            if (Level == 5)
+            {
+                obj.GetComponent<SpriteRenderer>().sprite = coconutIceSprite;
+                coconut.isIced = true;
+            }
         }
     }
 }

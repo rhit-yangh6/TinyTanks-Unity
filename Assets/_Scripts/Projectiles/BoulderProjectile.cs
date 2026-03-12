@@ -1,5 +1,3 @@
-using System;
-using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using _Scripts.Utils;
 using UnityEngine;
@@ -78,22 +76,9 @@ namespace _Scripts.Projectiles
 
         private void SpawnPieces()
         {
-            var pos = transform.position;
-            // First Piece
-            var derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(boulderPieceDamage, boulderPieceRadius);
-            derivedRb2d.linearVelocity = (Vector2.left + Vector2.up * 2) * 3f;
-            
-            // Second Piece
-            derivedObject = Instantiate(boulderPiecePrefab, pos, Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(boulderPieceDamage, boulderPieceRadius);
-            derivedRb2d.linearVelocity = (Vector2.right + Vector2.up * 2) * 3f;
+            Vector2 pos = transform.position;
+            SpawnDerived(boulderPiecePrefab, pos, boulderPieceDamage, boulderPieceRadius, (Vector2.left + Vector2.up * 2) * 3f);
+            SpawnDerived(boulderPiecePrefab, pos, boulderPieceDamage, boulderPieceRadius, (Vector2.right + Vector2.up * 2) * 3f);
         }
     }
 }

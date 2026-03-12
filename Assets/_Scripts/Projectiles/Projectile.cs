@@ -31,12 +31,24 @@ namespace _Scripts.Projectiles
         protected virtual float MaxMagnitude => maxMagnitude;
         protected virtual int Steps => steps;
         
-        private void Awake()
+        protected virtual void Awake()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
             projectileCollider = GetComponent<Collider2D>();
             rigidBody2D = GetComponent<Rigidbody2D>();
             projectileRenderer = GetComponent<Renderer>();
+        }
+
+        /// <summary>
+        /// Spawns a derived projectile with damage, radius, and velocity.
+        /// Returns the instantiated GameObject for further configuration.
+        /// </summary>
+        protected static GameObject SpawnDerived(GameObject prefab, Vector2 position, float dmg, float rad, Vector2 velocity)
+        {
+            var obj = Instantiate(prefab, position, Quaternion.identity);
+            obj.GetComponent<DerivedProjectile>().SetParameters(dmg, rad);
+            obj.GetComponent<Rigidbody2D>().linearVelocity = velocity;
+            return obj;
         }
 
         protected virtual void Start()

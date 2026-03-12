@@ -1,5 +1,4 @@
-﻿using System;
-using _Scripts.Managers;
+﻿using _Scripts.Managers;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
@@ -40,71 +39,29 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            GameObject derivedObject;
-            DerivedProjectile derivedProjectile;
+            Vector2 pos = transform.position;
 
             if (Level >= 3)
             {
-                derivedObject = Instantiate(ballPrefab, transform.position, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                derivedProjectile.SetParameters(Damage, Radius);
+                var ballObj = Instantiate(ballPrefab, pos, Quaternion.identity);
+                ballObj.GetComponent<DerivedProjectile>().SetParameters(Damage, Radius);
             }
 
-
-            switch (Level)
+            var (directions, count) = Level switch
             {
-                case 5:
-                {
-                    for (var i = 0; i < 12; i++)
-                    {
-                        var direction = Vector3.Normalize(Vector2.right * _twelveDirections[i, 0] +
-                                                          Vector2.up * _twelveDirections[i, 1]);
-                
-                        derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
-                        derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                        var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-        
-                        derivedProjectile.SetParameters(spikeDamage, spikeRadius);
-                        derivedRb2d.linearVelocity = direction * 25f;
-                    }
+                5 => (_twelveDirections, 12),
+                >= 4 => (_eightDirections, 8),
+                _ => (_fourDirections, 4)
+            };
 
-                    break;
-                }
-                case >= 4:
-                {
-                    for (var i = 0; i < 8; i++)
-                    {
-                        var direction = Vector3.Normalize(Vector2.right * _eightDirections[i, 0] +
-                                                          Vector2.up * _eightDirections[i, 1]);
-                
-                        derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
-                        derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                        var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-        
-                        derivedProjectile.SetParameters(Level == 6 ? spikeDamage * 2 : spikeDamage, 
-                            Level == 6 ? spikeRadius * 2 : spikeRadius);
-                        derivedRb2d.linearVelocity = direction * 25f;
-                    }
+            var finalDamage = Level == 6 ? spikeDamage * 2 : spikeDamage;
+            var finalRadius = Level == 6 ? spikeRadius * 2 : spikeRadius;
 
-                    break;
-                }
-                default:
-                {
-                    for (var i = 0; i < 4; i++)
-                    {
-                        var direction = Vector3.Normalize(Vector2.right * _fourDirections[i, 0] +
-                                                          Vector2.up * _fourDirections[i, 1]);
-                
-                        derivedObject = Instantiate(spikePrefab, transform.position, Quaternion.identity);
-                        derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                        var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-        
-                        derivedProjectile.SetParameters(spikeDamage, spikeRadius);
-                        derivedRb2d.linearVelocity = direction * 25f;
-                    }
-
-                    break;
-                }
+            for (var i = 0; i < count; i++)
+            {
+                var direction = Vector3.Normalize(
+                    Vector2.right * directions[i, 0] + Vector2.up * directions[i, 1]);
+                SpawnDerived(spikePrefab, pos, finalDamage, finalRadius, direction * 25f);
             }
         }
     }

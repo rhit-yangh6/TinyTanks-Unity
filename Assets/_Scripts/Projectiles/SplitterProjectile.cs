@@ -1,6 +1,3 @@
-using System;
-using _Scripts.GameEngine.Map;
-using _Scripts.Managers;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -59,56 +56,26 @@ namespace _Scripts.Projectiles
                 Detonate();
                 return;
             }
-            var pos = transform.position;
-            // First Piece
-            var derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<SplitterSmallProjectile>();
-            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(Damage, Radius);
-            derivedProjectile.SetExtraFields(Level == 6);
-            derivedRb2d.linearVelocity = (Vector2.left * 2 + Vector2.up) * spawnVelocity;
-            
-            // Second Piece
-            derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<SplitterSmallProjectile>();
-            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(Damage, Radius);
-            derivedProjectile.SetExtraFields(Level == 6);
-            derivedRb2d.linearVelocity = (Vector2.right * 2 + Vector2.up) * spawnVelocity;
+
+            Vector2 pos = transform.position;
+            SpawnSplitter(pos, (Vector2.left * 2 + Vector2.up) * spawnVelocity);
+            SpawnSplitter(pos, (Vector2.right * 2 + Vector2.up) * spawnVelocity);
 
             if (Level == 5 && isUnpredictableSplitSuccessful)
             {
-                // Third Piece
-                derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<SplitterSmallProjectile>();
-                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(Damage, Radius);
-                derivedProjectile.SetExtraFields(Level == 6);
-                derivedRb2d.linearVelocity = (Vector2.up * 2 + Vector2.left) * spawnVelocity;
-                    
-                // Fourth Piece
-                derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<SplitterSmallProjectile>();
-                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(Damage, Radius);
-                derivedProjectile.SetExtraFields(Level == 6);
-                derivedRb2d.linearVelocity = (Vector2.up * 2 + Vector2.right) * spawnVelocity;
+                SpawnSplitter(pos, (Vector2.up * 2 + Vector2.left) * spawnVelocity);
+                SpawnSplitter(pos, (Vector2.up * 2 + Vector2.right) * spawnVelocity);
             }
             else if (Level >= 4 && Random.value < thirdProjectileChance)
             {
-                // Third Piece
-                derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<SplitterSmallProjectile>();
-                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(Damage, Radius);
-                derivedProjectile.SetExtraFields(Level == 6);
-                derivedRb2d.linearVelocity = Vector2.up * spawnVelocity;
+                SpawnSplitter(pos, Vector2.up * spawnVelocity);
             }
+        }
+
+        private void SpawnSplitter(Vector2 pos, Vector2 velocity)
+        {
+            var obj = SpawnDerived(splitterSmallPrefab, pos, Damage, Radius, velocity);
+            obj.GetComponent<SplitterSmallProjectile>().SetExtraFields(Level == 6);
         }
     }
 }

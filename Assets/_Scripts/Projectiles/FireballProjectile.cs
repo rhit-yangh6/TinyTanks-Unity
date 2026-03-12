@@ -38,13 +38,8 @@ namespace _Scripts.Projectiles
             while (!isDetonated)
             {
                 yield return new WaitForSeconds(summonInterval);
-                var derivedObject = Instantiate(fireballSmallPrefab, gameObject.transform.position, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-                
-                derivedProjectile.SetParameters(fireballSmallDamage, fireballSmallRadius);
-                derivedRb2d.linearVelocity = Vector2.zero;
-                
+                SpawnDerived(fireballSmallPrefab, transform.position, fireballSmallDamage, fireballSmallRadius, Vector2.zero);
+
                 var spawnTimes = SteamManager.IncrementStat(Constants.StatSmallFireballSpawned);
                 if (spawnTimes >= 100)
                 {

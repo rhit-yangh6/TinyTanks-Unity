@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using _Scripts.Managers;
 using MoreMountains.Feedbacks;
-using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -86,37 +84,18 @@ namespace _Scripts.Projectiles
 
         public void SpawnPieces()
         {
-            // Spawn three smaller ones
-            var pos = transform.position;
-            // First Piece
-            var derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
-            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-        
-            derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
-            derivedProjectile.SetOtherParameters(damageInterval, moveTime);
-            derivedProjectile.Shooter = Shooter;
-            derivedRb2d.linearVelocity = (Vector2.left + Vector2.up * 2) * 3f;
-            
-            // Second Piece
-            derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
-            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-        
-            derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
-            derivedProjectile.SetOtherParameters(damageInterval, moveTime);
-            derivedProjectile.Shooter = Shooter;
-            derivedRb2d.linearVelocity = (Vector2.right + Vector2.up * 2) * 3f;
-            
-            // Third Piece - 50/50 Left/Right
-            derivedObject = Instantiate(sawBladeSmallPrefab, pos, Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<SawBladeSmallProjectile>();
-            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-        
-            derivedProjectile.SetParameters(sawBladeSmallDamage, Radius);
-            derivedProjectile.SetOtherParameters(damageInterval, moveTime);
-            derivedProjectile.Shooter = Shooter;
-            derivedRb2d.linearVelocity = (Random.value > 0.5 ? Vector2.right : Vector2.left + Vector2.up * 3) * 3f;
+            Vector2 pos = transform.position;
+            SpawnSmallBlade(pos, (Vector2.left + Vector2.up * 2) * 3f);
+            SpawnSmallBlade(pos, (Vector2.right + Vector2.up * 2) * 3f);
+            SpawnSmallBlade(pos, (Random.value > 0.5 ? Vector2.right : Vector2.left + Vector2.up * 3) * 3f);
+        }
+
+        private void SpawnSmallBlade(Vector2 pos, Vector2 velocity)
+        {
+            var obj = SpawnDerived(sawBladeSmallPrefab, pos, sawBladeSmallDamage, Radius, velocity);
+            var blade = obj.GetComponent<SawBladeSmallProjectile>();
+            blade.SetOtherParameters(damageInterval, moveTime);
+            blade.Shooter = Shooter;
         }
 
         public override void Detonate()

@@ -114,21 +114,15 @@ namespace _Scripts.Projectiles
         private IEnumerator SkyFall()
         {
             var pos = transform.position;
-            // RayCast to sky
             var hit = Physics2D.Raycast(pos, Vector2.up, 1000, layerMask);
-            
-            // Calculate missile spawn point
             var spawnPos = new Vector2(hit.point.x, hit.point.y + YOffset);
+
             for (var i = 0; i < 4; i++)
             {
-                var derivedObject = Instantiate(fallPiecePrefab, spawnPos, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<PuzzleFallProjectile>();
-                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(Damage, Radius);
-                derivedProjectile.ChangeSprite(i);
-                derivedRb2d.linearVelocity = Geometry.Rotate(Vector2.down, 
+                var velocity = Geometry.Rotate(Vector2.down,
                     Random.Range(-skyFallAngleDeviation, skyFallAngleDeviation));
+                var obj = SpawnDerived(fallPiecePrefab, spawnPos, Damage, Radius, velocity);
+                obj.GetComponent<PuzzleFallProjectile>().ChangeSprite(i);
 
                 yield return new WaitForSeconds(0.1f);
             }

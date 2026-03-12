@@ -1,5 +1,3 @@
-using System;
-using _Scripts.Managers;
 using _Scripts.Utils;
 using UnityEngine;
 
@@ -38,37 +36,14 @@ namespace _Scripts.Projectiles
         private void SpawnSecondaryProjectiles()
         {
             var velocity = rigidBody2D.linearVelocity;
-            var pos = transform.position;
-            
-            // Make clones
-            var derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.linearVelocity = Geometry.Rotate(velocity, BulletDispersion);
-            
-            derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.linearVelocity = Geometry.Rotate(velocity, -BulletDispersion);
+            Vector2 pos = transform.position;
+
+            SpawnDerived(shotgunSecondaryPrefab, pos, Damage, Radius, Geometry.Rotate(velocity, BulletDispersion));
+            SpawnDerived(shotgunSecondaryPrefab, pos, Damage, Radius, Geometry.Rotate(velocity, -BulletDispersion));
 
             if (Level != 5) return;
-            derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.linearVelocity = Geometry.Rotate(velocity, 2*BulletDispersion);
-                
-            derivedObject = Instantiate(shotgunSecondaryPrefab, pos, Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-
-            derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.linearVelocity = Geometry.Rotate(velocity, -2*BulletDispersion);
+            SpawnDerived(shotgunSecondaryPrefab, pos, Damage, Radius, Geometry.Rotate(velocity, 2 * BulletDispersion));
+            SpawnDerived(shotgunSecondaryPrefab, pos, Damage, Radius, Geometry.Rotate(velocity, -2 * BulletDispersion));
         }
     }
 }

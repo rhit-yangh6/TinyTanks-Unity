@@ -99,26 +99,12 @@ namespace _Scripts.Projectiles
                 Random.Range(-MissileDeviateAngle, MissileDeviateAngle)) * MissileSpeed;
             
             // Instantiate Missile
-            var derivedObject = Instantiate(missilePrefab, missilePos, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<AirstrikeMissileProjectile>();
-            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-
-            if (isCarpetBombing)
-            {
-                derivedProjectile.SetParameters(Damage * carpetBombingMultiplier,
-                    Radius * carpetBombingMultiplier);
-            }
-            else
-            {
-                derivedProjectile.SetParameters(Damage, Radius);
-            }
-
-            if (Level == 6)
-            {
-                derivedProjectile.SetIsSplitting();
-            }
-            derivedProjectile.SetTargetPos(pos);
-            derivedRb2d.linearVelocity = missileVelocity;
+            var missileDamage = isCarpetBombing ? Damage * carpetBombingMultiplier : Damage;
+            var missileRadius = isCarpetBombing ? Radius * carpetBombingMultiplier : Radius;
+            var obj = SpawnDerived(missilePrefab, missilePos, missileDamage, missileRadius, missileVelocity);
+            var missile = obj.GetComponent<AirstrikeMissileProjectile>();
+            if (Level == 6) missile.SetIsSplitting();
+            missile.SetTargetPos(pos);
         }
     }
 }

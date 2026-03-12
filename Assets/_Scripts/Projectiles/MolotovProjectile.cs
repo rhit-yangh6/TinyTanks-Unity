@@ -100,14 +100,10 @@ namespace _Scripts.Projectiles
             Vector2 pos = transform.position;
             for (var i = 0; i < FlameNumber; i++)
             {
-                var derivedObject = Instantiate(flamePrefab, pos + Vector2.up, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<FlameProjectile>();
-                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-                derivedProjectile.SetParameters(FlameDamage, flameRadius);
-                derivedProjectile.SetLifeSpan(FlameLifeSpan);
-
                 var angle = Random.Range(-FlameSpreadRange / 2, FlameSpreadRange / 2);
-                derivedRb2d.linearVelocity =  Geometry.Rotate(Vector2.up * flameSpeed, angle);
+                var velocity = Geometry.Rotate(Vector2.up * flameSpeed, angle);
+                var obj = SpawnDerived(flamePrefab, pos + Vector2.up, FlameDamage, flameRadius, velocity);
+                obj.GetComponent<FlameProjectile>().SetLifeSpan(FlameLifeSpan);
             }
         }
     }

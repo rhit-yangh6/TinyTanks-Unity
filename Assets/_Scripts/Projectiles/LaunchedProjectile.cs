@@ -8,11 +8,9 @@ namespace _Scripts.Projectiles
         public WeaponExtraData WeaponExtraData;
         public int Level { get; set; }
 
-        private void Awake()
+        protected override void Awake()
         {
-            projectileCollider = GetComponent<Collider2D>();
-            rigidBody2D = GetComponent<Rigidbody2D>();
-            projectileRenderer = GetComponent<Renderer>();
+            base.Awake();
             StartCoroutine(TemporarilyDisableCollider());
         }
 

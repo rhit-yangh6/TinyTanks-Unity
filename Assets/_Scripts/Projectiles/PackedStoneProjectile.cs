@@ -1,4 +1,3 @@
-using System;
 using _Scripts.Managers;
 using _Scripts.Utils;
 using MoreMountains.Feedbacks;
@@ -85,19 +84,15 @@ namespace _Scripts.Projectiles
         
         private void SpawnSmallStones(int amount)
         {
-            var pos = transform.position;
+            Vector2 pos = transform.position;
             var currentVelocity = rigidBody2D.linearVelocity;
             var currentAngle = -SmallProjectileSpread;
             var angleStep = (SmallProjectileSpread * 2) / (amount - 1);
 
             for (var i = 0; i < amount; i++)
             {
-                var derivedObject = Instantiate(packedStoneSmallPrefab, pos, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(PackedStoneSmallDamage, PackedStoneSmallRadius);
-                derivedRb2d.linearVelocity = Geometry.Rotate(currentVelocity, currentAngle);
+                SpawnDerived(packedStoneSmallPrefab, pos, PackedStoneSmallDamage, PackedStoneSmallRadius,
+                    Geometry.Rotate(currentVelocity, currentAngle));
                 currentAngle += angleStep;
             }
         }

@@ -26,32 +26,13 @@ namespace _Scripts.Projectiles
 
         public override void Activate()
         {
-            var pos = transform.position;
-            // First Piece
-            var derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.linearVelocity = (Vector2.left * 2 + Vector2.up) * spawnVelocity;
-            
-            // Second Piece
-            derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
-            derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(Damage, Radius);
-            derivedRb2d.linearVelocity = (Vector2.right * 2 + Vector2.up) * spawnVelocity;
-            
+            Vector2 pos = transform.position;
+            SpawnDerived(splitterSmallPrefab, pos, Damage, Radius, (Vector2.left * 2 + Vector2.up) * spawnVelocity);
+            SpawnDerived(splitterSmallPrefab, pos, Damage, Radius, (Vector2.right * 2 + Vector2.up) * spawnVelocity);
+
             if (Random.value < thirdProjectileChance)
             {
-                // Third Piece
-                derivedObject = Instantiate(splitterSmallPrefab, pos, Quaternion.identity);
-                derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-                derivedProjectile.SetParameters(Damage, Radius);
-                derivedRb2d.linearVelocity = Vector2.up * spawnVelocity;
+                SpawnDerived(splitterSmallPrefab, pos, Damage, Radius, Vector2.up * spawnVelocity);
             }
         }
 

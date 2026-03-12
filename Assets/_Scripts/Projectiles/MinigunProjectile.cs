@@ -1,9 +1,5 @@
-using System;
 using System.Collections;
-using _Scripts.GameEngine.Map;
-using _Scripts.Managers;
 using _Scripts.Utils;
-using TerraformingTerrain2d;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -65,23 +61,13 @@ namespace _Scripts.Projectiles
             // Minigun wind-up time
             yield return new WaitForSeconds(windUpSpeed);
             Reappear(oldInfo);
-            SpawnBulletShell();
+            Instantiate(bulletShellPrefab, _initialPosition, Quaternion.identity);
             
             for (var i = 0; i < Bullets - 1; i++)
             {
-                if (Level >= 4)
-                {
-                    _bulletDamage += damageIncrease;
-                }
+                if (Level >= 4) _bulletDamage += damageIncrease;
                 yield return new WaitForSeconds(0.2f);
-                var derivedObject = Instantiate(secondaryBulletPrefab, _initialPosition, Quaternion.identity);
-                var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                var derivedRigidBody2D = derivedObject.GetComponent<Rigidbody2D>();
-                
-                derivedProjectile.SetParameters(_bulletDamage, Radius);
-                derivedRigidBody2D.linearVelocity = Geometry.Rotate(_initialVelocity, 
-                                                  CalculateBulletDispersion()) * velocityMultiplier;
-                SpawnBulletShell();
+                SpawnBullet();
             }
 
             if (Level == 6)
@@ -91,20 +77,15 @@ namespace _Scripts.Projectiles
                 {
                     _bulletDamage += damageIncrease;
                     yield return new WaitForSeconds(0.2f);
-                    var derivedObject = Instantiate(secondaryBulletPrefab, _initialPosition, Quaternion.identity);
-                    var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-                    var derivedRigidBody2D = derivedObject.GetComponent<Rigidbody2D>();
-                
-                    derivedProjectile.SetParameters(_bulletDamage, Radius);
-                    derivedRigidBody2D.linearVelocity = Geometry.Rotate(_initialVelocity, 
-                        CalculateBulletDispersion()) * velocityMultiplier;
-                    SpawnBulletShell();
+                    SpawnBullet();
                 }
             }
         }
 
-        private void SpawnBulletShell()
+        private void SpawnBullet()
         {
+            var velocity = Geometry.Rotate(_initialVelocity, CalculateBulletDispersion()) * velocityMultiplier;
+            SpawnDerived(secondaryBulletPrefab, _initialPosition, _bulletDamage, Radius, velocity);
             Instantiate(bulletShellPrefab, _initialPosition, Quaternion.identity);
         }
 
@@ -114,20 +95,5 @@ namespace _Scripts.Projectiles
         {
             return Random.Range(-BulletDispersion, BulletDispersion);
         }
-
-        // public override void DealDamage()
-        // {
-        //     var pos = transform.position;
-        //
-        //     var isCritical = false;
-        //     if (Level >= 4) isCritical = Random.value > 0.75;
-        //     if (Level == 6) isCritical = true;
-        //
-        //     DamageHandler.i.HandleDamage(pos, Radius, isCritical ? Damage * 1.5f : Damage, 
-        //         DamageHandler.DamageType.Circular, isCritical);
-        //
-        //     if (Level >= 3) EventBus.Broadcast(EventTypes.DestroyTerrain, pos,
-        //         Radius, 1, DestroyTypes.Circular);
-        // }
     }
 }

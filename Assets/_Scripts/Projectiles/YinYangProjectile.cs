@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using _Scripts.GameEngine.Map;
+﻿using _Scripts.GameEngine.Map;
 using _Scripts.Managers;
 using _Scripts.Utils;
 using MoreMountains.Feedbacks;
@@ -140,32 +138,24 @@ namespace _Scripts.Projectiles
                 WhiteRadius, 1, DestroyTypes.Circular);
             
             if (Level != 6) return;
-            
-            var derivedObject = Instantiate(yinYangSplitBlackPrefab, transform.position + Vector3.up, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(blackDamage, BlackRadius);
-            derivedRb2d.linearVelocity = Geometry.Rotate(Vector2.up,
-                Random.Range(-splitOrbDeviateAngle, splitOrbDeviateAngle)) *
-                                   (splitOrbSpeed + Random.Range(-splitOrbDeviateSpeed, splitOrbDeviateSpeed));
+            SpawnSplitOrb(yinYangSplitBlackPrefab, blackDamage, BlackRadius);
         }
 
         private void DealBlackDamage()
         {
             var pos = transform.position;
             DamageHandler.i.HandleDamage(pos, BlackRadius, blackDamage, DamageHandler.DamageType.Circular);
-            
+
             if (Level != 6) return;
-            
-            var derivedObject = Instantiate(yinYangSplitWhitePrefab, transform.position + Vector3.up, Quaternion.identity);
-            var derivedProjectile = derivedObject.GetComponent<DerivedProjectile>();
-            var derivedRb2d = derivedObject.GetComponent<Rigidbody2D>();
-            
-            derivedProjectile.SetParameters(WhiteDamage, WhiteRadius);
-            derivedRb2d.linearVelocity = Geometry.Rotate(Vector2.up,
+            SpawnSplitOrb(yinYangSplitWhitePrefab, WhiteDamage, WhiteRadius);
+        }
+
+        private void SpawnSplitOrb(GameObject prefab, float dmg, float rad)
+        {
+            var velocity = Geometry.Rotate(Vector2.up,
                 Random.Range(-splitOrbDeviateAngle, splitOrbDeviateAngle)) *
-                                   (splitOrbSpeed + Random.Range(-splitOrbDeviateSpeed, splitOrbDeviateSpeed));
+                (splitOrbSpeed + Random.Range(-splitOrbDeviateSpeed, splitOrbDeviateSpeed));
+            SpawnDerived(prefab, (Vector2)transform.position + Vector2.up, dmg, rad, velocity);
         }
 
         private void DealHarmonyDamage()
