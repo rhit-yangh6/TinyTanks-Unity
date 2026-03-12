@@ -19,7 +19,7 @@ namespace _Scripts.Projectiles
         protected override int Steps {
             get
             {
-                if (Level == 4) return (int)(steps * 3f); // LEVEL 4
+                if (Level >= 5) return (int)(steps * 3f); // LEVEL 5
                 return Level >= 2 ? (int)(steps * 1.5f) : steps; // LEVEL 2+
             }
         }

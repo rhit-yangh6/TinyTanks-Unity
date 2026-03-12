@@ -89,6 +89,15 @@ namespace _Scripts.Projectiles
             Instantiate(bulletShellPrefab, _initialPosition, Quaternion.identity);
         }
 
+        // Main minigun projectile doesn't deal damage — only spawned bullets do
+        protected override void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.CompareTag("DangerZone"))
+            {
+                Destroy(gameObject);
+            }
+        }
+
         private void Update() { Direct(); }
 
         private float CalculateBulletDispersion()
