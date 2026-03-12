@@ -44,7 +44,7 @@ namespace Destructible2D.Examples
 						var position = D2dCommon.ScreenToWorldPosition(center, Intercept, camera);
 						var factor   = CwHelper.DampenFactor(Damping, Time.fixedDeltaTime);
 
-						Target.velocity += (Vector2)(position - Target.transform.position) * factor;
+						Target.linearVelocity += (Vector2)(position - Target.transform.position) * factor;
 					}
 				}
 			}

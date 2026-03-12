@@ -24,6 +24,15 @@ namespace _Scripts.GameEngine.Map
             EventBus.RemoveListener<Vector3, float, int, DestroyTypes>(EventTypes.DestroyTerrain, DestroyTerrainHandler);
         }
 
+        /// <summary>
+        /// Public entry point for terrain destruction, callable by TerrainSyncManager
+        /// to replay deformation on multiplayer clients without going through EventBus.
+        /// </summary>
+        public void DestroyTerrainDirect(Vector3 pos, float radius, int destroyingPower, DestroyTypes type)
+        {
+            DestroyTerrainHandler(pos, radius, destroyingPower, type);
+        }
+
         private void DestroyTerrainHandler(Vector3 pos, float radius, int destroyingPower, DestroyTypes type)
         {
             switch (type)

@@ -62,13 +62,13 @@ namespace _Scripts.Projectiles
                 
                 if (ReferenceEquals(Shooter, rb.gameObject))
                 {
-                    var playerController = Shooter.GetComponent<PlayerController>();
-                    if (playerController != null)
+                    var buffable = Shooter.GetComponent<BuffableEntity>();
+                    if (buffable != null)
                     {
-                        playerController.Refuel(FuelAmount);
+                        buffable.Refuel(FuelAmount);
                         if (Level == 6)
                         {
-                            playerController.AddBuff(GameAssets.i.superchargedBuff.InitializeBuff(col.gameObject, 1));
+                            buffable.AddBuff(GameAssets.i.superchargedBuff.InitializeBuff(col.gameObject, 1));
                         }
                     }
                 }

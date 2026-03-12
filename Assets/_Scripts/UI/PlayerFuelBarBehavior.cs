@@ -30,7 +30,7 @@ namespace _Scripts.UI
 
         public void Update()
         {
-            SetFuel(_player.fuel, _player.maxFuel);
+            SetFuel(_player.Fuel, _player.MaxFuel);
         }
 
     }

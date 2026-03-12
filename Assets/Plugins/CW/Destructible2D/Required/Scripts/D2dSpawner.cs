@@ -67,7 +67,7 @@ namespace Destructible2D
 
 				if (body != null)
 				{
-					body.velocity = rotation * forward.normalized * Random.Range(speedMin, speedMax);
+					body.linearVelocity = rotation * forward.normalized * Random.Range(speedMin, speedMax);
 				}
 			}
 		}

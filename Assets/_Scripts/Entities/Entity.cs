@@ -10,7 +10,6 @@ namespace _Scripts.Entities
 {
     public abstract class Entity: MonoBehaviour
     {
-        [SerializeField] [Range(0, 20f)] private float rotationTolerance;
         [SerializeField] protected LayerMask layerMask;
 
         public float Health { get; set; }
@@ -22,9 +21,6 @@ namespace _Scripts.Entities
         [SerializeField] protected Transform topLeft, bottomRight;
 
         protected virtual float MaxHealth => maxHealth;
-
-        // Rotation Angle of the entity
-        private float _angle;
         
         // Rb2D
         protected Rigidbody2D Rigidbody2D;
@@ -96,40 +92,25 @@ namespace _Scripts.Entities
 
         protected void AdjustRotation()
         {
-            Vector2 leftCheckPos = transform.position - new Vector3(ColliderSize.x / 2, 0);
-            Vector2 rightCheckPos = transform.position + new Vector3(ColliderSize.x / 2, 0);
-            
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, layerMask);
-            RaycastHit2D hitRight = Physics2D.Raycast(rightCheckPos, Vector2.down, 2f, layerMask);
-            RaycastHit2D hitLeft = Physics2D.Raycast(leftCheckPos, Vector2.down, 2f, layerMask);
+            RaycastHit2D hit = Physics2D.Raycast(
+                (Vector2)transform.position + Vector2.up * 0.5f,
+                Vector2.down, 3f, layerMask);
 
             if (hit.collider)
             {
-                var hitCount = 1;
-                var totalAngle = Vector2.SignedAngle(hit.normal, Vector2.up);
-
-                if (hitRight.collider)
-                {
-                    totalAngle += Vector2.SignedAngle(hitRight.normal, Vector2.up);
-                    hitCount += 1;
-                }
-
-                if (hitLeft.collider)
-                {
-                    totalAngle += Vector2.SignedAngle(hitLeft.normal, Vector2.up);
-                    hitCount += 1;
-                }
-
-                var finalAngle = totalAngle / hitCount;
-
-                transform.eulerAngles = Math.Abs(finalAngle - _angle) > rotationTolerance ?
-                    new Vector3 (0, 0, -finalAngle) :
-                    new Vector3 (0, 0, -_angle);
-                _angle = finalAngle;
+                float targetAngle = -Vector2.SignedAngle(hit.normal, Vector2.up);
+                // Smooth rotation to avoid jitter
+                float current = transform.eulerAngles.z;
+                if (current > 180f) current -= 360f;
+                float smoothed = Mathf.LerpAngle(current, targetAngle, 10f * Time.deltaTime);
+                transform.eulerAngles = new Vector3(0, 0, smoothed);
             }
             else
             {
-                transform.eulerAngles = new Vector3 (0, 0, 0);
+                float current = transform.eulerAngles.z;
+                if (current > 180f) current -= 360f;
+                float smoothed = Mathf.LerpAngle(current, 0f, 10f * Time.deltaTime);
+                transform.eulerAngles = new Vector3(0, 0, smoothed);
             }
         }
 
@@ -159,6 +140,17 @@ namespace _Scripts.Entities
         public float GetHealthPercentage()
         {
             return Health / MaxHealth;
+        }
+
+        /// <summary>
+        /// Display damage visuals (popup, health bar update) without re-running damage logic.
+        /// Used by multiplayer clients who receive health updates via NetworkVariable.
+        /// </summary>
+        public virtual void TakeDamageVisualOnly(float amount, bool isCriticalHit)
+        {
+            var roundedDamageAmount = (int)System.Math.Round(amount);
+            DamagePopup.Create(Rigidbody2D.position, roundedDamageAmount, isCriticalHit);
+            healthBar.SetHealth(Health, MaxHealth);
         }
     }
 }

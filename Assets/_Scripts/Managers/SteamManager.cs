@@ -25,12 +25,20 @@ namespace _Scripts.Managers
                 return _i;
             }
         }
+
+        /// <summary>
+        /// Returns the local user's SteamId.
+        /// </summary>
+        public static SteamId SteamId => SteamClient.SteamId;
         // Start is called before the first frame update
         private void Start()
         {
             try
             {
-                SteamClient.Init(Constants.SteamAppId);
+                if (!SteamClient.IsValid)
+                {
+                    SteamClient.Init(Constants.SteamAppId);
+                }
                 PrintYourName();
                 _isSteamConnected = true;
                 EventBus.Broadcast(EventTypes.SteamConnected);

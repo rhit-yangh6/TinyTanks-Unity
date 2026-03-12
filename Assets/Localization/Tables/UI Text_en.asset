@@ -344,10 +344,17 @@ MonoBehaviour:
     m_Localized: Select an Upgrade
     m_Metadata:
       m_Items: []
+  - m_Id: 235519072478945280
+    m_Localized: Multiplayer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 4516509716749484045
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0020d44d3df500000020540f512a0c00
+        m_Entries: 
+        m_SharedEntries:
+        - id: 269643647557632
+        - id: 3424227358416896

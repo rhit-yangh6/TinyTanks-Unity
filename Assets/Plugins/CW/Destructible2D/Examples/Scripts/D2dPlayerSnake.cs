@@ -129,7 +129,7 @@ namespace Destructible2D.Examples
 				}
 			}
 
-			cachedBody.drag = HitDrag * hitCount;
+			cachedBody.linearDamping = HitDrag * hitCount;
 
 			var delta = default(Vector2);
 

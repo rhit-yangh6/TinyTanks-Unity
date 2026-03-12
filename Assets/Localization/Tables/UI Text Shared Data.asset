@@ -341,6 +341,10 @@ MonoBehaviour:
     m_Key: ui_select_upgrade
     m_Metadata:
       m_Items: []
+  - m_Id: 235519072478945280
+    m_Key: ui_options_multiplayer
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

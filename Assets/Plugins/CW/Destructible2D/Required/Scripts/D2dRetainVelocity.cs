@@ -42,7 +42,7 @@ namespace Destructible2D
 		{
 			if (cachedBody == null) cachedBody = GetComponent<Rigidbody2D>();
 
-			velocity        = cachedBody.velocity;
+			velocity        = cachedBody.linearVelocity;
 			angularVelocity = cachedBody.angularVelocity;
 		}
 
@@ -58,7 +58,7 @@ namespace Destructible2D
 
 					if (splitRigidbody2D != null)
 					{
-						splitRigidbody2D.velocity        += velocity;
+						splitRigidbody2D.linearVelocity        += velocity;
 						splitRigidbody2D.angularVelocity += angularVelocity;
 					}
 				}

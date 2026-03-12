@@ -137,7 +137,7 @@ namespace Destructible2D.Examples
 
 					if (rigidbody2D != null)
 					{
-						rigidbody2D.velocity = (position - link.Start) * ProjectileSpeed;
+						rigidbody2D.linearVelocity = (position - link.Start) * ProjectileSpeed;
 					}
 
 					// Destroy indicator

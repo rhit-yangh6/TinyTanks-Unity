@@ -341,10 +341,17 @@ MonoBehaviour:
     m_Localized: "\u9009\u62E9\u4E00\u9879\u5347\u7EA7"
     m_Metadata:
       m_Items: []
+  - m_Id: 235519072478945280
+    m_Localized: "\u591A\u4EBA\u5BF9\u6218"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 4516509716749484044
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0020d44d3df500000020540f512a0c00
+        m_Entries: 
+        m_SharedEntries:
+        - id: 269643647557632
+        - id: 3424227358416896

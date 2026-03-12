@@ -61,7 +61,7 @@ namespace Destructible2D.Examples
 
 			var factor = CwHelper.DampenFactor(Acceleration, Time.deltaTime);
 
-			body.velocity = Vector2.Lerp(body.velocity, vector * SpeedBoost, factor);
+			body.linearVelocity = Vector2.Lerp(body.linearVelocity, vector * SpeedBoost, factor);
 		}
 
 		private void ChangeTargetPoint()

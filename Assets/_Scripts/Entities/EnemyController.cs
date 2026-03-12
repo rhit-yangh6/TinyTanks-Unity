@@ -68,30 +68,11 @@ namespace _Scripts.Entities
             EdgeCheckVertical();
             if (XMovingDirection != 0)
             {
-                if (IsGrounded())
-                {
-                    // _rb2d.velocity = movementSpeed * new Vector3(_xMovingDirection, 0, 0);
-                    transform.Translate(Time.deltaTime * movementSpeed * new Vector3(XMovingDirection, 0, 0));
-                }
-                else
-                {
-                    // _rb2d.velocity = movementSpeed * new Vector3(_xMovingDirection, -1, 0);
-                    transform.Translate(Time.deltaTime * movementSpeed * new Vector3(XMovingDirection, -1, 0));
-                }
-                // Rigidbody2D.velocity = new Vector2(XMovingDirection * movementSpeed, Rigidbody2D.velocity.y);
+                MoveOnSurface(XMovingDirection);
             }
             else
             {
-                // _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
-                if (IsGrounded())
-                {
-                    Rigidbody2D.linearVelocity = Vector2.zero;
-                    Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-                }
-                else
-                {
-                    Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-                }
+                FreezeOrFall();
             }
         }
 

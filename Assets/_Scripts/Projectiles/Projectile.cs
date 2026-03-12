@@ -10,7 +10,14 @@ namespace _Scripts.Projectiles
     public abstract class Projectile: MonoBehaviour, IProjectile
     {
         public GameObject Shooter { get; set; }
-        
+
+        /// <summary>
+        /// Network-safe shooter identification for multiplayer.
+        /// Set by MultiplayerLaunchProjectile on host when spawning projectiles.
+        /// -1 means single-player mode (use Shooter GameObject instead).
+        /// </summary>
+        public int ShooterPlayerIndex { get; set; } = -1;
+
         protected Collider2D projectileCollider;
         protected Rigidbody2D rigidBody2D;
         protected Renderer projectileRenderer;
@@ -96,7 +103,8 @@ namespace _Scripts.Projectiles
         public virtual void DealDamage()
         {
             var pos = transform.position;
-            DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
+            if (DamageHandler.i != null)
+                DamageHandler.i.HandleDamage(pos, Radius, Damage, DamageHandler.DamageType.Circular);
             EventBus.Broadcast(EventTypes.DestroyTerrain, pos, Radius, 1, DestroyTypes.Circular);
         }
         

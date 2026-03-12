@@ -76,5 +76,15 @@ namespace _Scripts.Utils
         public const string StatBoulderSplitCount = "boulder_split_count";
         public const string StatBasicEnemiesKilled = "basic_enemies_killed";
         public const string StatCoinsGained = "coins_gained";
+
+        /* Multiplayer Achievements and Stats */
+        public const string AchievementMultiplayerWin = "MULTIPLAYER_WIN";
+        public const string AchievementMultiplayerStreak = "MULTIPLAYER_STREAK";
+        public const string StatMultiplayerWins = "multiplayer_wins";
+        public const string StatMultiplayerGamesPlayed = "multiplayer_games_played";
+
+        /* Multiplayer Rich Presence */
+        public const string RichPresenceMultiplayerDetail = "Playing Multiplayer";
+        public const string RichPresenceMultiplayerLobbyState = "In Lobby";
     }
 }

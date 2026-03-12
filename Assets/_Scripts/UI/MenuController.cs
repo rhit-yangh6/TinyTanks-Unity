@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
+using _Scripts.Networking;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
@@ -29,7 +30,14 @@ namespace _Scripts.UI
             
             // Create a SteamManager Singleton
             var unusedSteamManager = SteamManager.Instance;
-            
+
+            // Create networking singletons for multiplayer
+            if (SteamLobbyManager.Instance == null)
+            {
+                var lobbyMgr = new GameObject("SteamLobbyManager");
+                lobbyMgr.AddComponent<SteamLobbyManager>();
+            }
+
             // optionsController.LoadSettings();
         }
 
@@ -90,10 +98,24 @@ namespace _Scripts.UI
         }
 
         public void EnterSurvivalMode() { asyncLoader.LoadSurvivalMode(); }
-        
+
         public void EnterShootingRange() { asyncLoader.LoadShootingRange(); }
-        
+
         public void EnterTutorial() { asyncLoader.LoadTutorial(); }
+
+        [SerializeField] private GameObject multiplayerLobbyPanel;
+
+        public void EnterMultiplayer()
+        {
+            if (multiplayerLobbyPanel != null)
+                multiplayerLobbyPanel.SetActive(true);
+        }
+
+        public void ExitMultiplayerLobby()
+        {
+            if (multiplayerLobbyPanel != null)
+                multiplayerLobbyPanel.SetActive(false);
+        }
 
         private static bool CheckIsDay()
         {
