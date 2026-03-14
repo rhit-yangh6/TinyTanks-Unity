@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Scripts.GameEngine;
 using _Scripts.Networking;
+using _Scripts.Utils;
 using Steamworks;
 using TMPro;
 using UnityEngine;
@@ -179,6 +180,8 @@ namespace _Scripts.UI.Multiplayer
                 playerSlots[i].SetActive(true);
                 if (playerNameTexts[i] != null)
                     playerNameTexts[i].text = members[i].Name;
+                if (i < playerAvatarImages.Length && playerAvatarImages[i] != null)
+                    LoadAvatarAsync(members[i].Id, playerAvatarImages[i]);
             }
 
             // Host-only controls
@@ -202,6 +205,8 @@ namespace _Scripts.UI.Multiplayer
                 playerSlots[i].SetActive(false);
                 if (playerNameTexts[i] != null)
                     playerNameTexts[i].text = "";
+                if (i < playerAvatarImages.Length && playerAvatarImages[i] != null)
+                    playerAvatarImages[i].sprite = null;
             }
         }
 
@@ -226,6 +231,19 @@ namespace _Scripts.UI.Multiplayer
 
             string data = MultiplayerSessionData.SerializeWeaponLoadout(weapons);
             _lobbyManager.SetWeaponLoadout(data);
+        }
+
+        private async void LoadAvatarAsync(SteamId steamId, UnityEngine.UI.Image targetImage)
+        {
+            var avatarImage = await SteamFriends.GetMediumAvatarAsync(steamId);
+            if (avatarImage.HasValue && targetImage != null)
+            {
+                var tex = ImageUtils.Covert(avatarImage.Value);
+                targetImage.sprite = Sprite.Create(
+                    tex,
+                    new Rect(0, 0, tex.width, tex.height),
+                    new Vector2(0.5f, 0.5f));
+            }
         }
 
         #region Friend Picker (overlay fallback)
