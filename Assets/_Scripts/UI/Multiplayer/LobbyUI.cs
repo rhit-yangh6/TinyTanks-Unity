@@ -55,7 +55,7 @@ namespace _Scripts.UI.Multiplayer
             leaveLobbyButton.onClick.AddListener(OnLeaveLobby);
 
             _lobbyManager.OnLobbyCreated += RefreshLobbyDisplay;
-            _lobbyManager.OnLobbyJoined += RefreshLobbyDisplay;
+            _lobbyManager.OnLobbyJoined += OnLobbyJoinedHandler;
             _lobbyManager.OnLobbyMemberJoined += RefreshLobbyDisplay;
             _lobbyManager.OnLobbyMemberLeft += RefreshLobbyDisplay;
             _lobbyManager.OnLobbyLeft += OnLobbyLeftHandler;
@@ -67,6 +67,13 @@ namespace _Scripts.UI.Multiplayer
             inviteFriendButton.interactable = false;
             if (friendPickerPanel != null)
                 friendPickerPanel.SetActive(false);
+
+            // If we're already in a lobby (e.g. joined via invite before panel activated),
+            // immediately show the correct UI state.
+            if (_lobbyManager.CurrentLobby.HasValue)
+            {
+                OnLobbyJoinedHandler();
+            }
         }
 
         private void OnDestroy()
@@ -74,7 +81,7 @@ namespace _Scripts.UI.Multiplayer
             if (_lobbyManager != null)
             {
                 _lobbyManager.OnLobbyCreated -= RefreshLobbyDisplay;
-                _lobbyManager.OnLobbyJoined -= RefreshLobbyDisplay;
+                _lobbyManager.OnLobbyJoined -= OnLobbyJoinedHandler;
                 _lobbyManager.OnLobbyMemberJoined -= RefreshLobbyDisplay;
                 _lobbyManager.OnLobbyMemberLeft -= RefreshLobbyDisplay;
                 _lobbyManager.OnLobbyLeft -= OnLobbyLeftHandler;
@@ -156,6 +163,20 @@ namespace _Scripts.UI.Multiplayer
         {
             _lobbyManager.LeaveLobby();
             NetworkSetup.Instance.Shutdown();
+        }
+
+        private void OnLobbyJoinedHandler()
+        {
+            // Set up UI state for non-host (joined via invite)
+            if (!_lobbyManager.IsHost)
+            {
+                SetLobbyUIActive(true);
+                createLobbyButton.gameObject.SetActive(false);
+                inviteFriendButton.interactable = false;
+                statusText.text = "Joined lobby! Waiting for host to start...";
+            }
+
+            RefreshLobbyDisplay();
         }
 
         private void OnLobbyLeftHandler()

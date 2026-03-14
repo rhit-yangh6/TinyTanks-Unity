@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using _Scripts.GameEngine;
 using Steamworks;
 using Steamworks.Data;
 using UnityEngine;
@@ -43,6 +45,7 @@ namespace _Scripts.Networking
             SteamMatchmaking.OnLobbyMemberJoined += HandleLobbyMemberJoined;
             SteamMatchmaking.OnLobbyMemberLeave += HandleLobbyMemberLeft;
             SteamMatchmaking.OnLobbyEntered += HandleLobbyEntered;
+            SteamMatchmaking.OnLobbyDataChanged += HandleLobbyDataChanged;
             SteamFriends.OnGameLobbyJoinRequested += HandleGameLobbyJoinRequested;
         }
 
@@ -51,7 +54,14 @@ namespace _Scripts.Networking
             SteamMatchmaking.OnLobbyMemberJoined -= HandleLobbyMemberJoined;
             SteamMatchmaking.OnLobbyMemberLeave -= HandleLobbyMemberLeft;
             SteamMatchmaking.OnLobbyEntered -= HandleLobbyEntered;
+            SteamMatchmaking.OnLobbyDataChanged -= HandleLobbyDataChanged;
             SteamFriends.OnGameLobbyJoinRequested -= HandleGameLobbyJoinRequested;
+        }
+
+        private void Start()
+        {
+            // Check if game was launched from a Steam invite (command line: +connect_lobby <id>)
+            CheckCommandLineJoin();
         }
 
         /// <summary>
@@ -197,13 +207,82 @@ namespace _Scripts.Networking
         }
 
         /// <summary>
-        /// Lock the lobby so no new members can join (called at game start).
+        /// Lock the lobby and signal all clients that the game is starting.
+        /// The host sets lobby data "gameStarting" = "1" and "hostSteamId".
+        /// Clients detect this via HandleLobbyDataChanged and connect as Netcode clients.
         /// </summary>
         public void LockLobby()
         {
             if (!CurrentLobby.HasValue) return;
             CurrentLobby.Value.SetJoinable(false);
-            Debug.Log("[SteamLobby] Lobby locked.");
+            CurrentLobby.Value.SetData("hostSteamId", SteamClient.SteamId.ToString());
+            CurrentLobby.Value.SetData("gameStarting", "1");
+            Debug.Log("[SteamLobby] Lobby locked, game start signaled.");
+        }
+
+        /// <summary>
+        /// Called when lobby metadata changes. Non-host clients detect "gameStarting"
+        /// and connect as Netcode clients to the host.
+        /// </summary>
+        private void HandleLobbyDataChanged(Lobby lobby)
+        {
+            if (IsHost) return;
+            if (!CurrentLobby.HasValue) return;
+            if (CurrentLobby.Value.Id != lobby.Id) return;
+
+            string starting = lobby.GetData("gameStarting");
+            if (starting != "1") return;
+
+            string hostIdStr = lobby.GetData("hostSteamId");
+            if (!ulong.TryParse(hostIdStr, out ulong hostId))
+            {
+                Debug.LogError("[SteamLobby] Could not parse host SteamId from lobby data.");
+                return;
+            }
+
+            Debug.Log($"[SteamLobby] Game starting! Connecting to host {hostId}.");
+
+            // Populate session data on client side
+            var members = lobby.Members.ToArray();
+            MultiplayerSessionData.Clear();
+            MultiplayerSessionData.IsMultiplayer = true;
+            MultiplayerSessionData.IsHost = false;
+            MultiplayerSessionData.PlayerCount = members.Length;
+
+            for (int i = 0; i < members.Length; i++)
+            {
+                MultiplayerSessionData.PlayerSteamIds[i] = members[i].Id;
+                MultiplayerSessionData.PlayerNames[i] = members[i].Name;
+
+                string weaponData = GetMemberWeaponLoadout(members[i]);
+                MultiplayerSessionData.PlayerWeapons[i] =
+                    MultiplayerSessionData.ParseWeaponLoadout(weaponData);
+
+                if (members[i].Id == SteamClient.SteamId)
+                    MultiplayerSessionData.LocalPlayerIndex = i;
+            }
+
+            // Connect as Netcode client — scene load happens automatically via NGO
+            NetworkSetup.Instance.StartClient(new SteamId { Value = hostId });
+        }
+
+        /// <summary>
+        /// Check if the game was launched via Steam invite (+connect_lobby arg).
+        /// </summary>
+        private async void CheckCommandLineJoin()
+        {
+            var args = System.Environment.GetCommandLineArgs();
+            for (int i = 0; i < args.Length - 1; i++)
+            {
+                if (args[i] == "+connect_lobby" && ulong.TryParse(args[i + 1], out ulong lobbyId))
+                {
+                    Debug.Log($"[SteamLobby] Launched with +connect_lobby {lobbyId}");
+                    // Wait a moment for Steam to be ready
+                    await Task.Delay(1000);
+                    await JoinLobby(lobbyId);
+                    return;
+                }
+            }
         }
 
         private void HandleLobbyMemberJoined(Lobby lobby, Friend friend)

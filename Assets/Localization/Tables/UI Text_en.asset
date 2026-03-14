@@ -348,6 +348,14 @@ MonoBehaviour:
     m_Localized: Multiplayer
     m_Metadata:
       m_Items: []
+  - m_Id: 236239651959988224
+    m_Localized: Play with Friends Online!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 236261014233931776
+    m_Localized: Select Map
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

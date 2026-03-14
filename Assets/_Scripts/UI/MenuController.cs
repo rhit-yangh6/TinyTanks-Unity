@@ -3,6 +3,7 @@ using System.Collections;
 using _Scripts.GameEngine;
 using _Scripts.Managers;
 using _Scripts.Networking;
+using Michsky.UI.Shift;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
@@ -43,7 +44,24 @@ namespace _Scripts.UI
 
         private void Start()
         {
-            
+            if (SteamLobbyManager.Instance != null)
+                SteamLobbyManager.Instance.OnLobbyJoined += OnInviteJoined;
+
+            if (debugSimulateInviteJoin)
+                _pendingNavigateToLobby = true;
+        }
+
+        private void OnInviteJoined()
+        {
+            // Only auto-navigate for non-host (i.e. accepted an invite)
+            if (SteamLobbyManager.Instance != null && !SteamLobbyManager.Instance.IsHost)
+                _pendingNavigateToLobby = true;
+        }
+
+        private void OnDestroy()
+        {
+            if (SteamLobbyManager.Instance != null)
+                SteamLobbyManager.Instance.OnLobbyJoined -= OnInviteJoined;
         }
 
         public void OnEnable()
@@ -64,14 +82,22 @@ namespace _Scripts.UI
 
         private void Update()
         {
-            // var currentIsDay = CheckIsDay();
-            // // Switch background
-            // if (currentIsDay == isDay) return;
-            //
-            // SteamManager.UnlockAchievement(Constants.AchievementYinYang);
-            // WeaponManager.UnlockWeapon(24); // YinYang 24
-            // isDay = currentIsDay;
-            // StartCoroutine(SwitchBackground());
+            if (!_pendingNavigateToLobby) return;
+
+            // Wait until splash screen is done — mainPanelsAnimator plays "Invisible"
+            // during splash, then "Start" when finished.
+            if (mainPanelsAnimator != null
+                && mainPanelsAnimator.GetCurrentAnimatorStateInfo(0).IsName("Invisible"))
+                return;
+
+            _pendingNavigateToLobby = false;
+
+            // Layer 1: top-level → Play
+            if (topPanelManager != null)
+                topPanelManager.OpenPanel("Play");
+            // Layer 2: inner → Multiplayer
+            if (playPanelManager != null)
+                playPanelManager.OpenPanel("Multiplayer");
         }
 
         private IEnumerator SwitchBackground()
@@ -105,6 +131,14 @@ namespace _Scripts.UI
 
         [SerializeField] private GameObject multiplayerLobbyPanel;
 
+        [Header("Multiplayer Panel Navigation")]
+        [SerializeField] private MainPanelManager topPanelManager;
+        [SerializeField] private MainPanelManager playPanelManager;
+        [SerializeField] private Animator mainPanelsAnimator;
+        [SerializeField] private bool debugSimulateInviteJoin;
+
+        private bool _pendingNavigateToLobby;
+
         public void EnterMultiplayer()
         {
             if (multiplayerLobbyPanel != null)
@@ -115,6 +149,11 @@ namespace _Scripts.UI
         {
             if (multiplayerLobbyPanel != null)
                 multiplayerLobbyPanel.SetActive(false);
+        }
+
+        public void NavigateToMultiplayerLobby()
+        {
+            _pendingNavigateToLobby = true;
         }
 
         private static bool CheckIsDay()
