@@ -10,6 +10,7 @@ namespace _Scripts.Networking
     {
         public static bool IsMultiplayer;
         public static bool IsHost;
+        public static bool IsBotMode;
         public static int LocalPlayerIndex;
         public static int PlayerCount;
 
@@ -25,6 +26,7 @@ namespace _Scripts.Networking
         {
             IsMultiplayer = false;
             IsHost = false;
+            IsBotMode = false;
             LocalPlayerIndex = 0;
             PlayerCount = 0;
             PlayerSteamIds = new SteamId[4];

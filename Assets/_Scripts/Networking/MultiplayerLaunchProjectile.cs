@@ -55,6 +55,8 @@ namespace _Scripts.Networking
             if (!IsOwner) return;
             if (_tankNet == null) _tankNet = GetComponent<MultiplayerTankNetwork>();
             if (_tankNet == null || !_tankNet.IsMyTurn.Value) return;
+            // Only allow input for the local player's tank
+            if (_tankNet.PlayerIndex.Value != MultiplayerSessionData.LocalPlayerIndex) return;
             if (_selectedWeapon == null) return;
 
             var cannonPos = _tank.TankCannon.transform.position;

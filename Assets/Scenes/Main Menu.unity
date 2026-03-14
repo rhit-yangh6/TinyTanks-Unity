@@ -4618,7 +4618,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 652699626}
   m_HandleRect: {fileID: 652699624}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6749,7 +6749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224908321317516644, guid: 71308f555ffb4bf428d48b422a732f3b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1035.72
+      value: 1035.7201
       objectReference: {fileID: 0}
     - target: {fileID: 224908321317516644, guid: 71308f555ffb4bf428d48b422a732f3b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -29679,7 +29679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.5, y: 0}
+  m_AnchoredPosition: {x: -12.5, y: -0.000061035156}
   m_SizeDelta: {x: -25, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &943661698
@@ -32307,7 +32307,7 @@ MonoBehaviour:
   topPanelManager: {fileID: 1303593021}
   playPanelManager: {fileID: 1822702705}
   mainPanelsAnimator: {fileID: 157468049}
-  debugSimulateInviteJoin: 1
+  debugSimulateInviteJoin: 0
 --- !u!4 &1031380817
 Transform:
   m_ObjectHideFlags: 0
@@ -69537,6 +69537,7 @@ MonoBehaviour:
   friendListContent: {fileID: 689171975}
   friendEntryPrefab: {fileID: 6818094361648063582, guid: d552bd6f48efe47f2a3874e6fc742f02, type: 3}
   allowSoloStart: 1
+  debugSimulateGuest: 0
   statusText: {fileID: 626591514}
 --- !u!225 &1945073293
 CanvasGroup:

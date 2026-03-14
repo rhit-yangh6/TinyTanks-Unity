@@ -29,6 +29,10 @@ namespace _Scripts.Networking
             if (_net == null || !_net.IsOwner || !_net.IsMyTurn.Value || !_canMove)
                 return;
 
+            // Only allow input for the local player's tank
+            if (_net.PlayerIndex.Value != MultiplayerSessionData.LocalPlayerIndex)
+                return;
+
             float horizontal = Input.GetAxisRaw("Horizontal");
             if (Mathf.Abs(horizontal) > 0.01f && HasFuel)
             {

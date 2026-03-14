@@ -18,6 +18,26 @@ namespace Netcode.Transports.Facepunch
         private SocketManager socketManager;
         private Dictionary<ulong, Client> connectedClients;
 
+        /// <summary>
+        /// Look up the NGO client ID for a given Steam ID.
+        /// Returns ServerClientId if the Steam ID matches the host, or 0 if not found.
+        /// </summary>
+        public ulong GetClientIdForSteamId(SteamId steamId)
+        {
+            if (steamId == SteamClient.SteamId)
+                return ServerClientId;
+
+            if (connectedClients == null) return 0;
+
+            foreach (var kvp in connectedClients)
+            {
+                if (kvp.Value.steamId == steamId)
+                    return kvp.Key;
+            }
+
+            return 0;
+        }
+
         [Space]
         [Tooltip("The Steam App ID of your game. Technically you're not allowed to use 480, but Valve doesn't do anything about it so it's fine for testing purposes.")]
         [SerializeField] private uint steamAppId = 2190060;
@@ -42,6 +62,7 @@ namespace Netcode.Transports.Facepunch
 
         private void Awake()
         {
+            // Steam init is handled by SteamManager — only init here as fallback
             try
             {
                 if (!SteamClient.IsValid)
@@ -60,12 +81,15 @@ namespace Netcode.Transports.Facepunch
 
         private void Update()
         {
-            SteamClient.RunCallbacks();
+            // SteamManager handles RunCallbacks — only run here as fallback
+            if (_Scripts.Managers.SteamManager.Instance == null)
+                SteamClient.RunCallbacks();
         }
 
         private void OnDestroy()
         {
-            SteamClient.Shutdown();
+            // Don't shutdown Steam here — SteamManager handles the lifecycle.
+            // Calling Shutdown here kills Steam when returning from multiplayer to menu.
         }
 
         #endregion

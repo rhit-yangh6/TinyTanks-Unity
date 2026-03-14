@@ -34,6 +34,9 @@ namespace _Scripts.GameEngine
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private GameObject playerTankPrefab;
 
+        [Header("Debug")]
+        [SerializeField] private float debugBotTurnDuration = 2f;
+
         /// <summary>Current player index (0-3) whose turn it is.</summary>
         public NetworkVariable<int> CurrentTurnPlayerIndex = new(
             writePerm: NetworkVariableWritePermission.Server);
@@ -70,12 +73,38 @@ namespace _Scripts.GameEngine
             if (IsServer)
             {
                 NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
-                // Spawn players once the scene is ready
-                SpawnPlayers();
+
+                if (MultiplayerSessionData.IsBotMode)
+                    SpawnBotMode();
+                else
+                    StartCoroutine(WaitForClientsAndSpawn());
             }
 
             Phase.OnValueChanged += OnPhaseChanged;
             CurrentTurnPlayerIndex.OnValueChanged += OnCurrentTurnChanged;
+
+            // Play multiplayer music on all clients
+            PlayMultiplayerMusic();
+        }
+
+        private void PlayMultiplayerMusic()
+        {
+            var audioClip = Resources.Load<AudioClip>("AudioClips/Music/Multiplayer");
+            if (audioClip == null) return;
+
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayMusicClip(audioClip);
+            }
+            else
+            {
+                // AudioManager not available — play with a local AudioSource
+                var source = gameObject.AddComponent<AudioSource>();
+                source.clip = audioClip;
+                source.loop = true;
+                source.volume = PlayerPrefs.GetFloat(Constants.MusicVolumeValue, 5f) / 10f;
+                source.Play();
+            }
         }
 
         public override void OnNetworkDespawn()
@@ -92,6 +121,67 @@ namespace _Scripts.GameEngine
         }
 
         #region Player Spawning (Host Only)
+
+        /// <summary>
+        /// Spawn tanks in bot mode — all owned by host, bot auto-ends turns.
+        /// Session data is already populated by LobbyUI before scene load.
+        /// </summary>
+        private void SpawnBotMode()
+        {
+            int count = MultiplayerSessionData.PlayerCount;
+            Debug.Log($"[MultiplayerGC] Bot mode: spawning {count} tanks locally.");
+
+            if (count == 0 || playerTankPrefab == null || spawnPoints == null || spawnPoints.Length == 0)
+            {
+                Debug.LogError("[MultiplayerGC] Bot mode: missing players, prefab, or spawn points.");
+                return;
+            }
+
+            PlayerCount.Value = count;
+
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 spawnPos = spawnPoints[i % spawnPoints.Length].position;
+                GameObject tankObj = Instantiate(playerTankPrefab, spawnPos, Quaternion.identity);
+
+                var no = tankObj.GetComponent<NetworkObject>();
+                no.SpawnWithOwnership(NetworkManager.ServerClientId);
+
+                var tank = tankObj.GetComponent<MultiplayerTankController>();
+                var tankNet = tankObj.GetComponent<MultiplayerTankNetwork>();
+                tankNet.PlayerIndex.Value = i;
+                tankNet.DisplayName.Value = MultiplayerSessionData.PlayerNames[i] ?? $"Player {i + 1}";
+
+                _tanks.Add(tank);
+                _alivePlayerIndices.Add(i);
+            }
+
+            // Apply weapon loadouts
+            ApplyWeaponLoadouts(count);
+
+            StartCoroutine(StartGameDelayed());
+        }
+
+        /// <summary>
+        /// Wait until all expected clients have connected before spawning.
+        /// </summary>
+        private IEnumerator WaitForClientsAndSpawn()
+        {
+            int expectedClients = MultiplayerSessionData.PlayerCount;
+            float timeout = 15f;
+            float elapsed = 0f;
+
+            Debug.Log($"[MultiplayerGC] Waiting for {expectedClients} clients (currently {NetworkManager.Singleton.ConnectedClientsIds.Count})...");
+
+            while (NetworkManager.Singleton.ConnectedClientsIds.Count < expectedClients && elapsed < timeout)
+            {
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            Debug.Log($"[MultiplayerGC] {NetworkManager.Singleton.ConnectedClientsIds.Count}/{expectedClients} clients connected after {elapsed:F1}s. Spawning.");
+            SpawnPlayers();
+        }
 
         /// <summary>
         /// Called by host after scene load to spawn all player tanks.
@@ -130,18 +220,31 @@ namespace _Scripts.GameEngine
             }
 
             // Apply weapon loadouts
-            for (int i = 0; i < count; i++)
-            {
-                var weapons = MultiplayerSessionData.PlayerWeapons[i];
-                if (weapons != null && weapons.Length > 0)
-                {
-                    var launcher = _tanks[i].GetComponent<MultiplayerLaunchProjectile>();
-                    launcher.SwitchWeapon(weapons[0].weaponId, weapons[0].level, null);
-                }
-            }
+            ApplyWeaponLoadouts(count);
 
             // Start the game
             StartCoroutine(StartGameDelayed());
+        }
+
+        private void ApplyWeaponLoadouts(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var weapons = MultiplayerSessionData.PlayerWeapons[i];
+                if (weapons == null || weapons.Length == 0) continue;
+
+                int weaponId = weapons[0].weaponId;
+                int level = weapons[0].level;
+
+                if (WeaponManager.Instance == null || WeaponManager.Instance.GetWeaponById(weaponId) == null)
+                {
+                    Debug.LogWarning($"[MultiplayerGC] Weapon ID {weaponId} not found for player {i}, skipping.");
+                    continue;
+                }
+
+                var launcher = _tanks[i].GetComponent<MultiplayerLaunchProjectile>();
+                launcher.SwitchWeapon(weaponId, level, null);
+            }
         }
 
         private IEnumerator StartGameDelayed()
@@ -152,6 +255,20 @@ namespace _Scripts.GameEngine
 
         private ulong GetClientIdForPlayerIndex(int playerIndex)
         {
+            // Map player index → Steam ID → NGO client ID
+            var steamId = MultiplayerSessionData.PlayerSteamIds[playerIndex];
+            var transport = NetworkManager.Singleton.NetworkConfig.NetworkTransport
+                as Netcode.Transports.Facepunch.FacepunchTransport;
+
+            if (transport != null)
+            {
+                ulong clientId = transport.GetClientIdForSteamId(steamId);
+                Debug.Log($"[MultiplayerGC] Player {playerIndex} SteamId={steamId} → ClientId={clientId}");
+                return clientId;
+            }
+
+            // Fallback
+            Debug.LogWarning("[MultiplayerGC] FacepunchTransport not found, falling back to list order.");
             var clients = NetworkManager.Singleton.ConnectedClientsList;
             if (playerIndex < clients.Count)
                 return clients[playerIndex].ClientId;
@@ -194,6 +311,25 @@ namespace _Scripts.GameEngine
             Phase.Value = MultiplayerTurnState.ActivePlayerMoving;
 
             OnTurnChanged?.Invoke(playerIdx);
+
+            // In bot mode, auto-end the bot's turn
+            if (MultiplayerSessionData.IsBotMode && playerIdx != MultiplayerSessionData.LocalPlayerIndex)
+            {
+                StartCoroutine(BotAutoEndTurn(playerIdx));
+            }
+        }
+
+        private IEnumerator BotAutoEndTurn(int botPlayerIdx)
+        {
+            yield return new WaitForSeconds(debugBotTurnDuration);
+
+            // Make sure it's still the bot's turn
+            if (CurrentTurnPlayerIndex.Value != botPlayerIdx) yield break;
+            if (Phase.Value != MultiplayerTurnState.ActivePlayerMoving) yield break;
+
+            Debug.Log($"[MultiplayerGC] Bot player {botPlayerIdx} auto-ending turn.");
+            Phase.Value = MultiplayerTurnState.InterTurn;
+            StartCoroutine(InterTurnDelay());
         }
 
         private void AdvanceToNextTurn()

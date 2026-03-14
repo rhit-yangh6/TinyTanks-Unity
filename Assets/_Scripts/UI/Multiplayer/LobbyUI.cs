@@ -39,6 +39,7 @@ namespace _Scripts.UI.Multiplayer
 
         [Header("Debug")]
         [SerializeField] private bool allowSoloStart;
+        [SerializeField] private bool debugSimulateGuest;
 
         [Header("Status")]
         [SerializeField] private TextMeshProUGUI statusText;
@@ -53,6 +54,7 @@ namespace _Scripts.UI.Multiplayer
             inviteFriendButton.onClick.AddListener(OnInviteFriend);
             startGameButton.onClick.AddListener(OnStartGame);
             leaveLobbyButton.onClick.AddListener(OnLeaveLobby);
+
 
             _lobbyManager.OnLobbyCreated += RefreshLobbyDisplay;
             _lobbyManager.OnLobbyJoined += OnLobbyJoinedHandler;
@@ -70,7 +72,7 @@ namespace _Scripts.UI.Multiplayer
 
             // If we're already in a lobby (e.g. joined via invite before panel activated),
             // immediately show the correct UI state.
-            if (_lobbyManager.CurrentLobby.HasValue)
+            if (_lobbyManager.CurrentLobby.HasValue || debugSimulateGuest)
             {
                 OnLobbyJoinedHandler();
             }
@@ -123,6 +125,8 @@ namespace _Scripts.UI.Multiplayer
             var lobby = _lobbyManager.CurrentLobby.Value;
             var members = lobby.Members.ToArray();
 
+            bool soloWithBot = members.Length < 2 && allowSoloStart;
+
             if (members.Length < 2 && !allowSoloStart)
             {
                 statusText.text = "Need at least 2 players to start!";
@@ -136,19 +140,37 @@ namespace _Scripts.UI.Multiplayer
             MultiplayerSessionData.Clear();
             MultiplayerSessionData.IsMultiplayer = true;
             MultiplayerSessionData.IsHost = true;
-            MultiplayerSessionData.PlayerCount = members.Length;
+            MultiplayerSessionData.IsBotMode = soloWithBot;
+            MultiplayerSessionData.PlayerCount = soloWithBot ? 2 : members.Length;
+            MultiplayerSessionData.LocalPlayerIndex = 0;
 
-            for (int i = 0; i < members.Length; i++)
+            // Player 0 is always the local host
+            MultiplayerSessionData.PlayerSteamIds[0] = SteamClient.SteamId;
+            MultiplayerSessionData.PlayerNames[0] = SteamClient.Name;
+            StoreLocalWeaponLoadoutToSession(0);
+
+            if (soloWithBot)
             {
-                MultiplayerSessionData.PlayerSteamIds[i] = members[i].Id;
-                MultiplayerSessionData.PlayerNames[i] = members[i].Name;
+                // Add bot as player 1
+                MultiplayerSessionData.PlayerNames[1] = "Bot";
+                MultiplayerSessionData.PlayerWeapons[1] = new[] { (-1, 1) };
+            }
+            else
+            {
+                // Fill in real players (host is already at index 0)
+                int idx = 1;
+                for (int i = 0; i < members.Length; i++)
+                {
+                    if (members[i].Id == SteamClient.SteamId) continue;
 
-                string weaponData = _lobbyManager.GetMemberWeaponLoadout(members[i]);
-                MultiplayerSessionData.PlayerWeapons[i] =
-                    MultiplayerSessionData.ParseWeaponLoadout(weaponData);
+                    MultiplayerSessionData.PlayerSteamIds[idx] = members[i].Id;
+                    MultiplayerSessionData.PlayerNames[idx] = members[i].Name;
 
-                if (members[i].Id == SteamClient.SteamId)
-                    MultiplayerSessionData.LocalPlayerIndex = i;
+                    string weaponData = _lobbyManager.GetMemberWeaponLoadout(members[i]);
+                    MultiplayerSessionData.PlayerWeapons[idx] =
+                        MultiplayerSessionData.ParseWeaponLoadout(weaponData);
+                    idx++;
+                }
             }
 
             // Start networking
@@ -165,18 +187,35 @@ namespace _Scripts.UI.Multiplayer
             NetworkSetup.Instance.Shutdown();
         }
 
+        private void StoreLocalWeaponLoadoutToSession(int playerIndex)
+        {
+            var selectedWeapons = PlayerData.Instance.selectedWeapons;
+            var weapons = new (int weaponId, int level)[5];
+            for (int i = 0; i < 5; i++)
+            {
+                if (selectedWeapons[i] != null)
+                    weapons[i] = (selectedWeapons[i].weaponId, selectedWeapons[i].level);
+            }
+            MultiplayerSessionData.PlayerWeapons[playerIndex] = weapons;
+        }
+
         private void OnLobbyJoinedHandler()
         {
             // Set up UI state for non-host (joined via invite)
-            if (!_lobbyManager.IsHost)
+            if (!_lobbyManager.IsHost || debugSimulateGuest)
             {
                 SetLobbyUIActive(true);
                 createLobbyButton.gameObject.SetActive(false);
+                startGameButton.gameObject.SetActive(false);
                 inviteFriendButton.interactable = false;
+                if (mapDropdown != null)
+                    mapDropdown.interactable = false;
                 statusText.text = "Joined lobby! Waiting for host to start...";
             }
 
-            RefreshLobbyDisplay();
+            // Skip refresh if no real lobby (debug mode)
+            if (_lobbyManager.CurrentLobby.HasValue)
+                RefreshLobbyDisplay();
         }
 
         private void OnLobbyLeftHandler()
